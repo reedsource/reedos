@@ -53,18 +53,28 @@
 		<dependency>
 			<groupId>top.reed</groupId>
 			<artifactId>reed-framework</artifactId>
+			<version>${reed.version}</version>
 		</dependency>
 
 		<!-- 定时任务-->
 		<dependency>
 			<groupId>top.reed</groupId>
 			<artifactId>reed-quartz</artifactId>
+			<version>${reed.version}</version>
 		</dependency>
 
 		<!-- 代码生成-->
 		<dependency>
 			<groupId>top.reed</groupId>
 			<artifactId>reed-generator</artifactId>
+			<version>${reed.version}</version>
+		</dependency>
+
+		<!-- 信息管理-->
+		<dependency>
+			<groupId>top.reed</groupId>
+			<artifactId>reed-information</artifactId>
+			<version>${reed.version}</version>
 		</dependency>
 
 	</dependencies>

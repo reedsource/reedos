@@ -75,6 +75,7 @@
 		<dependency>
 			<groupId>top.reed</groupId>
 			<artifactId>reed-system</artifactId>
+			<version>${reed.version}</version>
 		</dependency>
 
 	</dependencies>

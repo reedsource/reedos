@@ -23,16 +23,17 @@
 			<artifactId>velocity-engine-core</artifactId>
 		</dependency>
 
-		<!-- 通用工具-->
-		<dependency>
-			<groupId>top.reed</groupId>
-			<artifactId>reed-common</artifactId>
-		</dependency>
-
 		<!-- 阿里数据库连接池 -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid-spring-boot-starter</artifactId>
+		</dependency>
+
+		<!-- 通用工具-->
+		<dependency>
+			<groupId>top.reed</groupId>
+			<artifactId>reed-common</artifactId>
+			<version>${reed.version}</version>
 		</dependency>
 
 	</dependencies>
