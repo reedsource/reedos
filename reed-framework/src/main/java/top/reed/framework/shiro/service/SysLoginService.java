@@ -65,18 +65,6 @@ public class SysLoginService {
 		// 查询用户信息
 		SysUser user = userService.selectUserByLoginName(username);
 
-		/*
-		 if (user == null && maybeMobilePhoneNumber(username))
-		 {
-		 user = userService.selectUserByPhoneNumber(username);
-		 }
-
-		 if (user == null && maybeEmail(username))
-		 {
-		 user = userService.selectUserByEmail(username);
-		 }
-		 */
-
 		if (user == null) {
 			AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_FAIL, MessageUtils.message("user.not.exists")));
 			throw new UserNotExistsException();
@@ -99,26 +87,6 @@ public class SysLoginService {
 		recordLoginInfo(user.getUserId());
 		return user;
 	}
-
-	/*
-	 private boolean maybeEmail(String username)
-	 {
-	 if (!username.matches(UserConstants.EMAIL_PATTERN))
-	 {
-	 return false;
-	 }
-	 return true;
-	 }
-
-	 private boolean maybeMobilePhoneNumber(String username)
-	 {
-	 if (!username.matches(UserConstants.MOBILE_PHONE_NUMBER_PATTERN))
-	 {
-	 return false;
-	 }
-	 return true;
-	 }
-	 */
 
 	/**
 	 * 设置角色权限
