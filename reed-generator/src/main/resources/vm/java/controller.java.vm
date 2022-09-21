@@ -40,8 +40,7 @@ public class ${ClassName}Controller extends BaseController {
 
     @RequiresPermissions("${permissionPrefix}:view")
     @GetMapping()
-    public String ${businessName}()
-    {
+    public String ${businessName}() {
         return prefix + "/${businessName}";
     }
 
@@ -88,8 +87,7 @@ public class ${ClassName}Controller extends BaseController {
      * 新增${functionName}
      */
     @GetMapping("/add")
-    public String add()
-    {
+    public String add() {
         return prefix + "/add";
     }
 #elseif($table.tree)
