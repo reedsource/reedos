@@ -9,7 +9,7 @@ reedconfig:
   # 实例演示开关
   demoEnabled: true
   # 文件路径 示例（ Windows配置D:/ruoyi/uploadPath，Linux配置 /home/ruoyi/uploadPath）
-  profile: D:/clouds/codes/ReedOS/filePath
+  profile: @reed.profile@
   # 获取ip地址开关
   addressEnabled: false
 

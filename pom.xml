@@ -231,7 +231,96 @@
                 </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <!--编译xml文件-->
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <!--编译resources下全部文件-->
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+            </resource>
+            <!--设置文件过滤,即yaml编译时,@@会替换为pom文件中对应的参数-->
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>application.yml</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>application-druid.yml</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
+
+    <!--配置打包部署开发多环境-->
+    <!--注意 这种配置对于类似本项目包含多个子项目的项目 maven勾选界面只会在顶部出现一个勾选面板-->
+    <profiles>
+        <profile>
+            <id>开发环境本地</id>
+            <properties>
+                <!--useUnicode=true                   使用Unicode字符集
+				characterEncoding=utf8                字符编码为utf8
+				zeroDateTimeBehavior=convertToNull    操作值为0的timestamp类型时不能正确的处理 将日期转换成NULL值
+				serverTimezone=GMT%2B8                北京时间东8区-->
+                <jdbc.url>jdbc:mysql://192.168.200.9:3306/reedos?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull&amp;serverTimezone=GMT%2B8</jdbc.url>
+                <jdbc.username>mysql</jdbc.username>
+                <jdbc.password>ReedOSMysql09.!#</jdbc.password>
+                <redis.host>192.168.200.9</redis.host>
+                <redis.port>6379</redis.port>
+                <redis.password>ReedGORedis09.!#</redis.password>
+                <!--项目文件目录-->
+                <reed.profile>D:/clouds/codes/ReedOS/filePath</reed.profile>
+            </properties>
+        </profile>
+        <profile>
+            <id>开发环境部署</id>
+            <properties>
+                <jdbc.url>jdbc:mysql://localhost:3306/reedos?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull&amp;serverTimezone=GMT%2B8</jdbc.url>
+                <jdbc.username>mysql</jdbc.username>
+                <jdbc.password>ReedOSMysql09.!#</jdbc.password>
+                <redis.host>localhost</redis.host>
+                <redis.port>6379</redis.port>
+                <redis.password>ReedGORedis09.!#</redis.password>
+                <reed.profile>/home/reedos/filePath</reed.profile>
+            </properties>
+        </profile>
+        <profile>
+            <id>功能环境</id>
+            <properties>
+                <jdbc.url>jdbc:mysql://localhost:3306/reedos?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull&amp;serverTimezone=GMT%2B8</jdbc.url>
+                <jdbc.username>mysql</jdbc.username>
+                <jdbc.password>ReedOSMysql08.!#</jdbc.password>
+                <redis.host>localhost</redis.host>
+                <redis.port>6379</redis.port>
+                <redis.password>ReedGORedis08.!#</redis.password>
+                <reed.profile>/home/reedos/filePath</reed.profile>
+            </properties>
+        </profile>
+        <profile>
+            <id>生产环境</id>
+            <properties>
+                <jdbc.url>jdbc:mysql://localhost:3306/reedos?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull&amp;serverTimezone=GMT%2B8</jdbc.url>
+                <jdbc.username>mysql</jdbc.username>
+                <jdbc.password>ReedOSMysql07.!#</jdbc.password>
+                <redis.host>localhost</redis.host>
+                <redis.port>6379</redis.port>
+                <redis.password>ReedGORedis07.!#</redis.password>
+                <reed.profile>/home/reedos/filePath</reed.profile>
+            </properties>
+        </profile>
+    </profiles>
 
     <repositories>
         <repository>
