@@ -45,10 +45,10 @@ public class OnlineWebSessionManager extends DefaultWebSessionManager {
 		}
 		String attributeKeyStr = attributeKey.toString();
 		// 优化 flash属性没必要持久化
-		if (attributeKeyStr.startsWith("org.springframework" )) {
+		if (attributeKeyStr.startsWith("org.springframework")) {
 			return false;
 		}
-		if (attributeKeyStr.startsWith("javax.servlet" )) {
+		if (attributeKeyStr.startsWith("javax.servlet")) {
 			return false;
 		}
 		if (attributeKeyStr.equals(ShiroConstants.CURRENT_USERNAME)) {
@@ -84,7 +84,7 @@ public class OnlineWebSessionManager extends DefaultWebSessionManager {
 	@Override
 	public void validateSessions() {
 		if (log.isInfoEnabled()) {
-			log.info("invalidation sessions..." );
+			log.info("invalidation sessions...");
 		}
 
 		int invalidCount = 0;
@@ -98,7 +98,7 @@ public class OnlineWebSessionManager extends DefaultWebSessionManager {
 		ISysUserOnlineService userOnlineService = SpringUtils.getBean(ISysUserOnlineService.class);
 		List<SysUserOnline> userOnlineList = userOnlineService.selectOnlineByExpired(expiredDate);
 		// 批量过期删除
-		List<String> needOfflineIdList = new ArrayList<String>();
+		List<String> needOfflineIdList = new ArrayList<>();
 		for (SysUserOnline userOnline : userOnlineList) {
 			try {
 				SessionKey key = new DefaultSessionKey(userOnline.getSessionId());
@@ -110,7 +110,7 @@ public class OnlineWebSessionManager extends DefaultWebSessionManager {
 				if (log.isDebugEnabled()) {
 					boolean expired = (e instanceof ExpiredSessionException);
 					String msg = "Invalidated session with id [" + userOnline.getSessionId() + "]"
-							+ (expired ? " (expired)" : " (stopped)" );
+							+ (expired ? " (expired)" : " (stopped)");
 					log.debug(msg);
 				}
 				invalidCount++;
@@ -123,16 +123,16 @@ public class OnlineWebSessionManager extends DefaultWebSessionManager {
 			try {
 				userOnlineService.batchDeleteOnline(needOfflineIdList);
 			} catch (Exception e) {
-				log.error("batch delete db session error." , e);
+				log.error("batch delete db session error.", e);
 			}
 		}
 
 		if (log.isInfoEnabled()) {
-			String msg = "Finished invalidation session." ;
+			String msg = "Finished invalidation session.";
 			if (invalidCount > 0) {
-				msg += " [" + invalidCount + "] sessions were stopped." ;
+				msg += " [" + invalidCount + "] sessions were stopped.";
 			} else {
-				msg += " No sessions were stopped." ;
+				msg += " No sessions were stopped.";
 			}
 			log.info(msg);
 		}
@@ -141,6 +141,6 @@ public class OnlineWebSessionManager extends DefaultWebSessionManager {
 
 	@Override
 	protected Collection<Session> getActiveSessions() {
-		throw new UnsupportedOperationException("getActiveSessions method not supported" );
+		throw new UnsupportedOperationException("getActiveSessions method not supported");
 	}
 }

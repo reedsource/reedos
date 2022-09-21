@@ -79,11 +79,11 @@ public class GoodsModel {
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-				.append("name" , getName())
-				.append("weight" , getWeight())
-				.append("price" , getPrice())
-				.append("date" , getDate())
-				.append("type" , getType())
+				.append("name", getName())
+				.append("weight", getWeight())
+				.append("price", getPrice())
+				.append("date", getDate())
+				.append("type", getType())
 				.toString();
 	}
 }

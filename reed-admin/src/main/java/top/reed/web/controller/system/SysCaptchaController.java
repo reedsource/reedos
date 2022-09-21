@@ -23,36 +23,36 @@ import java.io.IOException;
  * @author reedsource
  */
 @Controller
-@RequestMapping("/captcha" )
+@RequestMapping("/captcha")
 public class SysCaptchaController extends BaseController {
-	@Resource(name = "captchaProducer" )
+	@Resource(name = "captchaProducer")
 	private Producer captchaProducer;
 
-	@Resource(name = "captchaProducerMath" )
+	@Resource(name = "captchaProducerMath")
 	private Producer captchaProducerMath;
 
 	/**
 	 * 验证码生成
 	 */
-	@GetMapping(value = "/captchaImage" )
+	@GetMapping(value = "/captchaImage")
 	public ModelAndView getKaptchaImage(HttpServletRequest request, HttpServletResponse response) {
 		ServletOutputStream out = null;
 		try {
 			HttpSession session = request.getSession();
-			response.setDateHeader("Expires" , 0);
-			response.setHeader("Cache-Control" , "no-store, no-cache, must-revalidate" );
-			response.addHeader("Cache-Control" , "post-check=0, pre-check=0" );
-			response.setHeader("Pragma" , "no-cache" );
-			response.setContentType("image/jpeg" );
+			response.setDateHeader("Expires", 0);
+			response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+			response.addHeader("Cache-Control", "post-check=0, pre-check=0");
+			response.setHeader("Pragma", "no-cache");
+			response.setContentType("image/jpeg");
 
-			String type = request.getParameter("type" );
+			String type = request.getParameter("type");
 			String capStr = null;
 			String code = null;
 			BufferedImage bi = null;
 			if ("math".equals(type)) {
 				String capText = captchaProducerMath.createText();
-				capStr = capText.substring(0, capText.lastIndexOf("@" ));
-				code = capText.substring(capText.lastIndexOf("@" ) + 1);
+				capStr = capText.substring(0, capText.lastIndexOf("@"));
+				code = capText.substring(capText.lastIndexOf("@") + 1);
 				bi = captchaProducerMath.createImage(capStr);
 			} else if ("char".equals(type)) {
 				capStr = code = captchaProducer.createText();
@@ -60,7 +60,7 @@ public class SysCaptchaController extends BaseController {
 			}
 			session.setAttribute(Constants.KAPTCHA_SESSION_KEY, code);
 			out = response.getOutputStream();
-			ImageIO.write(bi, "jpg" , out);
+			ImageIO.write(bi, "jpg", out);
 			out.flush();
 
 		} catch (Exception e) {

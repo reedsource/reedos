@@ -39,7 +39,7 @@ public class LogoutFilter extends org.apache.shiro.web.filter.authc.LogoutFilter
 	}
 
 	@Override
-	protected boolean preHandle(ServletRequest request, ServletResponse response) throws Exception {
+	protected boolean preHandle(ServletRequest request, ServletResponse response) {
 		try {
 			Subject subject = getSubject(request, response);
 			String redirectUrl = getRedirectUrl(request, response, subject);
@@ -48,18 +48,18 @@ public class LogoutFilter extends org.apache.shiro.web.filter.authc.LogoutFilter
 				if (StringUtils.isNotNull(user)) {
 					String loginName = user.getLoginName();
 					// 记录用户退出日志
-					AsyncManager.me().execute(AsyncFactory.recordLogininfor(loginName, Constants.LOGOUT, MessageUtils.message("user.logout.success" )));
+					AsyncManager.me().execute(AsyncFactory.recordLogininfor(loginName, Constants.LOGOUT, MessageUtils.message("user.logout.success")));
 					// 清理缓存
 					SpringUtils.getBean(ISysUserOnlineService.class).removeUserCache(loginName, ShiroUtils.getSessionId());
 				}
 				// 退出登录
 				subject.logout();
 			} catch (SessionException ise) {
-				log.error("logout fail." , ise);
+				log.error("logout fail.", ise);
 			}
 			issueRedirect(request, response, redirectUrl);
 		} catch (Exception e) {
-			log.error("Encountered session exception during logout.  This can generally safely be ignored." , e);
+			log.error("Encountered session exception during logout.  This can generally safely be ignored.", e);
 		}
 		return false;
 	}

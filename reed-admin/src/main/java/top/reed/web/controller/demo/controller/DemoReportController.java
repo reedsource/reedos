@@ -10,39 +10,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author reedsource
  */
 @Controller
-@RequestMapping("/demo/report" )
+@RequestMapping("/demo/report")
 public class DemoReportController {
-	private String prefix = "demo/report" ;
+	private String prefix = "demo/report";
 
 	/**
 	 * 百度ECharts
 	 */
-	@GetMapping("/echarts" )
+	@GetMapping("/echarts")
 	public String echarts() {
-		return prefix + "/echarts" ;
+		return prefix + "/echarts";
 	}
 
 	/**
 	 * 图表插件
 	 */
-	@GetMapping("/peity" )
+	@GetMapping("/peity")
 	public String peity() {
-		return prefix + "/peity" ;
+		return prefix + "/peity";
 	}
 
 	/**
 	 * 线状图插件
 	 */
-	@GetMapping("/sparkline" )
+	@GetMapping("/sparkline")
 	public String sparkline() {
-		return prefix + "/sparkline" ;
+		return prefix + "/sparkline";
 	}
 
 	/**
 	 * 图表组合
 	 */
-	@GetMapping("/metrics" )
+	@GetMapping("/metrics")
 	public String metrics() {
-		return prefix + "/metrics" ;
+		return prefix + "/metrics";
 	}
 }

@@ -128,5 +128,5 @@ public interface SysMenuMapper {
 	 * @param parentId 父菜单ID
 	 * @return 结果
 	 */
-	public SysMenu checkMenuNameUnique(@Param("menuName" ) String menuName, @Param("parentId" ) Long parentId);
+	public SysMenu checkMenuNameUnique(@Param("menuName") String menuName, @Param("parentId") Long parentId);
 }

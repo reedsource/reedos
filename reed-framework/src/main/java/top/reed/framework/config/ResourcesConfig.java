@@ -21,7 +21,7 @@ public class ResourcesConfig implements WebMvcConfigurer {
 	/**
 	 * 首页地址
 	 */
-	@Value("${shiro.user.indexUrl}" )
+	@Value("${shiro.user.indexUrl}")
 	private String indexUrl;
 
 	@Autowired
@@ -32,16 +32,16 @@ public class ResourcesConfig implements WebMvcConfigurer {
 	 */
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/" ).setViewName("forward:" + indexUrl);
+		registry.addViewController("/").setViewName("forward:" + indexUrl);
 	}
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		/** 本地文件上传路径 */
-		registry.addResourceHandler(Constants.RESOURCE_PREFIX + "/**" ).addResourceLocations("file:" + ReedConfig.getProfile() + "/" );
+		/* 本地文件上传路径 */
+		registry.addResourceHandler(Constants.RESOURCE_PREFIX + "/**").addResourceLocations("file:" + ReedConfig.getProfile() + "/");
 
-		/** swagger配置 */
-		registry.addResourceHandler("/swagger-ui/**" ).addResourceLocations("classpath:/META-INF/resources/webjars/springfox-swagger-ui/" );
+		/* swagger配置 */
+		registry.addResourceHandler("/swagger-ui/**").addResourceLocations("classpath:/META-INF/resources/webjars/springfox-swagger-ui/");
 	}
 
 	/**
@@ -49,6 +49,6 @@ public class ResourcesConfig implements WebMvcConfigurer {
 	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(repeatSubmitInterceptor).addPathPatterns("/**" );
+		registry.addInterceptor(repeatSubmitInterceptor).addPathPatterns("/**");
 	}
 }

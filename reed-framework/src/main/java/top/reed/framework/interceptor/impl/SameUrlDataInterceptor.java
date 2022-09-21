@@ -18,18 +18,18 @@ import java.util.Map;
  */
 @Component
 public class SameUrlDataInterceptor extends RepeatSubmitInterceptor {
-	public final String REPEAT_PARAMS = "repeatParams" ;
+	public final String REPEAT_PARAMS = "repeatParams";
 
-	public final String REPEAT_TIME = "repeatTime" ;
+	public final String REPEAT_TIME = "repeatTime";
 
-	public final String SESSION_REPEAT_KEY = "repeatData" ;
+	public final String SESSION_REPEAT_KEY = "repeatData";
 
-	@SuppressWarnings("unchecked" )
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean isRepeatSubmit(HttpServletRequest request, RepeatSubmit annotation) throws Exception {
 		// 本次参数及系统时间
 		String nowParams = JSON.marshal(request.getParameterMap());
-		Map<String, Object> nowDataMap = new HashMap<String, Object>();
+		Map<String, Object> nowDataMap = new HashMap<>();
 		nowDataMap.put(REPEAT_PARAMS, nowParams);
 		nowDataMap.put(REPEAT_TIME, System.currentTimeMillis());
 
@@ -47,7 +47,7 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor {
 				}
 			}
 		}
-		Map<String, Object> sessionMap = new HashMap<String, Object>();
+		Map<String, Object> sessionMap = new HashMap<>();
 		sessionMap.put(url, nowDataMap);
 		session.setAttribute(SESSION_REPEAT_KEY, sessionMap);
 		return false;

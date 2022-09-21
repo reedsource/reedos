@@ -109,11 +109,11 @@ public class FileUploadUtils {
 	 * 编码文件名
 	 */
 	public static final String extractFilename(MultipartFile file) {
-		return StringUtils.format("{}/{}_{}.{}" , DateUtils.datePath(),
+		return StringUtils.format("{}/{}_{}.{}", DateUtils.datePath(),
 				FilenameUtils.getBaseName(file.getOriginalFilename()), Seq.getId(Seq.uploadSeqType), getExtension(file));
 	}
 
-	public static final File getAbsoluteFile(String uploadDir, String fileName) throws IOException {
+	public static final File getAbsoluteFile(String uploadDir, String fileName) {
 		File desc = new File(uploadDir + File.separator + fileName);
 
 		if (!desc.exists()) {
@@ -124,7 +124,7 @@ public class FileUploadUtils {
 		return desc;
 	}
 
-	public static final String getPathFileName(String uploadDir, String fileName) throws IOException {
+	public static final String getPathFileName(String uploadDir, String fileName) {
 		int dirLastIndex = ReedConfig.getProfile().length() + 1;
 		String currentDir = StringUtils.substring(uploadDir, dirLastIndex);
 		return Constants.RESOURCE_PREFIX + "/" + currentDir + "/" + fileName;

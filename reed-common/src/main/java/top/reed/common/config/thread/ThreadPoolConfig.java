@@ -29,7 +29,7 @@ public class ThreadPoolConfig {
 	// 线程池维护线程所允许的空闲时间
 	private int keepAliveSeconds = 300;
 
-	@Bean(name = "threadPoolTaskExecutor" )
+	@Bean(name = "threadPoolTaskExecutor")
 	public ThreadPoolTaskExecutor threadPoolTaskExecutor() {
 		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
 		executor.setMaxPoolSize(maxPoolSize);
@@ -44,10 +44,10 @@ public class ThreadPoolConfig {
 	/**
 	 * 执行周期性或定时任务
 	 */
-	@Bean(name = "scheduledExecutorService" )
+	@Bean(name = "scheduledExecutorService")
 	protected ScheduledExecutorService scheduledExecutorService() {
 		return new ScheduledThreadPoolExecutor(corePoolSize,
-				new BasicThreadFactory.Builder().namingPattern("schedule-pool-%d" ).daemon(true).build(),
+				new BasicThreadFactory.Builder().namingPattern("schedule-pool-%d").daemon(true).build(),
 				new ThreadPoolExecutor.CallerRunsPolicy()) {
 			@Override
 			protected void afterExecute(Runnable r, Throwable t) {

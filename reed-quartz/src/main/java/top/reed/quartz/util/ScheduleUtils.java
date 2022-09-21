@@ -95,7 +95,7 @@ public class ScheduleUtils {
 				return cb.withMisfireHandlingInstructionDoNothing();
 			default:
 				throw new TaskException("The task misfire policy '" + job.getMisfirePolicy()
-						+ "' cannot be used in cron schedule tasks" , Code.CONFIG_ERROR);
+						+ "' cannot be used in cron schedule tasks", Code.CONFIG_ERROR);
 		}
 	}
 
@@ -106,12 +106,12 @@ public class ScheduleUtils {
 	 * @return 结果
 	 */
 	public static boolean whiteList(String invokeTarget) {
-		String packageName = StringUtils.substringBefore(invokeTarget, "(" );
-		int count = StringUtils.countMatches(packageName, "." );
+		String packageName = StringUtils.substringBefore(invokeTarget, "(");
+		int count = StringUtils.countMatches(packageName, ".");
 		if (count > 1) {
 			return StringUtils.containsAnyIgnoreCase(invokeTarget, Constants.JOB_WHITELIST_STR);
 		}
-		Object obj = SpringUtils.getBean(StringUtils.split(invokeTarget, "." )[0]);
+		Object obj = SpringUtils.getBean(StringUtils.split(invokeTarget, ".")[0]);
 		return StringUtils.containsAnyIgnoreCase(obj.getClass().getPackage().getName(), Constants.JOB_WHITELIST_STR);
 	}
 }

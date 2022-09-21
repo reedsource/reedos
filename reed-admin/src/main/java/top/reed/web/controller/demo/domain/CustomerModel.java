@@ -93,12 +93,12 @@ public class CustomerModel {
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-				.append("name" , getName())
-				.append("phonenumber" , getPhonenumber())
-				.append("sex" , getSex())
-				.append("birthday" , getBirthday())
-				.append("goods" , getGoods())
-				.append("remark" , getRemark())
+				.append("name", getName())
+				.append("phonenumber", getPhonenumber())
+				.append("sex", getSex())
+				.append("birthday", getBirthday())
+				.append("goods", getGoods())
+				.append("remark", getRemark())
 				.toString();
 	}
 }

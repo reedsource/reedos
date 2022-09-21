@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  */
 public class JSONObject extends LinkedHashMap<String, Object> {
 	private static final long serialVersionUID = 1L;
-	private static final Pattern arrayNamePattern = Pattern.compile("(\\w+)((\\[\\d+\\])+)" );
+	private static final Pattern arrayNamePattern = Pattern.compile("(\\w+)((\\[\\d+\\])+)");
 	private static final ObjectMapper objectMapper = new ObjectMapper();
 
 	public JSONObject() {
@@ -81,7 +81,7 @@ public class JSONObject extends LinkedHashMap<String, Object> {
 	 * @param value 值。
 	 * @return 返回转换后的值。
 	 */
-	@SuppressWarnings("unchecked" )
+	@SuppressWarnings("unchecked")
 	private static Object transfer(final Object value) {
 		if (!(value instanceof JSONObject) && value instanceof Map) {
 			return toObj((Map<String, Object>) value);
@@ -176,13 +176,13 @@ public class JSONObject extends LinkedHashMap<String, Object> {
 
 	private static int[] parseIndexes(final String s) {
 		int[] indexes = null;
-		List<Integer> list = new ArrayList<Integer>();
+		List<Integer> list = new ArrayList<>();
 
-		final StringTokenizer st = new StringTokenizer(s, "[]" );
+		final StringTokenizer st = new StringTokenizer(s, "[]");
 		while (st.hasMoreTokens()) {
 			final int index = Integer.valueOf(st.nextToken());
 			if (index < 0) {
-				throw new RuntimeException(String.format("Illegal index %1$d in \"%2$s\"" , index, s));
+				throw new RuntimeException(String.format("Illegal index %1$d in \"%2$s\"", index, s));
 			}
 
 			list.add(index);
@@ -316,7 +316,7 @@ public class JSONObject extends LinkedHashMap<String, Object> {
 		} else {
 			final Matcher matcher = arrayNamePattern.matcher(name);
 			if (matcher.find()) {
-				return endArray(matcher.group(1), matcher.group(2), new EndArrayCallback<Object>() {
+				return endArray(matcher.group(1), matcher.group(2), new EndArrayCallback<>() {
 					@Override
 					public Object callback(JSONArray arr, int index) {
 						return elementAt(arr, index);
@@ -365,7 +365,7 @@ public class JSONObject extends LinkedHashMap<String, Object> {
 	public JSONObject obj(final String name) {
 		final Matcher matcher = arrayNamePattern.matcher(name);
 		if (matcher.find()) {
-			return endArray(matcher.group(1), matcher.group(2), new EndArrayCallback<JSONObject>() {
+			return endArray(matcher.group(1), matcher.group(2), new EndArrayCallback<>() {
 				@Override
 				public JSONObject callback(JSONArray arr, int index) {
 					return objAt(arr, index);

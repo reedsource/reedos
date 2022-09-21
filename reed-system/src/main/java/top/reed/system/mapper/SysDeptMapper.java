@@ -65,7 +65,7 @@ public interface SysDeptMapper {
 	 * @param depts 子元素
 	 * @return 结果
 	 */
-	public int updateDeptChildren(@Param("depts" ) List<SysDept> depts);
+	public int updateDeptChildren(@Param("depts") List<SysDept> depts);
 
 	/**
 	 * 根据部门ID查询信息
@@ -82,7 +82,7 @@ public interface SysDeptMapper {
 	 * @param parentId 父部门ID
 	 * @return 结果
 	 */
-	public SysDept checkDeptNameUnique(@Param("deptName" ) String deptName, @Param("parentId" ) Long parentId);
+	public SysDept checkDeptNameUnique(@Param("deptName") String deptName, @Param("parentId") Long parentId);
 
 	/**
 	 * 根据角色ID查询部门

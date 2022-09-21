@@ -22,24 +22,24 @@ import java.util.List;
  * @author reedsource
  */
 @Controller
-@RequestMapping("/system/notice" )
+@RequestMapping("/system/notice")
 public class SysNoticeController extends BaseController {
-	private String prefix = "system/notice" ;
+	private String prefix = "system/notice";
 
 	@Autowired
 	private ISysNoticeService noticeService;
 
-	@RequiresPermissions("system:notice:view" )
+	@RequiresPermissions("system:notice:view")
 	@GetMapping()
 	public String notice() {
-		return prefix + "/notice" ;
+		return prefix + "/notice";
 	}
 
 	/**
 	 * 查询公告列表
 	 */
-	@RequiresPermissions("system:notice:list" )
-	@PostMapping("/list" )
+	@RequiresPermissions("system:notice:list")
+	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(SysNotice notice) {
 		startPage();
@@ -50,17 +50,17 @@ public class SysNoticeController extends BaseController {
 	/**
 	 * 新增公告
 	 */
-	@GetMapping("/add" )
+	@GetMapping("/add")
 	public String add() {
-		return prefix + "/add" ;
+		return prefix + "/add";
 	}
 
 	/**
 	 * 新增保存公告
 	 */
-	@RequiresPermissions("system:notice:add" )
-	@Log(title = "通知公告" , businessType = BusinessType.INSERT)
-	@PostMapping("/add" )
+	@RequiresPermissions("system:notice:add")
+	@Log(title = "通知公告", businessType = BusinessType.INSERT)
+	@PostMapping("/add")
 	@ResponseBody
 	public AjaxResult addSave(@Validated SysNotice notice) {
 		notice.setCreateBy(getLoginName());
@@ -70,19 +70,19 @@ public class SysNoticeController extends BaseController {
 	/**
 	 * 修改公告
 	 */
-	@RequiresPermissions("system:notice:edit" )
-	@GetMapping("/edit/{noticeId}" )
-	public String edit(@PathVariable("noticeId" ) Long noticeId, ModelMap mmap) {
-		mmap.put("notice" , noticeService.selectNoticeById(noticeId));
-		return prefix + "/edit" ;
+	@RequiresPermissions("system:notice:edit")
+	@GetMapping("/edit/{noticeId}")
+	public String edit(@PathVariable("noticeId") Long noticeId, ModelMap mmap) {
+		mmap.put("notice", noticeService.selectNoticeById(noticeId));
+		return prefix + "/edit";
 	}
 
 	/**
 	 * 修改保存公告
 	 */
-	@RequiresPermissions("system:notice:edit" )
-	@Log(title = "通知公告" , businessType = BusinessType.UPDATE)
-	@PostMapping("/edit" )
+	@RequiresPermissions("system:notice:edit")
+	@Log(title = "通知公告", businessType = BusinessType.UPDATE)
+	@PostMapping("/edit")
 	@ResponseBody
 	public AjaxResult editSave(@Validated SysNotice notice) {
 		notice.setUpdateBy(getLoginName());
@@ -92,9 +92,9 @@ public class SysNoticeController extends BaseController {
 	/**
 	 * 删除公告
 	 */
-	@RequiresPermissions("system:notice:remove" )
-	@Log(title = "通知公告" , businessType = BusinessType.DELETE)
-	@PostMapping("/remove" )
+	@RequiresPermissions("system:notice:remove")
+	@Log(title = "通知公告", businessType = BusinessType.DELETE)
+	@PostMapping("/remove")
 	@ResponseBody
 	public AjaxResult remove(String ids) {
 		return toAjax(noticeService.deleteNoticeByIds(ids));

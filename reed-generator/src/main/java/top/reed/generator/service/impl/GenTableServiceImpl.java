@@ -63,8 +63,8 @@ public class GenTableServiceImpl implements IGenTableService {
 	 */
 	public static String getGenPath(GenTable table, String template) {
 		String genPath = table.getGenPath();
-		if (StringUtils.equals(genPath, "/" )) {
-			return System.getProperty("user.dir" ) + File.separator + "src" + File.separator + VelocityUtils.getFileName(template, table);
+		if (StringUtils.equals(genPath, "/")) {
+			return System.getProperty("user.dir") + File.separator + "src" + File.separator + VelocityUtils.getFileName(template, table);
 		}
 		return genPath + File.separator + VelocityUtils.getFileName(template, table);
 	}
@@ -263,7 +263,7 @@ public class GenTableServiceImpl implements IGenTableService {
 		// 获取模板列表
 		List<String> templates = VelocityUtils.getTemplateList(table.getTplCategory());
 		for (String template : templates) {
-			if (!StringUtils.contains(template, "sql.vm" )) {
+			if (!StringUtils.contains(template, "sql.vm")) {
 				// 渲染模板
 				StringWriter sw = new StringWriter();
 				Template tpl = Velocity.getTemplate(template, Constants.UTF8);
@@ -292,7 +292,7 @@ public class GenTableServiceImpl implements IGenTableService {
 
 		List<GenTableColumn> dbTableColumns = genTableColumnMapper.selectDbTableColumnsByName(tableName);
 		if (StringUtils.isEmpty(dbTableColumns)) {
-			throw new ServiceException("同步数据失败，原表结构不存在" );
+			throw new ServiceException("同步数据失败，原表结构不存在");
 		}
 		List<String> dbTableColumnNames = dbTableColumns.stream().map(GenTableColumn::getColumnName).collect(Collectors.toList());
 
@@ -388,17 +388,17 @@ public class GenTableServiceImpl implements IGenTableService {
 			String options = JSON.toJSONString(genTable.getParams());
 			JSONObject paramsObj = JSONObject.parseObject(options);
 			if (StringUtils.isEmpty(paramsObj.getString(GenConstants.TREE_CODE))) {
-				throw new ServiceException("树编码字段不能为空" );
+				throw new ServiceException("树编码字段不能为空");
 			} else if (StringUtils.isEmpty(paramsObj.getString(GenConstants.TREE_PARENT_CODE))) {
-				throw new ServiceException("树父编码字段不能为空" );
+				throw new ServiceException("树父编码字段不能为空");
 			} else if (StringUtils.isEmpty(paramsObj.getString(GenConstants.TREE_NAME))) {
-				throw new ServiceException("树名称字段不能为空" );
+				throw new ServiceException("树名称字段不能为空");
 			}
 		} else if (GenConstants.TPL_SUB.equals(genTable.getTplCategory())) {
 			if (StringUtils.isEmpty(genTable.getSubTableName())) {
-				throw new ServiceException("关联子表的表名不能为空" );
+				throw new ServiceException("关联子表的表名不能为空");
 			} else if (StringUtils.isEmpty(genTable.getSubTableFkName())) {
-				throw new ServiceException("子表关联的外键名不能为空" );
+				throw new ServiceException("子表关联的外键名不能为空");
 			}
 		}
 	}

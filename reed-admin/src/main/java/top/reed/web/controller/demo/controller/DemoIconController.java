@@ -10,23 +10,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author reedsource
  */
 @Controller
-@RequestMapping("/demo/icon" )
+@RequestMapping("/demo/icon")
 public class DemoIconController {
-	private String prefix = "demo/icon" ;
+	private String prefix = "demo/icon";
 
 	/**
 	 * FontAwesome图标
 	 */
-	@GetMapping("/fontawesome" )
+	@GetMapping("/fontawesome")
 	public String fontAwesome() {
-		return prefix + "/fontawesome" ;
+		return prefix + "/fontawesome";
 	}
 
 	/**
 	 * Glyphicons图标
 	 */
-	@GetMapping("/glyphicons" )
+	@GetMapping("/glyphicons")
 	public String glyphicons() {
-		return prefix + "/glyphicons" ;
+		return prefix + "/glyphicons";
 	}
 }

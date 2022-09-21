@@ -149,15 +149,15 @@ public class OnlineSession extends SimpleSession {
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-				.append("userId" , getUserId())
-				.append("loginName" , getLoginName())
-				.append("deptName" , getDeptName())
-				.append("avatar" , getAvatar())
-				.append("host" , getHost())
-				.append("browser" , getBrowser())
-				.append("os" , getOs())
-				.append("status" , getStatus())
-				.append("attributeChanged" , isAttributeChanged())
+				.append("userId", getUserId())
+				.append("loginName", getLoginName())
+				.append("deptName", getDeptName())
+				.append("avatar", getAvatar())
+				.append("host", getHost())
+				.append("browser", getBrowser())
+				.append("os", getOs())
+				.append("status", getStatus())
+				.append("attributeChanged", isAttributeChanged())
 				.toString();
 	}
 }

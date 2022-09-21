@@ -16,7 +16,7 @@ public class DictUtils {
 	/**
 	 * 分隔符
 	 */
-	public static final String SEPARATOR = "," ;
+	public static final String SEPARATOR = ",";
 
 	/**
 	 * 设置字典缓存

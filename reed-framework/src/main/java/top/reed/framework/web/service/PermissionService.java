@@ -16,16 +16,16 @@ import java.beans.PropertyDescriptor;
  *
  * @author reedsource
  */
-@Service("permission" )
+@Service("permission")
 public class PermissionService {
 	/**
 	 * 没有权限，hidden用于前端隐藏按钮
 	 */
-	public static final String NOACCESS = "hidden" ;
+	public static final String NOACCESS = "hidden";
 	private static final Logger log = LoggerFactory.getLogger(PermissionService.class);
-	private static final String ROLE_DELIMETER = "," ;
+	private static final String ROLE_DELIMETER = ",";
 
-	private static final String PERMISSION_DELIMETER = "," ;
+	private static final String PERMISSION_DELIMETER = ",";
 
 	/**
 	 * 验证用户是否具备某权限，无权限返回hidden用于前端隐藏（如需返回Boolean使用isPermitted）
@@ -224,7 +224,7 @@ public class PermissionService {
 					}
 				}
 			} catch (Exception e) {
-				log.error("Error reading property [{}] from principal of type [{}]" , property, principal.getClass().getName());
+				log.error("Error reading property [{}] from principal of type [{}]", property, principal.getClass().getName());
 			}
 		}
 		return null;

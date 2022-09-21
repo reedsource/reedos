@@ -22,21 +22,21 @@ import java.util.List;
  * @author reedsource
  */
 @Controller
-@RequestMapping("/monitor/operlog" )
+@RequestMapping("/monitor/operlog")
 public class SysOperlogController extends BaseController {
-	private String prefix = "monitor/operlog" ;
+	private String prefix = "monitor/operlog";
 
 	@Autowired
 	private ISysOperLogService operLogService;
 
-	@RequiresPermissions("monitor:operlog:view" )
+	@RequiresPermissions("monitor:operlog:view")
 	@GetMapping()
 	public String operlog() {
-		return prefix + "/operlog" ;
+		return prefix + "/operlog";
 	}
 
-	@RequiresPermissions("monitor:operlog:list" )
-	@PostMapping("/list" )
+	@RequiresPermissions("monitor:operlog:list")
+	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(SysOperLog operLog) {
 		startPage();
@@ -44,34 +44,34 @@ public class SysOperlogController extends BaseController {
 		return getDataTable(list);
 	}
 
-	@Log(title = "操作日志" , businessType = BusinessType.EXPORT)
-	@RequiresPermissions("monitor:operlog:export" )
-	@PostMapping("/export" )
+	@Log(title = "操作日志", businessType = BusinessType.EXPORT)
+	@RequiresPermissions("monitor:operlog:export")
+	@PostMapping("/export")
 	@ResponseBody
 	public AjaxResult export(SysOperLog operLog) {
 		List<SysOperLog> list = operLogService.selectOperLogList(operLog);
-		ExcelUtil<SysOperLog> util = new ExcelUtil<SysOperLog>(SysOperLog.class);
-		return util.exportExcel(list, "操作日志" );
+		ExcelUtil<SysOperLog> util = new ExcelUtil<>(SysOperLog.class);
+		return util.exportExcel(list, "操作日志");
 	}
 
-	@Log(title = "操作日志" , businessType = BusinessType.DELETE)
-	@RequiresPermissions("monitor:operlog:remove" )
-	@PostMapping("/remove" )
+	@Log(title = "操作日志", businessType = BusinessType.DELETE)
+	@RequiresPermissions("monitor:operlog:remove")
+	@PostMapping("/remove")
 	@ResponseBody
 	public AjaxResult remove(String ids) {
 		return toAjax(operLogService.deleteOperLogByIds(ids));
 	}
 
-	@RequiresPermissions("monitor:operlog:detail" )
-	@GetMapping("/detail/{operId}" )
-	public String detail(@PathVariable("operId" ) Long operId, ModelMap mmap) {
-		mmap.put("operLog" , operLogService.selectOperLogById(operId));
-		return prefix + "/detail" ;
+	@RequiresPermissions("monitor:operlog:detail")
+	@GetMapping("/detail/{operId}")
+	public String detail(@PathVariable("operId") Long operId, ModelMap mmap) {
+		mmap.put("operLog", operLogService.selectOperLogById(operId));
+		return prefix + "/detail";
 	}
 
-	@Log(title = "操作日志" , businessType = BusinessType.CLEAN)
-	@RequiresPermissions("monitor:operlog:remove" )
-	@PostMapping("/clean" )
+	@Log(title = "操作日志", businessType = BusinessType.CLEAN)
+	@RequiresPermissions("monitor:operlog:remove")
+	@PostMapping("/clean")
 	@ResponseBody
 	public AjaxResult clean() {
 		operLogService.cleanOperLog();

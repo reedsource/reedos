@@ -80,7 +80,7 @@ public class SysMenu extends BaseEntity {
 	/**
 	 * 子菜单
 	 */
-	private List<SysMenu> children = new ArrayList<SysMenu>();
+	private List<SysMenu> children = new ArrayList<>();
 
 	public Long getMenuId() {
 		return menuId;
@@ -90,8 +90,8 @@ public class SysMenu extends BaseEntity {
 		this.menuId = menuId;
 	}
 
-	@NotBlank(message = "菜单名称不能为空" )
-	@Size(min = 0, max = 50, message = "菜单名称长度不能超过50个字符" )
+	@NotBlank(message = "菜单名称不能为空")
+	@Size(min = 0, max = 50, message = "菜单名称长度不能超过50个字符")
 	public String getMenuName() {
 		return menuName;
 	}
@@ -116,7 +116,7 @@ public class SysMenu extends BaseEntity {
 		this.parentId = parentId;
 	}
 
-	@NotBlank(message = "显示顺序不能为空" )
+	@NotBlank(message = "显示顺序不能为空")
 	public String getOrderNum() {
 		return orderNum;
 	}
@@ -125,7 +125,7 @@ public class SysMenu extends BaseEntity {
 		this.orderNum = orderNum;
 	}
 
-	@Size(min = 0, max = 200, message = "请求地址不能超过200个字符" )
+	@Size(min = 0, max = 200, message = "请求地址不能超过200个字符")
 	public String getUrl() {
 		return url;
 	}
@@ -142,7 +142,7 @@ public class SysMenu extends BaseEntity {
 		this.target = target;
 	}
 
-	@NotBlank(message = "菜单类型不能为空" )
+	@NotBlank(message = "菜单类型不能为空")
 	public String getMenuType() {
 		return menuType;
 	}
@@ -167,7 +167,7 @@ public class SysMenu extends BaseEntity {
 		this.isRefresh = isRefresh;
 	}
 
-	@Size(min = 0, max = 100, message = "权限标识长度不能超过100个字符" )
+	@Size(min = 0, max = 100, message = "权限标识长度不能超过100个字符")
 	public String getPerms() {
 		return perms;
 	}
@@ -195,21 +195,21 @@ public class SysMenu extends BaseEntity {
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-				.append("menuId" , getMenuId())
-				.append("menuName" , getMenuName())
-				.append("parentId" , getParentId())
-				.append("orderNum" , getOrderNum())
-				.append("url" , getUrl())
-				.append("target" , getTarget())
-				.append("menuType" , getMenuType())
-				.append("visible" , getVisible())
-				.append("perms" , getPerms())
-				.append("icon" , getIcon())
-				.append("createBy" , getCreateBy())
-				.append("createTime" , getCreateTime())
-				.append("updateBy" , getUpdateBy())
-				.append("updateTime" , getUpdateTime())
-				.append("remark" , getRemark())
+				.append("menuId", getMenuId())
+				.append("menuName", getMenuName())
+				.append("parentId", getParentId())
+				.append("orderNum", getOrderNum())
+				.append("url", getUrl())
+				.append("target", getTarget())
+				.append("menuType", getMenuType())
+				.append("visible", getVisible())
+				.append("perms", getPerms())
+				.append("icon", getIcon())
+				.append("createBy", getCreateBy())
+				.append("createTime", getCreateTime())
+				.append("updateBy", getUpdateBy())
+				.append("updateTime", getUpdateTime())
+				.append("remark", getRemark())
 				.toString();
 	}
 }

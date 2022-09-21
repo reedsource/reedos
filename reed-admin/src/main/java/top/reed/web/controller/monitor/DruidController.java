@@ -12,13 +12,13 @@ import top.reed.common.core.controller.BaseController;
  * @author reedsource
  */
 @Controller
-@RequestMapping("/monitor/data" )
+@RequestMapping("/monitor/data")
 public class DruidController extends BaseController {
-	private String prefix = "/druid" ;
+	private String prefix = "/druid";
 
-	@RequiresPermissions("monitor:data:view" )
+	@RequiresPermissions("monitor:data:view")
 	@GetMapping()
 	public String index() {
-		return redirect(prefix + "/index.html" );
+		return redirect(prefix + "/index.html");
 	}
 }

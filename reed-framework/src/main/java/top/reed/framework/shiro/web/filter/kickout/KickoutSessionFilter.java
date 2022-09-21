@@ -51,8 +51,7 @@ public class KickoutSessionFilter extends AccessControlFilter {
 	private Cache<String, Deque<Serializable>> cache;
 
 	@Override
-	protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse, Object o)
-			throws Exception {
+	protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse, Object o) {
 		return false;
 	}
 
@@ -74,11 +73,11 @@ public class KickoutSessionFilter extends AccessControlFilter {
 			Deque<Serializable> deque = cache.get(loginName);
 			if (deque == null) {
 				// 初始化队列
-				deque = new ArrayDeque<Serializable>();
+				deque = new ArrayDeque<>();
 			}
 
 			// 如果队列里没有此sessionId，且用户没有被踢出；放入队列
-			if (!deque.contains(sessionId) && session.getAttribute("kickout" ) == null) {
+			if (!deque.contains(sessionId) && session.getAttribute("kickout") == null) {
 				// 将sessionId存入队列
 				deque.push(sessionId);
 				// 将用户的sessionId队列缓存
@@ -97,7 +96,7 @@ public class KickoutSessionFilter extends AccessControlFilter {
 					Session kickoutSession = sessionManager.getSession(new DefaultSessionKey(kickoutSessionId));
 					if (null != kickoutSession) {
 						// 设置会话的kickout属性表示踢出了
-						kickoutSession.setAttribute("kickout" , true);
+						kickoutSession.setAttribute("kickout", true);
 					}
 				} catch (Exception e) {
 					// 面对异常，我们选择忽略
@@ -105,7 +104,7 @@ public class KickoutSessionFilter extends AccessControlFilter {
 			}
 
 			// 如果被踢出了，(前者或后者)直接退出，重定向到踢出后的地址
-			if (session.getAttribute("kickout" ) != null && (Boolean) session.getAttribute("kickout" ) == true) {
+			if (session.getAttribute("kickout") != null && (Boolean) session.getAttribute("kickout") == true) {
 				// 退出登录
 				subject.logout();
 				saveRequest(request);
@@ -121,7 +120,7 @@ public class KickoutSessionFilter extends AccessControlFilter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		if (ServletUtils.isAjaxRequest(req)) {
-			AjaxResult ajaxResult = AjaxResult.error("您已在别处登录，请您修改密码或重新登录" );
+			AjaxResult ajaxResult = AjaxResult.error("您已在别处登录，请您修改密码或重新登录");
 			ServletUtils.renderString(res, objectMapper.writeValueAsString(ajaxResult));
 		} else {
 			WebUtils.issueRedirect(request, response, kickoutUrl);

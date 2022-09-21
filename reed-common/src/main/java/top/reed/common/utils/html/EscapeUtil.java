@@ -8,7 +8,7 @@ import top.reed.common.utils.StringUtils;
  * @author reedsource
  */
 public class EscapeUtil {
-	public static final String RE_HTML_MARK = "(<[^<]*?>)|(<[\\s]*?/[^<]*?>)|(<[^<]*?/[\\s]*?>)" ;
+	public static final String RE_HTML_MARK = "(<[^<]*?>)|(<[\\s]*?/[^<]*?>)|(<[^<]*?/[\\s]*?>)";
 
 	private static final char[][] TEXT = new char[64][];
 
@@ -71,16 +71,16 @@ public class EscapeUtil {
 		for (int i = 0; i < text.length(); i++) {
 			c = text.charAt(i);
 			if (c < 256) {
-				tmp.append("%" );
+				tmp.append("%");
 				if (c < 16) {
-					tmp.append("0" );
+					tmp.append("0");
 				}
 				tmp.append(Integer.toString(c, 16));
 			} else {
-				tmp.append("%u" );
+				tmp.append("%u");
 				if (c <= 0xfff) {
 					// issue#I49JU8@Gitee
-					tmp.append("0" );
+					tmp.append("0");
 				}
 				tmp.append(Integer.toString(c, 16));
 			}
@@ -103,7 +103,7 @@ public class EscapeUtil {
 		int lastPos = 0, pos = 0;
 		char ch;
 		while (lastPos < content.length()) {
-			pos = content.indexOf("%" , lastPos);
+			pos = content.indexOf("%", lastPos);
 			if (pos == lastPos) {
 				if (content.charAt(pos + 1) == 'u') {
 					ch = (char) Integer.parseInt(content.substring(pos + 2, pos + 6), 16);
@@ -128,7 +128,7 @@ public class EscapeUtil {
 	}
 
 	public static void main(String[] args) {
-		String html = "<script>alert(1);</script>" ;
+		String html = "<script>alert(1);</script>";
 		String escape = EscapeUtil.escape(html);
 		// String html = "<scr<script>ipt>alert(\"XSS\")</scr<script>ipt>";
 		// String html = "<123";

@@ -12,13 +12,13 @@ import top.reed.common.core.controller.BaseController;
  * @author reedsource
  */
 @Controller
-@RequestMapping("/tool/build" )
+@RequestMapping("/tool/build")
 public class BuildController extends BaseController {
-	private String prefix = "tool/build" ;
+	private String prefix = "tool/build";
 
-	@RequiresPermissions("tool:build:view" )
+	@RequiresPermissions("tool:build:view")
 	@GetMapping()
 	public String build() {
-		return prefix + "/build" ;
+		return prefix + "/build";
 	}
 }

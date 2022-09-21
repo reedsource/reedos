@@ -66,5 +66,5 @@ public interface SysUserRoleMapper {
 	 * @param userIds 需要删除的用户数据ID
 	 * @return 结果
 	 */
-	public int deleteUserRoleInfos(@Param("roleId" ) Long roleId, @Param("userIds" ) Long[] userIds);
+	public int deleteUserRoleInfos(@Param("roleId") Long roleId, @Param("userIds") Long[] userIds);
 }

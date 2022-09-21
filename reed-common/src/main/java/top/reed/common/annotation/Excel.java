@@ -26,27 +26,27 @@ public @interface Excel {
 	/**
 	 * 导出到Excel中的名字.
 	 */
-	public String name() default "" ;
+	public String name() default "";
 
 	/**
 	 * 日期格式, 如: yyyy-MM-dd
 	 */
-	public String dateFormat() default "" ;
+	public String dateFormat() default "";
 
 	/**
 	 * 如果是字典类型，请设置字典的type值 (如: sys_user_sex)
 	 */
-	public String dictType() default "" ;
+	public String dictType() default "";
 
 	/**
 	 * 读取内容转表达式 (如: 0=男,1=女,2=未知)
 	 */
-	public String readConverterExp() default "" ;
+	public String readConverterExp() default "";
 
 	/**
 	 * 分隔符，读取字符串组内容
 	 */
-	public String separator() default "," ;
+	public String separator() default ",";
 
 	/**
 	 * BigDecimal 精度 默认:-1(默认不开启BigDecimal格式化)
@@ -71,17 +71,17 @@ public @interface Excel {
 	/**
 	 * 文字后缀,如% 90 变成90%
 	 */
-	public String suffix() default "" ;
+	public String suffix() default "";
 
 	/**
 	 * 当值为空时,字段的默认值
 	 */
-	public String defaultValue() default "" ;
+	public String defaultValue() default "";
 
 	/**
 	 * 提示信息
 	 */
-	public String prompt() default "" ;
+	public String prompt() default "";
 
 	/**
 	 * 设置只能选择不能输入的列内容.
@@ -101,7 +101,7 @@ public @interface Excel {
 	/**
 	 * 另一个类中的属性名称,支持多级获取,以小数点隔开
 	 */
-	public String targetAttr() default "" ;
+	public String targetAttr() default "";
 
 	/**
 	 * 是否自动统计数据,在最后追加一行统计数据总和

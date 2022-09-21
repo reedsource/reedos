@@ -49,7 +49,7 @@ public class SysRoleServiceImpl implements ISysRoleService {
 	 * @return 角色数据集合信息
 	 */
 	@Override
-	@DataScope(deptAlias = "d" )
+	@DataScope(deptAlias = "d")
 	public List<SysRole> selectRoleList(SysRole role) {
 		return roleMapper.selectRoleList(role);
 	}
@@ -66,7 +66,7 @@ public class SysRoleServiceImpl implements ISysRoleService {
 		Set<String> permsSet = new HashSet<>();
 		for (SysRole perm : perms) {
 			if (StringUtils.isNotNull(perm)) {
-				permsSet.addAll(Arrays.asList(perm.getRoleKey().trim().split("," )));
+				permsSet.addAll(Arrays.asList(perm.getRoleKey().trim().split(",")));
 			}
 		}
 		return permsSet;
@@ -145,7 +145,7 @@ public class SysRoleServiceImpl implements ISysRoleService {
 			checkRoleDataScope(roleId);
 			SysRole role = selectRoleById(roleId);
 			if (countUserRoleByRoleId(roleId) > 0) {
-				throw new ServiceException(String.format("%1$s已分配,不能删除" , role.getRoleName()));
+				throw new ServiceException(String.format("%1$s已分配,不能删除", role.getRoleName()));
 			}
 		}
 		// 删除角色与菜单关联
@@ -210,7 +210,7 @@ public class SysRoleServiceImpl implements ISysRoleService {
 	public int insertRoleMenu(SysRole role) {
 		int rows = 1;
 		// 新增用户与角色管理
-		List<SysRoleMenu> list = new ArrayList<SysRoleMenu>();
+		List<SysRoleMenu> list = new ArrayList<>();
 		for (Long menuId : role.getMenuIds()) {
 			SysRoleMenu rm = new SysRoleMenu();
 			rm.setRoleId(role.getRoleId());
@@ -231,7 +231,7 @@ public class SysRoleServiceImpl implements ISysRoleService {
 	public int insertRoleDept(SysRole role) {
 		int rows = 1;
 		// 新增角色与部门（数据权限）管理
-		List<SysRoleDept> list = new ArrayList<SysRoleDept>();
+		List<SysRoleDept> list = new ArrayList<>();
 		for (Long deptId : role.getDeptIds()) {
 			SysRoleDept rd = new SysRoleDept();
 			rd.setRoleId(role.getRoleId());
@@ -284,7 +284,7 @@ public class SysRoleServiceImpl implements ISysRoleService {
 	@Override
 	public void checkRoleAllowed(SysRole role) {
 		if (StringUtils.isNotNull(role.getRoleId()) && role.isAdmin()) {
-			throw new ServiceException("不允许操作超级管理员角色" );
+			throw new ServiceException("不允许操作超级管理员角色");
 		}
 	}
 
@@ -300,7 +300,7 @@ public class SysRoleServiceImpl implements ISysRoleService {
 			role.setRoleId(roleId);
 			List<SysRole> roles = SpringUtils.getAopProxy(this).selectRoleList(role);
 			if (StringUtils.isEmpty(roles)) {
-				throw new ServiceException("没有权限访问角色数据！" );
+				throw new ServiceException("没有权限访问角色数据！");
 			}
 		}
 	}
@@ -361,7 +361,7 @@ public class SysRoleServiceImpl implements ISysRoleService {
 	public int insertAuthUsers(Long roleId, String userIds) {
 		Long[] users = Convert.toLongArray(userIds);
 		// 新增用户与角色管理
-		List<SysUserRole> list = new ArrayList<SysUserRole>();
+		List<SysUserRole> list = new ArrayList<>();
 		for (Long userId : users) {
 			SysUserRole ur = new SysUserRole();
 			ur.setUserId(userId);

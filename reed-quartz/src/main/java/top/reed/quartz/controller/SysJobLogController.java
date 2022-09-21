@@ -25,9 +25,9 @@ import java.util.List;
  * @author reedsource
  */
 @Controller
-@RequestMapping("/monitor/jobLog" )
+@RequestMapping("/monitor/jobLog")
 public class SysJobLogController extends BaseController {
-	private String prefix = "monitor/job" ;
+	private String prefix = "monitor/job";
 
 	@Autowired
 	private ISysJobService jobService;
@@ -35,18 +35,18 @@ public class SysJobLogController extends BaseController {
 	@Autowired
 	private ISysJobLogService jobLogService;
 
-	@RequiresPermissions("monitor:job:view" )
+	@RequiresPermissions("monitor:job:view")
 	@GetMapping()
-	public String jobLog(@RequestParam(value = "jobId" , required = false) Long jobId, ModelMap mmap) {
+	public String jobLog(@RequestParam(value = "jobId", required = false) Long jobId, ModelMap mmap) {
 		if (StringUtils.isNotNull(jobId)) {
 			SysJob job = jobService.selectJobById(jobId);
-			mmap.put("job" , job);
+			mmap.put("job", job);
 		}
-		return prefix + "/jobLog" ;
+		return prefix + "/jobLog";
 	}
 
-	@RequiresPermissions("monitor:job:list" )
-	@PostMapping("/list" )
+	@RequiresPermissions("monitor:job:list")
+	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(SysJobLog jobLog) {
 		startPage();
@@ -54,35 +54,35 @@ public class SysJobLogController extends BaseController {
 		return getDataTable(list);
 	}
 
-	@Log(title = "调度日志" , businessType = BusinessType.EXPORT)
-	@RequiresPermissions("monitor:job:export" )
-	@PostMapping("/export" )
+	@Log(title = "调度日志", businessType = BusinessType.EXPORT)
+	@RequiresPermissions("monitor:job:export")
+	@PostMapping("/export")
 	@ResponseBody
 	public AjaxResult export(SysJobLog jobLog) {
 		List<SysJobLog> list = jobLogService.selectJobLogList(jobLog);
-		ExcelUtil<SysJobLog> util = new ExcelUtil<SysJobLog>(SysJobLog.class);
-		return util.exportExcel(list, "调度日志" );
+		ExcelUtil<SysJobLog> util = new ExcelUtil<>(SysJobLog.class);
+		return util.exportExcel(list, "调度日志");
 	}
 
-	@Log(title = "调度日志" , businessType = BusinessType.DELETE)
-	@RequiresPermissions("monitor:job:remove" )
-	@PostMapping("/remove" )
+	@Log(title = "调度日志", businessType = BusinessType.DELETE)
+	@RequiresPermissions("monitor:job:remove")
+	@PostMapping("/remove")
 	@ResponseBody
 	public AjaxResult remove(String ids) {
 		return toAjax(jobLogService.deleteJobLogByIds(ids));
 	}
 
-	@RequiresPermissions("monitor:job:detail" )
-	@GetMapping("/detail/{jobLogId}" )
-	public String detail(@PathVariable("jobLogId" ) Long jobLogId, ModelMap mmap) {
-		mmap.put("name" , "jobLog" );
-		mmap.put("jobLog" , jobLogService.selectJobLogById(jobLogId));
-		return prefix + "/detail" ;
+	@RequiresPermissions("monitor:job:detail")
+	@GetMapping("/detail/{jobLogId}")
+	public String detail(@PathVariable("jobLogId") Long jobLogId, ModelMap mmap) {
+		mmap.put("name", "jobLog");
+		mmap.put("jobLog", jobLogService.selectJobLogById(jobLogId));
+		return prefix + "/detail";
 	}
 
-	@Log(title = "调度日志" , businessType = BusinessType.CLEAN)
-	@RequiresPermissions("monitor:job:remove" )
-	@PostMapping("/clean" )
+	@Log(title = "调度日志", businessType = BusinessType.CLEAN)
+	@RequiresPermissions("monitor:job:remove")
+	@PostMapping("/clean")
 	@ResponseBody
 	public AjaxResult clean() {
 		jobLogService.cleanJobLog();

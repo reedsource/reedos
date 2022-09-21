@@ -26,16 +26,16 @@ public class CustomShiroFilterFactoryBean extends ShiroFilterFactoryBean {
 	}
 
 	@Override
-	protected AbstractShiroFilter createInstance() throws Exception {
+	protected AbstractShiroFilter createInstance() {
 
 		SecurityManager securityManager = getSecurityManager();
 		if (securityManager == null) {
-			String msg = "SecurityManager property must be set." ;
+			String msg = "SecurityManager property must be set.";
 			throw new BeanInitializationException(msg);
 		}
 
 		if (!(securityManager instanceof WebSecurityManager)) {
-			String msg = "The security manager does not implement the WebSecurityManager interface." ;
+			String msg = "The security manager does not implement the WebSecurityManager interface.";
 			throw new BeanInitializationException(msg);
 		}
 
@@ -62,7 +62,7 @@ public class CustomShiroFilterFactoryBean extends ShiroFilterFactoryBean {
 	private static final class MySpringShiroFilter extends AbstractShiroFilter {
 		protected MySpringShiroFilter(WebSecurityManager webSecurityManager, FilterChainResolver resolver) {
 			if (webSecurityManager == null) {
-				throw new IllegalArgumentException("WebSecurityManager property cannot be null." );
+				throw new IllegalArgumentException("WebSecurityManager property cannot be null.");
 			} else {
 				this.setSecurityManager(webSecurityManager);
 				if (resolver != null) {

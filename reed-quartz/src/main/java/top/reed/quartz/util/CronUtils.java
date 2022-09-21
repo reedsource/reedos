@@ -63,7 +63,7 @@ public class CronUtils {
 	 * @return 时间列表
 	 */
 	public static List<String> getRecentTriggerTime(String cron) {
-		List<String> list = new ArrayList<String>();
+		List<String> list = new ArrayList<>();
 		try {
 			CronTriggerImpl cronTriggerImpl = new CronTriggerImpl();
 			cronTriggerImpl.setCronExpression(cron);

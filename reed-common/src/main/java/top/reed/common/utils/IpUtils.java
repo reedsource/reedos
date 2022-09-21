@@ -18,20 +18,20 @@ public class IpUtils {
 	 */
 	public static String getIpAddr(HttpServletRequest request) {
 		if (request == null) {
-			return "unknown" ;
+			return "unknown";
 		}
-		String ip = request.getHeader("x-forwarded-for" );
+		String ip = request.getHeader("x-forwarded-for");
 		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-			ip = request.getHeader("Proxy-Client-IP" );
-		}
-		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-			ip = request.getHeader("X-Forwarded-For" );
+			ip = request.getHeader("Proxy-Client-IP");
 		}
 		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-			ip = request.getHeader("WL-Proxy-Client-IP" );
+			ip = request.getHeader("X-Forwarded-For");
 		}
 		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-			ip = request.getHeader("X-Real-IP" );
+			ip = request.getHeader("WL-Proxy-Client-IP");
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("X-Real-IP");
 		}
 
 		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
@@ -102,7 +102,7 @@ public class IpUtils {
 		}
 
 		byte[] bytes = new byte[4];
-		String[] elements = text.split("\\." , -1);
+		String[] elements = text.split("\\.", -1);
 		try {
 			long l;
 			int i;
@@ -174,7 +174,7 @@ public class IpUtils {
 			return InetAddress.getLocalHost().getHostAddress();
 		} catch (UnknownHostException e) {
 		}
-		return "127.0.0.1" ;
+		return "127.0.0.1";
 	}
 
 	/**
@@ -187,7 +187,7 @@ public class IpUtils {
 			return InetAddress.getLocalHost().getHostName();
 		} catch (UnknownHostException e) {
 		}
-		return "未知" ;
+		return "未知";
 	}
 
 	/**
@@ -198,8 +198,8 @@ public class IpUtils {
 	 */
 	public static String getMultistageReverseProxyIp(String ip) {
 		// 多级反向代理检测
-		if (ip != null && ip.indexOf("," ) > 0) {
-			final String[] ips = ip.trim().split("," );
+		if (ip != null && ip.indexOf(",") > 0) {
+			final String[] ips = ip.trim().split(",");
 			for (String subIp : ips) {
 				if (false == isUnknown(subIp)) {
 					ip = subIp;

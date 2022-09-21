@@ -3,7 +3,6 @@ package top.reed.common.utils;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,7 +15,7 @@ import java.util.Map;
  * @author yml
  */
 public class YamlUtil {
-	public static Map<?, ?> loadYaml(String fileName) throws FileNotFoundException {
+	public static Map<?, ?> loadYaml(String fileName) {
 		InputStream in = YamlUtil.class.getClassLoader().getResourceAsStream(fileName);
 		return StringUtils.isNotEmpty(fileName) ? (LinkedHashMap<?, ?>) new Yaml().load(in) : null;
 	}
@@ -35,8 +34,8 @@ public class YamlUtil {
 		if (map != null && !map.isEmpty() && qualifiedKey != null) {
 			String input = String.valueOf(qualifiedKey);
 			if (!"".equals(input)) {
-				if (input.contains("." )) {
-					int index = input.indexOf("." );
+				if (input.contains(".")) {
+					int index = input.indexOf(".");
 					String left = input.substring(0, index);
 					String right = input.substring(index + 1, input.length());
 					return getProperty((Map<?, ?>) map.get(left), right);
@@ -50,13 +49,13 @@ public class YamlUtil {
 		return null;
 	}
 
-	@SuppressWarnings("unchecked" )
+	@SuppressWarnings("unchecked")
 	public static void setProperty(Map<?, ?> map, Object qualifiedKey, Object value) {
 		if (map != null && !map.isEmpty() && qualifiedKey != null) {
 			String input = String.valueOf(qualifiedKey);
-			if (!input.equals("" )) {
-				if (input.contains("." )) {
-					int index = input.indexOf("." );
+			if (!input.equals("")) {
+				if (input.contains(".")) {
+					int index = input.indexOf(".");
 					String left = input.substring(0, index);
 					String right = input.substring(index + 1, input.length());
 					setProperty((Map<?, ?>) map.get(left), right, value);

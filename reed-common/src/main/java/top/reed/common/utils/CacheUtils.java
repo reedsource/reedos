@@ -16,7 +16,7 @@ import java.util.Set;
  * @author reedsource
  */
 public class CacheUtils {
-	private static final String SYS_CACHE = "sys-cache" ;
+	private static final String SYS_CACHE = "sys-cache";
 	private static Logger logger = LoggerFactory.getLogger(CacheUtils.class);
 	private static CacheManager cacheManager = SpringUtils.getBean(CacheManager.class);
 
@@ -115,10 +115,10 @@ public class CacheUtils {
 	public static void removeAll(String cacheName) {
 		Cache<String, Object> cache = getCache(cacheName);
 		Set<String> keys = cache.keys();
-		for (Iterator<String> it = keys.iterator(); it.hasNext(); ) {
-			cache.remove(it.next());
+		for (String key : keys) {
+			cache.remove(key);
 		}
-		logger.info("清理缓存： {} => {}" , cacheName, keys);
+		logger.info("清理缓存： {} => {}", cacheName, keys);
 	}
 
 	/**
@@ -137,10 +137,10 @@ public class CacheUtils {
 	 * @param keys
 	 */
 	public static void removeByKeys(String cacheName, Set<String> keys) {
-		for (Iterator<String> it = keys.iterator(); it.hasNext(); ) {
-			remove(it.next());
+		for (String key : keys) {
+			remove(key);
 		}
-		logger.info("清理缓存： {} => {}" , cacheName, keys);
+		logger.info("清理缓存： {} => {}", cacheName, keys);
 	}
 
 	/**
@@ -162,7 +162,7 @@ public class CacheUtils {
 	public static Cache<String, Object> getCache(String cacheName) {
 		Cache<String, Object> cache = cacheManager.getCache(cacheName);
 		if (cache == null) {
-			throw new RuntimeException("当前系统中没有定义“" + cacheName + "”这个缓存。" );
+			throw new RuntimeException("当前系统中没有定义“" + cacheName + "”这个缓存。");
 		}
 		return cache;
 	}

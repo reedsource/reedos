@@ -48,8 +48,8 @@ import java.util.stream.Collectors;
  * @author reedsource
  */
 public class ExcelUtil<T> {
-	public static final String FORMULA_REGEX_STR = "=|-|\\+|@" ;
-	public static final String[] FORMULA_STR = {"=" , "-" , "+" , "@"};
+	public static final String FORMULA_REGEX_STR = "=|-|\\+|@";
+	public static final String[] FORMULA_STR = {"=", "-", "+", "@"};
 	/**
 	 * Excel sheet最大行数，默认65536
 	 */
@@ -58,7 +58,7 @@ public class ExcelUtil<T> {
 	/**
 	 * 数字格式
 	 */
-	private static final DecimalFormat DOUBLE_FORMAT = new DecimalFormat("######0.00" );
+	private static final DecimalFormat DOUBLE_FORMAT = new DecimalFormat("######0.00");
 	/**
 	 * 实体对象
 	 */
@@ -126,7 +126,7 @@ public class ExcelUtil<T> {
 	/**
 	 * 统计列表
 	 */
-	private Map<Integer, Double> statistics = new HashMap<Integer, Double>();
+	private Map<Integer, Double> statistics = new HashMap<>();
 
 	public ExcelUtil(Class<T> clazz) {
 		this.clazz = clazz;
@@ -152,9 +152,9 @@ public class ExcelUtil<T> {
 	 */
 	public static String convertByExp(String propertyValue, String converterExp, String separator) {
 		StringBuilder propertyString = new StringBuilder();
-		String[] convertSource = converterExp.split("," );
+		String[] convertSource = converterExp.split(",");
 		for (String item : convertSource) {
-			String[] itemArray = item.split("=" );
+			String[] itemArray = item.split("=");
 			if (StringUtils.containsAny(propertyValue, separator)) {
 				for (String value : propertyValue.split(separator)) {
 					if (itemArray[0].equals(value)) {
@@ -181,9 +181,9 @@ public class ExcelUtil<T> {
 	 */
 	public static String reverseByExp(String propertyValue, String converterExp, String separator) {
 		StringBuilder propertyString = new StringBuilder();
-		String[] convertSource = converterExp.split("," );
+		String[] convertSource = converterExp.split(",");
 		for (String item : convertSource) {
-			String[] itemArray = item.split("=" );
+			String[] itemArray = item.split("=");
 			if (StringUtils.containsAny(propertyValue, separator)) {
 				for (String value : propertyValue.split(separator)) {
 					if (itemArray[1].equals(value)) {
@@ -232,7 +232,7 @@ public class ExcelUtil<T> {
 	 * @return Map key:图片单元格索引（1_1）String，value:图片流PictureData
 	 */
 	public static Map<String, PictureData> getSheetPictures03(HSSFSheet sheet, HSSFWorkbook workbook) {
-		Map<String, PictureData> sheetIndexPicMap = new HashMap<String, PictureData>();
+		Map<String, PictureData> sheetIndexPicMap = new HashMap<>();
 		List<HSSFPictureData> pictures = workbook.getAllPictures();
 		if (!pictures.isEmpty()) {
 			for (HSSFShape shape : sheet.getDrawingPatriarch().getChildren()) {
@@ -259,7 +259,7 @@ public class ExcelUtil<T> {
 	 * @return Map key:图片单元格索引（1_1）String，value:图片流PictureData
 	 */
 	public static Map<String, PictureData> getSheetPictures07(XSSFSheet sheet, XSSFWorkbook workbook) {
-		Map<String, PictureData> sheetIndexPicMap = new HashMap<String, PictureData>();
+		Map<String, PictureData> sheetIndexPicMap = new HashMap<>();
 		for (POIXMLDocumentPart dr : sheet.getRelations()) {
 			if (dr instanceof XSSFDrawing) {
 				XSSFDrawing drawing = (XSSFDrawing) dr;
@@ -290,7 +290,7 @@ public class ExcelUtil<T> {
 
 	public void init(List<T> list, String sheetName, String title, Type type) {
 		if (list == null) {
-			list = new ArrayList<T>();
+			list = new ArrayList<>();
 		}
 		this.list = list;
 		this.sheetName = sheetName;
@@ -316,7 +316,7 @@ public class ExcelUtil<T> {
 			Row titleRow = sheet.createRow(rownum == 0 ? rownum++ : 0);
 			titleRow.setHeightInPoints(30);
 			Cell titleCell = titleRow.createCell(0);
-			titleCell.setCellStyle(styles.get("title" ));
+			titleCell.setCellStyle(styles.get("title"));
 			titleCell.setCellValue(title);
 			sheet.addMergedRegion(new CellRangeAddress(titleRow.getRowNum(), titleRow.getRowNum(), titleRow.getRowNum(), titleLastCol));
 		}
@@ -335,7 +335,7 @@ public class ExcelUtil<T> {
 				Excel attr = (Excel) objects[1];
 				Cell headCell1 = subRow.createCell(excelNum);
 				headCell1.setCellValue(attr.name());
-				headCell1.setCellStyle(styles.get(StringUtils.format("header_{}_{}" , attr.headerColor(), attr.headerBackgroundColor())));
+				headCell1.setCellStyle(styles.get(StringUtils.format("header_{}_{}", attr.headerColor(), attr.headerBackgroundColor())));
 				excelNum++;
 			}
 			int headFirstRow = excelNum - 1;
@@ -379,11 +379,11 @@ public class ExcelUtil<T> {
 	public List<T> importExcel(String sheetName, InputStream is, int titleNum) throws Exception {
 		this.type = Type.IMPORT;
 		this.wb = WorkbookFactory.create(is);
-		List<T> list = new ArrayList<T>();
+		List<T> list = new ArrayList<>();
 		// 如果指定sheet名,则取指定sheet中的内容 否则默认指向第1个sheet
 		Sheet sheet = StringUtils.isNotEmpty(sheetName) ? wb.getSheet(sheetName) : wb.getSheetAt(0);
 		if (sheet == null) {
-			throw new IOException("文件sheet不存在" );
+			throw new IOException("文件sheet不存在");
 		}
 		boolean isXSSFWorkbook = !(wb instanceof HSSFWorkbook);
 		Map<String, PictureData> pictures;
@@ -397,7 +397,7 @@ public class ExcelUtil<T> {
 
 		if (rows > 0) {
 			// 定义一个map用于存放excel列的序号和field.
-			Map<String, Integer> cellMap = new HashMap<String, Integer>();
+			Map<String, Integer> cellMap = new HashMap<>();
 			// 获取表头
 			Row heard = sheet.getRow(titleNum);
 			for (int i = 0; i < heard.getPhysicalNumberOfCells(); i++) {
@@ -411,7 +411,7 @@ public class ExcelUtil<T> {
 			}
 			// 有数据时才处理 得到类的所有field.
 			List<Object[]> fields = this.getFields();
-			Map<Integer, Object[]> fieldsMap = new HashMap<Integer, Object[]>();
+			Map<Integer, Object[]> fieldsMap = new HashMap<>();
 			for (Object[] objects : fields) {
 				Excel attr = (Excel) objects[1];
 				Integer column = cellMap.get(attr.name());
@@ -439,8 +439,8 @@ public class ExcelUtil<T> {
 					Class<?> fieldType = field.getType();
 					if (String.class == fieldType) {
 						String s = Convert.toStr(val);
-						if (StringUtils.endsWith(s, ".0" )) {
-							val = StringUtils.substringBefore(s, ".0" );
+						if (StringUtils.endsWith(s, ".0")) {
+							val = StringUtils.substringBefore(s, ".0");
 						} else {
 							String dateFormat = field.getAnnotation(Excel.class).dateFormat();
 							if (StringUtils.isNotEmpty(dateFormat)) {
@@ -481,7 +481,7 @@ public class ExcelUtil<T> {
 						} else if (ColumnType.IMAGE == attr.cellType() && StringUtils.isNotEmpty(pictures)) {
 							PictureData image = pictures.get(row.getRowNum() + "_" + entry.getKey());
 							if (image == null) {
-								val = "" ;
+								val = "";
 							} else {
 								byte[] data = image.getData();
 								val = FileUtils.writeImportBytes(data);
@@ -542,8 +542,8 @@ public class ExcelUtil<T> {
 	 * @return 结果
 	 */
 	public void exportExcel(HttpServletResponse response, List<T> list, String sheetName, String title) {
-		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" );
-		response.setCharacterEncoding("utf-8" );
+		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+		response.setCharacterEncoding("utf-8");
 		this.init(list, sheetName, title, Type.EXPORT);
 		exportExcel(response);
 	}
@@ -588,8 +588,8 @@ public class ExcelUtil<T> {
 	 * @return 结果
 	 */
 	public void importTemplateExcel(HttpServletResponse response, String sheetName, String title) {
-		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" );
-		response.setCharacterEncoding("utf-8" );
+		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+		response.setCharacterEncoding("utf-8");
 		this.init(null, sheetName, title, Type.IMPORT);
 		exportExcel(response);
 	}
@@ -604,7 +604,7 @@ public class ExcelUtil<T> {
 			writeSheet();
 			wb.write(response.getOutputStream());
 		} catch (Exception e) {
-			log.error("导出Excel异常{}" , e.getMessage());
+			log.error("导出Excel异常{}", e.getMessage());
 		} finally {
 			IOUtils.closeQuietly(wb);
 		}
@@ -624,8 +624,8 @@ public class ExcelUtil<T> {
 			wb.write(out);
 			return AjaxResult.success(filename);
 		} catch (Exception e) {
-			log.error("导出Excel异常{}" , e.getMessage());
-			throw new UtilException("导出Excel失败，请联系网站管理员！" );
+			log.error("导出Excel异常{}", e.getMessage());
+			throw new UtilException("导出Excel失败，请联系网站管理员！");
 		} finally {
 			IOUtils.closeQuietly(wb);
 			IOUtils.closeQuietly(out);
@@ -670,7 +670,7 @@ public class ExcelUtil<T> {
 	 * @param index 序号
 	 * @param row   单元格行
 	 */
-	@SuppressWarnings("unchecked" )
+	@SuppressWarnings("unchecked")
 	public void fillExcelData(int index, Row row) {
 		int startNo = index * sheetSize;
 		int endNo = Math.min(startNo + sheetSize, list.size());
@@ -725,16 +725,16 @@ public class ExcelUtil<T> {
 	 */
 	private Map<String, CellStyle> createStyles(Workbook wb) {
 		// 写入各条记录,每条记录对应excel表中的一行
-		Map<String, CellStyle> styles = new HashMap<String, CellStyle>();
+		Map<String, CellStyle> styles = new HashMap<>();
 		CellStyle style = wb.createCellStyle();
 		style.setAlignment(HorizontalAlignment.CENTER);
 		style.setVerticalAlignment(VerticalAlignment.CENTER);
 		Font titleFont = wb.createFont();
-		titleFont.setFontName("Arial" );
+		titleFont.setFontName("Arial");
 		titleFont.setFontHeightInPoints((short) 16);
 		titleFont.setBold(true);
 		style.setFont(titleFont);
-		styles.put("title" , style);
+		styles.put("title", style);
 
 		style = wb.createCellStyle();
 		style.setAlignment(HorizontalAlignment.CENTER);
@@ -748,19 +748,19 @@ public class ExcelUtil<T> {
 		style.setBorderBottom(BorderStyle.THIN);
 		style.setBottomBorderColor(IndexedColors.GREY_50_PERCENT.getIndex());
 		Font dataFont = wb.createFont();
-		dataFont.setFontName("Arial" );
+		dataFont.setFontName("Arial");
 		dataFont.setFontHeightInPoints((short) 10);
 		style.setFont(dataFont);
-		styles.put("data" , style);
+		styles.put("data", style);
 
 		style = wb.createCellStyle();
 		style.setAlignment(HorizontalAlignment.CENTER);
 		style.setVerticalAlignment(VerticalAlignment.CENTER);
 		Font totalFont = wb.createFont();
-		totalFont.setFontName("Arial" );
+		totalFont.setFontName("Arial");
 		totalFont.setFontHeightInPoints((short) 10);
 		style.setFont(totalFont);
-		styles.put("total" , style);
+		styles.put("total", style);
 
 		styles.putAll(annotationHeaderStyles(wb, styles));
 
@@ -776,19 +776,19 @@ public class ExcelUtil<T> {
 	 * @return 自定义样式列表
 	 */
 	private Map<String, CellStyle> annotationHeaderStyles(Workbook wb, Map<String, CellStyle> styles) {
-		Map<String, CellStyle> headerStyles = new HashMap<String, CellStyle>();
+		Map<String, CellStyle> headerStyles = new HashMap<>();
 		for (Object[] os : fields) {
 			Excel excel = (Excel) os[1];
-			String key = StringUtils.format("header_{}_{}" , excel.headerColor(), excel.headerBackgroundColor());
+			String key = StringUtils.format("header_{}_{}", excel.headerColor(), excel.headerBackgroundColor());
 			if (!headerStyles.containsKey(key)) {
 				CellStyle style = wb.createCellStyle();
-				style.cloneStyleFrom(styles.get("data" ));
+				style.cloneStyleFrom(styles.get("data"));
 				style.setAlignment(HorizontalAlignment.CENTER);
 				style.setVerticalAlignment(VerticalAlignment.CENTER);
 				style.setFillForegroundColor(excel.headerBackgroundColor().index);
 				style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 				Font headerFont = wb.createFont();
-				headerFont.setFontName("Arial" );
+				headerFont.setFontName("Arial");
 				headerFont.setFontHeightInPoints((short) 10);
 				headerFont.setBold(true);
 				headerFont.setColor(excel.headerColor().index);
@@ -806,10 +806,10 @@ public class ExcelUtil<T> {
 	 * @return 自定义样式列表
 	 */
 	private Map<String, CellStyle> annotationDataStyles(Workbook wb) {
-		Map<String, CellStyle> styles = new HashMap<String, CellStyle>();
+		Map<String, CellStyle> styles = new HashMap<>();
 		for (Object[] os : fields) {
 			Excel excel = (Excel) os[1];
-			String key = StringUtils.format("data_{}_{}_{}" , excel.align(), excel.color(), excel.backgroundColor());
+			String key = StringUtils.format("data_{}_{}_{}", excel.align(), excel.color(), excel.backgroundColor());
 			if (!styles.containsKey(key)) {
 				CellStyle style = wb.createCellStyle();
 				style.setAlignment(excel.align());
@@ -825,7 +825,7 @@ public class ExcelUtil<T> {
 				style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 				style.setFillForegroundColor(excel.backgroundColor().getIndex());
 				Font dataFont = wb.createFont();
-				dataFont.setFontName("Arial" );
+				dataFont.setFontName("Arial");
 				dataFont.setFontHeightInPoints((short) 10);
 				dataFont.setColor(excel.color().index);
 				style.setFont(dataFont);
@@ -844,10 +844,10 @@ public class ExcelUtil<T> {
 		// 写入列信息
 		cell.setCellValue(attr.name());
 		setDataValidation(attr, row, column);
-		cell.setCellStyle(styles.get(StringUtils.format("header_{}_{}" , attr.headerColor(), attr.headerBackgroundColor())));
+		cell.setCellStyle(styles.get(StringUtils.format("header_{}_{}", attr.headerColor(), attr.headerBackgroundColor())));
 		if (isSubList()) {
 			// 填充默认样式，防止合并单元格样式失效
-			sheet.setDefaultColumnStyle(column, styles.get(StringUtils.format("data_{}_{}_{}" , attr.align(), attr.color(), attr.backgroundColor())));
+			sheet.setDefaultColumnStyle(column, styles.get(StringUtils.format("data_{}_{}_{}", attr.align(), attr.color(), attr.backgroundColor())));
 			if (attr.needMerge()) {
 				sheet.addMergedRegion(new CellRangeAddress(rownum - 1, rownum, column, column));
 			}
@@ -867,12 +867,12 @@ public class ExcelUtil<T> {
 			String cellValue = Convert.toStr(value);
 			// 对于任何以表达式触发字符 =-+@开头的单元格，直接使用tab字符作为前缀，防止CSV注入。
 			if (StringUtils.startsWithAny(cellValue, FORMULA_STR)) {
-				cellValue = RegExUtils.replaceFirst(cellValue, FORMULA_REGEX_STR, "\t$0" );
+				cellValue = RegExUtils.replaceFirst(cellValue, FORMULA_REGEX_STR, "\t$0");
 			}
 			cell.setCellValue(StringUtils.isNull(cellValue) ? attr.defaultValue() : cellValue + attr.suffix());
 		} else if (ColumnType.NUMERIC == attr.cellType()) {
 			if (StringUtils.isNotNull(value)) {
-				cell.setCellValue(StringUtils.contains(Convert.toStr(value), "." ) ? Convert.toDouble(value) : Convert.toInt(value));
+				cell.setCellValue(StringUtils.contains(Convert.toStr(value), ".") ? Convert.toDouble(value) : Convert.toInt(value));
 			}
 		} else if (ColumnType.IMAGE == attr.cellType()) {
 			ClientAnchor anchor = new XSSFClientAnchor(0, 0, 0, 0, (short) cell.getColumnIndex(), cell.getRow().getRowNum(), (short) (cell.getColumnIndex() + 1), cell.getRow().getRowNum() + 1);
@@ -902,7 +902,7 @@ public class ExcelUtil<T> {
 	 * 创建表格样式
 	 */
 	public void setDataValidation(Excel attr, Row row, int column) {
-		if (attr.name().indexOf("注：" ) >= 0) {
+		if (attr.name().indexOf("注：") >= 0) {
 			sheet.setColumnWidth(column, 6000);
 		} else {
 			// 设置列宽
@@ -930,7 +930,7 @@ public class ExcelUtil<T> {
 					CellRangeAddress cellAddress = new CellRangeAddress(subMergedFirstRowNum, subMergedLastRowNum, column, column);
 					sheet.addMergedRegion(cellAddress);
 				}
-				cell.setCellStyle(styles.get(StringUtils.format("data_{}_{}_{}" , attr.align(), attr.color(), attr.backgroundColor())));
+				cell.setCellStyle(styles.get(StringUtils.format("data_{}_{}_{}", attr.align(), attr.color(), attr.backgroundColor())));
 
 				// 用于读取对象中的属性
 				Object value = getTargetValue(vo, field, attr);
@@ -955,7 +955,7 @@ public class ExcelUtil<T> {
 				addStatisticsData(column, Convert.toStr(value), attr);
 			}
 		} catch (Exception e) {
-			log.error("导出Excel失败{}" , e);
+			log.error("导出Excel失败{}", e);
 		}
 		return cell;
 	}
@@ -974,12 +974,12 @@ public class ExcelUtil<T> {
 	public void setPromptOrValidation(Sheet sheet, String[] textlist, String promptContent, int firstRow, int endRow,
 	                                  int firstCol, int endCol) {
 		DataValidationHelper helper = sheet.getDataValidationHelper();
-		DataValidationConstraint constraint = textlist.length > 0 ? helper.createExplicitListConstraint(textlist) : helper.createCustomConstraint("DD1" );
+		DataValidationConstraint constraint = textlist.length > 0 ? helper.createExplicitListConstraint(textlist) : helper.createCustomConstraint("DD1");
 		CellRangeAddressList regions = new CellRangeAddressList(firstRow, endRow, firstCol, endCol);
 		DataValidation dataValidation = helper.createValidation(constraint, regions);
 		if (StringUtils.isNotEmpty(promptContent)) {
 			// 如果设置了提示信息则鼠标放上去提示
-			dataValidation.createPromptBox("" , promptContent);
+			dataValidation.createPromptBox("", promptContent);
 			dataValidation.setShowPromptBox(true);
 		}
 		// 处理Excel兼容性问题
@@ -1002,7 +1002,7 @@ public class ExcelUtil<T> {
 	public String dataFormatHandlerAdapter(Object value, Excel excel) {
 		try {
 			Object instance = excel.handler().newInstance();
-			Method formatMethod = excel.handler().getMethod("format" , new Class[]{Object.class, String[].class});
+			Method formatMethod = excel.handler().getMethod("format", new Class[]{Object.class, String[].class});
 			value = formatMethod.invoke(instance, value, excel.args());
 		} catch (Exception e) {
 			log.error("不能格式化数据 " + excel.handler(), e.getMessage());
@@ -1035,12 +1035,12 @@ public class ExcelUtil<T> {
 			Row row = sheet.createRow(sheet.getLastRowNum() + 1);
 			Set<Integer> keys = statistics.keySet();
 			Cell cell = row.createCell(0);
-			cell.setCellStyle(styles.get("total" ));
-			cell.setCellValue("合计" );
+			cell.setCellStyle(styles.get("total"));
+			cell.setCellValue("合计");
 
 			for (Integer key : keys) {
 				cell = row.createCell(key);
-				cell.setCellStyle(styles.get("total" ));
+				cell.setCellStyle(styles.get("total"));
 				cell.setCellValue(DOUBLE_FORMAT.format(statistics.get(key)));
 			}
 			statistics.clear();
@@ -1051,7 +1051,7 @@ public class ExcelUtil<T> {
 	 * 编码文件名
 	 */
 	public String encodingFilename(String filename) {
-		filename = UUID.randomUUID().toString() + "_" + filename + ".xlsx" ;
+		filename = UUID.randomUUID().toString() + "_" + filename + ".xlsx";
 		return filename;
 	}
 
@@ -1082,8 +1082,8 @@ public class ExcelUtil<T> {
 		Object o = field.get(vo);
 		if (StringUtils.isNotEmpty(excel.targetAttr())) {
 			String target = excel.targetAttr();
-			if (target.contains("." )) {
-				String[] targets = target.split("[.]" );
+			if (target.contains(".")) {
+				String[] targets = target.split("[.]");
 				for (String name : targets) {
 					o = getValue(o, name);
 				}
@@ -1125,7 +1125,7 @@ public class ExcelUtil<T> {
 	 * 获取字段注解信息
 	 */
 	public List<Object[]> getFields() {
-		List<Object[]> fields = new ArrayList<Object[]>();
+		List<Object[]> fields = new ArrayList<>();
 		List<Field> tempFields = new ArrayList<>();
 		tempFields.addAll(Arrays.asList(clazz.getSuperclass().getDeclaredFields()));
 		tempFields.addAll(Arrays.asList(clazz.getDeclaredFields()));
@@ -1210,7 +1210,7 @@ public class ExcelUtil<T> {
 		if (row == null) {
 			return row;
 		}
-		Object val = "" ;
+		Object val = "";
 		try {
 			Cell cell = row.getCell(column);
 			if (StringUtils.isNotNull(cell)) {
@@ -1222,7 +1222,7 @@ public class ExcelUtil<T> {
 						if ((Double) val % 1 != 0) {
 							val = new BigDecimal(val.toString());
 						} else {
-							val = new DecimalFormat("0" ).format(val);
+							val = new DecimalFormat("0").format(val);
 						}
 					}
 				} else if (cell.getCellType() == CellType.STRING) {
@@ -1268,7 +1268,7 @@ public class ExcelUtil<T> {
 	 */
 	public String parseDateToStr(String dateFormat, Object val) {
 		if (val == null) {
-			return "" ;
+			return "";
 		}
 		String str;
 		if (val instanceof Date) {
@@ -1305,7 +1305,7 @@ public class ExcelUtil<T> {
 		try {
 			value = subMethod.invoke(obj, new Object[]{});
 		} catch (Exception e) {
-			return new ArrayList<Object>();
+			return new ArrayList<>();
 		}
 		return (Collection<?>) value;
 	}
@@ -1318,14 +1318,14 @@ public class ExcelUtil<T> {
 	 * @return 子列表方法
 	 */
 	public Method getSubMethod(String name, Class<?> pojoClass) {
-		StringBuffer getMethodName = new StringBuffer("get" );
+		StringBuilder getMethodName = new StringBuilder("get");
 		getMethodName.append(name.substring(0, 1).toUpperCase());
 		getMethodName.append(name.substring(1));
 		Method method = null;
 		try {
 			method = pojoClass.getMethod(getMethodName.toString(), new Class[]{});
 		} catch (Exception e) {
-			log.error("获取对象异常{}" , e.getMessage());
+			log.error("获取对象异常{}", e.getMessage());
 		}
 		return method;
 	}

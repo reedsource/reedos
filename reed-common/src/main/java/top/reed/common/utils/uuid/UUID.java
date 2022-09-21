@@ -32,7 +32,7 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
 	private UUID(byte[] data) {
 		long msb = 0;
 		long lsb = 0;
-		assert data.length == 16 : "data must be 16 bytes in length" ;
+		assert data.length == 16 : "data must be 16 bytes in length";
 		for (int i = 0; i < 8; i++) {
 			msb = (msb << 8) | (data[i] & 0xff);
 		}
@@ -99,9 +99,9 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
 	public static UUID nameUUIDFromBytes(byte[] name) {
 		MessageDigest md;
 		try {
-			md = MessageDigest.getInstance("MD5" );
+			md = MessageDigest.getInstance("MD5");
 		} catch (NoSuchAlgorithmException nsae) {
-			throw new InternalError("MD5 not supported" );
+			throw new InternalError("MD5 not supported");
 		}
 		byte[] md5Bytes = md.digest(name);
 		md5Bytes[6] &= 0x0f; /* clear version */
@@ -119,7 +119,7 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
 	 * @throws IllegalArgumentException 如果 name 与 {@link #toString} 中描述的字符串表示形式不符抛出此异常
 	 */
 	public static UUID fromString(String name) {
-		String[] components = name.split("-" );
+		String[] components = name.split("-");
 		if (components.length != 5) {
 			throw new IllegalArgumentException("Invalid UUID string: " + name);
 		}
@@ -127,15 +127,15 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
 			components[i] = "0x" + components[i];
 		}
 
-		long mostSigBits = Long.decode(components[0]).longValue();
+		long mostSigBits = Long.decode(components[0]);
 		mostSigBits <<= 16;
-		mostSigBits |= Long.decode(components[1]).longValue();
+		mostSigBits |= Long.decode(components[1]);
 		mostSigBits <<= 16;
-		mostSigBits |= Long.decode(components[2]).longValue();
+		mostSigBits |= Long.decode(components[2]);
 
-		long leastSigBits = Long.decode(components[3]).longValue();
+		long leastSigBits = Long.decode(components[3]);
 		leastSigBits <<= 48;
-		leastSigBits |= Long.decode(components[4]).longValue();
+		leastSigBits |= Long.decode(components[4]);
 
 		return new UUID(mostSigBits, leastSigBits);
 	}
@@ -159,7 +159,7 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
 	 */
 	public static SecureRandom getSecureRandom() {
 		try {
-			return SecureRandom.getInstance("SHA1PRNG" );
+			return SecureRandom.getInstance("SHA1PRNG");
 		} catch (NoSuchAlgorithmException e) {
 			throw new UtilException(e);
 		}
@@ -426,7 +426,7 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
 	 */
 	private void checkTimeBase() {
 		if (version() != 1) {
-			throw new UnsupportedOperationException("Not a time-based UUID" );
+			throw new UnsupportedOperationException("Not a time-based UUID");
 		}
 	}
 

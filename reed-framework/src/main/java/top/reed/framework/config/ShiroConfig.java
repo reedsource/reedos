@@ -49,85 +49,85 @@ public class ShiroConfig {
 	/**
 	 * Session超时时间，单位为毫秒（默认30分钟）
 	 */
-	@Value("${shiro.session.expireTime}" )
+	@Value("${shiro.session.expireTime}")
 	private int expireTime;
 
 	/**
 	 * 相隔多久检查一次session的有效性，单位毫秒，默认就是10分钟
 	 */
-	@Value("${shiro.session.validationInterval}" )
+	@Value("${shiro.session.validationInterval}")
 	private int validationInterval;
 
 	/**
 	 * 同一个用户最大会话数
 	 */
-	@Value("${shiro.session.maxSession}" )
+	@Value("${shiro.session.maxSession}")
 	private int maxSession;
 
 	/**
 	 * 踢出之前登录的/之后登录的用户，默认踢出之前登录的用户
 	 */
-	@Value("${shiro.session.kickoutAfter}" )
+	@Value("${shiro.session.kickoutAfter}")
 	private boolean kickoutAfter;
 
 	/**
 	 * 验证码开关
 	 */
-	@Value("${shiro.user.captchaEnabled}" )
+	@Value("${shiro.user.captchaEnabled}")
 	private boolean captchaEnabled;
 
 	/**
 	 * 验证码类型
 	 */
-	@Value("${shiro.user.captchaType}" )
+	@Value("${shiro.user.captchaType}")
 	private String captchaType;
 
 	/**
 	 * 设置Cookie的域名
 	 */
-	@Value("${shiro.cookie.domain}" )
+	@Value("${shiro.cookie.domain}")
 	private String domain;
 
 	/**
 	 * 设置cookie的有效访问路径
 	 */
-	@Value("${shiro.cookie.path}" )
+	@Value("${shiro.cookie.path}")
 	private String path;
 
 	/**
 	 * 设置HttpOnly属性
 	 */
-	@Value("${shiro.cookie.httpOnly}" )
+	@Value("${shiro.cookie.httpOnly}")
 	private boolean httpOnly;
 
 	/**
 	 * 设置Cookie的过期时间，秒为单位
 	 */
-	@Value("${shiro.cookie.maxAge}" )
+	@Value("${shiro.cookie.maxAge}")
 	private int maxAge;
 
 	/**
 	 * 设置cipherKey密钥
 	 */
-	@Value("${shiro.cookie.cipherKey}" )
+	@Value("${shiro.cookie.cipherKey}")
 	private String cipherKey;
 
 	/**
 	 * 登录地址
 	 */
-	@Value("${shiro.user.loginUrl}" )
+	@Value("${shiro.user.loginUrl}")
 	private String loginUrl;
 
 	/**
 	 * 权限认证失败地址
 	 */
-	@Value("${shiro.user.unauthorizedUrl}" )
+	@Value("${shiro.user.unauthorizedUrl}")
 	private String unauthorizedUrl;
 
 	/**
 	 * 是否开启记住我功能
 	 */
-	@Value("${shiro.rememberMe.enabled: false}" )
+	@Value("${shiro.rememberMe.enabled: false}")
 	private boolean rememberMe;
 
 	/**
@@ -135,7 +135,7 @@ public class ShiroConfig {
 	 */
 	@Bean
 	public EhCacheManager getEhCacheManager() {
-		net.sf.ehcache.CacheManager cacheManager = net.sf.ehcache.CacheManager.getCacheManager("ruoyi" );
+		net.sf.ehcache.CacheManager cacheManager = net.sf.ehcache.CacheManager.getCacheManager("ruoyi");
 		EhCacheManager em = new EhCacheManager();
 		if (StringUtils.isNull(cacheManager)) {
 			em.setCacheManager(new net.sf.ehcache.CacheManager(getCacheManagerConfigFileInputStream()));
@@ -150,7 +150,7 @@ public class ShiroConfig {
 	 * 返回配置文件流 避免ehcache配置文件一直被占用，无法完全销毁项目重新部署
 	 */
 	protected InputStream getCacheManagerConfigFileInputStream() {
-		String configFile = "classpath:ehcache/ehcache-shiro.xml" ;
+		String configFile = "classpath:ehcache/ehcache-shiro.xml";
 		InputStream inputStream = null;
 		try {
 			inputStream = ResourceUtils.getInputStreamForPath(configFile);
@@ -159,7 +159,7 @@ public class ShiroConfig {
 			return in;
 		} catch (IOException e) {
 			throw new ConfigurationException(
-					"Unable to obtain input stream for cacheManagerConfigFile [" + configFile + "]" , e);
+					"Unable to obtain input stream for cacheManagerConfigFile [" + configFile + "]", e);
 		} finally {
 			IOUtils.closeQuietly(inputStream);
 		}
@@ -260,38 +260,38 @@ public class ShiroConfig {
 		// Shiro连接约束配置，即过滤链的定义
 		LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 		// 对静态资源设置匿名访问
-		filterChainDefinitionMap.put("/favicon.ico**" , "anon" );
+		filterChainDefinitionMap.put("/favicon.ico**", "anon");
 		// 登录页图标
-		filterChainDefinitionMap.put("/reedos.png**" , "anon" );
-		filterChainDefinitionMap.put("/html/**" , "anon" );
-		filterChainDefinitionMap.put("/css/**" , "anon" );
-		filterChainDefinitionMap.put("/docs/**" , "anon" );
-		filterChainDefinitionMap.put("/fonts/**" , "anon" );
-		filterChainDefinitionMap.put("/img/**" , "anon" );
-		filterChainDefinitionMap.put("/ajax/**" , "anon" );
-		filterChainDefinitionMap.put("/js/**" , "anon" );
-		filterChainDefinitionMap.put("/ruoyi/**" , "anon" );
-		filterChainDefinitionMap.put("/captcha/captchaImage**" , "anon" );
+		filterChainDefinitionMap.put("/reedos.png**", "anon");
+		filterChainDefinitionMap.put("/html/**", "anon");
+		filterChainDefinitionMap.put("/css/**", "anon");
+		filterChainDefinitionMap.put("/docs/**", "anon");
+		filterChainDefinitionMap.put("/fonts/**", "anon");
+		filterChainDefinitionMap.put("/img/**", "anon");
+		filterChainDefinitionMap.put("/ajax/**", "anon");
+		filterChainDefinitionMap.put("/js/**", "anon");
+		filterChainDefinitionMap.put("/ruoyi/**", "anon");
+		filterChainDefinitionMap.put("/captcha/captchaImage**", "anon");
 		// 退出 logout地址，shiro去清除session
-		filterChainDefinitionMap.put("/logout" , "logout" );
+		filterChainDefinitionMap.put("/logout", "logout");
 		// 不需要拦截的访问
-		filterChainDefinitionMap.put("/login" , "anon,captchaValidate" );
+		filterChainDefinitionMap.put("/login", "anon,captchaValidate");
 		// 注册相关
-		filterChainDefinitionMap.put("/register" , "anon,captchaValidate" );
+		filterChainDefinitionMap.put("/register", "anon,captchaValidate");
 		// 系统权限列表
 		// filterChainDefinitionMap.putAll(SpringUtils.getBean(IMenuService.class).selectPermsAll());
 
-		Map<String, Filter> filters = new LinkedHashMap<String, Filter>();
-		filters.put("onlineSession" , onlineSessionFilter());
-		filters.put("syncOnlineSession" , syncOnlineSessionFilter());
-		filters.put("captchaValidate" , captchaValidateFilter());
-		filters.put("kickout" , kickoutSessionFilter());
+		Map<String, Filter> filters = new LinkedHashMap<>();
+		filters.put("onlineSession", onlineSessionFilter());
+		filters.put("syncOnlineSession", syncOnlineSessionFilter());
+		filters.put("captchaValidate", captchaValidateFilter());
+		filters.put("kickout", kickoutSessionFilter());
 		// 注销成功，则跳转到指定页面
-		filters.put("logout" , logoutFilter());
+		filters.put("logout", logoutFilter());
 		shiroFilterFactoryBean.setFilters(filters);
 
 		// 所有请求需要认证
-		filterChainDefinitionMap.put("/**" , "user,kickout,onlineSession,syncOnlineSession" );
+		filterChainDefinitionMap.put("/**", "user,kickout,onlineSession,syncOnlineSession");
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 
 		return shiroFilterFactoryBean;
@@ -330,7 +330,7 @@ public class ShiroConfig {
 	 * cookie 属性设置
 	 */
 	public SimpleCookie rememberMeCookie() {
-		SimpleCookie cookie = new SimpleCookie("rememberMe" );
+		SimpleCookie cookie = new SimpleCookie("rememberMe");
 		cookie.setDomain(domain);
 		cookie.setPath(path);
 		cookie.setHttpOnly(httpOnly);
@@ -347,7 +347,7 @@ public class ShiroConfig {
 		if (StringUtils.isNotEmpty(cipherKey)) {
 			cookieRememberMeManager.setCipherKey(Base64.decode(cipherKey));
 		} else {
-			cookieRememberMeManager.setCipherKey(CipherUtils.generateNewKey(128, "AES" ).getEncoded());
+			cookieRememberMeManager.setCipherKey(CipherUtils.generateNewKey(128, "AES").getEncoded());
 		}
 		return cookieRememberMeManager;
 	}
@@ -364,7 +364,7 @@ public class ShiroConfig {
 		// 是否踢出后来登录的，默认是false；即后者登录的用户踢出前者登录的用户；踢出顺序
 		kickoutSessionFilter.setKickoutAfter(kickoutAfter);
 		// 被踢出后重定向到的地址；
-		kickoutSessionFilter.setKickoutUrl("/login?kickout=1" );
+		kickoutSessionFilter.setKickoutUrl("/login?kickout=1");
 		return kickoutSessionFilter;
 	}
 
@@ -381,7 +381,7 @@ public class ShiroConfig {
 	 */
 	@Bean
 	public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(
-			@Qualifier("securityManager" ) SecurityManager securityManager) {
+			@Qualifier("securityManager") SecurityManager securityManager) {
 		AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
 		authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
 		return authorizationAttributeSourceAdvisor;

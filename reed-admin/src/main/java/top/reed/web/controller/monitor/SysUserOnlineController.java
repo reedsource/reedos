@@ -29,9 +29,9 @@ import java.util.List;
  * @author reedsource
  */
 @Controller
-@RequestMapping("/monitor/online" )
+@RequestMapping("/monitor/online")
 public class SysUserOnlineController extends BaseController {
-	private String prefix = "monitor/online" ;
+	private String prefix = "monitor/online";
 
 	@Autowired
 	private ISysUserOnlineService userOnlineService;
@@ -39,14 +39,14 @@ public class SysUserOnlineController extends BaseController {
 	@Autowired
 	private OnlineSessionDAO onlineSessionDAO;
 
-	@RequiresPermissions("monitor:online:view" )
+	@RequiresPermissions("monitor:online:view")
 	@GetMapping()
 	public String online() {
-		return prefix + "/online" ;
+		return prefix + "/online";
 	}
 
-	@RequiresPermissions("monitor:online:list" )
-	@PostMapping("/list" )
+	@RequiresPermissions("monitor:online:list")
+	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(SysUserOnline userOnline) {
 		startPage();
@@ -54,22 +54,22 @@ public class SysUserOnlineController extends BaseController {
 		return getDataTable(list);
 	}
 
-	@RequiresPermissions(value = {"monitor:online:batchForceLogout" , "monitor:online:forceLogout"}, logical = Logical.OR)
-	@Log(title = "在线用户" , businessType = BusinessType.FORCE)
-	@PostMapping("/batchForceLogout" )
+	@RequiresPermissions(value = {"monitor:online:batchForceLogout", "monitor:online:forceLogout"}, logical = Logical.OR)
+	@Log(title = "在线用户", businessType = BusinessType.FORCE)
+	@PostMapping("/batchForceLogout")
 	@ResponseBody
 	public AjaxResult batchForceLogout(String ids) {
 		for (String sessionId : Convert.toStrArray(ids)) {
 			SysUserOnline online = userOnlineService.selectOnlineById(sessionId);
 			if (online == null) {
-				return error("用户已下线" );
+				return error("用户已下线");
 			}
 			OnlineSession onlineSession = (OnlineSession) onlineSessionDAO.readSession(online.getSessionId());
 			if (onlineSession == null) {
-				return error("用户已下线" );
+				return error("用户已下线");
 			}
 			if (sessionId.equals(ShiroUtils.getSessionId())) {
-				return error("当前登录用户无法强退" );
+				return error("当前登录用户无法强退");
 			}
 			onlineSessionDAO.delete(onlineSession);
 			online.setStatus(OnlineStatus.off_line);

@@ -29,7 +29,7 @@ public class I18nConfig implements WebMvcConfigurer {
 	public LocaleChangeInterceptor localeChangeInterceptor() {
 		LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
 		// 参数名
-		lci.setParamName("lang" );
+		lci.setParamName("lang");
 		return lci;
 	}
 

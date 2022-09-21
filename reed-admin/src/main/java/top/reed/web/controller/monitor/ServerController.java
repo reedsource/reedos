@@ -14,16 +14,16 @@ import top.reed.framework.web.domain.Server;
  * @author reedsource
  */
 @Controller
-@RequestMapping("/monitor/server" )
+@RequestMapping("/monitor/server")
 public class ServerController extends BaseController {
-	private String prefix = "monitor/server" ;
+	private String prefix = "monitor/server";
 
-	@RequiresPermissions("monitor:server:view" )
+	@RequiresPermissions("monitor:server:view")
 	@GetMapping()
 	public String server(ModelMap mmap) throws Exception {
 		Server server = new Server();
 		server.copyTo();
-		mmap.put("server" , server);
-		return prefix + "/server" ;
+		mmap.put("server", server);
+		return prefix + "/server";
 	}
 }

@@ -15,7 +15,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	/**
 	 * 空字符串
 	 */
-	private static final String NULLSTR = "" ;
+	private static final String NULLSTR = "";
 
 	/**
 	 * 下划线
@@ -251,7 +251,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	 * @return set集合
 	 */
 	public static final Set<String> str2Set(String str, String sep) {
-		return new HashSet<String>(str2List(str, sep, true, false));
+		return new HashSet<>(str2List(str, sep, true, false));
 	}
 
 	/**
@@ -264,7 +264,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	 * @return list集合
 	 */
 	public static final List<String> str2List(String str, String sep, boolean filterBlank, boolean trim) {
-		List<String> list = new ArrayList<String>();
+		List<String> list = new ArrayList<>();
 		if (StringUtils.isEmpty(str)) {
 			return list;
 		}
@@ -408,13 +408,13 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 		// 快速检查
 		if (name == null || name.isEmpty()) {
 			// 没必要转换
-			return "" ;
-		} else if (!name.contains("_" )) {
+			return "";
+		} else if (!name.contains("_")) {
 			// 不含下划线，仅将首字母大写
 			return name.substring(0, 1).toUpperCase() + name.substring(1);
 		}
 		// 用下划线将原始字符串分割
-		String[] camels = name.split("_" );
+		String[] camels = name.split("_");
 		for (String camel : camels) {
 			// 跳过原始字符串中开头、结尾的下换线或双重下划线
 			if (camel.isEmpty()) {
@@ -490,7 +490,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 		return matcher.match(pattern, url);
 	}
 
-	@SuppressWarnings("unchecked" )
+	@SuppressWarnings("unchecked")
 	public static <T> T cast(Object obj) {
 		return (T) obj;
 	}

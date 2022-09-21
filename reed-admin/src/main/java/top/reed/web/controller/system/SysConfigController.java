@@ -24,24 +24,24 @@ import java.util.List;
  * @author reedsource
  */
 @Controller
-@RequestMapping("/system/config" )
+@RequestMapping("/system/config")
 public class SysConfigController extends BaseController {
-	private String prefix = "system/config" ;
+	private String prefix = "system/config";
 
 	@Autowired
 	private ISysConfigService configService;
 
-	@RequiresPermissions("system:config:view" )
+	@RequiresPermissions("system:config:view")
 	@GetMapping()
 	public String config() {
-		return prefix + "/config" ;
+		return prefix + "/config";
 	}
 
 	/**
 	 * 查询参数配置列表
 	 */
-	@RequiresPermissions("system:config:list" )
-	@PostMapping("/list" )
+	@RequiresPermissions("system:config:list")
+	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(SysConfig config) {
 		startPage();
@@ -49,34 +49,34 @@ public class SysConfigController extends BaseController {
 		return getDataTable(list);
 	}
 
-	@Log(title = "参数管理" , businessType = BusinessType.EXPORT)
-	@RequiresPermissions("system:config:export" )
-	@PostMapping("/export" )
+	@Log(title = "参数管理", businessType = BusinessType.EXPORT)
+	@RequiresPermissions("system:config:export")
+	@PostMapping("/export")
 	@ResponseBody
 	public AjaxResult export(SysConfig config) {
 		List<SysConfig> list = configService.selectConfigList(config);
-		ExcelUtil<SysConfig> util = new ExcelUtil<SysConfig>(SysConfig.class);
-		return util.exportExcel(list, "参数数据" );
+		ExcelUtil<SysConfig> util = new ExcelUtil<>(SysConfig.class);
+		return util.exportExcel(list, "参数数据");
 	}
 
 	/**
 	 * 新增参数配置
 	 */
-	@GetMapping("/add" )
+	@GetMapping("/add")
 	public String add() {
-		return prefix + "/add" ;
+		return prefix + "/add";
 	}
 
 	/**
 	 * 新增保存参数配置
 	 */
-	@RequiresPermissions("system:config:add" )
-	@Log(title = "参数管理" , businessType = BusinessType.INSERT)
-	@PostMapping("/add" )
+	@RequiresPermissions("system:config:add")
+	@Log(title = "参数管理", businessType = BusinessType.INSERT)
+	@PostMapping("/add")
 	@ResponseBody
 	public AjaxResult addSave(@Validated SysConfig config) {
 		if (UserConstants.CONFIG_KEY_NOT_UNIQUE.equals(configService.checkConfigKeyUnique(config))) {
-			return error("新增参数'" + config.getConfigName() + "'失败，参数键名已存在" );
+			return error("新增参数'" + config.getConfigName() + "'失败，参数键名已存在");
 		}
 		config.setCreateBy(getLoginName());
 		return toAjax(configService.insertConfig(config));
@@ -85,23 +85,23 @@ public class SysConfigController extends BaseController {
 	/**
 	 * 修改参数配置
 	 */
-	@RequiresPermissions("system:config:edit" )
-	@GetMapping("/edit/{configId}" )
-	public String edit(@PathVariable("configId" ) Long configId, ModelMap mmap) {
-		mmap.put("config" , configService.selectConfigById(configId));
-		return prefix + "/edit" ;
+	@RequiresPermissions("system:config:edit")
+	@GetMapping("/edit/{configId}")
+	public String edit(@PathVariable("configId") Long configId, ModelMap mmap) {
+		mmap.put("config", configService.selectConfigById(configId));
+		return prefix + "/edit";
 	}
 
 	/**
 	 * 修改保存参数配置
 	 */
-	@RequiresPermissions("system:config:edit" )
-	@Log(title = "参数管理" , businessType = BusinessType.UPDATE)
-	@PostMapping("/edit" )
+	@RequiresPermissions("system:config:edit")
+	@Log(title = "参数管理", businessType = BusinessType.UPDATE)
+	@PostMapping("/edit")
 	@ResponseBody
 	public AjaxResult editSave(@Validated SysConfig config) {
 		if (UserConstants.CONFIG_KEY_NOT_UNIQUE.equals(configService.checkConfigKeyUnique(config))) {
-			return error("修改参数'" + config.getConfigName() + "'失败，参数键名已存在" );
+			return error("修改参数'" + config.getConfigName() + "'失败，参数键名已存在");
 		}
 		config.setUpdateBy(getLoginName());
 		return toAjax(configService.updateConfig(config));
@@ -110,9 +110,9 @@ public class SysConfigController extends BaseController {
 	/**
 	 * 删除参数配置
 	 */
-	@RequiresPermissions("system:config:remove" )
-	@Log(title = "参数管理" , businessType = BusinessType.DELETE)
-	@PostMapping("/remove" )
+	@RequiresPermissions("system:config:remove")
+	@Log(title = "参数管理", businessType = BusinessType.DELETE)
+	@PostMapping("/remove")
 	@ResponseBody
 	public AjaxResult remove(String ids) {
 		configService.deleteConfigByIds(ids);
@@ -122,9 +122,9 @@ public class SysConfigController extends BaseController {
 	/**
 	 * 刷新参数缓存
 	 */
-	@RequiresPermissions("system:config:remove" )
-	@Log(title = "参数管理" , businessType = BusinessType.CLEAN)
-	@GetMapping("/refreshCache" )
+	@RequiresPermissions("system:config:remove")
+	@Log(title = "参数管理", businessType = BusinessType.CLEAN)
+	@GetMapping("/refreshCache")
 	@ResponseBody
 	public AjaxResult refreshCache() {
 		configService.resetConfigCache();
@@ -134,7 +134,7 @@ public class SysConfigController extends BaseController {
 	/**
 	 * 校验参数键名
 	 */
-	@PostMapping("/checkConfigKeyUnique" )
+	@PostMapping("/checkConfigKeyUnique")
 	@ResponseBody
 	public String checkConfigKeyUnique(SysConfig config) {
 		return configService.checkConfigKeyUnique(config);

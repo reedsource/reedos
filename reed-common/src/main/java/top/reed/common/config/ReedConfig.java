@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @author reedsource
  */
 @Component
-@ConfigurationProperties(prefix = "reedconfig" )
+@ConfigurationProperties(prefix = "reedconfig")
 public class ReedConfig {
 	/**
 	 * 项目名称
@@ -93,27 +93,27 @@ public class ReedConfig {
 	 * 获取导入上传路径
 	 */
 	public static String getImportPath() {
-		return getProfile() + "/import" ;
+		return getProfile() + "/import";
 	}
 
 	/**
 	 * 获取头像上传路径
 	 */
 	public static String getAvatarPath() {
-		return getProfile() + "/avatar" ;
+		return getProfile() + "/avatar";
 	}
 
 	/**
 	 * 获取下载路径
 	 */
 	public static String getDownloadPath() {
-		return getProfile() + "/download/" ;
+		return getProfile() + "/download/";
 	}
 
 	/**
 	 * 获取上传路径
 	 */
 	public static String getUploadPath() {
-		return getProfile() + "/upload" ;
+		return getProfile() + "/upload";
 	}
 }

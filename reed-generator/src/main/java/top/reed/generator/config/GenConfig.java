@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @author reedsource
  */
 @Component
-@ConfigurationProperties(prefix = "gen" )
+@ConfigurationProperties(prefix = "gen")
 @PropertySource(value = {"classpath:generator.yml"})
 public class GenConfig {
 	/**
@@ -38,7 +38,7 @@ public class GenConfig {
 		return author;
 	}
 
-	@Value("${author}" )
+	@Value("${author}")
 	public void setAuthor(String author) {
 		GenConfig.author = author;
 	}
@@ -47,7 +47,7 @@ public class GenConfig {
 		return packageName;
 	}
 
-	@Value("${packageName}" )
+	@Value("${packageName}")
 	public void setPackageName(String packageName) {
 		GenConfig.packageName = packageName;
 	}
@@ -56,7 +56,7 @@ public class GenConfig {
 		return autoRemovePre;
 	}
 
-	@Value("${autoRemovePre}" )
+	@Value("${autoRemovePre}")
 	public void setAutoRemovePre(boolean autoRemovePre) {
 		GenConfig.autoRemovePre = autoRemovePre;
 	}
@@ -65,7 +65,7 @@ public class GenConfig {
 		return tablePrefix;
 	}
 
-	@Value("${tablePrefix}" )
+	@Value("${tablePrefix}")
 	public void setTablePrefix(String tablePrefix) {
 		GenConfig.tablePrefix = tablePrefix;
 	}

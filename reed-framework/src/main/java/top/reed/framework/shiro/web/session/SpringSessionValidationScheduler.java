@@ -28,7 +28,7 @@ public class SpringSessionValidationScheduler implements SessionValidationSchedu
 	 * 定时器，用于处理超时的挂起请求，也用于连接断开时的重连。
 	 */
 	@Autowired
-	@Qualifier("scheduledExecutorService" )
+	@Qualifier("scheduledExecutorService")
 	private ScheduledExecutorService executorService;
 
 	private volatile boolean enabled = false;
@@ -37,12 +37,12 @@ public class SpringSessionValidationScheduler implements SessionValidationSchedu
 	 * 会话验证管理器
 	 */
 	@Autowired
-	@Qualifier("sessionManager" )
+	@Qualifier("sessionManager")
 	@Lazy
 	private ValidatingSessionManager sessionManager;
 
 	// 相隔多久检查一次session的有效性，单位毫秒，默认就是10分钟
-	@Value("${shiro.session.validationInterval}" )
+	@Value("${shiro.session.validationInterval}")
 	private long sessionValidationInterval;
 
 	@Override
@@ -74,7 +74,7 @@ public class SpringSessionValidationScheduler implements SessionValidationSchedu
 
 		if (log.isDebugEnabled()) {
 			log.debug("Scheduling session validation job using Spring Scheduler with "
-					+ "session validation interval of [" + sessionValidationInterval + "]ms..." );
+					+ "session validation interval of [" + sessionValidationInterval + "]ms...");
 		}
 
 		try {
@@ -90,12 +90,12 @@ public class SpringSessionValidationScheduler implements SessionValidationSchedu
 			this.enabled = true;
 
 			if (log.isDebugEnabled()) {
-				log.debug("Session validation job successfully scheduled with Spring Scheduler." );
+				log.debug("Session validation job successfully scheduled with Spring Scheduler.");
 			}
 
 		} catch (Exception e) {
 			if (log.isErrorEnabled()) {
-				log.error("Error starting the Spring Scheduler session validation job.  Session validation may not occur." , e);
+				log.error("Error starting the Spring Scheduler session validation job.  Session validation may not occur.", e);
 			}
 		}
 	}
@@ -103,7 +103,7 @@ public class SpringSessionValidationScheduler implements SessionValidationSchedu
 	@Override
 	public void disableSessionValidation() {
 		if (log.isDebugEnabled()) {
-			log.debug("Stopping Spring Scheduler session validation job..." );
+			log.debug("Stopping Spring Scheduler session validation job...");
 		}
 
 		if (this.enabled) {

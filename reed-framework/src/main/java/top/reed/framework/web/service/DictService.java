@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author reedsource
  */
-@Service("dict" )
+@Service("dict")
 public class DictService {
 	@Autowired
 	private ISysDictTypeService dictTypeService;

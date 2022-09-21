@@ -31,11 +31,11 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(AuthorizationException.class)
 	public Object handleAuthorizationException(AuthorizationException e, HttpServletRequest request) {
 		String requestURI = request.getRequestURI();
-		log.error("请求地址'{}',权限校验失败'{}'" , requestURI, e.getMessage());
+		log.error("请求地址'{}',权限校验失败'{}'", requestURI, e.getMessage());
 		if (ServletUtils.isAjaxRequest(request)) {
 			return AjaxResult.error(PermissionUtils.getMsg(e.getMessage()));
 		} else {
-			return new ModelAndView("error/unauth" );
+			return new ModelAndView("error/unauth");
 		}
 	}
 
@@ -46,7 +46,7 @@ public class GlobalExceptionHandler {
 	public AjaxResult handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException e,
 	                                                      HttpServletRequest request) {
 		String requestURI = request.getRequestURI();
-		log.error("请求地址'{}',不支持'{}'请求" , requestURI, e.getMethod());
+		log.error("请求地址'{}',不支持'{}'请求", requestURI, e.getMethod());
 		return AjaxResult.error(e.getMessage());
 	}
 
@@ -56,7 +56,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(RuntimeException.class)
 	public AjaxResult handleRuntimeException(RuntimeException e, HttpServletRequest request) {
 		String requestURI = request.getRequestURI();
-		log.error("请求地址'{}',发生未知异常." , requestURI, e);
+		log.error("请求地址'{}',发生未知异常.", requestURI, e);
 		return AjaxResult.error(e.getMessage());
 	}
 
@@ -66,7 +66,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(Exception.class)
 	public AjaxResult handleException(Exception e, HttpServletRequest request) {
 		String requestURI = request.getRequestURI();
-		log.error("请求地址'{}',发生系统异常." , requestURI, e);
+		log.error("请求地址'{}',发生系统异常.", requestURI, e);
 		return AjaxResult.error(e.getMessage());
 	}
 
@@ -79,7 +79,7 @@ public class GlobalExceptionHandler {
 		if (ServletUtils.isAjaxRequest(request)) {
 			return AjaxResult.error(e.getMessage());
 		} else {
-			return new ModelAndView("error/service" , "errorMessage" , e.getMessage());
+			return new ModelAndView("error/service", "errorMessage", e.getMessage());
 		}
 	}
 
@@ -98,6 +98,6 @@ public class GlobalExceptionHandler {
 	 */
 	@ExceptionHandler(DemoModeException.class)
 	public AjaxResult handleDemoModeException(DemoModeException e) {
-		return AjaxResult.error("演示模式，不允许操作" );
+		return AjaxResult.error("演示模式，不允许操作");
 	}
 }

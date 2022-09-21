@@ -17,7 +17,7 @@ public @interface Log {
 	/**
 	 * 模块
 	 */
-	public String title() default "" ;
+	public String title() default "";
 
 	/**
 	 * 功能

@@ -161,17 +161,17 @@ public class SysUserOnline extends BaseEntity {
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-				.append("sessionId" , getSessionId())
-				.append("loginName" , getLoginName())
-				.append("deptName" , getDeptName())
-				.append("ipaddr" , getIpaddr())
-				.append("loginLocation" , getLoginLocation())
-				.append("browser" , getBrowser())
-				.append("os" , getOs())
-				.append("status" , getStatus())
-				.append("startTimestamp" , getStartTimestamp())
-				.append("lastAccessTime" , getLastAccessTime())
-				.append("expireTime" , getExpireTime())
+				.append("sessionId", getSessionId())
+				.append("loginName", getLoginName())
+				.append("deptName", getDeptName())
+				.append("ipaddr", getIpaddr())
+				.append("loginLocation", getLoginLocation())
+				.append("browser", getBrowser())
+				.append("os", getOs())
+				.append("status", getStatus())
+				.append("startTimestamp", getStartTimestamp())
+				.append("lastAccessTime", getLastAccessTime())
+				.append("expireTime", getExpireTime())
 				.toString();
 	}
 }

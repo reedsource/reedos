@@ -117,7 +117,7 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService {
 		for (Long dictId : dictIds) {
 			SysDictType dictType = selectDictTypeById(dictId);
 			if (dictDataMapper.countDictDataByType(dictType.getDictType()) > 0) {
-				throw new ServiceException(String.format("%1$s已分配,不能删除" , dictType.getDictName()));
+				throw new ServiceException(String.format("%1$s已分配,不能删除", dictType.getDictName()));
 			}
 			dictTypeMapper.deleteDictTypeById(dictId);
 			DictUtils.removeDictCache(dictType.getDictType());
@@ -130,7 +130,7 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService {
 	@Override
 	public void loadingDictCache() {
 		SysDictData dictData = new SysDictData();
-		dictData.setStatus("0" );
+		dictData.setStatus("0");
 		Map<String, List<SysDictData>> dictDataMap = dictDataMapper.selectDictDataList(dictData).stream().collect(Collectors.groupingBy(SysDictData::getDictType));
 		for (Map.Entry<String, List<SysDictData>> entry : dictDataMap.entrySet()) {
 			DictUtils.setDictCache(entry.getKey(), entry.getValue().stream().sorted(Comparator.comparing(SysDictData::getDictSort)).collect(Collectors.toList()));
@@ -212,7 +212,7 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService {
 	 */
 	@Override
 	public List<Ztree> selectDictTree(SysDictType dictType) {
-		List<Ztree> ztrees = new ArrayList<Ztree>();
+		List<Ztree> ztrees = new ArrayList<>();
 		List<SysDictType> dictList = dictTypeMapper.selectDictTypeList(dictType);
 		for (SysDictType dict : dictList) {
 			if (UserConstants.DICT_NORMAL.equals(dict.getStatus())) {
@@ -227,8 +227,8 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService {
 	}
 
 	public String transDictName(SysDictType dictType) {
-		StringBuffer sb = new StringBuffer();
-		sb.append("(" + dictType.getDictName() + ")" );
+		StringBuilder sb = new StringBuilder();
+		sb.append("(" + dictType.getDictName() + ")");
 		sb.append("&nbsp;&nbsp;&nbsp;" + dictType.getDictType());
 		return sb.toString();
 	}

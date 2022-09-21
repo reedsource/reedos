@@ -32,17 +32,17 @@ import java.util.List;
  */
 @Configuration
 public class MyBatisConfig {
-	static final String DEFAULT_RESOURCE_PATTERN = "**/*.class" ;
+	static final String DEFAULT_RESOURCE_PATTERN = "**/*.class";
 	@Autowired
 	private Environment env;
 
 	public static String setTypeAliasesPackage(String typeAliasesPackage) {
 		ResourcePatternResolver resolver = (ResourcePatternResolver) new PathMatchingResourcePatternResolver();
 		MetadataReaderFactory metadataReaderFactory = new CachingMetadataReaderFactory(resolver);
-		List<String> allResult = new ArrayList<String>();
+		List<String> allResult = new ArrayList<>();
 		try {
-			for (String aliasesPackage : typeAliasesPackage.split("," )) {
-				List<String> result = new ArrayList<String>();
+			for (String aliasesPackage : typeAliasesPackage.split(",")) {
+				List<String> result = new ArrayList<>();
 				aliasesPackage = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX
 						+ ClassUtils.convertClassNameToResourcePath(aliasesPackage.trim()) + "/" + DEFAULT_RESOURCE_PATTERN;
 				Resource[] resources = resolver.getResources(aliasesPackage);
@@ -60,14 +60,14 @@ public class MyBatisConfig {
 					}
 				}
 				if (result.size() > 0) {
-					HashSet<String> hashResult = new HashSet<String>(result);
+					HashSet<String> hashResult = new HashSet<>(result);
 					allResult.addAll(hashResult);
 				}
 			}
 			if (allResult.size() > 0) {
-				typeAliasesPackage = String.join("," , (String[]) allResult.toArray(new String[0]));
+				typeAliasesPackage = String.join(",", (String[]) allResult.toArray(new String[0]));
 			} else {
-				throw new RuntimeException("mybatis typeAliasesPackage 路径扫描错误,参数typeAliasesPackage:" + typeAliasesPackage + "未找到任何包" );
+				throw new RuntimeException("mybatis typeAliasesPackage 路径扫描错误,参数typeAliasesPackage:" + typeAliasesPackage + "未找到任何包");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -77,7 +77,7 @@ public class MyBatisConfig {
 
 	public Resource[] resolveMapperLocations(String[] mapperLocations) {
 		ResourcePatternResolver resourceResolver = new PathMatchingResourcePatternResolver();
-		List<Resource> resources = new ArrayList<Resource>();
+		List<Resource> resources = new ArrayList<>();
 		if (mapperLocations != null) {
 			for (String mapperLocation : mapperLocations) {
 				try {
@@ -93,16 +93,16 @@ public class MyBatisConfig {
 
 	@Bean
 	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-		String typeAliasesPackage = env.getProperty("mybatis.typeAliasesPackage" );
-		String mapperLocations = env.getProperty("mybatis.mapperLocations" );
-		String configLocation = env.getProperty("mybatis.configLocation" );
+		String typeAliasesPackage = env.getProperty("mybatis.typeAliasesPackage");
+		String mapperLocations = env.getProperty("mybatis.mapperLocations");
+		String configLocation = env.getProperty("mybatis.configLocation");
 		typeAliasesPackage = setTypeAliasesPackage(typeAliasesPackage);
 		VFS.addImplClass(SpringBootVFS.class);
 
 		final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource);
 		sessionFactory.setTypeAliasesPackage(typeAliasesPackage);
-		sessionFactory.setMapperLocations(resolveMapperLocations(StringUtils.split(mapperLocations, "," )));
+		sessionFactory.setMapperLocations(resolveMapperLocations(StringUtils.split(mapperLocations, ",")));
 		sessionFactory.setConfigLocation(new DefaultResourceLoader().getResource(configLocation));
 		return sessionFactory.getObject();
 	}

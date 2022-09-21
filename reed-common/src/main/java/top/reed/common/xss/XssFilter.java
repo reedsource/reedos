@@ -21,10 +21,10 @@ public class XssFilter implements Filter {
 	public List<String> excludes = new ArrayList<>();
 
 	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
-		String tempExcludes = filterConfig.getInitParameter("excludes" );
+	public void init(FilterConfig filterConfig) {
+		String tempExcludes = filterConfig.getInitParameter("excludes");
 		if (StringUtils.isNotEmpty(tempExcludes)) {
-			String[] url = tempExcludes.split("," );
+			String[] url = tempExcludes.split(",");
 			for (int i = 0; url != null && i < url.length; i++) {
 				excludes.add(url[i]);
 			}
@@ -48,7 +48,7 @@ public class XssFilter implements Filter {
 		String url = request.getServletPath();
 		String method = request.getMethod();
 		// GET DELETE 不过滤
-		if (method == null || method.matches("GET" ) || method.matches("DELETE" )) {
+		if (method == null || method.matches("GET") || method.matches("DELETE")) {
 			return true;
 		}
 		return StringUtils.matches(url, excludes);

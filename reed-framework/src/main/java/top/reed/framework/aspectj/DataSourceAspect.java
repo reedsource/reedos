@@ -28,12 +28,12 @@ public class DataSourceAspect {
 	protected Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Pointcut("@annotation(top.reed.common.annotation.DataSource)"
-			+ "|| @within(top.reed.common.annotation.DataSource)" )
+			+ "|| @within(top.reed.common.annotation.DataSource)")
 	public void dsPointCut() {
-
+		//信息织入,方法为空
 	}
 
-	@Around("dsPointCut()" )
+	@Around("dsPointCut()")
 	public Object around(ProceedingJoinPoint point) throws Throwable {
 		DataSource dataSource = getDataSource(point);
 

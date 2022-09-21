@@ -20,7 +20,7 @@ import java.nio.charset.StandardCharsets;
  * @author reedsource
  */
 public class FileUtils {
-	public static String FILENAME_PATTERN = "[a-zA-Z0-9_\\-\\|\\.\\u4e00-\\u9fa5]+" ;
+	public static String FILENAME_PATTERN = "[a-zA-Z0-9_\\-\\|\\.\\u4e00-\\u9fa5]+";
 
 	/**
 	 * 输出指定文件的byte数组
@@ -71,7 +71,7 @@ public class FileUtils {
 	 */
 	public static String writeBytes(byte[] data, String uploadDir) throws IOException {
 		FileOutputStream fos = null;
-		String pathName = "" ;
+		String pathName = "";
 		try {
 			String extension = getFileExtendName(data);
 			pathName = DateUtils.datePath() + "/" + IdUtils.fastUUID() + "." + extension;
@@ -119,7 +119,7 @@ public class FileUtils {
 	 */
 	public static boolean checkAllowDownload(String resource) {
 		// 禁止目录上跳级别
-		if (StringUtils.contains(resource, ".." )) {
+		if (StringUtils.contains(resource, "..")) {
 			return false;
 		}
 
@@ -140,21 +140,21 @@ public class FileUtils {
 	 * @return 编码后的文件名
 	 */
 	public static String setFileDownloadHeader(HttpServletRequest request, String fileName) throws UnsupportedEncodingException {
-		final String agent = request.getHeader("USER-AGENT" );
+		final String agent = request.getHeader("USER-AGENT");
 		String filename = fileName;
-		if (agent.contains("MSIE" )) {
+		if (agent.contains("MSIE")) {
 			// IE浏览器
-			filename = URLEncoder.encode(filename, "utf-8" );
-			filename = filename.replace("+" , " " );
-		} else if (agent.contains("Firefox" )) {
+			filename = URLEncoder.encode(filename, "utf-8");
+			filename = filename.replace("+", " ");
+		} else if (agent.contains("Firefox")) {
 			// 火狐浏览器
-			filename = new String(fileName.getBytes(), "ISO8859-1" );
-		} else if (agent.contains("Chrome" )) {
+			filename = new String(fileName.getBytes(), "ISO8859-1");
+		} else if (agent.contains("Chrome")) {
 			// google浏览器
-			filename = URLEncoder.encode(filename, "utf-8" );
+			filename = URLEncoder.encode(filename, "utf-8");
 		} else {
 			// 其它浏览器
-			filename = URLEncoder.encode(filename, "utf-8" );
+			filename = URLEncoder.encode(filename, "utf-8");
 		}
 		return filename;
 	}
@@ -170,14 +170,14 @@ public class FileUtils {
 		String percentEncodedFileName = percentEncode(realFileName);
 
 		StringBuilder contentDispositionValue = new StringBuilder();
-		contentDispositionValue.append("attachment; filename=" )
+		contentDispositionValue.append("attachment; filename=")
 				.append(percentEncodedFileName)
-				.append(";" )
-				.append("filename*=" )
-				.append("utf-8''" )
+				.append(";")
+				.append("filename*=")
+				.append("utf-8''")
 				.append(percentEncodedFileName);
 
-		response.setHeader("Content-disposition" , contentDispositionValue.toString());
+		response.setHeader("Content-disposition", contentDispositionValue.toString());
 	}
 
 	/**
@@ -188,7 +188,7 @@ public class FileUtils {
 	 */
 	public static String percentEncode(String s) throws UnsupportedEncodingException {
 		String encode = URLEncoder.encode(s, StandardCharsets.UTF_8.toString());
-		return encode.replaceAll("\\+" , "%20" );
+		return encode.replaceAll("\\+", "%20");
 	}
 
 	/**
@@ -198,16 +198,16 @@ public class FileUtils {
 	 * @return 后缀名
 	 */
 	public static String getFileExtendName(byte[] photoByte) {
-		String strFileExtendName = "jpg" ;
+		String strFileExtendName = "jpg";
 		if ((photoByte[0] == 71) && (photoByte[1] == 73) && (photoByte[2] == 70) && (photoByte[3] == 56)
 				&& ((photoByte[4] == 55) || (photoByte[4] == 57)) && (photoByte[5] == 97)) {
-			strFileExtendName = "gif" ;
+			strFileExtendName = "gif";
 		} else if ((photoByte[6] == 74) && (photoByte[7] == 70) && (photoByte[8] == 73) && (photoByte[9] == 70)) {
-			strFileExtendName = "jpg" ;
+			strFileExtendName = "jpg";
 		} else if ((photoByte[0] == 66) && (photoByte[1] == 77)) {
-			strFileExtendName = "bmp" ;
+			strFileExtendName = "bmp";
 		} else if ((photoByte[1] == 80) && (photoByte[2] == 78) && (photoByte[3] == 71)) {
-			strFileExtendName = "png" ;
+			strFileExtendName = "png";
 		}
 		return strFileExtendName;
 	}

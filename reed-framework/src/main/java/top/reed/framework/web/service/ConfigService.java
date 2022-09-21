@@ -9,7 +9,7 @@ import top.reed.system.service.ISysConfigService;
  *
  * @author reedsource
  */
-@Service("config" )
+@Service("config")
 public class ConfigService {
 	@Autowired
 	private ISysConfigService configService;

@@ -40,9 +40,9 @@ import java.util.Map;
  * @author reedsource
  */
 @Controller
-@RequestMapping("/tool/gen" )
+@RequestMapping("/tool/gen")
 public class GenController extends BaseController {
-	private String prefix = "tool/gen" ;
+	private String prefix = "tool/gen";
 
 	@Autowired
 	private IGenTableService genTableService;
@@ -50,17 +50,17 @@ public class GenController extends BaseController {
 	@Autowired
 	private IGenTableColumnService genTableColumnService;
 
-	@RequiresPermissions("tool:gen:view" )
+	@RequiresPermissions("tool:gen:view")
 	@GetMapping()
 	public String gen() {
-		return prefix + "/gen" ;
+		return prefix + "/gen";
 	}
 
 	/**
 	 * 查询代码生成列表
 	 */
-	@RequiresPermissions("tool:gen:list" )
-	@PostMapping("/list" )
+	@RequiresPermissions("tool:gen:list")
+	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo genList(GenTable genTable) {
 		startPage();
@@ -71,8 +71,8 @@ public class GenController extends BaseController {
 	/**
 	 * 查询数据库列表
 	 */
-	@RequiresPermissions("tool:gen:list" )
-	@PostMapping("/db/list" )
+	@RequiresPermissions("tool:gen:list")
+	@PostMapping("/db/list")
 	@ResponseBody
 	public TableDataInfo dataList(GenTable genTable) {
 		startPage();
@@ -83,8 +83,8 @@ public class GenController extends BaseController {
 	/**
 	 * 查询数据表字段列表
 	 */
-	@RequiresPermissions("tool:gen:list" )
-	@PostMapping("/column/list" )
+	@RequiresPermissions("tool:gen:list")
+	@PostMapping("/column/list")
 	@ResponseBody
 	public TableDataInfo columnList(GenTableColumn genTableColumn) {
 		TableDataInfo dataInfo = new TableDataInfo();
@@ -97,32 +97,32 @@ public class GenController extends BaseController {
 	/**
 	 * 导入表结构
 	 */
-	@RequiresPermissions("tool:gen:list" )
-	@GetMapping("/importTable" )
+	@RequiresPermissions("tool:gen:list")
+	@GetMapping("/importTable")
 	public String importTable() {
-		return prefix + "/importTable" ;
+		return prefix + "/importTable";
 	}
 
 	/**
 	 * 创建表结构
 	 */
-	@GetMapping("/createTable" )
+	@GetMapping("/createTable")
 	public String createTable() {
-		return prefix + "/createTable" ;
+		return prefix + "/createTable";
 	}
 
 	/**
 	 * 导入表结构（保存）
 	 */
-	@RequiresPermissions("tool:gen:list" )
-	@Log(title = "代码生成" , businessType = BusinessType.IMPORT)
-	@PostMapping("/importTable" )
+	@RequiresPermissions("tool:gen:list")
+	@Log(title = "代码生成", businessType = BusinessType.IMPORT)
+	@PostMapping("/importTable")
 	@ResponseBody
 	public AjaxResult importTableSave(String tables) {
 		String[] tableNames = Convert.toStrArray(tables);
 		// 查询表信息
 		List<GenTable> tableList = genTableService.selectDbTableListByNames(tableNames);
-		String operName = Convert.toStr(PermissionUtils.getPrincipalProperty("loginName" ));
+		String operName = Convert.toStr(PermissionUtils.getPrincipalProperty("loginName"));
 		genTableService.importGenTable(tableList, operName);
 		return AjaxResult.success();
 	}
@@ -130,16 +130,16 @@ public class GenController extends BaseController {
 	/**
 	 * 修改代码生成业务
 	 */
-	@RequiresPermissions("tool:gen:edit" )
-	@GetMapping("/edit/{tableId}" )
-	public String edit(@PathVariable("tableId" ) Long tableId, ModelMap mmap) {
+	@RequiresPermissions("tool:gen:edit")
+	@GetMapping("/edit/{tableId}")
+	public String edit(@PathVariable("tableId") Long tableId, ModelMap mmap) {
 		GenTable table = genTableService.selectGenTableById(tableId);
 		List<GenTable> genTables = genTableService.selectGenTableAll();
-		List<CxSelect> cxSelect = new ArrayList<CxSelect>();
+		List<CxSelect> cxSelect = new ArrayList<>();
 		for (GenTable genTable : genTables) {
 			if (!StringUtils.equals(table.getTableName(), genTable.getTableName())) {
 				CxSelect cxTable = new CxSelect(genTable.getTableName(), genTable.getTableName() + '：' + genTable.getTableComment());
-				List<CxSelect> cxColumns = new ArrayList<CxSelect>();
+				List<CxSelect> cxColumns = new ArrayList<>();
 				for (GenTableColumn tableColumn : genTable.getColumns()) {
 					cxColumns.add(new CxSelect(tableColumn.getColumnName(), tableColumn.getColumnName() + '：' + tableColumn.getColumnComment()));
 				}
@@ -147,17 +147,17 @@ public class GenController extends BaseController {
 				cxSelect.add(cxTable);
 			}
 		}
-		mmap.put("table" , table);
-		mmap.put("data" , JSON.toJSON(cxSelect));
-		return prefix + "/edit" ;
+		mmap.put("table", table);
+		mmap.put("data", JSON.toJSON(cxSelect));
+		return prefix + "/edit";
 	}
 
 	/**
 	 * 修改保存代码生成业务
 	 */
-	@RequiresPermissions("tool:gen:edit" )
-	@Log(title = "代码生成" , businessType = BusinessType.UPDATE)
-	@PostMapping("/edit" )
+	@RequiresPermissions("tool:gen:edit")
+	@Log(title = "代码生成", businessType = BusinessType.UPDATE)
+	@PostMapping("/edit")
 	@ResponseBody
 	public AjaxResult editSave(@Validated GenTable genTable) {
 		genTableService.validateEdit(genTable);
@@ -165,18 +165,18 @@ public class GenController extends BaseController {
 		return AjaxResult.success();
 	}
 
-	@RequiresPermissions("tool:gen:remove" )
-	@Log(title = "代码生成" , businessType = BusinessType.DELETE)
-	@PostMapping("/remove" )
+	@RequiresPermissions("tool:gen:remove")
+	@Log(title = "代码生成", businessType = BusinessType.DELETE)
+	@PostMapping("/remove")
 	@ResponseBody
 	public AjaxResult remove(String ids) {
 		genTableService.deleteGenTableByIds(ids);
 		return AjaxResult.success();
 	}
 
-	@RequiresRoles("admin" )
-	@Log(title = "创建表" , businessType = BusinessType.OTHER)
-	@PostMapping("/createTable" )
+	@RequiresRoles("admin")
+	@Log(title = "创建表", businessType = BusinessType.OTHER)
+	@PostMapping("/createTable")
 	@ResponseBody
 	public AjaxResult create(String sql) {
 		try {
@@ -187,28 +187,28 @@ public class GenController extends BaseController {
 				if (sqlStatement instanceof MySqlCreateTableStatement) {
 					MySqlCreateTableStatement createTableStatement = (MySqlCreateTableStatement) sqlStatement;
 					if (genTableService.createTable(createTableStatement.toString())) {
-						String tableName = createTableStatement.getTableName().replaceAll("`" , "" );
+						String tableName = createTableStatement.getTableName().replaceAll("`", "");
 						tableNames.add(tableName);
 					}
 				}
 			}
 			List<GenTable> tableList = genTableService.selectDbTableListByNames(tableNames.toArray(new String[tableNames.size()]));
-			String operName = Convert.toStr(PermissionUtils.getPrincipalProperty("loginName" ));
+			String operName = Convert.toStr(PermissionUtils.getPrincipalProperty("loginName"));
 			genTableService.importGenTable(tableList, operName);
 			return AjaxResult.success();
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
-			return AjaxResult.error("创建表结构异常[" + e.getMessage() + "]" );
+			return AjaxResult.error("创建表结构异常[" + e.getMessage() + "]");
 		}
 	}
 
 	/**
 	 * 预览代码
 	 */
-	@RequiresPermissions("tool:gen:preview" )
-	@GetMapping("/preview/{tableId}" )
+	@RequiresPermissions("tool:gen:preview")
+	@GetMapping("/preview/{tableId}")
 	@ResponseBody
-	public AjaxResult preview(@PathVariable("tableId" ) Long tableId) throws IOException {
+	public AjaxResult preview(@PathVariable("tableId") Long tableId) {
 		Map<String, String> dataMap = genTableService.previewCode(tableId);
 		return AjaxResult.success(dataMap);
 	}
@@ -216,10 +216,10 @@ public class GenController extends BaseController {
 	/**
 	 * 生成代码（下载方式）
 	 */
-	@RequiresPermissions("tool:gen:code" )
-	@Log(title = "代码生成" , businessType = BusinessType.GENCODE)
-	@GetMapping("/download/{tableName}" )
-	public void download(HttpServletResponse response, @PathVariable("tableName" ) String tableName) throws IOException {
+	@RequiresPermissions("tool:gen:code")
+	@Log(title = "代码生成", businessType = BusinessType.GENCODE)
+	@GetMapping("/download/{tableName}")
+	public void download(HttpServletResponse response, @PathVariable("tableName") String tableName) throws IOException {
 		byte[] data = genTableService.downloadCode(tableName);
 		genCode(response, data);
 	}
@@ -227,11 +227,11 @@ public class GenController extends BaseController {
 	/**
 	 * 生成代码（自定义路径）
 	 */
-	@RequiresPermissions("tool:gen:code" )
-	@Log(title = "代码生成" , businessType = BusinessType.GENCODE)
-	@GetMapping("/genCode/{tableName}" )
+	@RequiresPermissions("tool:gen:code")
+	@Log(title = "代码生成", businessType = BusinessType.GENCODE)
+	@GetMapping("/genCode/{tableName}")
 	@ResponseBody
-	public AjaxResult genCode(@PathVariable("tableName" ) String tableName) {
+	public AjaxResult genCode(@PathVariable("tableName") String tableName) {
 		genTableService.generatorCode(tableName);
 		return AjaxResult.success();
 	}
@@ -239,11 +239,11 @@ public class GenController extends BaseController {
 	/**
 	 * 同步数据库
 	 */
-	@RequiresPermissions("tool:gen:edit" )
-	@Log(title = "代码生成" , businessType = BusinessType.UPDATE)
-	@GetMapping("/synchDb/{tableName}" )
+	@RequiresPermissions("tool:gen:edit")
+	@Log(title = "代码生成", businessType = BusinessType.UPDATE)
+	@GetMapping("/synchDb/{tableName}")
 	@ResponseBody
-	public AjaxResult synchDb(@PathVariable("tableName" ) String tableName) {
+	public AjaxResult synchDb(@PathVariable("tableName") String tableName) {
 		genTableService.synchDb(tableName);
 		return AjaxResult.success();
 	}
@@ -251,9 +251,9 @@ public class GenController extends BaseController {
 	/**
 	 * 批量生成代码
 	 */
-	@RequiresPermissions("tool:gen:code" )
-	@Log(title = "代码生成" , businessType = BusinessType.GENCODE)
-	@GetMapping("/batchGenCode" )
+	@RequiresPermissions("tool:gen:code")
+	@Log(title = "代码生成", businessType = BusinessType.GENCODE)
+	@GetMapping("/batchGenCode")
 	@ResponseBody
 	public void batchGenCode(HttpServletResponse response, String tables) throws IOException {
 		String[] tableNames = Convert.toStrArray(tables);
@@ -266,9 +266,9 @@ public class GenController extends BaseController {
 	 */
 	private void genCode(HttpServletResponse response, byte[] data) throws IOException {
 		response.reset();
-		response.setHeader("Content-Disposition" , "attachment; filename=\"ReedOS.zip\"" );
-		response.addHeader("Content-Length" , "" + data.length);
-		response.setContentType("application/octet-stream; charset=UTF-8" );
+		response.setHeader("Content-Disposition", "attachment; filename=\"ReedOS.zip\"");
+		response.addHeader("Content-Length", "" + data.length);
+		response.setContentType("application/octet-stream; charset=UTF-8");
 		IOUtils.write(data, response.getOutputStream());
 	}
 }

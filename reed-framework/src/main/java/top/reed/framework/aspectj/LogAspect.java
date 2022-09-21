@@ -38,12 +38,13 @@ public class LogAspect {
 	/**
 	 * 排除敏感属性字段
 	 */
-	public static final String[] EXCLUDE_PROPERTIES = {"password" , "oldPassword" , "newPassword" , "confirmPassword"};
+	public static final String[] EXCLUDE_PROPERTIES = {"password", "oldPassword", "newPassword", "confirmPassword"};
 	private static final Logger log = LoggerFactory.getLogger(LogAspect.class);
 
 	// 配置织入点
-	@Pointcut("@annotation(top.reed.common.annotation.Log)" )
+	@Pointcut("@annotation(top.reed.common.annotation.Log)")
 	public void logPointCut() {
+		//信息织入,方法为空
 	}
 
 	/**
@@ -51,7 +52,7 @@ public class LogAspect {
 	 *
 	 * @param joinPoint 切点
 	 */
-	@AfterReturning(pointcut = "@annotation(controllerLog)" , returning = "jsonResult" )
+	@AfterReturning(pointcut = "@annotation(controllerLog)", returning = "jsonResult")
 	public void doAfterReturning(JoinPoint joinPoint, Log controllerLog, Object jsonResult) {
 		handleLog(joinPoint, controllerLog, null, jsonResult);
 	}
@@ -62,7 +63,7 @@ public class LogAspect {
 	 * @param joinPoint 切点
 	 * @param e         异常
 	 */
-	@AfterThrowing(value = "@annotation(controllerLog)" , throwing = "e" )
+	@AfterThrowing(value = "@annotation(controllerLog)", throwing = "e")
 	public void doAfterThrowing(JoinPoint joinPoint, Log controllerLog, Exception e) {
 		handleLog(joinPoint, controllerLog, e, null);
 	}
@@ -94,7 +95,7 @@ public class LogAspect {
 			// 设置方法名称
 			String className = joinPoint.getTarget().getClass().getName();
 			String methodName = joinPoint.getSignature().getName();
-			operLog.setMethod(className + "." + methodName + "()" );
+			operLog.setMethod(className + "." + methodName + "()");
 			// 设置请求方式
 			operLog.setRequestMethod(ServletUtils.getRequest().getMethod());
 			// 处理设置注解上的参数
@@ -103,8 +104,8 @@ public class LogAspect {
 			AsyncManager.me().execute(AsyncFactory.recordOper(operLog));
 		} catch (Exception exp) {
 			// 记录本地异常日志
-			log.error("==前置通知异常==" );
-			log.error("异常信息:{}" , exp.getMessage());
+			log.error("==前置通知异常==");
+			log.error("异常信息:{}", exp.getMessage());
 			exp.printStackTrace();
 		}
 	}
@@ -138,9 +139,8 @@ public class LogAspect {
 	 * 获取请求的参数，放到log中
 	 *
 	 * @param operLog 操作日志
-	 * @throws Exception 异常
 	 */
-	private void setRequestValue(JoinPoint joinPoint, SysOperLog operLog) throws Exception {
+	private void setRequestValue(JoinPoint joinPoint, SysOperLog operLog) {
 		Map<String, String[]> map = ServletUtils.getRequest().getParameterMap();
 		if (StringUtils.isNotEmpty(map)) {
 			String params = JSONObject.toJSONString(map, excludePropertyPreFilter());
@@ -165,13 +165,13 @@ public class LogAspect {
 	 * 参数拼装
 	 */
 	private String argsArrayToString(Object[] paramsArray) {
-		String params = "" ;
+		String params = "";
 		if (paramsArray != null && paramsArray.length > 0) {
 			for (Object o : paramsArray) {
 				if (StringUtils.isNotNull(o) && !isFilterObject(o)) {
 					try {
 						Object jsonObj = JSONObject.toJSONString(o, excludePropertyPreFilter());
-						params += jsonObj.toString() + " " ;
+						params += jsonObj.toString() + " ";
 					} catch (Exception e) {
 					}
 				}
@@ -186,7 +186,7 @@ public class LogAspect {
 	 * @param o 对象信息。
 	 * @return 如果是需要过滤的对象，则返回true；否则返回false。
 	 */
-	@SuppressWarnings("rawtypes" )
+	@SuppressWarnings("rawtypes")
 	public boolean isFilterObject(final Object o) {
 		Class<?> clazz = o.getClass();
 		if (clazz.isArray()) {

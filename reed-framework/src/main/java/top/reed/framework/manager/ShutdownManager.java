@@ -17,7 +17,7 @@ import javax.annotation.PreDestroy;
  */
 @Component
 public class ShutdownManager {
-	private static final Logger logger = LoggerFactory.getLogger("sys-user" );
+	private static final Logger logger = LoggerFactory.getLogger("sys-user");
 
 	@Autowired(required = false)
 	private SpringSessionValidationScheduler springSessionValidationScheduler;
@@ -38,7 +38,7 @@ public class ShutdownManager {
 	private void shutdownSpringSessionValidationScheduler() {
 		if (springSessionValidationScheduler != null && springSessionValidationScheduler.isEnabled()) {
 			try {
-				logger.info("====关闭会话验证任务====" );
+				logger.info("====关闭会话验证任务====");
 				springSessionValidationScheduler.disableSessionValidation();
 			} catch (Exception e) {
 				logger.error(e.getMessage(), e);
@@ -51,7 +51,7 @@ public class ShutdownManager {
 	 */
 	private void shutdownAsyncManager() {
 		try {
-			logger.info("====关闭后台任务任务线程池====" );
+			logger.info("====关闭后台任务任务线程池====");
 			AsyncManager.me().shutdown();
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
@@ -60,7 +60,7 @@ public class ShutdownManager {
 
 	private void shutdownEhCacheManager() {
 		try {
-			logger.info("====关闭缓存====" );
+			logger.info("====关闭缓存====");
 			if (ehCacheManager != null) {
 				CacheManager cacheManager = ehCacheManager.getCacheManager();
 				cacheManager.shutdown();

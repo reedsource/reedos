@@ -25,7 +25,7 @@ public class OnlineSessionFilter extends AccessControlFilter {
 	/**
 	 * 强制退出后重定向的地址
 	 */
-	@Value("${shiro.user.loginUrl}" )
+	@Value("${shiro.user.loginUrl}")
 	private String loginUrl;
 
 	private OnlineSessionDAO onlineSessionDAO;
@@ -34,8 +34,7 @@ public class OnlineSessionFilter extends AccessControlFilter {
 	 * 表示是否允许访问；mappedValue就是[urls]配置中拦截器参数部分，如果允许访问返回true，否则false；
 	 */
 	@Override
-	protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue)
-			throws Exception {
+	protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
 		Subject subject = getSubject(request, response);
 		if (subject == null || subject.getSession() == null) {
 			return true;

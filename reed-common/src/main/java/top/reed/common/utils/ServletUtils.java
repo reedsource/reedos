@@ -23,7 +23,7 @@ public class ServletUtils {
 	/**
 	 * 定义移动端请求的所有可能类型
 	 */
-	private final static String[] agent = {"Android" , "iPhone" , "iPod" , "iPad" , "Windows Phone" , "MQQBrowser"};
+	private final static String[] agent = {"Android", "iPhone", "iPod", "iPad", "Windows Phone", "MQQBrowser"};
 
 	/**
 	 * 获取String参数
@@ -102,8 +102,8 @@ public class ServletUtils {
 	 */
 	public static String renderString(HttpServletResponse response, String string) {
 		try {
-			response.setContentType("application/json" );
-			response.setCharacterEncoding("utf-8" );
+			response.setContentType("application/json");
+			response.setCharacterEncoding("utf-8");
 			response.getWriter().print(string);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -117,23 +117,23 @@ public class ServletUtils {
 	 * @param request
 	 */
 	public static boolean isAjaxRequest(HttpServletRequest request) {
-		String accept = request.getHeader("accept" );
-		if (accept != null && accept.contains("application/json" )) {
+		String accept = request.getHeader("accept");
+		if (accept != null && accept.contains("application/json")) {
 			return true;
 		}
 
-		String xRequestedWith = request.getHeader("X-Requested-With" );
-		if (xRequestedWith != null && xRequestedWith.contains("XMLHttpRequest" )) {
+		String xRequestedWith = request.getHeader("X-Requested-With");
+		if (xRequestedWith != null && xRequestedWith.contains("XMLHttpRequest")) {
 			return true;
 		}
 
 		String uri = request.getRequestURI();
-		if (StringUtils.inStringIgnoreCase(uri, ".json" , ".xml" )) {
+		if (StringUtils.inStringIgnoreCase(uri, ".json", ".xml")) {
 			return true;
 		}
 
-		String ajax = request.getParameter("__ajax" );
-		return StringUtils.inStringIgnoreCase(ajax, "json" , "xml" );
+		String ajax = request.getParameter("__ajax");
+		return StringUtils.inStringIgnoreCase(ajax, "json", "xml");
 	}
 
 	/**
@@ -141,9 +141,9 @@ public class ServletUtils {
 	 */
 	public static boolean checkAgentIsMobile(String ua) {
 		boolean flag = false;
-		if (!ua.contains("Windows NT" ) || (ua.contains("Windows NT" ) && ua.contains("compatible; MSIE 9.0;" ))) {
+		if (!ua.contains("Windows NT") || (ua.contains("Windows NT") && ua.contains("compatible; MSIE 9.0;"))) {
 			// 排除 苹果桌面系统
-			if (!ua.contains("Windows NT" ) && !ua.contains("Macintosh" )) {
+			if (!ua.contains("Windows NT") && !ua.contains("Macintosh")) {
 				for (String item : agent) {
 					if (ua.contains(item)) {
 						flag = true;

@@ -38,7 +38,7 @@ public class SysDeptServiceImpl implements ISysDeptService {
 	 * @return 部门信息集合
 	 */
 	@Override
-	@DataScope(deptAlias = "d" )
+	@DataScope(deptAlias = "d")
 	public List<SysDept> selectDeptList(SysDept dept) {
 		return deptMapper.selectDeptList(dept);
 	}
@@ -50,7 +50,7 @@ public class SysDeptServiceImpl implements ISysDeptService {
 	 * @return 所有部门信息
 	 */
 	@Override
-	@DataScope(deptAlias = "d" )
+	@DataScope(deptAlias = "d")
 	public List<Ztree> selectDeptTree(SysDept dept) {
 		List<SysDept> deptList = deptMapper.selectDeptList(dept);
 		List<Ztree> ztrees = initZtree(deptList);
@@ -64,12 +64,12 @@ public class SysDeptServiceImpl implements ISysDeptService {
 	 * @return 所有部门信息
 	 */
 	@Override
-	@DataScope(deptAlias = "d" )
+	@DataScope(deptAlias = "d")
 	public List<Ztree> selectDeptTreeExcludeChild(SysDept dept) {
 		Long excludeId = dept.getExcludeId();
 		List<SysDept> depts = deptMapper.selectDeptList(dept);
 		if (excludeId.intValue() > 0) {
-			depts.removeIf(d -> d.getDeptId().intValue() == excludeId || ArrayUtils.contains(StringUtils.split(d.getAncestors(), "," ), excludeId + "" ));
+			depts.removeIf(d -> d.getDeptId().intValue() == excludeId || ArrayUtils.contains(StringUtils.split(d.getAncestors(), ","), excludeId + ""));
 		}
 		List<Ztree> ztrees = initZtree(depts);
 		return ztrees;
@@ -84,7 +84,7 @@ public class SysDeptServiceImpl implements ISysDeptService {
 	@Override
 	public List<Ztree> roleDeptTreeData(SysRole role) {
 		Long roleId = role.getRoleId();
-		List<Ztree> ztrees = new ArrayList<Ztree>();
+		List<Ztree> ztrees = new ArrayList<>();
 		List<SysDept> deptList = SpringUtils.getAopProxy(this).selectDeptList(new SysDept());
 		if (StringUtils.isNotNull(roleId)) {
 			List<String> roleDeptList = deptMapper.selectRoleDeptTree(roleId);
@@ -114,7 +114,7 @@ public class SysDeptServiceImpl implements ISysDeptService {
 	 */
 	public List<Ztree> initZtree(List<SysDept> deptList, List<String> roleDeptList) {
 
-		List<Ztree> ztrees = new ArrayList<Ztree>();
+		List<Ztree> ztrees = new ArrayList<>();
 		boolean isCheck = StringUtils.isNotNull(roleDeptList);
 		for (SysDept dept : deptList) {
 			if (UserConstants.DEPT_NORMAL.equals(dept.getStatus())) {
@@ -179,7 +179,7 @@ public class SysDeptServiceImpl implements ISysDeptService {
 		SysDept info = deptMapper.selectDeptById(dept.getParentId());
 		// 如果父节点不为"正常"状态,则不允许新增子节点
 		if (!UserConstants.DEPT_NORMAL.equals(info.getStatus())) {
-			throw new ServiceException("部门停用，不允许新增" );
+			throw new ServiceException("部门停用，不允许新增");
 		}
 		dept.setAncestors(info.getAncestors() + "," + dept.getParentId());
 		return deptMapper.insertDept(dept);
@@ -204,7 +204,7 @@ public class SysDeptServiceImpl implements ISysDeptService {
 		}
 		int result = deptMapper.updateDept(dept);
 		if (UserConstants.DEPT_NORMAL.equals(dept.getStatus()) && StringUtils.isNotEmpty(dept.getAncestors())
-				&& !StringUtils.equals("0" , dept.getAncestors())) {
+				&& !StringUtils.equals("0", dept.getAncestors())) {
 			// 如果该部门是启用状态，则启用该部门的所有上级部门
 			updateParentDeptStatusNormal(dept);
 		}
@@ -289,7 +289,7 @@ public class SysDeptServiceImpl implements ISysDeptService {
 			dept.setDeptId(deptId);
 			List<SysDept> depts = SpringUtils.getAopProxy(this).selectDeptList(dept);
 			if (StringUtils.isEmpty(depts)) {
-				throw new ServiceException("没有权限访问部门数据！" );
+				throw new ServiceException("没有权限访问部门数据！");
 			}
 		}
 	}

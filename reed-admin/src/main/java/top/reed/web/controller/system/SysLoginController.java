@@ -31,26 +31,26 @@ public class SysLoginController extends BaseController {
 	/**
 	 * 是否开启记住我功能
 	 */
-	@Value("${shiro.rememberMe.enabled: false}" )
+	@Value("${shiro.rememberMe.enabled: false}")
 	private boolean rememberMe;
 
 	@Autowired
 	private ConfigService configService;
 
-	@GetMapping("/login" )
+	@GetMapping("/login")
 	public String login(HttpServletRequest request, HttpServletResponse response, ModelMap mmap) {
 		// 如果是Ajax请求，返回Json字符串。
 		if (ServletUtils.isAjaxRequest(request)) {
-			return ServletUtils.renderString(response, "{\"code\":\"1\",\"msg\":\"未登录或登录超时。请重新登录\"}" );
+			return ServletUtils.renderString(response, "{\"code\":\"1\",\"msg\":\"未登录或登录超时。请重新登录\"}");
 		}
 		// 是否开启记住我
-		mmap.put("isRemembered" , rememberMe);
+		mmap.put("isRemembered", rememberMe);
 		// 是否开启用户注册
-		mmap.put("isAllowRegister" , Convert.toBool(configService.getKey("sys.account.registerUser" ), false));
-		return "login" ;
+		mmap.put("isAllowRegister", Convert.toBool(configService.getKey("sys.account.registerUser"), false));
+		return "login";
 	}
 
-	@PostMapping("/login" )
+	@PostMapping("/login")
 	@ResponseBody
 	public AjaxResult ajaxLogin(String username, String password, Boolean rememberMe) {
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password, rememberMe);
@@ -59,7 +59,7 @@ public class SysLoginController extends BaseController {
 			subject.login(token);
 			return success();
 		} catch (AuthenticationException e) {
-			String msg = "用户或密码错误" ;
+			String msg = "用户或密码错误";
 			if (StringUtils.isNotEmpty(e.getMessage())) {
 				msg = e.getMessage();
 			}
@@ -67,8 +67,8 @@ public class SysLoginController extends BaseController {
 		}
 	}
 
-	@GetMapping("/unauth" )
+	@GetMapping("/unauth")
 	public String unauth() {
-		return "error/unauth" ;
+		return "error/unauth";
 	}
 }

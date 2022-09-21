@@ -12,11 +12,11 @@ import top.reed.common.core.controller.BaseController;
  * @author reedsource
  */
 @Controller
-@RequestMapping("/tool/swagger" )
+@RequestMapping("/tool/swagger")
 public class SwaggerController extends BaseController {
-	@RequiresPermissions("tool:swagger:view" )
+	@RequiresPermissions("tool:swagger:view")
 	@GetMapping()
 	public String index() {
-		return redirect("/swagger-ui/index.html" );
+		return redirect("/swagger-ui/index.html");
 	}
 }
