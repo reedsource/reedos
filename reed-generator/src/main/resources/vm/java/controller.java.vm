@@ -2,7 +2,6 @@ package ${packageName}.controller;
 
 import java.util.List;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,15 +32,17 @@ import top.reed.common.core.domain.Ztree;
 @Controller
 @RequestMapping("/${moduleName}/${businessName}")
 public class ${ClassName}Controller extends BaseController {
-    private String prefix = "${moduleName}/${businessName}";
 
-    @Autowired
-    private I${ClassName}Service ${className}Service;
+	private final I${ClassName}Service ${className}Service;
+
+	public VariableController(I${ClassName}Service ${className}Service) {
+		this.${className}Service = ${className}Service;
+	}
 
     @RequiresPermissions("${permissionPrefix}:view")
     @GetMapping()
     public String ${businessName}() {
-        return prefix + "/${businessName}";
+        return "${moduleName}/${businessName}/${businessName}";
     }
 
 #if($table.crud || $table.sub)
@@ -78,7 +79,7 @@ public class ${ClassName}Controller extends BaseController {
     @ResponseBody
     public AjaxResult export(${ClassName} ${className}) {
         List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
-        ExcelUtil<${ClassName}> util = new ExcelUtil<${ClassName}>(${ClassName}.class);
+        ExcelUtil<${ClassName}> util = new ExcelUtil<>(${ClassName}.class);
         return util.exportExcel(list, "${functionName}数据");
     }
 
@@ -88,7 +89,7 @@ public class ${ClassName}Controller extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return prefix + "/add";
+        return "${moduleName}/${businessName}/add";
     }
 #elseif($table.tree)
     /**
@@ -99,7 +100,7 @@ public class ${ClassName}Controller extends BaseController {
         if (StringUtils.isNotNull(${pkColumn.javaField})) {
             mmap.put("${className}", ${className}Service.select${ClassName}By${pkColumn.capJavaField}(${pkColumn.javaField}));
         }
-        return prefix + "/add";
+        return "${moduleName}/${businessName}/add";
     }
 #end
 
@@ -122,7 +123,7 @@ public class ${ClassName}Controller extends BaseController {
     public String edit(@PathVariable("${pkColumn.javaField}") ${pkColumn.javaType} ${pkColumn.javaField}, ModelMap mmap) {
         ${ClassName} ${className} = ${className}Service.select${ClassName}By${pkColumn.capJavaField}(${pkColumn.javaField});
         mmap.put("${className}", ${className});
-        return prefix + "/edit";
+        return "${moduleName}/${businessName}/edit";
     }
 
     /**
@@ -170,7 +171,7 @@ public class ${ClassName}Controller extends BaseController {
         if (StringUtils.isNotNull(${pkColumn.javaField})) {
             mmap.put("${className}", ${className}Service.select${ClassName}By${pkColumn.capJavaField}(${pkColumn.javaField}));
         }
-        return prefix + "/tree";
+        return "${moduleName}/${businessName}/tree";
     }
 
     /**

@@ -1,6 +1,7 @@
 package ${packageName}.mapper;
 
 import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
 import ${packageName}.domain.${ClassName};
 #if($table.sub)
 import ${packageName}.domain.${subClassName};
@@ -12,6 +13,7 @@ import ${packageName}.domain.${subClassName};
  * @author ${author}
  * date ${datetime}
  */
+@Mapper
 public interface ${ClassName}Mapper {
     /**
      * 查询${functionName}
@@ -19,7 +21,7 @@ public interface ${ClassName}Mapper {
      * @param ${pkColumn.javaField} ${functionName}主键
      * @return ${functionName}
      */
-    public ${ClassName} select${ClassName}By${pkColumn.capJavaField}(${pkColumn.javaType} ${pkColumn.javaField});
+     ${ClassName} select${ClassName}By${pkColumn.capJavaField}(${pkColumn.javaType} ${pkColumn.javaField});
 
     /**
      * 查询${functionName}列表
@@ -27,7 +29,7 @@ public interface ${ClassName}Mapper {
      * @param ${className} ${functionName}
      * @return ${functionName}集合
      */
-    public List<${ClassName}> select${ClassName}List(${ClassName} ${className});
+	List<${ClassName}> select${ClassName}List(${ClassName} ${className});
 
     /**
      * 新增${functionName}
@@ -35,7 +37,7 @@ public interface ${ClassName}Mapper {
      * @param ${className} ${functionName}
      * @return 结果
      */
-    public int insert${ClassName}(${ClassName} ${className});
+	int insert${ClassName}(${ClassName} ${className});
 
     /**
      * 修改${functionName}
@@ -43,7 +45,7 @@ public interface ${ClassName}Mapper {
      * @param ${className} ${functionName}
      * @return 结果
      */
-    public int update${ClassName}(${ClassName} ${className});
+    int update${ClassName}(${ClassName} ${className});
 
     /**
      * 删除${functionName}
@@ -51,7 +53,7 @@ public interface ${ClassName}Mapper {
      * @param ${pkColumn.javaField} ${functionName}主键
      * @return 结果
      */
-    public int delete${ClassName}By${pkColumn.capJavaField}(${pkColumn.javaType} ${pkColumn.javaField});
+    int delete${ClassName}By${pkColumn.capJavaField}(${pkColumn.javaType} ${pkColumn.javaField});
 
     /**
      * 批量删除${functionName}
@@ -59,7 +61,7 @@ public interface ${ClassName}Mapper {
      * @param ${pkColumn.javaField}s 需要删除的数据主键集合
      * @return 结果
      */
-    public int delete${ClassName}By${pkColumn.capJavaField}s(String[] ${pkColumn.javaField}s);
+    int delete${ClassName}By${pkColumn.capJavaField}s(String[] ${pkColumn.javaField}s);
 #if($table.sub)
 
     /**
@@ -68,7 +70,7 @@ public interface ${ClassName}Mapper {
      * @param ${pkColumn.javaField}s 需要删除的数据主键集合
      * @return 结果
      */
-    public int delete${subClassName}By${subTableFkClassName}s(String[] ${pkColumn.javaField}s);
+    int delete${subClassName}By${subTableFkClassName}s(String[] ${pkColumn.javaField}s);
     
     /**
      * 批量新增${subTable.functionName}
@@ -76,7 +78,7 @@ public interface ${ClassName}Mapper {
      * @param ${subclassName}List ${subTable.functionName}列表
      * @return 结果
      */
-    public int batch${subClassName}(List<${subClassName}> ${subclassName}List);
+    int batch${subClassName}(List<${subClassName}> ${subclassName}List);
     
 
     /**
@@ -85,6 +87,6 @@ public interface ${ClassName}Mapper {
      * @param ${pkColumn.javaField} ${functionName}ID
      * @return 结果
      */
-    public int delete${subClassName}By${subTableFkClassName}(${pkColumn.javaType} ${pkColumn.javaField});
+	int delete${subClassName}By${subTableFkClassName}(${pkColumn.javaType} ${pkColumn.javaField});
 #end
 }

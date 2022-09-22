@@ -11,7 +11,6 @@ import top.reed.common.utils.DateUtils;
 #break
 #end
 #end
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 #if($table.sub)
 import java.util.ArrayList;
@@ -32,8 +31,12 @@ import top.reed.common.core.text.Convert;
  */
 @Service
 public class ${ClassName}ServiceImpl implements I${ClassName}Service {
-    @Autowired
-    private ${ClassName}Mapper ${className}Mapper;
+
+	private final ${ClassName}Mapper ${className}Mapper;
+
+	public VariableServiceImpl(${ClassName}Mapper ${className}Mapper) {
+		this.${className}Mapper = ${className}Mapper;
+	}
 
     /**
      * 查询${functionName}
