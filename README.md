@@ -34,6 +34,10 @@
 4. reed-generator generator代码生成
 5. reed-quartz quartz定时任务
 6. reed-system system系统模块
+7. reed-automation 自动化模块-信息获取及处理
+   - 定时任务：在线（添加、修改、删除)任务调度包含执行结果日志。
+8. reed-information 信息管理模块-展现信息管理
+   - 个人博客:个人博客后端接口
 
 ## 三 代码要求
 

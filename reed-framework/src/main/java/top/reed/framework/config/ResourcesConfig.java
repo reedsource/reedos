@@ -10,6 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import top.reed.common.config.ReedConfig;
 import top.reed.common.constant.Constants;
 import top.reed.framework.interceptor.RepeatSubmitInterceptor;
+import top.reed.framework.interceptor.impl.ReedInterceptor;
 
 /**
  * 通用配置
@@ -27,6 +28,11 @@ public class ResourcesConfig implements WebMvcConfigurer {
 	@Autowired
 	private RepeatSubmitInterceptor repeatSubmitInterceptor;
 
+	/**
+	 * 注入自定义的拦截器
+	 */
+	@Autowired
+	private ReedInterceptor reedInterceptor;
 	/**
 	 * 默认首页的设置，当输入域名是可以自动跳转到默认指定的网页
 	 */
@@ -50,5 +56,8 @@ public class ResourcesConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(repeatSubmitInterceptor).addPathPatterns("/**");
+
+		//注册 添加一个拦截器 ReedInterceptor
+		registry.addInterceptor(reedInterceptor).addPathPatterns("/**");
 	}
 }
