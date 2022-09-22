@@ -4,7 +4,7 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.reed.generator.mapper.GenTableColumnMapper">
 
-	<resultMap type="GenTableColumn" id="GenTableColumnResult">
+	<resultMap type="top.reed.generator.domain.GenTableColumn" id="GenTableColumnResult">
 		<id property="columnId" column="column_id"/>
 		<result property="tableId" column="table_id"/>
 		<result property="columnName" column="column_name"/>
@@ -55,7 +55,7 @@
 		from gen_table_column
 	</sql>
 
-	<select id="selectGenTableColumnListByTableId" parameterType="GenTableColumn" resultMap="GenTableColumnResult">
+	<select id="selectGenTableColumnListByTableId" parameterType="top.reed.generator.domain.GenTableColumn" resultMap="GenTableColumnResult">
 		<include refid="selectGenTableColumnVo"/>
 		where table_id = #{tableId}
 		order by sort
@@ -75,7 +75,7 @@
 		order by ordinal_position
 	</select>
 
-	<insert id="insertGenTableColumn" parameterType="GenTableColumn" useGeneratedKeys="true" keyProperty="columnId">
+	<insert id="insertGenTableColumn" parameterType="top.reed.generator.domain.GenTableColumn" useGeneratedKeys="true" keyProperty="columnId">
 		insert into gen_table_column (
 		<if test="tableId != null and tableId != ''">table_id,</if>
 		<if test="columnName != null and columnName != ''">column_name,</if>
@@ -119,7 +119,7 @@
 		)
 	</insert>
 
-	<update id="updateGenTableColumn" parameterType="GenTableColumn">
+	<update id="updateGenTableColumn" parameterType="top.reed.generator.domain.GenTableColumn">
 		update gen_table_column
 		<set>
 			column_comment = #{columnComment},

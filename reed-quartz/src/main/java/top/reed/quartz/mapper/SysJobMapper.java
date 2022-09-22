@@ -1,5 +1,6 @@
 package top.reed.quartz.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
 import top.reed.quartz.domain.SysJob;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
  *
  * @author reedsource
  */
+@Mapper
 public interface SysJobMapper {
 	/**
 	 * 查询调度任务日志集合

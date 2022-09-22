@@ -4,7 +4,7 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.reed.system.mapper.SysUserOnlineMapper">
 
-	<resultMap type="SysUserOnline" id="SysUserOnlineResult">
+	<resultMap type="top.reed.system.domain.SysUserOnline" id="SysUserOnlineResult">
 		<id property="sessionId" column="sessionId"/>
 		<result property="loginName" column="login_name"/>
 		<result property="deptName" column="dept_name"/>
@@ -38,7 +38,7 @@
 		where sessionId = #{sessionId}
 	</select>
 
-	<insert id="saveOnline" parameterType="SysUserOnline">
+	<insert id="saveOnline" parameterType="top.reed.system.domain.SysUserOnline">
 		replace
 		into sys_user_online(sessionId, login_name, dept_name, ipaddr, login_location, browser, os, status, start_timestamp, last_access_time, expire_time)
         values (
@@ -62,7 +62,7 @@
 		where sessionId = #{sessionId}
 	</delete>
 
-	<select id="selectUserOnlineList" parameterType="SysUserOnline" resultMap="SysUserOnlineResult">
+	<select id="selectUserOnlineList" parameterType="top.reed.system.domain.SysUserOnline" resultMap="SysUserOnlineResult">
 		<include refid="selectOnlineVo"/>
 		<where>
 			<if test="ipaddr != null and ipaddr != ''">

@@ -1,5 +1,6 @@
 package top.reed.system.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import top.reed.common.core.domain.entity.SysDictData;
 
@@ -10,6 +11,7 @@ import java.util.List;
  *
  * @author reedsource
  */
+@Mapper
 public interface SysDictDataMapper {
 	/**
 	 * 根据条件分页查询字典数据

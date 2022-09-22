@@ -1,5 +1,6 @@
 package top.reed.generator.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
 import top.reed.generator.domain.GenTable;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
  *
  * @author reedsource
  */
+@Mapper
 public interface GenTableMapper {
 	/**
 	 * 查询业务列表

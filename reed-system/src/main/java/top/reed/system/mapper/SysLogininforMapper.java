@@ -1,5 +1,6 @@
 package top.reed.system.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
 import top.reed.system.domain.SysLogininfor;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
  *
  * @author reedsource
  */
+@Mapper
 public interface SysLogininforMapper {
 	/**
 	 * 新增系统登录日志

@@ -1,5 +1,6 @@
 package top.reed.system.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
 import top.reed.system.domain.SysUserOnline;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
  *
  * @author reedsource
  */
+@Mapper
 public interface SysUserOnlineMapper {
 	/**
 	 * 通过会话序号查询信息

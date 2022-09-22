@@ -1,5 +1,6 @@
 package top.reed.system.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
 import top.reed.common.core.domain.entity.SysRole;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
  *
  * @author reedsource
  */
+@Mapper
 public interface SysRoleMapper {
 	/**
 	 * 根据条件分页查询角色数据

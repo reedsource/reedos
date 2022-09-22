@@ -1,5 +1,6 @@
 package top.reed.system.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import top.reed.system.domain.SysUserRole;
 
@@ -10,6 +11,7 @@ import java.util.List;
  *
  * @author reedsource
  */
+@Mapper
 public interface SysUserRoleMapper {
 	/**
 	 * 通过用户ID查询用户和角色关联

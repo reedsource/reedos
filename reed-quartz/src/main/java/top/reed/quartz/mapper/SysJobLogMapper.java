@@ -1,5 +1,6 @@
 package top.reed.quartz.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
 import top.reed.quartz.domain.SysJobLog;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
  *
  * @author reedsource
  */
+@Mapper
 public interface SysJobLogMapper {
 	/**
 	 * 获取quartz调度器日志的计划任务

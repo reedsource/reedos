@@ -1,5 +1,6 @@
 package top.reed.system.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
 import top.reed.system.domain.SysRoleDept;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
  *
  * @author reedsource
  */
+@Mapper
 public interface SysRoleDeptMapper {
 	/**
 	 * 通过角色ID删除角色和部门关联

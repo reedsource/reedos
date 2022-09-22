@@ -4,7 +4,7 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.reed.system.mapper.SysRoleMapper">
 
-	<resultMap type="SysRole" id="SysRoleResult">
+	<resultMap type="top.reed.common.core.domain.entity.SysRole" id="SysRoleResult">
 		<id property="roleId" column="role_id"/>
 		<result property="roleName" column="role_name"/>
 		<result property="roleKey" column="role_key"/>
@@ -48,7 +48,7 @@
 		from sys_role r
 	</sql>
 
-	<select id="selectRoleList" parameterType="SysRole" resultMap="SysRoleResult">
+	<select id="selectRoleList" parameterType="top.reed.common.core.domain.entity.SysRole" resultMap="SysRoleResult">
 		<include refid="selectRoleContactVo"/>
 		where r.del_flag = '0'
 		<if test="roleId != null and roleId != 0">
@@ -109,7 +109,7 @@
 		</foreach>
 	</delete>
 
-	<update id="updateRole" parameterType="SysRole">
+	<update id="updateRole" parameterType="top.reed.common.core.domain.entity.SysRole">
 		update sys_role
 		<set>
 			<if test="roleName != null and roleName != ''">role_name = #{roleName},</if>
@@ -124,7 +124,7 @@
 		where role_id = #{roleId}
 	</update>
 
-	<insert id="insertRole" parameterType="SysRole" useGeneratedKeys="true" keyProperty="roleId">
+	<insert id="insertRole" parameterType="top.reed.common.core.domain.entity.SysRole" useGeneratedKeys="true" keyProperty="roleId">
 		insert into sys_role(
 		<if test="roleId != null and roleId != 0">role_id,</if>
 		<if test="roleName != null and roleName != ''">role_name,</if>
