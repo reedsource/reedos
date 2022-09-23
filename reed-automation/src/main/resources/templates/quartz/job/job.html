@@ -39,24 +39,24 @@
         </div>
 
         <div class="btn-group-sm" id="toolbar" role="group">
-            <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="monitor:job:add">
+            <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="quartz:job:add">
                 <i class="fa fa-plus"></i> 新增
             </a>
             <a class="btn btn-primary single disabled" onclick="$.operate.edit()"
-               shiro:hasPermission="monitor:job:edit">
+               shiro:hasPermission="quartz:job:edit">
                 <i class="fa fa-edit"></i> 修改
             </a>
             <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()"
-               shiro:hasPermission="monitor:job:remove">
+               shiro:hasPermission="quartz:job:remove">
                 <i class="fa fa-remove"></i> 删除
             </a>
-            <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="monitor:job:export">
+            <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="quartz:job:export">
                 <i class="fa fa-download"></i> 导出
             </a>
             <a class="btn btn-primary" onclick="javascript:cron()">
                 <i class="fa fa-code"></i> 生成表达式
             </a>
-            <a class="btn btn-info" onclick="javascript:jobLog()" shiro:hasPermission="monitor:job:detail">
+            <a class="btn btn-info" onclick="javascript:jobLog()" shiro:hasPermission="quartz:job:detail">
                 <i class="fa fa-list"></i> 日志
             </a>
         </div>
@@ -68,12 +68,12 @@
 </div>
 <th:block th:include="include :: footer"/>
 <script th:inline="javascript">
-    var detailFlag = [[${@permission.hasPermi('monitor:job:detail')}]];
-    var editFlag = [[${@permission.hasPermi('monitor:job:edit')}]];
-    var removeFlag = [[${@permission.hasPermi('monitor:job:remove')}]];
-    var statusFlag = [[${@permission.hasPermi('monitor:job:changeStatus')}]];
+    var detailFlag = [[${@permission.hasPermi('quartz:job:detail')}]];
+    var editFlag = [[${@permission.hasPermi('quartz:job:edit')}]];
+    var removeFlag = [[${@permission.hasPermi('quartz:job:remove')}]];
+    var statusFlag = [[${@permission.hasPermi('quartz:job:changeStatus')}]];
     var datas = [[${@dict.getType('sys_job_group')}]];
-    var prefix = ctx + "monitor/job";
+    var prefix = ctx + "quartz/job";
 
     $(function () {
         var options = {
@@ -179,7 +179,7 @@
 
     /* 调度日志查询 */
     function jobLog(jobId) {
-        var url = ctx + 'monitor/jobLog';
+        var url = ctx + 'quartz/jobLog';
         if ($.common.isNotEmpty(jobId)) {
             url += '?jobId=' + jobId;
         }

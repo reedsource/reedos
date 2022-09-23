@@ -1,4 +1,4 @@
-package top.reed.web.controller.tool;
+package top.reed.build;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
@@ -14,11 +14,9 @@ import top.reed.common.core.controller.BaseController;
 @Controller
 @RequestMapping("/tool/build")
 public class BuildController extends BaseController {
-	private String prefix = "tool/build";
-
 	@RequiresPermissions("tool:build:view")
 	@GetMapping()
 	public String build() {
-		return prefix + "/build";
+		return "tool/build/build";
 	}
 }

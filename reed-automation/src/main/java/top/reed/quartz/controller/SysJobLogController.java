@@ -25,9 +25,8 @@ import java.util.List;
  * @author reedsource
  */
 @Controller
-@RequestMapping("/monitor/jobLog")
+@RequestMapping("/quartz/jobLog")
 public class SysJobLogController extends BaseController {
-	private String prefix = "monitor/job";
 
 	@Autowired
 	private ISysJobService jobService;
@@ -35,17 +34,17 @@ public class SysJobLogController extends BaseController {
 	@Autowired
 	private ISysJobLogService jobLogService;
 
-	@RequiresPermissions("monitor:job:view")
+	@RequiresPermissions("quartz:job:view")
 	@GetMapping()
 	public String jobLog(@RequestParam(value = "jobId", required = false) Long jobId, ModelMap mmap) {
 		if (StringUtils.isNotNull(jobId)) {
 			SysJob job = jobService.selectJobById(jobId);
 			mmap.put("job", job);
 		}
-		return prefix + "/jobLog";
+		return "quartz/job/jobLog";
 	}
 
-	@RequiresPermissions("monitor:job:list")
+	@RequiresPermissions("quartz:job:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(SysJobLog jobLog) {
@@ -55,7 +54,7 @@ public class SysJobLogController extends BaseController {
 	}
 
 	@Log(title = "调度日志", businessType = BusinessType.EXPORT)
-	@RequiresPermissions("monitor:job:export")
+	@RequiresPermissions("quartz:job:export")
 	@PostMapping("/export")
 	@ResponseBody
 	public AjaxResult export(SysJobLog jobLog) {
@@ -65,23 +64,23 @@ public class SysJobLogController extends BaseController {
 	}
 
 	@Log(title = "调度日志", businessType = BusinessType.DELETE)
-	@RequiresPermissions("monitor:job:remove")
+	@RequiresPermissions("quartz:job:remove")
 	@PostMapping("/remove")
 	@ResponseBody
 	public AjaxResult remove(String ids) {
 		return toAjax(jobLogService.deleteJobLogByIds(ids));
 	}
 
-	@RequiresPermissions("monitor:job:detail")
+	@RequiresPermissions("quartz:job:detail")
 	@GetMapping("/detail/{jobLogId}")
 	public String detail(@PathVariable("jobLogId") Long jobLogId, ModelMap mmap) {
 		mmap.put("name", "jobLog");
 		mmap.put("jobLog", jobLogService.selectJobLogById(jobLogId));
-		return prefix + "/detail";
+		return "quartz/job/detail";
 	}
 
 	@Log(title = "调度日志", businessType = BusinessType.CLEAN)
-	@RequiresPermissions("monitor:job:remove")
+	@RequiresPermissions("quartz:job:remove")
 	@PostMapping("/clean")
 	@ResponseBody
 	public AjaxResult clean() {

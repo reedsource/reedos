@@ -9,15 +9,15 @@
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>reed-quartz</artifactId>
+	<artifactId>reed-automation</artifactId>
 
 	<description>
-		quartz定时任务
+		automation自动化任务
 	</description>
 
 	<dependencies>
 
-		<!-- 定时任务 -->
+		<!-- 自动化任务 -->
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>

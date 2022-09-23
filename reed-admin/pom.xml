@@ -56,10 +56,10 @@
 			<version>${reed.version}</version>
 		</dependency>
 
-		<!-- 定时任务-->
+		<!-- 自动化任务-->
 		<dependency>
 			<groupId>top.reed</groupId>
-			<artifactId>reed-quartz</artifactId>
+			<artifactId>reed-automation</artifactId>
 			<version>${reed.version}</version>
 		</dependency>
 

@@ -8,7 +8,6 @@
 	<version>0.0.1</version>
 
 	<name>ReedOS</name>
-	<url>http://www.ireed.top</url>
 	<description>ReedOS</description>
 
 	<properties>
@@ -165,10 +164,10 @@
 				<version>${fastjson.version}</version>
 			</dependency>
 
-			<!-- 定时任务-->
+			<!-- 自动化任务-->
 			<dependency>
 				<groupId>top.reed</groupId>
-				<artifactId>reed-quartz</artifactId>
+				<artifactId>reed-automation</artifactId>
 				<version>${reed.version}</version>
 			</dependency>
 
@@ -205,12 +204,12 @@
 
 	<modules>
 		<module>reed-admin</module>
-		<module>reed-framework</module>
-		<module>reed-system</module>
-		<module>reed-quartz</module>
-		<module>reed-generator</module>
+		<module>reed-automation</module>
 		<module>reed-common</module>
+		<module>reed-framework</module>
+		<module>reed-generator</module>
 		<module>reed-information</module>
+		<module>reed-system</module>
 	</modules>
 	<packaging>pom</packaging>
 

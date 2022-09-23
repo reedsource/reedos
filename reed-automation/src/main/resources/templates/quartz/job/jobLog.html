@@ -55,13 +55,13 @@
 
         <div class="btn-group-sm" id="toolbar" role="group">
             <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()"
-               shiro:hasPermission="monitor:job:remove">
+               shiro:hasPermission="quartz:job:remove">
                 <i class="fa fa-remove"></i> 删除
             </a>
-            <a class="btn btn-danger" onclick="$.operate.clean()" shiro:hasPermission="monitor:job:remove">
+            <a class="btn btn-danger" onclick="$.operate.clean()" shiro:hasPermission="quartz:job:remove">
                 <i class="fa fa-trash"></i> 清空
             </a>
-            <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="monitor:job:export">
+            <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="quartz:job:export">
                 <i class="fa fa-download"></i> 导出
             </a>
             <a class="btn btn-danger" onclick="closeItem()">
@@ -76,10 +76,10 @@
 </div>
 <th:block th:include="include :: footer"/>
 <script th:inline="javascript">
-    var detailFlag = [[${@permission.hasPermi('monitor:job:detail')}]];
+    var detailFlag = [[${@permission.hasPermi('quartz:job:detail')}]];
     var statusDatas = [[${@dict.getType('sys_common_status')}]];
     var groupDatas = [[${@dict.getType('sys_job_group')}]];
-    var prefix = ctx + "monitor/jobLog";
+    var prefix = ctx + "quartz/jobLog";
 
     $(function () {
         var options = {

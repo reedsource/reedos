@@ -29,20 +29,19 @@ import java.util.List;
  * @author reedsource
  */
 @Controller
-@RequestMapping("/monitor/job")
+@RequestMapping("/quartz/job")
 public class SysJobController extends BaseController {
-	private String prefix = "monitor/job";
 
 	@Autowired
 	private ISysJobService jobService;
 
-	@RequiresPermissions("monitor:job:view")
+	@RequiresPermissions("quartz:job:view")
 	@GetMapping()
 	public String job() {
-		return prefix + "/job";
+		return "quartz/job/job";
 	}
 
-	@RequiresPermissions("monitor:job:list")
+	@RequiresPermissions("quartz:job:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(SysJob job) {
@@ -52,7 +51,7 @@ public class SysJobController extends BaseController {
 	}
 
 	@Log(title = "定时任务", businessType = BusinessType.EXPORT)
-	@RequiresPermissions("monitor:job:export")
+	@RequiresPermissions("quartz:job:export")
 	@PostMapping("/export")
 	@ResponseBody
 	public AjaxResult export(SysJob job) {
@@ -62,7 +61,7 @@ public class SysJobController extends BaseController {
 	}
 
 	@Log(title = "定时任务", businessType = BusinessType.DELETE)
-	@RequiresPermissions("monitor:job:remove")
+	@RequiresPermissions("quartz:job:remove")
 	@PostMapping("/remove")
 	@ResponseBody
 	public AjaxResult remove(String ids) throws SchedulerException {
@@ -70,19 +69,19 @@ public class SysJobController extends BaseController {
 		return success();
 	}
 
-	@RequiresPermissions("monitor:job:detail")
+	@RequiresPermissions("quartz:job:detail")
 	@GetMapping("/detail/{jobId}")
 	public String detail(@PathVariable("jobId") Long jobId, ModelMap mmap) {
 		mmap.put("name", "job");
 		mmap.put("job", jobService.selectJobById(jobId));
-		return prefix + "/detail";
+		return "quartz/job/detail";
 	}
 
 	/**
 	 * 任务调度状态修改
 	 */
 	@Log(title = "定时任务", businessType = BusinessType.UPDATE)
-	@RequiresPermissions("monitor:job:changeStatus")
+	@RequiresPermissions("quartz:job:changeStatus")
 	@PostMapping("/changeStatus")
 	@ResponseBody
 	public AjaxResult changeStatus(SysJob job) throws SchedulerException {
@@ -95,7 +94,7 @@ public class SysJobController extends BaseController {
 	 * 任务调度立即执行一次
 	 */
 	@Log(title = "定时任务", businessType = BusinessType.UPDATE)
-	@RequiresPermissions("monitor:job:changeStatus")
+	@RequiresPermissions("quartz:job:changeStatus")
 	@PostMapping("/run")
 	@ResponseBody
 	public AjaxResult run(SysJob job) throws SchedulerException {
@@ -108,14 +107,14 @@ public class SysJobController extends BaseController {
 	 */
 	@GetMapping("/add")
 	public String add() {
-		return prefix + "/add";
+		return "quartz/job/add";
 	}
 
 	/**
 	 * 新增保存调度
 	 */
 	@Log(title = "定时任务", businessType = BusinessType.INSERT)
-	@RequiresPermissions("monitor:job:add")
+	@RequiresPermissions("quartz:job:add")
 	@PostMapping("/add")
 	@ResponseBody
 	public AjaxResult addSave(@Validated SysJob job) throws SchedulerException, TaskException {
@@ -139,18 +138,18 @@ public class SysJobController extends BaseController {
 	/**
 	 * 修改调度
 	 */
-	@RequiresPermissions("monitor:job:edit")
+	@RequiresPermissions("quartz:job:edit")
 	@GetMapping("/edit/{jobId}")
 	public String edit(@PathVariable("jobId") Long jobId, ModelMap mmap) {
 		mmap.put("job", jobService.selectJobById(jobId));
-		return prefix + "/edit";
+		return "quartz/job/edit";
 	}
 
 	/**
 	 * 修改保存调度
 	 */
 	@Log(title = "定时任务", businessType = BusinessType.UPDATE)
-	@RequiresPermissions("monitor:job:edit")
+	@RequiresPermissions("quartz:job:edit")
 	@PostMapping("/edit")
 	@ResponseBody
 	public AjaxResult editSave(@Validated SysJob job) throws SchedulerException, TaskException {
@@ -184,7 +183,7 @@ public class SysJobController extends BaseController {
 	 */
 	@GetMapping("/cron")
 	public String cron() {
-		return prefix + "/cron";
+		return "quartz/job/cron";
 	}
 
 	/**
