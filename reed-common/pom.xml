@@ -16,6 +16,13 @@
 	</description>
 
 	<dependencies>
+		<!-- 配置文件自动映射 SpringBoot配置注释处理器 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<version>${springboot.version}</version>
+			<optional>true</optional>
+		</dependency>
 
 		<!-- Spring框架基本的核心工具 -->
 		<dependency>
