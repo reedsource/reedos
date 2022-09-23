@@ -32,8 +32,6 @@ import top.reed.system.service.ISysUserService;
 public class SysProfileController extends BaseController {
 	private static final Logger log = LoggerFactory.getLogger(SysProfileController.class);
 
-	private String prefix = "system/user/profile";
-
 	@Autowired
 	private ISysUserService userService;
 
@@ -49,7 +47,7 @@ public class SysProfileController extends BaseController {
 		mmap.put("user", user);
 		mmap.put("roleGroup", userService.selectUserRoleGroup(user.getUserId()));
 		mmap.put("postGroup", userService.selectUserPostGroup(user.getUserId()));
-		return prefix + "/profile";
+		return "system/user/profile/profile";
 	}
 
 	@GetMapping("/checkPassword")
@@ -66,7 +64,7 @@ public class SysProfileController extends BaseController {
 	public String resetPwd(ModelMap mmap) {
 		SysUser user = getSysUser();
 		mmap.put("user", userService.selectUserById(user.getUserId()));
-		return prefix + "/resetPwd";
+		return "system/user/profile/resetPwd";
 	}
 
 	@Log(title = "重置密码", businessType = BusinessType.UPDATE)
@@ -97,7 +95,7 @@ public class SysProfileController extends BaseController {
 	public String edit(ModelMap mmap) {
 		SysUser user = getSysUser();
 		mmap.put("user", userService.selectUserById(user.getUserId()));
-		return prefix + "/edit";
+		return "system/user/profile/edit";
 	}
 
 	/**
@@ -107,7 +105,7 @@ public class SysProfileController extends BaseController {
 	public String avatar(ModelMap mmap) {
 		SysUser user = getSysUser();
 		mmap.put("user", userService.selectUserById(user.getUserId()));
-		return prefix + "/avatar";
+		return "system/user/profile/avatar";
 	}
 
 	/**

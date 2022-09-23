@@ -26,7 +26,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/system/config")
 public class SysConfigController extends BaseController {
-	private String prefix = "system/config";
 
 	@Autowired
 	private ISysConfigService configService;
@@ -34,7 +33,7 @@ public class SysConfigController extends BaseController {
 	@RequiresPermissions("system:config:view")
 	@GetMapping()
 	public String config() {
-		return prefix + "/config";
+		return "system/config/config";
 	}
 
 	/**
@@ -64,7 +63,7 @@ public class SysConfigController extends BaseController {
 	 */
 	@GetMapping("/add")
 	public String add() {
-		return prefix + "/add";
+		return "system/config/add";
 	}
 
 	/**
@@ -89,7 +88,7 @@ public class SysConfigController extends BaseController {
 	@GetMapping("/edit/{configId}")
 	public String edit(@PathVariable("configId") Long configId, ModelMap mmap) {
 		mmap.put("config", configService.selectConfigById(configId));
-		return prefix + "/edit";
+		return "system/config/edit";
 	}
 
 	/**

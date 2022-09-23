@@ -14,13 +14,13 @@ import top.reed.framework.web.service.CacheService;
 
 /**
  * 缓存监控
+ * 缓存使用 shiro.cache.ehcache
  *
  * @author reedsource
  */
 @Controller
 @RequestMapping("/monitor/cache")
 public class CacheController extends BaseController {
-	private String prefix = "monitor/cache";
 
 	@Autowired
 	private CacheService cacheService;
@@ -29,14 +29,14 @@ public class CacheController extends BaseController {
 	@GetMapping()
 	public String cache(ModelMap mmap) {
 		mmap.put("cacheNames", cacheService.getCacheNames());
-		return prefix + "/cache";
+		return "monitor/cache/cache";
 	}
 
 	@RequiresPermissions("monitor:cache:view")
 	@PostMapping("/getNames")
 	public String getCacheNames(String fragment, ModelMap mmap) {
 		mmap.put("cacheNames", cacheService.getCacheNames());
-		return prefix + "/cache::" + fragment;
+		return "monitor/cache/cache::" + fragment;
 	}
 
 	@RequiresPermissions("monitor:cache:view")
@@ -44,7 +44,7 @@ public class CacheController extends BaseController {
 	public String getCacheKeys(String fragment, String cacheName, ModelMap mmap) {
 		mmap.put("cacheName", cacheName);
 		mmap.put("cacheKeys", cacheService.getCacheKeys(cacheName));
-		return prefix + "/cache::" + fragment;
+		return "monitor/cache/cache::" + fragment;
 	}
 
 	@RequiresPermissions("monitor:cache:view")
@@ -53,7 +53,7 @@ public class CacheController extends BaseController {
 		mmap.put("cacheName", cacheName);
 		mmap.put("cacheKey", cacheKey);
 		mmap.put("cacheValue", cacheService.getCacheValue(cacheName, cacheKey));
-		return prefix + "/cache::" + fragment;
+		return "monitor/cache/cache::" + fragment;
 	}
 
 	@RequiresPermissions("monitor:cache:view")

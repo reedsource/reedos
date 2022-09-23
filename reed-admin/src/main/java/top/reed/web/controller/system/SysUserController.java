@@ -40,7 +40,6 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/system/user")
 public class SysUserController extends BaseController {
-	private String prefix = "system/user";
 
 	@Autowired
 	private ISysUserService userService;
@@ -60,7 +59,7 @@ public class SysUserController extends BaseController {
 	@RequiresPermissions("system:user:view")
 	@GetMapping()
 	public String user() {
-		return prefix + "/user";
+		return "system/user/user";
 	}
 
 	@RequiresPermissions("system:user:list")
@@ -108,7 +107,7 @@ public class SysUserController extends BaseController {
 	public String add(ModelMap mmap) {
 		mmap.put("roles", roleService.selectRoleAll().stream().filter(r -> !r.isAdmin()).collect(Collectors.toList()));
 		mmap.put("posts", postService.selectPostAll());
-		return prefix + "/add";
+		return "system/user/add";
 	}
 
 	/**
@@ -145,7 +144,7 @@ public class SysUserController extends BaseController {
 		mmap.put("user", userService.selectUserById(userId));
 		mmap.put("roles", SysUser.isAdmin(userId) ? roles : roles.stream().filter(r -> !r.isAdmin()).collect(Collectors.toList()));
 		mmap.put("posts", postService.selectPostsByUserId(userId));
-		return prefix + "/edit";
+		return "system/user/edit";
 	}
 
 	/**
@@ -176,7 +175,7 @@ public class SysUserController extends BaseController {
 	@GetMapping("/resetPwd/{userId}")
 	public String resetPwd(@PathVariable("userId") Long userId, ModelMap mmap) {
 		mmap.put("user", userService.selectUserById(userId));
-		return prefix + "/resetPwd";
+		return "system/user/resetPwd";
 	}
 
 	@RequiresPermissions("system:user:resetPwd")
@@ -207,7 +206,7 @@ public class SysUserController extends BaseController {
 		List<SysRole> roles = roleService.selectRolesByUserId(userId);
 		mmap.put("user", user);
 		mmap.put("roles", SysUser.isAdmin(userId) ? roles : roles.stream().filter(r -> !r.isAdmin()).collect(Collectors.toList()));
-		return prefix + "/authRole";
+		return "system/user/authRole";
 	}
 
 	/**
@@ -295,6 +294,6 @@ public class SysUserController extends BaseController {
 	@GetMapping("/selectDeptTree/{deptId}")
 	public String selectDeptTree(@PathVariable("deptId") Long deptId, ModelMap mmap) {
 		mmap.put("dept", deptService.selectDeptById(deptId));
-		return prefix + "/deptTree";
+		return "system/user/deptTree";
 	}
 }

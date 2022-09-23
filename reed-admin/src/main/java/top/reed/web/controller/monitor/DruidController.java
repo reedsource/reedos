@@ -14,11 +14,10 @@ import top.reed.common.core.controller.BaseController;
 @Controller
 @RequestMapping("/monitor/data")
 public class DruidController extends BaseController {
-	private String prefix = "/druid";
 
 	@RequiresPermissions("monitor:data:view")
 	@GetMapping()
 	public String index() {
-		return redirect(prefix + "/index.html");
+		return redirect("/druid/index.html");
 	}
 }

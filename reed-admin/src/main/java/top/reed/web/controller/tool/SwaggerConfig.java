@@ -1,4 +1,4 @@
-package top.reed.web.core.config;
+package top.reed.web.controller.tool;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,7 +14,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import top.reed.common.config.ReedConfig;
 
 /**
- * Swagger2的接口配置
+ * Swagger的接口配置
  *
  * @author reedsource
  */

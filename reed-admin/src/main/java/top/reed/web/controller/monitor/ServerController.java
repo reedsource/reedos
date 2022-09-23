@@ -10,13 +10,13 @@ import top.reed.framework.web.domain.Server;
 
 /**
  * 服务器监控
+ * 服务器当前信息数据
  *
  * @author reedsource
  */
 @Controller
 @RequestMapping("/monitor/server")
 public class ServerController extends BaseController {
-	private String prefix = "monitor/server";
 
 	@RequiresPermissions("monitor:server:view")
 	@GetMapping()
@@ -24,6 +24,6 @@ public class ServerController extends BaseController {
 		Server server = new Server();
 		server.copyTo();
 		mmap.put("server", server);
-		return prefix + "/server";
+		return "monitor/server/server";
 	}
 }

@@ -78,8 +78,7 @@ public class SysIndexController extends BaseController {
 				break;
 			}
 		}
-		String webIndex = "topnav".equalsIgnoreCase(indexStyle) ? "index-topnav" : "index";
-		return webIndex;
+		return "topnav".equalsIgnoreCase(indexStyle) ? "index-topnav" : "index";
 	}
 
 	// 锁定屏幕

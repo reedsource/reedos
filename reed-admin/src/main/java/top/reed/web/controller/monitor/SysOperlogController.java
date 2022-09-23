@@ -24,7 +24,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/monitor/operlog")
 public class SysOperlogController extends BaseController {
-	private String prefix = "monitor/operlog";
 
 	@Autowired
 	private ISysOperLogService operLogService;
@@ -32,7 +31,7 @@ public class SysOperlogController extends BaseController {
 	@RequiresPermissions("monitor:operlog:view")
 	@GetMapping()
 	public String operlog() {
-		return prefix + "/operlog";
+		return "monitor/operlog/operlog";
 	}
 
 	@RequiresPermissions("monitor:operlog:list")
@@ -66,7 +65,7 @@ public class SysOperlogController extends BaseController {
 	@GetMapping("/detail/{operId}")
 	public String detail(@PathVariable("operId") Long operId, ModelMap mmap) {
 		mmap.put("operLog", operLogService.selectOperLogById(operId));
-		return prefix + "/detail";
+		return "monitor/operlog/detail";
 	}
 
 	@Log(title = "操作日志", businessType = BusinessType.CLEAN)

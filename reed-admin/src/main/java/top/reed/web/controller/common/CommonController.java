@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 通用请求处理
+ * 通用上传下载请求处理
  *
  * @author reedsource
  */

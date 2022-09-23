@@ -26,7 +26,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/system/dept")
 public class SysDeptController extends BaseController {
-	private String prefix = "system/dept";
 
 	@Autowired
 	private ISysDeptService deptService;
@@ -34,7 +33,7 @@ public class SysDeptController extends BaseController {
 	@RequiresPermissions("system:dept:view")
 	@GetMapping()
 	public String dept() {
-		return prefix + "/dept";
+		return "system/dept/dept";
 	}
 
 	@RequiresPermissions("system:dept:list")
@@ -54,7 +53,7 @@ public class SysDeptController extends BaseController {
 			parentId = getSysUser().getDeptId();
 		}
 		mmap.put("dept", deptService.selectDeptById(parentId));
-		return prefix + "/add";
+		return "system/dept/add";
 	}
 
 	/**
@@ -84,7 +83,7 @@ public class SysDeptController extends BaseController {
 			dept.setParentName("无");
 		}
 		mmap.put("dept", dept);
-		return prefix + "/edit";
+		return "system/dept/edit";
 	}
 
 	/**
@@ -146,7 +145,7 @@ public class SysDeptController extends BaseController {
 	                             @PathVariable(value = "excludeId", required = false) Long excludeId, ModelMap mmap) {
 		mmap.put("dept", deptService.selectDeptById(deptId));
 		mmap.put("excludeId", excludeId);
-		return prefix + "/tree";
+		return "system/dept/tree";
 	}
 
 	/**

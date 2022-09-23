@@ -26,7 +26,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/system/post")
 public class SysPostController extends BaseController {
-	private String prefix = "system/post";
 
 	@Autowired
 	private ISysPostService postService;
@@ -34,7 +33,7 @@ public class SysPostController extends BaseController {
 	@RequiresPermissions("system:post:view")
 	@GetMapping()
 	public String operlog() {
-		return prefix + "/post";
+		return "system/post/post";
 	}
 
 	@RequiresPermissions("system:post:list")
@@ -73,7 +72,7 @@ public class SysPostController extends BaseController {
 	 */
 	@GetMapping("/add")
 	public String add() {
-		return prefix + "/add";
+		return "system/post/add";
 	}
 
 	/**
@@ -100,7 +99,7 @@ public class SysPostController extends BaseController {
 	@GetMapping("/edit/{postId}")
 	public String edit(@PathVariable("postId") Long postId, ModelMap mmap) {
 		mmap.put("post", postService.selectPostById(postId));
-		return prefix + "/edit";
+		return "system/post/edit";
 	}
 
 	/**

@@ -31,7 +31,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/monitor/online")
 public class SysUserOnlineController extends BaseController {
-	private String prefix = "monitor/online";
 
 	@Autowired
 	private ISysUserOnlineService userOnlineService;
@@ -42,7 +41,7 @@ public class SysUserOnlineController extends BaseController {
 	@RequiresPermissions("monitor:online:view")
 	@GetMapping()
 	public String online() {
-		return prefix + "/online";
+		return "monitor/online/online";
 	}
 
 	@RequiresPermissions("monitor:online:list")
