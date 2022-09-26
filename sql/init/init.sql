@@ -165,7 +165,6 @@ insert into sys_menu values('1', '系统管理', '0', '1', '#',                '
 insert into sys_menu values('2', '系统监控', '0', '2', '#',                '',          'M', '0', '1', '', 'fa fa-video-camera',   'admin', sysdate(), '', null, '系统监控目录');
 insert into sys_menu values('3', '系统工具', '0', '3', '#',                '',          'M', '0', '1', '', 'fa fa-bars',           'admin', sysdate(), '', null, '系统工具目录');
 insert into sys_menu values('4', '信息管理', '0', '4', '#',                '',          'M', '0', '1', '', 'fa fa-at',             'admin', sysdate(), '', null, '信息管理目录');
-insert into sys_menu values('5', '自动化管理', '0', '5', '#',                '',          'M', '0', '1', '', 'fa fa-refresh',      'admin', sysdate(), '', null, '自动化工具目录');
 -- 二级菜单
 insert into sys_menu values('100',  '用户管理', '1', '1', '/system/user',          '', 'C', '0', '1', 'system:user:view',         'fa fa-user-o',          'admin', sysdate(), '', null, '用户管理菜单');
 insert into sys_menu values('101',  '角色管理', '1', '2', '/system/role',          '', 'C', '0', '1', 'system:role:view',         'fa fa-user-secret',     'admin', sysdate(), '', null, '角色管理菜单');
@@ -183,7 +182,6 @@ insert into sys_menu values('113',  '缓存监控', '2', '5', '/monitor/cache', 
 insert into sys_menu values('114',  '表单构建', '3', '1', '/tool/build',           '', 'C', '0', '1', 'tool:build:view',          'fa fa-wpforms',         'admin', sysdate(), '', null, '表单构建菜单');
 insert into sys_menu values('115',  '代码生成', '3', '2', '/tool/gen',             '', 'C', '0', '1', 'tool:gen:view',            'fa fa-code',            'admin', sysdate(), '', null, '代码生成菜单');
 insert into sys_menu values('116',  '系统接口', '3', '3', '/tool/swagger',         '', 'C', '0', '1', 'tool:swagger:view',        'fa fa-gg',              'admin', sysdate(), '', null, '系统接口菜单');
-insert into sys_menu values('110',  '定时任务', '5', '1', '/quartz/job',           '', 'C', '0', '1', 'quartz:job:view',          'fa fa-tasks',           'admin', sysdate(), '', null, '定时任务菜单');
 -- 三级菜单
 insert into sys_menu values('500',  '操作日志', '108', '1', '/monitor/operlog',    '', 'C', '0', '1', 'monitor:operlog:view',     'fa fa-address-book',    'admin', sysdate(), '', null, '操作日志菜单');
 insert into sys_menu values('501',  '登录日志', '108', '2', '/monitor/logininfor', '', 'C', '0', '1', 'monitor:logininfor:view',  'fa fa-file-image-o',    'admin', sysdate(), '', null, '登录日志菜单');
@@ -248,14 +246,6 @@ insert into sys_menu values('1046', '账户解锁', '501', '4',  '#', '',  'F', 
 insert into sys_menu values('1047', '在线查询', '109', '1',  '#', '',  'F', '0', '1', 'monitor:online:list',             '#', 'admin', sysdate(), '', null, '');
 insert into sys_menu values('1048', '批量强退', '109', '2',  '#', '',  'F', '0', '1', 'monitor:online:batchForceLogout', '#', 'admin', sysdate(), '', null, '');
 insert into sys_menu values('1049', '单条强退', '109', '3',  '#', '',  'F', '0', '1', 'monitor:online:forceLogout',      '#', 'admin', sysdate(), '', null, '');
--- 定时任务按钮
-insert into sys_menu values('1050', '任务查询', '110', '1',  '#', '',  'F', '0', '1', 'quartz:job:list',                '#', 'admin', sysdate(), '', null, '');
-insert into sys_menu values('1051', '任务新增', '110', '2',  '#', '',  'F', '0', '1', 'quartz:job:add',                 '#', 'admin', sysdate(), '', null, '');
-insert into sys_menu values('1052', '任务修改', '110', '3',  '#', '',  'F', '0', '1', 'quartz:job:edit',                '#', 'admin', sysdate(), '', null, '');
-insert into sys_menu values('1053', '任务删除', '110', '4',  '#', '',  'F', '0', '1', 'quartz:job:remove',              '#', 'admin', sysdate(), '', null, '');
-insert into sys_menu values('1054', '状态修改', '110', '5',  '#', '',  'F', '0', '1', 'quartz:job:changeStatus',        '#', 'admin', sysdate(), '', null, '');
-insert into sys_menu values('1055', '任务详细', '110', '6',  '#', '',  'F', '0', '1', 'quartz:job:detail',              '#', 'admin', sysdate(), '', null, '');
-insert into sys_menu values('1056', '任务导出', '110', '7',  '#', '',  'F', '0', '1', 'quartz:job:export',              '#', 'admin', sysdate(), '', null, '');
 -- 代码生成按钮
 insert into sys_menu values('1057', '生成查询', '115', '1',  '#', '',  'F', '0', '1', 'tool:gen:list',     '#', 'admin', sysdate(), '', null, '');
 insert into sys_menu values('1058', '生成修改', '115', '2',  '#', '',  'F', '0', '1', 'tool:gen:edit',     '#', 'admin', sysdate(), '', null, '');

@@ -77,6 +77,13 @@
 			<version>${reed.version}</version>
 		</dependency>
 
+		<!-- 自动化任务-->
+		<dependency>
+			<groupId>top.reed</groupId>
+			<artifactId>reed-automation</artifactId>
+			<version>${reed.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

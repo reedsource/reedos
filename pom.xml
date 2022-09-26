@@ -32,6 +32,13 @@
 		<poi.version>4.1.2</poi.version>
 		<velocity.version>2.3</velocity.version>
 		<mybatis.plus.version>3.4.2</mybatis.plus.version>
+
+		<guava.version>31.1-jre</guava.version>
+		<jsoup.version>1.11.3</jsoup.version>
+		<xsoup.version>0.3.5</xsoup.version>
+		<alibaba.transmittable.version>2.14.0</alibaba.transmittable.version>
+		<apache.commons.text.verion>1.9</apache.commons.text.verion>
+		<apache.commons.csv.verion>1.9.0</apache.commons.csv.verion>
 	</properties>
 
 	<!-- 依赖声明 -->
