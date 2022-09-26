@@ -28,13 +28,14 @@
         - 数据监控：连接池监视，监视当前系统数据库连接池状态，可进行分析SQL找出系统性能瓶颈。
         - 服务监控：监视当前系统CPU、内存、磁盘、堆栈等相关信息。
         - 缓存监控：对系统的缓存查询，删除、清空等操作。
-          - 缓存使用 shiro.cache.ehcache
+            - 缓存使用 shiro.cache.ehcache
     - 系统工具:
         - 代码生成：前后端代码的生成（java、html、xml、sql）支持CRUD下载 。
         - 表单构建: 在线构建器，拖动表单元素生成相应的HTML代码。
         - 系统接口：根据业务代码自动生成相关的api接口文档。
-          - Swagger3
+            - Swagger3
 2. reed-common common通用工具
+    - mybatis-plus
 3. reed-framework framework框架核心
 4. reed-generator generator代码生成
     - 代码生成
@@ -42,6 +43,7 @@
 5. reed-system system系统模块
 6. reed-automation 自动化模块-信息获取及处理
     - 定时任务：在线（添加、修改、删除)任务调度包含执行结果日志。
+    - 数据源管理: 自动化过程中的数据库连接
 7. reed-information 信息管理模块-展现信息管理
     - 个人博客:个人博客后端接口
 

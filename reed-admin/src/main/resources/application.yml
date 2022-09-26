@@ -73,8 +73,8 @@ spring:
       # 热部署开关
       enabled: true
 
-# MyBatis
-mybatis:
+# MyBatis Plus配置
+mybatis-plus:
     # 搜索指定包别名
     typeAliasesPackage: top.reed.**.domain
     # 配置mapper的扫描，找到所有的mapper.xml映射文件

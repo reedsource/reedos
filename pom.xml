@@ -31,6 +31,7 @@
 		<commons.fileupload.version>1.4</commons.fileupload.version>
 		<poi.version>4.1.2</poi.version>
 		<velocity.version>2.3</velocity.version>
+		<mybatis.plus.version>3.4.2</mybatis.plus.version>
 	</properties>
 
 	<!-- 依赖声明 -->
