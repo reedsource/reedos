@@ -9,12 +9,14 @@
 </head>
 <body style="padding:5px;">
 <div class="layui-form-item">
-	<label class="layui-form-label">自动化任务名称</label>
+	<label class="layui-form-label" style="width: 100px">自动化任务名称</label>
 	<div class="layui-input-inline">
 		<input type="text" name="name" required  lay-verify="required" placeholder="请输入自动化任务名称" autocomplete="off" class="layui-input">
 	</div>
 	<div class="layui-input-inline" style="margin-top:5px">
 		<a class="layui-btn layui-btn-sm layui-btn-normal btn-search"><i class="layui-icon">&#xe615;</i> 搜索</a>
+	</div>
+	<div class="layui-input-inline" style="margin-top:5px;left: -120px">
 		<a class="layui-btn layui-btn-sm layui-btn-normal" href="editor"><i class="layui-icon">&#xe654;</i> 添加自动化任务</a>
 	</div>
 </div>
@@ -49,13 +51,6 @@
 				return '<a class="layui-btn layui-btn-sm btn-details" data-name="'+row.name+'" data-id="'+row.id+'">'+row.name+'</a>';
 			}
 		},{
-			title : 'cron',
-			field : 'cron',
-			width : 80,
-			templet : function(row){
-				return '<a class="layui-btn layui-btn-sm btn-edit-cron" data-id="'+row.id+'" data-cron="'+row.cron+'">'+(row.cron || '编辑cron')+'</a>';
-			}
-		},{
 			title : '定时/长任务',
 			field : 'enabled',
 			width : 105,
@@ -68,22 +63,6 @@
 			field : 'createDate',
 			align : 'center'
 		},{
-			title : '上次执行时间',
-			width : 160,
-			field : 'lastExecuteTime',
-			align : 'center'
-		},{
-			title : '运行中/已完成',
-			width : 120,
-			field : 'executeCount',
-			align : 'center',
-			templet : '#execute-count'
-		},{
-			title : '下次执行时间',
-			width : 160,
-			field : 'nextExecuteTime',
-			align : 'center'
-		},{
 			title : '操作',
 			width : 195,
 			align : 'center',
@@ -91,12 +70,6 @@
 		}]]
 	})
 	layui.form.on('switch',function(e){
-		if(e.elem.checked && !$(e.elem).data('cron')){
-			layui.layer.msg('cron表达式不能为空！');
-			e.elem.checked = false;
-			layui.form.render();
-			return;
-		}
 		$.ajax({
 			url : 'spider/' + (e.elem.checked ? 'start': 'stop'),
 			data : {
@@ -168,19 +141,6 @@
 		})
 	}).on('click','.btn-task',function(){
 		parent.openTab($(this).data('name') + '-任务详情',$(this).data('id') + '-task','task?id=' + $(this).data('id') + '&name=' + encodeURIComponent(encodeURIComponent($(this).data('name'))));
-	}).on('click','.btn-log',function(){
-		parent.openTab($(this).data('name') + '-日志',$(this).data('id') + '-log','log?id=' + $(this).data('id'));
-	}).on('click','.btn-edit-cron',function(){
-		var id = $(this).data('id');
-		var value = $(this).data('cron') || '';
-		parent.$table = $table;
-		parent.layer.open({
-			type: 2,
-			area: ['850px', '660px'],
-			fixed: false, //不固定
-			maxmin: true,
-			content: 'editCron?id=' + id + '&cron=' + value
-		});
 	}).on('click','.btn-details',function () {
 		parent.openTab($(this).data('name') +'-编辑',$(this).data('id') + '-edit','editor?id='+$(this).data('id'));
 	})
@@ -191,7 +151,6 @@
 <script type="text/html" id="buttons">
 	<a class="layui-btn layui-btn-sm btn-details" data-id="{{d.id}}" data-name="{{d.name}}" title="查看"><i class="layui-icon">&#xe615;</i></a>
 	<a class="layui-btn layui-btn-sm btn-run" data-id="{{d.id}}" title="手动运行"><i class="layui-icon">&#xe623;</i></a>
-	<a class="layui-btn layui-btn-sm btn-log" data-name="{{d.name}}" data-id="{{d.id}}" title="日志"><i class="layui-icon">&#xe60e;</i></a>
 	<a class="layui-btn layui-btn-sm btn-remove" data-id="{{d.id}}" title="删除"><i class="layui-icon">&#xe640;</i></a>
 </script>
 </body>

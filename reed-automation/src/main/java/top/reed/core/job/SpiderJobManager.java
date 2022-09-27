@@ -41,41 +41,9 @@ public class SpiderJobManager {
 		return TriggerKey.triggerKey(JOB_NAME + id);
 	}
 	
-	/**
-	 * 新建定时任务
-	 * @param spiderFlow 自动化任务流程图
-	 * @return boolean true/false
-	 */
-	public Date addJob(SpiderFlow spiderFlow){
-		try {
-			JobDetail job = JobBuilder.newJob(SpiderJob.class).withIdentity(getJobKey(spiderFlow.getId())).build();
-			job.getJobDataMap().put(JOB_PARAM_NAME, spiderFlow);
-			
-			CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule(spiderFlow.getCron()).withMisfireHandlingInstructionDoNothing();
-			
-			CronTrigger trigger = TriggerBuilder.newTrigger().withIdentity(getTriggerKey(spiderFlow.getId())).withSchedule(cronScheduleBuilder).build();
-			
-			return scheduler.scheduleJob(job,trigger);
-		} catch (SchedulerException e) {
-			logger.error("创建定时任务出错",e);
-			return null;
-		}
-	}
-	
 	public void run(String id){
 		Spider.executorInstance.submit(()->{
 			spiderJob.run(id);
 		});
 	}
-	
-	public boolean remove(String id){
-		try {
-			scheduler.deleteJob(getJobKey(id));
-			return true;
-		} catch (SchedulerException e) {
-			logger.error("删除定时任务失败",e);
-			return false;
-		}
-	}
-
 }

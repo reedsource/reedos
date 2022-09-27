@@ -70,6 +70,5 @@ public class SpiderJob extends QuartzJobBean {
 			}
 			SpiderContextHolder.remove();
 		}
-		spiderFlowService.executeCountIncrement(spiderFlow.getId(), now, nextExecuteTime);
 	}
 }

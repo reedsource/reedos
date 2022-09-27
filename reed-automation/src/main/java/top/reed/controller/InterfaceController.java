@@ -79,12 +79,6 @@ public class InterfaceController {
 		return "task";
 	}
 
-	@GetMapping("/log")
-	public String log() {
-		return "log";
-	}
-
-
 	/**
 	 * @return Cron表达式生成器编辑器
 	 */

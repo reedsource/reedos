@@ -46,74 +46,14 @@ public class SpiderFlowService extends ServiceImpl<SpiderFlowMapper, SpiderFlow>
 	@Value("${spider.workspace}")
 	private String workspace;
 
-	//项目启动后自动查询需要执行的任务进行爬取
-	@PostConstruct
-	private void initJobs(){
-		//清空所有任务下次执行时间
-		sfMapper.resetNextExecuteTime();
-		//获取启用corn的任务
-		List<SpiderFlow> spiderFlows = sfMapper.selectList(new QueryWrapper<SpiderFlow>().eq("enabled", "1"));
-		if(spiderFlows != null && !spiderFlows.isEmpty()){
-			for (SpiderFlow sf : spiderFlows) {
-				if(StringUtils.isNotEmpty(sf.getCron())){
-					Date nextExecuteTimt = spiderJobManager.addJob(sf);
-					if (nextExecuteTimt != null) {
-						sf.setNextExecuteTime(nextExecuteTimt);
-						sfMapper.updateById(sf);
-					}
-				}
-			}
-		}
-	}
-
 	public IPage<SpiderFlow> selectSpiderPage(Page<SpiderFlow> page, String name){
 		return sfMapper.selectSpiderPage(page,name);
-	}
-	
-	public int executeCountIncrement(String id, Date lastExecuteTime, Date nextExecuteTime){
-		if(nextExecuteTime == null){
-			return sfMapper.executeCountIncrement(id, lastExecuteTime);
-		}
-		return sfMapper.executeCountIncrementAndExecuteTime(id, lastExecuteTime, nextExecuteTime);
-		
-	}
-	
-	/**
-	 * 重置定时任务
-	 * @param id 自动化任务的ID
-	 * @param cron 定时器
-	 */
-	public void resetCornExpression(String id, String cron){
-		CronTrigger trigger = TriggerBuilder.newTrigger()
-				.withIdentity("Caclulate Next Execute Date")
-				.withSchedule(CronScheduleBuilder.cronSchedule(cron))
-				.build();
-		sfMapper.resetCornExpression(id, cron, trigger.getFireTimeAfter(null));
-		spiderJobManager.remove(id);
-		SpiderFlow spiderFlow = getById(id);
-		if("1".equals(spiderFlow.getEnabled()) && StringUtils.isNotEmpty(spiderFlow.getCron())){
-			spiderJobManager.addJob(spiderFlow);
-		}
 	}
 
 	@Override
 	public boolean save(SpiderFlow spiderFlow){
-		//解析corn,获取并设置任务的开始时间
-		if(StringUtils.isNotEmpty(spiderFlow.getCron())){
-			CronTrigger trigger = TriggerBuilder.newTrigger()
-							.withIdentity("Caclulate Next Execute Date")
-							.withSchedule(CronScheduleBuilder.cronSchedule(spiderFlow.getCron()))
-							.build();
-			spiderFlow.setNextExecuteTime(trigger.getStartTime());
-		}
-		if(StringUtils.isNotEmpty(spiderFlow.getId())){	//update 任务
-			sfMapper.updateSpiderFlow(spiderFlow.getId(), spiderFlow.getName(), spiderFlow.getXml());
-			spiderJobManager.remove(spiderFlow.getId());
-			spiderFlow = getById(spiderFlow.getId());
-			if("1".equals(spiderFlow.getEnabled()) && StringUtils.isNotEmpty(spiderFlow.getCron())){
-				spiderJobManager.addJob(spiderFlow);
-			}
-		}else{//insert 任务
+
+		if (!StringUtils.isNotEmpty(spiderFlow.getId())) {//insert 任务
 			String id = UUID.randomUUID().toString().replace("-", "");
 			sfMapper.insertSpiderFlow(id, spiderFlow.getName(), spiderFlow.getXml());
 			spiderFlow.setId(id);
@@ -129,31 +69,17 @@ public class SpiderFlowService extends ServiceImpl<SpiderFlowMapper, SpiderFlow>
 	
 	public void stop(String id){
 		sfMapper.resetSpiderStatus(id,"0");
-		sfMapper.resetNextExecuteTime(id);
-		spiderJobManager.remove(id);
 	}
 	
 	public void start(String id){
-		spiderJobManager.remove(id);
-		SpiderFlow spiderFlow = getById(id);
-		Date nextExecuteTime = spiderJobManager.addJob(spiderFlow);
-		if (nextExecuteTime != null) {
-			spiderFlow.setNextExecuteTime(nextExecuteTime);
-			sfMapper.updateById(spiderFlow);
 			sfMapper.resetSpiderStatus(id, "1");
-		}
 	}
 	
 	public void run(String id){
 		spiderJobManager.run(id);
 	}
-	
-	public void resetExecuteCount(String id){
-		sfMapper.resetExecuteCount(id);
-	}
 	public void remove(String id){
 		sfMapper.deleteById(id);
-		spiderJobManager.remove(id);
 	}
 	
 	public List<SpiderFlow> selectOtherFlows(String id){
@@ -210,9 +136,5 @@ public class SpiderFlowService extends ServiceImpl<SpiderFlowMapper, SpiderFlow>
 			}
 		}
 		return null;
-	}
-
-	public Integer getFlowMaxTaskId(String flowId){
-		return sfMapper.getFlowMaxTaskId(flowId);
 	}
 }

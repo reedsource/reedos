@@ -137,12 +137,12 @@ public class SpiderFlowController {
 	public void remove(String id){
 		spiderFlowService.remove(id);
 	}
-	
+
 	@RequestMapping("/start")
 	public void start(String id){
 		spiderFlowService.start(id);
 	}
-	
+
 	@RequestMapping("/stop")
 	public void stop(String id){
 		spiderFlowService.stop(id);
@@ -153,46 +153,10 @@ public class SpiderFlowController {
 		spiderFlowService.run(id);
 	}
 	
-	@RequestMapping("/cron")
-	public void cron(String id,String cron){
-		spiderFlowService.resetCornExpression(id, cron);
-	}
-	
 	@RequestMapping("/xml")
 	public String xml(String id){
 		return spiderFlowService.getById(id).getXml();
 	}
-
-	@RequestMapping("/log/download")
-	public ResponseEntity<FileSystemResource> download(String id, String taskId)  {
-		if (StringUtils.isBlank(taskId) || NumberUtils.toInt(taskId,0) == 0) {
-			Integer maxId = spiderFlowService.getFlowMaxTaskId(id);
-			taskId = maxId == null ? "" : maxId.toString();
-		}
-		File file = new File(workspace, id + File.separator + "logs" + File.separator + taskId + ".log");
-		return ResponseEntity.ok()
-				.header("Content-Disposition","attachment; filename=spider.log")
-				.contentType(MediaType.parseMediaType("application/octet-stream"))
-				.body(new FileSystemResource(file));
-	}
-
-	@RequestMapping("/log")
-	public JsonBean<List<Line>> log(String id, String taskId, String keywords, Long index, Integer count, Boolean reversed, Boolean matchcase, Boolean regx) {
-		if (StringUtils.isBlank(taskId)) {
-			Integer maxId = spiderFlowService.getFlowMaxTaskId(id);
-			taskId = maxId == null ? "" : maxId.toString();
-		}
-		File logFile = new File(workspace, id + File.separator + "logs" + File.separator + taskId + ".log");
-		try (RandomAccessFileReader reader = new RandomAccessFileReader(new RandomAccessFile(logFile,"r"), index == null ? -1 : index, reversed == null || reversed)){
-			return new JsonBean<>(reader.readLine(count == null ? 10 : count,keywords,matchcase != null && matchcase,regx != null && regx));
-		} catch(FileNotFoundException e){
-			return new JsonBean<>(0,"日志文件不存在");
-		} catch (IOException e) {
-			logger.error("读取日志文件出错",e);
-			return new JsonBean<>(-1,"读取日志文件出错");
-		}
-	}
-	
 	@RequestMapping("/shapes")
 	public List<Shape> shapes(){
 		return ExecutorsUtils.shapes();
