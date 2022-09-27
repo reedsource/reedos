@@ -53,11 +53,18 @@ public class SpiderJobContext extends SpiderContext{
 	public OutputStream getOutputstream(){
 		return this.outputstream;
 	}
-	
-	public static SpiderJobContext create(String directory,String id,Integer taskId,boolean output){
+
+	/**
+	 * @param directory 自动化日志路径
+	 * @param id 自动化流程id
+	 * @param output
+	 * @return
+	 */
+	public static SpiderJobContext create(String directory,String id,boolean output){
 		OutputStream os = null;
 		try {
-			File file = new File(new File(directory),id + File.separator + "logs" + File.separator + taskId + ".log");
+			//
+			File file = new File(new File(directory),id + File.separator + "logs" + File.separator  + ".log");
 			File dirFile = file.getParentFile();
 			if(!dirFile.exists()){
 				dirFile.mkdirs();

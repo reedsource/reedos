@@ -9,18 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 import org.springframework.stereotype.Component;
-import top.reed.api.context.SpiderContext;
 import top.reed.api.context.SpiderContextHolder;
 import top.reed.core.Spider;
 import top.reed.core.model.SpiderFlow;
-import top.reed.core.model.Task;
 import top.reed.core.service.SpiderFlowService;
-import top.reed.core.service.TaskService;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * 自动化任务定时执行
  *
@@ -34,11 +28,6 @@ public class SpiderJob extends QuartzJobBean {
 
 	@Autowired
 	private SpiderFlowService spiderFlowService;
-
-	@Autowired
-	private TaskService taskService;
-
-	private static Map<Integer, SpiderContext> contextMap = new HashMap<>();
 
 	@Value("${spider.job.enable:true}")
 	private boolean spiderJobEnable;
@@ -65,20 +54,11 @@ public class SpiderJob extends QuartzJobBean {
 	}
 
 	public void run(SpiderFlow spiderFlow, Date nextExecuteTime) {
-		Task task = new Task();
-		task.setFlowId(spiderFlow.getId());
-		task.setBeginTime(new Date());
-		taskService.save(task);
-		run(spiderFlow,task,nextExecuteTime);
-	}
-
-	public void run(SpiderFlow spiderFlow, Task task,Date nextExecuteTime) {
 		SpiderJobContext context = null;
 		Date now = new Date();
 		try {
-			context = SpiderJobContext.create(this.workspace, spiderFlow.getId(),task.getId(),false);
+			context = SpiderJobContext.create(this.workspace, spiderFlow.getId(),false);
 			SpiderContextHolder.set(context);
-			contextMap.put(task.getId(), context);
 			logger.info("开始执行任务{}", spiderFlow.getName());
 			spider.run(spiderFlow, context);
 			logger.info("执行任务{}完毕，下次执行时间：{}", spiderFlow.getName(), nextExecuteTime == null ? null : DateFormatUtils.format(nextExecuteTime, "yyyy-MM-dd HH:mm:ss"));
@@ -88,15 +68,8 @@ public class SpiderJob extends QuartzJobBean {
 			if (context != null) {
 				context.close();
 			}
-			task.setEndTime(new Date());
-			taskService.saveOrUpdate(task);
-			contextMap.remove(task.getId());
 			SpiderContextHolder.remove();
 		}
 		spiderFlowService.executeCountIncrement(spiderFlow.getId(), now, nextExecuteTime);
-	}
-
-	public static SpiderContext getSpiderContext(Integer taskId) {
-		return contextMap.get(taskId);
 	}
 }

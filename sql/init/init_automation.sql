@@ -49,15 +49,6 @@ create table sp_datasource (
     create_date       datetime default CURRENT_TIMESTAMP not null comment '创建时间'
 ) comment '自动化数据源表';
 
-DROP TABLE IF EXISTS sp_task;
-create table sp_task (
-    id         int auto_increment
-    primary key,
-    flow_id    varchar(32)                  not null comment '自动化任务ID',
-    begin_time datetime                     null comment '开始时间',
-    end_time   datetime                     null comment '结束时间'
-) comment '自动化定时任务表';
-
 DROP TABLE IF EXISTS sp_function;
 create table sp_function (
     id          varchar(32)                        not null
