@@ -67,14 +67,3 @@ create table sp_function (
     script      text                               null comment 'js脚本',
     create_date datetime default CURRENT_TIMESTAMP null comment '创建时间'
 ) comment '自定义函数表';
-
-DROP TABLE IF EXISTS sp_flow_notice;
-create table sp_flow_notice (
-    id               varchar(32)      not null
-    primary key,
-    recipients       varchar(200)     null comment '收件人',
-    notice_way       char(10)         null comment '通知方式',
-    start_notice     char default '0' null comment '流程开始通知:1:开启通知,0:关闭通知',
-    exception_notice char default '0' null comment '流程异常通知:1:开启通知,0:关闭通知',
-    end_notice       char default '0' null comment '流程结束通知:1:开启通知,0:关闭通知'
-) comment '爬虫任务通知表';
