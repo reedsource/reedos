@@ -19,7 +19,7 @@ import top.reed.api.context.SpiderContextHolder;
 import top.reed.core.Spider;
 import top.reed.core.job.SpiderJobContext;
 import top.reed.core.mapper.SpiderFlowMapper;
-import top.reed.core.model.SpiderFlow;
+import top.reed.core.model.AutoFlow;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,7 +33,7 @@ import java.util.stream.Collectors;
  *
  */
 @Service
-public class SpiderFlowService extends ServiceImpl<SpiderFlowMapper, SpiderFlow> {
+public class SpiderFlowService extends ServiceImpl<SpiderFlowMapper, AutoFlow> {
 	
 	@Autowired
 	private SpiderFlowMapper sfMapper;
@@ -46,21 +46,21 @@ public class SpiderFlowService extends ServiceImpl<SpiderFlowMapper, SpiderFlow>
 	@Value("${spider.workspace}")
 	private String workspace;
 
-	public IPage<SpiderFlow> selectSpiderPage(Page<SpiderFlow> page, String name){
+	public IPage<AutoFlow> selectSpiderPage(Page<AutoFlow> page, String name){
 		return sfMapper.selectSpiderPage(page,name);
 	}
 
 	@Override
-	public boolean save(SpiderFlow spiderFlow){
+	public boolean save(AutoFlow autoFlow){
 
-		if (!StringUtils.isNotEmpty(spiderFlow.getId())) {//insert 任务
+		if (!StringUtils.isNotEmpty(autoFlow.getId())) {//insert 任务
 			String id = UUID.randomUUID().toString().replace("-", "");
-			sfMapper.insertSpiderFlow(id, spiderFlow.getName(), spiderFlow.getXml());
-			spiderFlow.setId(id);
+			sfMapper.insertSpiderFlow(id, autoFlow.getName(), autoFlow.getXml());
+			autoFlow.setId(id);
 		}
-		File file = new File(workspace,spiderFlow.getId() + File.separator + "xmls" + File.separator + System.currentTimeMillis() + ".xml");
+		File file = new File(workspace, autoFlow.getId() + File.separator + "xmls" + File.separator + System.currentTimeMillis() + ".xml");
 		try {
-			FileUtils.write(file,spiderFlow.getXml(),"UTF-8");
+			FileUtils.write(file, autoFlow.getXml(),"UTF-8");
 		} catch (IOException e) {
 			logger.error("保存历史记录出错",e);
 		}
@@ -80,16 +80,16 @@ public class SpiderFlowService extends ServiceImpl<SpiderFlowMapper, SpiderFlow>
 			run(getById(id));
 		});
 	}
-	public void run(SpiderFlow spiderFlow ) {
+	public void run(AutoFlow autoFlow) {
 		SpiderJobContext context = null;
 		try {
-			context = SpiderJobContext.create(this.workspace, spiderFlow.getId(),false);
+			context = SpiderJobContext.create(this.workspace, autoFlow.getId(),false);
 			SpiderContextHolder.set(context);
-			logger.info("开始执行任务{}", spiderFlow.getName());
-			spider.run(spiderFlow, context);
-			logger.info("执行任务{}完毕", spiderFlow.getName());
+			logger.info("开始执行任务{}", autoFlow.getName());
+			spider.run(autoFlow, context);
+			logger.info("执行任务{}完毕", autoFlow.getName());
 		} catch (Exception e) {
-			logger.error("执行任务{}出错", spiderFlow.getName(), e);
+			logger.error("执行任务{}出错", autoFlow.getName(), e);
 		} finally {
 			if (context != null) {
 				context.close();
@@ -102,11 +102,11 @@ public class SpiderFlowService extends ServiceImpl<SpiderFlowMapper, SpiderFlow>
 		sfMapper.deleteById(id);
 	}
 	
-	public List<SpiderFlow> selectOtherFlows(String id){
+	public List<AutoFlow> selectOtherFlows(String id){
 		return sfMapper.selectOtherFlows(id);
 	}
 	
-	public List<SpiderFlow> selectFlows(){
+	public List<AutoFlow> selectFlows(){
 		return sfMapper.selectFlows();
 	}
 

@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import top.reed.core.mapper.FunctionMapper;
-import top.reed.core.model.Function;
+import top.reed.core.model.AutoFunction;
 import top.reed.core.script.ScriptManager;
 
 import javax.annotation.PostConstruct;
@@ -14,7 +14,7 @@ import javax.script.ScriptEngine;
 import java.io.Serializable;
 
 @Service
-public class FunctionService extends ServiceImpl<FunctionMapper, Function> {
+public class FunctionService extends ServiceImpl<FunctionMapper, AutoFunction> {
 
     private static Logger logger = LoggerFactory.getLogger(FunctionService.class);
 
@@ -36,10 +36,10 @@ public class FunctionService extends ServiceImpl<FunctionMapper, Function> {
         }
     }
 
-    public String saveFunction(Function entity) {
+    public String saveFunction(AutoFunction autoFunction) {
         try {
-            ScriptManager.validScript(entity.getName(),entity.getParameter(),entity.getScript());
-            super.saveOrUpdate(entity);
+            ScriptManager.validScript(autoFunction.getName(),autoFunction.getParameter(),autoFunction.getScript());
+            super.saveOrUpdate(autoFunction);
             init();
             return null;
         } catch (Exception e) {

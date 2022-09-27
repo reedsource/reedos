@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.util.Date;
 
-@TableName("sp_datasource")
+@TableName("auto_datasource")
 public class DataSource {
 
     @TableId(type = IdType.ASSIGN_UUID)

@@ -17,7 +17,7 @@ import top.reed.api.listener.SpiderListener;
 import top.reed.api.model.SpiderNode;
 import top.reed.api.model.SpiderOutput;
 import top.reed.core.executor.shape.LoopExecutor;
-import top.reed.core.model.SpiderFlow;
+import top.reed.core.model.AutoFlow;
 import top.reed.core.utils.ExecutorsUtils;
 import top.reed.core.utils.ExpressionUtils;
 import top.reed.core.utils.SpiderFlowUtils;
@@ -62,19 +62,19 @@ public class Spider {
 		executorInstance = new SpiderFlowThreadPoolExecutor(totalThreads);
 	}
 
-	public List<SpiderOutput> run(SpiderFlow spiderFlow, SpiderContext context, Map<String, Object> variables) {
+	public List<SpiderOutput> run(AutoFlow autoFlow, SpiderContext context, Map<String, Object> variables) {
 		if (variables == null) {
 			variables = new HashMap<>();
 		}
-		SpiderNode root = SpiderFlowUtils.loadXMLFromString(spiderFlow.getXml());
+		SpiderNode root = SpiderFlowUtils.loadXMLFromString(autoFlow.getXml());
 		//执行流程节点
 		executeRoot(root, context, variables);
 
 		return context.getOutputs();
 	}
 
-	public List<SpiderOutput> run(SpiderFlow spiderFlow, SpiderContext context) {
-		return run(spiderFlow, context, new HashMap<>());
+	public List<SpiderOutput> run(AutoFlow autoFlow, SpiderContext context) {
+		return run(autoFlow, context, new HashMap<>());
 	}
 
 	public void runWithTest(SpiderNode root, SpiderContext context) {

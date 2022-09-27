@@ -1,17 +1,14 @@
 package top.reed.core.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-
-import java.util.Date;
 
 /**
  * 自动化任务持久化实体类
  */
-@TableName("sp_flow")
-public class SpiderFlow {
+@TableName("auto_flow")
+public class AutoFlow {
 
     @TableId(type = IdType.ASSIGN_UUID)
     private String id;
@@ -25,10 +22,10 @@ public class SpiderFlow {
 
     private String enabled;
 
-    public SpiderFlow() {
+    public AutoFlow() {
     }
 
-    public SpiderFlow(String id, String name) {
+    public AutoFlow(String id, String name) {
         this.id = id;
         this.name = name;
     }

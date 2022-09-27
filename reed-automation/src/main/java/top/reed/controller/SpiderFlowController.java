@@ -3,14 +3,10 @@ package top.reed.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.math.NumberUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,21 +16,15 @@ import top.reed.api.annotation.Comment;
 import top.reed.api.executor.FunctionExecutor;
 import top.reed.api.executor.FunctionExtension;
 import top.reed.api.executor.PluginConfig;
-import top.reed.api.io.Line;
-import top.reed.api.io.RandomAccessFileReader;
 import top.reed.api.model.Grammer;
 import top.reed.api.model.JsonBean;
 import top.reed.api.model.Plugin;
 import top.reed.api.model.Shape;
-import top.reed.core.model.SpiderFlow;
+import top.reed.core.model.AutoFlow;
 import top.reed.core.service.SpiderFlowService;
 import top.reed.core.utils.ExecutorsUtils;
 
 import javax.annotation.PostConstruct;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -98,17 +88,17 @@ public class SpiderFlowController {
 	 * 自动化任务列表
 	 * @param page 页数
 	 * @param size 每页显示条数
-	 * @return Page<SpiderFlow> 所有自动化任务的列表页
+	 * @return Page<AutoFlow> 所有自动化任务的列表页
 	 */
 	@RequestMapping("/list")
-	public IPage<SpiderFlow> list(@RequestParam(name = "page", defaultValue = "1") Integer page, @RequestParam(name = "limit", defaultValue = "1") Integer size, @RequestParam(name = "name", defaultValue = "") String name) {
+	public IPage<AutoFlow> list(@RequestParam(name = "page", defaultValue = "1") Integer page, @RequestParam(name = "limit", defaultValue = "1") Integer size, @RequestParam(name = "name", defaultValue = "") String name) {
 		return spiderFlowService.selectSpiderPage(new Page<>(page, size), name);
 	}
 	
 	@RequestMapping("/save")
-	public String save(SpiderFlow spiderFlow){
-		spiderFlowService.save(spiderFlow);
-		return spiderFlow.getId();
+	public String save(AutoFlow autoFlow){
+		spiderFlowService.save(autoFlow);
+		return autoFlow.getId();
 	}
 
 	@RequestMapping("/history")
@@ -121,12 +111,12 @@ public class SpiderFlowController {
 	}
 	
 	@RequestMapping("/get")
-	public SpiderFlow get(String id){
+	public AutoFlow get(String id){
 		return spiderFlowService.getById(id);
 	}
 	
 	@RequestMapping("/other")
-	public List<SpiderFlow> other(String id){
+	public List<AutoFlow> other(String id){
 		if(StringUtils.isBlank(id)){
 			return spiderFlowService.selectFlows();
 		}

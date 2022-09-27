@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import top.reed.core.model.Function;
+import top.reed.core.model.AutoFunction;
 import top.reed.core.service.FunctionService;
 
 @RestController
@@ -19,22 +19,22 @@ public class FunctionController {
     private FunctionService functionService;
 
     @RequestMapping("/list")
-    public IPage<Function> list(@RequestParam(name = "page",defaultValue = "1")Integer page, @RequestParam(name = "limit",defaultValue = "1")Integer size,String name) {
-        QueryWrapper<Function> select = new QueryWrapper<Function>().select("id", "name", "parameter", "create_date");
+    public IPage<AutoFunction> list(@RequestParam(name = "page",defaultValue = "1")Integer page, @RequestParam(name = "limit",defaultValue = "1")Integer size, String name) {
+        QueryWrapper<AutoFunction> select = new QueryWrapper<AutoFunction>().select("id", "name", "parameter", "create_date");
         if(StringUtils.isNotBlank(name)){
             select.like("name",name);
         }
         select.orderByDesc("create_date");
-        return functionService.page(new Page<Function>(page, size), select);
+        return functionService.page(new Page<AutoFunction>(page, size), select);
     }
 
     @RequestMapping("/save")
-    public String save(Function function){
-        return functionService.saveFunction(function);
+    public String save(AutoFunction autoFunction){
+        return functionService.saveFunction(autoFunction);
     }
 
     @RequestMapping("/get")
-    public Function get(String id){
+    public AutoFunction get(String id){
         return functionService.getById(id);
     }
 

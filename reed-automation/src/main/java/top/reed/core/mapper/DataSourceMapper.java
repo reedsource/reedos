@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface DataSourceMapper extends BaseMapper<DataSource>{
 	
-	@Select("select id,name from sp_datasource")
+	@Select("select id,name from auto_datasource")
 	List<DataSource> selectAll();
 
 }

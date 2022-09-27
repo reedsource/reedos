@@ -6,8 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.util.Date;
 
-@TableName("sp_function")
-public class Function {
+@TableName("auto_function")
+public class AutoFunction {
 
     @TableId(type = IdType.ASSIGN_UUID)
     private String id;
