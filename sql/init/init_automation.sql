@@ -39,17 +39,16 @@ INSERT INTO sp_flow VALUES ('b4430885ba8349588d1220d37eac831d', '爬取开源中
 INSERT INTO sp_flow VALUES ('663aaa5e36a84c9594ef3cfd6738e9a7', '百度热点', '<mxGraphModel>\n  <root>\n    <mxCell id=\"0\">\n      <JsonProperty as=\"data\">\n        {&quot;spiderName&quot;:&quot;百度热点&quot;,&quot;threadCount&quot;:&quot;&quot;}\n      </JsonProperty>\n    </mxCell>\n    <mxCell id=\"1\" parent=\"0\"/>\n    <mxCell id=\"2\" value=\"开始\" style=\"start\" parent=\"1\" vertex=\"1\">\n      <mxGeometry x=\"80\" y=\"80\" width=\"32\" height=\"32\" as=\"geometry\"/>\n      <JsonProperty as=\"data\">\n        {&quot;shape&quot;:&quot;start&quot;}\n      </JsonProperty>\n    </mxCell>\n    <mxCell id=\"3\" value=\"开始抓取\" style=\"request\" parent=\"1\" vertex=\"1\">\n      <mxGeometry x=\"220\" y=\"80\" width=\"32\" height=\"32\" as=\"geometry\"/>\n      <JsonProperty as=\"data\">\n        {&quot;value&quot;:&quot;开始抓取&quot;,&quot;loopVariableName&quot;:&quot;&quot;,&quot;sleep&quot;:&quot;&quot;,&quot;timeout&quot;:&quot;&quot;,&quot;response-charset&quot;:&quot;gbk&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;body-type&quot;:&quot;none&quot;,&quot;body-content-type&quot;:&quot;text/plain&quot;,&quot;loopCount&quot;:&quot;&quot;,&quot;url&quot;:&quot;https://top.baidu.com/buzz?b=1&amp;fr=topindex&quot;,&quot;proxy&quot;:&quot;&quot;,&quot;request-body&quot;:&quot;&quot;,&quot;follow-redirect&quot;:&quot;1&quot;,&quot;tls-validate&quot;:&quot;1&quot;,&quot;shape&quot;:&quot;request&quot;}\n      </JsonProperty>\n    </mxCell>\n    <mxCell id=\"4\" value=\"定义变量\" style=\"variable\" parent=\"1\" vertex=\"1\">\n      <mxGeometry x=\"360\" y=\"80\" width=\"32\" height=\"32\" as=\"geometry\"/>\n      <JsonProperty as=\"data\">\n        {&quot;value&quot;:&quot;定义变量&quot;,&quot;loopVariableName&quot;:&quot;&quot;,&quot;variable-name&quot;:[&quot;elementbd&quot;],&quot;loopCount&quot;:&quot;&quot;,&quot;variable-value&quot;:[&quot;${resp.xpaths(&#39;//*[@id=\\&quot;main\\&quot;]/div[2]/div/table/tbody/tr&#39;)}&quot;],&quot;shape&quot;:&quot;variable&quot;}\n      </JsonProperty>\n    </mxCell>\n    <mxCell id=\"5\" value=\"输出\" style=\"output\" parent=\"1\" vertex=\"1\">\n      <mxGeometry x=\"480\" y=\"80\" width=\"32\" height=\"32\" as=\"geometry\"/>\n      <JsonProperty as=\"data\">\n        {&quot;value&quot;:&quot;输出&quot;,&quot;loopVariableName&quot;:&quot;i&quot;,&quot;output-name&quot;:[&quot;名称&quot;,&quot;地址&quot;,&quot;百度指数&quot;,&quot;2&quot;],&quot;loopCount&quot;:&quot;${elementbd.size()-1}&quot;,&quot;output-value&quot;:[&quot;${elementbd[i+1].xpath(&#39;//td[2]/a[1]/text()&#39;)}&quot;,&quot;${elementbd[i+1].xpath(&#39;//td[2]/a[1]/@href&#39;)}&quot;,&quot;${elementbd[i+1].xpath(&#39;//td[4]/span/text()&#39;)}&quot;,&quot;${elementbd[i+1].xpath(&#39;//td[3]/a[2]/text()&#39;)}&quot;],&quot;shape&quot;:&quot;output&quot;}\n      </JsonProperty>\n    </mxCell>\n    <mxCell id=\"6\" value=\"\" parent=\"1\" source=\"2\" target=\"3\" edge=\"1\">\n      <mxGeometry relative=\"1\" as=\"geometry\"/>\n      <JsonProperty as=\"data\">\n        {&quot;value&quot;:&quot;&quot;,&quot;condition&quot;:&quot;&quot;}\n      </JsonProperty>\n    </mxCell>\n    <mxCell id=\"7\" value=\"\" parent=\"1\" source=\"3\" target=\"4\" edge=\"1\">\n      <mxGeometry relative=\"1\" as=\"geometry\"/>\n      <JsonProperty as=\"data\">\n        {&quot;value&quot;:&quot;&quot;,&quot;condition&quot;:&quot;&quot;}\n      </JsonProperty>\n    </mxCell>\n    <mxCell id=\"8\" value=\"\" parent=\"1\" source=\"4\" target=\"5\" edge=\"1\">\n      <mxGeometry relative=\"1\" as=\"geometry\"/>\n      <JsonProperty as=\"data\">\n        {&quot;value&quot;:&quot;&quot;,&quot;condition&quot;:&quot;&quot;}\n      </JsonProperty>\n    </mxCell>\n  </root>\n</mxGraphModel>\n', '0 0/30 * * * ? *', '1', '2019-10-20 17:24:21', '2019-11-04 08:52:05', '2019-10-30 14:52:39', '45');
 
 DROP TABLE IF EXISTS sp_datasource;
-create table sp_datasource
-(
+create table sp_datasource (
     id                varchar(32)                        not null
     primary key,
-    name              varchar(255)                       null,
-    driver_class_name varchar(255)                       null,
-    jdbc_url          varchar(255)                       null,
-    username          varchar(64)                        null,
-    password          varchar(32)                        null,
-    create_date       datetime default CURRENT_TIMESTAMP not null
-);
+    name              varchar(255)                       null comment '数据源名称',
+    driver_class_name varchar(255)                       null comment '驱动名称',
+    jdbc_url          varchar(255)                       null comment '链接',
+    username          varchar(64)                        null comment '账号',
+    password          varchar(32)                        null comment '密码',
+    create_date       datetime default CURRENT_TIMESTAMP not null comment '创建时间'
+) comment '自动化数据源表';
 
 DROP TABLE IF EXISTS sp_variable;
 create table sp_variable (
@@ -59,17 +58,17 @@ create table sp_variable (
     value       varchar(512)                       null comment '变量值',
     description varchar(255)                       null comment '变量描述',
     create_date datetime default CURRENT_TIMESTAMP null comment '创建时间'
-) ;
+) comment '自动化常量表';
 
 /* v0.3.0 新增 */
 DROP TABLE IF EXISTS sp_task;
 create table sp_task (
     id         int auto_increment
     primary key,
-    flow_id    varchar(32) not null,
-    begin_time datetime    null,
-    end_time   datetime    null
-);
+    flow_id    varchar(32)                  not null comment '自动化任务ID',
+    begin_time datetime                     null comment '开始时间',
+    end_time   datetime                     null comment '结束时间'
+) comment '自动化定时任务表';
 
 /* v0.4.0 新增 */
 DROP TABLE IF EXISTS sp_function;
@@ -79,8 +78,8 @@ create table sp_function (
     name        varchar(255)                       null comment '函数名',
     parameter   varchar(512)                       null comment '参数',
     script      text                               null comment 'js脚本',
-    create_date datetime default CURRENT_TIMESTAMP null
-);
+    create_date datetime default CURRENT_TIMESTAMP null comment '创建时间'
+) comment '自定义函数表';
 
 /* v0.5.0 新增 */
 DROP TABLE IF EXISTS sp_flow_notice;
