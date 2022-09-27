@@ -33,9 +33,9 @@ import top.reed.common.core.domain.Ztree;
 @RequestMapping("/${moduleName}/${businessName}")
 public class ${ClassName}Controller extends BaseController {
 
-	private final I${ClassName}Service ${className}Service;
+	private final ${ClassName}Service ${className}Service;
 
-	public VariableController(I${ClassName}Service ${className}Service) {
+	public ${ClassName}Controller(I${ClassName}Service ${className}Service) {
 		this.${className}Service = ${className}Service;
 	}
 
