@@ -20,7 +20,7 @@ import ${packageName}.domain.${subClassName};
 #end
 import ${packageName}.mapper.${ClassName}Mapper;
 import ${packageName}.domain.${ClassName};
-import ${packageName}.service.I${ClassName}Service;
+import ${packageName}.service.${ClassName}Service;
 import top.reed.common.core.text.Convert;
 
 /**
@@ -30,7 +30,7 @@ import top.reed.common.core.text.Convert;
  * date ${datetime}
  */
 @Service
-public class ${ClassName}ServiceImpl implements I${ClassName}Service {
+public class ${ClassName}ServiceImpl implements ${ClassName}Service {
 
 	private final ${ClassName}Mapper ${className}Mapper;
 

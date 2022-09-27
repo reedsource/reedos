@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import top.reed.common.annotation.Log;
 import top.reed.common.enums.BusinessType;
 import ${packageName}.domain.${ClassName};
-import ${packageName}.service.I${ClassName}Service;
+import ${packageName}.service.${ClassName}Service;
 import top.reed.common.core.controller.BaseController;
 import top.reed.common.core.domain.AjaxResult;
 import top.reed.common.utils.poi.ExcelUtil;
@@ -35,7 +35,7 @@ public class ${ClassName}Controller extends BaseController {
 
 	private final ${ClassName}Service ${className}Service;
 
-	public ${ClassName}Controller(I${ClassName}Service ${className}Service) {
+	public ${ClassName}Controller(${ClassName}Service ${className}Service) {
 		this.${className}Service = ${className}Service;
 	}
 
