@@ -7,9 +7,8 @@ insert into sys_menu values('5', '自动化管理', '0', '5', '#',              
 insert into sys_menu values('110',  '定时任务', '5', '1', '/quartz/job',           '', 'C', '0', '1', 'quartz:job:view',          'fa fa-tasks',           'admin', sysdate(), '', null, '定时任务菜单');
 -- 三级菜单
 INSERT INTO sys_menu VALUES (2000, '自动化列表', 5, 2, '/spiderList', 'menuItem', 'C', '0', '1', null, 'fa fa-circle-o-notch', 'admin', '2022-09-26 14:19:43', '', null, '');
-INSERT INTO sys_menu VALUES (2001, '自动化全局变量', 5, 3, '/variables', 'menuItem', 'C', '0', '1', null, 'fa fa-plus', 'admin', '2022-09-26 14:22:13', '', null, '');
-INSERT INTO sys_menu VALUES (2002, '自定义函数', 5, 4, '/functions', 'menuItem', 'C', '0', '1', null, 'fa fa-gears', 'admin', '2022-09-26 14:23:02', '', null, '');
-INSERT INTO sys_menu VALUES (2003, '数据源管理', 5, 5, '/datasources', 'menuItem', 'C', '0', '1', null, 'fa fa-lemon-o', 'admin', '2022-09-26 14:24:02', '', null, '');
+INSERT INTO sys_menu VALUES (2001, '自定义函数', 5, 3, '/functions', 'menuItem', 'C', '0', '1', null, 'fa fa-gears', 'admin', '2022-09-26 14:23:02', '', null, '');
+INSERT INTO sys_menu VALUES (2002, '数据源管理', 5, 4, '/datasources', 'menuItem', 'C', '0', '1', null, 'fa fa-lemon-o', 'admin', '2022-09-26 14:24:02', '', null, '');
 -- 定时任务按钮
 insert into sys_menu values('1050', '任务查询', '110', '1',  '#', '',  'F', '0', '1', 'quartz:job:list',                '#', 'admin', sysdate(), '', null, '');
 insert into sys_menu values('1051', '任务新增', '110', '2',  '#', '',  'F', '0', '1', 'quartz:job:add',                 '#', 'admin', sysdate(), '', null, '');
@@ -50,17 +49,6 @@ create table sp_datasource (
     create_date       datetime default CURRENT_TIMESTAMP not null comment '创建时间'
 ) comment '自动化数据源表';
 
-DROP TABLE IF EXISTS sp_variable;
-create table sp_variable (
-    id          int auto_increment
-    primary key,
-    name        varchar(32)                        null comment '变量名',
-    value       varchar(512)                       null comment '变量值',
-    description varchar(255)                       null comment '变量描述',
-    create_date datetime default CURRENT_TIMESTAMP null comment '创建时间'
-) comment '自动化常量表';
-
-/* v0.3.0 新增 */
 DROP TABLE IF EXISTS sp_task;
 create table sp_task (
     id         int auto_increment
@@ -70,7 +58,6 @@ create table sp_task (
     end_time   datetime                     null comment '结束时间'
 ) comment '自动化定时任务表';
 
-/* v0.4.0 新增 */
 DROP TABLE IF EXISTS sp_function;
 create table sp_function (
     id          varchar(32)                        not null
@@ -81,7 +68,6 @@ create table sp_function (
     create_date datetime default CURRENT_TIMESTAMP null comment '创建时间'
 ) comment '自定义函数表';
 
-/* v0.5.0 新增 */
 DROP TABLE IF EXISTS sp_flow_notice;
 create table sp_flow_notice (
     id               varchar(32)      not null

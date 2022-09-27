@@ -29,14 +29,6 @@ public class InterfaceController {
 	}
 
 	/**
-	 * @return 常量列表
-	 */
-	@GetMapping("/variables")
-	public String variables() {
-		return "variables";
-	}
-
-	/**
 	 * @return 自定义函数列表
 	 */
 	@GetMapping("/functions")
@@ -61,14 +53,6 @@ public class InterfaceController {
 		return "datasource-edit";
 	}
 
-	/**
-	 * @param id id
-	 * @return 常量添加更新修改
-	 */
-	@GetMapping("/variable-edit")
-	public String variableedit(String id) {
-		return "variable-edit";
-	}
 
 	/**
 	 * @param id id

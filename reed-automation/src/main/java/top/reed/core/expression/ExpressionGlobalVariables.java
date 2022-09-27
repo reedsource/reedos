@@ -5,6 +5,9 @@ import java.util.Map;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+/**
+ * 表达式全局变量
+ */
 public class ExpressionGlobalVariables {
 
 	private static Map<String, String> variables = new HashMap<>();
