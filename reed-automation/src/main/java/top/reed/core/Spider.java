@@ -12,14 +12,12 @@ import top.reed.api.concurrent.*;
 import top.reed.api.concurrent.SpiderFlowThreadPoolExecutor.SubThreadPoolExecutor;
 import top.reed.api.context.SpiderContext;
 import top.reed.api.context.SpiderContextHolder;
-import top.reed.api.enums.FlowNoticeType;
 import top.reed.api.executor.ShapeExecutor;
 import top.reed.api.listener.SpiderListener;
 import top.reed.api.model.SpiderNode;
 import top.reed.api.model.SpiderOutput;
 import top.reed.core.executor.shape.LoopExecutor;
 import top.reed.core.model.SpiderFlow;
-import top.reed.core.service.FlowNoticeService;
 import top.reed.core.utils.ExecutorsUtils;
 import top.reed.core.utils.ExpressionUtils;
 import top.reed.core.utils.SpiderFlowUtils;
@@ -52,9 +50,6 @@ public class Spider {
 
 	@Value("${spider.detect.dead-cycle:5000}")
 	private Integer deadCycle;
-	
-	@Autowired
-	private FlowNoticeService flowNoticeService;
 
 	public static SpiderFlowThreadPoolExecutor executorInstance;
 
@@ -72,11 +67,9 @@ public class Spider {
 			variables = new HashMap<>();
 		}
 		SpiderNode root = SpiderFlowUtils.loadXMLFromString(spiderFlow.getXml());
-		// 流程开始通知
-		flowNoticeService.sendFlowNotice(spiderFlow, FlowNoticeType.startNotice);
+		//执行流程节点
 		executeRoot(root, context, variables);
-		// 流程结束通知
-		flowNoticeService.sendFlowNotice(spiderFlow, FlowNoticeType.endNotice);
+
 		return context.getOutputs();
 	}
 

@@ -94,14 +94,6 @@ public class InterfaceController {
 	}
 
 	/**
-	 * @return 流程通知设置
-	 */
-	@GetMapping("/spiderList-notice")
-	public String spiderListNotice() {
-		return "spiderList-notice";
-	}
-
-	/**
 	 * @return 全局配置
 	 */
 	@GetMapping("/flowEditor/root")

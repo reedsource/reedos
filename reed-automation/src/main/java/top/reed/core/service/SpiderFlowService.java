@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import top.reed.core.job.SpiderJobManager;
-import top.reed.core.mapper.FlowNoticeMapper;
 import top.reed.core.mapper.SpiderFlowMapper;
 import top.reed.core.model.SpiderFlow;
 
@@ -41,9 +40,6 @@ public class SpiderFlowService extends ServiceImpl<SpiderFlowMapper, SpiderFlow>
 	
 	@Autowired
 	private SpiderJobManager spiderJobManager;
-	
-	@Autowired
-	private FlowNoticeMapper flowNoticeMapper;
 
 	private static Logger logger = LoggerFactory.getLogger(SpiderFlowService.class);
 
@@ -158,7 +154,6 @@ public class SpiderFlowService extends ServiceImpl<SpiderFlowMapper, SpiderFlow>
 	public void remove(String id){
 		sfMapper.deleteById(id);
 		spiderJobManager.remove(id);
-		flowNoticeMapper.deleteById(id);
 	}
 	
 	public List<SpiderFlow> selectOtherFlows(String id){
