@@ -72,22 +72,6 @@ public class InterfaceController {
 	}
 
 	/**
-	 * @return 自动化任务
-	 */
-	@GetMapping("/task")
-	public String task() {
-		return "task";
-	}
-
-	/**
-	 * @return Cron表达式生成器编辑器
-	 */
-	@GetMapping("/editCron")
-	public String editCron() {
-		return "editCron";
-	}
-
-	/**
 	 * @return 全局配置
 	 */
 	@GetMapping("/flowEditor/root")

@@ -1,6 +1,5 @@
 package top.reed.core.service;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -16,11 +15,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import top.reed.core.job.SpiderJobManager;
+import top.reed.api.context.SpiderContextHolder;
+import top.reed.core.Spider;
+import top.reed.core.job.SpiderJobContext;
 import top.reed.core.mapper.SpiderFlowMapper;
 import top.reed.core.model.SpiderFlow;
 
-import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -37,9 +37,9 @@ public class SpiderFlowService extends ServiceImpl<SpiderFlowMapper, SpiderFlow>
 	
 	@Autowired
 	private SpiderFlowMapper sfMapper;
-	
+
 	@Autowired
-	private SpiderJobManager spiderJobManager;
+	private Spider spider;
 
 	private static Logger logger = LoggerFactory.getLogger(SpiderFlowService.class);
 
@@ -76,8 +76,28 @@ public class SpiderFlowService extends ServiceImpl<SpiderFlowMapper, SpiderFlow>
 	}
 	
 	public void run(String id){
-		spiderJobManager.run(id);
+		Spider.executorInstance.submit(()->{
+			run(getById(id));
+		});
 	}
+	public void run(SpiderFlow spiderFlow ) {
+		SpiderJobContext context = null;
+		try {
+			context = SpiderJobContext.create(this.workspace, spiderFlow.getId(),false);
+			SpiderContextHolder.set(context);
+			logger.info("开始执行任务{}", spiderFlow.getName());
+			spider.run(spiderFlow, context);
+			logger.info("执行任务{}完毕", spiderFlow.getName());
+		} catch (Exception e) {
+			logger.error("执行任务{}出错", spiderFlow.getName(), e);
+		} finally {
+			if (context != null) {
+				context.close();
+			}
+			SpiderContextHolder.remove();
+		}
+	}
+
 	public void remove(String id){
 		sfMapper.deleteById(id);
 	}
