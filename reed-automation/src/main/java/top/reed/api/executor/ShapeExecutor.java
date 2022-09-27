@@ -30,8 +30,8 @@ public interface ShapeExecutor {
 	
 	/**
 	 * 执行器具体的功能实现
-	 * @param node 当前要执行的爬虫节点
-	 * @param context 爬虫上下文
+	 * @param node 当前要执行的自动化任务节点
+	 * @param context 自动化任务上下文
 	 * @param variables 节点流程的全部变量的集合
 	 */
 	void execute(SpiderNode node, SpiderContext context, Map<String, Object> variables);

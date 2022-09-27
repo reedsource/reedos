@@ -29,7 +29,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * 爬虫流程执行服务
+ * 自动化任务流程执行服务
  * @author Administrator
  *
  */
@@ -84,7 +84,7 @@ public class SpiderFlowService extends ServiceImpl<SpiderFlowMapper, SpiderFlow>
 	
 	/**
 	 * 重置定时任务
-	 * @param id 爬虫的ID
+	 * @param id 自动化任务的ID
 	 * @param cron 定时器
 	 */
 	public void resetCornExpression(String id, String cron){

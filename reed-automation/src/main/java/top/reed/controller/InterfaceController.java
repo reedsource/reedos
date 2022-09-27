@@ -21,7 +21,7 @@ public class InterfaceController {
 	}
 
 	/**
-	 * @return 爬虫列表
+	 * @return 自动化任务列表
 	 */
 	@GetMapping("/spiderList")
 	public String spiderList() {
@@ -80,7 +80,7 @@ public class InterfaceController {
 	}
 
 	/**
-	 * @return 爬虫流程编辑页面
+	 * @return 自动化任务流程编辑页面
 	 */
 	@GetMapping("/editor")
 	public String editor() {
@@ -88,7 +88,7 @@ public class InterfaceController {
 	}
 
 	/**
-	 * @return 爬虫
+	 * @return 自动化任务
 	 */
 	@GetMapping("/task")
 	public String task() {

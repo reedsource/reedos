@@ -12,7 +12,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
- * 爬虫上下文
+ * 自动化任务上下文
  * @author jmxd
  *
  */
@@ -38,7 +38,7 @@ public class SpiderContext extends HashMap<String, Object>{
 	private SpiderNode rootNode;
 
 	/**
-	 * 爬虫是否运行中
+	 * 自动化任务是否运行中
 	 */
 	private volatile boolean running = true;
 

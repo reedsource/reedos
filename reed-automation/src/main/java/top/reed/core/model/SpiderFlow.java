@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.util.Date;
 
 /**
- * 爬虫持久化实体类
+ * 自动化任务持久化实体类
  */
 @TableName("sp_flow")
 public class SpiderFlow {

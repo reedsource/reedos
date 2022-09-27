@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 爬虫定时执行
+ * 自动化任务定时执行
  *
  * @author Administrator
  */

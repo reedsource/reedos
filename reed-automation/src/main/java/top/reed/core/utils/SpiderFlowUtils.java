@@ -15,7 +15,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 /**
- * 爬虫流程图工具类
+ * 自动化任务流程图工具类
  * @author jmxd
  *
  */
@@ -24,7 +24,7 @@ public class SpiderFlowUtils {
 	/**
 	 * 加载流程图
 	 * @param xmlString string类型保存的XML流程图
-	 * @return SpiderNode 爬虫的开始节点
+	 * @return SpiderNode 自动化任务的开始节点
 	 */
 	public static SpiderNode loadXMLFromString(String xmlString){
 		Document document = Jsoup.parse(xmlString);

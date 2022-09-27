@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 爬虫资源库 实现爬虫的入库
+ * 自动化任务资源库 实现自动化任务的入库
  * @author Administrator
  *
  */

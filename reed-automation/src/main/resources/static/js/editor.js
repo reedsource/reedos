@@ -695,7 +695,7 @@ function bindToolbarClickAction(editor){
 	}).on('click','.btn-debug',function(){
 		runSpider(true);
 	}).on('click',".btn-return",function(){
-		parent.openTab('爬虫列表','welcome','spiderList')
+		parent.openTab('自动化任务列表','welcome','spiderList')
 	}).on('click','.btn-save',function(){
 		Save();
 	}).on('click','.btn-dock-right',function(){

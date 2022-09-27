@@ -34,7 +34,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * 爬虫的核心类
+ * 自动化任务的核心类
  *
  * @author jmxd
  */
@@ -93,7 +93,7 @@ public class Spider {
 		context.put(ATOMIC_DEAD_CYCLE, executeCount);
 		//执行根节点
 		executeRoot(root, context, new HashMap<>());
-		//当爬虫任务执行完毕时,判断是否超过预期
+		//当自动化任务任务执行完毕时,判断是否超过预期
 		if (executeCount.get() > deadCycle) {
 			logger.error("检测到可能出现死循环,测试终止");
 		} else {

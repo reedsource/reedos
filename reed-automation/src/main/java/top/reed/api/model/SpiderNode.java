@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 
 /**
- * 爬虫节点
+ * 自动化任务节点
  * @author jmxd
  *
  */

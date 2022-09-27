@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import top.reed.api.enums.FlowNoticeWay;
 
 /**
- * 爬虫任务通知实体
+ * 自动化任务任务通知实体
  * 
  * @author BillDowney
  * @date 2020年4月3日 下午2:57:46

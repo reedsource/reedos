@@ -11,7 +11,7 @@ import javax.websocket.Session;
 import java.util.Date;
 
 /**
- * WebSocket通讯中爬虫的上下文域
+ * WebSocket通讯中自动化任务的上下文域
  *
  * @author Administrator
  */

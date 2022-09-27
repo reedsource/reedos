@@ -41,7 +41,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * 爬虫Controller
+ * 自动化任务Controller
  * @author Administrator
  *
  */
@@ -95,10 +95,10 @@ public class SpiderFlowController {
 	}
 	
 	/**
-	 * 爬虫列表
+	 * 自动化任务列表
 	 * @param page 页数
 	 * @param size 每页显示条数
-	 * @return Page<SpiderFlow> 所有爬虫的列表页
+	 * @return Page<SpiderFlow> 所有自动化任务的列表页
 	 */
 	@RequestMapping("/list")
 	public IPage<SpiderFlow> list(@RequestParam(name = "page", defaultValue = "1") Integer page, @RequestParam(name = "limit", defaultValue = "1") Integer size, @RequestParam(name = "name", defaultValue = "") String name) {

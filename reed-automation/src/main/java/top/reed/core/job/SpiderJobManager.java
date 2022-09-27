@@ -11,7 +11,7 @@ import top.reed.core.model.SpiderFlow;
 import java.util.Date;
 
 /**
- * 爬虫定时执行管理
+ * 自动化任务定时执行管理
  * @author Administrator
  *
  */
@@ -43,7 +43,7 @@ public class SpiderJobManager {
 	
 	/**
 	 * 新建定时任务
-	 * @param spiderFlow 爬虫流程图
+	 * @param spiderFlow 自动化任务流程图
 	 * @return boolean true/false
 	 */
 	public Date addJob(SpiderFlow spiderFlow){

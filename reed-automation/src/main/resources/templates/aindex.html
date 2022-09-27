@@ -32,7 +32,7 @@
             <div class="layui-side-scroll menu-list">
                 <ul class="layui-nav layui-nav-tree">
 					<!--调用index.js中的方法-->
-                    <li class="layui-nav-item layui-nav-itemed layui-this"><a onclick="openTab('爬虫列表','1','spiderList')">爬虫列表</a></li>
+                    <li class="layui-nav-item layui-nav-itemed layui-this"><a onclick="openTab('自动化任务列表','1','spiderList')">自动化任务列表</a></li>
                     <li class="layui-nav-item layui-nav-itemed"><a onclick="openTab('全局变量','2','variables')" title="全局变量">全局变量</a></li>
                     <li class="layui-nav-item layui-nav-itemed"><a onclick="openTab('自定义函数','3','functions')"  title="自定义函数">自定义函数</a></li>
                     <li class="layui-nav-item layui-nav-itemed"><a onclick="openTab('自定义函数','4','datasources')" title="数据源管理">数据源管理</a></li>
@@ -42,7 +42,7 @@
 		<div class="layui-body">
 			<div class="layui-tab" lay-filter="admin-tab" lay-allowClose="true">
 		    	<ul id="layuiTab" class="layui-tab-title admin-unselect" unselectable="on" lay-allowClose="false">
-                <!--<li id="1" class="layui-this layui-tab-hidden-close" lay-id="welcome">爬虫列表</li>-->
+                <!--<li id="1" class="layui-this layui-tab-hidden-close" lay-id="welcome">自动化任务列表</li>-->
 		    	</ul>
 		    	<div class="layui-tab-content">
 		    		<div class="layui-tab-item layui-show">
@@ -53,7 +53,7 @@
 		    </div>
 		</div>
 		<script>
-            openTab('爬虫列表','1','spiderList');
+            openTab('自动化任务列表','1','spiderList');
 		</script>
 	</body>
 </html>

@@ -53,7 +53,7 @@ public class SpiderRestController {
 	public JsonBean<Integer> runAsync(@PathVariable("id")String id){
 		SpiderFlow flow = spiderFlowService.getById(id);
 		if(flow == null){
-			return new JsonBean<>(0, "找不到此爬虫信息");
+			return new JsonBean<>(0, "找不到此自动化任务信息");
 		}
 		Task task = new Task();
 		task.setFlowId(flow.getId());
@@ -103,7 +103,7 @@ public class SpiderRestController {
 	public JsonBean<List<SpiderOutput>> run(@PathVariable("id")String id,@RequestBody(required = false)Map<String,Object> params){
 		SpiderFlow flow = spiderFlowService.getById(id);
 		if(flow == null){
-			return new JsonBean<>(0, "找不到此爬虫信息");
+			return new JsonBean<>(0, "找不到此自动化任务信息");
 		}
 		List<SpiderOutput> outputs;
 		Integer maxId = spiderFlowService.getFlowMaxTaskId(id);
@@ -111,7 +111,7 @@ public class SpiderRestController {
 		try{
 			outputs = spider.run(flow,context, params);	
 		}catch(Exception e){
-			logger.error("执行爬虫失败",e);
+			logger.error("执行自动化任务失败",e);
 			return new JsonBean<>(-1, "执行失败");
 		} finally{
 			context.close();
