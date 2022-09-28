@@ -10,11 +10,11 @@ import java.util.List;
 
 /**
  * 自动化任务资源库 实现自动化任务的入库
- * @author Administrator
+ * @author reedsource
  *
  */
 @Mapper
-public interface SpiderFlowMapper extends BaseMapper<AutoFlow>{
+public interface AutoFlowMapper extends BaseMapper<AutoFlow>{
 
 	@Select({
 			"<script>",

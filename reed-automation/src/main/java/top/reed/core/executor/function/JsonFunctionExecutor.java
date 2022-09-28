@@ -8,7 +8,7 @@ import top.reed.api.executor.FunctionExecutor;
 
 /**
  * Json和String互相转换 工具类 防止NPE 
- * @author Administrator
+ * @author reedsource
  *
  */
 @Component

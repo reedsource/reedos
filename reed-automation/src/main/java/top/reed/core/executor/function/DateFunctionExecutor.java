@@ -12,7 +12,7 @@ import java.util.Date;
 
 /**
  * 时间获取/格式化 工具类 防止NPE 默认格式(yyyy-MM-dd HH:mm:ss)
- * @author Administrator
+ * @author reedsource
  *
  */
 @Component

@@ -9,7 +9,7 @@ import top.reed.websocket.WebSocketEditorServer;
 
 /**
  * 配置WebSocket
- * @author Administrator
+ * @author reedsource
  *
  */
 @Configuration

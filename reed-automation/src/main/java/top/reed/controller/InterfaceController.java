@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 /**
- * 界面跳转Controller
+ * 自动化部分统一界面跳转Controller
  */
 @Controller
 @RequestMapping("/")

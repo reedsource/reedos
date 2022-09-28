@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.util.Date;
 
 @TableName("auto_datasource")
-public class DataSource {
+public class AutoDataSource {
 
     @TableId(type = IdType.ASSIGN_UUID)
     private String id;
@@ -24,10 +24,10 @@ public class DataSource {
 
     private Date createDate;
 
-    public DataSource() {
+    public AutoDataSource() {
     }
 
-    public DataSource(String id, String name) {
+    public AutoDataSource(String id, String name) {
         this.id = id;
         this.name = name;
     }

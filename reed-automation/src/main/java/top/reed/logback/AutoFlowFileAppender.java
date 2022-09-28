@@ -11,7 +11,7 @@ import top.reed.core.job.SpiderJobContext;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class SpiderFlowFileAppender extends FileAppender<ILoggingEvent> {
+public class AutoFlowFileAppender extends FileAppender<ILoggingEvent> {
 
     @Override
     protected void subAppend(ILoggingEvent event) {

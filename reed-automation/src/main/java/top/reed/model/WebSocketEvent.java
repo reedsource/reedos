@@ -2,7 +2,7 @@ package top.reed.model;
 
 /**
  * WebSocket事件
- * @author Administrator
+ * @author reedsource
  *
  * @param <T>
  */

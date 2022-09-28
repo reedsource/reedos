@@ -9,14 +9,14 @@ import top.reed.api.executor.ShapeExecutor;
 import top.reed.api.model.SpiderNode;
 import top.reed.core.Spider;
 import top.reed.core.model.AutoFlow;
-import top.reed.core.service.SpiderFlowService;
-import top.reed.core.utils.SpiderFlowUtils;
+import top.reed.core.service.AutoFlowService;
+import top.reed.core.utils.AutoFlowUtils;
 
 import java.util.Map;
 
 /**
  * 子流程执行器
- * @author Administrator
+ * @author reedsource
  *
  */
 @Component
@@ -27,7 +27,7 @@ public class ProcessExecutor implements ShapeExecutor{
 	private static Logger logger = LoggerFactory.getLogger(ProcessExecutor.class);
 	
 	@Autowired
-	private SpiderFlowService spiderFlowService;
+	private AutoFlowService autoFlowService;
 	
 	@Autowired
 	private Spider spider;
@@ -35,10 +35,10 @@ public class ProcessExecutor implements ShapeExecutor{
 	@Override
 	public void execute(SpiderNode node, SpiderContext context, Map<String,Object> variables) {
 		String flowId = node.getStringJsonValue("flowId");
-		AutoFlow autoFlow = spiderFlowService.getById(flowId);
+		AutoFlow autoFlow = autoFlowService.getById(flowId);
 		if(autoFlow != null){
 			logger.info("执行子流程:{}", autoFlow.getName());
-			SpiderNode root = SpiderFlowUtils.loadXMLFromString(autoFlow.getXml());
+			SpiderNode root = AutoFlowUtils.loadXMLFromString(autoFlow.getXml());
 			spider.executeNode(null,root,context,variables);
 		}else{
 			logger.info("执行子流程:{}失败，找不到该子流程", flowId);

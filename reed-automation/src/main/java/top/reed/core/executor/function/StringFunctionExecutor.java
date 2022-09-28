@@ -13,7 +13,7 @@ import java.util.UUID;
 
 /**
  * String 工具类 防止NPE 
- * @author Administrator
+ * @author reedsource
  *
  */
 @Component

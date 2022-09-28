@@ -17,7 +17,7 @@ import top.reed.api.listener.SpiderListener;
 import top.reed.api.model.SpiderNode;
 import top.reed.api.model.SpiderOutput;
 import top.reed.core.serializer.FastJsonSerializer;
-import top.reed.core.utils.DataSourceUtils;
+import top.reed.core.utils.AutoDataSourceUtils;
 import top.reed.core.utils.ExpressionUtils;
 
 import java.io.FileOutputStream;
@@ -27,7 +27,7 @@ import java.util.*;
 
 /**
  * 输出执行器
- * @author Administrator
+ * @author reedsource
  *
  */
 @Component
@@ -141,7 +141,7 @@ public class OutputExecutor implements ShapeExecutor, SpiderListener {
 		if (data == null || data.isEmpty()) {
 			return;
 		}
-		JdbcTemplate template = new JdbcTemplate(DataSourceUtils.getDataSource(databaseId));
+		JdbcTemplate template = new JdbcTemplate(AutoDataSourceUtils.getDataSource(databaseId));
 		Set<String> keySet = data.keySet();
 		Object[] params = new Object[data.size()];
 		SQL sql = new SQL();

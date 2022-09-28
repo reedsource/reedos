@@ -8,7 +8,7 @@ import top.reed.api.executor.FunctionExecutor;
 
 /**
  * 随机数/字符串 生成方法 
- * @author Administrator
+ * @author reedsource
  *
  */
 @Component

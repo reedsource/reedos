@@ -19,7 +19,7 @@ import java.util.Set;
  * @author jmxd
  *
  */
-public class SpiderFlowUtils {
+public class AutoFlowUtils {
 	
 	/**
 	 * 加载流程图

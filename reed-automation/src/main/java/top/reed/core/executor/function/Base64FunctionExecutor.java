@@ -8,7 +8,7 @@ import top.reed.api.executor.FunctionExecutor;
 
 /**
  * 字符串内容和Base64互相转换 工具类 防止NPE
- * @author Administrator
+ * @author reedsource
  *
  */
 @Component

@@ -3,7 +3,8 @@ package top.reed.core.utils;
 import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import top.reed.core.service.DataSourceService;
+import top.reed.core.model.AutoDataSource;
+import top.reed.core.service.AutoDataSourceService;
 
 import javax.sql.DataSource;
 import java.util.HashMap;
@@ -15,11 +16,11 @@ import java.util.Map;
  *
  */
 @Component
-public class DataSourceUtils {
+public class AutoDataSourceUtils {
 	
 	private static final Map<String,DataSource> datasources = new HashMap<>();
 	
-	private static DataSourceService dataSourceService;
+	private static AutoDataSourceService autoDataSourceService;
 	
 	public static DataSource createDataSource(String className,String url,String username,String password){
 		DruidDataSource datasource = new DruidDataSource();
@@ -45,7 +46,7 @@ public class DataSourceUtils {
 	public synchronized static DataSource getDataSource(String dataSourceId){
 		DataSource dataSource = datasources.get(dataSourceId);
 		if(dataSource == null){
-			top.reed.core.model.DataSource ds = dataSourceService.getById(dataSourceId);
+			AutoDataSource ds = autoDataSourceService.getById(dataSourceId);
 			if(ds != null){
 				dataSource = createDataSource(ds.getDriverClassName(), ds.getJdbcUrl(), ds.getUsername(), ds.getPassword());
 				datasources.put(dataSourceId, dataSource);
@@ -55,8 +56,8 @@ public class DataSourceUtils {
 	}
 
 	@Autowired
-	public void setDataSourceService(DataSourceService dataSourceService) {
-		DataSourceUtils.dataSourceService = dataSourceService;
+	public void setDataSourceService(AutoDataSourceService autoDataSourceService) {
+		AutoDataSourceUtils.autoDataSourceService = autoDataSourceService;
 	}
 
 }

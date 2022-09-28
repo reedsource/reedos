@@ -9,7 +9,7 @@ import java.util.Map;
 
 /**
  * 循环执行器
- * @author Administrator
+ * @author reedsource
  *
  */
 @Component

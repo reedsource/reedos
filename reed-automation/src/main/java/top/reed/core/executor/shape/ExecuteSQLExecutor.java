@@ -14,7 +14,7 @@ import top.reed.api.context.SpiderContext;
 import top.reed.api.executor.ShapeExecutor;
 import top.reed.api.model.Grammer;
 import top.reed.api.model.SpiderNode;
-import top.reed.core.utils.DataSourceUtils;
+import top.reed.core.utils.AutoDataSourceUtils;
 import top.reed.core.utils.ExpressionUtils;
 import top.reed.core.utils.ExtractUtils;
 
@@ -62,7 +62,7 @@ public class ExecuteSQLExecutor implements ShapeExecutor, Grammerable {
 		} else if (StringUtils.isBlank(sql)) {
 			logger.warn("sql为空！");
 		} else {
-			JdbcTemplate template = new JdbcTemplate(DataSourceUtils.getDataSource(dsId));
+			JdbcTemplate template = new JdbcTemplate(AutoDataSourceUtils.getDataSource(dsId));
 			//把变量替换成占位符
 			List<String> parameters = ExtractUtils.getMatchers(sql, "#(.*?)#", true);
 			sql = sql.replaceAll("#(.*?)#", "?");

@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 /**
  * List 工具类 防止NPE 添加了类似python的split()方法 
- * @author Administrator
+ * @author reedsource
  *
  */
 @Component

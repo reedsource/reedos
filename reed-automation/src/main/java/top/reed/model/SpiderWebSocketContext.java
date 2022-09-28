@@ -13,7 +13,7 @@ import java.util.Date;
 /**
  * WebSocket通讯中自动化任务的上下文域
  *
- * @author Administrator
+ * @author reedsource
  */
 public class SpiderWebSocketContext extends SpiderContext {
 

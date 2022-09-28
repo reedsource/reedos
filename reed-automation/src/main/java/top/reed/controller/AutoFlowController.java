@@ -21,7 +21,7 @@ import top.reed.api.model.JsonBean;
 import top.reed.api.model.Plugin;
 import top.reed.api.model.Shape;
 import top.reed.core.model.AutoFlow;
-import top.reed.core.service.SpiderFlowService;
+import top.reed.core.service.AutoFlowService;
 import top.reed.core.utils.ExecutorsUtils;
 
 import javax.annotation.PostConstruct;
@@ -32,12 +32,12 @@ import java.util.stream.Collectors;
 
 /**
  * 自动化任务Controller
- * @author Administrator
+ * @author reedsource
  *
  */
 @RestController
 @RequestMapping("/spider")
-public class SpiderFlowController {
+public class AutoFlowController {
 	
 	@Autowired
 	private List<FunctionExecutor> functionExecutors;
@@ -49,7 +49,7 @@ public class SpiderFlowController {
 	private List<Grammerable> grammerables;
 	
 	@Autowired
-	private SpiderFlowService spiderFlowService;
+	private AutoFlowService autoFlowService;
 	
 	@Autowired(required = false)
 	private List<PluginConfig> pluginConfigs;
@@ -59,7 +59,7 @@ public class SpiderFlowController {
 	
 	private final List<Grammer> grammers = new ArrayList<Grammer>();
 	
-	private static Logger logger = LoggerFactory.getLogger(SpiderFlowController.class);
+	private static Logger logger = LoggerFactory.getLogger(AutoFlowController.class);
 	
 	@PostConstruct
 	private void init(){
@@ -92,60 +92,60 @@ public class SpiderFlowController {
 	 */
 	@RequestMapping("/list")
 	public IPage<AutoFlow> list(@RequestParam(name = "page", defaultValue = "1") Integer page, @RequestParam(name = "limit", defaultValue = "1") Integer size, @RequestParam(name = "name", defaultValue = "") String name) {
-		return spiderFlowService.selectSpiderPage(new Page<>(page, size), name);
+		return autoFlowService.selectSpiderPage(new Page<>(page, size), name);
 	}
 	
 	@RequestMapping("/save")
 	public String save(AutoFlow autoFlow){
-		spiderFlowService.save(autoFlow);
+		autoFlowService.save(autoFlow);
 		return autoFlow.getId();
 	}
 
 	@RequestMapping("/history")
 	public JsonBean<?> history(String id,String timestamp){
 		if(StringUtils.isNotBlank(timestamp)){
-			return new JsonBean<>(spiderFlowService.readHistory(id,timestamp));
+			return new JsonBean<>(autoFlowService.readHistory(id,timestamp));
 		}else{
-			return new JsonBean<>(spiderFlowService.historyList(id));
+			return new JsonBean<>(autoFlowService.historyList(id));
 		}
 	}
 	
 	@RequestMapping("/get")
 	public AutoFlow get(String id){
-		return spiderFlowService.getById(id);
+		return autoFlowService.getById(id);
 	}
 	
 	@RequestMapping("/other")
 	public List<AutoFlow> other(String id){
 		if(StringUtils.isBlank(id)){
-			return spiderFlowService.selectFlows();
+			return autoFlowService.selectFlows();
 		}
-		return spiderFlowService.selectOtherFlows(id);
+		return autoFlowService.selectOtherFlows(id);
 	}
 	
 	@RequestMapping("/remove")
 	public void remove(String id){
-		spiderFlowService.remove(id);
+		autoFlowService.remove(id);
 	}
 
 	@RequestMapping("/start")
 	public void start(String id){
-		spiderFlowService.start(id);
+		autoFlowService.start(id);
 	}
 
 	@RequestMapping("/stop")
 	public void stop(String id){
-		spiderFlowService.stop(id);
+		autoFlowService.stop(id);
 	}
 	
 	@RequestMapping("/run")
 	public void run(String id){
-		spiderFlowService.run(id);
+		autoFlowService.run(id);
 	}
 	
 	@RequestMapping("/xml")
 	public String xml(String id){
-		return spiderFlowService.getById(id).getXml();
+		return autoFlowService.getById(id).getXml();
 	}
 	@RequestMapping("/shapes")
 	public List<Shape> shapes(){
@@ -164,6 +164,6 @@ public class SpiderFlowController {
 
 	@GetMapping("/recent5TriggerTime")
 	public List<String> getRecent5TriggerTime(String cron){
-		return spiderFlowService.getRecentTriggerTime(cron,5);
+		return autoFlowService.getRecentTriggerTime(cron,5);
 	}
 }

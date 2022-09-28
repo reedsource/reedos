@@ -10,7 +10,7 @@ import java.util.Map;
 
 /**
  * 响应对象包装类
- * @author Administrator
+ * @author reedsource
  *
  */
 public class HttpResponse implements SpiderResponse{

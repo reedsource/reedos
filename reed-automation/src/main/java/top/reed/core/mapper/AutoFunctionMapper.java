@@ -5,6 +5,6 @@ import org.apache.ibatis.annotations.Mapper;
 import top.reed.core.model.AutoFunction;
 
 @Mapper
-public interface FunctionMapper extends BaseMapper<AutoFunction> {
+public interface AutoFunctionMapper extends BaseMapper<AutoFunction> {
 
 }

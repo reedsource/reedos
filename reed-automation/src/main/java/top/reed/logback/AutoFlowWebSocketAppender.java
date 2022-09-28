@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class SpiderFlowWebSocketAppender extends UnsynchronizedAppenderBase<ILoggingEvent> {
+public class AutoFlowWebSocketAppender extends UnsynchronizedAppenderBase<ILoggingEvent> {
 
 	@Override
 	protected void append(ILoggingEvent event) {

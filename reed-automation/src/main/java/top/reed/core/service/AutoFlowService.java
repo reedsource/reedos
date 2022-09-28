@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 import top.reed.api.context.SpiderContextHolder;
 import top.reed.core.Spider;
 import top.reed.core.job.SpiderJobContext;
-import top.reed.core.mapper.SpiderFlowMapper;
+import top.reed.core.mapper.AutoFlowMapper;
 import top.reed.core.model.AutoFlow;
 
 import java.io.File;
@@ -29,19 +29,19 @@ import java.util.stream.Collectors;
 
 /**
  * 自动化任务流程执行服务
- * @author Administrator
+ * @author reedsource
  *
  */
 @Service
-public class SpiderFlowService extends ServiceImpl<SpiderFlowMapper, AutoFlow> {
+public class AutoFlowService extends ServiceImpl<AutoFlowMapper, AutoFlow> {
 	
 	@Autowired
-	private SpiderFlowMapper sfMapper;
+	private AutoFlowMapper sfMapper;
 
 	@Autowired
 	private Spider spider;
 
-	private static Logger logger = LoggerFactory.getLogger(SpiderFlowService.class);
+	private static Logger logger = LoggerFactory.getLogger(AutoFlowService.class);
 
 	@Value("${spider.workspace}")
 	private String workspace;

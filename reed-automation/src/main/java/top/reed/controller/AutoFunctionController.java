@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import top.reed.core.model.AutoFunction;
-import top.reed.core.service.FunctionService;
+import top.reed.core.service.AutoFunctionService;
 
 @RestController
 @RequestMapping("/function")
-public class FunctionController {
+public class AutoFunctionController {
 
     @Autowired
-    private FunctionService functionService;
+    private AutoFunctionService autoFunctionService;
 
     @RequestMapping("/list")
     public IPage<AutoFunction> list(@RequestParam(name = "page",defaultValue = "1")Integer page, @RequestParam(name = "limit",defaultValue = "1")Integer size, String name) {
@@ -25,21 +25,21 @@ public class FunctionController {
             select.like("name",name);
         }
         select.orderByDesc("create_date");
-        return functionService.page(new Page<AutoFunction>(page, size), select);
+        return autoFunctionService.page(new Page<AutoFunction>(page, size), select);
     }
 
     @RequestMapping("/save")
     public String save(AutoFunction autoFunction){
-        return functionService.saveFunction(autoFunction);
+        return autoFunctionService.saveFunction(autoFunction);
     }
 
     @RequestMapping("/get")
     public AutoFunction get(String id){
-        return functionService.getById(id);
+        return autoFunctionService.getById(id);
     }
 
     @RequestMapping("/remove")
     public void remove(String id){
-        functionService.removeById(id);
+        autoFunctionService.removeById(id);
     }
 }

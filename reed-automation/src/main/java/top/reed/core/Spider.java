@@ -20,7 +20,7 @@ import top.reed.core.executor.shape.LoopExecutor;
 import top.reed.core.model.AutoFlow;
 import top.reed.core.utils.ExecutorsUtils;
 import top.reed.core.utils.ExpressionUtils;
-import top.reed.core.utils.SpiderFlowUtils;
+import top.reed.core.utils.AutoFlowUtils;
 
 import javax.annotation.PostConstruct;
 import java.lang.reflect.Array;
@@ -66,7 +66,7 @@ public class Spider {
 		if (variables == null) {
 			variables = new HashMap<>();
 		}
-		SpiderNode root = SpiderFlowUtils.loadXMLFromString(autoFlow.getXml());
+		SpiderNode root = AutoFlowUtils.loadXMLFromString(autoFlow.getXml());
 		//执行流程节点
 		executeRoot(root, context, variables);
 
