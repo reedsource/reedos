@@ -3,8 +3,10 @@ package top.reed.core.utils;
 import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import top.reed.core.model.AutoDataSource;
-import top.reed.core.service.AutoDataSourceService;
+
+import top.reed.automation.domain.AutoDataSource;
+import top.reed.automation.service.AutoDataSourceService;
+
 
 import javax.sql.DataSource;
 import java.util.HashMap;
@@ -46,7 +48,7 @@ public class AutoDataSourceUtils {
 	public synchronized static DataSource getDataSource(String dataSourceId){
 		DataSource dataSource = datasources.get(dataSourceId);
 		if(dataSource == null){
-			AutoDataSource ds = autoDataSourceService.getById(dataSourceId);
+			AutoDataSource ds = autoDataSourceService.selectAutoDataSourceById(dataSourceId);
 			if(ds != null){
 				dataSource = createDataSource(ds.getDriverClassName(), ds.getJdbcUrl(), ds.getUsername(), ds.getPassword());
 				datasources.put(dataSourceId, dataSource);

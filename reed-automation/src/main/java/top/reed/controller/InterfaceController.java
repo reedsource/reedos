@@ -37,24 +37,6 @@ public class InterfaceController {
 	}
 
 	/**
-	 * @return 数据源列表
-	 */
-	@GetMapping("/datasources")
-	public String datasources() {
-		return "datasources";
-	}
-
-	/**
-	 * @param id id
-	 * @return 数据源添加更新修改
-	 */
-	@GetMapping("/datasource-edit")
-	public String datasourceedit(String id) {
-		return "datasource-edit";
-	}
-
-
-	/**
 	 * @param id id
 	 * @return 函数添加更新修改
 	 */

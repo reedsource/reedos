@@ -118,7 +118,8 @@
 	renderSpiderOutput(getCellData('{{d.cell.id}}',$("#spider-output").data('keys').split(",")));
 
 	$.ajax({
-		url : 'datasource/all',
+		url : '/automation/autodatasource/all',
+		type: "post",
 		success : function(datasources){
 			for(var i =0;i<datasources.length;i++){
 				var ds = datasources[i];
