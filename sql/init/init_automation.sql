@@ -7,7 +7,7 @@ insert into sys_menu values('5', '自动化管理', '0', '5', '#',              
 insert into sys_menu values('110',  '定时任务', '5', '1', '/quartz/job',           '', 'C', '0', '1', 'quartz:job:view',          'fa fa-tasks',           'admin', sysdate(), '', null, '定时任务菜单');
 -- 三级菜单
 INSERT INTO sys_menu VALUES (200, '自动化列表', 5, 2, '/spiderList', 'menuItem', 'C', '0', '1', null, '', 'admin', sysdate(), '', null, '');
-INSERT INTO sys_menu VALUES (201, '自定义函数', 5, 3, '/functions', 'menuItem', 'C', '0', '1', null, '', 'admin', sysdate(), '', null, '');
+INSERT INTO sys_menu VALUES (201, '自定义函数', 5, 3, '/automation/autofunction', '', 'C', '0', '1', 'automation:autofunction:view', '#', 'admin', sysdate(), '', null, '自定义函数菜单');
 INSERT INTO sys_menu VALUES (202, '自动化数据源', 5, 4, '/automation/autodatasource', '', 'C', '0', '1', 'automation:autodatasource:view', '#', 'admin', sysdate(), '', null, '自动化数据源菜单');
 -- 定时任务按钮
 insert into sys_menu values('1050', '任务查询', '110', '1',  '#', '',  'F', '0', '1', 'quartz:job:list',                '#', 'admin', sysdate(), '', null, '');
@@ -23,6 +23,12 @@ INSERT INTO sys_menu  VALUES (2022, '自动化数据源新增', 202, 2, '#', '',
 INSERT INTO sys_menu  VALUES (2023, '自动化数据源修改', 202, 3, '#', '', 'F', '0', '1', 'automation:autodatasource:edit', '#', 'admin', sysdate(), '', null, '');
 INSERT INTO sys_menu  VALUES (2024, '自动化数据源删除', 202, 4, '#', '', 'F', '0', '1', 'automation:autodatasource:remove', '#', 'admin', sysdate(), '', null, '');
 INSERT INTO sys_menu  VALUES (2025, '自动化数据源导出', 202, 5, '#', '', 'F', '0', '1', 'automation:autodatasource:export', '#', 'admin', sysdate(), '', null, '');
+-- 自动化自定义函数按钮
+INSERT INTO sys_menu VALUES (2011, '自定义函数查询', 201, 1, '#', '', 'F', '0', '1', 'automation:autofunction:list', '#', 'admin', sysdate(), '', null, '');
+INSERT INTO sys_menu VALUES (2012, '自定义函数新增', 201, 2, '#', '', 'F', '0', '1', 'automation:autofunction:add', '#', 'admin', sysdate(), '', null, '');
+INSERT INTO sys_menu VALUES (2013, '自定义函数修改', 201, 3, '#', '', 'F', '0', '1', 'automation:autofunction:edit', '#', 'admin', sysdate(), '', null, '');
+INSERT INTO sys_menu VALUES (2014, '自定义函数删除', 201, 4, '#', '', 'F', '0', '1', 'automation:autofunction:remove', '#', 'admin', sysdate(), '', null, '');
+INSERT INTO sys_menu VALUES (2015, '自定义函数导出', 201, 5, '#', '', 'F', '0', '1', 'automation:autofunction:export', '#', 'admin', sysdate(), '', null, '');
 
 -- 数据字典
 INSERT INTO sys_dict_type VALUES (11, '数据源驱动', 'auto_datasource_driver', '0', 'admin', sysdate(), '', null, null);

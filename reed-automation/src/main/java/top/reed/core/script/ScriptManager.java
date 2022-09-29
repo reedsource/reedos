@@ -61,8 +61,17 @@ public class ScriptManager {
         lock.writeLock().unlock();
     }
 
+    /**
+     * 注册登记自定义函数
+     *
+     * @param engine 脚本功能实现
+     * @param functionName 自定义函数名称
+     * @param parameters 自定义函数参数
+     * @param script 自定义函数脚本
+     */
     public static void registerFunction(ScriptEngine engine,String functionName,String parameters,String script){
         try {
+            //执行指定的脚本
             engine.eval(concatScript(functionName,parameters,script));
             functions.add(functionName);
             logger.info("注册自定义函数{}成功",functionName);
@@ -71,6 +80,13 @@ public class ScriptManager {
         }
     }
 
+    /**
+     * 组合脚本字符串
+     * @param functionName 自定义函数名称
+     * @param parameters 自定义函数参数
+     * @param script 自定义函数脚本
+     * @return 组合字符串
+     */
     private static String concatScript(String functionName,String parameters,String script){
         StringBuffer scriptBuffer = new StringBuffer();
         scriptBuffer.append("function ")
@@ -92,6 +108,14 @@ public class ScriptManager {
         }
     }
 
+    /**
+     * 校验新添加的脚本是否符合规则
+     *
+     * @param functionName 自定义函数名称
+     * @param parameters 自定义函数参数
+     * @param script 自定义函数脚本
+     * @throws Exception
+     */
     public static void validScript(String functionName,String parameters,String script) throws Exception {
         new ScriptEngineManager().getEngineByName("nashorn").eval(concatScript(functionName,parameters,script));
     }
