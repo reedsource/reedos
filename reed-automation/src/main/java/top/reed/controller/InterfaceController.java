@@ -30,6 +30,14 @@ public class InterfaceController {
 	}
 
 	/**
+	 * @return 全局配置
+	 */
+	@GetMapping("/flowEditor/start")
+	public String flowEditorstart() {
+		return "resources/flowEditor/root";
+	}
+
+	/**
 	 * 调试窗口
 	 *
 	 * @return 界面

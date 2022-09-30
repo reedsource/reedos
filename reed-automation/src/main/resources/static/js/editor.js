@@ -1161,7 +1161,7 @@ function Save(){
 				layui.layer.msg('保存成功', {
 					time : 800
 				}, function() {
-					// location.href = "spiderList.html";
+					closeTab(getQueryString("dataId"))
 				})
 			}
 		})

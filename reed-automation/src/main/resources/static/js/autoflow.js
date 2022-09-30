@@ -7,6 +7,8 @@ function closeTab(dataId) {
     $('.mainContent .RuoYi_iframe[data-id="' + dataId + '"]', topWindow).remove();
     //跳转到新的选项卡
     panelUrl="/automation/autoflow";
+
+    //关闭选项卡
     $('.menuTab[data-id="' + panelUrl + '"]', topWindow).addClass('active').siblings('.menuTab').removeClass('active');
     $('.mainContent .RuoYi_iframe', topWindow).each(function() {
         if ($(this).data('id') == panelUrl) {
@@ -14,4 +16,10 @@ function closeTab(dataId) {
             return false;
         }
     });
+
+    //刷新目标选项卡
+    var currentId = $('.page-tabs-content', topWindow).find('.active').attr('data-id');
+    var target = $('.RuoYi_iframe[data-id="' + currentId + '"]', topWindow);
+    var url = target.attr('src');
+    target.attr('src', url).ready();
 }
