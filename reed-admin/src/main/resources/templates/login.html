@@ -32,18 +32,10 @@
         <div class="col-sm-7">
             <div class="signin-info">
                 <div class="logopanel m-b">
-                    <h1><img alt="[ 若依 ]" src="../static/reedos.png" th:src="@{/reedos.png}"></h1>
+                    <h1><img th:src="@{/reedos.png}"></h1>
                 </div>
                 <div class="m-b"></div>
                 <h4>欢迎使用 <strong>ReedOS</strong></h4>
-                <ul class="m-b">
-                    <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> SpringBoot</li>
-                    <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> Mybatis</li>
-                    <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> Shiro</li>
-                    <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> Thymeleaf</li>
-                    <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> Bootstrap</li>
-                </ul>
-                <strong th:if="${isAllowRegister}">还没有账号？ <a th:href="@{/register}">立即注册&raquo;</a></strong>
             </div>
         </div>
         <div class="col-sm-5">
@@ -66,9 +58,11 @@
                 <div class="checkbox-custom" th:classappend="${captchaEnabled==false} ? 'm-t'" th:if="${isRemembered}">
                     <input id="rememberme" name="rememberme" type="checkbox"> <label for="rememberme">记住我</label>
                 </div>
-                <button class="btn btn-success btn-block" data-loading="正在验证登录，请稍候..." id="btnSubmit">登录
-                </button>
+                <button class="btn btn-success btn-block" data-loading="正在验证登录，请稍候..." id="btnSubmit">登录</button>
             </form>
+        </div>
+        <div class="col-sm-5">
+            <strong th:if="${isAllowRegister}">还没有账号？ <a th:href="@{/register}">立即注册&raquo;</a></strong>
         </div>
     </div>
     <div class="signup-footer">
