@@ -695,7 +695,8 @@ function bindToolbarClickAction(editor){
 	}).on('click','.btn-debug',function(){
 		runSpider(true);
 	}).on('click',".btn-return",function(){
-		parent.openTab('自动化任务列表','welcome','spiderList')
+		//关闭当前tab并跳转到列表
+		closeTab(getQueryString("dataId"))
 	}).on('click','.btn-save',function(){
 		Save();
 	}).on('click','.btn-dock-right',function(){
