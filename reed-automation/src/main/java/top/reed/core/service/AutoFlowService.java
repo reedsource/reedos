@@ -16,10 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import top.reed.api.context.SpiderContextHolder;
+import top.reed.automation.mapper.AutooFlowMapper;
 import top.reed.core.Spider;
 import top.reed.core.job.SpiderJobContext;
 import top.reed.core.mapper.AutoFlowMapper;
-import top.reed.core.model.AutoFlow;
+import top.reed.automation.domain.AutoFlow;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,6 +40,9 @@ public class AutoFlowService extends ServiceImpl<AutoFlowMapper, AutoFlow> {
 	private AutoFlowMapper sfMapper;
 
 	@Autowired
+	AutooFlowMapper autooFlowMapper;
+
+	@Autowired
 	private Spider spider;
 
 	private static Logger logger = LoggerFactory.getLogger(AutoFlowService.class);
@@ -52,13 +56,9 @@ public class AutoFlowService extends ServiceImpl<AutoFlowMapper, AutoFlow> {
 
 	@Override
 	public boolean save(AutoFlow autoFlow){
-
-		if (!StringUtils.isNotEmpty(autoFlow.getId())) {//insert 任务
-			String id = UUID.randomUUID().toString().replace("-", "");
-			sfMapper.insertSpiderFlow(id, autoFlow.getName(), autoFlow.getXml());
-			autoFlow.setId(id);
-		}
-		File file = new File(workspace, autoFlow.getId() + File.separator + "xmls" + File.separator + System.currentTimeMillis() + ".xml");
+		autooFlowMapper.insertAutoFlow(autoFlow);
+		String id = autooFlowMapper.selectAutoFlowList(autoFlow).get(0).getId().toString();
+		File file = new File(workspace, id+ File.separator + "xmls" + File.separator + System.currentTimeMillis() + ".xml");
 		try {
 			FileUtils.write(file, autoFlow.getXml(),"UTF-8");
 		} catch (IOException e) {
@@ -83,7 +83,7 @@ public class AutoFlowService extends ServiceImpl<AutoFlowMapper, AutoFlow> {
 	public void run(AutoFlow autoFlow) {
 		SpiderJobContext context = null;
 		try {
-			context = SpiderJobContext.create(this.workspace, autoFlow.getId(),false);
+			context = SpiderJobContext.create(this.workspace, autoFlow.getId().toString(),false);
 			SpiderContextHolder.set(context);
 			logger.info("开始执行任务{}", autoFlow.getName());
 			spider.run(autoFlow, context);

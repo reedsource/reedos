@@ -12,38 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class InterfaceController {
 
-	/**
-	 * @return 主页
-	 */
-	@GetMapping("/aindex")
-	public String aindex() {
-		return "aindex";
-	}
-
-	/**
-	 * @return 自动化任务列表
-	 */
-	@GetMapping("/spiderList")
-	public String spiderList() {
-		return "spiderList";
-	}
-
-	/**
-	 * @return 自定义函数列表
-	 */
-	@GetMapping("/functions")
-	public String functions() {
-		return "functions";
-	}
-
-	/**
-	 * @param id id
-	 * @return 函数添加更新修改
-	 */
-	@GetMapping("/function-edit")
-	public String functionedit(String id) {
-		return "function-edit";
-	}
 
 	/**
 	 * @return 自动化任务流程编辑页面

@@ -20,7 +20,8 @@ import top.reed.api.model.Grammer;
 import top.reed.api.model.JsonBean;
 import top.reed.api.model.Plugin;
 import top.reed.api.model.Shape;
-import top.reed.core.model.AutoFlow;
+import top.reed.automation.domain.AutoFlow;
+import top.reed.automation.service.AutooFlowService;
 import top.reed.core.service.AutoFlowService;
 import top.reed.core.utils.ExecutorsUtils;
 
@@ -53,6 +54,9 @@ public class AutoFlowController {
 	
 	@Autowired(required = false)
 	private List<PluginConfig> pluginConfigs;
+
+	@Autowired
+	private AutooFlowService autooFlowService;
 	
 	@Value("${spider.workspace}")
 	private String workspace;
@@ -98,7 +102,7 @@ public class AutoFlowController {
 	@RequestMapping("/save")
 	public String save(AutoFlow autoFlow){
 		autoFlowService.save(autoFlow);
-		return autoFlow.getId();
+		return autoFlow.getId().toString();
 	}
 
 	@RequestMapping("/history")
@@ -145,7 +149,7 @@ public class AutoFlowController {
 	
 	@RequestMapping("/xml")
 	public String xml(String id){
-		return autoFlowService.getById(id).getXml();
+		return autooFlowService.selectAutoFlowById(Long.valueOf(id)).getXml();
 	}
 	@RequestMapping("/shapes")
 	public List<Shape> shapes(){

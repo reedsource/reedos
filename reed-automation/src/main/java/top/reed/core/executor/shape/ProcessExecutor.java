@@ -8,7 +8,7 @@ import top.reed.api.context.SpiderContext;
 import top.reed.api.executor.ShapeExecutor;
 import top.reed.api.model.SpiderNode;
 import top.reed.core.Spider;
-import top.reed.core.model.AutoFlow;
+import top.reed.automation.domain.AutoFlow;
 import top.reed.core.service.AutoFlowService;
 import top.reed.core.utils.AutoFlowUtils;
 

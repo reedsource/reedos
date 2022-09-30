@@ -17,7 +17,7 @@ import top.reed.api.listener.SpiderListener;
 import top.reed.api.model.SpiderNode;
 import top.reed.api.model.SpiderOutput;
 import top.reed.core.executor.shape.LoopExecutor;
-import top.reed.core.model.AutoFlow;
+import top.reed.automation.domain.AutoFlow;
 import top.reed.core.utils.ExecutorsUtils;
 import top.reed.core.utils.ExpressionUtils;
 import top.reed.core.utils.AutoFlowUtils;

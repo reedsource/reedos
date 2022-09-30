@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('自动化任务列表')" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div class="select-list">
+                        <ul>
+                            <li>
+                                <label>任务名字：</label>
+                                <input type="text" name="name"/>
+                            </li>
+                            <li class="select-time">
+                                <label>创建时间：</label>
+                                <input type="text" class="time-input" id="startTime" placeholder="开始时间" name="params[beginCreateDate]"/>
+                                <span>-</span>
+                                <input type="text" class="time-input" id="endTime" placeholder="结束时间" name="params[endCreateDate]"/>
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <a class="btn btn-success" onclick="$.operate.addTab()" shiro:hasPermission="automation:autoflow:add">
+                    <i class="fa fa-plus"></i> 添加
+                </a>
+                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="automation:autoflow:edit">
+                    <i class="fa fa-edit"></i> 修改
+                </a>
+                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="automation:autoflow:remove">
+                    <i class="fa fa-remove"></i> 删除
+                </a>
+                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="automation:autoflow:export">
+                    <i class="fa fa-download"></i> 导出
+                </a>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('automation:autoflow:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('automation:autoflow:remove')}]];
+        var prefix = ctx + "automation/autoflow";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                exportUrl: prefix + "/export",
+                modalName: "自动化任务",
+                columns: [{
+                    checkbox: true
+                },
+                {
+                    field: 'id',
+                    title: 'ID',
+                    visible: false
+                },
+                {
+                    field: 'name',
+                    title: '任务名字'
+                },
+                {
+                    visible: true,
+                    title: '任务状态',
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        return statusTools(row);
+                    }
+                },
+                {
+                    field: 'createDate',
+                    title: '创建时间'
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.editTab(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick=run(\'' + row.id + '\')><i class="fa fa-edit"></i>执行一次</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        return actions.join('');
+                    }
+                }]
+            };
+            $.table.init(options);
+        });
+
+        /* 角色状态显示 */
+        function statusTools(row) {
+            if (row.status == 1) {
+                return '<i class=\"fa fa-toggle-off text-info fa-2x\" onclick="enable(\'' + row.id + '\')"></i> ';
+            } else {
+                return '<i class=\"fa fa-toggle-on text-info fa-2x\" onclick="disable(\'' + row.id + '\')"></i> ';
+            }
+        }
+
+        /* 角色管理-停用 */
+        function disable(id) {
+            $.modal.confirm("确认要停用任务吗？", function () {
+                $.operate.post(prefix + "/edit", {"id": id, "status": 1});
+            })
+        }
+
+        /* 角色管理启用 */
+        function enable(id) {
+            $.modal.confirm("确认要启用任务吗？", function () {
+                $.operate.post(prefix + "/edit", {"id": id, "status": 0});
+            })
+        }
+
+        //运行一次自动化任务
+        function run(id) {
+            $.modal.confirm("您确定要手动运行一次该自动化任务吗？", function () {
+                $.ajax({
+                    url : prefix + "/run",
+                    data : {
+                        id : id
+                    },
+                    success : function(){
+                        $.modal.alertSuccess('手动运行成功,后台运行中');
+                    },
+                    error : function(){
+                        $.modal.alertError('手动运行失败')
+                    }
+                })
+            })
+        }
+        function datasourceTest() {
+            if ($.validate.form()) {
+                $.ajax({
+                    type: "post",
+                    url: prefix + "/test",
+                    data: {
+                        "driverClassName": $("#driverClassName").val(),
+                        "jdbcUrl": $("#jdbcUrl").val(),
+                        "username": $("#username").val(),
+                        "password": $("#password").val(),
+                    },
+                    success: function (data) {
+                        if (data.code===0) {
+                            $.modal.alertSuccess('数据源测试连接成功')
+                        }else {
+                            $.modal.alertError(data.msg)
+                        }
+                    }
+                });
+            }
+        }
+
+
+    </script>
+</body>
+</html>
