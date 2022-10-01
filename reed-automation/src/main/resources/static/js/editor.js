@@ -145,7 +145,7 @@ function validXML(callback){
 }
 $(function(){
 	$.ajax({
-		url : 'spider/other',
+		url : '/spider/other',
 		type : 'post',
 		data : {
 			id : getQueryString('id')
@@ -274,7 +274,7 @@ $(function(){
 				layui.layer.close(index);
 				var layerIndex = layui.layer.load(1);
 				$.ajax({
-					url : 'spider/history',
+					url : '/spider/history',
 					data : {
 						id : id,
 						timestamp : timestamp
@@ -293,7 +293,7 @@ $(function(){
 			});
 		}).on("click",".btn-history",function(){
 			$.ajax({
-				url : 'spider/history',
+				url : '/spider/history',
 				data : {
 					id : id
 				},
@@ -530,7 +530,7 @@ $(function(){
 		var id = getQueryString('id');
 		if(id != null){
 			$.ajax({
-				url : 'spider/xml',
+				url : '/spider/xml',
 				async : false,
 				data : {
 					id : id
@@ -626,7 +626,7 @@ $(function(){
 			addShape(shapes[i]);
 		}
 		$.ajax({
-			url : 'spider/shapes',
+			url : '/spider/shapes',
 			type : 'post',
 			dataType : 'json',
 			async :false,
@@ -1149,7 +1149,7 @@ var flowId;
 function Save(){
 	validXML(function(){
 		$.ajax({
-			url : 'spider/save',
+			url : '/spider/save',
 			type : 'post',
 			data : {
 				id : getQueryString('id') || flowId,

@@ -101,8 +101,7 @@ public class AutoFlowController {
 	
 	@RequestMapping("/save")
 	public String save(AutoFlow autoFlow){
-		autoFlowService.save(autoFlow);
-		return autoFlow.getId().toString();
+		return String.valueOf(autooFlowService.saveAutoFlow(autoFlow));
 	}
 
 	@RequestMapping("/history")

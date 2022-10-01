@@ -66,19 +66,24 @@ public class AutooFlowController extends BaseController {
 	 * 新增自动化任务
 	 */
 	@GetMapping("/add")
-	public String add() {
-		return "automation/autoflow/editor";
+	public String add(HttpServletRequest request) {
+		//在ry_ui.js的editTab打开一个新的选项卡中 将请求id作为了新的选项卡的dataId
+		//本处将dataId发送到界面,由static/js/common.js getQueryString()接收
+		//由autoflow.js关闭选项卡使用
+		String url = request.getRequestURI();
+		//转发数据id到editor编辑页面
+		return redirect("/editor?dataId=" + url);
 	}
 
 	/**
-	 * 新增保存自动化任务
+	 * 保存修改自动化任务
 	 */
 	@RequiresPermissions("automation:autoflow:add")
 	@Log(title = "自动化任务", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
 	public AjaxResult addSave(AutoFlow autoFlow) {
-		return toAjax(autooFlowService.insertAutoFlow(autoFlow));
+		return toAjax(autooFlowService.saveAutoFlow(autoFlow));
 	}
 
 	/**
@@ -87,23 +92,12 @@ public class AutooFlowController extends BaseController {
 	@RequiresPermissions("automation:autoflow:edit")
 	@GetMapping("/edit/{id}")
 	public String edit(@PathVariable("id") String id, HttpServletRequest request) {
-        //在ry_ui.js的editTab打开一个新的选项卡中 将请求id作为了新的选项卡的dataId
+		//在ry_ui.js的editTab打开一个新的选项卡中 将请求id作为了新的选项卡的dataId
 		//本处将dataId发送到界面,由static/js/common.js getQueryString()接收
 		//由autoflow.js关闭选项卡使用
 		String url = request.getRequestURI();
 		//转发数据id到editor编辑页面
 		return redirect("/editor?id=" + id + "&dataId=" + url);
-	}
-
-	/**
-	 * 修改保存自动化任务
-	 */
-	@RequiresPermissions("automation:autoflow:edit")
-	@Log(title = "自动化任务", businessType = BusinessType.UPDATE)
-	@PostMapping("/edit")
-	@ResponseBody
-	public AjaxResult editSave(AutoFlow autoFlow) {
-		return toAjax(autooFlowService.updateAutoFlow(autoFlow));
 	}
 
 	/**
