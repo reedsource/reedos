@@ -15,27 +15,27 @@ import java.util.Map;
 
 /**
  * 函数执行器
- * @author reedsource
  *
+ * @author reedsource
  */
 @Component
-public class FunctionExecutor implements ShapeExecutor{
-	
+public class FunctionExecutor implements ShapeExecutor {
+
 	public static final String FUNCTION = "function";
 
 	private static final Logger logger = LoggerFactory.getLogger(FunctionExecutor.class);
-	
+
 	@Override
-	public void execute(SpiderNode node, SpiderContext context, Map<String,Object> variables) {
+	public void execute(SpiderNode node, SpiderContext context, Map<String, Object> variables) {
 		List<Map<String, String>> functions = node.getListJsonValue(FUNCTION);
 		for (Map<String, String> item : functions) {
 			String function = item.get(FUNCTION);
-			if(StringUtils.isNotBlank(function)){
+			if (StringUtils.isNotBlank(function)) {
 				try {
-					logger.debug("执行函数{}",function);
+					logger.debug("执行函数{}", function);
 					ExpressionUtils.execute(function, variables);
 				} catch (Exception e) {
-					logger.error("执行函数{}失败,异常信息:{}",function,e);
+					logger.error("执行函数{}失败,异常信息:{}", function, e);
 					ExceptionUtils.wrapAndThrow(e);
 				}
 			}

@@ -13,24 +13,24 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-public class DefaultExpressionEngine implements ExpressionEngine{
-	
+public class DefaultExpressionEngine implements ExpressionEngine {
+
 	@Autowired
 	private List<FunctionExecutor> functionExecutors;
-	
+
 	@Autowired
 	private List<FunctionExtension> functionExtensions;
-	
+
 	@PostConstruct
-	private void init(){
+	private void init() {
 		for (FunctionExtension extension : functionExtensions) {
 			Reflection.getInstance().registerExtensionClass(extension.support(), extension.getClass());
 		}
 	}
-	
+
 	@Override
 	public Object execute(String expression, Map<String, Object> variables) {
-		if(StringUtils.isBlank(expression)){
+		if (StringUtils.isBlank(expression)) {
 			return expression;
 		}
 		ExpressionTemplateContext context = new ExpressionTemplateContext(variables);
@@ -38,8 +38,8 @@ public class DefaultExpressionEngine implements ExpressionEngine{
 			context.set(executor.getFunctionPrefix(), executor);
 		}
 		//加载表达式全局变量
-		ExpressionGlobalVariables.getVariables().entrySet().forEach(entry->{
-			context.set(entry.getKey(),ExpressionTemplate.create(entry.getValue()).render(context));
+		ExpressionGlobalVariables.getVariables().entrySet().forEach(entry -> {
+			context.set(entry.getKey(), ExpressionTemplate.create(entry.getValue()).render(context));
 		});
 		try {
 			ExpressionTemplateContext.set(context);
@@ -48,5 +48,5 @@ public class DefaultExpressionEngine implements ExpressionEngine{
 			ExpressionTemplateContext.remove();
 		}
 	}
-	
+
 }

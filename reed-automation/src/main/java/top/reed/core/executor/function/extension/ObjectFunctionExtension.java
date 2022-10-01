@@ -10,27 +10,22 @@ import top.reed.core.utils.ExtractUtils;
 import java.util.Objects;
 
 @Component
-public class ObjectFunctionExtension implements FunctionExtension{
-	
-	@Override
-	public Class<?> support() {
-		return Object.class;
-	}
-	
+public class ObjectFunctionExtension implements FunctionExtension {
+
 	@Comment("将对象转为string类型")
 	@Example("${objVar.string()}")
-	public static String string(Object obj){
+	public static String string(Object obj) {
 		if (obj instanceof String) {
 			return (String) obj;
 		}
 		return Objects.toString(obj);
 	}
-	
+
 	@Comment("根据jsonpath提取内容")
 	@Example("${objVar.jsonpath('$.code')}")
-	public static Object jsonpath(Object obj,String path){
-		if(obj instanceof String){
-			return ExtractUtils.getValueByJsonPath(JSON.parse((String)obj), path);
+	public static Object jsonpath(Object obj, String path) {
+		if (obj instanceof String) {
+			return ExtractUtils.getValueByJsonPath(JSON.parse((String) obj), path);
 		}
 		return ExtractUtils.getValueByJsonPath(obj, path);
 	}
@@ -43,5 +38,10 @@ public class ObjectFunctionExtension implements FunctionExtension{
 		} catch (InterruptedException ignored) {
 		}
 		return obj;
+	}
+
+	@Override
+	public Class<?> support() {
+		return Object.class;
 	}
 }

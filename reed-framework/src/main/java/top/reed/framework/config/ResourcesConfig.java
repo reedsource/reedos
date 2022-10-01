@@ -33,6 +33,7 @@ public class ResourcesConfig implements WebMvcConfigurer {
 	 */
 	@Autowired
 	private ReedInterceptor reedInterceptor;
+
 	/**
 	 * 默认首页的设置，当输入域名是可以自动跳转到默认指定的网页
 	 */

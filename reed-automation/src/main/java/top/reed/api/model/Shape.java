@@ -1,13 +1,13 @@
 package top.reed.api.model;
 
 public class Shape {
-	
+
 	private String name;
-	
+
 	private String label;
-	
+
 	private String title;
-	
+
 	private String image;
 
 	private String desc;

@@ -11,7 +11,8 @@
             <label class="col-sm-3 control-label">上级菜单：</label>
             <div class="col-sm-8">
                 <div class="input-group">
-                    <input class="form-control" id="treeName" onclick="selectMenuTree()" readonly="true" th:value="${menu.menuName}"
+                    <input class="form-control" id="treeName" onclick="selectMenuTree()" readonly="true"
+                           th:value="${menu.menuName}"
                            type="text">
                     <span class="input-group-addon"><i class="fa fa-search"></i></span>
                 </div>
@@ -74,7 +75,8 @@
             <label class="col-sm-3 control-label">菜单状态：</label>
             <div class="col-sm-3">
                 <div class="radio-box" th:each="dict : ${@dict.getType('sys_show_hide')}">
-                    <input name="visible" th:checked="${dict.default}" th:id="${dict.dictCode}" th:value="${dict.dictValue}"
+                    <input name="visible" th:checked="${dict.default}" th:id="${dict.dictCode}"
+                           th:value="${dict.dictValue}"
                            type="radio">
                     <label th:for="${dict.dictCode}" th:text="${dict.dictLabel}"></label>
                 </div>

@@ -32,7 +32,8 @@
             <label class="col-sm-2 control-label">公告状态：</label>
             <div class="col-sm-10">
                 <div class="radio-box" th:each="dict : ${@dict.getType('sys_notice_status')}">
-                    <input name="status" th:checked="${dict.default}" th:id="${dict.dictCode}" th:value="${dict.dictValue}"
+                    <input name="status" th:checked="${dict.default}" th:id="${dict.dictCode}"
+                           th:value="${dict.dictValue}"
                            type="radio">
                     <label th:for="${dict.dictCode}" th:text="${dict.dictLabel}"></label>
                 </div>

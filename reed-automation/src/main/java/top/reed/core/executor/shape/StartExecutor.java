@@ -9,15 +9,15 @@ import java.util.Map;
 
 /**
  * 开始执行器
- * @author reedsource
  *
+ * @author reedsource
  */
 @Component
-public class StartExecutor implements ShapeExecutor{
+public class StartExecutor implements ShapeExecutor {
 
 	@Override
-	public void execute(SpiderNode node, SpiderContext context, Map<String,Object> variables) {
-		
+	public void execute(SpiderNode node, SpiderContext context, Map<String, Object> variables) {
+
 	}
 
 	@Override

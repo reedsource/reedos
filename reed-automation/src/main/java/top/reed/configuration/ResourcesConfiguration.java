@@ -7,11 +7,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * 配置放行静态资源文件
- * @author reedsource
  *
+ * @author reedsource
  */
 @Configuration
-public class ResourcesConfiguration implements WebMvcConfigurer{
+public class ResourcesConfiguration implements WebMvcConfigurer {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -22,7 +22,7 @@ public class ResourcesConfiguration implements WebMvcConfigurer{
 	public void addCorsMappings(CorsRegistry registry) {
 		registry.addMapping("/**")
 				.allowedOriginPatterns("*")
-				.allowedMethods("GET","POST","OPTIONS")
+				.allowedMethods("GET", "POST", "OPTIONS")
 				.allowCredentials(true);
 	}
 }

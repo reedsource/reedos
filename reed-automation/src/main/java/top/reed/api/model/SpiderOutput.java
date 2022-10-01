@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SpiderOutput {
-	
+
 	/**
 	 * 节点名称
 	 */
 	private String nodeName;
-	
+
 	/**
 	 * 节点Id
 	 */
 	private String nodeId;
-	
+
 	/**
 	 * 输出项的名
 	 */
 	private List<String> outputNames = new ArrayList<>();
-	
+
 	/**
 	 * 输出项的值
 	 */
@@ -48,8 +48,8 @@ public class SpiderOutput {
 	public void setValues(List<Object> values) {
 		this.values = values;
 	}
-	
-	public void addOutput(String name,Object value){
+
+	public void addOutput(String name, Object value) {
 		this.outputNames.add(name);
 		this.values.add(value);
 	}

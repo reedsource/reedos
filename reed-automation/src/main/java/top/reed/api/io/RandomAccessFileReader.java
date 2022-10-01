@@ -55,10 +55,10 @@ public class RandomAccessFileReader implements Closeable {
 	/**
 	 * 读取n行
 	 *
-	 * @param n        要读取的行数
-	 * @param keywords 搜索的关键词
+	 * @param n         要读取的行数
+	 * @param keywords  搜索的关键词
 	 * @param matchcase 是否区分大小写
-	 * @param regx 是否是正则搜索
+	 * @param regx      是否是正则搜索
 	 * @return 返回Line对象，包含行的起始位置与终止位置
 	 */
 	public List<Line> readLine(int n, String keywords, boolean matchcase, boolean regx) throws IOException {

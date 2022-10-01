@@ -8,11 +8,11 @@ import top.reed.api.model.SpiderNode;
 import java.util.Map;
 
 @Component
-public class CommentExecutor implements ShapeExecutor{
+public class CommentExecutor implements ShapeExecutor {
 
 	@Override
-	public void execute(SpiderNode node, SpiderContext context, Map<String,Object> variables) {
-		
+	public void execute(SpiderNode node, SpiderContext context, Map<String, Object> variables) {
+
 	}
 
 	@Override

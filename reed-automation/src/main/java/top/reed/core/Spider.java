@@ -16,11 +16,11 @@ import top.reed.api.executor.ShapeExecutor;
 import top.reed.api.listener.SpiderListener;
 import top.reed.api.model.SpiderNode;
 import top.reed.api.model.SpiderOutput;
-import top.reed.core.executor.shape.LoopExecutor;
 import top.reed.automation.domain.AutoFlow;
+import top.reed.core.executor.shape.LoopExecutor;
+import top.reed.core.utils.AutoFlowUtils;
 import top.reed.core.utils.ExecutorsUtils;
 import top.reed.core.utils.ExpressionUtils;
-import top.reed.core.utils.AutoFlowUtils;
 
 import javax.annotation.PostConstruct;
 import java.lang.reflect.Array;
@@ -39,23 +39,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Component
 public class Spider {
 
+	private static final String ATOMIC_DEAD_CYCLE = "__atomic_dead_cycle";
+	public static SpiderFlowThreadPoolExecutor executorInstance;
+	private static Logger logger = LoggerFactory.getLogger(Spider.class);
 	@Autowired(required = false)
 	private List<SpiderListener> listeners;
-
 	@Value("${spider.thread.max:64}")
 	private Integer totalThreads;
-
 	@Value("${spider.thread.default:8}")
 	private Integer defaultThreads;
-
 	@Value("${spider.detect.dead-cycle:5000}")
 	private Integer deadCycle;
-
-	public static SpiderFlowThreadPoolExecutor executorInstance;
-
-	private static final String ATOMIC_DEAD_CYCLE = "__atomic_dead_cycle";
-
-	private static Logger logger = LoggerFactory.getLogger(Spider.class);
 
 	@PostConstruct
 	private void init() {
@@ -105,17 +99,17 @@ public class Spider {
 		String strategy = root.getStringJsonValue("submit-strategy");
 		ThreadSubmitStrategy submitStrategy;
 		//选择提交策略，这里一定要使用new,不能与其他实例共享
-		if("linked".equalsIgnoreCase(strategy)){
+		if ("linked".equalsIgnoreCase(strategy)) {
 			submitStrategy = new LinkedThreadSubmitStrategy();
-		}else if("child".equalsIgnoreCase(strategy)){
+		} else if ("child".equalsIgnoreCase(strategy)) {
 			submitStrategy = new ChildPriorThreadSubmitStrategy();
-		}else if("parent".equalsIgnoreCase(strategy)){
+		} else if ("parent".equalsIgnoreCase(strategy)) {
 			submitStrategy = new ParentPriorThreadSubmitStrategy();
-		}else{
+		} else {
 			submitStrategy = new RandomThreadSubmitStrategy();
 		}
 		//创建子线程池，采用一父多子的线程池,子线程数不能超过总线程数（超过时进入队列等待）,+1是因为会占用一个线程用来调度执行下一级
-		SubThreadPoolExecutor pool = executorInstance.createSubThreadPoolExecutor(Math.max(nThreads,1) + 1,submitStrategy);
+		SubThreadPoolExecutor pool = executorInstance.createSubThreadPoolExecutor(Math.max(nThreads, 1) + 1, submitStrategy);
 		context.setRootNode(root);
 		context.setThreadPool(pool);
 		//触发监听器
@@ -141,12 +135,12 @@ public class Spider {
 							return 0;
 
 						});
-						if (max.isPresent()) {	//判断任务是否完成
+						if (max.isPresent()) {    //判断任务是否完成
 							queue.remove(max.get());
-							if (context.isRunning()) {	//检测是否运行中(当在页面中点击"停止"时,此值为false,其余为true)
+							if (context.isRunning()) {    //检测是否运行中(当在页面中点击"停止"时,此值为false,其余为true)
 								SpiderTask task = (SpiderTask) max.get().get();
-								task.node.decrement();	//任务执行完毕,计数器减一(该计数器是给Join节点使用)
-								if (task.executor.allowExecuteNext(task.node, context, task.variables)) {	//判断是否允许执行下一级
+								task.node.decrement();    //任务执行完毕,计数器减一(该计数器是给Join节点使用)
+								if (task.executor.allowExecuteNext(task.node, context, task.variables)) {    //判断是否允许执行下一级
 									logger.debug("执行节点[{}:{}]完毕", task.node.getNodeName(), task.node.getNodeId());
 									//执行下一级
 									Spider.this.executeNextNodes(task.node, context, task.variables);
@@ -158,8 +152,8 @@ public class Spider {
 						//睡眠1ms,让出cpu
 						Thread.sleep(1);
 					} catch (InterruptedException ignored) {
-					} catch (Throwable t){
-						logger.error("程序发生异常",t);
+					} catch (Throwable t) {
+						logger.error("程序发生异常", t);
 					}
 				}
 				//等待线程池结束
@@ -172,8 +166,9 @@ public class Spider {
 			}
 		}), null, root);
 		try {
-			f.get();	//阻塞等待所有任务执行完毕
-		} catch (InterruptedException | ExecutionException ignored) {}
+			f.get();    //阻塞等待所有任务执行完毕
+		} catch (InterruptedException | ExecutionException ignored) {
+		}
 	}
 
 	/**
@@ -208,34 +203,34 @@ public class Spider {
 			logger.error("执行失败,找不到对应的执行器:{}", shape);
 			context.setRunning(false);
 		}
-		int loopCount = 1;	//循环次数默认为1,如果节点有循环属性且填了循环次数/集合,则取出循环次数
-		int loopStart = 0;	//循环起始位置
-		int loopEnd = 1;	//循环结束位置
+		int loopCount = 1;    //循环次数默认为1,如果节点有循环属性且填了循环次数/集合,则取出循环次数
+		int loopStart = 0;    //循环起始位置
+		int loopEnd = 1;    //循环结束位置
 		String loopCountStr = node.getStringJsonValue(ShapeExecutor.LOOP_COUNT);
 		Object loopArray = null;
 		boolean isLoop = false;
 		if (isLoop = StringUtils.isNotBlank(loopCountStr)) {
 			try {
 				loopArray = ExpressionUtils.execute(loopCountStr, variables);
-				if(loopArray == null){
+				if (loopArray == null) {
 					loopCount = 0;
-				}else if(loopArray instanceof Collection){
-					loopCount = ((Collection)loopArray).size();
-					loopArray = ((Collection)loopArray).toArray();
-				}else if(loopArray.getClass().isArray()){
+				} else if (loopArray instanceof Collection) {
+					loopCount = ((Collection) loopArray).size();
+					loopArray = ((Collection) loopArray).toArray();
+				} else if (loopArray.getClass().isArray()) {
 					loopCount = Array.getLength(loopArray);
-				}else{
-					loopCount = NumberUtils.toInt(loopArray.toString(),0);
+				} else {
+					loopCount = NumberUtils.toInt(loopArray.toString(), 0);
 					loopArray = null;
 				}
 				loopEnd = loopCount;
-				if(loopCount > 0){
-					loopStart = Math.max(NumberUtils.toInt(node.getStringJsonValue(LoopExecutor.LOOP_START), 0),0);
+				if (loopCount > 0) {
+					loopStart = Math.max(NumberUtils.toInt(node.getStringJsonValue(LoopExecutor.LOOP_START), 0), 0);
 					int end = NumberUtils.toInt(node.getStringJsonValue(LoopExecutor.LOOP_END), -1);
-					if(end >=0){
-						loopEnd = Math.min(end,loopEnd);
-					}else{
-						loopEnd = Math.max(loopEnd + end + 1,0);
+					if (end >= 0) {
+						loopEnd = Math.min(end, loopEnd);
+					} else {
+						loopEnd = Math.max(loopEnd + end + 1, 0);
 					}
 				}
 				logger.info("获取循环次数{}={}", loopCountStr, loopCount);
@@ -247,23 +242,23 @@ public class Spider {
 		if (loopCount > 0) {
 			//获取循环下标的变量名称
 			String loopVariableName = node.getStringJsonValue(ShapeExecutor.LOOP_VARIABLE_NAME);
-			String loopItem = node.getStringJsonValue(LoopExecutor.LOOP_ITEM,"item");
+			String loopItem = node.getStringJsonValue(LoopExecutor.LOOP_ITEM, "item");
 			List<SpiderTask> tasks = new ArrayList<>();
 			for (int i = loopStart; i < loopEnd; i++) {
-				node.increment();	//节点执行次数+1(后续Join节点使用)
+				node.increment();    //节点执行次数+1(后续Join节点使用)
 				if (context.isRunning()) {
 					Map<String, Object> nVariables = new HashMap<>();
 					// 判断是否需要传递变量
-					if(fromNode == null || node.isTransmitVariable(fromNode.getNodeId())){
+					if (fromNode == null || node.isTransmitVariable(fromNode.getNodeId())) {
 						nVariables.putAll(variables);
 					}
-					if(isLoop){
+					if (isLoop) {
 						// 存入下标变量
 						if (!StringUtils.isBlank(loopVariableName)) {
 							nVariables.put(loopVariableName, i);
 						}
 						// 存入item
-						nVariables.put(loopItem,loopArray == null ? i : Array.get(loopArray, i));
+						nVariables.put(loopItem, loopArray == null ? i : Array.get(loopArray, i));
 					}
 					tasks.add(new SpiderTask(TtlRunnable.get(() -> {
 						if (context.isRunning()) {
@@ -288,10 +283,10 @@ public class Spider {
 			}
 			LinkedBlockingQueue<Future<?>> futureQueue = context.getFutureQueue();
 			for (SpiderTask task : tasks) {
-				if(executor.isThread()){	//判断节点是否是异步运行
+				if (executor.isThread()) {    //判断节点是否是异步运行
 					//提交任务至线程池中,并将Future添加到队列末尾
 					futureQueue.add(context.getThreadPool().submitAsync(task.runnable, task, node));
-				}else{
+				} else {
 					FutureTask<SpiderTask> futureTask = new FutureTask<>(task.runnable, task);
 					futureTask.run();
 					futureQueue.add(futureTask);
@@ -301,7 +296,7 @@ public class Spider {
 	}
 
 	/**
-	 *	判断箭头上的表达式是否成立
+	 * 判断箭头上的表达式是否成立
 	 */
 	private boolean executeCondition(SpiderNode fromNode, SpiderNode node, Map<String, Object> variables, SpiderContext context) {
 		if (fromNode != null) {
@@ -309,7 +304,7 @@ public class Spider {
 			String exceptionFlow = node.getExceptionFlow(fromNode.getNodeId());
 			//当出现异常流转 : 1
 			//未出现异常流转 : 2
-			if(("1".equalsIgnoreCase(exceptionFlow) && !hasException) || ("2".equalsIgnoreCase(exceptionFlow) && hasException)){
+			if (("1".equalsIgnoreCase(exceptionFlow) && !hasException) || ("2".equalsIgnoreCase(exceptionFlow) && hasException)) {
 				return false;
 			}
 			String condition = node.getCondition(fromNode.getNodeId());
@@ -331,17 +326,17 @@ public class Spider {
 		return true;
 	}
 
-	class SpiderTask{
+	class SpiderTask {
 
 		Runnable runnable;
 
 		SpiderNode node;
 
-		Map<String,Object> variables;
+		Map<String, Object> variables;
 
 		ShapeExecutor executor;
 
-		public SpiderTask(Runnable runnable, SpiderNode node, Map<String, Object> variables,ShapeExecutor executor) {
+		public SpiderTask(Runnable runnable, SpiderNode node, Map<String, Object> variables, ShapeExecutor executor) {
 			this.runnable = runnable;
 			this.node = node;
 			this.variables = variables;

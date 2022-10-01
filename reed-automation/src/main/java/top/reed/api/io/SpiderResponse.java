@@ -23,16 +23,17 @@ public interface SpiderResponse {
 
 	@Comment("获取json")
 	@Example("${resp.json}")
-	default Object getJson(){
+	default Object getJson() {
 		return JSON.parse(getHtml());
 	}
+
 	@Comment("获取cookies")
 	@Example("${resp.cookies}")
-	Map<String,String> getCookies();
+	Map<String, String> getCookies();
 
 	@Comment("获取headers")
 	@Example("${resp.headers}")
-	Map<String,String> getHeaders();
+	Map<String, String> getHeaders();
 
 	@Comment("获取byte[]")
 	@Example("${resp.bytes}")
@@ -47,11 +48,12 @@ public interface SpiderResponse {
 	String getUrl();
 
 	@Example("${resp.setCharset('UTF-8')}")
-	default void setCharset(String charset){
+	default void setCharset(String charset) {
 
 	}
+
 	@Example("${resp.stream}")
-	default InputStream getStream(){
+	default InputStream getStream() {
 		return null;
 	}
 }

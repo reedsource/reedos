@@ -9,17 +9,17 @@ import top.reed.websocket.WebSocketEditorServer;
 
 /**
  * 配置WebSocket
- * @author reedsource
  *
+ * @author reedsource
  */
 @Configuration
 public class WebSocketConfiguration {
-	
+
 	@Bean
-	public ServerEndpointExporter endpointExporter(){
+	public ServerEndpointExporter endpointExporter() {
 		return new ServerEndpointExporter();
 	}
-	
+
 	@Autowired
 	public void setSpider(Spider spider) {
 		WebSocketEditorServer.spider = spider;

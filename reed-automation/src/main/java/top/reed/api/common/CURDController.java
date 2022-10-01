@@ -10,29 +10,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import top.reed.api.model.JsonBean;
 
-public abstract class CURDController<S extends ServiceImpl<M, T>,M extends BaseMapper<T>, T> {
-	
+public abstract class CURDController<S extends ServiceImpl<M, T>, M extends BaseMapper<T>, T> {
+
 	@Autowired
 	private S service;
-	
+
 	@RequestMapping("/list")
-	public IPage<T> list(@RequestParam(name = "page",defaultValue = "1")Integer page, @RequestParam(name = "limit",defaultValue = "1")Integer size){
+	public IPage<T> list(@RequestParam(name = "page", defaultValue = "1") Integer page, @RequestParam(name = "limit", defaultValue = "1") Integer size) {
 		return service.page(new Page<T>(page, size), new QueryWrapper<T>().orderByDesc("create_date"));
 	}
-	
+
 	@RequestMapping("get")
 	public JsonBean<T> get(String id) {
 		return new JsonBean<T>(service.getById(id));
 	}
-	
+
 	@RequestMapping("delete")
-	public JsonBean<Boolean> delete(String id){
+	public JsonBean<Boolean> delete(String id) {
 		return new JsonBean<Boolean>(service.removeById(id));
 	}
-	
+
 	@RequestMapping("save")
-	public JsonBean<Boolean> save(T t){
+	public JsonBean<Boolean> save(T t) {
 		return new JsonBean<Boolean>(service.saveOrUpdate(t));
 	}
-	
+
 }

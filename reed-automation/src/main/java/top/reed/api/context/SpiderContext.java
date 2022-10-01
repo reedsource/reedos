@@ -13,20 +13,17 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * 自动化任务上下文
- * @author jmxd
  *
+ * @author jmxd
  */
-public class SpiderContext extends HashMap<String, Object>{
-	
-	private String id = UUID.randomUUID().toString().replace("-", "");
+public class SpiderContext extends HashMap<String, Object> {
 
+	private static final long serialVersionUID = 8379177178417619790L;
+	private String id = UUID.randomUUID().toString().replace("-", "");
 	/**
 	 * 流程ID
 	 */
 	private String flowId;
-	
-	private static final long serialVersionUID = 8379177178417619790L;
-
 	/**
 	 * 流程执行线程
 	 */
@@ -56,11 +53,11 @@ public class SpiderContext extends HashMap<String, Object>{
 		return Collections.emptyList();
 	}
 
-	public <T> T get(String key){
+	public <T> T get(String key) {
 		return (T) super.get(key);
 	}
 
-	public <T> T get(String key,T defaultValue){
+	public <T> T get(String key, T defaultValue) {
 		T value = this.get(key);
 		return value == null ? defaultValue : value;
 	}
@@ -85,7 +82,7 @@ public class SpiderContext extends HashMap<String, Object>{
 		this.running = running;
 	}
 
-	public void addOutput(SpiderOutput output){
+	public void addOutput(SpiderOutput output) {
 
 	}
 
@@ -104,19 +101,22 @@ public class SpiderContext extends HashMap<String, Object>{
 	public void setRootNode(SpiderNode rootNode) {
 		this.rootNode = rootNode;
 	}
-	
+
 	public String getId() {
 		return id;
 	}
-	
+
 	public CookieContext getCookieContext() {
 		return cookieContext;
 	}
 
-	public void pause(String nodeId,String event,String key,Object value){}
+	public void pause(String nodeId, String event, String key, Object value) {
+	}
 
-	public void resume(){}
+	public void resume() {
+	}
 
-	public void stop(){}
+	public void stop() {
+	}
 
 }

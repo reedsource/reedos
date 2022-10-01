@@ -27,8 +27,8 @@ import java.util.*;
 
 /**
  * 输出执行器
- * @author reedsource
  *
+ * @author reedsource
  */
 @Component
 public class OutputExecutor implements ShapeExecutor, SpiderListener {
@@ -59,7 +59,7 @@ public class OutputExecutor implements ShapeExecutor, SpiderListener {
 	private Map<String, CSVPrinter> cachePrinter = new HashMap<>();
 
 	@Override
-	public void execute(SpiderNode node, SpiderContext context, Map<String,Object> variables) {
+	public void execute(SpiderNode node, SpiderContext context, Map<String, Object> variables) {
 		SpiderOutput output = new SpiderOutput();
 		output.setNodeName(node.getNodeName());
 		output.setNodeId(node.getNodeId());
@@ -80,17 +80,17 @@ public class OutputExecutor implements ShapeExecutor, SpiderListener {
 			String outputName = item.get(OUTPUT_NAME);
 			try {
 				value = ExpressionUtils.execute(outputValue, variables);
-				context.pause(node.getNodeId(),"common",outputName,value);
-				logger.debug("输出{}={}", outputName,value);
+				context.pause(node.getNodeId(), "common", outputName, value);
+				logger.debug("输出{}={}", outputName, value);
 			} catch (Exception e) {
-				logger.error("输出{}出错，异常信息：{}", outputName,e);
+				logger.error("输出{}出错，异常信息：{}", outputName, e);
 			}
 			output.addOutput(outputName, value);
 			if ((databaseFlag || csvFlag) && value != null) {
 				outputData.put(outputName, value.toString());
 			}
 		}
-		if(databaseFlag){
+		if (databaseFlag) {
 			String dsId = node.getStringJsonValue(DATASOURCE_ID);
 			String tableName = node.getStringJsonValue(TABLE_NAME);
 			if (StringUtils.isBlank(dsId)) {
@@ -110,10 +110,11 @@ public class OutputExecutor implements ShapeExecutor, SpiderListener {
 
 	/**
 	 * 输出所有参数
+	 *
 	 * @param output
 	 * @param variables
 	 */
-	private void outputAll(SpiderOutput output,Map<String,Object> variables){
+	private void outputAll(SpiderOutput output, Map<String, Object> variables) {
 		for (Map.Entry<String, Object> item : variables.entrySet()) {
 			Object value = item.getValue();
 			if (value instanceof SpiderResponse) {

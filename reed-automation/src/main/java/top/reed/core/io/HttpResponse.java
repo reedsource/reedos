@@ -10,10 +10,10 @@ import java.util.Map;
 
 /**
  * 响应对象包装类
- * @author reedsource
  *
+ * @author reedsource
  */
-public class HttpResponse implements SpiderResponse{
+public class HttpResponse implements SpiderResponse {
 
 	private Response response;
 
@@ -27,22 +27,22 @@ public class HttpResponse implements SpiderResponse{
 
 	private Object jsonValue;
 
-	public HttpResponse(Response response){
+	public HttpResponse(Response response) {
 		super();
 		this.response = response;
 		this.statusCode = response.statusCode();
 		this.urlLink = response.url().toExternalForm();
 	}
-	
+
 	@Override
-	public int getStatusCode(){
+	public int getStatusCode() {
 		return statusCode;
 	}
 
 	@Override
 	public String getTitle() {
 		if (titleName == null) {
-			synchronized (this){
+			synchronized (this) {
 				titleName = Jsoup.parse(getHtml()).title();
 			}
 		}
@@ -50,40 +50,40 @@ public class HttpResponse implements SpiderResponse{
 	}
 
 	@Override
-	public String getHtml(){
-		if(htmlValue == null){
-			synchronized (this){
+	public String getHtml() {
+		if (htmlValue == null) {
+			synchronized (this) {
 				htmlValue = response.body();
 			}
 		}
 		return htmlValue;
 	}
-	
+
 	@Override
-	public Object getJson(){
-		if(jsonValue == null){
+	public Object getJson() {
+		if (jsonValue == null) {
 			jsonValue = JSON.parse(getHtml());
 		}
 		return jsonValue;
 	}
-	
+
 	@Override
-	public Map<String,String> getCookies(){
+	public Map<String, String> getCookies() {
 		return response.cookies();
 	}
-	
+
 	@Override
-	public Map<String,String> getHeaders(){
+	public Map<String, String> getHeaders() {
 		return response.headers();
 	}
-	
+
 	@Override
-	public byte[] getBytes(){
+	public byte[] getBytes() {
 		return response.bodyAsBytes();
 	}
-	
+
 	@Override
-	public String getContentType(){
+	public String getContentType() {
 		return response.contentType();
 	}
 

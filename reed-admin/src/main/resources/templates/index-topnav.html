@@ -38,7 +38,8 @@
                     <div class="hide" th:text="个人中心"></div>
                     <div class="pull-left image">
                         <img alt="User Image"
-                             class="img-circle" th:onerror="this.src='img/profile.jpg'" th:src="(${#strings.isEmpty(user.avatar)}) ? @{/img/profile.jpg} : @{${user.avatar}}">
+                             class="img-circle" th:onerror="this.src='img/profile.jpg'"
+                             th:src="(${#strings.isEmpty(user.avatar)}) ? @{/img/profile.jpg} : @{${user.avatar}}">
                     </div>
                 </a>
                 <div class="pull-left info">
@@ -53,7 +54,9 @@
                 <div class="tab-pane fade height-full" th:id="|menu_${menu.menuId}|">
                     <ul class="nav">
                         <li th:each="cmenu : ${menu.children}">
-                            <a class="menu-content" th:classappend="${#strings.isEmpty(cmenu.target)} ? |menuItem| : ${cmenu.target}" th:data-refresh="${cmenu.isRefresh == '0'}"
+                            <a class="menu-content"
+                               th:classappend="${#strings.isEmpty(cmenu.target)} ? |menuItem| : ${cmenu.target}"
+                               th:data-refresh="${cmenu.isRefresh == '0'}"
                                th:href="@{${cmenu.url}}"
                                th:if="${#lists.isEmpty(cmenu.children)}">
                                 <i th:class="${cmenu.icon} + ' fa-fw'"></i> <span class="nav-label">[[${cmenu.menuName}]]</span>
@@ -65,7 +68,8 @@
                             </a>
                             <ul class="nav nav-second-level collapse" th:if="${not #lists.isEmpty(cmenu.children)}">
                                 <li th:each="emenu : ${cmenu.children}">
-                                    <a th:class="${#strings.isEmpty(emenu.target)} ? |menuItem| : ${emenu.target}" th:data-refresh="${emenu.isRefresh == '0'}"
+                                    <a th:class="${#strings.isEmpty(emenu.target)} ? |menuItem| : ${emenu.target}"
+                                       th:data-refresh="${emenu.isRefresh == '0'}"
                                        th:href="@{${emenu.url}}"
                                        th:if="${#lists.isEmpty(emenu.children)}">
                                         <i th:class="${emenu.icon} + ' fa-fw'"></i>
@@ -241,12 +245,14 @@
                         <!-- 顶部菜单列表 -->
                         <th:block th:each="menu : ${menus}">
                             <li role="presentation" th:id="|tab_${menu.menuId}|">
-                                <a data-toggle="tab" th:class="@{${!#strings.isEmpty(menu.target) && menu.target == 'menuBlank'} ? 'menuBlank' : 'menuItem noactive'}"
+                                <a data-toggle="tab"
+                                   th:class="@{${!#strings.isEmpty(menu.target) && menu.target == 'menuBlank'} ? 'menuBlank' : 'menuItem noactive'}"
                                    th:href="@{${menu.url}}"
                                    th:if="${#lists.isEmpty(menu.children)}">
                                     <i th:class="${menu.icon}"></i> <span>[[${menu.menuName}]]</span>
                                 </a>
-                                <a data-toggle="tab" th:class="@{${!#strings.isEmpty(menu.target) && menu.target == 'menuBlank'} ? 'menuBlank'}"
+                                <a data-toggle="tab"
+                                   th:class="@{${!#strings.isEmpty(menu.target) && menu.target == 'menuBlank'} ? 'menuBlank'}"
                                    th:href="@{${!#strings.isEmpty(menu.target) && menu.target == 'menuBlank'} ? @{${menu.url}} : |#menu_${menu.menuId}|}"
                                    th:if="${not #lists.isEmpty(menu.children)}">
                                     <i th:class="${menu.icon}"></i> <span>[[${menu.menuName}]]</span>
@@ -269,7 +275,8 @@
                 </div>
                 <!-- 右侧栏 -->
                 <ul class="nav navbar-top-links navbar-right welcome-message">
-                    <li><a data-placement="bottom" data-toggle="tooltip" data-trigger="hover" href="http://doc.ruoyi.vip/ruoyi"
+                    <li><a data-placement="bottom" data-toggle="tooltip" data-trigger="hover"
+                           href="http://doc.ruoyi.vip/ruoyi"
                            target="_blank" title="开发文档"><i class="fa fa-question-circle"></i> 文档</a>
                     </li>
                     <li><a data-placement="bottom" data-toggle="tooltip" data-trigger="hover" href="#" id="lockScreen"
@@ -280,7 +287,8 @@
                     <li class="dropdown user-menu">
                         <a class="dropdown-toggle" data-hover="dropdown" href="javascript:void(0)">
                             <img class="user-image"
-                                 th:onerror="this.src='img/profile.jpg'" th:src="(${#strings.isEmpty(user.avatar)}) ? @{/img/profile.jpg} : @{${user.avatar}}">
+                                 th:onerror="this.src='img/profile.jpg'"
+                                 th:src="(${#strings.isEmpty(user.avatar)}) ? @{/img/profile.jpg} : @{${user.avatar}}">
                             <span class="hidden-xs">[[${#strings.defaultString(user.userName, '-')}]]</span>
                         </a>
                         <ul class="dropdown-menu">

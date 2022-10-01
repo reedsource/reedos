@@ -3,9 +3,9 @@ package top.reed.api.model;
 public class JsonBean<T> {
 
 	private Integer code = 1;
-	
+
 	private String message = "执行成功";
-	
+
 	private T data;
 
 	public JsonBean(Integer code, String message, T data) {

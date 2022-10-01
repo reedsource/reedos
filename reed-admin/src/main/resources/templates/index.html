@@ -38,7 +38,8 @@
                             <div class="hide" th:text="个人中心"></div>
                             <div class="pull-left image">
                                 <img alt="User Image"
-                                     class="img-circle" th:onerror="this.src='img/profile.jpg'" th:src="(${#strings.isEmpty(user.avatar)}) ? @{/img/profile.jpg} : @{${user.avatar}}">
+                                     class="img-circle" th:onerror="this.src='img/profile.jpg'"
+                                     th:src="(${#strings.isEmpty(user.avatar)}) ? @{/img/profile.jpg} : @{${user.avatar}}">
                             </div>
                         </a>
                         <div class="pull-left info">
@@ -212,7 +213,8 @@
                     </a>
                 </div>
                 <ul class="nav navbar-top-links navbar-right welcome-message">
-                    <li><a data-placement="bottom" data-toggle="tooltip" data-trigger="hover" href="http://doc.ruoyi.vip/ruoyi"
+                    <li><a data-placement="bottom" data-toggle="tooltip" data-trigger="hover"
+                           href="http://doc.ruoyi.vip/ruoyi"
                            target="_blank" title="开发文档"><i class="fa fa-question-circle"></i> 文档</a>
                     </li>
                     <li><a data-placement="bottom" data-toggle="tooltip" data-trigger="hover" href="#" id="lockScreen"
@@ -222,7 +224,8 @@
                     <li class="dropdown user-menu">
                         <a class="dropdown-toggle" data-hover="dropdown" href="javascript:void(0)">
                             <img class="user-image"
-                                 th:onerror="this.src='img/profile.jpg'" th:src="(${#strings.isEmpty(user.avatar)}) ? @{/img/profile.jpg} : @{${user.avatar}}">
+                                 th:onerror="this.src='img/profile.jpg'"
+                                 th:src="(${#strings.isEmpty(user.avatar)}) ? @{/img/profile.jpg} : @{${user.avatar}}">
                             <span class="hidden-xs">[[${#strings.defaultString(user.userName, '-')}]]</span>
                         </a>
                         <ul class="dropdown-menu">

@@ -50,7 +50,7 @@ public class ExecuteSQLExecutor implements ShapeExecutor, Grammerable {
 	public static final String STATEMENT_DELETE = "delete";
 	public static final String SELECT_RESULT_STREAM = "isStream";
 	public static final String STATEMENT_INSERT_PK = "insertofPk";
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(ExecuteSQLExecutor.class);
 
 	@Override
@@ -68,12 +68,12 @@ public class ExecuteSQLExecutor implements ShapeExecutor, Grammerable {
 			sql = sql.replaceAll("#(.*?)#", "?");
 			try {
 				Object sqlObject = ExpressionUtils.execute(sql, variables);
-				if(sqlObject == null){
+				if (sqlObject == null) {
 					logger.warn("获取的sql为空！");
 					return;
 				}
 				sql = sqlObject.toString();
-				context.pause(node.getNodeId(),"common",SQL,sql);
+				context.pause(node.getNodeId(), "common", SQL, sql);
 			} catch (Exception e) {
 				logger.error("获取sql出错,异常信息:{}", e.getMessage(), e);
 				ExceptionUtils.wrapAndThrow(e);
@@ -154,7 +154,7 @@ public class ExecuteSQLExecutor implements ShapeExecutor, Grammerable {
 					variables.put("rs", -1);
 					ExceptionUtils.wrapAndThrow(e);
 				}
-			} else if(STATEMENT_INSERT_PK.equals(statementType)) {
+			} else if (STATEMENT_INSERT_PK.equals(statementType)) {
 				try {
 					KeyHolder keyHolder = new GeneratedKeyHolder();
 					final String insertSQL = sql;
@@ -172,6 +172,7 @@ public class ExecuteSQLExecutor implements ShapeExecutor, Grammerable {
 			}
 		}
 	}
+
 	private List<Object[]> convertParameters(Object[] params, int length) {
 		List<Object[]> result = new ArrayList<>(length);
 		int size = params.length;

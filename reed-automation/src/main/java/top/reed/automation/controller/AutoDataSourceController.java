@@ -60,7 +60,7 @@ public class AutoDataSourceController extends BaseController {
 	 */
 	@PostMapping("/all")
 	@ResponseBody
-	public List<AutoDataSource> all(){
+	public List<AutoDataSource> all() {
 		return autoDataSourceService.selectAutoDataSourceList(new AutoDataSource());
 	}
 
@@ -134,7 +134,7 @@ public class AutoDataSourceController extends BaseController {
 	@PostMapping("/add")
 	@ResponseBody
 	public AjaxResult addSave(AutoDataSource autoDataSource) {
-        //数据源尝试连接
+		//数据源尝试连接
 		AjaxResult ajaxResult = autoDataSourceIsTrue(autoDataSource);
 		if ("0".equals(ajaxResult.get("code").toString())) {
 			return toAjax(autoDataSourceService.insertAutoDataSource(autoDataSource));
@@ -161,12 +161,12 @@ public class AutoDataSourceController extends BaseController {
 	@PostMapping("/edit")
 	@ResponseBody
 	public AjaxResult editSave(AutoDataSource autoDataSource) {
-        //数据源尝试连接
-        AjaxResult ajaxResult = autoDataSourceIsTrue(autoDataSource);
-        if ("0".equals(ajaxResult.get("code").toString())) {
-            return toAjax(autoDataSourceService.updateAutoDataSource(autoDataSource));
-        }
-        return ajaxResult;
+		//数据源尝试连接
+		AjaxResult ajaxResult = autoDataSourceIsTrue(autoDataSource);
+		if ("0".equals(ajaxResult.get("code").toString())) {
+			return toAjax(autoDataSourceService.updateAutoDataSource(autoDataSource));
+		}
+		return ajaxResult;
 	}
 
 	/**

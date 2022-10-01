@@ -1,11 +1,12 @@
-
 package top.reed.core.expression;
 
 import top.reed.core.expression.parsing.Span;
 import top.reed.core.expression.parsing.Span.Line;
 import top.reed.core.expression.parsing.TokenStream;
 
-/** All errors reported by the library go through the static functions of this class. */
+/**
+ * All errors reported by the library go through the static functions of this class.
+ */
 public class ExpressionError {
 
 	/**
@@ -19,7 +20,7 @@ public class ExpressionError {
 	 * Throws a {@link RuntimeException}
 	 * </p>
 	 */
-	public static void error (String message, TokenStream stream) {
+	public static void error(String message, TokenStream stream) {
 		if (stream.hasMore())
 			error(message, stream.consume().getSpan());
 		else {
@@ -31,9 +32,11 @@ public class ExpressionError {
 		}
 	}
 
-	/** Create an error message based on the provided message and location, highlighting the location in the line on which the
-	 * error happened. Throws a {@link TemplateException} **/
-	public static void error (String message, Span location, Throwable cause) {
+	/**
+	 * Create an error message based on the provided message and location, highlighting the location in the line on which the
+	 * error happened. Throws a {@link TemplateException}
+	 **/
+	public static void error(String message, Span location, Throwable cause) {
 
 		Line line = location.getLine();
 		message = "Error (" + line.getLineNumber() + "): " + message + "\n\n";
@@ -53,38 +56,44 @@ public class ExpressionError {
 			throw new TemplateException(message, location, cause);
 	}
 
-	/** Create an error message based on the provided message and location, highlighting the location in the line on which the
-	 * error happened. Throws a {@link TemplateException} **/
-	public static void error (String message, Span location) {
+	/**
+	 * Create an error message based on the provided message and location, highlighting the location in the line on which the
+	 * error happened. Throws a {@link TemplateException}
+	 **/
+	public static void error(String message, Span location) {
 		error(message, location, null);
 	}
 
-	/** Exception thrown by all basis-template code via {@link ExpressionError#error(String, Span)}. In case an error happens deep inside a
-	 * list of included templates, the {@link #getMessage()} method will return a condensed error message. **/
+	/**
+	 * Exception thrown by all basis-template code via {@link ExpressionError#error(String, Span)}. In case an error happens deep inside a
+	 * list of included templates, the {@link #getMessage()} method will return a condensed error message.
+	 **/
 	public static class TemplateException extends RuntimeException {
 		private static final long serialVersionUID = 1L;
 		private final Span location;
 		private final String errorMessage;
 
-		private TemplateException (String message, Span location) {
+		private TemplateException(String message, Span location) {
 			super(message);
 			this.errorMessage = message;
 			this.location = location;
 		}
 
-		public TemplateException (String message, Span location, Throwable cause) {
+		public TemplateException(String message, Span location, Throwable cause) {
 			super(message, cause);
 			this.errorMessage = message;
 			this.location = location;
 		}
 
-		/** Returns the location in the template at which the error happened. **/
-		public Span getLocation () {
+		/**
+		 * Returns the location in the template at which the error happened.
+		 **/
+		public Span getLocation() {
 			return location;
 		}
 
 		@Override
-		public String getMessage () {
+		public String getMessage() {
 			StringBuilder builder = new StringBuilder();
 
 			if (getCause() == null || getCause() == this) {
@@ -97,7 +106,7 @@ public class ExpressionError {
 			Throwable cause = getCause();
 			while (cause != null && cause != this) {
 				if (cause instanceof TemplateException) {
-					TemplateException ex = (TemplateException)cause;
+					TemplateException ex = (TemplateException) cause;
 					if (ex.getCause() == null || ex.getCause() == ex)
 						builder.append(ex.errorMessage);
 					else
@@ -109,10 +118,10 @@ public class ExpressionError {
 			return builder.toString();
 		}
 	}
-	
+
 	public static class StringLiteralException extends RuntimeException {
 
 		private static final long serialVersionUID = 1L;
-		
+
 	}
 }

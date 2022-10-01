@@ -67,9 +67,9 @@ public class AutooFlowServiceImpl implements AutooFlowService {
 	@Override
 	public int saveAutoFlow(AutoFlow autoFlow) {
 		//任务存在更新
-		if (autooFlowMapper.selectAutoFlowById(autoFlow.getId()) !=null) {
+		if (autooFlowMapper.selectAutoFlowById(autoFlow.getId()) != null) {
 			return autooFlowMapper.updateAutoFlow(autoFlow);
-		}else {
+		} else {
 			//任务不存在添加
 			return autooFlowMapper.insertAutoFlow(autoFlow);
 		}

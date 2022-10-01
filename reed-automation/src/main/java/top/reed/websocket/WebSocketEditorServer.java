@@ -22,40 +22,40 @@ import javax.websocket.server.ServerEndpoint;
 @Component
 public class WebSocketEditorServer {
 
-    public static Spider spider;
+	public static Spider spider;
 
-    private SpiderWebSocketContext context;
+	private SpiderWebSocketContext context;
 
-    @OnMessage
-    public void onMessage(String message, Session session) {
-        JSONObject event = JSON.parseObject(message);
-        String eventType = event.getString("eventType");
-        boolean isDebug = "debug".equalsIgnoreCase(eventType);
-        if ("test".equalsIgnoreCase(eventType) || isDebug) {
-            context = new SpiderWebSocketContext(session);
-            context.setDebug(isDebug);
-            context.setRunning(true);
-            new Thread(() -> {
-                String xml = event.getString("message");
-                if (xml != null) {
-                    spider.runWithTest(AutoFlowUtils.loadXMLFromString(xml), context);
-                    context.write(new WebSocketEvent<>("finish", null));
-                } else {
-                    context.write(new WebSocketEvent<>("error", "xml不正确！"));
-                }
-                context.setRunning(false);
-            }).start();
-        } else if ("stop".equals(eventType) && context != null) {
-            context.setRunning(false);
-            context.stop();
-        } else if("resume".equalsIgnoreCase(eventType) && context != null){
-            context.resume();
-        }
-    }
+	@OnMessage
+	public void onMessage(String message, Session session) {
+		JSONObject event = JSON.parseObject(message);
+		String eventType = event.getString("eventType");
+		boolean isDebug = "debug".equalsIgnoreCase(eventType);
+		if ("test".equalsIgnoreCase(eventType) || isDebug) {
+			context = new SpiderWebSocketContext(session);
+			context.setDebug(isDebug);
+			context.setRunning(true);
+			new Thread(() -> {
+				String xml = event.getString("message");
+				if (xml != null) {
+					spider.runWithTest(AutoFlowUtils.loadXMLFromString(xml), context);
+					context.write(new WebSocketEvent<>("finish", null));
+				} else {
+					context.write(new WebSocketEvent<>("error", "xml不正确！"));
+				}
+				context.setRunning(false);
+			}).start();
+		} else if ("stop".equals(eventType) && context != null) {
+			context.setRunning(false);
+			context.stop();
+		} else if ("resume".equalsIgnoreCase(eventType) && context != null) {
+			context.resume();
+		}
+	}
 
-    @OnClose
-    public void onClose(Session session) {
-        context.setRunning(false);
-        context.stop();
-    }
+	@OnClose
+	public void onClose(Session session) {
+		context.setRunning(false);
+		context.stop();
+	}
 }

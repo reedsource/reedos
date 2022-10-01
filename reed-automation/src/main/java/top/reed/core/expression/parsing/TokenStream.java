@@ -1,4 +1,3 @@
-
 package top.reed.core.expression.parsing;
 
 import top.reed.core.expression.ExpressionError;
@@ -7,53 +6,61 @@ import javax.xml.transform.Source;
 import java.util.List;
 
 
-/** Iterates over a list of {@link Token} instances, provides methods to match expected tokens and throw errors in case of a
- * mismatch. */
+/**
+ * Iterates over a list of {@link Token} instances, provides methods to match expected tokens and throw errors in case of a
+ * mismatch.
+ */
 public class TokenStream {
 	private final List<Token> tokens;
-	private int index;
 	private final int end;
+	private int index;
 
-	public TokenStream (List<Token> tokens) {
+	public TokenStream(List<Token> tokens) {
 		this.tokens = tokens;
 		this.index = 0;
 		this.end = tokens.size();
 	}
 
-	/** Returns whether there are more tokens in the stream. **/
-	public boolean hasMore () {
+	/**
+	 * Returns whether there are more tokens in the stream.
+	 **/
+	public boolean hasMore() {
 		return index < end;
 	}
-	
-	public boolean hasNext(){
+
+	public boolean hasNext() {
 		return index + 1 < end;
 	}
-	
-	public boolean hasPrev(){
+
+	public boolean hasPrev() {
 		return index > 0;
 	}
 
-	/** Consumes the next token and returns it. **/
-	public Token consume () {
+	/**
+	 * Consumes the next token and returns it.
+	 **/
+	public Token consume() {
 		if (!hasMore()) throw new RuntimeException("Reached the end of the source.");
 		return tokens.get(index++);
 	}
-	
-	public Token next(){
+
+	public Token next() {
 		if (!hasMore()) throw new RuntimeException("Reached the end of the source.");
 		return tokens.get(++index);
 	}
-	
-	public Token prev(){
-		if(index == 0){
+
+	public Token prev() {
+		if (index == 0) {
 			throw new RuntimeException("Reached the end of the source.");
 		}
 		return tokens.get(--index);
 	}
 
-	/** Checks if the next token has the give type and optionally consumes, or throws an error if the next token did not match the
-	 * type. */
-	public Token expect (TokenType type) {
+	/**
+	 * Checks if the next token has the give type and optionally consumes, or throws an error if the next token did not match the
+	 * type.
+	 */
+	public Token expect(TokenType type) {
 		boolean result = match(type, true);
 		if (!result) {
 			Token token = index < tokens.size() ? tokens.get(index) : null;
@@ -68,9 +75,11 @@ public class TokenStream {
 		}
 	}
 
-	/** Checks if the next token matches the given text and optionally consumes, or throws an error if the next token did not match
-	 * the text. */
-	public Token expect (String text) {
+	/**
+	 * Checks if the next token matches the given text and optionally consumes, or throws an error if the next token did not match
+	 * the text.
+	 */
+	public Token expect(String text) {
 		boolean result = match(text, true);
 		if (!result) {
 			Token token = index < tokens.size() ? tokens.get(index) : null;
@@ -85,8 +94,10 @@ public class TokenStream {
 		}
 	}
 
-	/** Matches and optionally consumes the next token in case of a match. Returns whether the token matched. */
-	public boolean match (TokenType type, boolean consume) {
+	/**
+	 * Matches and optionally consumes the next token in case of a match. Returns whether the token matched.
+	 */
+	public boolean match(TokenType type, boolean consume) {
 		if (index >= end) return false;
 		if (tokens.get(index).getType() == type) {
 			if (consume) index++;
@@ -95,8 +106,10 @@ public class TokenStream {
 		return false;
 	}
 
-	/** Matches and optionally consumes the next token in case of a match. Returns whether the token matched. */
-	public boolean match (String text, boolean consume) {
+	/**
+	 * Matches and optionally consumes the next token in case of a match. Returns whether the token matched.
+	 */
+	public boolean match(String text, boolean consume) {
 		if (index >= end) return false;
 		if (tokens.get(index).getText().equals(text)) {
 			if (consume) index++;
@@ -105,26 +118,32 @@ public class TokenStream {
 		return false;
 	}
 
-	/** Matches any of the token types and optionally consumes the next token in case of a match. Returns whether the token
-	 * matched. */
-	public boolean match (boolean consume, TokenType... types) {
+	/**
+	 * Matches any of the token types and optionally consumes the next token in case of a match. Returns whether the token
+	 * matched.
+	 */
+	public boolean match(boolean consume, TokenType... types) {
 		for (TokenType type : types) {
 			if (match(type, consume)) return true;
 		}
 		return false;
 	}
 
-	/** Matches any of the token texts and optionally consumes the next token in case of a match. Returns whether the token
-	 * matched. */
-	public boolean match (boolean consume, String... tokenTexts) {
+	/**
+	 * Matches any of the token texts and optionally consumes the next token in case of a match. Returns whether the token
+	 * matched.
+	 */
+	public boolean match(boolean consume, String... tokenTexts) {
 		for (String text : tokenTexts) {
 			if (match(text, consume)) return true;
 		}
 		return false;
 	}
 
-	/** Returns the {@link Source} this stream wraps. */
-	public String getSource () {
+	/**
+	 * Returns the {@link Source} this stream wraps.
+	 */
+	public String getSource() {
 		if (tokens.size() == 0) return null;
 		return tokens.get(0).getSpan().getSource();
 	}

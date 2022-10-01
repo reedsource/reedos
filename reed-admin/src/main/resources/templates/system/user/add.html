@@ -50,7 +50,8 @@
                     <label class="col-sm-4 control-label">邮箱：</label>
                     <div class="col-sm-8">
                         <div class="input-group">
-                            <input class="form-control email" id="email" maxlength="50" name="email" placeholder="请输入邮箱"
+                            <input class="form-control email" id="email" maxlength="50" name="email"
+                                   placeholder="请输入邮箱"
                                    type="text">
                             <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                         </div>
@@ -113,7 +114,8 @@
                     <label class="col-xs-2 control-label">岗位：</label>
                     <div class="col-xs-4">
                         <select class="form-control select2-multiple" id="post" multiple>
-                            <option th:disabled="${post.status == '1'}" th:each="post:${posts}" th:text="${post.postName}"
+                            <option th:disabled="${post.status == '1'}" th:each="post:${posts}"
+                                    th:text="${post.postName}"
                                     th:value="${post.postId}"></option>
                         </select>
                     </div>
@@ -126,7 +128,8 @@
                     <label class="col-xs-2 control-label">角色：</label>
                     <div class="col-xs-10">
                         <label class="check-box" th:each="role:${roles}">
-                            <input name="role" th:disabled="${role.status == '1'}" th:text="${role.roleName}" th:value="${role.roleId}"
+                            <input name="role" th:disabled="${role.status == '1'}" th:text="${role.roleName}"
+                                   th:value="${role.roleId}"
                                    type="checkbox">
                         </label>
                     </div>
