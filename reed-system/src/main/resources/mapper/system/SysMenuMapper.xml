@@ -150,7 +150,8 @@
 		order by parent_id, order_num
 	</select>
 
-	<select id="selectMenuListByUserId" parameterType="top.reed.common.core.domain.entity.SysMenu" resultMap="SysMenuResult">
+	<select id="selectMenuListByUserId" parameterType="top.reed.common.core.domain.entity.SysMenu"
+	        resultMap="SysMenuResult">
 		select distinct m.menu_id, m.parent_id, m.menu_name, m.url, m.visible, m.is_refresh, ifnull(m.perms,'') as
 		perms, m.target, m.menu_type, m.icon, m.order_num, m.create_time
 		from sys_menu m
@@ -198,7 +199,8 @@
 		where parent_id = #{menuId}
 	</select>
 
-	<select id="checkMenuNameUnique" parameterType="top.reed.common.core.domain.entity.SysMenu" resultMap="SysMenuResult">
+	<select id="checkMenuNameUnique" parameterType="top.reed.common.core.domain.entity.SysMenu"
+	        resultMap="SysMenuResult">
 		<include refid="selectMenuVo"/>
 		where menu_name=#{menuName} and parent_id = #{parentId} limit 1
 	</select>

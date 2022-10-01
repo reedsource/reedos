@@ -207,7 +207,8 @@
                                                        title="分配到指定菜单下，例如 系统管理">上级菜单：<i
                                                         class="fa fa-question-circle-o"></i></label>
                                                 <div class="col-sm-8">
-                                                    <input id="parentMenuId" name="params[parentMenuId]" th:value="*{parentMenuId}"
+                                                    <input id="parentMenuId" name="params[parentMenuId]"
+                                                           th:value="*{parentMenuId}"
                                                            type="hidden"/>
                                                     <div class="input-group">
                                                         <input class="form-control" id="parentMenuName"
@@ -228,10 +229,12 @@
                                                        title="默认为zip压缩包下载，也可以自定义生成路径">生成代码方式：<i
                                                         class="fa fa-question-circle-o"></i></label>
                                                 <div class="col-sm-8">
-                                                    <label class="radio-box"> <input name="genType" th:field="*{genType}"
+                                                    <label class="radio-box"> <input name="genType"
+                                                                                     th:field="*{genType}"
                                                                                      type="radio" value="0"/>
                                                         zip压缩包 </label>
-                                                    <label class="radio-box"> <input name="genType" th:field="*{genType}"
+                                                    <label class="radio-box"> <input name="genType"
+                                                                                     th:field="*{genType}"
                                                                                      type="radio" value="1"/>
                                                         自定义路径</label>
                                                 </div>
@@ -695,6 +698,7 @@
 </select>
 </div>
 
+
 </script>
 
 <!-- 查询方式 -->
@@ -712,6 +716,7 @@
 </select>
 </div>
 
+
 </script>
 
 <!-- 显示类型 -->
@@ -728,5 +733,6 @@
     <option value="upload" {{if htmlType==="upload"}}selected{{/if}}>上传控件</option>
 </select>
 </div>
+
 
 </script>

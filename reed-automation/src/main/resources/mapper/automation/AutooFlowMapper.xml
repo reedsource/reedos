@@ -1,71 +1,77 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.reed.automation.mapper.AutooFlowMapper">
-    
-    <resultMap type="top.reed.automation.domain.AutoFlow" id="AutoFlowResult">
-        <result property="id"    column="id"    />
-        <result property="name"    column="name"    />
-        <result property="xml"    column="xml"    />
-        <result property="status"    column="status"    />
-        <result property="createDate"    column="create_date"    />
-    </resultMap>
 
-    <sql id="selectAutoFlowVo">
-        select id, name, xml, status, create_date from auto_flow
-    </sql>
+	<resultMap type="top.reed.automation.domain.AutoFlow" id="AutoFlowResult">
+		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="xml" column="xml"/>
+		<result property="status" column="status"/>
+		<result property="createDate" column="create_date"/>
+	</resultMap>
 
-    <select id="selectAutoFlowList" parameterType="top.reed.automation.domain.AutoFlow" resultMap="AutoFlowResult">
-        <include refid="selectAutoFlowVo"/>
-        <where>  
-            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
-            <if test="status != null  and status != ''"> and status = #{status}</if>
-            <if test="params.beginCreateDate != null and params.beginCreateDate != '' and params.endCreateDate != null and params.endCreateDate != ''"> and create_date between #{params.beginCreateDate} and #{params.endCreateDate}</if>
-        </where>
-    </select>
-    
-    <select id="selectAutoFlowById" parameterType="Long" resultMap="AutoFlowResult">
-        <include refid="selectAutoFlowVo"/>
-        where id = #{id}
-    </select>
-        
-    <insert id="insertAutoFlow" parameterType="top.reed.automation.domain.AutoFlow" useGeneratedKeys="true" keyProperty="id">
-        insert into auto_flow
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="name != null and name != ''">name,</if>
-            <if test="xml != null">xml,</if>
-            <if test="status != null and status != ''">status,</if>
-            <if test="createDate != null">create_date,</if>
-         </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="name != null and name != ''">#{name},</if>
-            <if test="xml != null">#{xml},</if>
-            <if test="status != null and status != ''">#{status},</if>
-            <if test="createDate != null">#{createDate},</if>
-         </trim>
-    </insert>
+	<sql id="selectAutoFlowVo">
+		select id, name, xml, status, create_date
+		from auto_flow
+	</sql>
 
-    <update id="updateAutoFlow" parameterType="top.reed.automation.domain.AutoFlow">
-        update auto_flow
-        <trim prefix="SET" suffixOverrides=",">
-            <if test="name != null and name != ''">name = #{name},</if>
-            <if test="xml != null">xml = #{xml},</if>
-            <if test="status != null and status != ''">status = #{status},</if>
-            <if test="createDate != null">create_date = #{createDate},</if>
-        </trim>
-        where id = #{id}
-    </update>
+	<select id="selectAutoFlowList" parameterType="top.reed.automation.domain.AutoFlow" resultMap="AutoFlowResult">
+		<include refid="selectAutoFlowVo"/>
+		<where>
+			<if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
+			<if test="status != null  and status != ''">and status = #{status}</if>
+			<if test="params.beginCreateDate != null and params.beginCreateDate != '' and params.endCreateDate != null and params.endCreateDate != ''">
+				and create_date between #{params.beginCreateDate} and #{params.endCreateDate}
+			</if>
+		</where>
+	</select>
 
-    <delete id="deleteAutoFlowById" parameterType="Long">
-        delete from auto_flow where id = #{id}
-    </delete>
+	<select id="selectAutoFlowById" parameterType="Long" resultMap="AutoFlowResult">
+		<include refid="selectAutoFlowVo"/>
+		where id = #{id}
+	</select>
 
-    <delete id="deleteAutoFlowByIds" parameterType="String">
-        delete from auto_flow where id in 
-        <foreach item="id" collection="array" open="(" separator="," close=")">
-            #{id}
-        </foreach>
-    </delete>
+	<insert id="insertAutoFlow" parameterType="top.reed.automation.domain.AutoFlow" useGeneratedKeys="true"
+	        keyProperty="id">
+		insert into auto_flow
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="name != null and name != ''">name,</if>
+			<if test="xml != null">xml,</if>
+			<if test="status != null and status != ''">status,</if>
+			<if test="createDate != null">create_date,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="name != null and name != ''">#{name},</if>
+			<if test="xml != null">#{xml},</if>
+			<if test="status != null and status != ''">#{status},</if>
+			<if test="createDate != null">#{createDate},</if>
+		</trim>
+	</insert>
+
+	<update id="updateAutoFlow" parameterType="top.reed.automation.domain.AutoFlow">
+		update auto_flow
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="name != null and name != ''">name = #{name},</if>
+			<if test="xml != null">xml = #{xml},</if>
+			<if test="status != null and status != ''">status = #{status},</if>
+			<if test="createDate != null">create_date = #{createDate},</if>
+		</trim>
+		where id = #{id}
+	</update>
+
+	<delete id="deleteAutoFlowById" parameterType="Long">
+		delete
+		from auto_flow
+		where id = #{id}
+	</delete>
+
+	<delete id="deleteAutoFlowByIds" parameterType="String">
+		delete from auto_flow where id in
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
 
 </mapper>

@@ -20,7 +20,8 @@
 		from sys_dict_type
 	</sql>
 
-	<select id="selectDictTypeList" parameterType="top.reed.common.core.domain.entity.SysDictType" resultMap="SysDictTypeResult">
+	<select id="selectDictTypeList" parameterType="top.reed.common.core.domain.entity.SysDictType"
+	        resultMap="SysDictTypeResult">
 		<include refid="selectDictTypeVo"/>
 		<where>
 			<if test="dictName != null and dictName != ''">

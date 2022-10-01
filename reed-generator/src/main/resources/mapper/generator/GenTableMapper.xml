@@ -239,7 +239,8 @@
 		order by c.sort
 	</select>
 
-	<insert id="insertGenTable" parameterType="top.reed.generator.domain.GenTable" useGeneratedKeys="true" keyProperty="tableId">
+	<insert id="insertGenTable" parameterType="top.reed.generator.domain.GenTable" useGeneratedKeys="true"
+	        keyProperty="tableId">
 		insert into gen_table (
 		<if test="tableName != null">table_name,</if>
 		<if test="tableComment != null and tableComment != ''">table_comment,</if>

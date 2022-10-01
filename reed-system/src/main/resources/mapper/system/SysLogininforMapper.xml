@@ -21,7 +21,8 @@
 		values (#{loginName}, #{status}, #{ipaddr}, #{loginLocation}, #{browser}, #{os}, #{msg}, sysdate())
 	</insert>
 
-	<select id="selectLogininforList" parameterType="top.reed.system.domain.SysLogininfor" resultMap="SysLogininforResult">
+	<select id="selectLogininforList" parameterType="top.reed.system.domain.SysLogininfor"
+	        resultMap="SysLogininforResult">
 		select info_id,login_name,ipaddr,login_location,browser,os,status,msg,login_time from sys_logininfor
 		<where>
 			<if test="ipaddr != null and ipaddr != ''">

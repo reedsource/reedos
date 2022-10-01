@@ -62,7 +62,8 @@
 		where sessionId = #{sessionId}
 	</delete>
 
-	<select id="selectUserOnlineList" parameterType="top.reed.system.domain.SysUserOnline" resultMap="SysUserOnlineResult">
+	<select id="selectUserOnlineList" parameterType="top.reed.system.domain.SysUserOnline"
+	        resultMap="SysUserOnlineResult">
 		<include refid="selectOnlineVo"/>
 		<where>
 			<if test="ipaddr != null and ipaddr != ''">

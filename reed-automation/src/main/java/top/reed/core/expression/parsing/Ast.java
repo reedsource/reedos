@@ -104,6 +104,7 @@ public abstract class Ast {
 
 		private final UnaryOperator operator;
 		private final Expression operand;
+
 		public UnaryOperation(Token operator, Expression operand) {
 			super(operator.getSpan());
 			this.operator = UnaryOperator.getOperator(operator);
@@ -177,6 +178,7 @@ public abstract class Ast {
 		private final Expression leftOperand;
 		private final BinaryOperator operator;
 		private final Expression rightOperand;
+
 		public BinaryOperation(Expression leftOperand, Token operator, Expression rightOperand) {
 			super(operator.getSpan());
 			this.leftOperand = leftOperand;

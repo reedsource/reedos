@@ -55,7 +55,8 @@
 		from gen_table_column
 	</sql>
 
-	<select id="selectGenTableColumnListByTableId" parameterType="top.reed.generator.domain.GenTableColumn" resultMap="GenTableColumnResult">
+	<select id="selectGenTableColumnListByTableId" parameterType="top.reed.generator.domain.GenTableColumn"
+	        resultMap="GenTableColumnResult">
 		<include refid="selectGenTableColumnVo"/>
 		where table_id = #{tableId}
 		order by sort
@@ -75,7 +76,8 @@
 		order by ordinal_position
 	</select>
 
-	<insert id="insertGenTableColumn" parameterType="top.reed.generator.domain.GenTableColumn" useGeneratedKeys="true" keyProperty="columnId">
+	<insert id="insertGenTableColumn" parameterType="top.reed.generator.domain.GenTableColumn" useGeneratedKeys="true"
+	        keyProperty="columnId">
 		insert into gen_table_column (
 		<if test="tableId != null and tableId != ''">table_id,</if>
 		<if test="columnName != null and columnName != ''">column_name,</if>

@@ -26,7 +26,8 @@
 		<result property="updateBy" column="update_by"/>
 		<result property="updateTime" column="update_time"/>
 		<result property="remark" column="remark"/>
-		<association property="dept" column="dept_id" javaType="top.reed.common.core.domain.entity.SysDept" resultMap="deptResult"/>
+		<association property="dept" column="dept_id" javaType="top.reed.common.core.domain.entity.SysDept"
+		             resultMap="deptResult"/>
 		<collection property="roles" javaType="java.util.List" resultMap="RoleResult"/>
 	</resultMap>
 
@@ -119,7 +120,8 @@
 		${params.dataScope}
 	</select>
 
-	<select id="selectAllocatedList" parameterType="top.reed.common.core.domain.entity.SysUser" resultMap="SysUserResult">
+	<select id="selectAllocatedList" parameterType="top.reed.common.core.domain.entity.SysUser"
+	        resultMap="SysUserResult">
 		select distinct u.user_id, u.dept_id, u.login_name, u.user_name, u.user_type, u.email, u.avatar, u.phonenumber,
 		u.status, u.create_time
 		from sys_user u
@@ -137,7 +139,8 @@
 		${params.dataScope}
 	</select>
 
-	<select id="selectUnallocatedList" parameterType="top.reed.common.core.domain.entity.SysUser" resultMap="SysUserResult">
+	<select id="selectUnallocatedList" parameterType="top.reed.common.core.domain.entity.SysUser"
+	        resultMap="SysUserResult">
 		select distinct u.user_id, u.dept_id, u.login_name, u.user_name, u.user_type, u.email, u.avatar, u.phonenumber,
 		u.status, u.create_time
 		from sys_user u
@@ -235,7 +238,8 @@
 		where user_id = #{userId}
 	</update>
 
-	<insert id="insertUser" parameterType="top.reed.common.core.domain.entity.SysUser" useGeneratedKeys="true" keyProperty="userId">
+	<insert id="insertUser" parameterType="top.reed.common.core.domain.entity.SysUser" useGeneratedKeys="true"
+	        keyProperty="userId">
 		insert into sys_user(
 		<if test="userId != null and userId != 0">user_id,</if>
 		<if test="deptId != null and deptId != 0">dept_id,</if>
