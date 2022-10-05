@@ -282,7 +282,7 @@ public class ExcelUtil<T> {
 	 * 隐藏Excel中列属性
 	 *
 	 * @param fields 列属性名 示例[单个"name"/多个"id","name"]
-	 * @throws Exception
+	 * throws Exception
 	 */
 	public void hideColumn(String... fields) {
 		this.excludeFields = fields;
@@ -1076,7 +1076,7 @@ public class ExcelUtil<T> {
 	 * @param field 字段
 	 * @param excel 注解
 	 * @return 最终的属性值
-	 * @throws Exception
+	 * throws Exception
 	 */
 	private Object getTargetValue(T vo, Field field, Excel excel) throws Exception {
 		Object o = field.get(vo);
@@ -1100,7 +1100,7 @@ public class ExcelUtil<T> {
 	 * @param o
 	 * @param name
 	 * @return value
-	 * @throws Exception
+	 * throws Exception
 	 */
 	private Object getValue(Object o, String name) throws Exception {
 		if (StringUtils.isNotNull(o) && StringUtils.isNotEmpty(name)) {

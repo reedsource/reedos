@@ -121,7 +121,7 @@ public class RandomAccessFileReader implements Closeable {
 	 * @param fromIndex 开始位置
 	 * @param endIndex  结束位置
 	 * @return 返回Line对象
-	 * @throws IOException
+	 * throws IOException
 	 */
 	private Line readLine(long fromIndex, long endIndex) throws IOException {
 		long index = this.raf.getFilePointer();

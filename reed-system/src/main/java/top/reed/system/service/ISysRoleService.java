@@ -64,7 +64,7 @@ public interface ISysRoleService {
 	 *
 	 * @param ids 需要删除的数据ID
 	 * @return 结果
-	 * @throws Exception 异常
+	 * throws Exception 异常
 	 */
 	public int deleteRoleByIds(String ids);
 

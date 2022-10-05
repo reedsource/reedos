@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 /**
- * Created on 2019-12-23
+ * 快速Json序列化程序
  */
 public class FastJsonSerializer implements ObjectSerializer {
 

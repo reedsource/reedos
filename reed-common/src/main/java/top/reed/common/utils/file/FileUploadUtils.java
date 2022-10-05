@@ -50,7 +50,7 @@ public class FileUploadUtils {
 	 *
 	 * @param file 上传的文件
 	 * @return 文件名称
-	 * @throws Exception
+	 * throws Exception
 	 */
 	public static final String upload(MultipartFile file) throws IOException {
 		try {
@@ -66,7 +66,7 @@ public class FileUploadUtils {
 	 * @param baseDir 相对应用的基目录
 	 * @param file    上传的文件
 	 * @return 文件名称
-	 * @throws IOException
+	 * throws IOException
 	 */
 	public static final String upload(String baseDir, MultipartFile file) throws IOException {
 		try {
@@ -83,10 +83,10 @@ public class FileUploadUtils {
 	 * @param file             上传的文件
 	 * @param allowedExtension 上传文件类型
 	 * @return 返回上传成功的文件名
-	 * @throws FileSizeLimitExceededException       如果超出最大大小
-	 * @throws FileNameLengthLimitExceededException 文件名太长
-	 * @throws IOException                          比如读写文件出错时
-	 * @throws InvalidExtensionException            文件校验异常
+	 * throws FileSizeLimitExceededException       如果超出最大大小
+	 * throws FileNameLengthLimitExceededException 文件名太长
+	 * throws IOException                          比如读写文件出错时
+	 * throws InvalidExtensionException            文件校验异常
 	 */
 	public static final String upload(String baseDir, MultipartFile file, String[] allowedExtension)
 			throws FileSizeLimitExceededException, IOException, FileNameLengthLimitExceededException,
@@ -135,8 +135,8 @@ public class FileUploadUtils {
 	 *
 	 * @param file 上传的文件
 	 * @return
-	 * @throws FileSizeLimitExceededException 如果超出最大大小
-	 * @throws InvalidExtensionException
+	 * throws FileSizeLimitExceededException 如果超出最大大小
+	 * throws InvalidExtensionException
 	 */
 	public static final void assertAllowed(MultipartFile file, String[] allowedExtension)
 			throws FileSizeLimitExceededException, InvalidExtensionException {

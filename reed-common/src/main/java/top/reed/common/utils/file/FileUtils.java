@@ -55,7 +55,7 @@ public class FileUtils {
 	 *
 	 * @param data 数据
 	 * @return 目标文件
-	 * @throws IOException IO异常
+	 * throws IOException IO异常
 	 */
 	public static String writeImportBytes(byte[] data) throws IOException {
 		return writeBytes(data, ReedConfig.getImportPath());
@@ -67,7 +67,7 @@ public class FileUtils {
 	 * @param data      数据
 	 * @param uploadDir 目标文件
 	 * @return 目标文件
-	 * @throws IOException IO异常
+	 * throws IOException IO异常
 	 */
 	public static String writeBytes(byte[] data, String uploadDir) throws IOException {
 		FileOutputStream fos = null;

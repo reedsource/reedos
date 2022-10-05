@@ -89,7 +89,7 @@ public abstract class AbstractQuartzJob implements Job {
 	 *
 	 * @param context 工作执行上下文对象
 	 * @param sysJob  系统计划任务
-	 * @throws Exception 执行过程中的异常
+	 * throws Exception 执行过程中的异常
 	 */
 	protected abstract void doExecute(JobExecutionContext context, SysJob sysJob) throws Exception;
 }

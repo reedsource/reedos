@@ -134,7 +134,7 @@ public class SysRoleServiceImpl implements ISysRoleService {
 	 * 批量删除角色信息
 	 *
 	 * @param ids 需要删除的数据ID
-	 * @throws Exception
+	 * throws Exception
 	 */
 	@Override
 	@Transactional

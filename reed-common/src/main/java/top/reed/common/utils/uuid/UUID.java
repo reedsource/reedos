@@ -116,7 +116,7 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
 	 *
 	 * @param name 指定 {@code UUID} 字符串
 	 * @return 具有指定值的 {@code UUID}
-	 * @throws IllegalArgumentException 如果 name 与 {@link #toString} 中描述的字符串表示形式不符抛出此异常
+	 * throws IllegalArgumentException 如果 name 与 {@link #toString} 中描述的字符串表示形式不符抛出此异常
 	 */
 	public static UUID fromString(String name) {
 		String[] components = name.split("-");
@@ -244,7 +244,7 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
 	 * 时间戳值仅在在基于时间的 UUID（其 version 类型为 1）中才有意义。<br>
 	 * 如果此 {@code UUID} 不是基于时间的 UUID，则此方法抛出 UnsupportedOperationException。
 	 *
-	 * @throws UnsupportedOperationException 如果此 {@code UUID} 不是 version 为 1 的 UUID。
+	 * throws UnsupportedOperationException 如果此 {@code UUID} 不是 version 为 1 的 UUID。
 	 */
 	public long timestamp() throws UnsupportedOperationException {
 		checkTimeBase();
@@ -263,7 +263,7 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
 	 * UnsupportedOperationException。
 	 *
 	 * @return 此 {@code UUID} 的时钟序列
-	 * @throws UnsupportedOperationException 如果此 UUID 的 version 不为 1
+	 * throws UnsupportedOperationException 如果此 UUID 的 version 不为 1
 	 */
 	public int clockSequence() throws UnsupportedOperationException {
 		checkTimeBase();
@@ -280,7 +280,7 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
 	 * 如果此 UUID 不是基于时间的 UUID，则此方法抛出 UnsupportedOperationException。
 	 *
 	 * @return 此 {@code UUID} 的节点值
-	 * @throws UnsupportedOperationException 如果此 UUID 的 version 不为 1
+	 * throws UnsupportedOperationException 如果此 UUID 的 version 不为 1
 	 */
 	public long node() throws UnsupportedOperationException {
 		checkTimeBase();

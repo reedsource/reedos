@@ -16,6 +16,9 @@ import java.util.Set;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+/**
+ * 脚本管理器
+ */
 public class ScriptManager {
 
 	private static Logger logger = LoggerFactory.getLogger(ScriptManager.class);
@@ -115,7 +118,7 @@ public class ScriptManager {
 	 * @param functionName 自定义函数名称
 	 * @param parameters   自定义函数参数
 	 * @param script       自定义函数脚本
-	 * @throws Exception
+	 * throws Exception
 	 */
 	public static void validScript(String functionName, String parameters, String script) throws Exception {
 		new ScriptEngineManager().getEngineByName("nashorn").eval(concatScript(functionName, parameters, script));
