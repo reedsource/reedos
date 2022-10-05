@@ -87,32 +87,6 @@ public class AutoFlowService {
 		return autooFlowMapper.selectAutoFlowList(autoFlow);
 	}
 
-	/**
-	 * 根据表达式获取最近几次运行时间
-	 *
-	 * @param cron     表达式
-	 * @param numTimes 几次
-	 * @return
-	 */
-	public List<String> getRecentTriggerTime(String cron, int numTimes) {
-		List<String> list = new ArrayList<>();
-		CronTrigger trigger;
-		try {
-			trigger = TriggerBuilder.newTrigger()
-					.withSchedule(CronScheduleBuilder.cronSchedule(cron))
-					.build();
-		} catch (Exception e) {
-			list.add("cron表达式 " + cron + " 有误：" + e.getCause());
-			return list;
-		}
-		List<Date> dates = TriggerUtils.computeFireTimes((OperableTrigger) trigger, null, numTimes);
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		for (Date date : dates) {
-			list.add(dateFormat.format(date));
-		}
-		return list;
-	}
-
 	public List<Long> historyList(String id) {
 		File directory = new File(workspace, id + File.separator + "xmls");
 		if (directory.exists() && directory.isDirectory()) {

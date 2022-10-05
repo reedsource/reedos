@@ -145,7 +145,7 @@ function validXML(callback){
 }
 $(function(){
 	$.ajax({
-		url : '/spider/other',
+		url : '/automation/autoflow/other',
 		type : 'post',
 		data : {
 			id : getQueryString('id')
@@ -209,7 +209,7 @@ $(function(){
 		//备注 发起请求路径
 		$.ajax({
 			// url : 'resources/templates/' + template +".html",
-			url : '/flowEditor/' + template,
+			url : '/automation/autoflow/' + template,
 			async :false,
 			success : function(content){
 				templateCache[template] = content;
@@ -274,7 +274,7 @@ $(function(){
 				layui.layer.close(index);
 				var layerIndex = layui.layer.load(1);
 				$.ajax({
-					url : '/spider/history',
+					url : '/automation/autoflow/history',
 					data : {
 						id : id,
 						timestamp : timestamp
@@ -293,7 +293,7 @@ $(function(){
 			});
 		}).on("click",".btn-history",function(){
 			$.ajax({
-				url : '/spider/history',
+				url : '/automation/autoflow/history',
 				data : {
 					id : id
 				},
@@ -530,7 +530,7 @@ $(function(){
 		var id = getQueryString('id');
 		if(id != null){
 			$.ajax({
-				url : '/spider/xml',
+				url : '/automation/autoflow/xml',
 				async : false,
 				data : {
 					id : id
@@ -626,7 +626,7 @@ $(function(){
 			addShape(shapes[i]);
 		}
 		$.ajax({
-			url : '/spider/shapes',
+			url : '/automation/autoflow/shapes',
 			type : 'post',
 			dataType : 'json',
 			async :false,
@@ -1149,7 +1149,7 @@ var flowId;
 function Save(){
 	validXML(function(){
 		$.ajax({
-			url : '/spider/save',
+			url : '/automation/autoflow/save',
 			type : 'post',
 			data : {
 				id : getQueryString('id') || flowId,

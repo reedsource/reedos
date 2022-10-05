@@ -1,6 +1,6 @@
 var grammers = [];
 $.ajax({
-	url : 'spider/grammers',
+	url : '/automation/autoflow/grammers',
 	type : 'post',
 	dataType : 'json',
 	success : function(json){
