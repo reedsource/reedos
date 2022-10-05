@@ -19,7 +19,6 @@ import top.reed.automation.domain.AutoFlow;
 import top.reed.automation.mapper.AutooFlowMapper;
 import top.reed.core.Spider;
 import top.reed.core.job.SpiderJobContext;
-import top.reed.core.mapper.AutoFlowMapper;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,23 +32,16 @@ import java.util.stream.Collectors;
  * @author reedsource
  */
 @Service
-public class AutoFlowService extends ServiceImpl<AutoFlowMapper, AutoFlow> {
+public class AutoFlowService {
 
 	private static Logger logger = LoggerFactory.getLogger(AutoFlowService.class);
 	@Autowired
 	AutooFlowMapper autooFlowMapper;
 	@Autowired
-	private AutoFlowMapper sfMapper;
-	@Autowired
 	private Spider spider;
 	@Value("${spider.workspace}")
 	private String workspace;
 
-	public IPage<AutoFlow> selectSpiderPage(Page<AutoFlow> page, String name) {
-		return sfMapper.selectSpiderPage(page, name);
-	}
-
-	@Override
 	public boolean save(AutoFlow autoFlow) {
 		autooFlowMapper.insertAutoFlow(autoFlow);
 		String id = autooFlowMapper.selectAutoFlowList(autoFlow).get(0).getId().toString();
@@ -62,17 +54,10 @@ public class AutoFlowService extends ServiceImpl<AutoFlowMapper, AutoFlow> {
 		return true;
 	}
 
-	public void stop(String id) {
-		sfMapper.resetSpiderStatus(id, "0");
-	}
 
-	public void start(String id) {
-		sfMapper.resetSpiderStatus(id, "1");
-	}
-
-	public void run(String id) {
+	public void run(Long id) {
 		Spider.executorInstance.submit(() -> {
-			run(getById(id));
+			run(autooFlowMapper.selectAutoFlowById(id));
 		});
 	}
 
@@ -94,16 +79,12 @@ public class AutoFlowService extends ServiceImpl<AutoFlowMapper, AutoFlow> {
 		}
 	}
 
-	public void remove(String id) {
-		sfMapper.deleteById(id);
+	public void remove(Long id) {
+		autooFlowMapper.deleteAutoFlowById(id);
 	}
 
-	public List<AutoFlow> selectOtherFlows(String id) {
-		return sfMapper.selectOtherFlows(id);
-	}
-
-	public List<AutoFlow> selectFlows() {
-		return sfMapper.selectFlows();
+	public List<AutoFlow> selectOtherFlows(AutoFlow autoFlow) {
+		return autooFlowMapper.selectAutoFlowList(autoFlow);
 	}
 
 	/**

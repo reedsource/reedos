@@ -80,18 +80,6 @@ public class AutoFlowController {
 		}
 	}
 
-	/**
-	 * 自动化任务列表
-	 *
-	 * @param page 页数
-	 * @param size 每页显示条数
-	 * @return Page<AutoFlow> 所有自动化任务的列表页
-	 */
-	@RequestMapping("/list")
-	public IPage<AutoFlow> list(@RequestParam(name = "page", defaultValue = "1") Integer page, @RequestParam(name = "limit", defaultValue = "1") Integer size, @RequestParam(name = "name", defaultValue = "") String name) {
-		return autoFlowService.selectSpiderPage(new Page<>(page, size), name);
-	}
-
 	@RequestMapping("/save")
 	public String save(AutoFlow autoFlow) {
 		return String.valueOf(autooFlowService.saveAutoFlow(autoFlow));
@@ -106,36 +94,18 @@ public class AutoFlowController {
 		}
 	}
 
-	@RequestMapping("/get")
-	public AutoFlow get(String id) {
-		return autoFlowService.getById(id);
-	}
-
 	@RequestMapping("/other")
-	public List<AutoFlow> other(String id) {
-		if (StringUtils.isBlank(id)) {
-			return autoFlowService.selectFlows();
-		}
-		return autoFlowService.selectOtherFlows(id);
+	public List<AutoFlow> other(AutoFlow autoFlow) {
+		return autoFlowService.selectOtherFlows(autoFlow);
 	}
 
 	@RequestMapping("/remove")
-	public void remove(String id) {
+	public void remove(Long id) {
 		autoFlowService.remove(id);
 	}
 
-	@RequestMapping("/start")
-	public void start(String id) {
-		autoFlowService.start(id);
-	}
-
-	@RequestMapping("/stop")
-	public void stop(String id) {
-		autoFlowService.stop(id);
-	}
-
 	@RequestMapping("/run")
-	public void run(String id) {
+	public void run(Long id) {
 		autoFlowService.run(id);
 	}
 
