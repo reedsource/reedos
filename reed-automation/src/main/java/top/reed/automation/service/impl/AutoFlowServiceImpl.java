@@ -1,18 +1,24 @@
 package top.reed.automation.service.impl;
 
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.reed.api.context.SpiderContextHolder;
 import top.reed.automation.domain.AutoFlow;
-import top.reed.automation.mapper.AutooFlowMapper;
-import top.reed.automation.service.AutooFlowService;
+import top.reed.automation.mapper.AutoFlowMapper;
+import top.reed.automation.service.AutoFlowService;
 import top.reed.common.core.text.Convert;
 import top.reed.core.Spider;
 import top.reed.core.job.SpiderJobContext;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 自动化任务Service业务层处理
@@ -21,19 +27,19 @@ import java.util.List;
  * date 2022-09-29
  */
 @Service
-public class AutooFlowServiceImpl implements AutooFlowService {
-	private static Logger logger = LoggerFactory.getLogger(AutooFlowServiceImpl.class);
+public class AutoFlowServiceImpl implements AutoFlowService {
+	private static Logger logger = LoggerFactory.getLogger(AutoFlowServiceImpl.class);
 
 	/**
 	 * 日志路径
 	 */
 	private final String workspace = "/data/spider";
-	private final AutooFlowMapper autooFlowMapper;
+	private final AutoFlowMapper autoFlowMapper;
 	@Autowired
 	private Spider spider;
 
-	public AutooFlowServiceImpl(AutooFlowMapper autooFlowMapper) {
-		this.autooFlowMapper = autooFlowMapper;
+	public AutoFlowServiceImpl(AutoFlowMapper autoFlowMapper) {
+		this.autoFlowMapper = autoFlowMapper;
 	}
 
 	/**
@@ -44,7 +50,7 @@ public class AutooFlowServiceImpl implements AutooFlowService {
 	 */
 	@Override
 	public AutoFlow selectAutoFlowById(Long id) {
-		return autooFlowMapper.selectAutoFlowById(id);
+		return autoFlowMapper.selectAutoFlowById(id);
 	}
 
 	/**
@@ -55,7 +61,7 @@ public class AutooFlowServiceImpl implements AutooFlowService {
 	 */
 	@Override
 	public List<AutoFlow> selectAutoFlowList(AutoFlow autoFlow) {
-		return autooFlowMapper.selectAutoFlowList(autoFlow);
+		return autoFlowMapper.selectAutoFlowList(autoFlow);
 	}
 
 	/**
@@ -66,13 +72,22 @@ public class AutooFlowServiceImpl implements AutooFlowService {
 	 */
 	@Override
 	public int saveAutoFlow(AutoFlow autoFlow) {
+		int i;
 		//任务存在更新
-		if (autooFlowMapper.selectAutoFlowById(autoFlow.getId()) != null) {
-			return autooFlowMapper.updateAutoFlow(autoFlow);
+		if (autoFlowMapper.selectAutoFlowById(autoFlow.getId()) != null) {
+			i = autoFlowMapper.updateAutoFlow(autoFlow);
 		} else {
 			//任务不存在添加
-			return autooFlowMapper.insertAutoFlow(autoFlow);
+			i = autoFlowMapper.insertAutoFlow(autoFlow);
 		}
+		String id = autoFlowMapper.selectAutoFlowList(autoFlow).get(0).getId().toString();
+		File file = new File(workspace, id + File.separator + "xmls" + File.separator + System.currentTimeMillis() + ".xml");
+		try {
+			FileUtils.write(file, autoFlow.getXml(), "UTF-8");
+		} catch (IOException e) {
+			logger.error("保存历史记录出错", e);
+		}
+		return i;
 	}
 
 	/**
@@ -83,7 +98,7 @@ public class AutooFlowServiceImpl implements AutooFlowService {
 	 */
 	@Override
 	public int deleteAutoFlowByIds(String ids) {
-		return autooFlowMapper.deleteAutoFlowByIds(Convert.toStrArray(ids));
+		return autoFlowMapper.deleteAutoFlowByIds(Convert.toStrArray(ids));
 	}
 
 	/**
@@ -94,7 +109,7 @@ public class AutooFlowServiceImpl implements AutooFlowService {
 	 */
 	@Override
 	public int deleteAutoFlowById(Long id) {
-		return autooFlowMapper.deleteAutoFlowById(id);
+		return autoFlowMapper.deleteAutoFlowById(id);
 	}
 
 	/**
@@ -132,4 +147,26 @@ public class AutooFlowServiceImpl implements AutooFlowService {
 		}
 	}
 
+	public String readHistory(String id, String timestamp) {
+		File file = new File(workspace, id + File.separator + "xmls" + File.separator + timestamp + ".xml");
+		if (file.exists()) {
+			try {
+				return FileUtils.readFileToString(file, "UTF-8");
+			} catch (IOException e) {
+				logger.error("读取历史版本出错", e);
+			}
+		}
+		return null;
+	}
+
+	public List<Long> historyList(String id) {
+		File directory = new File(workspace, id + File.separator + "xmls");
+		if (directory.exists() && directory.isDirectory()) {
+			File[] files = directory.listFiles((dir, name) -> name.endsWith(".xml"));
+			if (files != null && files.length > 0) {
+				return Arrays.stream(files).map(f -> Long.parseLong(f.getName().replace(".xml", ""))).sorted().collect(Collectors.toList());
+			}
+		}
+		return Collections.emptyList();
+	}
 }

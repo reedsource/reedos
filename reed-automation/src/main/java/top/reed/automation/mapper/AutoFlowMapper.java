@@ -12,7 +12,7 @@ import java.util.List;
  * date 2022-09-29
  */
 @Mapper
-public interface AutooFlowMapper {
+public interface AutoFlowMapper {
 	/**
 	 * 查询自动化任务
 	 *

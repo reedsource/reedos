@@ -10,7 +10,7 @@ import java.util.List;
  * @author reedsource
  * date 2022-09-29
  */
-public interface AutooFlowService {
+public interface AutoFlowService {
 	/**
 	 * 查询自动化任务
 	 *
@@ -53,4 +53,8 @@ public interface AutooFlowService {
 	int deleteAutoFlowById(Long id);
 
 	void run(Long id);
+
+	String readHistory(String id, String timestamp);
+
+	List<Long> historyList(String id);
 }

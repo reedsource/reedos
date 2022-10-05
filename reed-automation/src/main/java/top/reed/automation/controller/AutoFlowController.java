@@ -16,14 +16,13 @@ import top.reed.api.model.JsonBean;
 import top.reed.api.model.Plugin;
 import top.reed.api.model.Shape;
 import top.reed.automation.domain.AutoFlow;
-import top.reed.automation.service.AutooFlowService;
+import top.reed.automation.service.AutoFlowService;
 import top.reed.common.annotation.Log;
 import top.reed.common.core.controller.BaseController;
 import top.reed.common.core.domain.AjaxResult;
 import top.reed.common.core.page.TableDataInfo;
 import top.reed.common.enums.BusinessType;
 import top.reed.common.utils.poi.ExcelUtil;
-import top.reed.core.service.AutoFlowService;
 import top.reed.core.utils.ExecutorsUtils;
 
 import javax.annotation.PostConstruct;
@@ -41,12 +40,12 @@ import java.util.stream.Collectors;
  */
 @Controller
 @RequestMapping("/automation/autoflow")
-public class AutooFlowController extends BaseController {
+public class AutoFlowController extends BaseController {
 
-	private final AutooFlowService autooFlowService;
+	private final AutoFlowService autoFlowService;
 
-	public AutooFlowController(AutooFlowService autooFlowService) {
-		this.autooFlowService = autooFlowService;
+	public AutoFlowController(AutoFlowService autoFlowService) {
+		this.autoFlowService = autoFlowService;
 	}
 
 	private final List<Grammer> grammers = new ArrayList<Grammer>();
@@ -57,8 +56,6 @@ public class AutooFlowController extends BaseController {
 	@Autowired
 	private List<Grammerable> grammerables;
 
-	@Autowired
-	private AutoFlowService autoFlowService;
 	@Autowired(required = false)
 	private List<PluginConfig> pluginConfigs;
 
@@ -141,7 +138,7 @@ public class AutooFlowController extends BaseController {
 	@ResponseBody
 	public TableDataInfo list(AutoFlow autoFlow) {
 		startPage();
-		List<AutoFlow> list = autooFlowService.selectAutoFlowList(autoFlow);
+		List<AutoFlow> list = autoFlowService.selectAutoFlowList(autoFlow);
 		return getDataTable(list);
 	}
 
@@ -153,7 +150,7 @@ public class AutooFlowController extends BaseController {
 	@PostMapping("/export")
 	@ResponseBody
 	public AjaxResult export(AutoFlow autoFlow) {
-		List<AutoFlow> list = autooFlowService.selectAutoFlowList(autoFlow);
+		List<AutoFlow> list = autoFlowService.selectAutoFlowList(autoFlow);
 		ExcelUtil<AutoFlow> util = new ExcelUtil<>(AutoFlow.class);
 		return util.exportExcel(list, "自动化任务数据");
 	}
@@ -179,7 +176,7 @@ public class AutooFlowController extends BaseController {
 	@PostMapping("/add")
 	@ResponseBody
 	public AjaxResult addSave(AutoFlow autoFlow) {
-		return toAjax(autooFlowService.saveAutoFlow(autoFlow));
+		return toAjax(autoFlowService.saveAutoFlow(autoFlow));
 	}
 
 	/**
@@ -204,7 +201,7 @@ public class AutooFlowController extends BaseController {
 	@PostMapping("/remove")
 	@ResponseBody
 	public AjaxResult remove(String ids) {
-		return toAjax(autooFlowService.deleteAutoFlowByIds(ids));
+		return toAjax(autoFlowService.deleteAutoFlowByIds(ids));
 	}
 
 
@@ -216,7 +213,7 @@ public class AutooFlowController extends BaseController {
 	@RequestMapping("/run")
 	@ResponseBody
 	public AjaxResult run(Long id) {
-		autooFlowService.run(id);
+		autoFlowService.run(id);
 		return success();
 	}
 
@@ -246,7 +243,7 @@ public class AutooFlowController extends BaseController {
 	@RequestMapping("/save")
 	@ResponseBody
 	public String save(AutoFlow autoFlow) {
-		return String.valueOf(autooFlowService.saveAutoFlow(autoFlow));
+		return String.valueOf(autoFlowService.saveAutoFlow(autoFlow));
 	}
 
 	@RequestMapping("/history")
@@ -262,19 +259,19 @@ public class AutooFlowController extends BaseController {
 	@RequestMapping("/other")
 	@ResponseBody
 	public List<AutoFlow> other(AutoFlow autoFlow) {
-		return autoFlowService.selectOtherFlows(autoFlow);
+		return autoFlowService.selectAutoFlowList(autoFlow);
 	}
 
 	@RequestMapping("/remove")
 	@ResponseBody
 	public void remove(Long id) {
-		autoFlowService.remove(id);
+		autoFlowService.deleteAutoFlowById(id);
 	}
 
 	@RequestMapping("/xml")
 	@ResponseBody
 	public String xml(String id) {
-		return autooFlowService.selectAutoFlowById(Long.valueOf(id)).getXml();
+		return autoFlowService.selectAutoFlowById(Long.valueOf(id)).getXml();
 	}
 
 	@RequestMapping("/shapes")
