@@ -19,7 +19,7 @@ public class ScheduleUtils {
 	 * 得到quartz任务类
 	 *
 	 * @param sysJob 执行计划
-	 * @return 具体执行任务类
+	 * @return 具体执行任务类 是否运行并发执行
 	 */
 	private static Class<? extends Job> getQuartzJobClass(SysJob sysJob) {
 		boolean isConcurrent = "0".equals(sysJob.getConcurrent());
@@ -34,31 +34,39 @@ public class ScheduleUtils {
 	}
 
 	/**
-	 * 构建任务键对象
+	 * 构建任务键对象 构造一个唯一标识JobDetail新键
 	 */
 	public static JobKey getJobKey(Long jobId, String jobGroup) {
+		//用给定的名称和组构造一个唯一标识JobDetail新键。 形参: name–名称group–组
 		return JobKey.jobKey(ScheduleConstants.TASK_CLASS_NAME + jobId, jobGroup);
 	}
 
 	/**
 	 * 创建定时任务
+	 *
+	 * @param scheduler Quartz Scheduler的主实现
+	 * @param job       定时任务对象
 	 */
 	public static void createScheduleJob(Scheduler scheduler, SysJob job) throws SchedulerException, TaskException {
+		//根据设置返回符合 并发执行 需求的 job 调用执行子实现类
 		Class<? extends Job> jobClass = getQuartzJobClass(job);
 		// 构建job信息
 		Long jobId = job.getJobId();
 		String jobGroup = job.getJobGroup();
+		//传递给定作业实例的数据映射集详细属性
 		JobDetail jobDetail = JobBuilder.newJob(jobClass).withIdentity(getJobKey(jobId, jobGroup)).build();
 
 		// 表达式调度构建器
+		//使用给定的cron表达式字符串创建CronScheduleBuilder，该字符串被假定为有效的cron表达（因此，如果不是，则只会抛出RuntimeException）
 		CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule(job.getCronExpression());
+		//设置定时任务策略
 		cronScheduleBuilder = handleCronScheduleMisfirePolicy(job, cronScheduleBuilder);
 
-		// 按新的cronExpression表达式构建一个新的trigger
+		// 按新的cronExpression表达式构建一个新的trigger触发器
 		CronTrigger trigger = TriggerBuilder.newTrigger().withIdentity(getTriggerKey(jobId, jobGroup))
 				.withSchedule(cronScheduleBuilder).build();
 
-		// 放入参数，运行时的方法可以获取
+		// 作业关联的作业数据映射 放入参数，运行时的方法可以获取
 		jobDetail.getJobDataMap().put(ScheduleConstants.TASK_PROPERTIES, job);
 
 		// 判断是否存在
@@ -69,12 +77,13 @@ public class ScheduleUtils {
 
 		// 判断任务是否过期
 		if (StringUtils.isNotNull(CronUtils.getNextExecution(job.getCronExpression()))) {
-			// 执行调度任务
+			// 执行调度任务 作业实例数据映射集 触发器
 			scheduler.scheduleJob(jobDetail, trigger);
 		}
 
+		// 使用给定键暂停JobDetail-通过暂停其所有当前触发器
 		// 暂停任务
-		if (job.getStatus().equals(ScheduleConstants.Status.PAUSE.getValue())) {
+		if (ScheduleConstants.Status.PAUSE.getValue().equals(job.getStatus())) {
 			scheduler.pauseJob(ScheduleUtils.getJobKey(jobId, jobGroup));
 		}
 	}
@@ -84,6 +93,7 @@ public class ScheduleUtils {
 	 */
 	public static CronScheduleBuilder handleCronScheduleMisfirePolicy(SysJob job, CronScheduleBuilder cb)
 			throws TaskException {
+		//0=默认,1=立即触发执行,2=触发一次执行,3=不触发立即执行
 		switch (job.getMisfirePolicy()) {
 			case ScheduleConstants.MISFIRE_DEFAULT:
 				return cb;
@@ -94,8 +104,8 @@ public class ScheduleUtils {
 			case ScheduleConstants.MISFIRE_DO_NOTHING:
 				return cb.withMisfireHandlingInstructionDoNothing();
 			default:
-				throw new TaskException("The task misfire policy '" + job.getMisfirePolicy()
-						+ "' cannot be used in cron schedule tasks", Code.CONFIG_ERROR);
+				throw new TaskException("定时任务执行策略 '" + job.getMisfirePolicy()
+						+ "' 不能在cron计划任务中使用", Code.CONFIG_ERROR);
 		}
 	}
 

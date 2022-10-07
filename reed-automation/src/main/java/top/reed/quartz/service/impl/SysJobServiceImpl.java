@@ -26,6 +26,11 @@ import java.util.List;
  */
 @Service
 public class SysJobServiceImpl implements ISysJobService {
+	/**
+	 * Quartz Scheduler的主实现。
+	 * 计划程序维护作业详细信息和触发器的注册表。
+	 * 一旦注册，调度程序负责在作业的关联触发器触发时（当其计划时间到达时）执行作业。
+	 */
 	@Autowired
 	private Scheduler scheduler;
 
@@ -38,9 +43,11 @@ public class SysJobServiceImpl implements ISysJobService {
 	 */
 	@PostConstruct
 	public void init() throws SchedulerException, TaskException {
+		//清除（删除！）所有计划数据-所有作业、触发器日历
 		scheduler.clear();
 		List<SysJob> jobList = jobMapper.selectJobAll();
 		for (SysJob job : jobList) {
+			//把所有的计划数据添加到定时任务中
 			ScheduleUtils.createScheduleJob(scheduler, job);
 		}
 	}
@@ -165,12 +172,20 @@ public class SysJobServiceImpl implements ISysJobService {
 		boolean result = false;
 		Long jobId = job.getJobId();
 		SysJob tmpObj = selectJobById(job.getJobId());
-		// 参数
+		// 创建一个保存作业实例的状态信息HashMap 默认长度为15
 		JobDataMap dataMap = new JobDataMap();
 		dataMap.put(ScheduleConstants.TASK_PROPERTIES, tmpObj);
+		//构建唯一标识JobDetail
 		JobKey jobKey = ScheduleUtils.getJobKey(jobId, tmpObj.getJobGroup());
+		//确定调度程序中是否已存在具有给定标识符的作业。
+		// 形参: jobKey–要检查的标识符
+		// 返回值: 如果存在具有给定标识符的作业，则为true
+		// 抛出: 计划程序异常
 		if (scheduler.checkExists(jobKey)) {
 			result = true;
+			//触发已标识的JobDetail（立即执行）
+			//触发 AbstractQuartzJob.execute()
+			// 形参: data–与立即触发作业的触发器关联的（可能为空）JobDataMap
 			scheduler.triggerJob(jobKey, dataMap);
 		}
 		return result;

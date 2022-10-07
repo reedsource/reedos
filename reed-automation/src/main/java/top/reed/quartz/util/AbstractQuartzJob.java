@@ -19,6 +19,10 @@ import java.util.Date;
 /**
  * 抽象quartz调用
  *
+ * 由表示要执行的“job”的类实现的接口。
+ * job的实例必须具有公共的无参数构造函数。
+ * JobDataMap为该接口的某些实现可能需要的“实例成员数据”提供了一种机制。
+ *
  * @author reedsource
  */
 public abstract class AbstractQuartzJob implements Job {
@@ -29,15 +33,24 @@ public abstract class AbstractQuartzJob implements Job {
 	 */
 	private static ThreadLocal<Date> threadLocal = new ThreadLocal<>();
 
+	/**
+	 * 当触发与作业关联的触发器时，由调度程序调用
+	 * 在该方法退出之前，实现可能希望在JobExecutionContext上设置一个结果对象。
+	 * 结果本身对Quartz来说没有意义，但对于正在监视作业执行的JobListeners或TriggerListeners来说可能有提示信息。
+	 * 抛出: JobExecutionException–如果在执行作业时出现异常。
+	 * @param context 结果对象
+	 */
 	@Override
 	public void execute(JobExecutionContext context) {
+		//定时任务调度表对象
 		SysJob sysJob = new SysJob();
 		BeanUtils.copyBeanProp(sysJob, context.getMergedJobDataMap().get(ScheduleConstants.TASK_PROPERTIES));
 		try {
+			//调度执行前记录时间
 			before(context, sysJob);
-			if (sysJob != null) {
-				doExecute(context, sysJob);
-			}
+			//调度任务
+			doExecute(context, sysJob);
+			//调度后记录日志信息
 			after(context, sysJob, null);
 		} catch (Exception e) {
 			log.error("任务执行异常  - ：", e);
