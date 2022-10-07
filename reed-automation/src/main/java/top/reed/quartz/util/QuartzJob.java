@@ -17,7 +17,7 @@ import top.reed.quartz.service.ISysJobLogService;
 import java.util.Date;
 
 /**
- * 抽象quartz调用
+ * 抽象quartz调用实现
  *
  * 由表示要执行的“job”的类实现的接口。
  * job的实例必须具有公共的无参数构造函数。
@@ -25,8 +25,8 @@ import java.util.Date;
  *
  * @author reedsource
  */
-public abstract class AbstractQuartzJob implements Job {
-	private static final Logger log = LoggerFactory.getLogger(AbstractQuartzJob.class);
+public abstract class QuartzJob implements Job {
+	private static final Logger log = LoggerFactory.getLogger(QuartzJob.class);
 
 	/**
 	 * 线程本地变量

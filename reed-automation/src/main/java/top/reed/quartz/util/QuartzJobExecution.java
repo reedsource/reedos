@@ -8,7 +8,7 @@ import top.reed.quartz.domain.SysJob;
  *
  * @author reedsource
  */
-public class QuartzJobExecution extends AbstractQuartzJob {
+public class QuartzJobExecution extends QuartzJob {
 	@Override
 	protected void doExecute(JobExecutionContext context, SysJob sysJob) throws Exception {
 		JobInvokeUtil.invokeMethod(sysJob);

@@ -10,7 +10,7 @@ import top.reed.quartz.domain.SysJob;
  * @author reedsource
  */
 @DisallowConcurrentExecution
-public class QuartzDisallowConcurrentExecution extends AbstractQuartzJob {
+public class QuartzJobDisallowConcurrentExecution extends QuartzJob {
 	@Override
 	protected void doExecute(JobExecutionContext context, SysJob sysJob) throws Exception {
 		JobInvokeUtil.invokeMethod(sysJob);

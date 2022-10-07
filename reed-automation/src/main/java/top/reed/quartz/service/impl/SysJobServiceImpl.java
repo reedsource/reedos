@@ -14,7 +14,7 @@ import top.reed.quartz.domain.SysJob;
 import top.reed.quartz.mapper.SysJobMapper;
 import top.reed.quartz.service.ISysJobService;
 import top.reed.quartz.util.CronUtils;
-import top.reed.quartz.util.ScheduleUtils;
+import top.reed.quartz.util.QuartzUtils;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -48,7 +48,7 @@ public class SysJobServiceImpl implements ISysJobService {
 		List<SysJob> jobList = jobMapper.selectJobAll();
 		for (SysJob job : jobList) {
 			//把所有的计划数据添加到定时任务中
-			ScheduleUtils.createScheduleJob(scheduler, job);
+			QuartzUtils.createScheduleJob(scheduler, job);
 		}
 	}
 
@@ -87,7 +87,7 @@ public class SysJobServiceImpl implements ISysJobService {
 		job.setStatus(ScheduleConstants.Status.PAUSE.getValue());
 		int rows = jobMapper.updateJob(job);
 		if (rows > 0) {
-			scheduler.pauseJob(ScheduleUtils.getJobKey(jobId, jobGroup));
+			scheduler.pauseJob(QuartzUtils.getJobKey(jobId, jobGroup));
 		}
 		return rows;
 	}
@@ -105,7 +105,7 @@ public class SysJobServiceImpl implements ISysJobService {
 		job.setStatus(ScheduleConstants.Status.NORMAL.getValue());
 		int rows = jobMapper.updateJob(job);
 		if (rows > 0) {
-			scheduler.resumeJob(ScheduleUtils.getJobKey(jobId, jobGroup));
+			scheduler.resumeJob(QuartzUtils.getJobKey(jobId, jobGroup));
 		}
 		return rows;
 	}
@@ -122,7 +122,7 @@ public class SysJobServiceImpl implements ISysJobService {
 		String jobGroup = job.getJobGroup();
 		int rows = jobMapper.deleteJobById(jobId);
 		if (rows > 0) {
-			scheduler.deleteJob(ScheduleUtils.getJobKey(jobId, jobGroup));
+			scheduler.deleteJob(QuartzUtils.getJobKey(jobId, jobGroup));
 		}
 		return rows;
 	}
@@ -176,7 +176,7 @@ public class SysJobServiceImpl implements ISysJobService {
 		JobDataMap dataMap = new JobDataMap();
 		dataMap.put(ScheduleConstants.TASK_PROPERTIES, tmpObj);
 		//构建唯一标识JobDetail
-		JobKey jobKey = ScheduleUtils.getJobKey(jobId, tmpObj.getJobGroup());
+		JobKey jobKey = QuartzUtils.getJobKey(jobId, tmpObj.getJobGroup());
 		//确定调度程序中是否已存在具有给定标识符的作业。
 		// 形参: jobKey–要检查的标识符
 		// 返回值: 如果存在具有给定标识符的作业，则为true
@@ -184,7 +184,7 @@ public class SysJobServiceImpl implements ISysJobService {
 		if (scheduler.checkExists(jobKey)) {
 			result = true;
 			//触发已标识的JobDetail（立即执行）
-			//触发 AbstractQuartzJob.execute()
+			//触发 QuartzJob.execute()
 			// 形参: data–与立即触发作业的触发器关联的（可能为空）JobDataMap
 			scheduler.triggerJob(jobKey, dataMap);
 		}
@@ -202,7 +202,7 @@ public class SysJobServiceImpl implements ISysJobService {
 		job.setStatus(ScheduleConstants.Status.PAUSE.getValue());
 		int rows = jobMapper.insertJob(job);
 		if (rows > 0) {
-			ScheduleUtils.createScheduleJob(scheduler, job);
+			QuartzUtils.createScheduleJob(scheduler, job);
 		}
 		return rows;
 	}
@@ -232,12 +232,12 @@ public class SysJobServiceImpl implements ISysJobService {
 	public void updateSchedulerJob(SysJob job, String jobGroup) throws SchedulerException, TaskException {
 		Long jobId = job.getJobId();
 		// 判断是否存在
-		JobKey jobKey = ScheduleUtils.getJobKey(jobId, jobGroup);
+		JobKey jobKey = QuartzUtils.getJobKey(jobId, jobGroup);
 		if (scheduler.checkExists(jobKey)) {
 			// 防止创建时存在数据问题 先移除，然后在执行创建操作
 			scheduler.deleteJob(jobKey);
 		}
-		ScheduleUtils.createScheduleJob(scheduler, job);
+		QuartzUtils.createScheduleJob(scheduler, job);
 	}
 
 	/**

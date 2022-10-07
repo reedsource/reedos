@@ -14,7 +14,7 @@ import top.reed.quartz.domain.SysJob;
  *
  * @author reedsource
  */
-public class ScheduleUtils {
+public class QuartzUtils {
 	/**
 	 * 得到quartz任务类
 	 *
@@ -23,7 +23,7 @@ public class ScheduleUtils {
 	 */
 	private static Class<? extends Job> getQuartzJobClass(SysJob sysJob) {
 		boolean isConcurrent = "0".equals(sysJob.getConcurrent());
-		return isConcurrent ? QuartzJobExecution.class : QuartzDisallowConcurrentExecution.class;
+		return isConcurrent ? QuartzJobExecution.class : QuartzJobDisallowConcurrentExecution.class;
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class ScheduleUtils {
 		// 使用给定键暂停JobDetail-通过暂停其所有当前触发器
 		// 暂停任务
 		if (ScheduleConstants.Status.PAUSE.getValue().equals(job.getStatus())) {
-			scheduler.pauseJob(ScheduleUtils.getJobKey(jobId, jobGroup));
+			scheduler.pauseJob(QuartzUtils.getJobKey(jobId, jobGroup));
 		}
 	}
 
