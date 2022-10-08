@@ -24,9 +24,10 @@ public class ReedInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
 		//获取用户的请求uri
 		String url = request.getRequestURI();
-		String[] split = url.split("/");
-		if (split.length > 0) {
-			if (!split[1].equals("js") && !split[1].equals("css")) {
+		String[] split = url.split("\\.");
+		//屏蔽结尾为.js和.css的请求打印
+		if (split.length > 1) {
+			if (!split[split.length - 1].equals("js") && !split[split.length - 1].equals("css")) {
 				log.info("请求 {}", url);
 			}
 		}
