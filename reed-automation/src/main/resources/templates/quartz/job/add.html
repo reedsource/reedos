@@ -22,6 +22,13 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="col-sm-3 control-label is-required">任务类型：</label>
+            <div class="col-sm-8">
+                <label class="radio-box "> <input checked name="jobType" type="radio" value="0"/> 自动化任务 </label>
+                <label class="radio-box"> <input name="jobType" type="radio" value="1"/> 已注册类方法调用 </label>
+            </div>
+        </div>
+        <div class="form-group">
             <label class="col-sm-3 control-label is-required">调用目标字符串：</label>
             <div class="col-sm-8">
                 <input class="form-control" id="invokeTarget" name="invokeTarget" required type="text">
@@ -29,6 +36,15 @@
                         class="fa fa-info-circle"></i> Bean调用示例：ryTask.ryParams('ry')</span>
                 <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> Class类调用示例：com.ruoyi.quartz.task.RyTask.ryParams('ry')</span>
                 <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 参数说明：支持字符串，布尔类型，长整型，浮点型，整型</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label is-required">自动化任务：</label>
+            <div class="col-sm-8">
+                <select class="form-control m-b" id="invokeTarget1" name="invokeTarget" th:with="type=${@auto.getAuto()}">
+                    <option value="">请选择自动化任务</option>
+                    <option th:each="autoFlow : ${type}" th:text="${autoFlow.name}" th:value="${autoFlow.id}"></option>
+                </select>
             </div>
         </div>
         <div class="form-group">
@@ -106,9 +122,36 @@
 
     function submitHandler() {
         if ($.validate.form()) {
+            const jobType = $("input[name='jobType']:checked").val();
+            if (jobType === '0') {
+                const invokeTarget =$("#invokeTarget1").val();
+                if (invokeTarget === "" || invokeTarget === null) {
+                    $.modal.alertError('自动化任务未选择')
+                    return;
+                }
+            }
             $.operate.save(prefix + "/add", $('#form-job-add').serialize());
         }
     }
+
+    $(function () {
+        //默认 自动化任务
+        $("#invokeTarget1").parents(".form-group").show();
+        $("#invokeTarget").parents(".form-group").hide();
+        //任务类型选择
+        $('input').on('ifChecked', function (event) {
+            var jobType = $(event.target).val();
+            if (jobType === "0") {
+                $("#invokeTarget1").parents(".form-group").show();
+                $("#invokeTarget").parents(".form-group").hide();
+            } else if (jobType === "1") {
+                $("#invokeTarget1").parents(".form-group").hide();
+                $("#invokeTarget").parents(".form-group").show();
+            }
+        });
+    });
+
+
 </script>
 </body>
 </html>

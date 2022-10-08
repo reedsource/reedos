@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import top.reed.automation.domain.AutoFlow;
+import top.reed.automation.service.AutoFlowService;
 import top.reed.common.annotation.Log;
 import top.reed.common.constant.Constants;
 import top.reed.common.core.controller.BaseController;
@@ -34,6 +36,9 @@ public class AutoJobController extends BaseController {
 
 	@Autowired
 	private AutoJobService jobService;
+
+	@Autowired
+	AutoFlowService autoFlowService;
 
 	@RequiresPermissions("quartz:job:view")
 	@GetMapping()
@@ -118,18 +123,36 @@ public class AutoJobController extends BaseController {
 	@PostMapping("/add")
 	@ResponseBody
 	public AjaxResult addSave(@Validated AutoJob job) throws SchedulerException, TaskException {
-		if (!CronUtils.isValid(job.getCronExpression())) {
-			return error("新增任务'" + job.getJobName() + "'失败，Cron表达式不正确");
-		} else if (StringUtils.containsIgnoreCase(job.getInvokeTarget(), Constants.LOOKUP_RMI)) {
-			return error("新增任务'" + job.getJobName() + "'失败，目标字符串不允许'rmi'调用");
-		} else if (StringUtils.containsAnyIgnoreCase(job.getInvokeTarget(), new String[]{Constants.LOOKUP_LDAP, Constants.LOOKUP_LDAPS})) {
-			return error("新增任务'" + job.getJobName() + "'失败，目标字符串不允许'ldap(s)'调用");
-		} else if (StringUtils.containsAnyIgnoreCase(job.getInvokeTarget(), new String[]{Constants.HTTP, Constants.HTTPS})) {
-			return error("新增任务'" + job.getJobName() + "'失败，目标字符串不允许'http(s)'调用");
-		} else if (StringUtils.containsAnyIgnoreCase(job.getInvokeTarget(), Constants.JOB_ERROR_STR)) {
-			return error("新增任务'" + job.getJobName() + "'失败，目标字符串存在违规");
-		} else if (!QuartzUtils.whiteList(job.getInvokeTarget())) {
-			return error("新增任务'" + job.getJobName() + "'失败，目标字符串不在白名单内");
+		if ("0".equals(job.getJobType())) {
+			//处理前端两个相同name导致的提交值多了,
+			job.setInvokeTarget(job.getInvokeTarget().replaceAll(",",""));
+
+			//获取自动化任务id
+			long autoId;
+			try {
+				autoId = Long.parseLong(job.getInvokeTarget());
+			} catch (NumberFormatException e) {
+				return error("新增任务'" + job.getJobName() + "'失败，自动化任务id异常");
+			}
+
+			AutoFlow autoFlow = autoFlowService.selectAutoFlowById(autoId);
+			if (autoFlow == null) {
+				return error("新增任务'" + job.getJobName() + "'失败，自动化任务不存在");
+			}
+		} else {
+			if (!CronUtils.isValid(job.getCronExpression())) {
+				return error("新增任务'" + job.getJobName() + "'失败，Cron表达式不正确");
+			} else if (StringUtils.containsIgnoreCase(job.getInvokeTarget(), Constants.LOOKUP_RMI)) {
+				return error("新增任务'" + job.getJobName() + "'失败，目标字符串不允许'rmi'调用");
+			} else if (StringUtils.containsAnyIgnoreCase(job.getInvokeTarget(), new String[]{Constants.LOOKUP_LDAP, Constants.LOOKUP_LDAPS})) {
+				return error("新增任务'" + job.getJobName() + "'失败，目标字符串不允许'ldap(s)'调用");
+			} else if (StringUtils.containsAnyIgnoreCase(job.getInvokeTarget(), new String[]{Constants.HTTP, Constants.HTTPS})) {
+				return error("新增任务'" + job.getJobName() + "'失败，目标字符串不允许'http(s)'调用");
+			} else if (StringUtils.containsAnyIgnoreCase(job.getInvokeTarget(), Constants.JOB_ERROR_STR)) {
+				return error("新增任务'" + job.getJobName() + "'失败，目标字符串存在违规");
+			} else if (!QuartzUtils.whiteList(job.getInvokeTarget())) {
+				return error("新增任务'" + job.getJobName() + "'失败，目标字符串不在白名单内");
+			}
 		}
 		job.setCreateBy(getLoginName());
 		return toAjax(jobService.insertJob(job));
@@ -153,18 +176,34 @@ public class AutoJobController extends BaseController {
 	@PostMapping("/edit")
 	@ResponseBody
 	public AjaxResult editSave(@Validated AutoJob job) throws SchedulerException, TaskException {
-		if (!CronUtils.isValid(job.getCronExpression())) {
-			return error("修改任务'" + job.getJobName() + "'失败，Cron表达式不正确");
-		} else if (StringUtils.containsIgnoreCase(job.getInvokeTarget(), Constants.LOOKUP_RMI)) {
-			return error("修改任务'" + job.getJobName() + "'失败，目标字符串不允许'rmi'调用");
-		} else if (StringUtils.containsAnyIgnoreCase(job.getInvokeTarget(), new String[]{Constants.LOOKUP_LDAP, Constants.LOOKUP_LDAPS})) {
-			return error("修改任务'" + job.getJobName() + "'失败，目标字符串不允许'ldap'调用");
-		} else if (StringUtils.containsAnyIgnoreCase(job.getInvokeTarget(), new String[]{Constants.HTTP, Constants.HTTPS})) {
-			return error("修改任务'" + job.getJobName() + "'失败，目标字符串不允许'http(s)'调用");
-		} else if (StringUtils.containsAnyIgnoreCase(job.getInvokeTarget(), Constants.JOB_ERROR_STR)) {
-			return error("修改任务'" + job.getJobName() + "'失败，目标字符串存在违规");
-		} else if (!QuartzUtils.whiteList(job.getInvokeTarget())) {
-			return error("修改任务'" + job.getJobName() + "'失败，目标字符串不在白名单内");
+		if ("0".equals(job.getJobType())) {
+			//处理前端两个相同name导致的提交值多了,
+			job.setInvokeTarget(job.getInvokeTarget().replaceAll(",",""));
+			//获取自动化任务id
+			long autoId;
+			try {
+				autoId = Long.parseLong(job.getInvokeTarget());
+			} catch (NumberFormatException e) {
+				return error("新增任务'" + job.getJobName() + "'失败，自动化任务id异常");
+			}
+			AutoFlow autoFlow = autoFlowService.selectAutoFlowById(autoId);
+			if (autoFlow == null) {
+				return error("新增任务'" + job.getJobName() + "'失败，自动化任务不存在");
+			}
+		} else {
+			if (!CronUtils.isValid(job.getCronExpression())) {
+				return error("修改任务'" + job.getJobName() + "'失败，Cron表达式不正确");
+			} else if (StringUtils.containsIgnoreCase(job.getInvokeTarget(), Constants.LOOKUP_RMI)) {
+				return error("修改任务'" + job.getJobName() + "'失败，目标字符串不允许'rmi'调用");
+			} else if (StringUtils.containsAnyIgnoreCase(job.getInvokeTarget(), new String[]{Constants.LOOKUP_LDAP, Constants.LOOKUP_LDAPS})) {
+				return error("修改任务'" + job.getJobName() + "'失败，目标字符串不允许'ldap'调用");
+			} else if (StringUtils.containsAnyIgnoreCase(job.getInvokeTarget(), new String[]{Constants.HTTP, Constants.HTTPS})) {
+				return error("修改任务'" + job.getJobName() + "'失败，目标字符串不允许'http(s)'调用");
+			} else if (StringUtils.containsAnyIgnoreCase(job.getInvokeTarget(), Constants.JOB_ERROR_STR)) {
+				return error("修改任务'" + job.getJobName() + "'失败，目标字符串存在违规");
+			} else if (!QuartzUtils.whiteList(job.getInvokeTarget())) {
+				return error("修改任务'" + job.getJobName() + "'失败，目标字符串不在白名单内");
+			}
 		}
 		return toAjax(jobService.updateJob(job));
 	}

@@ -6,6 +6,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import top.reed.common.annotation.Excel;
 import top.reed.common.core.domain.BaseEntity;
 
+import javax.validation.constraints.NotBlank;
 import java.io.Serial;
 import java.util.Date;
 
@@ -55,7 +56,7 @@ public class AutoFlow extends BaseEntity {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	@NotBlank(message = "任务名字不能为空")
 	public String getName() {
 		return name;
 	}

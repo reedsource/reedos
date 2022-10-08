@@ -16,12 +16,24 @@ import java.util.List;
  */
 public class QuartzJobInvokeUtil {
 	/**
-	 * 执行方法
+	 * 执行方法路由
 	 *
 	 * @param autoJob 系统任务
 	 */
 	public static void invokeMethod(AutoJob autoJob) throws Exception {
+
+
+
+		//调用目标字符串
 		String invokeTarget = autoJob.getInvokeTarget();
+
+	}
+
+	/**
+	 * 通过已经注册的@Component类 调用方法实现
+	 * @param invokeTarget 调用目标字符
+	 */
+	private static void isMethod(String invokeTarget) throws Exception{
 		String beanName = getBeanName(invokeTarget);
 		String methodName = getMethodName(invokeTarget);
 		List<Object[]> methodParams = getMethodParams(invokeTarget);
@@ -34,6 +46,9 @@ public class QuartzJobInvokeUtil {
 			invokeMethod(bean, methodName, methodParams);
 		}
 	}
+
+
+
 
 	/**
 	 * 调用任务方法

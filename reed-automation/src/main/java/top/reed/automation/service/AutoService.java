@@ -17,13 +17,15 @@ public class AutoService {
 	private AutoFlowService autoFlowService;
 
 	/**
-	 * 自动化任务列表
+	 * 自动化任务列表 状态正常
 	 *
 	 * @return 参数键值
 	 */
 	public List<AutoFlow> getAuto() {
-
-		return autoFlowService.selectAutoFlowList(new AutoFlow());
+		AutoFlow autoFlow = new AutoFlow();
+		//只查询状态正常的自动化任务
+		autoFlow.setStatus("0");
+		return autoFlowService.selectAutoFlowList(autoFlow);
 	}
 
 }

@@ -37,8 +37,18 @@ INSERT INTO sys_menu  VALUES (2024, '自动化数据源删除', 202, 4, '#', '',
 INSERT INTO sys_menu  VALUES (2025, '自动化数据源导出', 202, 5, '#', '', 'F', '0', '1', 'automation:autodatasource:export', '#', 'admin', sysdate(), '', null, '');
 
 -- 数据字典
-INSERT INTO sys_dict_type VALUES (11, '数据源驱动', 'auto_datasource_driver', '0', 'admin', sysdate(), '', null, null);
-INSERT INTO sys_dict_data VALUES (30, 1, 'mysql', 'com.mysql.cj.jdbc.Driver', 'auto_datasource_driver', null, null, 'Y', '0', 'admin', sysdate(), '', null, null);
+insert into sys_dict_type values (9,  '任务状态',    'auto_job_status',             '0', 'admin', sysdate(), '', null, '任务状态列表');
+insert into sys_dict_type values (10, '任务分组',    'auto_job_group',              '0', 'admin', sysdate(), '', null, '任务分组列表');
+INSERT INTO sys_dict_type VALUES (11, '数据源驱动',   'auto_datasource_driver',     '0', 'admin', sysdate(), '', null, null);
+INSERT INTO sys_dict_type VALUES (12, '任务类型',    'auto_job_type',               '0', 'admin', sysdate(), '', null, '定时任务类型');
+-- 字典数据表
+insert into sys_dict_data values (26,  1,  '正常',          '0',                         'auto_job_status',           '',   'primary', 'Y', '0', 'admin', sysdate(), '', null, '正常状态');
+insert into sys_dict_data values (27,  2,  '暂停',          '1',                         'auto_job_status',           '',   'danger',  'N', '0', 'admin', sysdate(), '', null, '停用状态');
+insert into sys_dict_data values (28,  1,  '默认',          'DEFAULT',                   'auto_job_group',            '',   '',        'Y', '0', 'admin', sysdate(), '', null, '默认分组');
+insert into sys_dict_data values (29,  2,  '系统',          'SYSTEM',                    'auto_job_group',            '',   '',        'N', '0', 'admin', sysdate(), '', null, '系统分组');
+INSERT INTO sys_dict_data VALUES (30,  1,  'mysql',        'com.mysql.cj.jdbc.Driver',  'auto_datasource_driver',    null, null,      'Y', '0', 'admin', sysdate(), '', null, null);
+INSERT INTO sys_dict_data VALUES (31,  1,  '自动化任务',     '0',                         'auto_job_type',             null, null,      'Y', '0', 'admin', sysdate(), '', null, null);
+INSERT INTO sys_dict_data VALUES (32,  2,  '已注册类方法调用','1',                         'auto_job_type',             null, null,      'Y', '0', 'admin', sysdate(), '', null, null);
 
 -- ----------------------------
 -- 1、自动化任务表
@@ -95,6 +105,7 @@ create table auto_job (
                          job_id              bigint(20)    not null auto_increment    comment '任务ID',
                          job_name            varchar(64)   default ''                 comment '任务名称',
                          job_group           varchar(64)   default 'DEFAULT'          comment '任务组名',
+                         job_type            char(64)      default '0'                comment '任务类型 0自动化任务 1已注册类方法调用',
                          invoke_target       varchar(500)  not null                   comment '调用目标字符串',
                          cron_expression     varchar(255)  default ''                 comment 'cron执行表达式',
                          misfire_policy      varchar(20)   default '3'                comment '计划执行错误策略（1立即执行 2执行一次 3放弃执行）',
@@ -108,9 +119,9 @@ create table auto_job (
                          primary key (job_id, job_name, job_group)
 ) engine=innodb auto_increment=100 comment = '定时任务调度表';
 
-insert into auto_job values(1, '系统默认（无参）', 'DEFAULT', 'ryTask.ryNoParams',        '0/10 * * * * ?', '3', '1', '1', 'admin', sysdate(), '', null, '');
-insert into auto_job values(2, '系统默认（有参）', 'DEFAULT', 'ryTask.ryParams(\'ry\')',  '0/15 * * * * ?', '3', '1', '1', 'admin', sysdate(), '', null, '');
-insert into auto_job values(3, '系统默认（多参）', 'DEFAULT', 'ryTask.ryMultipleParams(\'ry\', true, 2000L, 316.50D, 100)',  '0/20 * * * * ?', '3', '1', '1', 'admin', sysdate(), '', null, '');
+insert into auto_job values(1, '系统默认（无参）', 'DEFAULT', '0', 'ryTask.ryNoParams',        '0/10 * * * * ?', '3', '1', '1', 'admin', sysdate(), '', null, '');
+insert into auto_job values(2, '系统默认（有参）', 'DEFAULT', '0', 'ryTask.ryParams(\'ry\')',  '0/15 * * * * ?', '3', '1', '1', 'admin', sysdate(), '', null, '');
+insert into auto_job values(3, '系统默认（多参）', 'DEFAULT', '0', 'ryTask.ryMultipleParams(\'ry\', true, 2000L, 316.50D, 100)',  '0/20 * * * * ?', '3', '1', '1', 'admin', sysdate(), '', null, '');
 
 
 -- ----------------------------
@@ -121,6 +132,7 @@ create table auto_job_log (
                              job_log_id          bigint(20)     not null auto_increment    comment '任务日志ID',
                              job_name            varchar(64)    not null                   comment '任务名称',
                              job_group           varchar(64)    not null                   comment '任务组名',
+                             job_type            char(64)      default '0'                 comment '任务类型 0自动化任务 1已注册类方法调用',
                              invoke_target       varchar(500)   not null                   comment '调用目标字符串',
                              job_message         varchar(500)                              comment '日志信息',
                              status              char(1)        default '0'                comment '执行状态（0正常 1失败）',

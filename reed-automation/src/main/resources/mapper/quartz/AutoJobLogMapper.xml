@@ -8,6 +8,7 @@
 		<id property="jobLogId" column="job_log_id"/>
 		<result property="jobName" column="job_name"/>
 		<result property="jobGroup" column="job_group"/>
+		<result property="jobType" column="job_type"/>
 		<result property="invokeTarget" column="invoke_target"/>
 		<result property="jobMessage" column="job_message"/>
 		<result property="status" column="status"/>
@@ -19,6 +20,7 @@
 		select job_log_id,
 		       job_name,
 		       job_group,
+		       job_type,
 		       invoke_target,
 		       job_message,
 		       status,
@@ -35,6 +37,9 @@
 			</if>
 			<if test="jobGroup != null and jobGroup != ''">
 				AND job_group = #{jobGroup}
+			</if>
+			<if test="jobType != null and jobType != ''">
+				AND job_type = #{jobType}
 			</if>
 			<if test="status != null and status != ''">
 				AND status = #{status}
@@ -82,6 +87,7 @@
 		<if test="jobLogId != null and jobLogId != 0">job_log_id,</if>
 		<if test="jobName != null and jobName != ''">job_name,</if>
 		<if test="jobGroup != null and jobGroup != ''">job_group,</if>
+		<if test="jobType != null and jobType != ''">job_type,</if>
 		<if test="invokeTarget != null and invokeTarget != ''">invoke_target,</if>
 		<if test="jobMessage != null and jobMessage != ''">job_message,</if>
 		<if test="status != null and status != ''">status,</if>
@@ -91,6 +97,7 @@
 		<if test="jobLogId != null and jobLogId != 0">#{jobLogId},</if>
 		<if test="jobName != null and jobName != ''">#{jobName},</if>
 		<if test="jobGroup != null and jobGroup != ''">#{jobGroup},</if>
+		<if test="jobType != null and jobType != ''">#{jobType},</if>
 		<if test="invokeTarget != null and invokeTarget != ''">#{invokeTarget},</if>
 		<if test="jobMessage != null and jobMessage != ''">#{jobMessage},</if>
 		<if test="status != null and status != ''">#{status},</if>
