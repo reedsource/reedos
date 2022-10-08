@@ -1,7 +1,7 @@
 package top.reed.quartz.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
-import top.reed.quartz.domain.SysJob;
+import top.reed.quartz.domain.AutoJob;
 
 import java.util.List;
 
@@ -11,21 +11,21 @@ import java.util.List;
  * @author reedsource
  */
 @Mapper
-public interface SysJobMapper {
+public interface AutoJobMapper {
 	/**
 	 * 查询调度任务日志集合
 	 *
 	 * @param job 调度信息
 	 * @return 操作日志集合
 	 */
-	public List<SysJob> selectJobList(SysJob job);
+	public List<AutoJob> selectJobList(AutoJob job);
 
 	/**
 	 * 查询所有调度任务
 	 *
 	 * @return 调度任务列表
 	 */
-	public List<SysJob> selectJobAll();
+	public List<AutoJob> selectJobAll();
 
 	/**
 	 * 通过调度ID查询调度任务信息
@@ -33,7 +33,7 @@ public interface SysJobMapper {
 	 * @param jobId 调度ID
 	 * @return 角色对象信息
 	 */
-	public SysJob selectJobById(Long jobId);
+	public AutoJob selectJobById(Long jobId);
 
 	/**
 	 * 通过调度ID删除调度任务信息
@@ -57,7 +57,7 @@ public interface SysJobMapper {
 	 * @param job 调度任务信息
 	 * @return 结果
 	 */
-	public int updateJob(SysJob job);
+	public int updateJob(AutoJob job);
 
 	/**
 	 * 新增调度任务信息
@@ -65,5 +65,5 @@ public interface SysJobMapper {
 	 * @param job 调度任务信息
 	 * @return 结果
 	 */
-	public int insertJob(SysJob job);
+	public int insertJob(AutoJob job);
 }

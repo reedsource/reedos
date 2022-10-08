@@ -16,7 +16,7 @@
         <div class="form-group">
             <label class="col-sm-3 control-label">任务分组：</label>
             <div class="col-sm-8">
-                <select class="form-control m-b" name="jobGroup" th:with="type=${@dict.getType('sys_job_group')}">
+                <select class="form-control m-b" name="jobGroup" th:with="type=${@dict.getType('auto_job_group')}">
                     <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
                 </select>
             </div>
@@ -57,7 +57,7 @@
         <div class="form-group">
             <label class="col-sm-3 control-label">状态：</label>
             <div class="col-sm-8">
-                <div class="radio-box" th:each="dict : ${@dict.getType('sys_job_status')}">
+                <div class="radio-box" th:each="dict : ${@dict.getType('auto_job_status')}">
                     <input name="status" th:checked="${dict.default}" th:id="${dict.dictCode}"
                            th:value="${dict.dictValue}"
                            type="radio">

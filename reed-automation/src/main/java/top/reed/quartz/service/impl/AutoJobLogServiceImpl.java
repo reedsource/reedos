@@ -3,9 +3,9 @@ package top.reed.quartz.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.reed.common.core.text.Convert;
-import top.reed.quartz.domain.SysJobLog;
-import top.reed.quartz.mapper.SysJobLogMapper;
-import top.reed.quartz.service.ISysJobLogService;
+import top.reed.quartz.domain.AutoJobLog;
+import top.reed.quartz.mapper.AutoJobLogMapper;
+import top.reed.quartz.service.AutoJobLogService;
 
 import java.util.List;
 
@@ -15,9 +15,9 @@ import java.util.List;
  * @author reedsource
  */
 @Service
-public class SysJobLogServiceImpl implements ISysJobLogService {
+public class AutoJobLogServiceImpl implements AutoJobLogService {
 	@Autowired
-	private SysJobLogMapper jobLogMapper;
+	private AutoJobLogMapper jobLogMapper;
 
 	/**
 	 * 获取quartz调度器日志的计划任务
@@ -26,7 +26,7 @@ public class SysJobLogServiceImpl implements ISysJobLogService {
 	 * @return 调度任务日志集合
 	 */
 	@Override
-	public List<SysJobLog> selectJobLogList(SysJobLog jobLog) {
+	public List<AutoJobLog> selectJobLogList(AutoJobLog jobLog) {
 		return jobLogMapper.selectJobLogList(jobLog);
 	}
 
@@ -37,7 +37,7 @@ public class SysJobLogServiceImpl implements ISysJobLogService {
 	 * @return 调度任务日志对象信息
 	 */
 	@Override
-	public SysJobLog selectJobLogById(Long jobLogId) {
+	public AutoJobLog selectJobLogById(Long jobLogId) {
 		return jobLogMapper.selectJobLogById(jobLogId);
 	}
 
@@ -47,7 +47,7 @@ public class SysJobLogServiceImpl implements ISysJobLogService {
 	 * @param jobLog 调度日志信息
 	 */
 	@Override
-	public void addJobLog(SysJobLog jobLog) {
+	public void addJobLog(AutoJobLog jobLog) {
 		jobLogMapper.insertJobLog(jobLog);
 	}
 

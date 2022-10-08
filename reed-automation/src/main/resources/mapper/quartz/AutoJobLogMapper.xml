@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="top.reed.quartz.mapper.SysJobLogMapper">
+<mapper namespace="top.reed.quartz.mapper.AutoJobLogMapper">
 
-	<resultMap type="top.reed.quartz.domain.SysJobLog" id="SysJobLogResult">
+	<resultMap type="top.reed.quartz.domain.AutoJobLog" id="SysJobLogResult">
 		<id property="jobLogId" column="job_log_id"/>
 		<result property="jobName" column="job_name"/>
 		<result property="jobGroup" column="job_group"/>
@@ -24,10 +24,10 @@
 		       status,
 		       exception_info,
 		       create_time
-		from sys_job_log
+		from auto_job_log
 	</sql>
 
-	<select id="selectJobLogList" parameterType="top.reed.quartz.domain.SysJobLog" resultMap="SysJobLogResult">
+	<select id="selectJobLogList" parameterType="top.reed.quartz.domain.AutoJobLog" resultMap="SysJobLogResult">
 		<include refid="selectJobLogVo"/>
 		<where>
 			<if test="jobName != null and jobName != ''">
@@ -62,23 +62,23 @@
 
 	<delete id="deleteJobLogById" parameterType="Long">
 		delete
-		from sys_job_log
+		from auto_job_log
 		where job_log_id = #{jobLogId}
 	</delete>
 
 	<delete id="deleteJobLogByIds" parameterType="String">
-		delete from sys_job_log where job_log_id in
+		delete from auto_job_log where job_log_id in
 		<foreach collection="array" item="jobLogId" open="(" separator="," close=")">
 			#{jobLogId}
 		</foreach>
 	</delete>
 
 	<update id="cleanJobLog">
-		truncate table sys_job_log
+		truncate table auto_job_log
 	</update>
 
-	<insert id="insertJobLog" parameterType="top.reed.quartz.domain.SysJobLog">
-		insert into sys_job_log(
+	<insert id="insertJobLog" parameterType="top.reed.quartz.domain.AutoJobLog">
+		insert into auto_job_log(
 		<if test="jobLogId != null and jobLogId != 0">job_log_id,</if>
 		<if test="jobName != null and jobName != ''">job_name,</if>
 		<if test="jobGroup != null and jobGroup != ''">job_group,</if>

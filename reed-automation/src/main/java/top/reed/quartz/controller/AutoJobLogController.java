@@ -12,10 +12,10 @@ import top.reed.common.core.page.TableDataInfo;
 import top.reed.common.enums.BusinessType;
 import top.reed.common.utils.StringUtils;
 import top.reed.common.utils.poi.ExcelUtil;
-import top.reed.quartz.domain.SysJob;
-import top.reed.quartz.domain.SysJobLog;
-import top.reed.quartz.service.ISysJobLogService;
-import top.reed.quartz.service.ISysJobService;
+import top.reed.quartz.domain.AutoJob;
+import top.reed.quartz.domain.AutoJobLog;
+import top.reed.quartz.service.AutoJobLogService;
+import top.reed.quartz.service.AutoJobService;
 
 import java.util.List;
 
@@ -26,19 +26,19 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/quartz/jobLog")
-public class SysJobLogController extends BaseController {
+public class AutoJobLogController extends BaseController {
 
 	@Autowired
-	private ISysJobService jobService;
+	private AutoJobService jobService;
 
 	@Autowired
-	private ISysJobLogService jobLogService;
+	private AutoJobLogService jobLogService;
 
 	@RequiresPermissions("quartz:job:view")
 	@GetMapping()
 	public String jobLog(@RequestParam(value = "jobId", required = false) Long jobId, ModelMap mmap) {
 		if (StringUtils.isNotNull(jobId)) {
-			SysJob job = jobService.selectJobById(jobId);
+			AutoJob job = jobService.selectJobById(jobId);
 			mmap.put("job", job);
 		}
 		return "quartz/job/jobLog";
@@ -47,9 +47,9 @@ public class SysJobLogController extends BaseController {
 	@RequiresPermissions("quartz:job:list")
 	@PostMapping("/list")
 	@ResponseBody
-	public TableDataInfo list(SysJobLog jobLog) {
+	public TableDataInfo list(AutoJobLog jobLog) {
 		startPage();
-		List<SysJobLog> list = jobLogService.selectJobLogList(jobLog);
+		List<AutoJobLog> list = jobLogService.selectJobLogList(jobLog);
 		return getDataTable(list);
 	}
 
@@ -57,9 +57,9 @@ public class SysJobLogController extends BaseController {
 	@RequiresPermissions("quartz:job:export")
 	@PostMapping("/export")
 	@ResponseBody
-	public AjaxResult export(SysJobLog jobLog) {
-		List<SysJobLog> list = jobLogService.selectJobLogList(jobLog);
-		ExcelUtil<SysJobLog> util = new ExcelUtil<>(SysJobLog.class);
+	public AjaxResult export(AutoJobLog jobLog) {
+		List<AutoJobLog> list = jobLogService.selectJobLogList(jobLog);
+		ExcelUtil<AutoJobLog> util = new ExcelUtil<>(AutoJobLog.class);
 		return util.exportExcel(list, "调度日志");
 	}
 

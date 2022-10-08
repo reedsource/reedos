@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="top.reed.quartz.mapper.SysJobMapper">
+<mapper namespace="top.reed.quartz.mapper.AutoJobMapper">
 
-	<resultMap type="top.reed.quartz.domain.SysJob" id="SysJobResult">
+	<resultMap type="top.reed.quartz.domain.AutoJob" id="SysJobResult">
 		<id property="jobId" column="job_id"/>
 		<result property="jobName" column="job_name"/>
 		<result property="jobGroup" column="job_group"/>
@@ -32,10 +32,10 @@
 		       create_by,
 		       create_time,
 		       remark
-		from sys_job
+		from auto_job
 	</sql>
 
-	<select id="selectJobList" parameterType="top.reed.quartz.domain.SysJob" resultMap="SysJobResult">
+	<select id="selectJobList" parameterType="top.reed.quartz.domain.AutoJob" resultMap="SysJobResult">
 		<include refid="selectJobVo"/>
 		<where>
 			<if test="jobName != null and jobName != ''">
@@ -64,19 +64,19 @@
 
 	<delete id="deleteJobById" parameterType="Long">
 		delete
-		from sys_job
+		from auto_job
 		where job_id = #{jobId}
 	</delete>
 
 	<delete id="deleteJobByIds" parameterType="Long">
-		delete from sys_job where job_id in
+		delete from auto_job where job_id in
 		<foreach collection="array" item="jobId" open="(" separator="," close=")">
 			#{jobId}
 		</foreach>
 	</delete>
 
-	<update id="updateJob" parameterType="top.reed.quartz.domain.SysJob">
-		update sys_job
+	<update id="updateJob" parameterType="top.reed.quartz.domain.AutoJob">
+		update auto_job
 		<set>
 			<if test="jobName != null and jobName != ''">job_name = #{jobName},</if>
 			<if test="jobGroup != null and jobGroup != ''">job_group = #{jobGroup},</if>
@@ -92,8 +92,8 @@
 		where job_id = #{jobId}
 	</update>
 
-	<insert id="insertJob" parameterType="top.reed.quartz.domain.SysJob" useGeneratedKeys="true" keyProperty="jobId">
-		insert into sys_job(
+	<insert id="insertJob" parameterType="top.reed.quartz.domain.AutoJob" useGeneratedKeys="true" keyProperty="jobId">
+		insert into auto_job(
 		<if test="jobId != null and jobId != 0">job_id,</if>
 		<if test="jobName != null and jobName != ''">job_name,</if>
 		<if test="jobGroup != null and jobGroup != ''">job_group,</if>

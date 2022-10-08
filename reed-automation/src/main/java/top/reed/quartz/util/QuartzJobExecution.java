@@ -1,7 +1,7 @@
 package top.reed.quartz.util;
 
 import org.quartz.JobExecutionContext;
-import top.reed.quartz.domain.SysJob;
+import top.reed.quartz.domain.AutoJob;
 
 /**
  * 定时任务处理（允许并发执行）
@@ -10,7 +10,7 @@ import top.reed.quartz.domain.SysJob;
  */
 public class QuartzJobExecution extends QuartzJob {
 	@Override
-	protected void doExecute(JobExecutionContext context, SysJob sysJob) throws Exception {
-		JobInvokeUtil.invokeMethod(sysJob);
+	protected void doExecute(JobExecutionContext context, AutoJob autoJob) throws Exception {
+		QuartzJobInvokeUtil.invokeMethod(autoJob);
 	}
 }

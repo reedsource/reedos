@@ -1,22 +1,31 @@
-package top.reed.quartz.service;
+package top.reed.quartz.mapper;
 
-import top.reed.quartz.domain.SysJobLog;
+import org.apache.ibatis.annotations.Mapper;
+import top.reed.quartz.domain.AutoJobLog;
 
 import java.util.List;
 
 /**
- * 定时任务调度日志信息信息 服务层
+ * 调度任务日志信息 数据层
  *
  * @author reedsource
  */
-public interface ISysJobLogService {
+@Mapper
+public interface AutoJobLogMapper {
 	/**
 	 * 获取quartz调度器日志的计划任务
 	 *
 	 * @param jobLog 调度日志信息
 	 * @return 调度任务日志集合
 	 */
-	public List<SysJobLog> selectJobLogList(SysJobLog jobLog);
+	public List<AutoJobLog> selectJobLogList(AutoJobLog jobLog);
+
+	/**
+	 * 查询所有调度任务日志
+	 *
+	 * @return 调度任务日志列表
+	 */
+	public List<AutoJobLog> selectJobLogAll();
 
 	/**
 	 * 通过调度任务日志ID查询调度信息
@@ -24,14 +33,15 @@ public interface ISysJobLogService {
 	 * @param jobLogId 调度任务日志ID
 	 * @return 调度任务日志对象信息
 	 */
-	public SysJobLog selectJobLogById(Long jobLogId);
+	public AutoJobLog selectJobLogById(Long jobLogId);
 
 	/**
 	 * 新增任务日志
 	 *
 	 * @param jobLog 调度日志信息
+	 * @return 结果
 	 */
-	public void addJobLog(SysJobLog jobLog);
+	public int insertJobLog(AutoJobLog jobLog);
 
 	/**
 	 * 批量删除调度日志信息
@@ -39,7 +49,7 @@ public interface ISysJobLogService {
 	 * @param ids 需要删除的数据ID
 	 * @return 结果
 	 */
-	public int deleteJobLogByIds(String ids);
+	public int deleteJobLogByIds(String[] ids);
 
 	/**
 	 * 删除任务日志

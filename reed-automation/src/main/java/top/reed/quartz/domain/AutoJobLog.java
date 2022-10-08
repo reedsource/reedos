@@ -8,11 +8,11 @@ import top.reed.common.core.domain.BaseEntity;
 import java.util.Date;
 
 /**
- * 定时任务调度日志表 sys_job_log
+ * 定时任务调度日志表 auto_job_log
  *
  * @author reedsource
  */
-public class SysJobLog extends BaseEntity {
+public class AutoJobLog extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 
 	/**

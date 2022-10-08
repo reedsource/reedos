@@ -7,7 +7,7 @@ import top.reed.common.exception.job.TaskException;
 import top.reed.common.exception.job.TaskException.Code;
 import top.reed.common.utils.StringUtils;
 import top.reed.common.utils.spring.SpringUtils;
-import top.reed.quartz.domain.SysJob;
+import top.reed.quartz.domain.AutoJob;
 
 /**
  * 定时任务工具类
@@ -18,11 +18,11 @@ public class QuartzUtils {
 	/**
 	 * 得到quartz任务类
 	 *
-	 * @param sysJob 执行计划
+	 * @param autoJob 执行计划
 	 * @return 具体执行任务类 是否运行并发执行
 	 */
-	private static Class<? extends Job> getQuartzJobClass(SysJob sysJob) {
-		boolean isConcurrent = "0".equals(sysJob.getConcurrent());
+	private static Class<? extends Job> getQuartzJobClass(AutoJob autoJob) {
+		boolean isConcurrent = "0".equals(autoJob.getConcurrent());
 		return isConcurrent ? QuartzJobExecution.class : QuartzJobDisallowConcurrentExecution.class;
 	}
 
@@ -47,7 +47,7 @@ public class QuartzUtils {
 	 * @param scheduler Quartz Scheduler的主实现
 	 * @param job       定时任务对象
 	 */
-	public static void createScheduleJob(Scheduler scheduler, SysJob job) throws SchedulerException, TaskException {
+	public static void createScheduleJob(Scheduler scheduler, AutoJob job) throws SchedulerException, TaskException {
 		//根据设置返回符合 并发执行 需求的 job 调用执行子实现类
 		Class<? extends Job> jobClass = getQuartzJobClass(job);
 		// 构建job信息
@@ -91,7 +91,7 @@ public class QuartzUtils {
 	/**
 	 * 设置定时任务策略
 	 */
-	public static CronScheduleBuilder handleCronScheduleMisfirePolicy(SysJob job, CronScheduleBuilder cb)
+	public static CronScheduleBuilder handleCronScheduleMisfirePolicy(AutoJob job, CronScheduleBuilder cb)
 			throws TaskException {
 		//0=默认,1=立即触发执行,2=触发一次执行,3=不触发立即执行
 		switch (job.getMisfirePolicy()) {

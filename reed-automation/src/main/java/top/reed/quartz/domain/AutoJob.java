@@ -15,11 +15,11 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 定时任务调度表 sys_job
+ * 定时任务调度表 auto_job
  *
  * @author reedsource
  */
-public class SysJob extends BaseEntity implements Serializable {
+public class AutoJob extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**

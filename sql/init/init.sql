@@ -452,8 +452,8 @@ create table sys_dict_type
 insert into sys_dict_type values(1,  '用户性别', 'sys_user_sex',        '0', 'admin', sysdate(), '', null, '用户性别列表');
 insert into sys_dict_type values(2,  '菜单状态', 'sys_show_hide',       '0', 'admin', sysdate(), '', null, '菜单状态列表');
 insert into sys_dict_type values(3,  '系统开关', 'sys_normal_disable',  '0', 'admin', sysdate(), '', null, '系统开关列表');
-insert into sys_dict_type values(4,  '任务状态', 'sys_job_status',      '0', 'admin', sysdate(), '', null, '任务状态列表');
-insert into sys_dict_type values(5,  '任务分组', 'sys_job_group',       '0', 'admin', sysdate(), '', null, '任务分组列表');
+insert into sys_dict_type values(4,  '任务状态', 'auto_job_status',     '0', 'admin', sysdate(), '', null, '任务状态列表');
+insert into sys_dict_type values(5,  '任务分组', 'auto_job_group',      '0', 'admin', sysdate(), '', null, '任务分组列表');
 insert into sys_dict_type values(6,  '系统是否', 'sys_yes_no',          '0', 'admin', sysdate(), '', null, '系统是否列表');
 insert into sys_dict_type values(7,  '通知类型', 'sys_notice_type',     '0', 'admin', sysdate(), '', null, '通知类型列表');
 insert into sys_dict_type values(8,  '通知状态', 'sys_notice_status',   '0', 'admin', sysdate(), '', null, '通知状态列表');
@@ -491,10 +491,10 @@ insert into sys_dict_data values(4,  1,  '显示',     '0',       'sys_show_hide
 insert into sys_dict_data values(5,  2,  '隐藏',     '1',       'sys_show_hide',       '',   'danger',  'N', '0', 'admin', sysdate(), '', null, '隐藏菜单');
 insert into sys_dict_data values(6,  1,  '正常',     '0',       'sys_normal_disable',  '',   'primary', 'Y', '0', 'admin', sysdate(), '', null, '正常状态');
 insert into sys_dict_data values(7,  2,  '停用',     '1',       'sys_normal_disable',  '',   'danger',  'N', '0', 'admin', sysdate(), '', null, '停用状态');
-insert into sys_dict_data values(8,  1,  '正常',     '0',       'sys_job_status',      '',   'primary', 'Y', '0', 'admin', sysdate(), '', null, '正常状态');
-insert into sys_dict_data values(9,  2,  '暂停',     '1',       'sys_job_status',      '',   'danger',  'N', '0', 'admin', sysdate(), '', null, '停用状态');
-insert into sys_dict_data values(10, 1,  '默认',     'DEFAULT', 'sys_job_group',       '',   '',        'Y', '0', 'admin', sysdate(), '', null, '默认分组');
-insert into sys_dict_data values(11, 2,  '系统',     'SYSTEM',  'sys_job_group',       '',   '',        'N', '0', 'admin', sysdate(), '', null, '系统分组');
+insert into sys_dict_data values(8,  1,  '正常',     '0',       'auto_job_status',     '',   'primary', 'Y', '0', 'admin', sysdate(), '', null, '正常状态');
+insert into sys_dict_data values(9,  2,  '暂停',     '1',       'auto_job_status',     '',   'danger',  'N', '0', 'admin', sysdate(), '', null, '停用状态');
+insert into sys_dict_data values(10, 1,  '默认',     'DEFAULT', 'auto_job_group',      '',   '',        'Y', '0', 'admin', sysdate(), '', null, '默认分组');
+insert into sys_dict_data values(11, 2,  '系统',     'SYSTEM',  'auto_job_group',      '',   '',        'N', '0', 'admin', sysdate(), '', null, '系统分组');
 insert into sys_dict_data values(12, 1,  '是',       'Y',       'sys_yes_no',          '',   'primary', 'Y', '0', 'admin', sysdate(), '', null, '系统默认是');
 insert into sys_dict_data values(13, 2,  '否',       'N',       'sys_yes_no',          '',   'danger',  'N', '0', 'admin', sysdate(), '', null, '系统默认否');
 insert into sys_dict_data values(14, 1,  '通知',     '1',       'sys_notice_type',     '',   'warning', 'Y', '0', 'admin', sysdate(), '', null, '通知');
@@ -509,8 +509,8 @@ insert into sys_dict_data values(22, 4,  '授权',     '4',       'sys_oper_type
 insert into sys_dict_data values(23, 5,  '导出',     '5',       'sys_oper_type',       '',   'warning', 'N', '0', 'admin', sysdate(), '', null, '导出操作');
 insert into sys_dict_data values(24, 6,  '导入',     '6',       'sys_oper_type',       '',   'warning', 'N', '0', 'admin', sysdate(), '', null, '导入操作');
 insert into sys_dict_data values(25, 7,  '强退',     '7',       'sys_oper_type',       '',   'danger',  'N', '0', 'admin', sysdate(), '', null, '强退操作');
-insert into sys_dict_data values(26, 8,  '生成代码', '8',       'sys_oper_type',       '',   'warning', 'N', '0', 'admin', sysdate(), '', null, '生成操作');
-insert into sys_dict_data values(27, 9,  '清空数据', '9',       'sys_oper_type',       '',   'danger',  'N', '0', 'admin', sysdate(), '', null, '清空操作');
+insert into sys_dict_data values(26, 8,  '生成代码', '8',        'sys_oper_type',       '',   'warning', 'N', '0', 'admin', sysdate(), '', null, '生成操作');
+insert into sys_dict_data values(27, 9,  '清空数据', '9',        'sys_oper_type',       '',   'danger',  'N', '0', 'admin', sysdate(), '', null, '清空操作');
 insert into sys_dict_data values(28, 1,  '成功',     '0',       'sys_common_status',   '',   'primary', 'N', '0', 'admin', sysdate(), '', null, '正常状态');
 insert into sys_dict_data values(29, 2,  '失败',     '1',       'sys_common_status',   '',   'danger',  'N', '0', 'admin', sysdate(), '', null, '停用状态');
 
@@ -584,50 +584,7 @@ create table sys_user_online (
 
 
 -- ----------------------------
--- 16、定时任务调度表
--- ----------------------------
-drop table if exists sys_job;
-create table sys_job (
-  job_id              bigint(20)    not null auto_increment    comment '任务ID',
-  job_name            varchar(64)   default ''                 comment '任务名称',
-  job_group           varchar(64)   default 'DEFAULT'          comment '任务组名',
-  invoke_target       varchar(500)  not null                   comment '调用目标字符串',
-  cron_expression     varchar(255)  default ''                 comment 'cron执行表达式',
-  misfire_policy      varchar(20)   default '3'                comment '计划执行错误策略（1立即执行 2执行一次 3放弃执行）',
-  concurrent          char(1)       default '1'                comment '是否并发执行（0允许 1禁止）',
-  status              char(1)       default '0'                comment '状态（0正常 1暂停）',
-  create_by           varchar(64)   default ''                 comment '创建者',
-  create_time         datetime                                 comment '创建时间',
-  update_by           varchar(64)   default ''                 comment '更新者',
-  update_time         datetime                                 comment '更新时间',
-  remark              varchar(500)  default ''                 comment '备注信息',
-  primary key (job_id, job_name, job_group)
-) engine=innodb auto_increment=100 comment = '定时任务调度表';
-
-insert into sys_job values(1, '系统默认（无参）', 'DEFAULT', 'ryTask.ryNoParams',        '0/10 * * * * ?', '3', '1', '1', 'admin', sysdate(), '', null, '');
-insert into sys_job values(2, '系统默认（有参）', 'DEFAULT', 'ryTask.ryParams(\'ry\')',  '0/15 * * * * ?', '3', '1', '1', 'admin', sysdate(), '', null, '');
-insert into sys_job values(3, '系统默认（多参）', 'DEFAULT', 'ryTask.ryMultipleParams(\'ry\', true, 2000L, 316.50D, 100)',  '0/20 * * * * ?', '3', '1', '1', 'admin', sysdate(), '', null, '');
-
-
--- ----------------------------
--- 17、定时任务调度日志表
--- ----------------------------
-drop table if exists sys_job_log;
-create table sys_job_log (
-  job_log_id          bigint(20)     not null auto_increment    comment '任务日志ID',
-  job_name            varchar(64)    not null                   comment '任务名称',
-  job_group           varchar(64)    not null                   comment '任务组名',
-  invoke_target       varchar(500)   not null                   comment '调用目标字符串',
-  job_message         varchar(500)                              comment '日志信息',
-  status              char(1)        default '0'                comment '执行状态（0正常 1失败）',
-  exception_info      varchar(2000)  default ''                 comment '异常信息',
-  create_time         datetime                                  comment '创建时间',
-  primary key (job_log_id)
-) engine=innodb comment = '定时任务调度日志表';
-
-
--- ----------------------------
--- 18、通知公告表
+-- 16、通知公告表
 -- ----------------------------
 drop table if exists sys_notice;
 create table sys_notice (
@@ -652,7 +609,7 @@ insert into sys_notice values('2', '维护通知：2018-07-01 若依系统凌晨
 
 
 -- ----------------------------
--- 19、代码生成业务表
+-- 17、代码生成业务表
 -- ----------------------------
 drop table if exists gen_table;
 create table gen_table (

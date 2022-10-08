@@ -14,14 +14,14 @@
                             任务名称：<input name="jobName" type="text"/>
                         </li>
                         <li>
-                            任务分组：<select name="jobGroup" th:with="type=${@dict.getType('sys_job_group')}">
+                            任务分组：<select name="jobGroup" th:with="type=${@dict.getType('auto_job_group')}">
                             <option value="">所有</option>
                             <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
                                     th:value="${dict.dictValue}"></option>
                         </select>
                         </li>
                         <li>
-                            任务状态：<select name="status" th:with="type=${@dict.getType('sys_job_status')}">
+                            任务状态：<select name="status" th:with="type=${@dict.getType('auto_job_status')}">
                             <option value="">所有</option>
                             <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
                                     th:value="${dict.dictValue}"></option>
@@ -72,7 +72,7 @@
     var editFlag = [[${@permission.hasPermi('quartz:job:edit')}]];
     var removeFlag = [[${@permission.hasPermi('quartz:job:remove')}]];
     var statusFlag = [[${@permission.hasPermi('quartz:job:changeStatus')}]];
-    var datas = [[${@dict.getType('sys_job_group')}]];
+    var datas = [[${@dict.getType('auto_job_group')}]];
     var prefix = ctx + "quartz/job";
 
     $(function () {

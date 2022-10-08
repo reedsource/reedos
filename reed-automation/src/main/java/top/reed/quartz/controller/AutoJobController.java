@@ -16,8 +16,8 @@ import top.reed.common.enums.BusinessType;
 import top.reed.common.exception.job.TaskException;
 import top.reed.common.utils.StringUtils;
 import top.reed.common.utils.poi.ExcelUtil;
-import top.reed.quartz.domain.SysJob;
-import top.reed.quartz.service.ISysJobService;
+import top.reed.quartz.domain.AutoJob;
+import top.reed.quartz.service.AutoJobService;
 import top.reed.quartz.util.CronUtils;
 import top.reed.quartz.util.QuartzUtils;
 
@@ -30,10 +30,10 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/quartz/job")
-public class SysJobController extends BaseController {
+public class AutoJobController extends BaseController {
 
 	@Autowired
-	private ISysJobService jobService;
+	private AutoJobService jobService;
 
 	@RequiresPermissions("quartz:job:view")
 	@GetMapping()
@@ -44,9 +44,9 @@ public class SysJobController extends BaseController {
 	@RequiresPermissions("quartz:job:list")
 	@PostMapping("/list")
 	@ResponseBody
-	public TableDataInfo list(SysJob job) {
+	public TableDataInfo list(AutoJob job) {
 		startPage();
-		List<SysJob> list = jobService.selectJobList(job);
+		List<AutoJob> list = jobService.selectJobList(job);
 		return getDataTable(list);
 	}
 
@@ -54,9 +54,9 @@ public class SysJobController extends BaseController {
 	@RequiresPermissions("quartz:job:export")
 	@PostMapping("/export")
 	@ResponseBody
-	public AjaxResult export(SysJob job) {
-		List<SysJob> list = jobService.selectJobList(job);
-		ExcelUtil<SysJob> util = new ExcelUtil<>(SysJob.class);
+	public AjaxResult export(AutoJob job) {
+		List<AutoJob> list = jobService.selectJobList(job);
+		ExcelUtil<AutoJob> util = new ExcelUtil<>(AutoJob.class);
 		return util.exportExcel(list, "定时任务");
 	}
 
@@ -84,8 +84,8 @@ public class SysJobController extends BaseController {
 	@RequiresPermissions("quartz:job:changeStatus")
 	@PostMapping("/changeStatus")
 	@ResponseBody
-	public AjaxResult changeStatus(SysJob job) throws SchedulerException {
-		SysJob newJob = jobService.selectJobById(job.getJobId());
+	public AjaxResult changeStatus(AutoJob job) throws SchedulerException {
+		AutoJob newJob = jobService.selectJobById(job.getJobId());
 		newJob.setStatus(job.getStatus());
 		return toAjax(jobService.changeStatus(newJob));
 	}
@@ -97,7 +97,7 @@ public class SysJobController extends BaseController {
 	@RequiresPermissions("quartz:job:changeStatus")
 	@PostMapping("/run")
 	@ResponseBody
-	public AjaxResult run(SysJob job) throws SchedulerException {
+	public AjaxResult run(AutoJob job) throws SchedulerException {
 		boolean result = jobService.run(job);
 		return result ? success() : error("任务不存在或已过期！");
 	}
@@ -117,7 +117,7 @@ public class SysJobController extends BaseController {
 	@RequiresPermissions("quartz:job:add")
 	@PostMapping("/add")
 	@ResponseBody
-	public AjaxResult addSave(@Validated SysJob job) throws SchedulerException, TaskException {
+	public AjaxResult addSave(@Validated AutoJob job) throws SchedulerException, TaskException {
 		if (!CronUtils.isValid(job.getCronExpression())) {
 			return error("新增任务'" + job.getJobName() + "'失败，Cron表达式不正确");
 		} else if (StringUtils.containsIgnoreCase(job.getInvokeTarget(), Constants.LOOKUP_RMI)) {
@@ -152,7 +152,7 @@ public class SysJobController extends BaseController {
 	@RequiresPermissions("quartz:job:edit")
 	@PostMapping("/edit")
 	@ResponseBody
-	public AjaxResult editSave(@Validated SysJob job) throws SchedulerException, TaskException {
+	public AjaxResult editSave(@Validated AutoJob job) throws SchedulerException, TaskException {
 		if (!CronUtils.isValid(job.getCronExpression())) {
 			return error("修改任务'" + job.getJobName() + "'失败，Cron表达式不正确");
 		} else if (StringUtils.containsIgnoreCase(job.getInvokeTarget(), Constants.LOOKUP_RMI)) {
@@ -174,7 +174,7 @@ public class SysJobController extends BaseController {
 	 */
 	@PostMapping("/checkCronExpressionIsValid")
 	@ResponseBody
-	public boolean checkCronExpressionIsValid(SysJob job) {
+	public boolean checkCronExpressionIsValid(AutoJob job) {
 		return jobService.checkCronExpressionIsValid(job.getCronExpression());
 	}
 

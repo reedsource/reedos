@@ -10,15 +10,15 @@ import top.reed.common.utils.ExceptionUtil;
 import top.reed.common.utils.StringUtils;
 import top.reed.common.utils.bean.BeanUtils;
 import top.reed.common.utils.spring.SpringUtils;
-import top.reed.quartz.domain.SysJob;
-import top.reed.quartz.domain.SysJobLog;
-import top.reed.quartz.service.ISysJobLogService;
+import top.reed.quartz.domain.AutoJob;
+import top.reed.quartz.domain.AutoJobLog;
+import top.reed.quartz.service.AutoJobLogService;
 
 import java.util.Date;
 
 /**
  * 抽象quartz调用实现
- *
+ * <p>
  * 由表示要执行的“job”的类实现的接口。
  * job的实例必须具有公共的无参数构造函数。
  * JobDataMap为该接口的某些实现可能需要的“实例成员数据”提供了一种机制。
@@ -38,23 +38,24 @@ public abstract class QuartzJob implements Job {
 	 * 在该方法退出之前，实现可能希望在JobExecutionContext上设置一个结果对象。
 	 * 结果本身对Quartz来说没有意义，但对于正在监视作业执行的JobListeners或TriggerListeners来说可能有提示信息。
 	 * 抛出: JobExecutionException–如果在执行作业时出现异常。
+	 *
 	 * @param context 结果对象
 	 */
 	@Override
 	public void execute(JobExecutionContext context) {
 		//定时任务调度表对象
-		SysJob sysJob = new SysJob();
-		BeanUtils.copyBeanProp(sysJob, context.getMergedJobDataMap().get(ScheduleConstants.TASK_PROPERTIES));
+		AutoJob autoJob = new AutoJob();
+		BeanUtils.copyBeanProp(autoJob, context.getMergedJobDataMap().get(ScheduleConstants.TASK_PROPERTIES));
 		try {
 			//调度执行前记录时间
-			before(context, sysJob);
+			before(context, autoJob);
 			//调度任务
-			doExecute(context, sysJob);
+			doExecute(context, autoJob);
 			//调度后记录日志信息
-			after(context, sysJob, null);
+			after(context, autoJob, null);
 		} catch (Exception e) {
 			log.error("任务执行异常  - ：", e);
-			after(context, sysJob, e);
+			after(context, autoJob, e);
 		}
 	}
 
@@ -62,9 +63,9 @@ public abstract class QuartzJob implements Job {
 	 * 执行前
 	 *
 	 * @param context 工作执行上下文对象
-	 * @param sysJob  系统计划任务
+	 * @param autoJob  系统计划任务
 	 */
-	protected void before(JobExecutionContext context, SysJob sysJob) {
+	protected void before(JobExecutionContext context, AutoJob autoJob) {
 		threadLocal.set(new Date());
 	}
 
@@ -73,36 +74,36 @@ public abstract class QuartzJob implements Job {
 	 *
 	 * @param context 工作执行上下文对象
 	 */
-	protected void after(JobExecutionContext context, SysJob sysJob, Exception e) {
+	protected void after(JobExecutionContext context, AutoJob autoJob, Exception e) {
 		Date startTime = threadLocal.get();
 		threadLocal.remove();
 
-		final SysJobLog sysJobLog = new SysJobLog();
-		sysJobLog.setJobName(sysJob.getJobName());
-		sysJobLog.setJobGroup(sysJob.getJobGroup());
-		sysJobLog.setInvokeTarget(sysJob.getInvokeTarget());
-		sysJobLog.setStartTime(startTime);
-		sysJobLog.setEndTime(new Date());
-		long runMs = sysJobLog.getEndTime().getTime() - sysJobLog.getStartTime().getTime();
-		sysJobLog.setJobMessage(sysJobLog.getJobName() + " 总共耗时：" + runMs + "毫秒");
+		final AutoJobLog autoJobLog = new AutoJobLog();
+		autoJobLog.setJobName(autoJob.getJobName());
+		autoJobLog.setJobGroup(autoJob.getJobGroup());
+		autoJobLog.setInvokeTarget(autoJob.getInvokeTarget());
+		autoJobLog.setStartTime(startTime);
+		autoJobLog.setEndTime(new Date());
+		long runMs = autoJobLog.getEndTime().getTime() - autoJobLog.getStartTime().getTime();
+		autoJobLog.setJobMessage(autoJobLog.getJobName() + " 总共耗时：" + runMs + "毫秒");
 		if (e != null) {
-			sysJobLog.setStatus(Constants.FAIL);
+			autoJobLog.setStatus(Constants.FAIL);
 			String errorMsg = StringUtils.substring(ExceptionUtil.getExceptionMessage(e), 0, 2000);
-			sysJobLog.setExceptionInfo(errorMsg);
+			autoJobLog.setExceptionInfo(errorMsg);
 		} else {
-			sysJobLog.setStatus(Constants.SUCCESS);
+			autoJobLog.setStatus(Constants.SUCCESS);
 		}
 
 		// 写入数据库当中
-		SpringUtils.getBean(ISysJobLogService.class).addJobLog(sysJobLog);
+		SpringUtils.getBean(AutoJobLogService.class).addJobLog(autoJobLog);
 	}
 
 	/**
 	 * 执行方法，由子类重载
 	 *
 	 * @param context 工作执行上下文对象
-	 * @param sysJob  系统计划任务
-	 * throws Exception 执行过程中的异常
+	 * @param autoJob  系统计划任务
+	 *                throws Exception 执行过程中的异常
 	 */
-	protected abstract void doExecute(JobExecutionContext context, SysJob sysJob) throws Exception;
+	protected abstract void doExecute(JobExecutionContext context, AutoJob autoJob) throws Exception;
 }

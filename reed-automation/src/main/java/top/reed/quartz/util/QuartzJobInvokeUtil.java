@@ -2,7 +2,7 @@ package top.reed.quartz.util;
 
 import top.reed.common.utils.StringUtils;
 import top.reed.common.utils.spring.SpringUtils;
-import top.reed.quartz.domain.SysJob;
+import top.reed.quartz.domain.AutoJob;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -14,14 +14,14 @@ import java.util.List;
  *
  * @author reedsource
  */
-public class JobInvokeUtil {
+public class QuartzJobInvokeUtil {
 	/**
 	 * 执行方法
 	 *
-	 * @param sysJob 系统任务
+	 * @param autoJob 系统任务
 	 */
-	public static void invokeMethod(SysJob sysJob) throws Exception {
-		String invokeTarget = sysJob.getInvokeTarget();
+	public static void invokeMethod(AutoJob autoJob) throws Exception {
+		String invokeTarget = autoJob.getInvokeTarget();
 		String beanName = getBeanName(invokeTarget);
 		String methodName = getMethodName(invokeTarget);
 		List<Object[]> methodParams = getMethodParams(invokeTarget);
