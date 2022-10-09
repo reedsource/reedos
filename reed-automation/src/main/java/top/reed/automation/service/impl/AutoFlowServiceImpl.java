@@ -10,6 +10,7 @@ import top.reed.automation.domain.AutoFlow;
 import top.reed.automation.mapper.AutoFlowMapper;
 import top.reed.automation.service.AutoFlowService;
 import top.reed.common.core.text.Convert;
+import top.reed.common.utils.CacheUtils;
 import top.reed.core.Spider;
 import top.reed.core.job.SpiderJobContext;
 
@@ -81,6 +82,8 @@ public class AutoFlowServiceImpl implements AutoFlowService {
 			i = autoFlowMapper.insertAutoFlow(autoFlow);
 		}
 		String id = autoFlowMapper.selectAutoFlowList(autoFlow).get(0).getId().toString();
+		//更新缓存
+		CacheUtils.put("auto_job_name", id, autoFlow.getName());
 		File file = new File(workspace, id + File.separator + "xmls" + File.separator + System.currentTimeMillis() + ".xml");
 		try {
 			FileUtils.write(file, autoFlow.getXml(), "UTF-8");

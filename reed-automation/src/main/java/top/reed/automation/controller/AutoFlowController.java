@@ -23,6 +23,7 @@ import top.reed.common.core.domain.AjaxResult;
 import top.reed.common.core.page.TableDataInfo;
 import top.reed.common.enums.BusinessType;
 import top.reed.common.exception.ServiceException;
+import top.reed.common.utils.CacheUtils;
 import top.reed.common.utils.poi.ExcelUtil;
 import top.reed.core.utils.ExecutorsUtils;
 
@@ -253,6 +254,13 @@ public class AutoFlowController extends BaseController {
 		for (Grammerable grammerable : grammerables) {
 			grammers.addAll(grammerable.grammers());
 		}
+
+		//全部自动化任务名称写入缓存
+
+		List<AutoFlow> list = autoFlowService.selectAutoFlowList(new AutoFlow());
+		for (AutoFlow autoFlow : list) {
+			CacheUtils.put("auto_job_name",autoFlow.getId().toString(),autoFlow.getName());
+		}
 	}
 
 	@RequestMapping("/save")
@@ -281,6 +289,8 @@ public class AutoFlowController extends BaseController {
 	@ResponseBody
 	public void remove(Long id) {
 		autoFlowService.deleteAutoFlowById(id);
+		//删除缓存
+		CacheUtils.remove("auto_job_name",id.toString());
 	}
 
 	@RequestMapping("/xml")

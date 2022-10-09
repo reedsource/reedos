@@ -22,6 +22,7 @@ import top.reed.common.config.ReedConfig;
 import top.reed.common.core.domain.AjaxResult;
 import top.reed.common.core.text.Convert;
 import top.reed.common.exception.UtilException;
+import top.reed.common.utils.CacheUtils;
 import top.reed.common.utils.DateUtils;
 import top.reed.common.utils.DictUtils;
 import top.reed.common.utils.StringUtils;
@@ -201,6 +202,21 @@ public class ExcelUtil<T> {
 	}
 
 	/**
+	 * 读取缓存值
+	 *
+	 * @param propertyValue 参数值
+	 * @param prefix        缓存前缀
+	 * @return 解析后值
+	 */
+	public static String getCache(String propertyValue, String prefix) {
+		try {
+			return CacheUtils.get(prefix, propertyValue).toString();
+		} catch (Exception e) {
+			return propertyValue;
+		}
+	}
+
+	/**
 	 * 解析字典值
 	 *
 	 * @param dictValue 字典值
@@ -282,7 +298,7 @@ public class ExcelUtil<T> {
 	 * 隐藏Excel中列属性
 	 *
 	 * @param fields 列属性名 示例[单个"name"/多个"id","name"]
-	 * throws Exception
+	 *               throws Exception
 	 */
 	public void hideColumn(String... fields) {
 		this.excludeFields = fields;
@@ -468,27 +484,28 @@ public class ExcelUtil<T> {
 					} else if (Boolean.TYPE == fieldType || Boolean.class == fieldType) {
 						val = Convert.toBool(val, false);
 					}
-					if (StringUtils.isNotNull(fieldType)) {
-						String propertyName = field.getName();
-						if (StringUtils.isNotEmpty(attr.targetAttr())) {
-							propertyName = field.getName() + "." + attr.targetAttr();
-						} else if (StringUtils.isNotEmpty(attr.readConverterExp())) {
-							val = reverseByExp(Convert.toStr(val), attr.readConverterExp(), attr.separator());
-						} else if (StringUtils.isNotEmpty(attr.dictType())) {
-							val = reverseDictByExp(Convert.toStr(val), attr.dictType(), attr.separator());
-						} else if (!attr.handler().equals(ExcelHandlerAdapter.class)) {
-							val = dataFormatHandlerAdapter(val, attr);
-						} else if (ColumnType.IMAGE == attr.cellType() && StringUtils.isNotEmpty(pictures)) {
-							PictureData image = pictures.get(row.getRowNum() + "_" + entry.getKey());
-							if (image == null) {
-								val = "";
-							} else {
-								byte[] data = image.getData();
-								val = FileUtils.writeImportBytes(data);
-							}
+					String propertyName = field.getName();
+					if (StringUtils.isNotEmpty(attr.targetAttr())) {
+						propertyName = field.getName() + "." + attr.targetAttr();
+					} else if (StringUtils.isNotEmpty(attr.readConverterExp())) {
+						val = reverseByExp(Convert.toStr(val), attr.readConverterExp(), attr.separator());
+					} else if (StringUtils.isNotEmpty(attr.dictType())) {
+						val = reverseDictByExp(Convert.toStr(val), attr.dictType(), attr.separator());
+					} else if (StringUtils.isNotEmpty(attr.getCache())) {
+						//读取缓存
+						val = getCache(Convert.toStr(val), attr.dictType());
+					} else if (!attr.handler().equals(ExcelHandlerAdapter.class)) {
+						val = dataFormatHandlerAdapter(val, attr);
+					} else if (ColumnType.IMAGE == attr.cellType() && StringUtils.isNotEmpty(pictures)) {
+						PictureData image = pictures.get(row.getRowNum() + "_" + entry.getKey());
+						if (image == null) {
+							val = "";
+						} else {
+							byte[] data = image.getData();
+							val = FileUtils.writeImportBytes(data);
 						}
-						ReflectUtils.invokeSetter(entity, propertyName, val);
 					}
+					ReflectUtils.invokeSetter(entity, propertyName, val);
 				}
 				list.add(entity);
 			}
@@ -942,6 +959,9 @@ public class ExcelUtil<T> {
 					cell.setCellValue(parseDateToStr(dateFormat, value));
 				} else if (StringUtils.isNotEmpty(readConverterExp) && StringUtils.isNotNull(value)) {
 					cell.setCellValue(convertByExp(Convert.toStr(value), readConverterExp, separator));
+				} else if (StringUtils.isNotEmpty(attr.getCache())) {
+					//读取缓存
+					cell.setCellValue(getCache(Convert.toStr(value), attr.getCache()));
 				} else if (StringUtils.isNotEmpty(dictType) && StringUtils.isNotNull(value)) {
 					cell.setCellValue(convertDictByExp(Convert.toStr(value), dictType, separator));
 				} else if (value instanceof BigDecimal && -1 != attr.scale()) {

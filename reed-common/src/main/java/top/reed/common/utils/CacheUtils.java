@@ -22,7 +22,7 @@ public class CacheUtils {
 	/**
 	 * 获取SYS_CACHE缓存
 	 *
-	 * @param key
+	 * @param key 缓存组下的具体key名称
 	 * @return
 	 */
 	public static Object get(String key) {
@@ -32,8 +32,8 @@ public class CacheUtils {
 	/**
 	 * 获取SYS_CACHE缓存
 	 *
-	 * @param key
-	 * @param defaultValue
+	 * @param key 缓存组下的具体key名称
+	 * @param defaultValue 如空默认值
 	 * @return
 	 */
 	public static Object get(String key, Object defaultValue) {
@@ -44,7 +44,7 @@ public class CacheUtils {
 	/**
 	 * 写入SYS_CACHE缓存
 	 *
-	 * @param key
+	 * @param key 缓存组下的具体key名称
 	 * @return
 	 */
 	public static void put(String key, Object value) {
@@ -54,7 +54,7 @@ public class CacheUtils {
 	/**
 	 * 从SYS_CACHE缓存中移除
 	 *
-	 * @param key
+	 * @param key 缓存组下的具体key名称
 	 * @return
 	 */
 	public static void remove(String key) {
@@ -64,52 +64,52 @@ public class CacheUtils {
 	/**
 	 * 获取缓存
 	 *
-	 * @param cacheName
-	 * @param key
+	 * @param cacheName 缓存组名称
+	 * @param key 缓存组下的具体key名称
 	 * @return
 	 */
 	public static Object get(String cacheName, String key) {
-		return getCache(cacheName).get(getKey(key));
+		return getCache(cacheName).get(key);
 	}
 
 	/**
 	 * 获取缓存
 	 *
-	 * @param cacheName
-	 * @param key
-	 * @param defaultValue
+	 * @param cacheName 缓存组名称
+	 * @param key 缓存组下的具体key名称
+	 * @param defaultValue 如空默认值
 	 * @return
 	 */
 	public static Object get(String cacheName, String key, Object defaultValue) {
-		Object value = get(cacheName, getKey(key));
+		Object value = get(cacheName, key);
 		return value != null ? value : defaultValue;
 	}
 
 	/**
 	 * 写入缓存
 	 *
-	 * @param cacheName
-	 * @param key
+	 * @param cacheName 缓存组名称
+	 * @param key 缓存组下的具体key名称
 	 * @param value
 	 */
 	public static void put(String cacheName, String key, Object value) {
-		getCache(cacheName).put(getKey(key), value);
+		getCache(cacheName).put(key, value);
 	}
 
 	/**
 	 * 从缓存中移除
 	 *
-	 * @param cacheName
-	 * @param key
+	 * @param cacheName 缓存组名称
+	 * @param key 缓存组下的具体key名称
 	 */
 	public static void remove(String cacheName, String key) {
-		getCache(cacheName).remove(getKey(key));
+		getCache(cacheName).remove(key);
 	}
 
 	/**
 	 * 从缓存中移除所有
 	 *
-	 * @param cacheName
+	 * @param cacheName 缓存组名称
 	 */
 	public static void removeAll(String cacheName) {
 		Cache<String, Object> cache = getCache(cacheName);
@@ -123,7 +123,7 @@ public class CacheUtils {
 	/**
 	 * 从缓存中移除指定key
 	 *
-	 * @param keys
+	 * @param keys 缓存组下的具体key名称set
 	 */
 	public static void removeByKeys(Set<String> keys) {
 		removeByKeys(SYS_CACHE, keys);
@@ -132,8 +132,8 @@ public class CacheUtils {
 	/**
 	 * 从缓存中移除指定key
 	 *
-	 * @param cacheName
-	 * @param keys
+	 * @param cacheName 缓存组名称
+	 * @param keys 缓存组下的具体key名称set
 	 */
 	public static void removeByKeys(String cacheName, Set<String> keys) {
 		for (String key : keys) {
@@ -143,19 +143,9 @@ public class CacheUtils {
 	}
 
 	/**
-	 * 获取缓存键名
-	 *
-	 * @param key
-	 * @return
-	 */
-	private static String getKey(String key) {
-		return key;
-	}
-
-	/**
 	 * 获得一个Cache，没有则显示日志。
 	 *
-	 * @param cacheName
+	 * @param cacheName 缓存组名称
 	 * @return
 	 */
 	public static Cache<String, Object> getCache(String cacheName) {

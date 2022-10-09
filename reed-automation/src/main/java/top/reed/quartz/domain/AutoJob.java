@@ -37,16 +37,16 @@ public class AutoJob extends BaseEntity implements Serializable {
 	/**
 	 * 任务组名
 	 */
-	@Excel(name = "任务组名")
+	@Excel(name = "任务组名", dictType = "auto_job_group")
 	private String jobGroup;
 
-	@Excel(name = "任务类型",readConverterExp = " 0自动化任务 1已注册类方法调用")
-	private String  jobType;
+	@Excel(name = "任务类型", readConverterExp = "0=自动化任务,1=已注册类方法调用")
+	private String jobType;
 
 	/**
 	 * 调用目标字符串
 	 */
-	@Excel(name = "任务调用目标")
+	@Excel(name = "任务调用目标", getCache = "auto_job_name")
 	private String invokeTarget;
 
 	/**

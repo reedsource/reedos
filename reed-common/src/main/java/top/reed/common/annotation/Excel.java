@@ -49,6 +49,11 @@ public @interface Excel {
 	public String separator() default ",";
 
 	/**
+	 * 获取缓存的对应值 (如: auto_job_name)
+	 */
+	public String getCache() default "";
+
+	/**
 	 * BigDecimal 精度 默认:-1(默认不开启BigDecimal格式化)
 	 */
 	public int scale() default -1;
