@@ -36,6 +36,8 @@ public interface AutoFlowService {
 	int saveAutoFlow(AutoFlow autoFlow);
 
 
+	int updateStatus(AutoFlow autoFlow);
+
 	/**
 	 * 批量删除自动化任务
 	 *

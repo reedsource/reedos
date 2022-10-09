@@ -22,6 +22,7 @@ import top.reed.common.core.controller.BaseController;
 import top.reed.common.core.domain.AjaxResult;
 import top.reed.common.core.page.TableDataInfo;
 import top.reed.common.enums.BusinessType;
+import top.reed.common.exception.ServiceException;
 import top.reed.common.utils.poi.ExcelUtil;
 import top.reed.core.utils.ExecutorsUtils;
 
@@ -180,7 +181,7 @@ public class AutoFlowController extends BaseController {
 	}
 
 	/**
-	 * 修改自动化任务
+	 * 修改自动化任务进入修改页面
 	 */
 	@RequiresPermissions("automation:autoflow:edit")
 	@GetMapping("/edit/{id}")
@@ -191,6 +192,20 @@ public class AutoFlowController extends BaseController {
 		String url = request.getRequestURI();
 		//转发数据id到editor编辑页面
 		return redirect("/automation/autoflow/editor?id=" + id + "&dataId=" + url);
+	}
+
+	/**
+	 * 修改自动化任务状态
+	 *
+	 * @param autoFlow 自动化任务
+	 */
+	@PostMapping("/edit")
+	@ResponseBody
+	public AjaxResult edit(AutoFlow autoFlow) {
+		if (autoFlowService.updateStatus(autoFlow) != 1) {
+			throw new ServiceException("修改自动化任务状态失败！数据异常");
+		}
+		return success("自动化任务状态修改成功");
 	}
 
 	/**

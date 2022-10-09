@@ -91,6 +91,25 @@ public class AutoFlowServiceImpl implements AutoFlowService {
 	}
 
 	/**
+	 * 修改自动化任务状态
+	 *
+	 * @param autoFlow 自动化任务
+	 * @return 结果
+	 */
+	@Override
+	public int updateStatus(AutoFlow autoFlow) {
+		int i = 0;
+		//任务存在更新
+		if (autoFlowMapper.selectAutoFlowById(autoFlow.getId()) != null) {
+			i = autoFlowMapper.updateAutoFlow(autoFlow);
+		} else {
+			logger.error("修改自动化任务状态出错,任务id不存在");
+		}
+		return i;
+	}
+
+
+	/**
 	 * 批量删除自动化任务
 	 *
 	 * @param ids 需要删除的自动化任务主键

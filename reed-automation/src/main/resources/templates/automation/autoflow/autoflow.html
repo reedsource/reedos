@@ -107,7 +107,7 @@
         $.table.init(options);
     });
 
-    /* 角色状态显示 */
+    /* 自动化任务状态显示 */
     function statusTools(row) {
         if (row.status == 1) {
             return '<i class=\"fa fa-toggle-off text-info fa-2x\" onclick="enable(\'' + row.id + '\')"></i> ';
@@ -116,14 +116,14 @@
         }
     }
 
-    /* 角色管理-停用 */
+    /* 自动化任务管理-停用 */
     function disable(id) {
         $.modal.confirm("确认要停用任务吗？", function () {
             $.operate.post(prefix + "/edit", {"id": id, "status": 1});
         })
     }
 
-    /* 角色管理启用 */
+    /* 自动化任务管理启用 */
     function enable(id) {
         $.modal.confirm("确认要启用任务吗？", function () {
             $.operate.post(prefix + "/edit", {"id": id, "status": 0});
