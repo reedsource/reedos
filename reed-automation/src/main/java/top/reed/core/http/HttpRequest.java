@@ -1,4 +1,4 @@
-package top.reed.core.io;
+package top.reed.core.http;
 
 import org.jsoup.Connection;
 import org.jsoup.Connection.Method;

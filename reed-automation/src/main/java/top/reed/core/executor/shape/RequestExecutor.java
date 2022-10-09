@@ -20,8 +20,8 @@ import top.reed.api.listener.SpiderListener;
 import top.reed.api.model.Grammer;
 import top.reed.api.model.SpiderNode;
 import top.reed.core.executor.function.MD5FunctionExecutor;
-import top.reed.core.io.HttpRequest;
-import top.reed.core.io.HttpResponse;
+import top.reed.core.http.HttpRequest;
+import top.reed.core.http.HttpResponse;
 import top.reed.core.utils.ExpressionUtils;
 
 import javax.annotation.PostConstruct;
