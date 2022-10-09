@@ -52,6 +52,13 @@ public class AutoJobController extends BaseController {
 	public TableDataInfo list(AutoJob job) {
 		startPage();
 		List<AutoJob> list = jobService.selectJobList(job);
+		//界面展示修正
+		for (AutoJob autoJob : list) {
+			// 将自动化任务类型展示为自动化任务名称
+			if (autoJob.getJobType().equals("0")) {
+				autoJob.setInvokeTarget(autoFlowService.selectAutoFlowById(Long.valueOf(autoJob.getInvokeTarget())).getName());
+			}
+		}
 		return getDataTable(list);
 	}
 
@@ -125,7 +132,7 @@ public class AutoJobController extends BaseController {
 	public AjaxResult addSave(@Validated AutoJob job) throws SchedulerException, TaskException {
 		if ("0".equals(job.getJobType())) {
 			//处理前端两个相同name导致的提交值多了,
-			job.setInvokeTarget(job.getInvokeTarget().replaceAll(",",""));
+			job.setInvokeTarget(job.getInvokeTarget().replaceAll(",", ""));
 
 			//获取自动化任务id
 			long autoId;
@@ -178,7 +185,7 @@ public class AutoJobController extends BaseController {
 	public AjaxResult editSave(@Validated AutoJob job) throws SchedulerException, TaskException {
 		if ("0".equals(job.getJobType())) {
 			//处理前端两个相同name导致的提交值多了,
-			job.setInvokeTarget(job.getInvokeTarget().replaceAll(",",""));
+			job.setInvokeTarget(job.getInvokeTarget().replaceAll(",", ""));
 			//获取自动化任务id
 			long autoId;
 			try {

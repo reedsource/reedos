@@ -106,7 +106,7 @@ create table auto_job (
                          job_name            varchar(64)   default ''                 comment '任务名称',
                          job_group           varchar(64)   default 'DEFAULT'          comment '任务组名',
                          job_type            char(64)      default '0'                comment '任务类型 0自动化任务 1已注册类方法调用',
-                         invoke_target       varchar(500)  not null                   comment '调用目标字符串',
+                         invoke_target       varchar(500)  not null                   comment '任务调用目标',
                          cron_expression     varchar(255)  default ''                 comment 'cron执行表达式',
                          misfire_policy      varchar(20)   default '3'                comment '计划执行错误策略（1立即执行 2执行一次 3放弃执行）',
                          concurrent          char(1)       default '1'                comment '是否并发执行（0允许 1禁止）',
@@ -119,9 +119,9 @@ create table auto_job (
                          primary key (job_id, job_name, job_group)
 ) engine=innodb auto_increment=100 comment = '定时任务调度表';
 
-insert into auto_job values(1, '系统默认（无参）', 'DEFAULT', '0', 'ryTask.ryNoParams',        '0/10 * * * * ?', '3', '1', '1', 'admin', sysdate(), '', null, '');
-insert into auto_job values(2, '系统默认（有参）', 'DEFAULT', '0', 'ryTask.ryParams(\'ry\')',  '0/15 * * * * ?', '3', '1', '1', 'admin', sysdate(), '', null, '');
-insert into auto_job values(3, '系统默认（多参）', 'DEFAULT', '0', 'ryTask.ryMultipleParams(\'ry\', true, 2000L, 316.50D, 100)',  '0/20 * * * * ?', '3', '1', '1', 'admin', sysdate(), '', null, '');
+insert into auto_job values(1, '系统默认（无参）', 'DEFAULT', '1', 'ryTask.ryNoParams',        '0/10 * * * * ?', '3', '1', '1', 'admin', sysdate(), '', null, '');
+insert into auto_job values(2, '系统默认（有参）', 'DEFAULT', '1', 'ryTask.ryParams(\'ry\')',  '0/15 * * * * ?', '3', '1', '1', 'admin', sysdate(), '', null, '');
+insert into auto_job values(3, '系统默认（多参）', 'DEFAULT', '1', 'ryTask.ryMultipleParams(\'ry\', true, 2000L, 316.50D, 100)',  '0/20 * * * * ?', '3', '1', '1', 'admin', sysdate(), '', null, '');
 
 
 -- ----------------------------

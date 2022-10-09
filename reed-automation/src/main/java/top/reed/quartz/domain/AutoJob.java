@@ -46,7 +46,7 @@ public class AutoJob extends BaseEntity implements Serializable {
 	/**
 	 * 调用目标字符串
 	 */
-	@Excel(name = "调用目标字符串")
+	@Excel(name = "任务调用目标")
 	private String invokeTarget;
 
 	/**

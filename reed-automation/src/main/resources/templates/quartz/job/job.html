@@ -112,8 +112,15 @@
                     }
                 },
                 {
+                    field: 'jobType',
+                    title: '任务类型',
+                    formatter: function (value) {
+                        return value === "0" ? "自动化任务" : "调用目标字符串";
+                    }
+                },
+                {
                     field: 'invokeTarget',
-                    title: '调用目标字符串',
+                    title: '任务调用目标',
                     formatter: function (value, row, index) {
                         return $.table.tooltip(value);
                     }
