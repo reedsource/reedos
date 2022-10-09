@@ -1,9 +1,13 @@
 package top.reed.quartz.util;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import top.reed.automation.service.AutoFlowService;
 import top.reed.common.utils.StringUtils;
 import top.reed.common.utils.spring.SpringUtils;
 import top.reed.quartz.domain.AutoJob;
 
+import javax.annotation.PostConstruct;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.LinkedList;
@@ -14,26 +18,45 @@ import java.util.List;
  *
  * @author reedsource
  */
+@Component
 public class QuartzJobInvokeUtil {
+	/**
+	 * 以下3方法 在springboot静态方法中调用service方法
+	 * 注意需要在类上用@Component组件注册
+	 */
+	@Autowired
+	private AutoFlowService autoFlowService;
+
+	@Autowired
+	private static AutoFlowService autoFlowService_to;
+
+	@PostConstruct
+	public void init() {
+		autoFlowService_to = autoFlowService;
+	}
+
 	/**
 	 * 执行方法路由
 	 *
 	 * @param autoJob 系统任务
 	 */
 	public static void invokeMethod(AutoJob autoJob) throws Exception {
-
-
-
-		//调用目标字符串
-		String invokeTarget = autoJob.getInvokeTarget();
-
+		//自动化任务
+		if ("0".equals(autoJob.getJobType())) {
+			autoFlowService_to.run(Long.valueOf(autoJob.getInvokeTarget()));
+		} else {
+			//调用目标字符串
+			String invokeTarget = autoJob.getInvokeTarget();
+			isMethod(invokeTarget);
+		}
 	}
 
 	/**
 	 * 通过已经注册的@Component类 调用方法实现
+	 *
 	 * @param invokeTarget 调用目标字符
 	 */
-	private static void isMethod(String invokeTarget) throws Exception{
+	private static void isMethod(String invokeTarget) throws Exception {
 		String beanName = getBeanName(invokeTarget);
 		String methodName = getMethodName(invokeTarget);
 		List<Object[]> methodParams = getMethodParams(invokeTarget);
@@ -46,8 +69,6 @@ public class QuartzJobInvokeUtil {
 			invokeMethod(bean, methodName, methodParams);
 		}
 	}
-
-
 
 
 	/**
