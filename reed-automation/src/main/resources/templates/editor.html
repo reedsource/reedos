@@ -25,10 +25,11 @@
 		<script type="text/javascript" th:src="@{/js/jsontree/jsontree.js}" ></script>
 		<script type="text/javascript" th:src="@{/js/editor.js}" ></script>
 		<!--自定义js-->
-		<script type="text/javascript" th:src="@{/js/autoflow.js}"></script>
+		<script type="text/javascript" th:src="@{/js/auto-editor.js}"></script>
 	</head>
 	<body>
 		<div class="main-container">
+            <!--上方横编辑栏目-->
 			<div class="toolbar-container">
 				<ul>
 					<li class="btn-return" title="返回列表"></li>
@@ -57,10 +58,15 @@
 					<li class="btn-dock-bottom" title="Dock to bottom"></li>
 				</ul>
 			</div>
+            <!--左侧竖编辑区域-->
 			<div class="sidebar-container"></div>
+			<!--xml编辑器-->
 			<div class="xml-container"><textarea></textarea></div>
+			<!--编辑器容器-->
 			<div class="editor-container"></div>
+			<!--编辑器的底部 可以用来拖地编辑器的高度-->
 			<div class="resize-container"></div>
+            <!--下方编辑栏目区域-->
 			<div class="properties-container"></div>
 		</div>
 		<script type="text/html" id="parameter-name-tmpl">
