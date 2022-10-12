@@ -6,6 +6,7 @@
     <li>全局Header</li>
   </ul>
   <div class="layui-tab-content editor-form-node">
+	  <!--全局配置-->
     <div class="layui-tab-item layui-show">
     	<form class="layui-form layui-row">
 			<div class="layui-col-md4">
@@ -33,6 +34,7 @@
 			</div>
     	</form>
     </div>
+	  <!--全局参数-->
     <div class="layui-tab-item">
    		<form class="layui-form">
 			<table class="layui-table" id="global-parameter" data-cell="{{=d.cell.id}}" data-keys="parameter-name,parameter-value,parameter-description"></table>
@@ -46,6 +48,7 @@
 	    	</div>
 	    </form>
     </div>
+	  <!--全局Cookie-->
 	<div class="layui-tab-item">
 	  <form class="layui-form">
 		  <table class="layui-table" id="global-cookie" data-cell="{{=d.cell.id}}" data-keys="cookie-name,cookie-value,cookie-description"></table>
@@ -59,6 +62,7 @@
 		  </div>
 	  </form>
 	</div>
+	  <!--全局Header-->
     <div class="layui-tab-item">
    		<form class="layui-form">
 			<table class="layui-table" id="global-header" data-cell="{{=d.cell.id}}" data-keys="header-name,header-value,header-description"></table>
@@ -100,6 +104,8 @@
 				none : '暂未设置参数'
 			}
 		})
+
+
 	}
 	function renderGlobalCookie(data){
 		layui.table.render({

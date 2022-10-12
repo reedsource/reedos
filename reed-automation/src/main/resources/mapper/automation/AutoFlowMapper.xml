@@ -20,6 +20,7 @@
 	<select id="selectAutoFlowList" parameterType="top.reed.automation.domain.AutoFlow" resultMap="AutoFlowResult">
 		<include refid="selectAutoFlowVo"/>
 		<where>
+			<if test="id != null  and id != ''">and id = #{id}</if>
 			<if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
 			<if test="status != null  and status != ''">and status = #{status}</if>
 			<if test="params.beginCreateDate != null and params.beginCreateDate != '' and params.endCreateDate != null and params.endCreateDate != ''">

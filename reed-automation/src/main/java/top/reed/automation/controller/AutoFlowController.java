@@ -103,6 +103,46 @@ public class AutoFlowController extends BaseController {
 	}
 
 	/**
+	 * @return 执行结束
+	 */
+	@GetMapping("/forkJoin")
+	public String flowEditorForkJoin() {
+		return "resources/flowEditor/forkJoin";
+	}
+
+	/**
+	 * @return 注释
+	 */
+	@GetMapping("/comment")
+	public String flowEditorComment() {
+		return "resources/flowEditor/comment";
+	}
+
+	/**
+	 * @return 执行sql
+	 */
+	@GetMapping("/executeSql")
+	public String flowEditorExecuteSql() {
+		return "resources/flowEditor/executeSql";
+	}
+
+	/**
+	 * @return 执行函数
+	 */
+	@GetMapping("/function")
+	public String flowEditorFunction() {
+		return "resources/flowEditor/function";
+	}
+
+	/**
+	 * @return 子流程
+	 */
+	@GetMapping("/process")
+	public String flowEditorProcess() {
+		return "resources/flowEditor/process";
+	}
+
+	/**
 	 * 调试窗口
 	 *
 	 * @return 界面
@@ -259,7 +299,7 @@ public class AutoFlowController extends BaseController {
 
 		List<AutoFlow> list = autoFlowService.selectAutoFlowList(new AutoFlow());
 		for (AutoFlow autoFlow : list) {
-			CacheUtils.put("auto_job_name",autoFlow.getId().toString(),autoFlow.getName());
+			CacheUtils.put("auto_job_name", autoFlow.getId().toString(), autoFlow.getName());
 		}
 	}
 
@@ -290,7 +330,7 @@ public class AutoFlowController extends BaseController {
 	public void remove(Long id) {
 		autoFlowService.deleteAutoFlowById(id);
 		//删除缓存
-		CacheUtils.remove("auto_job_name",id.toString());
+		CacheUtils.remove("auto_job_name", id.toString());
 	}
 
 	@RequestMapping("/xml")
@@ -311,6 +351,9 @@ public class AutoFlowController extends BaseController {
 		return null == pluginConfigs ? Collections.emptyList() : pluginConfigs.stream().filter(e -> e.plugin() != null).map(plugin -> plugin.plugin()).collect(Collectors.toList());
 	}
 
+	/**
+	 * @return 系统内置定义函数
+	 */
 	@RequestMapping("/grammers")
 	@ResponseBody
 	public JsonBean<List<Grammer>> grammers() {

@@ -32,9 +32,16 @@ function renderCodeMirror(){
 		codeMirrorInstances[$(this).attr('codemirror')] = cm;
 	});
 }
+/**
+ * 获取一个基层组织数据
+ * @param {*} cellId
+ * @param {*} keys
+ */
 function getCellData(cellId,keys){
+	//获取xml mxGraphModel.root.mxCell id的数据
 	var cell = editor.getModel().getCell(cellId);
 	var data = [];
+	//JsonProperty.data.object json结构
 	var object = cell.data.object;
 	for(var k in keys){
 		var key = keys[k];

@@ -34,8 +34,9 @@ server:
 # 日志配置
 logging:
   level:
-    top.reed: debug
-    org.springframework: warn
+    # 默认debug 设置为trace时打印查出的结果
+    top.reed: trace
+    org.springframework: debug
 
 # 用户配置
 user:

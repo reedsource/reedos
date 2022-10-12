@@ -1,4 +1,5 @@
 var grammers = [];
+//获取系统内置函数
 $.ajax({
 	url : '/automation/autoflow/grammers',
 	type : 'post',
@@ -18,6 +19,11 @@ $.ajax({
 		grammers = grammers || [];
 	}
 })
+/**
+ * 搜索语法
+ * @param {string} keyword 关键字
+ * @param {boolean} isClass 时class
+ */
 function searchGrammer(keyword,isClass){
 	var list1 = [];
 	var list2 = {};
