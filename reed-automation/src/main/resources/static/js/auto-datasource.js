@@ -11,9 +11,9 @@ function datasourceTest() {
                 "password": $("#password").val(),
             },
             success: function (data) {
-                if (data.code===0) {
+                if (data.code === 0) {
                     $.modal.alertSuccess('数据源测试连接成功')
-                }else {
+                } else {
                     $.modal.alertError(data.msg)
                 }
             }

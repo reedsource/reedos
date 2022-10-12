@@ -6,11 +6,11 @@ function closeTab(dataId) {
     // 移除相应tab对应的内容区
     $('.mainContent .RuoYi_iframe[data-id="' + dataId + '"]', topWindow).remove();
     //跳转到新的选项卡
-    panelUrl="/automation/autoflow";
+    panelUrl = "/automation/autoflow";
 
     //关闭选项卡
     $('.menuTab[data-id="' + panelUrl + '"]', topWindow).addClass('active').siblings('.menuTab').removeClass('active');
-    $('.mainContent .RuoYi_iframe', topWindow).each(function() {
+    $('.mainContent .RuoYi_iframe', topWindow).each(function () {
         if ($(this).data('id') == panelUrl) {
             $(this).show().siblings('.RuoYi_iframe').hide();
             return false;
