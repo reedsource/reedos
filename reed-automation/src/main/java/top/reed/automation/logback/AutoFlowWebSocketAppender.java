@@ -1,4 +1,4 @@
-package top.reed.logback;
+package top.reed.automation.logback;
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.classic.spi.ThrowableProxy;

@@ -1,4 +1,4 @@
-package top.reed.logback;
+package top.reed.automation.logback;
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.FileAppender;
@@ -11,6 +11,9 @@ import top.reed.core.job.SpiderJobContext;
 import java.io.IOException;
 import java.io.OutputStream;
 
+/**
+ * 自动话程序附加程序
+ */
 public class AutoFlowFileAppender extends FileAppender<ILoggingEvent> {
 
 	@Override
@@ -48,5 +51,4 @@ public class AutoFlowFileAppender extends FileAppender<ILoggingEvent> {
 			lock.unlock();
 		}
 	}
-
 }
