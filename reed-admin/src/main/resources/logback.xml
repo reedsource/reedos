@@ -14,7 +14,7 @@
 
 	<!-- 系统日志输出 -->
 	<appender name="file_info" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${log.path}/logs/sys-info.log</file>
+		<file>${log.path}/sys-info.log</file>
 		<!-- 循环政策：基于时间创建日志文件 -->
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<!-- 日志文件名格式 -->
@@ -36,7 +36,7 @@
 	</appender>
 
 	<appender name="file_error" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${log.path}/logs/sys-error.log</file>
+		<file>${log.path}/sys-error.log</file>
 		<!-- 循环政策：基于时间创建日志文件 -->
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<!-- 日志文件名格式 -->
@@ -59,7 +59,7 @@
 
 	<!-- 用户访问日志输出  -->
 	<appender name="sys-user" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${log.path}/logs/sys-user.log</file>
+		<file>${log.path}/sys-user.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<!-- 按天回滚 daily -->
 			<fileNamePattern>${log.path}/sys-user.%d{yyyy-MM-dd}.log</fileNamePattern>
@@ -73,7 +73,7 @@
 
 	<!-- 输出日志文件 -->
 	<appender name="File"  class="top.reed.automation.logback.AutoFlowFileAppender">
-		<file>${log.path}/logs/reed-automation.log</file>
+		<file>${log.path}/reed-automation.log</file>
 		<append>true</append>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
