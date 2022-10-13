@@ -75,7 +75,7 @@ public class AutoFlowController extends BaseController {
 	 */
 	@GetMapping("/editor")
 	public String editor() {
-		return "editor";
+		return "automation/autoflow/editor";
 	}
 
 	/**
@@ -83,7 +83,7 @@ public class AutoFlowController extends BaseController {
 	 */
 	@GetMapping("/root")
 	public String flowEditorRoot() {
-		return "resources/flowEditor/root";
+		return "automation/autoflow/flowEditor/root";
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class AutoFlowController extends BaseController {
 	 */
 	@GetMapping("/start")
 	public String flowEditorStart() {
-		return "resources/flowEditor/start";
+		return "automation/autoflow/flowEditor/start";
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class AutoFlowController extends BaseController {
 	 */
 	@GetMapping("/loop")
 	public String flowEditorLoop() {
-		return "resources/flowEditor/loop";
+		return "automation/autoflow/flowEditor/loop";
 	}
 
 	/**
@@ -107,7 +107,7 @@ public class AutoFlowController extends BaseController {
 	 */
 	@GetMapping("/forkJoin")
 	public String flowEditorForkJoin() {
-		return "resources/flowEditor/forkJoin";
+		return "automation/autoflow/flowEditor/forkJoin";
 	}
 
 	/**
@@ -115,7 +115,7 @@ public class AutoFlowController extends BaseController {
 	 */
 	@GetMapping("/comment")
 	public String flowEditorComment() {
-		return "resources/flowEditor/comment";
+		return "automation/autoflow/flowEditor/comment";
 	}
 
 	/**
@@ -123,7 +123,7 @@ public class AutoFlowController extends BaseController {
 	 */
 	@GetMapping("/executeSql")
 	public String flowEditorExecuteSql() {
-		return "resources/flowEditor/executeSql";
+		return "automation/autoflow/flowEditor/executeSql";
 	}
 
 	/**
@@ -131,7 +131,7 @@ public class AutoFlowController extends BaseController {
 	 */
 	@GetMapping("/function")
 	public String flowEditorFunction() {
-		return "resources/flowEditor/function";
+		return "automation/autoflow/flowEditor/function";
 	}
 
 	/**
@@ -139,7 +139,7 @@ public class AutoFlowController extends BaseController {
 	 */
 	@GetMapping("/process")
 	public String flowEditorProcess() {
-		return "resources/flowEditor/process";
+		return "automation/autoflow/flowEditor/process";
 	}
 
 	/**
@@ -149,7 +149,7 @@ public class AutoFlowController extends BaseController {
 	 */
 	@GetMapping("/request")
 	public String flowEditorRequest() {
-		return "resources/flowEditor/request";
+		return "automation/autoflow/flowEditor/request";
 	}
 
 	/**
@@ -159,7 +159,7 @@ public class AutoFlowController extends BaseController {
 	 */
 	@GetMapping("/variable")
 	public String flowEditorVariable() {
-		return "resources/flowEditor/variable";
+		return "automation/autoflow/flowEditor/variable";
 	}
 
 	/**
@@ -169,7 +169,7 @@ public class AutoFlowController extends BaseController {
 	 */
 	@GetMapping("/output")
 	public String flowEditorOutput() {
-		return "resources/flowEditor/output";
+		return "automation/autoflow/flowEditor/output";
 	}
 
 	/**
