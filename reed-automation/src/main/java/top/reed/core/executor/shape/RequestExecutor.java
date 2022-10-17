@@ -91,20 +91,11 @@ public class RequestExecutor implements ShapeExecutor, Grammerable, SpiderListen
 
 	public static final String BLOOM_FILTER_KEY = "_bloomfilter";
 	private static final Logger logger = LoggerFactory.getLogger(RequestExecutor.class);
-	/**
-	 * 自动化任务的工作空间
-	 */
-	@Value("${auto.workspace}")
-	private String workspace;
-	/**
-	 * 布隆过滤器容量
-	 */
-	@Value("${auto.bloomfilter.capacity:5000000}")
+	@Value("${spider.workspace}")
+	private String workspcace;
+	@Value("${spider.bloomfilter.capacity:5000000}")
 	private Integer capacity;
-	/**
-	 * 布隆过滤器错误率
-	 */
-	@Value("${auto.bloomfilter.error-rate:0.00001}")
+	@Value("${spider.bloomfilter.error-rate:0.00001}")
 	private Double errorRate;
 
 	@Override
@@ -304,7 +295,7 @@ public class RequestExecutor implements ShapeExecutor, Grammerable, SpiderListen
 						//记录访问失败的日志
 						if (context.getFlowId() != null) { //测试环境
 							//TODO 需增加记录请求参数
-							File file = new File(workspace, context.getFlowId() + File.separator + "logs" + File.separator + "access_error.log");
+							File file = new File(workspcace, context.getFlowId() + File.separator + "logs" + File.separator + "access_error.log");
 							try {
 								File directory = file.getParentFile();
 								if (!directory.exists()) {
@@ -451,7 +442,7 @@ public class RequestExecutor implements ShapeExecutor, Grammerable, SpiderListen
 		if (filter == null) {
 			Funnel<CharSequence> funnel = Funnels.stringFunnel(Charset.forName("UTF-8"));
 			String fileName = context.getFlowId() + File.separator + "url.bf";
-			File file = new File(workspace, fileName);
+			File file = new File(workspcace, fileName);
 			if (file.exists()) {
 				try (FileInputStream fis = new FileInputStream(file)) {
 					filter = BloomFilter.readFrom(fis, funnel);
@@ -471,7 +462,7 @@ public class RequestExecutor implements ShapeExecutor, Grammerable, SpiderListen
 	public void afterEnd(SpiderContext context) {
 		BloomFilter<String> filter = context.get(BLOOM_FILTER_KEY);
 		if (filter != null) {
-			File file = new File(workspace, context.getFlowId() + File.separator + "url.bf");
+			File file = new File(workspcace, context.getFlowId() + File.separator + "url.bf");
 			if (!file.getParentFile().exists()) {
 				file.getParentFile().mkdirs();
 			}

@@ -3,10 +3,10 @@ package top.reed.websocket.server;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.stereotype.Component;
-import top.reed.core.Auto;
+import top.reed.core.Spider;
 import top.reed.core.utils.AutoFlowUtils;
-import top.reed.websocket.model.WebSocket;
 import top.reed.websocket.model.WebSocketContext;
+import top.reed.websocket.model.WebSocket;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
@@ -22,7 +22,7 @@ import javax.websocket.server.ServerEndpoint;
 @Component
 public class WebSocketEditorServer {
 
-	public static Auto auto;
+	public static Spider spider;
 
 	private WebSocketContext context;
 
@@ -43,7 +43,7 @@ public class WebSocketEditorServer {
 			new Thread(() -> {
 				String xml = event.getString("message");
 				if (xml != null) {
-					auto.runWithTest(AutoFlowUtils.loadXMLFromString(xml), context);
+					spider.runWithTest(AutoFlowUtils.loadXMLFromString(xml), context);
 					context.write(new WebSocket<>("finish", null));
 				} else {
 					context.write(new WebSocket<>("error", "xml不正确！"));

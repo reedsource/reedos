@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
-import top.reed.core.Auto;
+import top.reed.core.Spider;
 import top.reed.websocket.server.WebSocketEditorServer;
 
 /**
@@ -20,7 +20,6 @@ import top.reed.websocket.server.WebSocketEditorServer;
 public class WebSocketConfig {
 
 	/**
-	 * 检测ServerEndpointConfig类型的bean并向标准Java WebSocket运行时注册
 	 * ServerEndpointExporter会自动注册使用了@ServerEndpoint注解声明的Websocket endpoint
 	 */
 	@Bean
@@ -32,10 +31,10 @@ public class WebSocketConfig {
 	/**
 	 * information信息获取模块 websocket 功能注册
 	 *
-	 * @param auto Spider爬虫
+	 * @param spider Spider爬虫
 	 */
 	@Autowired
-	public void setSpider(Auto auto) {
-		WebSocketEditorServer.auto = auto;
+	public void setSpider(Spider spider) {
+		WebSocketEditorServer.spider = spider;
 	}
 }

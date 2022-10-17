@@ -160,7 +160,7 @@ swagger:
   enabled: true
 
 #自动化模块配置
-auto:
+spider:
   #线程配置
   thread:
     #平台最大线程数

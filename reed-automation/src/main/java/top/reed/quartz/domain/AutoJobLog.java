@@ -33,8 +33,8 @@ public class AutoJobLog extends BaseEntity {
 	@Excel(name = "任务组名")
 	private String jobGroup;
 
-	@Excel(name = "任务类型", readConverterExp = " 0自动化任务 1已注册类方法调用")
-	private String jobType;
+	@Excel(name = "任务类型",readConverterExp = " 0自动化任务 1已注册类方法调用")
+	private String  jobType;
 
 	/**
 	 * 调用目标字符串

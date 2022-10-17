@@ -20,14 +20,20 @@ import java.util.List;
  */
 @Component
 public class QuartzJobInvokeUtil {
-	@Autowired
-	private static AutoFlowService autoFlowService_to;
 	/**
 	 * 以下3方法 在springboot静态方法中调用service方法
 	 * 注意需要在类上用@Component组件注册
 	 */
 	@Autowired
 	private AutoFlowService autoFlowService;
+
+	@Autowired
+	private static AutoFlowService autoFlowService_to;
+
+	@PostConstruct
+	public void init() {
+		autoFlowService_to = autoFlowService;
+	}
 
 	/**
 	 * 执行方法路由
@@ -63,6 +69,7 @@ public class QuartzJobInvokeUtil {
 			invokeMethod(bean, methodName, methodParams);
 		}
 	}
+
 
 	/**
 	 * 调用任务方法
@@ -184,10 +191,5 @@ public class QuartzJobInvokeUtil {
 			index++;
 		}
 		return classs;
-	}
-
-	@PostConstruct
-	public void init() {
-		autoFlowService_to = autoFlowService;
 	}
 }

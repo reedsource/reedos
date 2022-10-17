@@ -37,28 +37,28 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author jmxd
  */
 @Component
-public class Auto {
+public class Spider {
 
 	private static final String ATOMIC_DEAD_CYCLE = "__atomic_dead_cycle";
 	public static SpiderFlowThreadPoolExecutor executorInstance;
-	private static Logger logger = LoggerFactory.getLogger(Auto.class);
+	private static Logger logger = LoggerFactory.getLogger(Spider.class);
 	@Autowired(required = false)
 	private List<SpiderListener> listeners;
 	/**
 	 * 自动化总线程数
 	 */
-	@Value("${auto.thread.max:64}")
+	@Value("${spider.thread.max:64}")
 	private Integer totalThreads;
 	/**
 	 * 自动化单任务默认最大线程数
 	 */
-	@Value("${auto.thread.default:8}")
+	@Value("${spider.thread.default:8}")
 	private Integer defaultThreads;
 	/**
 	 * 自动化死循环最大计数
 	 * 超过计数认为陷入死循环
 	 */
-	@Value("${auto.detect.dead-cycle:5000}")
+	@Value("${spider.detect.dead-cycle:5000}")
 	private Integer deadCycle;
 
 	@PostConstruct
@@ -131,7 +131,7 @@ public class Auto {
 		Future<?> f = pool.submitAsync(TtlRunnable.get(() -> {
 			try {
 				//执行具体节点
-				Auto.this.executeNode(null, root, context, variables);
+				Spider.this.executeNode(null, root, context, variables);
 				Queue<Future<?>> queue = context.getFutureQueue();
 				//循环从队列中获取Future,直到队列为空结束,当任务完成时，则执行下一级
 				while (!queue.isEmpty()) {
@@ -153,7 +153,7 @@ public class Auto {
 								if (task.executor.allowExecuteNext(task.node, context, task.variables)) {    //判断是否允许执行下一级
 									logger.debug("执行节点[{}:{}]完毕", task.node.getNodeName(), task.node.getNodeId());
 									//执行下一级
-									Auto.this.executeNextNodes(task.node, context, task.variables);
+									Spider.this.executeNextNodes(task.node, context, task.variables);
 								} else {
 									logger.debug("执行节点[{}:{}]完毕，忽略执行下一节点", task.node.getNodeName(), task.node.getNodeId());
 								}

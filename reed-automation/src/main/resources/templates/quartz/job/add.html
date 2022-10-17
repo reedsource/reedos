@@ -41,8 +41,7 @@
         <div class="form-group">
             <label class="col-sm-3 control-label is-required">自动化任务：</label>
             <div class="col-sm-8">
-                <select class="form-control m-b" id="invokeTarget1" name="invokeTarget"
-                        th:with="type=${@autoFlow.getAuto()}">
+                <select class="form-control m-b" id="invokeTarget1" name="invokeTarget" th:with="type=${@auto.getAuto()}">
                     <option value="">请选择自动化任务</option>
                     <option th:each="autoFlow : ${type}" th:text="${autoFlow.name}" th:value="${autoFlow.id}"></option>
                 </select>
@@ -125,7 +124,7 @@
         if ($.validate.form()) {
             const jobType = $("input[name='jobType']:checked").val();
             if (jobType === '0') {
-                const invokeTarget = $("#invokeTarget1").val();
+                const invokeTarget =$("#invokeTarget1").val();
                 if (invokeTarget === "" || invokeTarget === null) {
                     $.modal.alertError('自动化任务未选择')
                     return;

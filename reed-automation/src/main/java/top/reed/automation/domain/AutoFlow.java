@@ -56,7 +56,6 @@ public class AutoFlow extends BaseEntity {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	@NotBlank(message = "任务名字不能为空")
 	public String getName() {
 		return name;

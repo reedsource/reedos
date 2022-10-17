@@ -3,6 +3,7 @@ package top.reed.automation.controller;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import top.reed.api.Grammerable;
@@ -44,6 +45,11 @@ import java.util.stream.Collectors;
 public class AutoFlowController extends BaseController {
 
 	private final AutoFlowService autoFlowService;
+
+	public AutoFlowController(AutoFlowService autoFlowService) {
+		this.autoFlowService = autoFlowService;
+	}
+
 	private final List<Grammer> grammers = new ArrayList<Grammer>();
 	@Autowired
 	private List<FunctionExecutor> functionExecutors;
@@ -53,10 +59,6 @@ public class AutoFlowController extends BaseController {
 	private List<Grammerable> grammerables;
 	@Autowired(required = false)
 	private List<PluginConfig> pluginConfigs;
-
-	public AutoFlowController(AutoFlowService autoFlowService) {
-		this.autoFlowService = autoFlowService;
-	}
 
 	@RequiresPermissions("automation:autoflow:view")
 	@GetMapping()

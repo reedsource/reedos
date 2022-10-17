@@ -4,7 +4,6 @@ import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import top.reed.api.context.SpiderContextHolder;
 import top.reed.automation.domain.AutoFlow;
@@ -12,7 +11,7 @@ import top.reed.automation.mapper.AutoFlowMapper;
 import top.reed.automation.service.AutoFlowService;
 import top.reed.common.core.text.Convert;
 import top.reed.common.utils.CacheUtils;
-import top.reed.core.Auto;
+import top.reed.core.Spider;
 import top.reed.core.job.SpiderJobContext;
 
 import java.io.File;
@@ -31,14 +30,14 @@ import java.util.stream.Collectors;
 @Service
 public class AutoFlowServiceImpl implements AutoFlowService {
 	private static Logger logger = LoggerFactory.getLogger(AutoFlowServiceImpl.class);
-	private final AutoFlowMapper autoFlowMapper;
+
 	/**
-	 * 自动化任务的工作空间
+	 * 日志路径
 	 */
-	@Value("${auto.workspace}")
-	private String workspace;
+	private final String workspace = "/data/spider";
+	private final AutoFlowMapper autoFlowMapper;
 	@Autowired
-	private Auto auto;
+	private Spider spider;
 
 	public AutoFlowServiceImpl(AutoFlowMapper autoFlowMapper) {
 		this.autoFlowMapper = autoFlowMapper;
@@ -142,7 +141,7 @@ public class AutoFlowServiceImpl implements AutoFlowService {
 	 */
 	@Override
 	public void run(Long id) {
-		Auto.executorInstance.submit(() -> {
+		Spider.executorInstance.submit(() -> {
 			run(selectAutoFlowById(id));
 		});
 	}
@@ -158,7 +157,7 @@ public class AutoFlowServiceImpl implements AutoFlowService {
 			context = SpiderJobContext.create(this.workspace, autoFlow.getId().toString(), false);
 			SpiderContextHolder.set(context);
 			logger.info("开始执行任务{}", autoFlow.getName());
-			auto.run(autoFlow, context);
+			spider.run(autoFlow, context);
 			logger.info("执行任务{}完毕", autoFlow.getName());
 		} catch (Exception e) {
 			logger.error("执行任务{}出错", autoFlow.getName(), e);
