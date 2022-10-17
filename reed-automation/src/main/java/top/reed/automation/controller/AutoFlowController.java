@@ -61,9 +61,6 @@ public class AutoFlowController extends BaseController {
 	@Autowired(required = false)
 	private List<PluginConfig> pluginConfigs;
 
-	@Value("${spider.workspace}")
-	private String workspace;
-
 	@RequiresPermissions("automation:autoflow:view")
 	@GetMapping()
 	public String autoflow() {

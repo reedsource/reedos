@@ -79,7 +79,7 @@
 					</div>
 				</div>
 			</div>
-			<table class="layui-table" id="spider-output" data-cell="{{=d.cell.id}}" data-keys="output-name,output-value"></table>
+			<table class="layui-table" id="auto-output" data-cell="{{=d.cell.id}}" data-keys="output-name,output-value"></table>
     		<hr>
     		<div class="layui-form-item">
     			<div class="layui-input-inline">
@@ -94,7 +94,7 @@
 <script th:inline="none">
 	function renderSpiderOutput(data){
 		layui.table.render({
-			elem : '#spider-output',
+			elem : '#auto-output',
 			limit: 50,
 			cols : [[{
 				title : '输出项',

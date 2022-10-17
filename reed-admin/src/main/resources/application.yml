@@ -159,24 +159,23 @@ swagger:
   # 是否开启swagger
   enabled: true
 
-spider:
+#自动化模块配置
+auto:
+  #线程配置
   thread:
     #平台最大线程数
     max: 64
     #单任务默认最大线程数
     default: 8
-
-  #设置为true时定时任务才生效
-  job:
-    enable: false
-  #爬虫任务的工作空间
+  #死循环检测(节点执行次数超过该值时认为是死循环)
+  detect:
+    #默认值为5000
+    dead-cycle : 5000
+  #自动化任务的工作空间
   workspace: /data/spider
-  spider:
-    bloomfilter:
+  #布隆过滤器配置
+  bloomfilter:
       #布隆过滤器默认容量
-      capacity: 1000000
+    capacity: 1000000
       #布隆过滤器默认容错率
-      error-rate: 0.0001
-
-  #死循环检测(节点执行次数超过该值时认为是死循环)默认值为5000
-  #spider.detect.dead-cycle: 5000
+    error-rate: 0.0001

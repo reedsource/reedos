@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
-import top.reed.core.Spider;
+import top.reed.core.Auto;
 import top.reed.websocket.server.WebSocketEditorServer;
 
 /**
@@ -33,10 +33,10 @@ public class WebSocketConfig {
 	/**
 	 * information信息获取模块 websocket 功能注册
 	 *
-	 * @param spider Spider爬虫
+	 * @param auto Spider爬虫
 	 */
 	@Autowired
-	public void setSpider(Spider spider) {
-		WebSocketEditorServer.spider = spider;
+	public void setSpider(Auto auto) {
+		WebSocketEditorServer.auto = auto;
 	}
 }
