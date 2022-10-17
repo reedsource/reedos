@@ -63,7 +63,7 @@ public abstract class QuartzJob implements Job {
 	 * 执行前
 	 *
 	 * @param context 工作执行上下文对象
-	 * @param autoJob  系统计划任务
+	 * @param autoJob 系统计划任务
 	 */
 	protected void before(JobExecutionContext context, AutoJob autoJob) {
 		threadLocal.set(new Date());
@@ -102,7 +102,7 @@ public abstract class QuartzJob implements Job {
 	 * 执行方法，由子类重载
 	 *
 	 * @param context 工作执行上下文对象
-	 * @param autoJob  系统计划任务
+	 * @param autoJob 系统计划任务
 	 *                throws Exception 执行过程中的异常
 	 */
 	protected abstract void doExecute(JobExecutionContext context, AutoJob autoJob) throws Exception;

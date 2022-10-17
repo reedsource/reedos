@@ -31,14 +31,12 @@ import java.util.stream.Collectors;
 @Service
 public class AutoFlowServiceImpl implements AutoFlowService {
 	private static Logger logger = LoggerFactory.getLogger(AutoFlowServiceImpl.class);
-
+	private final AutoFlowMapper autoFlowMapper;
 	/**
 	 * 自动化任务的工作空间
 	 */
 	@Value("${auto.workspace}")
 	private String workspace;
-
-	private final AutoFlowMapper autoFlowMapper;
 	@Autowired
 	private Auto auto;
 

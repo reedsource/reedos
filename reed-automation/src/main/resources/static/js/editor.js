@@ -12,22 +12,20 @@ function renderCodeMirror() {
     codeMirrorInstances = {};
     $('[codemirror]').each(function () {
         var $dom = $(this);
-        if ($dom.attr("rendered") == 'true') {
+        if ($dom.attr("rendered") === 'true') {
             return;
         }
         $dom.attr("rendered", true)
         var cm = CodeMirror(this, {
             mode: 'spiderflow',	//语法
             theme: 'idea',	//设置样式
-            placeholder: $dom.attr("placeholder"),
-            value: $dom.attr('data-value') || '',
-            scrollbarStyle: 'null',	//隐藏滚动条
+            placeholder: $dom.attr("placeholder"), value: $dom.attr('data-value') || '', scrollbarStyle: 'null',	//隐藏滚动条
         });
         initHint(cm);
         codeMirrorInstances[$(this).attr('codemirror')] = cm;
         cm.on('change', function () {
             $dom.attr('data-value', cm.getValue());
-            if ($dom.attr('codemirror') == 'condition') {
+            if ($dom.attr('codemirror') === 'condition') {
                 var $select = $('select[name="exception-flow"]');
                 $select.siblings("div.layui-form-select").find('dl dd[lay-value=' + $select.val() + ']').click();
             }
@@ -86,7 +84,7 @@ function serializeForm() {
             array.push(value);
             cell.data.set(name, array);
         } else {
-            if (name == 'value') {
+            if (name === 'value') {
                 if (cell.getValue() != value) {
                     model.beginUpdate();
                     try {
@@ -97,10 +95,10 @@ function serializeForm() {
                     }
                 }
             }
-            if (name == 'lineWidth') {
+            if (name === 'lineWidth') {
                 editor.graph.setCellStyles('strokeWidth', value, [cell]);
             }
-            if (name == 'line-style') {
+            if (name === 'line-style') {
                 editor.graph.setCellStyles('sharp', undefined, [cell]);
                 editor.graph.setCellStyles('rounded', undefined, [cell]);
                 editor.graph.setCellStyles('curved', undefined, [cell]);
@@ -122,7 +120,7 @@ function serializeForm() {
         }
     });
     $(".properties-container form input[type=checkbox]").each(function () {
-        if (this.value == 'transmit-variable') {
+        if (this.value === 'transmit-variable') {
             if ($(this).is(":checked")) {
                 editor.graph.setCellStyles('dashed', undefined, [cell]);
             } else {
@@ -150,8 +148,7 @@ function validXML(callback) {
     var cell = editor.valid();
     if (cell) {
         layui.layer.confirm("检测到有箭头未连接到节点上，是否处理？", {
-            title: '异常处理',
-            btn: ['处理', '忽略'],
+            title: '异常处理', btn: ['处理', '忽略'],
         }, function (index) {
             layui.layer.close(index);
             editor.selectCell(cell);
@@ -165,13 +162,9 @@ function validXML(callback) {
 
 $(function () {
     $.ajax({
-        url: '/automation/autoflow/other',
-        type: 'post',
-        data: {
+        url: '/automation/autoflow/other', type: 'post', data: {
             id: getQueryString('id')
-        },
-        dataType: 'json',
-        success: function (others) {
+        }, dataType: 'json', success: function (others) {
             flows = others;
         }
     })
@@ -179,14 +172,14 @@ $(function () {
         var isCtrl = false;
         $(document).keydown(function (e) {
             if (!args) args = [];
-            if (e.keyCode == 17) isCtrl = true;
-            if (e.keyCode == key.charCodeAt(0) && isCtrl) {
+            if (e.keyCode === 17) isCtrl = true;
+            if (e.keyCode === key.charCodeAt(0) && isCtrl) {
                 callback.apply(this, args);
                 isCtrl = false;
                 return false;
             }
         }).keyup(function (e) {
-            if (e.keyCode == 17) isCtrl = false;
+            if (e.keyCode === 17) isCtrl = false;
         });
     };
     $.ctrl('S', function () {
@@ -213,11 +206,7 @@ $(function () {
         //实现已经缓存的html样板  这里使用了layui.laytpl
         var render = function () {
             layui.laytpl(templateCache[template]).render({
-                data: cell.data,
-                value: cell.value,
-                flows: flows || [],
-                model: model,
-                cell: cell
+                data: cell.data, value: cell.value, flows: flows || [], model: model, cell: cell
             }, function (html) {
                 //html=templateCache[template] = 已经缓存的html样板
                 //下方编辑栏目区域 实现 已经缓存的html样板
@@ -239,9 +228,7 @@ $(function () {
         //备注 发起请求路径
         $.ajax({
             // url : 'resources/templates/' + template +".html",
-            url: '/automation/autoflow/' + template,
-            async: false,
-            success: function (content) {
+            url: '/automation/autoflow/' + template, async: false, success: function (content) {
                 //content是html源代码
                 //把html源代码放入样板缓存
                 templateCache[template] = content;
@@ -255,8 +242,7 @@ $(function () {
         layui.layer.msg('浏览器不支持!!');
     } else {
         editor = new SpiderEditor({
-            element: $('.editor-container')[0],
-            selectedCellListener: function (cell) {	//选中节点后打开属性面板
+            element: $('.editor-container')[0], selectedCellListener: function (cell) {	//选中节点后打开属性面板
                 loadTemplate(cell, editor.getModel(), serializeForm);
             }
         });
@@ -309,13 +295,10 @@ $(function () {
                 layui.layer.close(index);
                 var layerIndex = layui.layer.load(1);
                 $.ajax({
-                    url: '/automation/autoflow/history',
-                    data: {
-                        id: id,
-                        timestamp: timestamp
-                    },
-                    success: function (data) {
-                        if (data.code == 1) {
+                    url: '/automation/autoflow/history', data: {
+                        id: id, timestamp: timestamp
+                    }, success: function (data) {
+                        if (data.code === 1) {
                             version = timestamp;
                             editor.setXML(data.data);
                             layui.layer.close(layerIndex);
@@ -328,19 +311,16 @@ $(function () {
             });
         }).on("click", ".btn-history", function () {
             $.ajax({
-                url: '/automation/autoflow/history',
-                data: {
+                url: '/automation/autoflow/history', data: {
                     id: id
-                },
-                success: function (data) {
-                    if (data.code == 1) {
+                }, success: function (data) {
+                    if (data.code === 1) {
                         if (data.data.length > 0) {
                             var array = [];
                             for (var i = data.data.length - 1; i >= 0; i--) {
                                 var timestamp = Number(data.data[i])
                                 array.push({
-                                    time: new Date(timestamp).format('yyyy-MM-dd hh:mm:ss'),
-                                    timestamp: timestamp
+                                    time: new Date(timestamp).format('yyyy-MM-dd hh:mm:ss'), timestamp: timestamp
                                 })
                             }
                             layui.laytpl($('#history-version-tmpl').html()).render(array, function (html) {
@@ -525,10 +505,10 @@ $(function () {
         layui.form.on('select(bodyType)', function (e) {
             var bodyType = $(e.elem).val();
             $(".form-body-raw,.form-body-form-data").hide();
-            if (bodyType == 'raw') {
+            if (bodyType === 'raw') {
                 $(".form-body-raw").show();
             }
-            if (bodyType == 'form-data') {
+            if (bodyType === 'form-data') {
                 $(".form-body-form-data").show();
             }
             renderCodeMirror();
@@ -538,7 +518,7 @@ $(function () {
             var targetDiv = $(data.elem).attr('target-div');
             var targetValue = $(data.elem).attr('target-value');
             if (targetDiv != null) {
-                if (data.elem.value == targetValue) {
+                if (data.elem.value === targetValue) {
                     $("." + targetDiv).show();
                 } else {
                     $("." + targetDiv).hide();
@@ -565,12 +545,9 @@ $(function () {
         var id = getQueryString('id');
         if (id != null) {
             $.ajax({
-                url: '/automation/autoflow/xml',
-                async: false,
-                data: {
+                url: '/automation/autoflow/xml', async: false, data: {
                     id: id
-                },
-                success: function (xml) {
+                }, success: function (xml) {
                     editor.setXML(xml);
                 }
             })
@@ -643,9 +620,7 @@ $(function () {
             image.onclick = function (ev) {
                 if (shape.desc) {
                     layer.tips("(" + shape.name + ")" + shape.title + "<hr/>" + shape.desc, '#' + shape.name, {
-                        tips: [1, '#3595CC'],
-                        area: ['auto', 'auto'],
-                        time: 4000
+                        tips: [1, '#3595CC'], area: ['auto', 'auto'], time: 4000
                     });
                 }
             }
@@ -881,7 +856,7 @@ function runSpider(debug) {
             },
             btn4: function () {
                 var $btn = $("#layui-layer" + testWindowIndex).find('.layui-layer-btn3');
-                if ($btn.html() == '停止') {
+                if ($btn.html() === '停止') {
                     socket.send(JSON.stringify({
                         eventType: 'stop'
                     }));
@@ -889,8 +864,7 @@ function runSpider(debug) {
                     $(".btn-debug,.btn-test,.btn-resume").addClass('disabled');
                     $(".btn-stop").removeClass('disabled');
                     socket.send(JSON.stringify({
-                        eventType: debug ? 'debug' : 'test',
-                        message: editor.getXML()
+                        eventType: debug ? 'debug' : 'test', message: editor.getXML()
                     }));
                     $btn.html('停止');
                 }
@@ -913,14 +887,10 @@ function runSpider(debug) {
             success: function (layero, index) {
                 var logElement = $(".test-window-container .log-container")[0];
                 var colors = {
-                    'array': '#2a00ff',
-                    'object': '#2a00ff',
-                    'boolean': '#600100',
-                    'number': '#000E59'
+                    'array': '#2a00ff', 'object': '#2a00ff', 'boolean': '#600100', 'number': '#000E59'
                 }
                 LogViewer = new CanvasViewer({
-                    element: logElement,
-                    onClick: function (e) {
+                    element: logElement, onClick: function (e) {
                         onCanvasViewerClick(e, '日志');
                     }
                 });
@@ -930,25 +900,27 @@ function runSpider(debug) {
                         LogViewer.filter(this.value);
                     });
                 socket = createWebSocket({
+                    //连接websocket时调用
                     onopen: function () {
                         socket.send(JSON.stringify({
-                            eventType: debug ? 'debug' : 'test',
-                            message: editor.getXML()
+                            eventType: debug ? 'debug' : 'test', message: editor.getXML()
                         }));
-                    },
+                    }, //接收程序时调用
                     onmessage: function (e) {
                         var event = JSON.parse(e.data);
                         var eventType = event.eventType;
                         var message = event.message;
-                        if (eventType == 'finish') {
+                        //完成
+                        if (eventType === 'finish') {
                             $(".spiderflow-debug-tooltip").remove();
                             $("#layui-layer" + testWindowIndex).find('.layui-layer-btn3').html('重新开始');
                             $(".btn-stop,.btn-resume").addClass('disabled');
                             $(".btn-test,.btn-debug").removeClass('disabled')
-                        } else if (eventType == 'output') {
+                            //返回信息
+                        } else if (eventType === 'output') {
                             var tableId = 'output-' + message.nodeId;
                             var $table = $('#' + tableId);
-                            if ($table.length == 0) {
+                            if ($table.length === 0) {
                                 tableMap[tableId] = {
                                     index: 0
                                 };
@@ -969,34 +941,25 @@ function runSpider(debug) {
                                 $table = $('<canvas width="677" height="200"/>').appendTo($(".test-window-container .output-container .layui-tab-item[data-output=" + tableId + "]"));
                                 $table.attr('id', tableId);
                                 tableMap[tableId].instance = new CanvasViewer({
-                                    element: document.getElementById(tableId),
-                                    grid: true,
-                                    header: true,
-                                    style: {
+                                    element: document.getElementById(tableId), grid: true, header: true, style: {
                                         font: 'bold 13px Consolas'
-                                    },
-                                    onClick: function (e) {
+                                    }, onClick: function (e) {
                                         onCanvasViewerClick(e, '表格');
                                     }
                                 })
                                 var cols = [];
                                 var texts = [new CanvasText({
-                                    text: '序号',
-                                    maxWidth: 100
+                                    text: '序号', maxWidth: 100
                                 })];
                                 for (var i = 0, len = message.outputNames.length; i < len; i++) {
                                     texts.push(new CanvasText({
-                                        text: message.outputNames[i],
-                                        maxWidth: 200,
-                                        click: true
+                                        text: message.outputNames[i], maxWidth: 200, click: true
                                     }));
                                 }
                                 tableMap[tableId].instance.append(texts);
                             }
                             var texts = [new CanvasText({
-                                text: ++tableMap[tableId].index,
-                                maxWidth: 200,
-                                click: true
+                                text: ++tableMap[tableId].index, maxWidth: 200, click: true
                             })];
                             for (var i = 0, len = message.outputNames.length; i < len; i++) {
                                 var displayText = message.values[i];
@@ -1006,7 +969,7 @@ function runSpider(debug) {
                                     displayText = JSON.stringify(displayText);
                                 } else {
                                     variableType = typeof displayText;
-                                    if (variableType == 'object') {
+                                    if (variableType === 'object') {
                                         displayText = JSON.stringify(displayText);
                                     }
                                 }
@@ -1019,24 +982,21 @@ function runSpider(debug) {
                             }
                             tableMap[tableId].instance.append(texts);
                             tableMap[tableId].instance.scrollTo(-1);
-                        } else if (eventType == 'log') {
+                        } else if (eventType === 'log') {
                             var texts = [];
-                            var defaultColor = message.level == 'error' ? 'red' : '';
+                            var defaultColor = message.level === 'error' ? 'red' : '';
                             texts.push(new CanvasText({
-                                text: message.level,
-                                color: defaultColor
+                                text: message.level, color: defaultColor
                             }));
                             texts.push(new CanvasText({
-                                text: event.timestamp,
-                                color: defaultColor
+                                text: event.timestamp, color: defaultColor
                             }));
                             var temp = message.message.split("{}");
                             message.variables = message.variables || [];
                             for (var i = 0, len = temp.length; i < len; i++) {
                                 if (temp[i] != '') {
                                     texts.push(new CanvasText({
-                                        text: temp[i],
-                                        color: defaultColor
+                                        text: temp[i], color: defaultColor
                                     }))
                                 }
                                 var object = message.variables[i];
@@ -1048,7 +1008,7 @@ function runSpider(debug) {
                                         displayText = JSON.stringify(displayText);
                                     } else {
                                         variableType = typeof object;
-                                        if (variableType == 'object') {
+                                        if (variableType === 'object') {
                                             displayText = JSON.stringify(displayText);
                                         }
                                     }
@@ -1062,30 +1022,30 @@ function runSpider(debug) {
                             }
                             LogViewer.append(texts);
                             LogViewer.scrollTo(-1);
-                        } else if (eventType == 'debug') {
+                        } else if (eventType === 'debug') {
                             $(".btn-resume").removeClass('disabled');
                             var type = message.event;
                             editor.selectCell(editor.graph.model.cells[message.nodeId]);
                             var selector;
-                            if (type == 'request-parameter') {
+                            if (type === 'request-parameter') {
                                 $('.layui-tab-title li:eq(1)').click();
                             }
-                            if (type == 'request-cookie') {
+                            if (type === 'request-cookie') {
                                 $('.layui-tab-title li:eq(2)').click();
                             }
-                            if (type == 'request-header') {
+                            if (type === 'request-header') {
                                 $('.layui-tab-title li:eq(3)').click();
                             }
-                            if (type == 'request-body') {
+                            if (type === 'request-body') {
                                 $('.layui-tab-title li:eq(4)').click();
                             }
-                            if (type == 'common' || type == 'request-parameter' || type == 'request-header' || type == 'request-cookie') {
+                            if (type === 'common' || type === 'request-parameter' || type === 'request-header' || type === 'request-cookie') {
                                 selector = '.layui-table-cell input[value=' + message.key + ']';
                             }
-                            if ($(selector).length == 0) {
+                            if ($(selector).length === 0) {
                                 selector = '.properties-container input[name=' + message.key + ']';
                             }
-                            if ($(selector).length == 0) {
+                            if ($(selector).length === 0) {
                                 selector = '.properties-container [codemirror=' + message.key + ']';
                             }
                             var o1 = $(selector).offset();
@@ -1095,17 +1055,17 @@ function runSpider(debug) {
                                 $parent[0].scrollTop = o1.top - o2.top;
                             }
                             var msg = message.value;
-                            var isJson = Array.isArray(msg) || typeof msg == 'object';
+                            var isJson = Array.isArray(msg) || typeof msg === 'object';
                             if (!isJson) {
                                 var temp = document.createElement("div");
                                 (temp.textContent != null) ? (temp.textContent = msg) : (temp.innerText = msg);
                                 msg = temp.innerHTML;
                                 temp = null;
                             }
-                            var content = '<div class="message-content" style="padding:10px;' + (isJson ? '' : 'font-weight: bold;font-family:Consolas;font-size:12px;') + '">' + (isJson ? '' : msg.replace(/\n/g, '<br>')).replace(/ /g, '&nbsp;').replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;') + '</div>';
+                            const content = '<div class="message-content" style="padding:10px;' + (isJson ? '' : 'font-weight: bold;font-family:Consolas;font-size:12px;') + '">' + (isJson ? '' : msg.replace(/\n/g, '<br>')).replace(/ /g, '&nbsp;').replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;') + '</div>';
                             var tooltip = bindTooltip(content, selector);
                             if (isJson) {
-                                var $dom = $(tooltip.dom).find(".message-content");
+                                const $dom = $(tooltip.dom).find(".message-content");
                                 jsonTree.create(msg, $dom[0]);
                             }
                         }
@@ -1133,8 +1093,7 @@ function bindTooltip(content, selector) {
     document.body.appendChild(dom);
     $(selector).offset();
     return {
-        dom: dom,
-        close: function () {
+        dom: dom, close: function () {
             document.body.removeChild(dom);
         }
     }
@@ -1154,7 +1113,7 @@ function onCanvasViewerClick(e, source) {
     var json;
     try {
         json = JSON.parse(msg);
-        if (!(Array.isArray(json) || typeof json == 'object')) {
+        if (!(Array.isArray(json) || typeof json === 'object')) {
             json = null;
         }
     } catch (e) {
@@ -1185,21 +1144,6 @@ function onCanvasViewerClick(e, source) {
     });
 }
 
-/**
- * 创建Web套接字
- * @param options
- * @returns {WebSocket}
- */
-function createWebSocket(options) {
-    options = options || {};
-    var socket = new WebSocket(options.url || (location.origin.replace("http", 'ws') + '/ws'));
-    socket.onopen = options.onopen;
-    socket.onmessage = options.onmessage;
-    socket.onerror = options.onerror || function () {
-        layer.layer.msg('WebSocket错误');
-    }
-    return socket;
-}
 
 var flowId;
 
@@ -1210,14 +1154,11 @@ var flowId;
 function Save() {
     validXML(function () {
         $.ajax({
-            url: '/automation/autoflow/save',
-            type: 'post',
-            data: {
+            url: '/automation/autoflow/save', type: 'post', data: {
                 id: getQueryString('id') || flowId,
                 xml: editor.getXML(),
                 name: editor.graph.getModel().getRoot().data.get('spiderName') || '未定义名称',
-            },
-            success: function (id) {
+            }, success: function (id) {
                 flowId = id;
                 layui.layer.msg('保存成功', {
                     time: 800

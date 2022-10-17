@@ -40,8 +40,7 @@ public final class SpringUtils implements BeanFactoryPostProcessor, ApplicationC
 	 * 获取类型为requiredType的对象
 	 *
 	 * @param clz
-	 * @return
-	 * throws org.springframework.beans.BeansException
+	 * @return throws org.springframework.beans.BeansException
 	 */
 	public static <T> T getBean(Class<T> clz) throws BeansException {
 		T result = (T) beanFactory.getBean(clz);
@@ -82,8 +81,7 @@ public final class SpringUtils implements BeanFactoryPostProcessor, ApplicationC
 	 * 如果给定的bean名字在bean定义中有别名，则返回这些别名
 	 *
 	 * @param name
-	 * @return
-	 * throws org.springframework.beans.factory.NoSuchBeanDefinitionException
+	 * @return throws org.springframework.beans.factory.NoSuchBeanDefinitionException
 	 */
 	public static String[] getAliases(String name) throws NoSuchBeanDefinitionException {
 		return beanFactory.getAliases(name);

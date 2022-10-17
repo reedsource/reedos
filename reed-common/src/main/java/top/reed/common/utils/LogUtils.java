@@ -22,8 +22,7 @@ public class LogUtils {
 	/**
 	 * 记录访问日志 [username][jsessionid][ip][accept][UserAgent][url][params][Referer]
 	 *
-	 * @param request
-	 * throws Exception
+	 * @param request throws Exception
 	 */
 	public static void logAccess(HttpServletRequest request) throws Exception {
 		String username = getUsername();

@@ -35,10 +35,9 @@ import java.util.List;
 public class AutoJobController extends BaseController {
 
 	@Autowired
-	private AutoJobService jobService;
-
-	@Autowired
 	AutoFlowService autoFlowService;
+	@Autowired
+	private AutoJobService jobService;
 
 	@RequiresPermissions("quartz:job:view")
 	@GetMapping()

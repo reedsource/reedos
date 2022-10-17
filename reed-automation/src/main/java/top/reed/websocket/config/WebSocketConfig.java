@@ -20,9 +20,8 @@ import top.reed.websocket.server.WebSocketEditorServer;
 public class WebSocketConfig {
 
 	/**
+	 * 检测ServerEndpointConfig类型的bean并向标准Java WebSocket运行时注册
 	 * ServerEndpointExporter会自动注册使用了@ServerEndpoint注解声明的Websocket endpoint
-	 *
-	 * @return
 	 */
 	@Bean
 	public ServerEndpointExporter serverEndpointExporter() {

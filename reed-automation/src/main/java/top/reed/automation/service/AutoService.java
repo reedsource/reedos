@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author reedsource
  */
-@Service("auto")
+@Service("autoFlow")
 public class AutoService {
 	@Autowired
 	private AutoFlowService autoFlowService;

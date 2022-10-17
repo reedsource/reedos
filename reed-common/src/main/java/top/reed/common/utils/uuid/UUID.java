@@ -243,7 +243,7 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
 	 * <p>
 	 * 时间戳值仅在在基于时间的 UUID（其 version 类型为 1）中才有意义。<br>
 	 * 如果此 {@code UUID} 不是基于时间的 UUID，则此方法抛出 UnsupportedOperationException。
-	 *
+	 * <p>
 	 * throws UnsupportedOperationException 如果此 {@code UUID} 不是 version 为 1 的 UUID。
 	 */
 	public long timestamp() throws UnsupportedOperationException {

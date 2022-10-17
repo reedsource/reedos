@@ -5,8 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import org.springframework.stereotype.Component;
 import top.reed.core.Auto;
 import top.reed.core.utils.AutoFlowUtils;
-import top.reed.websocket.model.WebSocketContext;
 import top.reed.websocket.model.WebSocket;
+import top.reed.websocket.model.WebSocketContext;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
@@ -26,6 +26,11 @@ public class WebSocketEditorServer {
 
 	private WebSocketContext context;
 
+	/**
+	 * 收到客户端消息后调用的方法
+	 *
+	 * @param message 客户端发送过来的消息
+	 */
 	@OnMessage
 	public void onMessage(String message, Session session) {
 		JSONObject event = JSON.parseObject(message);
@@ -53,8 +58,11 @@ public class WebSocketEditorServer {
 		}
 	}
 
+	/**
+	 * 连接关闭调用的方法
+	 */
 	@OnClose
-	public void onClose(Session session) {
+	public void onClose() {
 		context.setRunning(false);
 		context.stop();
 	}
