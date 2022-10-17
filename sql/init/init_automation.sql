@@ -9,6 +9,7 @@ insert into sys_menu values('110',  '定时任务', '5', '1', '/quartz/job', '',
 INSERT INTO sys_menu VALUES (200, '自动化任务', 5, 2, '/automation/autoflow', '', 'C', '0', '1', 'automation:autoflow:view', '#', 'admin', sysdate(), '', null, '自动化任务菜单');
 INSERT INTO sys_menu VALUES (201, '自定义函数', 5, 3, '/automation/autofunction', '', 'C', '0', '1', 'automation:autofunction:view', '#', 'admin', sysdate(), '', null, '自定义函数菜单');
 INSERT INTO sys_menu VALUES (202, '自动化数据源', 5, 4, '/automation/autodatasource', '', 'C', '0', '1', 'automation:autodatasource:view', '#', 'admin', sysdate(), '', null, '自动化数据源菜单');
+INSERT INTO sys_menu VALUES (203, 'WebSocket', 5, 4, '/automation/notice', '', 'C', '0', '1', '', '#', 'admin', sysdate(), '', null, 'WebSocket');
 -- 定时任务按钮
 insert into sys_menu values('1050', '任务查询', '110', '1',  '#', '',  'F', '0', '1', 'quartz:job:list',                '#', 'admin', sysdate(), '', null, '');
 insert into sys_menu values('1051', '任务新增', '110', '2',  '#', '',  'F', '0', '1', 'quartz:job:add',                 '#', 'admin', sysdate(), '', null, '');

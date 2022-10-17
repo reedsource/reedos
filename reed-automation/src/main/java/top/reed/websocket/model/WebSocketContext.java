@@ -1,4 +1,4 @@
-package top.reed.model;
+package top.reed.websocket.model;
 
 import com.alibaba.fastjson.JSON;
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -15,7 +15,7 @@ import java.util.Date;
  *
  * @author reedsource
  */
-public class SpiderWebSocketContext extends SpiderContext {
+public class WebSocketContext extends SpiderContext {
 
 	private static final long serialVersionUID = -1205530535069540245L;
 
@@ -25,7 +25,7 @@ public class SpiderWebSocketContext extends SpiderContext {
 
 	private Object lock = new Object();
 
-	public SpiderWebSocketContext(Session session) {
+	public WebSocketContext(Session session) {
 		this.session = session;
 	}
 
@@ -39,14 +39,14 @@ public class SpiderWebSocketContext extends SpiderContext {
 
 	@Override
 	public void addOutput(SpiderOutput output) {
-		this.write(new WebSocketEvent<>("output", output));
+		this.write(new WebSocket<>("output", output));
 	}
 
 	public void log(SpiderLog log) {
-		write(new WebSocketEvent<>("log", DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss.SSS"), log));
+		write(new WebSocket<>("log", DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss.SSS"), log));
 	}
 
-	public <T> void write(WebSocketEvent<T> event) {
+	public <T> void write(WebSocket<T> event) {
 		try {
 			String message = JSON.toJSONString(event, FastJsonSerializer.serializeConfig);
 			if (session.isOpen()) {
@@ -65,7 +65,7 @@ public class SpiderWebSocketContext extends SpiderContext {
 				if (this.debug && this.isRunning()) {
 					synchronized (lock) {
 						try {
-							write(new WebSocketEvent<>("debug", new DebugInfo(nodeId, event, key, value)));
+							write(new WebSocket<>("debug", new DebugInfo(nodeId, event, key, value)));
 							lock.wait();
 						} catch (InterruptedException ignored) {
 						}

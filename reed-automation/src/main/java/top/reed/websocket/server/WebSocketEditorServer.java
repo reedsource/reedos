@@ -1,12 +1,12 @@
-package top.reed.websocket;
+package top.reed.websocket.server;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.stereotype.Component;
 import top.reed.core.Spider;
 import top.reed.core.utils.AutoFlowUtils;
-import top.reed.model.SpiderWebSocketContext;
-import top.reed.model.WebSocketEvent;
+import top.reed.websocket.model.WebSocketContext;
+import top.reed.websocket.model.WebSocket;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
@@ -24,7 +24,7 @@ public class WebSocketEditorServer {
 
 	public static Spider spider;
 
-	private SpiderWebSocketContext context;
+	private WebSocketContext context;
 
 	@OnMessage
 	public void onMessage(String message, Session session) {
@@ -32,16 +32,16 @@ public class WebSocketEditorServer {
 		String eventType = event.getString("eventType");
 		boolean isDebug = "debug".equalsIgnoreCase(eventType);
 		if ("test".equalsIgnoreCase(eventType) || isDebug) {
-			context = new SpiderWebSocketContext(session);
+			context = new WebSocketContext(session);
 			context.setDebug(isDebug);
 			context.setRunning(true);
 			new Thread(() -> {
 				String xml = event.getString("message");
 				if (xml != null) {
 					spider.runWithTest(AutoFlowUtils.loadXMLFromString(xml), context);
-					context.write(new WebSocketEvent<>("finish", null));
+					context.write(new WebSocket<>("finish", null));
 				} else {
-					context.write(new WebSocketEvent<>("error", "xml不正确！"));
+					context.write(new WebSocket<>("error", "xml不正确！"));
 				}
 				context.setRunning(false);
 			}).start();

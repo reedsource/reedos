@@ -1,4 +1,4 @@
-package top.reed.model;
+package top.reed.websocket.model;
 
 /**
  * WebSocket事件
@@ -6,7 +6,7 @@ package top.reed.model;
  * @param <T>
  * @author reedsource
  */
-public class WebSocketEvent<T> {
+public class WebSocket<T> {
 
 	private String eventType;
 
@@ -14,12 +14,12 @@ public class WebSocketEvent<T> {
 
 	private T message;
 
-	public WebSocketEvent(String eventType, T message) {
+	public WebSocket(String eventType, T message) {
 		this.eventType = eventType;
 		this.message = message;
 	}
 
-	public WebSocketEvent(String eventType, String timestamp, T message) {
+	public WebSocket(String eventType, String timestamp, T message) {
 		this.eventType = eventType;
 		this.timestamp = timestamp;
 		this.message = message;
