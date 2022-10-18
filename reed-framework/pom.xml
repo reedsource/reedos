@@ -12,7 +12,7 @@
 	<artifactId>reed-framework</artifactId>
 
 	<description>
-		framework框架核心
+		springboot framework框架核心 集成依赖关系注入、事件、资源、i18n、验证、数据绑定、类型转换、SpEL、AOP
 	</description>
 
 	<dependencies>

@@ -12,7 +12,7 @@
 	<artifactId>reed-common</artifactId>
 
 	<description>
-		common通用工具
+		common通用工具 集成系统通用工具
 	</description>
 
 	<dependencies>
