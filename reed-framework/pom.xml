@@ -71,6 +71,13 @@
 			<artifactId>oshi-core</artifactId>
 		</dependency>
 
+		<!--websocket-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+			<version>${springboot.version}</version>
+		</dependency>
+
 		<!-- 系统模块-->
 		<dependency>
 			<groupId>top.reed</groupId>

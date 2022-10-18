@@ -1,12 +1,9 @@
 package top.reed.websocket.config;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
-import top.reed.core.Spider;
-import top.reed.websocket.server.WebSocketEditorServer;
 
 /**
  * websocket配置类
@@ -25,16 +22,5 @@ public class WebSocketConfig {
 	@Bean
 	public ServerEndpointExporter serverEndpointExporter() {
 		return new ServerEndpointExporter();
-	}
-
-
-	/**
-	 * information信息获取模块 websocket 功能注册
-	 *
-	 * @param spider Spider爬虫
-	 */
-	@Autowired
-	public void setSpider(Spider spider) {
-		WebSocketEditorServer.spider = spider;
 	}
 }

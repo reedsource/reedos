@@ -2,12 +2,14 @@ package top.reed.websocket.server;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import top.reed.core.Spider;
 import top.reed.core.utils.AutoFlowUtils;
-import top.reed.websocket.model.WebSocketContext;
 import top.reed.websocket.model.WebSocket;
+import top.reed.websocket.model.WebSocketContext;
 
+import javax.annotation.PostConstruct;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.Session;
@@ -22,7 +24,19 @@ import javax.websocket.server.ServerEndpoint;
 @Component
 public class WebSocketEditorServer {
 
-	public static Spider spider;
+
+	/**
+	 * 以下3 注入静态资源
+	 */
+	@Autowired
+	public Spider spider;
+	@Autowired
+	private static Spider spider_to;
+
+	@PostConstruct
+	public void init() {
+		spider_to = spider;
+	}
 
 	private WebSocketContext context;
 
@@ -43,7 +57,7 @@ public class WebSocketEditorServer {
 			new Thread(() -> {
 				String xml = event.getString("message");
 				if (xml != null) {
-					spider.runWithTest(AutoFlowUtils.loadXMLFromString(xml), context);
+					spider_to.runWithTest(AutoFlowUtils.loadXMLFromString(xml), context);
 					context.write(new WebSocket<>("finish", null));
 				} else {
 					context.write(new WebSocket<>("error", "xml不正确！"));
