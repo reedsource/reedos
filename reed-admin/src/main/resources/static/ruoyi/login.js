@@ -10,10 +10,12 @@ $.validator.setDefaults({
     }
 });
 
+//显示验证码
 function showVerfyImage() {
     $("#verfyImg").find(".mask").css("display", "block");
 }
 
+//登陆
 function postLogin(data) {
     $.modal.loading($("#btnSubmit").data("loading"));
     $.ajax({
@@ -28,7 +30,7 @@ function postLogin(data) {
     });
 }
 
-/* 刷新验证码 */
+// 刷新验证码
 function refreshCode() {
     /** 初始化验证码  弹出式 */
     $('#verfyImg').slideVerify({
@@ -46,6 +48,7 @@ function refreshCode() {
     });
 }
 
+//验证规则
 function validateRule() {
     var icon = "<i class='fa fa-times-circle'></i> ";
     $("#signupForm").validate({
@@ -65,6 +68,7 @@ function validateRule() {
     })
 }
 
+//验证限位
 function validateKickout() {
     if (getParam("kickout") === "1") {
         layer.alert("<span style='color: red; '>您已在别处登录，请您修改密码或重新登录</span>", {
@@ -85,6 +89,7 @@ function validateKickout() {
     }
 }
 
+//获取参数
 function getParam(paramName) {
     var reg = new RegExp("(^|&)" + paramName + "=([^&]*)(&|$)");
     var r = window.location.search.substr(1).match(reg);
