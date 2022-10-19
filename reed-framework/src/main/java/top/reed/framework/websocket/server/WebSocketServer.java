@@ -17,7 +17,7 @@ import java.util.concurrent.Semaphore;
  * @author reedsource
  */
 @Component
-@ServerEndpoint("/websocket/message")
+@ServerEndpoint("/websocket/{guest-id}")
 public class WebSocketServer {
 	/**
 	 * WebSocketServer 日志控制器
