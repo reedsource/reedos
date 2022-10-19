@@ -30,7 +30,7 @@ server:
       max: 800
       # Tomcat启动初始化的线程数，默认值10
       min-spare: 100
- 
+
 # 日志配置
 logging:
   level:
@@ -179,3 +179,17 @@ spider:
     capacity: 1000000
     #布隆过滤器默认容错率
     error-rate: 0.0001
+
+# 滑块验证码
+aj:
+  captcha:
+    # blockPuzzle滑块 clickWord文字点选  default默认两者都实例化
+    type: blockPuzzle
+    # 右下角显示字
+    water-mark: ruoyi.vip
+    # 校验滑动拼图允许误差偏移量(默认5像素)
+    slip-offset: 5
+    # aes加密坐标开启或者禁用(true|false)
+    aes-status: true
+    # 滑动干扰项(0/1/2)
+    interference-options: 2

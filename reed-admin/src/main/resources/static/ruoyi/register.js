@@ -1,52 +1,71 @@
-
-$(function() {
+$(function () {
+    //验证规则
     validateRule();
-    $('.imgcode').click(function() {
-        var url = ctx + "captcha/captchaImage?type=" + captchaType + "&s=" + Math.random();
-        $(".imgcode").attr("src", url);
-    });
+    //刷新验证码
+    refreshCode();
 });
 
 $.validator.setDefaults({
-    submitHandler: function() {
-    	register();
+    submitHandler: function () {
+        //显示验证图像
+        showVerfyImage();
     }
 });
 
-function register() {
+//显示验证图像
+function showVerfyImage() {
+    $("#verfyImg").find(".mask").css("display", "block");
+}
+
+//验证注册
+function postRegister(data) {
     $.modal.loading($("#btnSubmit").data("loading"));
-    var username = $.common.trim($("input[name='username']").val());
-    var password = $.common.trim($("input[name='password']").val());
-    var validateCode = $("input[name='validateCode']").val();
     $.ajax({
         type: "post",
         url: ctx + "register",
-        data: {
-            "loginName": username,
-            "password": password,
-            "validateCode": validateCode
-        },
-        success: function(r) {
-            if (r.code == web_status.SUCCESS) {
-            	layer.alert("<font color='red'>恭喜你，您的账号 " + username + " 注册成功！</font>", {
-            	    icon: 1,
-            	    title: "系统提示"
-            	},
-            	function(index) {
-            	    //关闭弹窗
-            	    layer.close(index);
-            	    location.href = ctx + 'login';
-            	});
+        data: data,
+        success: function (r) {
+            if (r.code === web_status.SUCCESS) {
+                var username = $.common.trim($("input[name='username']").val());
+                layer.alert("<font color='red'>恭喜你，您的账号 " + username + " 注册成功！</font>", {
+                        icon: 1,
+                        title: "系统提示"
+                    },
+                    function (index) {
+                        //关闭弹窗
+                        layer.close(index);
+                        location.href = ctx + 'login';
+                    });
             } else {
-            	$.modal.closeLoading();
-            	$('.imgcode').click();
-            	$(".code").val("");
-            	$.modal.msg(r.msg);
+                $.modal.closeLoading();
+                $.modal.msg(r.msg);
             }
         }
     });
 }
 
+//刷新验证码
+function refreshCode() {
+    //初始化验证码  弹出式
+    $('#verfyImg').slideVerify({
+        baseUrl: ctx,
+        mode: 'pop',
+        success: function (params) {
+            var username = $.common.trim($("input[name='username']").val());
+            var password = $.common.trim($("input[name='password']").val());
+            var data = {
+                "loginName": username,
+                "password": password
+            };
+            data = $.extend(data, params);
+            postRegister(data);
+        },
+        error: function () {
+        }
+    });
+}
+
+//验证规则
 function validateRule() {
     var icon = "<i class='fa fa-times-circle'></i> ";
     $("#registerForm").validate({
@@ -70,7 +89,7 @@ function validateRule() {
                 minlength: icon + "用户名不能小于2个字符"
             },
             password: {
-            	required: icon + "请输入您的密码",
+                required: icon + "请输入您的密码",
                 minlength: icon + "密码不能小于5个字符",
             },
             confirmPassword: {

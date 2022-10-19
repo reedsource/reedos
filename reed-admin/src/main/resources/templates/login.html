@@ -10,6 +10,9 @@
     <link href="../static/css/style.min.css" rel="stylesheet" th:href="@{/css/style.min.css}"/>
     <link href="../static/css/login.min.css" rel="stylesheet" th:href="@{/css/login.min.css}"/>
     <link href="../static/ruoyi/css/ry-ui.css" rel="stylesheet" th:href="@{/ruoyi/css/ry-ui.css?v=0.0.1}"/>
+    <!--滑块验证码-->
+    <link href="../static/ajax/libs/captcha/css/verify.min.css" th:href="@{/ajax/libs/captcha/css/verify.min.css}"
+          rel="stylesheet"/>
     <!-- 360浏览器急速模式 -->
     <meta content="webkit" name="renderer">
     <!-- 避免IE使用兼容模式 -->
@@ -27,6 +30,8 @@
     </script>
 </head>
 <body class="signin">
+<!--验证码-->
+<div id="verfyImg"></div>
 <div class="signinpanel">
     <div class="row">
         <div class="col-sm-7">
@@ -44,18 +49,7 @@
                 <p class="m-t-md">你若不离不弃，我必生死相依</p>
                 <input class="form-control uname" name="username" placeholder="用户名" type="text" value="admin"/>
                 <input class="form-control pword" name="password" placeholder="密码" type="password" value="admin123"/>
-                <div class="row m-t" th:if="${captchaEnabled==true}">
-                    <div class="col-xs-6">
-                        <input class="form-control code" maxlength="5" name="validateCode" placeholder="验证码"
-                               type="text"/>
-                    </div>
-                    <div class="col-xs-6">
-                        <a href="javascript:void(0);" title="点击更换验证码">
-                            <img class="imgcode" th:src="@{/captcha/captchaImage(type=${captchaType})}" width="85%"/>
-                        </a>
-                    </div>
-                </div>
-                <div class="checkbox-custom" th:classappend="${captchaEnabled==false} ? 'm-t'" th:if="${isRemembered}">
+                <div class="checkbox-custom m-t" th:if="${isRemembered}">
                     <input id="rememberme" name="rememberme" type="checkbox"> <label for="rememberme">记住我</label>
                 </div>
                 <button class="btn btn-success btn-block" data-loading="正在验证登录，请稍候..." id="btnSubmit">登录
@@ -72,11 +66,16 @@
         </div>
     </div>
 </div>
-<script th:inline="javascript"> var ctx = [[@{/}]]; var captchaType = [[${captchaType}]]; </script>
+<script th:inline="javascript"> var ctx = [[@{/}]];</script>
 <!--[if lte IE 8]>
 <script>window.location.href = ctx + 'html/ie.html';</script><![endif]-->
 <!-- 全局js -->
 <script src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+<!-- 验证码 -->
+<script src="../static/ajax/libs/captcha/crypto-js.min.js" th:src="@{/ajax/libs/captcha/crypto-js.min.js}"></script>
+<script src="../static/ajax/libs/captcha/ase.min.js" th:src="@{/ajax/libs/captcha/ase.min.js}"></script>
+<script src="../static/ajax/libs/captcha/verify.min.js" th:src="@{/ajax/libs/captcha/verify.min.js}"></script>
+<!-- 验证插件 -->
 <script src="../static/ajax/libs/validate/jquery.validate.min.js"
         th:src="@{/ajax/libs/validate/jquery.validate.min.js}"></script>
 <script src="../static/ajax/libs/layer/layer.min.js" th:src="@{/ajax/libs/layer/layer.min.js}"></script>

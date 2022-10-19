@@ -78,6 +78,13 @@
 			<version>${springboot.version}</version>
 		</dependency>
 
+		<!-- 滑块验证码  -->
+		<dependency>
+			<groupId>com.github.anji-plus</groupId>
+			<artifactId>captcha-spring-boot-starter</artifactId>
+			<version>1.2.7</version>
+		</dependency>
+
 		<!-- 系统模块-->
 		<dependency>
 			<groupId>top.reed</groupId>

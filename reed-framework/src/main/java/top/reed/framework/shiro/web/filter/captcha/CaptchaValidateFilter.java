@@ -1,9 +1,9 @@
 package top.reed.framework.shiro.web.filter.captcha;
 
-import com.google.code.kaptcha.Constants;
+import com.anji.captcha.model.vo.CaptchaVO;
+import com.anji.captcha.service.CaptchaService;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import top.reed.common.constant.ShiroConstants;
-import top.reed.common.utils.ShiroUtils;
 import top.reed.common.utils.StringUtils;
 
 import javax.servlet.ServletRequest;
@@ -22,22 +22,17 @@ public class CaptchaValidateFilter extends AccessControlFilter {
 	private boolean captchaEnabled = true;
 
 	/**
-	 * 验证码类型
+	 * 验证码实现
 	 */
-	private String captchaType = "math";
+	private CaptchaService captchaService;
 
 	public void setCaptchaEnabled(boolean captchaEnabled) {
 		this.captchaEnabled = captchaEnabled;
 	}
 
-	public void setCaptchaType(String captchaType) {
-		this.captchaType = captchaType;
-	}
-
 	@Override
 	public boolean onPreHandle(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
 		request.setAttribute(ShiroConstants.CURRENT_ENABLED, captchaEnabled);
-		request.setAttribute(ShiroConstants.CURRENT_TYPE, captchaType);
 		return super.onPreHandle(request, response, mappedValue);
 	}
 
@@ -45,26 +40,43 @@ public class CaptchaValidateFilter extends AccessControlFilter {
 	protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
 		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 		// 验证码禁用 或不是表单提交 允许访问
-		if (captchaEnabled == false || !"post".equals(httpServletRequest.getMethod().toLowerCase())) {
+		if (!captchaEnabled || !"post".equalsIgnoreCase(httpServletRequest.getMethod())) {
 			return true;
 		}
-		return validateResponse(httpServletRequest, httpServletRequest.getParameter(ShiroConstants.CURRENT_VALIDATECODE));
+		//获取后台二次校验参数并验证
+		return validateResponse(httpServletRequest.getParameter("__captchaVerification"));
 	}
 
-	public boolean validateResponse(HttpServletRequest request, String validateCode) {
-		Object obj = ShiroUtils.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
-		String code = String.valueOf(obj != null ? obj : "");
-		// 验证码清除，防止多次使用。
-		request.getSession().removeAttribute(Constants.KAPTCHA_SESSION_KEY);
-		if (StringUtils.isEmpty(validateCode) || !validateCode.equalsIgnoreCase(code)) {
-			return false;
-		}
-		return true;
+	/**
+	 * 验证响应
+	 *
+	 * @param captchaVerification 后台二次校验参数
+	 */
+	public boolean validateResponse(String captchaVerification) {
+		CaptchaVO captchaVO = new CaptchaVO();
+		captchaVO.setCaptchaVerification(captchaVerification);
+		return !StringUtils.isEmpty(captchaVerification) && captchaService.verification(captchaVO).isSuccess();
 	}
 
+	/**
+	 * 拒绝访问时
+	 *
+	 * @param request  request
+	 * @param response response
+	 */
 	@Override
 	protected boolean onAccessDenied(ServletRequest request, ServletResponse response) {
+		//设置 验证码key 为 验证码错误
 		request.setAttribute(ShiroConstants.CURRENT_CAPTCHA, ShiroConstants.CAPTCHA_ERROR);
 		return true;
+	}
+
+	/**
+	 * 设置Captcha服务
+	 *
+	 * @param captchaService Captcha服务
+	 */
+	public void setCaptchaService(CaptchaService captchaService) {
+		this.captchaService = captchaService;
 	}
 }

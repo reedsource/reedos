@@ -1,6 +1,7 @@
 package top.reed.framework.config;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+import com.anji.captcha.service.CaptchaService;
 import org.apache.commons.io.IOUtils;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.codec.Base64;
@@ -12,10 +13,12 @@ import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import top.reed.common.constant.Constants;
 import top.reed.common.utils.StringUtils;
 import top.reed.common.utils.security.CipherUtils;
@@ -129,6 +132,10 @@ public class ShiroConfig {
 	 */
 	@Value("${shiro.rememberMe.enabled: false}")
 	private boolean rememberMe;
+
+	@Autowired
+	@Lazy
+	private CaptchaService captchaService;
 
 	/**
 	 * 缓存管理器 使用Ehcache实现
@@ -271,7 +278,8 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/ajax/**", "anon");
 		filterChainDefinitionMap.put("/js/**", "anon");
 		filterChainDefinitionMap.put("/ruoyi/**", "anon");
-		filterChainDefinitionMap.put("/captcha/captchaImage**", "anon");
+		//验证码
+		filterChainDefinitionMap.put("/captcha/**", "anon");
 		// 退出 logout地址，shiro去清除session
 		filterChainDefinitionMap.put("/logout", "logout");
 		// 不需要拦截的访问
@@ -322,7 +330,7 @@ public class ShiroConfig {
 	public CaptchaValidateFilter captchaValidateFilter() {
 		CaptchaValidateFilter captchaValidateFilter = new CaptchaValidateFilter();
 		captchaValidateFilter.setCaptchaEnabled(captchaEnabled);
-		captchaValidateFilter.setCaptchaType(captchaType);
+		captchaValidateFilter.setCaptchaService(captchaService);
 		return captchaValidateFilter;
 	}
 
