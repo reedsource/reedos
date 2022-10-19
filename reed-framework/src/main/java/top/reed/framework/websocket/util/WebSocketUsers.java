@@ -22,8 +22,6 @@ public class WebSocketUsers {
 	 * WebSocketUsers 日志控制器
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(WebSocketUsers.class);
-	
-	private static final String NOTIFICATION_MSG_KEY = "notification";
 
 	/**
 	 * 用户集
@@ -112,7 +110,7 @@ public class WebSocketUsers {
 		if (session != null) {
 			try {
 				// 为了防止消息中存在特殊字符（比如换行符）等造成前台解析错误，此处编码一次。前台对应的需要解码
-				session.getBasicRemote().sendText(generateMsg(NOTIFICATION_MSG_KEY, URLEncoder.encode(message, StandardCharsets.UTF_8.displayName())));
+				session.getBasicRemote().sendText(generateMsg("default", URLEncoder.encode(message, StandardCharsets.UTF_8.displayName())));
 			} catch (IOException e) {
 				LOGGER.error("\n[发送消息异常]", e);
 			}
@@ -128,6 +126,6 @@ public class WebSocketUsers {
 	 * @param content 消息正文
 	 */
 	private static String generateMsg(String type, String content) {
-		return String.format("{\"fun\": \"%s\", \"msg\":\"%s\"}", type, content);
+		return String.format("{\"type\": \"%s\", \"msg\":\"%s\"}", type, content);
 	}
 }

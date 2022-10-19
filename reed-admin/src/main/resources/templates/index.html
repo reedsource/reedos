@@ -15,6 +15,8 @@
     <link rel="stylesheet" th:href="@{/css/style.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/skins.css}"/>
     <link rel="stylesheet" th:href="@{/ruoyi/css/ry-ui.css?v=0.0.1}"/>
+    <!--toastr 通知提示框插件-->
+    <link rel="stylesheet" th:href="@{/ajax/libs/toastr/toastr.min.css}"/>
 </head>
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow: hidden"
       th:classappend="${isMobile} ? 'canvas-menu'">
@@ -295,6 +297,10 @@
 <script th:src="@{/ruoyi/js/common.js?v=0.0.1}"></script>
 <script th:src="@{/ruoyi/index.js?v=20201208}"></script>
 <script th:src="@{/ajax/libs/fullscreen/jquery.fullscreen.js}"></script>
+<!--toastr 通知提示框插件-->
+<script th:src="@{/ajax/libs/toastr/toastr.min.js}"></script>
+<!--自定义-->
+<script th:src="@{/reed/js/reed.js}"></script>
 <script th:inline="javascript">
     window.history.forward(1);
     var ctx = [[@{/}]];
