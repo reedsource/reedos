@@ -288,6 +288,9 @@
 				<redis.host>192.168.200.9</redis.host>
 				<redis.port>6379</redis.port>
 				<redis.password>ReedGORedis09.!#</redis.password>
+				<!--默认debug 设置为trace时打印查出的结果-->
+				<logging.level>trace</logging.level>
+				<logging.spring>info</logging.spring>
 				<!--项目文件目录-->
 				<reed.profile>D:/clouds/codes/ReedOS/filePath</reed.profile>
 			</properties>
@@ -302,6 +305,9 @@
 				<redis.port>6379</redis.port>
 				<redis.password>ReedGORedis09.!#</redis.password>
 				<reed.profile>/home/reedos/filePath</reed.profile>
+				<!--默认debug 设置为trace时打印查出的结果-->
+				<logging.level>trace</logging.level>
+				<logging.spring>info</logging.spring>
 			</properties>
 		</profile>
 		<profile>
@@ -314,6 +320,9 @@
 				<redis.port>6379</redis.port>
 				<redis.password>ReedGORedis08.!#</redis.password>
 				<reed.profile>/home/reedos/filePath</reed.profile>
+				<!--默认debug 设置为trace时打印查出的结果-->
+				<logging.level>trace</logging.level>
+				<logging.spring>info</logging.spring>
 			</properties>
 		</profile>
 		<profile>
@@ -326,6 +335,9 @@
 				<redis.port>6379</redis.port>
 				<redis.password>ReedGORedis07.!#</redis.password>
 				<reed.profile>/home/reedos/filePath</reed.profile>
+				<!--默认debug 设置为trace时打印查出的结果-->
+				<logging.level>debug</logging.level>
+				<logging.spring>info</logging.spring>
 			</properties>
 		</profile>
 	</profiles>
