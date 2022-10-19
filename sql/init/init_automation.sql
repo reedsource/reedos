@@ -141,3 +141,18 @@ create table auto_job_log (
                              create_time         datetime                                  comment '创建时间',
                              primary key (job_log_id)
 ) engine=innodb comment = '定时任务调度日志表';
+
+
+
+
+create table wujia
+(
+    id   int auto_increment comment 'id' primary key,
+    菜名 varchar(50)  null comment '名称',
+    菜价 varchar(150) null comment '价格',
+    单位 varchar(50)  null comment '单位'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT '菜价表';
+
+INSERT INTO wujia
+    (菜名, 单位, 菜价)
+VALUES ('1', '2', '3');

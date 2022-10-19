@@ -6,7 +6,7 @@ import ch.qos.logback.core.UnsynchronizedAppenderBase;
 import top.reed.api.context.SpiderContext;
 import top.reed.api.context.SpiderContextHolder;
 import top.reed.api.model.SpiderLog;
-import top.reed.websocket.model.WebSocketContext;
+import top.reed.automation.websocket.model.WebSocketContext;
 
 import java.util.ArrayList;
 import java.util.Arrays;

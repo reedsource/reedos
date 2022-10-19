@@ -1,4 +1,4 @@
-package top.reed.websocket.model;
+package top.reed.automation.websocket.model;
 
 /**
  * WebSocket事件

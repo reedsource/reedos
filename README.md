@@ -30,6 +30,7 @@
     - mybatis-plus
 4. reed-framework framework框架核心
     - 集成依赖关系注入、事件、资源、i18n、验证、数据绑定、类型转换、SpEL、AOP
+    - websocket
 5. reed-generator generator代码生成
     - 代码生成：前后端代码的生成（java、html、xml、sql）支持CRUD下载。
         - 代码生成模版文件

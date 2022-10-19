@@ -1,4 +1,4 @@
-package top.reed.websocket.controller;
+package top.reed.automation.websocket;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import top.reed.common.annotation.Log;
 import top.reed.common.core.domain.AjaxResult;
 import top.reed.common.enums.BusinessType;
-import top.reed.websocket.server.WebSocketServer;
-import top.reed.websocket.util.WebSocketUtil;
+import top.reed.framework.websocket.server.WebSocketServer;
+import top.reed.framework.websocket.util.WebSocketUsers;
 
 import java.io.UnsupportedEncodingException;
 
@@ -43,7 +43,7 @@ public class WebSocketController {
 	@ResponseBody
 	public AjaxResult notice(String msg) throws UnsupportedEncodingException {
 		log.info("发送全局用户socket消息 {}", msg);
-		WebSocketUtil.sendNotificationMsg(msg, websocketServer.getOnlineUsers());
+		WebSocketUsers.sendMessageToUsersByText(msg);
 		return AjaxResult.success("消息发送成功");
 	}
 }

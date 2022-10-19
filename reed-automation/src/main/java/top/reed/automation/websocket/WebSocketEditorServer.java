@@ -1,13 +1,13 @@
-package top.reed.websocket.server;
+package top.reed.automation.websocket;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import top.reed.automation.websocket.model.WebSocket;
+import top.reed.automation.websocket.model.WebSocketContext;
 import top.reed.core.Spider;
 import top.reed.core.utils.AutoFlowUtils;
-import top.reed.websocket.model.WebSocket;
-import top.reed.websocket.model.WebSocketContext;
 
 import javax.annotation.PostConstruct;
 import javax.websocket.OnClose;

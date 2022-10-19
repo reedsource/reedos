@@ -1,17 +1,13 @@
-package top.reed.websocket.config;
-
+package top.reed.framework.websocket.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
 /**
- * websocket配置类
+ * websocket 配置
  *
  * @author reedsource
- * @version 1.0
- * date 2022/9/12
- * @since 1.0
  */
 @Configuration
 public class WebSocketConfig {

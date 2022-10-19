@@ -1,4 +1,4 @@
-package top.reed.websocket.model;
+package top.reed.automation.websocket.model;
 
 import com.alibaba.fastjson.JSON;
 import org.apache.commons.lang3.time.DateFormatUtils;
