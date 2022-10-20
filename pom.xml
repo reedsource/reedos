@@ -269,7 +269,7 @@
 	<!--注意 这种配置对于类似本项目包含多个子项目的项目 maven勾选界面只会在顶部出现一个勾选面板-->
 	<profiles>
 		<profile>
-			<id>开发环境本地</id>
+			<id>开发环境</id>
 			<properties>
 				<!--useUnicode=true                   使用Unicode字符集
 				characterEncoding=utf8                字符编码为utf8
@@ -277,7 +277,15 @@
 				serverTimezone=GMT%2B8                北京时间东8区-->
 				<jdbc.url>jdbc:mysql://192.168.200.9:3306/reedos?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull&amp;serverTimezone=GMT%2B8</jdbc.url>
 				<jdbc.username>mysql</jdbc.username>
-				<jdbc.password>ReedOSMysql09.!#</jdbc.password>
+				<!--数据库密码加密配置 publicKey  java -cp D:\clouds\codetools\apache-maven-3.8.6\repository\com\alibaba\druid\1.2.4\druid-1.2.4.jar com.alibaba.druid.filter.config.ConfigTools 数据库密码生成-->
+				<!--数据库密码 -->
+				<jdbc.password>
+					gbGGDc6GrYIUu+zkaXZIPxtk+rP6U3NBxZzQjIGical0v/3ttjEuyzQ3hY7wUxqe0Fx2q7H/MrDBTuBulyqwxw==
+				</jdbc.password>
+				<!--密码加密公钥 publicKey-->
+				<jdbc.connectionProperties>
+					MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKIIjWVZyMK/bUM4Q48ieMHClaZBiSKDabaTI+HRtVkigUVHLc55rZp2sa5ArTfEjoNrVk+82BqBXCUUkjr375sCAwEAAQ==
+				</jdbc.connectionProperties>
 				<redis.host>192.168.200.9</redis.host>
 				<redis.port>6379</redis.port>
 				<redis.password>ReedGORedis09.!#</redis.password>
@@ -289,26 +297,16 @@
 			</properties>
 		</profile>
 		<profile>
-			<id>开发环境部署</id>
-			<properties>
-				<jdbc.url>jdbc:mysql://localhost:3306/reedos?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull&amp;serverTimezone=GMT%2B8</jdbc.url>
-				<jdbc.username>mysql</jdbc.username>
-				<jdbc.password>ReedOSMysql09.!#</jdbc.password>
-				<redis.host>localhost</redis.host>
-				<redis.port>6379</redis.port>
-				<redis.password>ReedGORedis09.!#</redis.password>
-				<reed.profile>/home/reedos/filePath</reed.profile>
-				<!--默认debug 设置为trace时打印查出的结果-->
-				<logging.level>trace</logging.level>
-				<logging.spring>info</logging.spring>
-			</properties>
-		</profile>
-		<profile>
 			<id>功能环境</id>
 			<properties>
 				<jdbc.url>jdbc:mysql://localhost:3306/reedos?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull&amp;serverTimezone=GMT%2B8</jdbc.url>
 				<jdbc.username>mysql</jdbc.username>
-				<jdbc.password>ReedOSMysql08.!#</jdbc.password>
+				<jdbc.password>
+					TghUBrPMRtAyaj6uVMD6pzTbajOTSE8oh9rTkjqiC2ypk03D8o72N+tDc8j9GrEJvsGJaLsMwPiEpwdTCjV3BQ==
+				</jdbc.password>
+				<jdbc.connectionProperties>
+					MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAIEHjcOCVWS4wVWwsCU912mP7R9yEbOYSQHaZ6EzEm3GiAYVw2M3fRhZJxeaaUHTAhHAuQ596T+k0ASvsQLRDZUCAwEAAQ==
+				</jdbc.connectionProperties>
 				<redis.host>localhost</redis.host>
 				<redis.port>6379</redis.port>
 				<redis.password>ReedGORedis08.!#</redis.password>
@@ -323,7 +321,12 @@
 			<properties>
 				<jdbc.url>jdbc:mysql://localhost:3306/reedos?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull&amp;serverTimezone=GMT%2B8</jdbc.url>
 				<jdbc.username>mysql</jdbc.username>
-				<jdbc.password>ReedOSMysql07.!#</jdbc.password>
+				<jdbc.password>
+					hQOS4yqXN+yQJW6b6LrGo6zc6lX1ABMaHBKSvBwYklE6Kw9GsDjaSdcm7Fy98ciUAOuWver7hkq+IEEzydZ5HA==
+				</jdbc.password>
+				<jdbc.connectionProperties>
+					MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJQY7KTp5w863CoVnFxDLHb9oBqWFVatNL0dzrWCs9t/vTMp/a9fJjja6w3/DsIHp2CzAn7myiZCmP9TkiOWPKUCAwEAAQ==
+				</jdbc.connectionProperties>
 				<redis.host>localhost</redis.host>
 				<redis.port>6379</redis.port>
 				<redis.password>ReedGORedis07.!#</redis.password>

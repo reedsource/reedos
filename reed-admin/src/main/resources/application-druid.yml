@@ -35,6 +35,8 @@ spring:
       testWhileIdle: true
       testOnBorrow: false
       testOnReturn: false
+      # 数据库密码加密配置 publicKey
+      connectionProperties: @jdbc.connectionProperties@
       webStatFilter:
         enabled: true
       statViewServlet:
@@ -46,6 +48,9 @@ spring:
         login-username: reed
         login-password: reed
       filter:
+        config:
+          # 是否数据库密码配置加密
+          enabled: true
         stat:
           enabled: true
           # 慢SQL记录

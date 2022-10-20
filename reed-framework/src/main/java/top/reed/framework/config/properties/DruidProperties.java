@@ -44,6 +44,9 @@ public class DruidProperties {
 	@Value("${spring.datasource.druid.testOnReturn}")
 	private boolean testOnReturn;
 
+	@Value("${spring.datasource.druid.connectionProperties}")
+	private String connectionProperties;
+
 	public DruidDataSource dataSource(DruidDataSource datasource) {
 		/* 配置初始化大小、最小、最大 */
 		datasource.setInitialSize(initialSize);
@@ -70,6 +73,9 @@ public class DruidProperties {
 		datasource.setTestOnBorrow(testOnBorrow);
 		/* 归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。 */
 		datasource.setTestOnReturn(testOnReturn);
+
+		/* 为数据库密码提供加密功能 公钥*/
+		datasource.setConnectionProperties("config.decrypt=true;config.decrypt.key=" + connectionProperties);
 		return datasource;
 	}
 }
