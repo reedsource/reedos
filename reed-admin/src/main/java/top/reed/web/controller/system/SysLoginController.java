@@ -1,7 +1,6 @@
 package top.reed.web.controller.system;
 
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +15,7 @@ import top.reed.common.core.domain.AjaxResult;
 import top.reed.common.core.text.Convert;
 import top.reed.common.utils.ServletUtils;
 import top.reed.common.utils.StringUtils;
+import top.reed.common.utils.security.RsaUtils;
 import top.reed.framework.web.service.ConfigService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -53,12 +53,12 @@ public class SysLoginController extends BaseController {
 	@PostMapping("/login")
 	@ResponseBody
 	public AjaxResult ajaxLogin(String username, String password, Boolean rememberMe) {
-		UsernamePasswordToken token = new UsernamePasswordToken(username, password, rememberMe);
-		Subject subject = SecurityUtils.getSubject();
 		try {
+			UsernamePasswordToken token = new UsernamePasswordToken(username, RsaUtils.decryptByPrivateKey(password), rememberMe);
+			Subject subject = SecurityUtils.getSubject();
 			subject.login(token);
 			return success();
-		} catch (AuthenticationException e) {
+		} catch (Exception e) {
 			String msg = "用户或密码错误";
 			if (StringUtils.isNotEmpty(e.getMessage())) {
 				msg = e.getMessage();
