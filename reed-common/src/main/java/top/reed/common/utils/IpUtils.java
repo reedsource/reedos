@@ -81,9 +81,8 @@ public class IpUtils {
 					return true;
 				}
 			case SECTION_5:
-				switch (b1) {
-					case SECTION_6:
-						return true;
+				if (b1 == SECTION_6) {
+					return true;
 				}
 			default:
 				return false;
@@ -172,7 +171,7 @@ public class IpUtils {
 	public static String getHostIp() {
 		try {
 			return InetAddress.getLocalHost().getHostAddress();
-		} catch (UnknownHostException e) {
+		} catch (UnknownHostException ignored) {
 		}
 		return "127.0.0.1";
 	}
@@ -185,7 +184,7 @@ public class IpUtils {
 	public static String getHostName() {
 		try {
 			return InetAddress.getLocalHost().getHostName();
-		} catch (UnknownHostException e) {
+		} catch (UnknownHostException ignored) {
 		}
 		return "未知";
 	}
@@ -201,7 +200,7 @@ public class IpUtils {
 		if (ip != null && ip.indexOf(",") > 0) {
 			final String[] ips = ip.trim().split(",");
 			for (String subIp : ips) {
-				if (false == isUnknown(subIp)) {
+				if (!isUnknown(subIp)) {
 					ip = subIp;
 					break;
 				}

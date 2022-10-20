@@ -23,10 +23,16 @@ public class ShiroUtils {
 		return SecurityUtils.getSubject().getSession();
 	}
 
+	/**
+	 * 注销当前登陆用户
+	 */
 	public static void logout() {
 		getSubject().logout();
 	}
 
+	/**
+	 * @return 获取当前登陆用户
+	 */
 	public static SysUser getSysUser() {
 		SysUser user = null;
 		Object obj = getSubject().getPrincipal();
@@ -37,6 +43,11 @@ public class ShiroUtils {
 		return user;
 	}
 
+	/**
+	 * 将当前用户添加到缓存中
+	 *
+	 * @param user 当前用户
+	 */
 	public static void setSysUser(SysUser user) {
 		Subject subject = getSubject();
 		PrincipalCollection principalCollection = subject.getPrincipals();
