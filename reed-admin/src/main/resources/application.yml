@@ -186,7 +186,7 @@ aj:
     # blockPuzzle滑块 clickWord文字点选  default默认两者都实例化
     type: blockPuzzle
     # 右下角显示字
-    water-mark: ruoyi.vip
+    water-mark: ReedOS
     # 校验滑动拼图允许误差偏移量(默认5像素)
     slip-offset: 5
     # aes加密坐标开启或者禁用(true|false)
