@@ -32,6 +32,7 @@ public class CaptchaValidateFilter extends AccessControlFilter {
 
 	@Override
 	public boolean onPreHandle(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
+		//设置验证码开关
 		request.setAttribute(ShiroConstants.CURRENT_ENABLED, captchaEnabled);
 		return super.onPreHandle(request, response, mappedValue);
 	}

@@ -80,12 +80,6 @@ public class ShiroConfig {
 	private boolean captchaEnabled;
 
 	/**
-	 * 验证码类型
-	 */
-	@Value("${shiro.user.captchaType}")
-	private String captchaType;
-
-	/**
 	 * 设置Cookie的域名
 	 */
 	@Value("${shiro.cookie.domain}")
@@ -329,7 +323,9 @@ public class ShiroConfig {
 	 */
 	public CaptchaValidateFilter captchaValidateFilter() {
 		CaptchaValidateFilter captchaValidateFilter = new CaptchaValidateFilter();
+		//设置验证码开关
 		captchaValidateFilter.setCaptchaEnabled(captchaEnabled);
+		//设置验证码实现
 		captchaValidateFilter.setCaptchaService(captchaService);
 		return captchaValidateFilter;
 	}
