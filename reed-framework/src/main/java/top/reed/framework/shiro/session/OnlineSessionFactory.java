@@ -1,6 +1,6 @@
 package top.reed.framework.shiro.session;
 
-import eu.bitwalker.useragentutils.UserAgent;
+
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.SessionContext;
 import org.apache.shiro.session.mgt.SessionFactory;
@@ -8,6 +8,7 @@ import org.apache.shiro.web.session.mgt.WebSessionContext;
 import org.springframework.stereotype.Component;
 import top.reed.common.utils.IpUtils;
 import top.reed.common.utils.ServletUtils;
+import top.reed.common.utils.http.UserAgent;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -27,9 +28,9 @@ public class OnlineSessionFactory implements SessionFactory {
 			if (request != null) {
 				UserAgent userAgent = UserAgent.parseUserAgentString(ServletUtils.getRequest().getHeader("User-Agent"));
 				// 获取客户端操作系统
-				String os = userAgent.getOperatingSystem().getName();
+				String os = userAgent.getOperatingSystem();
 				// 获取客户端浏览器
-				String browser = userAgent.getBrowser().getName();
+				String browser = userAgent.getBrowser();
 				session.setHost(IpUtils.getIpAddr(request));
 				session.setBrowser(browser);
 				session.setOs(os);

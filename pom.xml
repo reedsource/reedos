@@ -20,7 +20,7 @@
 		<shiro.version>1.9.1</shiro.version>
 		<thymeleaf.extras.shiro.version>2.1.0</thymeleaf.extras.shiro.version>
 		<druid.version>1.2.11</druid.version>
-		<bitwalker.version>1.21</bitwalker.version>
+		<browscap.version>1.3.12</browscap.version>
 		<kaptcha.version>2.3.2</kaptcha.version>
 		<swagger.version>3.0.0</swagger.version>
 		<mybatis-spring-boot.version>2.2.2</mybatis-spring-boot.version>
@@ -91,9 +91,9 @@
 
 			<!-- 解析客户端操作系统、浏览器等 -->
 			<dependency>
-				<groupId>eu.bitwalker</groupId>
-				<artifactId>UserAgentUtils</artifactId>
-				<version>${bitwalker.version}</version>
+				<groupId>com.blueconic</groupId>
+				<artifactId>browscap-java</artifactId>
+				<version>${browscap.version}</version>
 			</dependency>
 
 			<!-- SpringBoot集成mybatis框架 -->

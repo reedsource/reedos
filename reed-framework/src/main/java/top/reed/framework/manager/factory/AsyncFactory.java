@@ -1,10 +1,11 @@
 package top.reed.framework.manager.factory;
 
-import eu.bitwalker.useragentutils.UserAgent;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import top.reed.common.constant.Constants;
 import top.reed.common.utils.*;
+import top.reed.common.utils.http.UserAgent;
 import top.reed.common.utils.spring.SpringUtils;
 import top.reed.framework.shiro.session.OnlineSession;
 import top.reed.system.domain.SysLogininfor;
@@ -94,9 +95,9 @@ public class AsyncFactory {
 				// 打印信息到日志
 				sys_user_logger.info(s.toString(), args);
 				// 获取客户端操作系统
-				String os = userAgent.getOperatingSystem().getName();
+				String os = userAgent.getOperatingSystem();
 				// 获取客户端浏览器
-				String browser = userAgent.getBrowser().getName();
+				String browser = userAgent.getBrowser();
 				// 封装对象
 				SysLogininfor logininfor = new SysLogininfor();
 				logininfor.setLoginName(username);
