@@ -14,6 +14,7 @@ import top.reed.common.core.controller.BaseController;
 import top.reed.common.core.domain.AjaxResult;
 import top.reed.common.core.text.Convert;
 import top.reed.common.utils.ServletUtils;
+import top.reed.common.utils.ShiroUtils;
 import top.reed.common.utils.StringUtils;
 import top.reed.common.utils.security.RsaUtils;
 import top.reed.framework.web.service.ConfigService;
@@ -47,6 +48,19 @@ public class SysLoginController extends BaseController {
 		mmap.put("isRemembered", rememberMe);
 		// 是否开启用户注册
 		mmap.put("isAllowRegister", Convert.toBool(configService.getKey("sys.account.registerUser"), false));
+		//当前用户是否已经登录时 直接跳转到登录页
+		//如果此主题/用户在当前会话期间通过提供与系统已知凭据匹配的有效凭据来证明其身份，则返回true，否则返回false。
+		//请注意，即使通过“记住我”服务记住了此主题的身份，此方法仍将返回false，除非用户在当前会话期间实际使用正确的凭据登录
+		if(ShiroUtils.getSubject().isAuthenticated()){
+			return redirect("/index");
+		}
+
+		//当用户登录时勾选记住我时,直接跳转到首页,实际上没有经过身份验证
+		//但是，如果尝试做一些敏感的事情 需要在功能的入口增加isAuthenticated判断,确定只有身份验证的情况下,才可以操作
+		if(ShiroUtils.getSubject().isRemembered()){
+			return redirect("/index");
+		}
+
 		return "login";
 	}
 
