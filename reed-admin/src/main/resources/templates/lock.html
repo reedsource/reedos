@@ -95,8 +95,8 @@
     <div class="lockscreen-item">
         <div class="lockscreen-image">
             <img alt="User Image"
-                 class="img-circle" th:onerror="this.src='img/profile.jpg'"
-                 th:src="(${#strings.isEmpty(user.avatar)}) ? @{/img/profile.jpg} : @{${user.avatar}}">
+                 class="img-circle" th:onerror="this.src='img/profile.png'"
+                 th:src="(${#strings.isEmpty(user.avatar)}) ? @{/img/profile.png} : @{${user.avatar}}">
         </div>
         <form action="#" class="lockscreen-credentials" method="post" onsubmit="return false;">
             <div class="input-group">

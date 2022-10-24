@@ -30,17 +30,10 @@ create table sys_dept (
 -- ----------------------------
 -- 初始化-部门表数据
 -- ----------------------------
-insert into sys_dept values(100,  0,   '0',          'CentOS',   0, 'reed', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(101,  100, '0,100',      '深圳总公司', 1, 'reed', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(102,  100, '0,100',      '长沙分公司', 2, 'reed', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(103,  101, '0,100,101',  '研发部门',   1, 'reed', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(104,  101, '0,100,101',  '市场部门',   2, 'reed', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(105,  101, '0,100,101',  '测试部门',   3, 'reed', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(106,  101, '0,100,101',  '财务部门',   4, 'reed', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(107,  101, '0,100,101',  '运维部门',   5, 'reed', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(108,  102, '0,100,102',  '市场部门',   1, 'reed', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(109,  102, '0,100,102',  '财务部门',   2, 'reed', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-
+insert into sys_dept values(100,  0,   '0',          'CentOS',   0, 'reed', '18101351078', 'reedsource@189.cn', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(101,  100, '0,100',      '北京分公司', 1, 'reed', '18101351078', 'reedsource@189.cn', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(102,  101, '0,100,101',  '市场部门',   1, 'reed', '18101351078', 'reedsource@189.cn', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(103,  101, '0,100,101',  '研发部门',   2, 'reed', '18101351078', 'reedsource@189.cn', '0', '0', 'admin', sysdate(), '', null);
 
 -- ----------------------------
 -- 2、用户信息表
@@ -74,8 +67,8 @@ create table sys_user (
 -- ----------------------------
 -- 初始化-用户信息表数据
 -- ----------------------------
-insert into sys_user values(1,  103, 'admin', '超级管理员', '00', 'ry@163.com', '15888888888', '1', '', 'f58217d6f1c6f130019f183424468eb2', 'e09ee2', '0', '0', '127.0.0.1', sysdate(), sysdate(), 'admin', sysdate(), '', null, '管理员');
-insert into sys_user values(2,  105, 'ry',    'reed', '00', 'ry@qq.com',  '15666666666', '1', '', 'f58217d6f1c6f130019f183424468eb2', 'e09ee2', '0', '0', '127.0.0.1', sysdate(), sysdate(), 'admin', sysdate(), '', null, '测试员');
+insert into sys_user values(1,  103, 'admin', '超级管理员', '00', 'reedsource@189.cn', '18101351078', '1', '', 'f58217d6f1c6f130019f183424468eb2', 'e09ee2', '0', '0', '127.0.0.1', sysdate(), sysdate(), 'admin', sysdate(), '', null, '管理员');
+insert into sys_user values(2,  105, 'ry',    'reed', '00', 'reedsource@189.cn',  '18101351078', '1', '', 'f58217d6f1c6f130019f183424468eb2', 'e09ee2', '0', '0', '127.0.0.1', sysdate(), sysdate(), 'admin', sysdate(), '', null, '测试员');
 
 -- ----------------------------
 -- 3、岗位信息表
