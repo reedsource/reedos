@@ -5,6 +5,9 @@
 *   全局websocket
 *   //toastr 通知提示框架
 * */
+//全局变量
+//自动重连计数
+var sm = 0;
 
 //服务
 const baseMotheds = function () {
@@ -14,7 +17,7 @@ const baseMotheds = function () {
             host = "ws://" + host + "/websocket/test";
             $.websocket.open({
                 host: host, reconnect: true, callback: function (result) {
-                    console.log("接收到服务器端推送的消息：==" + result);
+                    //console.log("接收到服务器端推送的消息：==" + result);
                     const resultJson = JSON.parse(result);
                     //toastr 通知提示
                     if (resultJson["type"] === "default") {
@@ -78,12 +81,17 @@ $(function () {
                 //连接关闭的回调方法
                 this._this.onclose = function () {
                     $.websocket._initialized = false;
-                    console.log("已关闭当前链接");
                     if (op.reconnect) {
-                        // 自动重连
-                        setTimeout(function () {
-                            $.websocket.open(op);
-                        }, 5000);
+                        if (sm < 5) {
+                            $.toastr.warning("连接异常,与服务器连接已经断开,开始尝试重新连接,下一次尝试重连 " + (sm + 1) * 5 + " 秒后");
+                            // 自动重连
+                            setTimeout(function () {
+                                sm++;
+                                $.websocket.open(op);
+                            }, (sm + 1) * 10000);
+                        } else {
+                            $.toastr.error("重新连接失败,请联系管理员");
+                        }
                     }
                 }
             }, open: function (options) {
@@ -122,7 +130,7 @@ $(function () {
                 "preventDuplicates": false,//防止重复
                 "onclick": null, "showDuration": "300", //显示的动画时间
                 "hideDuration": "1000", //消失的动画时间
-                "timeOut": "5000", //展现时间
+                "timeOut": "3600000", //展现时间
                 "extendedTimeOut": "1000", //加长展示时间
                 "showEasing": "swing", //显示时的动画缓冲方式
                 "hideEasing": "linear", //消失时的动画缓冲方式

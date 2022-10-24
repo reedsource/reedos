@@ -47,7 +47,7 @@ public class WebSocketServer {
 			WebSocketUsers.put(session.getId(), session);
 			LOGGER.info("建立连接 - {}", session);
 			LOGGER.info("当前人数 - {}", WebSocketUsers.getUsers().size());
-			WebSocketUsers.sendMessageToUserByText(session, "连接成功");
+			WebSocketUsers.sendMessageToUserByText(session, "系统服务连接成功");
 		} else {
 			// 未获取到信号量
 			LOGGER.error("当前在线人数超过限制数- {}", socketMaxOnlineCount);
