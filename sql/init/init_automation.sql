@@ -36,7 +36,22 @@ INSERT INTO sys_menu  VALUES (2022, '自动化数据源新增', 202, 2, '#', '',
 INSERT INTO sys_menu  VALUES (2023, '自动化数据源修改', 202, 3, '#', '', 'F', '0', '1', 'automation:autodatasource:edit', '#', 'admin', sysdate(), '', null, '');
 INSERT INTO sys_menu  VALUES (2024, '自动化数据源删除', 202, 4, '#', '', 'F', '0', '1', 'automation:autodatasource:remove', '#', 'admin', sysdate(), '', null, '');
 INSERT INTO sys_menu  VALUES (2025, '自动化数据源导出', 202, 5, '#', '', 'F', '0', '1', 'automation:autodatasource:export', '#', 'admin', sysdate(), '', null, '');
-
+-- 角色和菜单关联表数据
+insert into sys_role_menu values ('2', '2001');
+insert into sys_role_menu values ('2', '2002');
+insert into sys_role_menu values ('2', '2003');
+insert into sys_role_menu values ('2', '2004');
+insert into sys_role_menu values ('2', '2005');
+insert into sys_role_menu values ('2', '2011');
+insert into sys_role_menu values ('2', '2012');
+insert into sys_role_menu values ('2', '2013');
+insert into sys_role_menu values ('2', '2014');
+insert into sys_role_menu values ('2', '2015');
+insert into sys_role_menu values ('2', '2021');
+insert into sys_role_menu values ('2', '2022');
+insert into sys_role_menu values ('2', '2023');
+insert into sys_role_menu values ('2', '2024');
+insert into sys_role_menu values ('2', '2025');
 -- 数据字典
 insert into sys_dict_type values (9,  '任务状态',    'auto_job_status',             '0', 'admin', sysdate(), '', null, '任务状态列表');
 insert into sys_dict_type values (10, '任务分组',    'auto_job_group',              '0', 'admin', sysdate(), '', null, '任务分组列表');
