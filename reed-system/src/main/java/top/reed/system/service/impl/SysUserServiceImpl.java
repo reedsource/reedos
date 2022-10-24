@@ -206,6 +206,7 @@ public class SysUserServiceImpl implements ISysUserService {
 	 */
 	@Override
 	public boolean registerUser(SysUser user) {
+		//设置用户类型为注册用户类型
 		user.setUserType(UserConstants.REGISTER_USER_TYPE);
 		return userMapper.insertUser(user) > 0;
 	}

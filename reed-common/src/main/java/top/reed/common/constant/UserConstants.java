@@ -131,6 +131,8 @@ public class UserConstants {
 
 	/**
 	 * 用户类型
+	 * 系统用户类型
+	 * 注册用户类型
 	 */
 	public static final String SYSTEM_USER_TYPE = "00";
 	public static final String REGISTER_USER_TYPE = "01";

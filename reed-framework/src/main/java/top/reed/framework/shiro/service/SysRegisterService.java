@@ -49,6 +49,7 @@ public class SysRegisterService {
 			user.setUserName(loginName);
 			user.setSalt(ShiroUtils.randomSalt());
 			user.setPassword(passwordService.encryptPassword(password, user.getSalt()));
+			//注册用户信息
 			boolean regFlag = userService.registerUser(user);
 			if (!regFlag) {
 				msg = "注册失败,请联系系统管理人员";
