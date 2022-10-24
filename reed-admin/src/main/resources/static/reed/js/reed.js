@@ -117,7 +117,8 @@ $(function () {
                 "debug": false, //是否使用debug模式
                 "newestOnTop": false, //最新消息
                 "progressBar": false,//是否显示进度条，当为false时候不显示；当为true时候，显示进度条，当进度条缩短到0时候，消息通知弹窗消失
-                "positionClass": "toast-top-right",//显示的动画时间
+                //设置toastr显示位置的class
+                "positionClass": "toast-top-right-60",//顶端右边
                 "preventDuplicates": false,//防止重复
                 "onclick": null, "showDuration": "300", //显示的动画时间
                 "hideDuration": "1000", //消失的动画时间
@@ -133,7 +134,7 @@ $(function () {
                 "debug": false, //是否使用debug模式
                 "newestOnTop": false, //最新消息
                 "progressBar": true,//是否显示进度条，当为false时候不显示；当为true时候，显示进度条，当进度条缩短到0时候，消息通知弹窗消失
-                "positionClass": "toast-top-right",//显示的动画时间
+                "positionClass": "toast-top-right-60",//设置toastr显示位置的class
                 "preventDuplicates": false,//防止重复
                 "onclick": null, "showDuration": "300", //显示的动画时间
                 "hideDuration": "1000", //消失的动画时间

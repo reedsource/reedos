@@ -1,0 +1,9 @@
+
+/*
+reed js
+toastr 通知提示框插件配置 positionClass 设置toastr显示位置的class
+*/
+.toast-top-right-60 {
+    top: 60px;
+    right: 12px
+}
