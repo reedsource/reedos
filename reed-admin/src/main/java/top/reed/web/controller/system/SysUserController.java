@@ -128,7 +128,7 @@ public class SysUserController extends BaseController {
 			return error("新增用户'" + user.getLoginName() + "'失败，邮箱账号已存在");
 		}
 		user.setSalt(ShiroUtils.randomSalt());
-		user.setPassword(passwordService.encryptPassword(user.getLoginName(), user.getPassword(), user.getSalt()));
+		user.setPassword(passwordService.encryptPassword(user.getPassword(), user.getSalt()));
 		user.setCreateBy(getLoginName());
 		return toAjax(userService.insertUser(user));
 	}
@@ -186,7 +186,7 @@ public class SysUserController extends BaseController {
 		userService.checkUserAllowed(user);
 		userService.checkUserDataScope(user.getUserId());
 		user.setSalt(ShiroUtils.randomSalt());
-		user.setPassword(passwordService.encryptPassword(user.getLoginName(), user.getPassword(), user.getSalt()));
+		user.setPassword(passwordService.encryptPassword(user.getPassword(), user.getSalt()));
 		if (userService.resetUserPwd(user) > 0) {
 			if (ShiroUtils.getUserId().longValue() == user.getUserId().longValue()) {
 				setSysUser(userService.selectUserById(user.getUserId()));

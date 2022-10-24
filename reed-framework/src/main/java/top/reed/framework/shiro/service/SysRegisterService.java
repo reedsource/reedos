@@ -48,7 +48,7 @@ public class SysRegisterService {
 			user.setPwdUpdateDate(DateUtils.getNowDate());
 			user.setUserName(loginName);
 			user.setSalt(ShiroUtils.randomSalt());
-			user.setPassword(passwordService.encryptPassword(loginName, password, user.getSalt()));
+			user.setPassword(passwordService.encryptPassword(password, user.getSalt()));
 			boolean regFlag = userService.registerUser(user);
 			if (!regFlag) {
 				msg = "注册失败,请联系系统管理人员";

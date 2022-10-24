@@ -79,7 +79,7 @@ public class SysProfileController extends BaseController {
 			return error("新密码不能与旧密码相同");
 		}
 		user.setSalt(ShiroUtils.randomSalt());
-		user.setPassword(passwordService.encryptPassword(user.getLoginName(), newPassword, user.getSalt()));
+		user.setPassword(passwordService.encryptPassword(newPassword, user.getSalt()));
 		user.setPwdUpdateDate(DateUtils.getNowDate());
 		if (userService.resetUserPwd(user) > 0) {
 			setSysUser(userService.selectUserById(user.getUserId()));

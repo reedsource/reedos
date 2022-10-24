@@ -77,9 +77,9 @@ public class ShiroUtils {
 	 * 生成随机盐
 	 */
 	public static String randomSalt() {
-		// 一个Byte占两个字节，此处生成的3字节，字符串长度为6
+		//安全随机数生成器
 		SecureRandomNumberGenerator secureRandom = new SecureRandomNumberGenerator();
-		String hex = secureRandom.nextBytes(3).toHex();
-		return hex;
+		// 一个Byte占两个字节，此处生成的3字节，字符串长度为6
+		return secureRandom.nextBytes(3).toHex();
 	}
 }
