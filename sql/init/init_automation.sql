@@ -4,12 +4,11 @@ USE reedos;
 -- 一级菜单
 insert into sys_menu values('5', '自动化管理', '0', '5', '#', '', 'M', '0', '1', '', 'fa fa-refresh', 'admin', sysdate(), '', null, '自动化工具目录');
 -- 二级菜单
-insert into sys_menu values('110',  '定时任务', '5', '1', '/quartz/job', '', 'C', '0', '1', 'quartz:job:view', 'fa fa-tasks', 'admin', sysdate(), '', null, '定时任务菜单');
--- 三级菜单
-INSERT INTO sys_menu VALUES (200, '自动化任务', 5, 2, '/automation/autoflow', '', 'C', '0', '1', 'automation:autoflow:view', '#', 'admin', sysdate(), '', null, '自动化任务菜单');
-INSERT INTO sys_menu VALUES (201, '自定义函数', 5, 3, '/automation/autofunction', '', 'C', '0', '1', 'automation:autofunction:view', '#', 'admin', sysdate(), '', null, '自定义函数菜单');
-INSERT INTO sys_menu VALUES (202, '自动化数据源', 5, 4, '/automation/autodatasource', '', 'C', '0', '1', 'automation:autodatasource:view', '#', 'admin', sysdate(), '', null, '自动化数据源菜单');
-INSERT INTO sys_menu VALUES (203, 'WebSocket', 5, 4, '/automation/notice', '', 'C', '0', '1', '', '#', 'admin', sysdate(), '', null, 'WebSocket');
+insert into sys_menu values('110',  '定时任务',   '5', '1', '/quartz/job',               '', 'C', '0', '1', 'quartz:job:view',                'fa fa-tasks', 'admin', sysdate(), '', null, '定时任务菜单');
+INSERT INTO sys_menu VALUES (200, '自动化任务',   '5', '2', '/automation/autoflow',      '', 'C', '0', '1', 'automation:autoflow:view',       '#',            'admin', sysdate(), '', null, '自动化任务菜单');
+INSERT INTO sys_menu VALUES (201, '自定义函数',   '5', '3', '/automation/autofunction',  '', 'C', '0', '1', 'automation:autofunction:view',   '#',            'admin', sysdate(), '', null, '自定义函数菜单');
+INSERT INTO sys_menu VALUES (202, '自动化数据源', '5', '4', '/automation/autodatasource','', 'C', '0', '1', 'automation:autodatasource:view', '#',             'admin', sysdate(), '', null, '自动化数据源菜单');
+INSERT INTO sys_menu VALUES (203, 'WebSocket',  '5', '5', '/automation/notice',        '', 'C', '0', '1', 'automation:websocket:view',      '#',             'admin', sysdate(), '', null, 'WebSocket');
 -- 定时任务按钮
 insert into sys_menu values('1050', '任务查询', '110', '1',  '#', '',  'F', '0', '1', 'quartz:job:list',                '#', 'admin', sysdate(), '', null, '');
 insert into sys_menu values('1051', '任务新增', '110', '2',  '#', '',  'F', '0', '1', 'quartz:job:add',                 '#', 'admin', sysdate(), '', null, '');
@@ -19,25 +18,34 @@ insert into sys_menu values('1054', '状态修改', '110', '5',  '#', '',  'F', 
 insert into sys_menu values('1055', '任务详细', '110', '6',  '#', '',  'F', '0', '1', 'quartz:job:detail',              '#', 'admin', sysdate(), '', null, '');
 insert into sys_menu values('1056', '任务导出', '110', '7',  '#', '',  'F', '0', '1', 'quartz:job:export',              '#', 'admin', sysdate(), '', null, '');
 -- 自动化任务按钮
-INSERT INTO sys_menu VALUES (2001, '自动化任务查询', 200, 1, '#', '', 'F', '0', '1', 'automation:autoflow:list', '#', 'admin', sysdate(), '', null, '');
-INSERT INTO sys_menu VALUES (2002, '自动化任务新增', 200, 2, '#', '', 'F', '0', '1', 'automation:autoflow:add', '#', 'admin', sysdate(), '', null, '');
-INSERT INTO sys_menu VALUES (2003, '自动化任务修改', 200, 3, '#', '', 'F', '0', '1', 'automation:autoflow:edit', '#', 'admin', sysdate(), '', null, '');
-INSERT INTO sys_menu VALUES (2004, '自动化任务删除', 200, 4, '#', '', 'F', '0', '1', 'automation:autoflow:remove', '#', 'admin', sysdate(), '', null, '');
-INSERT INTO sys_menu VALUES (2005, '自动化任务导出', 200, 5, '#', '', 'F', '0', '1', 'automation:autoflow:export', '#', 'admin', sysdate(), '', null, '');
+INSERT INTO sys_menu VALUES ('2001', '自动化任务查询', '200', '1', '#', '', 'F', '0', '1', 'automation:autoflow:list', '#', 'admin', sysdate(), '', null, '');
+INSERT INTO sys_menu VALUES ('2002', '自动化任务新增', '200', '2', '#', '', 'F', '0', '1', 'automation:autoflow:add', '#', 'admin', sysdate(), '', null, '');
+INSERT INTO sys_menu VALUES ('2003', '自动化任务修改', '200', '3', '#', '', 'F', '0', '1', 'automation:autoflow:edit', '#', 'admin', sysdate(), '', null, '');
+INSERT INTO sys_menu VALUES ('2004', '自动化任务删除', '200', '4', '#', '', 'F', '0', '1', 'automation:autoflow:remove', '#', 'admin', sysdate(), '', null, '');
+INSERT INTO sys_menu VALUES ('2005', '自动化任务导出', '200', '5', '#', '', 'F', '0', '1', 'automation:autoflow:export', '#', 'admin', sysdate(), '', null, '');
 -- 自动化自定义函数按钮
-INSERT INTO sys_menu VALUES (2011, '自定义函数查询', 201, 1, '#', '', 'F', '0', '1', 'automation:autofunction:list', '#', 'admin', sysdate(), '', null, '');
-INSERT INTO sys_menu VALUES (2012, '自定义函数新增', 201, 2, '#', '', 'F', '0', '1', 'automation:autofunction:add', '#', 'admin', sysdate(), '', null, '');
-INSERT INTO sys_menu VALUES (2013, '自定义函数修改', 201, 3, '#', '', 'F', '0', '1', 'automation:autofunction:edit', '#', 'admin', sysdate(), '', null, '');
-INSERT INTO sys_menu VALUES (2014, '自定义函数删除', 201, 4, '#', '', 'F', '0', '1', 'automation:autofunction:remove', '#', 'admin', sysdate(), '', null, '');
-INSERT INTO sys_menu VALUES (2015, '自定义函数导出', 201, 5, '#', '', 'F', '0', '1', 'automation:autofunction:export', '#', 'admin', sysdate(), '', null, '');
+INSERT INTO sys_menu VALUES ('2011', '自定义函数查询', '201', '1', '#', '', 'F', '0', '1', 'automation:autofunction:list', '#', 'admin', sysdate(), '', null, '');
+INSERT INTO sys_menu VALUES ('2012', '自定义函数新增', '201', '2', '#', '', 'F', '0', '1', 'automation:autofunction:add', '#', 'admin', sysdate(), '', null, '');
+INSERT INTO sys_menu VALUES ('2013', '自定义函数修改', '201', '3', '#', '', 'F', '0', '1', 'automation:autofunction:edit', '#', 'admin', sysdate(), '', null, '');
+INSERT INTO sys_menu VALUES ('2014', '自定义函数删除', '201', '4', '#', '', 'F', '0', '1', 'automation:autofunction:remove', '#', 'admin', sysdate(), '', null, '');
+INSERT INTO sys_menu VALUES ('2015', '自定义函数导出', '201', '5', '#', '', 'F', '0', '1', 'automation:autofunction:export', '#', 'admin', sysdate(), '', null, '');
 -- 自动化数据源按钮
-INSERT INTO sys_menu  VALUES (2021, '自动化数据源查询', 202, 1, '#', '', 'F', '0', '1', 'automation:autodatasource:list', '#', 'admin', sysdate(), '', null, '');
-INSERT INTO sys_menu  VALUES (2022, '自动化数据源新增', 202, 2, '#', '', 'F', '0', '1', 'automation:autodatasource:add', '#', 'admin', sysdate(), '', null, '');
-INSERT INTO sys_menu  VALUES (2023, '自动化数据源修改', 202, 3, '#', '', 'F', '0', '1', 'automation:autodatasource:edit', '#', 'admin', sysdate(), '', null, '');
-INSERT INTO sys_menu  VALUES (2024, '自动化数据源删除', 202, 4, '#', '', 'F', '0', '1', 'automation:autodatasource:remove', '#', 'admin', sysdate(), '', null, '');
-INSERT INTO sys_menu  VALUES (2025, '自动化数据源导出', 202, 5, '#', '', 'F', '0', '1', 'automation:autodatasource:export', '#', 'admin', sysdate(), '', null, '');
+INSERT INTO sys_menu VALUES ('2021', '自动化数据源查询', '202', '1', '#', '', 'F', '0', '1', 'automation:autodatasource:list', '#', 'admin', sysdate(), '', null, '');
+INSERT INTO sys_menu VALUES ('2022', '自动化数据源新增', '202', '2', '#', '', 'F', '0', '1', 'automation:autodatasource:add', '#', 'admin', sysdate(), '', null, '');
+INSERT INTO sys_menu VALUES ('2023', '自动化数据源修改', '202', '3', '#', '', 'F', '0', '1', 'automation:autodatasource:edit', '#', 'admin', sysdate(), '', null, '');
+INSERT INTO sys_menu VALUES ('2024', '自动化数据源删除', '202', '4', '#', '', 'F', '0', '1', 'automation:autodatasource:remove', '#', 'admin', sysdate(), '', null, '');
+INSERT INTO sys_menu VALUES ('2025', '自动化数据源导出', '202', '5', '#', '', 'F', '0', '1', 'automation:autodatasource:export', '#', 'admin', sysdate(), '', null, '');
+
 -- 角色和菜单关联表数据
 -- 管理员
+-- 自动化管理模块
+insert into sys_role_menu values ('2', '5');
+insert into sys_role_menu values ('2', '110');
+insert into sys_role_menu values ('2', '200');
+insert into sys_role_menu values ('2', '201');
+insert into sys_role_menu values ('2', '202');
+insert into sys_role_menu values ('2', '203');
+insert into sys_role_menu values ('2', '204');
 -- 自动化管理模块-定时任务
 insert into sys_role_menu values ('2', '1050');
 insert into sys_role_menu values ('2', '1051');
@@ -66,6 +74,14 @@ insert into sys_role_menu values ('2', '2024');
 insert into sys_role_menu values ('2', '2025');
 
 -- 系统会员
+-- 自动化管理模块
+insert into sys_role_menu values ('3', '5');
+insert into sys_role_menu values ('3', '110');
+insert into sys_role_menu values ('3', '200');
+insert into sys_role_menu values ('3', '201');
+insert into sys_role_menu values ('3', '202');
+insert into sys_role_menu values ('3', '203');
+insert into sys_role_menu values ('3', '204');
 -- 自动化管理模块-定时任务
 insert into sys_role_menu values ('3', '1050');
 insert into sys_role_menu values ('3', '1051');
@@ -94,6 +110,14 @@ insert into sys_role_menu values ('3', '2024');
 insert into sys_role_menu values ('3', '2025');
 
 -- 注册默认角色
+-- 自动化管理模块
+insert into sys_role_menu values ('4', '5');
+insert into sys_role_menu values ('4', '110');
+insert into sys_role_menu values ('4', '200');
+insert into sys_role_menu values ('4', '201');
+insert into sys_role_menu values ('4', '202');
+insert into sys_role_menu values ('4', '203');
+insert into sys_role_menu values ('4', '204');
 -- 自动化管理模块-自动化任务
 insert into sys_role_menu values ('4', '2001');
 insert into sys_role_menu values ('4', '2002');

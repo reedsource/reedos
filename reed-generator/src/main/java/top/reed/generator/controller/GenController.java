@@ -174,7 +174,7 @@ public class GenController extends BaseController {
 		return AjaxResult.success();
 	}
 
-	@RequiresRoles("supper")
+	@RequiresRoles("super")
 	@Log(title = "创建表", businessType = BusinessType.OTHER)
 	@PostMapping("/createTable")
 	@ResponseBody

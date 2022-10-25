@@ -27,7 +27,7 @@ public class WebSocketController {
 	@Autowired
 	private WebSocketServer websocketServer;
 
-	@RequiresPermissions("notice")
+	@RequiresPermissions("automation:websocket:view")
 	@GetMapping("/notice")
 	public String notice(Model model) {
 		model.addAttribute("online", websocketServer.getOnlineUserCount());
@@ -37,7 +37,7 @@ public class WebSocketController {
 	/**
 	 * 发送消息通知
 	 */
-	@RequiresPermissions("notice")
+	@RequiresPermissions("automation:websocket:view")
 	@PostMapping("/notice")
 	@Log(title = "通过websocket向前台用户发送通知", businessType = BusinessType.OTHER)
 	@ResponseBody

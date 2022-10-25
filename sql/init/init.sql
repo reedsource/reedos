@@ -71,7 +71,7 @@ create table sys_user (
 -- ----------------------------
 -- 初始化-用户信息表数据
 -- ----------------------------
-insert into sys_user values(1,  111, 'supper',   '超级管理员', '00', 'reedsource@189.cn', '18101351078', '1', '', 'f58217d6f1c6f130019f183424468eb2', 'e09ee2', '0', '0', '127.0.0.1', sysdate(), sysdate(), 'admin', sysdate(), '', null, '管理员');
+insert into sys_user values(1,  111, 'super',   '超级管理员', '00', 'reedsource@189.cn', '18101351078', '1', '', 'f58217d6f1c6f130019f183424468eb2', 'e09ee2', '0', '0', '127.0.0.1', sysdate(), sysdate(), 'admin', sysdate(), '', null, '管理员');
 insert into sys_user values(2,  111, 'admin',    '系统管理',   '00', 'reedsource@189.cn', '18101351078', '1', '', 'f58217d6f1c6f130019f183424468eb2', 'e09ee2', '0', '0', '127.0.0.1', sysdate(), sysdate(), 'admin', sysdate(), '', null, '系统管理');
 insert into sys_user values(3,  121, 'reed',     '会员',      '00', 'reedsource@189.cn', '18101351078', '1', '', 'f58217d6f1c6f130019f183424468eb2', 'e09ee2', '0', '0', '127.0.0.1', sysdate(), sysdate(), 'admin', sysdate(), '', null, '系统会员');
 insert into sys_user values(4,  122, 'default',  '默认用户',   '00', 'reedsource@189.cn', '18101351078', '1', '', 'f58217d6f1c6f130019f183424468eb2', 'e09ee2', '0', '0', '127.0.0.1', sysdate(), sysdate(), 'admin', sysdate(), '', null, '默认用户');
@@ -299,7 +299,7 @@ insert into sys_role_menu values ('2', '106');
 insert into sys_role_menu values ('2', '107');
 insert into sys_role_menu values ('2', '108');
 insert into sys_role_menu values ('2', '109');
-insert into sys_role_menu values ('2', '110');
+
 insert into sys_role_menu values ('2', '111');
 insert into sys_role_menu values ('2', '112');
 insert into sys_role_menu values ('2', '113');
