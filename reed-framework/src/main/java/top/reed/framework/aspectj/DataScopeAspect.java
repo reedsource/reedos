@@ -120,7 +120,7 @@ public class DataScopeAspect {
 		SysUser currentUser = ShiroUtils.getSysUser();
 		if (currentUser != null) {
 			// 如果是超级管理员，则不过滤数据
-			if (!currentUser.isAdmin()) {
+			if (!currentUser.isSuper()) {
 				String permission = StringUtils.defaultIfEmpty(controllerDataScope.permission(), PermissionContextHolder.getContext());
 				dataScopeFilter(joinPoint, currentUser, controllerDataScope.deptAlias(),
 						controllerDataScope.userAlias(), permission);

@@ -366,7 +366,7 @@ public class SysUserServiceImpl implements ISysUserService {
 	 */
 	@Override
 	public void checkUserAllowed(SysUser user) {
-		if (StringUtils.isNotNull(user.getUserId()) && user.isAdmin()) {
+		if (StringUtils.isNotNull(user.getUserId()) && user.isSuper()) {
 			throw new ServiceException("不允许操作超级管理员用户");
 		}
 	}
@@ -378,7 +378,7 @@ public class SysUserServiceImpl implements ISysUserService {
 	 */
 	@Override
 	public void checkUserDataScope(Long userId) {
-		if (!SysUser.isAdmin(ShiroUtils.getUserId())) {
+		if (!SysUser.isSuper(ShiroUtils.getUserId())) {
 			SysUser user = new SysUser();
 			user.setUserId(userId);
 			List<SysUser> users = SpringUtils.getAopProxy(this).selectUserList(user);

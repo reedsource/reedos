@@ -87,7 +87,7 @@ public class SysRole extends BaseEntity {
 		this.roleId = roleId;
 	}
 
-	public static boolean isAdmin(Long roleId) {
+	public static boolean isSuper(Long roleId) {
 		return roleId != null && 1L == roleId;
 	}
 
@@ -99,8 +99,8 @@ public class SysRole extends BaseEntity {
 		this.roleId = roleId;
 	}
 
-	public boolean isAdmin() {
-		return isAdmin(this.roleId);
+	public boolean isSuper() {
+		return isSuper(this.roleId);
 	}
 
 	public String getDataScope() {

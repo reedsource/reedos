@@ -48,9 +48,9 @@ public class UserRealm extends AuthorizingRealm {
 		// 功能列表
 		Set<String> menus = new HashSet<>();
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-		// 管理员拥有所有权限
-		if (user.isAdmin()) {
-			info.addRole("admin");
+		// 超级管理员拥有所有权限
+		if (user.isSuper()) {
+			info.addRole("super");
 			info.addStringPermission("*:*:*");
 		} else {
 			roles = roleService.selectRoleKeys(user.getUserId());

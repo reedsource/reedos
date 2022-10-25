@@ -284,7 +284,7 @@ public class SysDeptServiceImpl implements ISysDeptService {
 	 */
 	@Override
 	public void checkDeptDataScope(Long deptId) {
-		if (!SysUser.isAdmin(ShiroUtils.getUserId())) {
+		if (!SysUser.isSuper(ShiroUtils.getUserId())) {
 			SysDept dept = new SysDept();
 			dept.setDeptId(deptId);
 			List<SysDept> depts = SpringUtils.getAopProxy(this).selectDeptList(dept);

@@ -105,7 +105,7 @@ public class SysUserController extends BaseController {
 	 */
 	@GetMapping("/add")
 	public String add(ModelMap mmap) {
-		mmap.put("roles", roleService.selectRoleAll().stream().filter(r -> !r.isAdmin()).collect(Collectors.toList()));
+		mmap.put("roles", roleService.selectRoleAll().stream().filter(r -> !r.isSuper()).collect(Collectors.toList()));
 		mmap.put("posts", postService.selectPostAll());
 		return "system/user/add";
 	}
@@ -142,7 +142,7 @@ public class SysUserController extends BaseController {
 		userService.checkUserDataScope(userId);
 		List<SysRole> roles = roleService.selectRolesByUserId(userId);
 		mmap.put("user", userService.selectUserById(userId));
-		mmap.put("roles", SysUser.isAdmin(userId) ? roles : roles.stream().filter(r -> !r.isAdmin()).collect(Collectors.toList()));
+		mmap.put("roles", SysUser.isSuper(userId) ? roles : roles.stream().filter(r -> !r.isSuper()).collect(Collectors.toList()));
 		mmap.put("posts", postService.selectPostsByUserId(userId));
 		return "system/user/edit";
 	}
@@ -205,7 +205,7 @@ public class SysUserController extends BaseController {
 		// 获取用户所属的角色列表
 		List<SysRole> roles = roleService.selectRolesByUserId(userId);
 		mmap.put("user", user);
-		mmap.put("roles", SysUser.isAdmin(userId) ? roles : roles.stream().filter(r -> !r.isAdmin()).collect(Collectors.toList()));
+		mmap.put("roles", SysUser.isSuper(userId) ? roles : roles.stream().filter(r -> !r.isSuper()).collect(Collectors.toList()));
 		return "system/user/authRole";
 	}
 

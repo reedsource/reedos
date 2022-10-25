@@ -49,7 +49,7 @@ public class SysDeptController extends BaseController {
 	 */
 	@GetMapping("/add/{parentId}")
 	public String add(@PathVariable("parentId") Long parentId, ModelMap mmap) {
-		if (!getSysUser().isAdmin()) {
+		if (!getSysUser().isSuper()) {
 			parentId = getSysUser().getDeptId();
 		}
 		mmap.put("dept", deptService.selectDeptById(parentId));
