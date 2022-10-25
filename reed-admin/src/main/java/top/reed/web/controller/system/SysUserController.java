@@ -142,6 +142,7 @@ public class SysUserController extends BaseController {
 		userService.checkUserDataScope(userId);
 		List<SysRole> roles = roleService.selectRolesByUserId(userId);
 		mmap.put("user", userService.selectUserById(userId));
+		//如果是超级管理员 全部角色, 否 剔除超级管理员的其它角色
 		mmap.put("roles", SysUser.isSuper(userId) ? roles : roles.stream().filter(r -> !r.isSuper()).collect(Collectors.toList()));
 		mmap.put("posts", postService.selectPostsByUserId(userId));
 		return "system/user/edit";
