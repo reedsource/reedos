@@ -45,7 +45,6 @@ insert into sys_role_menu values ('2', '200');
 insert into sys_role_menu values ('2', '201');
 insert into sys_role_menu values ('2', '202');
 insert into sys_role_menu values ('2', '203');
-insert into sys_role_menu values ('2', '204');
 -- 自动化管理模块-定时任务
 insert into sys_role_menu values ('2', '1050');
 insert into sys_role_menu values ('2', '1051');
@@ -81,7 +80,6 @@ insert into sys_role_menu values ('3', '200');
 insert into sys_role_menu values ('3', '201');
 insert into sys_role_menu values ('3', '202');
 insert into sys_role_menu values ('3', '203');
-insert into sys_role_menu values ('3', '204');
 -- 自动化管理模块-定时任务
 insert into sys_role_menu values ('3', '1050');
 insert into sys_role_menu values ('3', '1051');
@@ -112,12 +110,10 @@ insert into sys_role_menu values ('3', '2025');
 -- 注册默认角色
 -- 自动化管理模块
 insert into sys_role_menu values ('4', '5');
-insert into sys_role_menu values ('4', '110');
 insert into sys_role_menu values ('4', '200');
 insert into sys_role_menu values ('4', '201');
 insert into sys_role_menu values ('4', '202');
 insert into sys_role_menu values ('4', '203');
-insert into sys_role_menu values ('4', '204');
 -- 自动化管理模块-自动化任务
 insert into sys_role_menu values ('4', '2001');
 insert into sys_role_menu values ('4', '2002');
