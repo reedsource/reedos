@@ -37,21 +37,82 @@ INSERT INTO sys_menu  VALUES (2023, '自动化数据源修改', 202, 3, '#', '',
 INSERT INTO sys_menu  VALUES (2024, '自动化数据源删除', 202, 4, '#', '', 'F', '0', '1', 'automation:autodatasource:remove', '#', 'admin', sysdate(), '', null, '');
 INSERT INTO sys_menu  VALUES (2025, '自动化数据源导出', 202, 5, '#', '', 'F', '0', '1', 'automation:autodatasource:export', '#', 'admin', sysdate(), '', null, '');
 -- 角色和菜单关联表数据
+-- 管理员
+-- 自动化管理模块-定时任务
+insert into sys_role_menu values ('2', '1050');
+insert into sys_role_menu values ('2', '1051');
+insert into sys_role_menu values ('2', '1052');
+insert into sys_role_menu values ('2', '1053');
+insert into sys_role_menu values ('2', '1054');
+insert into sys_role_menu values ('2', '1055');
+insert into sys_role_menu values ('2', '1056');
+-- 自动化管理模块-自动化任务
 insert into sys_role_menu values ('2', '2001');
 insert into sys_role_menu values ('2', '2002');
 insert into sys_role_menu values ('2', '2003');
 insert into sys_role_menu values ('2', '2004');
 insert into sys_role_menu values ('2', '2005');
+-- 自动化管理模块-自动化自定义函数按钮
 insert into sys_role_menu values ('2', '2011');
 insert into sys_role_menu values ('2', '2012');
 insert into sys_role_menu values ('2', '2013');
 insert into sys_role_menu values ('2', '2014');
 insert into sys_role_menu values ('2', '2015');
+-- 自动化管理模块-自动化数据源按钮
 insert into sys_role_menu values ('2', '2021');
 insert into sys_role_menu values ('2', '2022');
 insert into sys_role_menu values ('2', '2023');
 insert into sys_role_menu values ('2', '2024');
 insert into sys_role_menu values ('2', '2025');
+
+-- 系统会员
+-- 自动化管理模块-定时任务
+insert into sys_role_menu values ('3', '1050');
+insert into sys_role_menu values ('3', '1051');
+insert into sys_role_menu values ('3', '1052');
+insert into sys_role_menu values ('3', '1053');
+insert into sys_role_menu values ('3', '1054');
+insert into sys_role_menu values ('3', '1055');
+insert into sys_role_menu values ('3', '1056');
+-- 自动化管理模块-自动化任务
+insert into sys_role_menu values ('3', '2001');
+insert into sys_role_menu values ('3', '2002');
+insert into sys_role_menu values ('3', '2003');
+insert into sys_role_menu values ('3', '2004');
+insert into sys_role_menu values ('3', '2005');
+-- 自动化管理模块-自动化自定义函数按钮
+insert into sys_role_menu values ('3', '2011');
+insert into sys_role_menu values ('3', '2012');
+insert into sys_role_menu values ('3', '2013');
+insert into sys_role_menu values ('3', '2014');
+insert into sys_role_menu values ('3', '2015');
+-- 自动化管理模块-自动化数据源按钮
+insert into sys_role_menu values ('3', '2021');
+insert into sys_role_menu values ('3', '2022');
+insert into sys_role_menu values ('3', '2023');
+insert into sys_role_menu values ('3', '2024');
+insert into sys_role_menu values ('3', '2025');
+
+-- 注册默认角色
+-- 自动化管理模块-自动化任务
+insert into sys_role_menu values ('4', '2001');
+insert into sys_role_menu values ('4', '2002');
+insert into sys_role_menu values ('4', '2003');
+insert into sys_role_menu values ('4', '2004');
+insert into sys_role_menu values ('4', '2005');
+-- 自动化管理模块-自动化自定义函数按钮
+insert into sys_role_menu values ('4', '2011');
+insert into sys_role_menu values ('4', '2012');
+insert into sys_role_menu values ('4', '2013');
+insert into sys_role_menu values ('4', '2014');
+insert into sys_role_menu values ('4', '2015');
+-- 自动化管理模块-自动化数据源按钮
+insert into sys_role_menu values ('4', '2021');
+insert into sys_role_menu values ('4', '2022');
+insert into sys_role_menu values ('4', '2023');
+insert into sys_role_menu values ('4', '2024');
+insert into sys_role_menu values ('4', '2025');
+
 -- 数据字典
 insert into sys_dict_type values (9,  '任务状态',    'auto_job_status',             '0', 'admin', sysdate(), '', null, '任务状态列表');
 insert into sys_dict_type values (10, '任务分组',    'auto_job_group',              '0', 'admin', sysdate(), '', null, '任务分组列表');
