@@ -36,11 +36,9 @@
                         </li>
                         <li class="select-time">
                             <label>操作时间： </label>
-                            <input class="time-input" id="startTime" name="params[beginTime]" placeholder="开始时间"
-                                   type="text"/>
+                            <input type="text" class="time-input" id="startTime" placeholder="开始时间"/>
                             <span>-</span>
-                            <input class="time-input" id="endTime" name="params[endTime]" placeholder="结束时间"
-                                   type="text"/>
+                            <input type="text" class="time-input" id="endTime" placeholder="结束时间"/>
                         </li>
                         <li>
                             <a class="btn btn-primary btn-rounded btn-sm" onclick="searchPre()"><i
@@ -103,7 +101,10 @@
                 },
                 {
                     field: 'title',
-                    title: '系统模块'
+                    title: '系统模块',
+                    formatter: function(value, row, index) {
+                        return $.table.tooltip(value);
+                    }
                 },
                 {
                     field: 'businessType',
@@ -170,6 +171,10 @@
 
     function queryParams(params) {
         var search = $.table.queryParams(params);
+        search.params = {
+            beginTime : beginOfTime($("#startTime").val()),
+            endTime : endOfTime($("#endTime").val())
+        };
         search.businessTypes = $.common.join($('#businessTypes').selectpicker('val'));
         return search;
     }
@@ -179,6 +184,7 @@
     }
 
     function resetPre() {
+        resetDate();
         $("#operlog-form")[0].reset();
         $("#businessTypes").selectpicker('refresh');
         $.table.search('operlog-form', 'bootstrap-table');

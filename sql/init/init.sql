@@ -436,7 +436,10 @@ create table sys_oper_log (
   error_msg         varchar(2000)   default ''                 comment '错误消息',
   oper_time         datetime                                   comment '操作时间',
   cost_time         bigint(20)      default 0                  comment '消耗时间',
-  primary key (oper_id)
+  primary key (oper_id),
+  key idx_sys_oper_log_bt (business_type),
+  key idx_sys_oper_log_s  (status),
+  key idx_sys_oper_log_ot (oper_time)
 ) engine=innodb auto_increment=100 comment = '操作日志记录';
 
 
