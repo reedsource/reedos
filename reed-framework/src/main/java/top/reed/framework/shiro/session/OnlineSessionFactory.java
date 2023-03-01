@@ -27,7 +27,7 @@ public class OnlineSessionFactory implements SessionFactory {
 			HttpServletRequest request = (HttpServletRequest) sessionContext.getServletRequest();
 			if (request != null) {
 				//获取用户User-Agent并解析为userAgent对象
-				UserAgent userAgent = UserAgent.parseUserAgentString(ServletUtils.getRequest().getHeader("User-Agent"));
+				UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
 				// 获取客户端操作系统
 				String os = userAgent.getOperatingSystem();
 				// 获取客户端浏览器
