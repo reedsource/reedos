@@ -73,7 +73,7 @@ public class SysConfigController extends BaseController {
 	@PostMapping("/add")
 	@ResponseBody
 	public AjaxResult addSave(@Validated SysConfig config) {
-		if (configService.checkConfigKeyUnique(config)) {
+		if (!configService.checkConfigKeyUnique(config)) {
 			return error("新增参数'" + config.getConfigName() + "'失败，参数键名已存在");
 		}
 		config.setCreateBy(getLoginName());
@@ -98,7 +98,7 @@ public class SysConfigController extends BaseController {
 	@PostMapping("/edit")
 	@ResponseBody
 	public AjaxResult editSave(@Validated SysConfig config) {
-		if (configService.checkConfigKeyUnique(config)) {
+		if (!configService.checkConfigKeyUnique(config)) {
 			return error("修改参数'" + config.getConfigName() + "'失败，参数键名已存在");
 		}
 		config.setUpdateBy(getLoginName());

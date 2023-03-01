@@ -64,7 +64,7 @@ public class SysDeptController extends BaseController {
 	@PostMapping("/add")
 	@ResponseBody
 	public AjaxResult addSave(@Validated SysDept dept) {
-		if (deptService.checkDeptNameUnique(dept)) {
+		if (!deptService.checkDeptNameUnique(dept)) {
 			return error("新增部门'" + dept.getDeptName() + "'失败，部门名称已存在");
 		}
 		dept.setCreateBy(getLoginName());
@@ -96,7 +96,7 @@ public class SysDeptController extends BaseController {
 	public AjaxResult editSave(@Validated SysDept dept) {
 		Long deptId = dept.getDeptId();
 		deptService.checkDeptDataScope(deptId);
-		if (deptService.checkDeptNameUnique(dept)) {
+		if (!deptService.checkDeptNameUnique(dept)) {
 			return error("修改部门'" + dept.getDeptName() + "'失败，部门名称已存在");
 		} else if (dept.getParentId().equals(deptId)) {
 			return error("修改部门'" + dept.getDeptName() + "'失败，上级部门不能是自己");

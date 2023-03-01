@@ -118,13 +118,13 @@ public class SysUserController extends BaseController {
 	@PostMapping("/add")
 	@ResponseBody
 	public AjaxResult addSave(@Validated SysUser user) {
-		if (userService.checkLoginNameUnique(user)) {
+		if (!userService.checkLoginNameUnique(user)) {
 			return error("新增用户'" + user.getLoginName() + "'失败，登录账号已存在");
 		} else if (StringUtils.isNotEmpty(user.getPhonenumber())
-				&& userService.checkPhoneUnique(user)) {
+				&& !userService.checkPhoneUnique(user)) {
 			return error("新增用户'" + user.getLoginName() + "'失败，手机号码已存在");
 		} else if (StringUtils.isNotEmpty(user.getEmail())
-				&& userService.checkEmailUnique(user)) {
+				&& !userService.checkEmailUnique(user)) {
 			return error("新增用户'" + user.getLoginName() + "'失败，邮箱账号已存在");
 		}
 		user.setSalt(ShiroUtils.randomSalt());
@@ -158,13 +158,13 @@ public class SysUserController extends BaseController {
 	public AjaxResult editSave(@Validated SysUser user) {
 		userService.checkUserAllowed(user);
 		userService.checkUserDataScope(user.getUserId());
-		if (userService.checkLoginNameUnique(user)) {
+		if (!userService.checkLoginNameUnique(user)) {
 			return error("修改用户'" + user.getLoginName() + "'失败，登录账号已存在");
 		} else if (StringUtils.isNotEmpty(user.getPhonenumber())
-				&& userService.checkPhoneUnique(user)) {
+				&& !userService.checkPhoneUnique(user)) {
 			return error("修改用户'" + user.getLoginName() + "'失败，手机号码已存在");
 		} else if (StringUtils.isNotEmpty(user.getEmail())
-				&& userService.checkEmailUnique(user)) {
+				&& !userService.checkEmailUnique(user)) {
 			return error("修改用户'" + user.getLoginName() + "'失败，邮箱账号已存在");
 		}
 		user.setUpdateBy(getLoginName());
