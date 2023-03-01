@@ -698,7 +698,8 @@
 	                        if (_ls && _ls.length > 0) {
 	                            $.each(_ls, function(index, item) {
 	                                var _p_icon = $("#" + $(item).attr("pid")).children().eq(options.expandColumn).find(".treetable-expander");
-	                                if (_p_icon.hasClass(options.expanderExpandedClass)) {
+	                                var _p_display = $("#" + $(item).attr("pid")).css('display');
+	                                if (_p_icon.hasClass(options.expanderExpandedClass) && _p_display == 'table') {
 	                                    $(item).css("display", "table");
 	                                }
 	                            });
@@ -729,7 +730,7 @@
                                     $.ajax({
                                         type: options.type,
                                         url: options.dataUrl,
-                                        data: $.extend(parms, options.ajaxParams),
+                                        data: parms,
                                         dataType: "json",
                                         success: function(data, textStatus, jqXHR) {
                                             $("#" + row_id + "_load").remove();
@@ -765,6 +766,7 @@
         }
         // 添加数据刷新表格
         target.appendData = function(data) {
+            data.reverse()
             // 下边的操作主要是为了查询时让一些没有根节点的节点显示
             $.each(data, function(i, item) {
                 if (options.pagination) {
