@@ -2,6 +2,7 @@ package top.reed.framework.aspectj;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.support.spring.PropertyPreFilters;
+import org.apache.commons.lang3.ArrayUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
@@ -137,7 +138,7 @@ public class LogAspect {
 		// 是否需要保存request，参数和值
 		if (log.isSaveRequestData()) {
 			// 获取参数的信息，传入到数据库中。
-			setRequestValue(joinPoint, operLog);
+			setRequestValue(joinPoint, operLog, log.excludeParamNames());
 		}
 		// 是否需要保存response，参数和值
 		if (log.isSaveResponseData() && StringUtils.isNotNull(jsonResult)) {
@@ -150,15 +151,15 @@ public class LogAspect {
 	 *
 	 * @param operLog 操作日志
 	 */
-	private void setRequestValue(JoinPoint joinPoint, SysOperLog operLog) {
+	private void setRequestValue(JoinPoint joinPoint, SysOperLog operLog, String[] excludeParamNames) throws Exception {
 		Map<String, String[]> map = ServletUtils.getRequest().getParameterMap();
 		if (StringUtils.isNotEmpty(map)) {
-			String params = JSONObject.toJSONString(map, excludePropertyPreFilter());
+			String params = JSONObject.toJSONString(map, excludePropertyPreFilter(excludeParamNames));
 			operLog.setOperParam(StringUtils.substring(params, 0, 2000));
 		} else {
 			Object args = joinPoint.getArgs();
 			if (StringUtils.isNotNull(args)) {
-				String params = argsArrayToString(joinPoint.getArgs());
+				String params = argsArrayToString(joinPoint.getArgs(), excludeParamNames);
 				operLog.setOperParam(StringUtils.substring(params, 0, 2000));
 			}
 		}
@@ -167,20 +168,20 @@ public class LogAspect {
 	/**
 	 * 忽略敏感属性
 	 */
-	public PropertyPreFilters.MySimplePropertyPreFilter excludePropertyPreFilter() {
-		return new PropertyPreFilters().addFilter().addExcludes(EXCLUDE_PROPERTIES);
+	public PropertyPreFilters.MySimplePropertyPreFilter excludePropertyPreFilter(String[] excludeParamNames) {
+		return new PropertyPreFilters().addFilter().addExcludes(ArrayUtils.addAll(EXCLUDE_PROPERTIES, excludeParamNames));
 	}
 
 	/**
 	 * 参数拼装
 	 */
-	private String argsArrayToString(Object[] paramsArray) {
+	private String argsArrayToString(Object[] paramsArray, String[] excludeParamNames) {
 		String params = "";
 		if (paramsArray != null && paramsArray.length > 0) {
 			for (Object o : paramsArray) {
 				if (StringUtils.isNotNull(o) && !isFilterObject(o)) {
 					try {
-						Object jsonObj = JSONObject.toJSONString(o, excludePropertyPreFilter());
+						Object jsonObj = JSONObject.toJSONString(o, excludePropertyPreFilter(excludeParamNames));
 						params += jsonObj.toString() + " ";
 					} catch (Exception e) {
 					}
