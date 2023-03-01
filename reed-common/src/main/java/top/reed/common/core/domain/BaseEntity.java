@@ -1,6 +1,7 @@
 package top.reed.common.core.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,7 +18,9 @@ public class BaseEntity implements Serializable {
 
 	/**
 	 * 搜索值
+	 * JsonIgnore 忽略不必要的属性数据返回
 	 */
+	@JsonIgnore
 	private String searchValue;
 
 	/**
