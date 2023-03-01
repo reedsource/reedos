@@ -698,9 +698,15 @@ public class ExcelUtil<T> {
 			// 得到导出对象.
 			T vo = (T) list.get(i);
 			Collection<?> subList = null;
-			if (isSubListValue(vo)) {
-				subList = getListCellValue(vo);
-				subMergedLastRowNum = subMergedLastRowNum + subList.size();
+			//子列表有数据 数据导出
+			if (isSubList()) {
+				if (isSubListValue(vo)) {
+					subList = getListCellValue(vo);
+					subMergedLastRowNum = subMergedLastRowNum + subList.size();
+				} else {
+					subMergedFirstRowNum++;
+					subMergedLastRowNum++;
+				}
 			}
 
 			int column = 0;
@@ -1305,6 +1311,7 @@ public class ExcelUtil<T> {
 
 	/**
 	 * 是否有对象的子列表
+	 * 有true
 	 */
 	public boolean isSubList() {
 		return StringUtils.isNotNull(subFields) && subFields.size() > 0;
