@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import top.reed.common.constant.ShiroConstants;
 import top.reed.common.utils.DateUtils;
 import top.reed.common.utils.StringUtils;
+import top.reed.common.utils.spring.SpringUtils;
 import top.reed.system.domain.SysUserOnline;
 import top.reed.system.mapper.SysUserOnlineMapper;
 import top.reed.system.service.ISysUserOnlineService;
@@ -25,9 +26,6 @@ import java.util.List;
 public class SysUserOnlineServiceImpl implements ISysUserOnlineService {
 	@Autowired
 	private SysUserOnlineMapper userOnlineDao;
-
-	@Autowired
-	private EhCacheManager ehCacheManager;
 
 	/**
 	 * 通过会话序号查询信息
@@ -108,6 +106,7 @@ public class SysUserOnlineServiceImpl implements ISysUserOnlineService {
 	 */
 	@Override
 	public void removeUserCache(String loginName, String sessionId) {
+		EhCacheManager ehCacheManager= SpringUtils.getBean(EhCacheManager.class);
 		Cache<String, Deque<Serializable>> cache = ehCacheManager.getCache(ShiroConstants.SYS_USERCACHE);
 		Deque<Serializable> deque = cache.get(loginName);
 		if (StringUtils.isEmpty(deque) || deque.size() == 0) {
