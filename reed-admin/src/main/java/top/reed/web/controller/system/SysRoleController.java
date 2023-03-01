@@ -83,9 +83,9 @@ public class SysRoleController extends BaseController {
 	@PostMapping("/add")
 	@ResponseBody
 	public AjaxResult addSave(@Validated SysRole role) {
-		if (UserConstants.ROLE_NAME_NOT_UNIQUE.equals(roleService.checkRoleNameUnique(role))) {
+		if (roleService.checkRoleNameUnique(role)) {
 			return error("新增角色'" + role.getRoleName() + "'失败，角色名称已存在");
-		} else if (UserConstants.ROLE_KEY_NOT_UNIQUE.equals(roleService.checkRoleKeyUnique(role))) {
+		} else if (roleService.checkRoleKeyUnique(role)) {
 			return error("新增角色'" + role.getRoleName() + "'失败，角色权限已存在");
 		}
 		role.setCreateBy(getLoginName());
@@ -115,9 +115,9 @@ public class SysRoleController extends BaseController {
 	public AjaxResult editSave(@Validated SysRole role) {
 		roleService.checkRoleAllowed(role);
 		roleService.checkRoleDataScope(role.getRoleId());
-		if (UserConstants.ROLE_NAME_NOT_UNIQUE.equals(roleService.checkRoleNameUnique(role))) {
+		if (roleService.checkRoleNameUnique(role)) {
 			return error("修改角色'" + role.getRoleName() + "'失败，角色名称已存在");
-		} else if (UserConstants.ROLE_KEY_NOT_UNIQUE.equals(roleService.checkRoleKeyUnique(role))) {
+		} else if (roleService.checkRoleKeyUnique(role)) {
 			return error("修改角色'" + role.getRoleName() + "'失败，角色权限已存在");
 		}
 		role.setUpdateBy(getLoginName());
@@ -165,7 +165,7 @@ public class SysRoleController extends BaseController {
 	 */
 	@PostMapping("/checkRoleNameUnique")
 	@ResponseBody
-	public String checkRoleNameUnique(SysRole role) {
+	public boolean checkRoleNameUnique(SysRole role) {
 		return roleService.checkRoleNameUnique(role);
 	}
 
@@ -174,7 +174,7 @@ public class SysRoleController extends BaseController {
 	 */
 	@PostMapping("/checkRoleKeyUnique")
 	@ResponseBody
-	public String checkRoleKeyUnique(SysRole role) {
+	public boolean checkRoleKeyUnique(SysRole role) {
 		return roleService.checkRoleKeyUnique(role);
 	}
 

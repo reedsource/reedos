@@ -7,7 +7,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import top.reed.common.annotation.Log;
-import top.reed.common.constant.UserConstants;
 import top.reed.common.core.controller.BaseController;
 import top.reed.common.core.domain.AjaxResult;
 import top.reed.common.core.page.TableDataInfo;
@@ -74,7 +73,7 @@ public class SysConfigController extends BaseController {
 	@PostMapping("/add")
 	@ResponseBody
 	public AjaxResult addSave(@Validated SysConfig config) {
-		if (UserConstants.CONFIG_KEY_NOT_UNIQUE.equals(configService.checkConfigKeyUnique(config))) {
+		if (configService.checkConfigKeyUnique(config)) {
 			return error("新增参数'" + config.getConfigName() + "'失败，参数键名已存在");
 		}
 		config.setCreateBy(getLoginName());
@@ -99,7 +98,7 @@ public class SysConfigController extends BaseController {
 	@PostMapping("/edit")
 	@ResponseBody
 	public AjaxResult editSave(@Validated SysConfig config) {
-		if (UserConstants.CONFIG_KEY_NOT_UNIQUE.equals(configService.checkConfigKeyUnique(config))) {
+		if (configService.checkConfigKeyUnique(config)) {
 			return error("修改参数'" + config.getConfigName() + "'失败，参数键名已存在");
 		}
 		config.setUpdateBy(getLoginName());
@@ -135,7 +134,7 @@ public class SysConfigController extends BaseController {
 	 */
 	@PostMapping("/checkConfigKeyUnique")
 	@ResponseBody
-	public String checkConfigKeyUnique(SysConfig config) {
+	public boolean checkConfigKeyUnique(SysConfig config) {
 		return configService.checkConfigKeyUnique(config);
 	}
 }

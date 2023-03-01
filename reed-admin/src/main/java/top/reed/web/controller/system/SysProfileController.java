@@ -118,10 +118,10 @@ public class SysProfileController extends BaseController {
 		currentUser.setPhonenumber(user.getPhonenumber());
 		currentUser.setSex(user.getSex());
 		if (StringUtils.isNotEmpty(user.getPhonenumber())
-				&& UserConstants.USER_PHONE_NOT_UNIQUE.equals(userService.checkPhoneUnique(currentUser))) {
+				&& userService.checkPhoneUnique(currentUser)) {
 			return error("修改用户'" + currentUser.getLoginName() + "'失败，手机号码已存在");
 		} else if (StringUtils.isNotEmpty(user.getEmail())
-				&& UserConstants.USER_EMAIL_NOT_UNIQUE.equals(userService.checkEmailUnique(currentUser))) {
+				&& userService.checkEmailUnique(currentUser)) {
 			return error("修改用户'" + currentUser.getLoginName() + "'失败，邮箱账号已存在");
 		}
 		if (userService.updateUserInfo(currentUser) > 0) {

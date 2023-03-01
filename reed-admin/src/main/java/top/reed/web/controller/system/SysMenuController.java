@@ -90,7 +90,7 @@ public class SysMenuController extends BaseController {
 	@PostMapping("/add")
 	@ResponseBody
 	public AjaxResult addSave(@Validated SysMenu menu) {
-		if (UserConstants.MENU_NAME_NOT_UNIQUE.equals(menuService.checkMenuNameUnique(menu))) {
+		if (menuService.checkMenuNameUnique(menu)) {
 			return error("新增菜单'" + menu.getMenuName() + "'失败，菜单名称已存在");
 		}
 		menu.setCreateBy(getLoginName());
@@ -116,7 +116,7 @@ public class SysMenuController extends BaseController {
 	@PostMapping("/edit")
 	@ResponseBody
 	public AjaxResult editSave(@Validated SysMenu menu) {
-		if (UserConstants.MENU_NAME_NOT_UNIQUE.equals(menuService.checkMenuNameUnique(menu))) {
+		if (menuService.checkMenuNameUnique(menu)) {
 			return error("修改菜单'" + menu.getMenuName() + "'失败，菜单名称已存在");
 		}
 		menu.setUpdateBy(getLoginName());
@@ -137,7 +137,7 @@ public class SysMenuController extends BaseController {
 	 */
 	@PostMapping("/checkMenuNameUnique")
 	@ResponseBody
-	public String checkMenuNameUnique(SysMenu menu) {
+	public boolean checkMenuNameUnique(SysMenu menu) {
 		return menuService.checkMenuNameUnique(menu);
 	}
 

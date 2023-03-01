@@ -72,7 +72,7 @@ public class SysDictTypeController extends BaseController {
 	@PostMapping("/add")
 	@ResponseBody
 	public AjaxResult addSave(@Validated SysDictType dict) {
-		if (UserConstants.DICT_TYPE_NOT_UNIQUE.equals(dictTypeService.checkDictTypeUnique(dict))) {
+		if (dictTypeService.checkDictTypeUnique(dict)) {
 			return error("新增字典'" + dict.getDictName() + "'失败，字典类型已存在");
 		}
 		dict.setCreateBy(getLoginName());
@@ -97,7 +97,7 @@ public class SysDictTypeController extends BaseController {
 	@PostMapping("/edit")
 	@ResponseBody
 	public AjaxResult editSave(@Validated SysDictType dict) {
-		if (UserConstants.DICT_TYPE_NOT_UNIQUE.equals(dictTypeService.checkDictTypeUnique(dict))) {
+		if (dictTypeService.checkDictTypeUnique(dict)) {
 			return error("修改字典'" + dict.getDictName() + "'失败，字典类型已存在");
 		}
 		dict.setUpdateBy(getLoginName());
@@ -141,7 +141,7 @@ public class SysDictTypeController extends BaseController {
 	 */
 	@PostMapping("/checkDictTypeUnique")
 	@ResponseBody
-	public String checkDictTypeUnique(SysDictType dictType) {
+	public boolean checkDictTypeUnique(SysDictType dictType) {
 		return dictTypeService.checkDictTypeUnique(dictType);
 	}
 

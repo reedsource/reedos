@@ -118,13 +118,13 @@ public class SysUserController extends BaseController {
 	@PostMapping("/add")
 	@ResponseBody
 	public AjaxResult addSave(@Validated SysUser user) {
-		if (UserConstants.USER_NAME_NOT_UNIQUE.equals(userService.checkLoginNameUnique(user))) {
+		if (userService.checkLoginNameUnique(user)) {
 			return error("新增用户'" + user.getLoginName() + "'失败，登录账号已存在");
 		} else if (StringUtils.isNotEmpty(user.getPhonenumber())
-				&& UserConstants.USER_PHONE_NOT_UNIQUE.equals(userService.checkPhoneUnique(user))) {
+				&& userService.checkPhoneUnique(user)) {
 			return error("新增用户'" + user.getLoginName() + "'失败，手机号码已存在");
 		} else if (StringUtils.isNotEmpty(user.getEmail())
-				&& UserConstants.USER_EMAIL_NOT_UNIQUE.equals(userService.checkEmailUnique(user))) {
+				&& userService.checkEmailUnique(user)) {
 			return error("新增用户'" + user.getLoginName() + "'失败，邮箱账号已存在");
 		}
 		user.setSalt(ShiroUtils.randomSalt());
@@ -158,13 +158,13 @@ public class SysUserController extends BaseController {
 	public AjaxResult editSave(@Validated SysUser user) {
 		userService.checkUserAllowed(user);
 		userService.checkUserDataScope(user.getUserId());
-		if (UserConstants.USER_NAME_NOT_UNIQUE.equals(userService.checkLoginNameUnique(user))) {
+		if (userService.checkLoginNameUnique(user)) {
 			return error("修改用户'" + user.getLoginName() + "'失败，登录账号已存在");
 		} else if (StringUtils.isNotEmpty(user.getPhonenumber())
-				&& UserConstants.USER_PHONE_NOT_UNIQUE.equals(userService.checkPhoneUnique(user))) {
+				&& userService.checkPhoneUnique(user)) {
 			return error("修改用户'" + user.getLoginName() + "'失败，手机号码已存在");
 		} else if (StringUtils.isNotEmpty(user.getEmail())
-				&& UserConstants.USER_EMAIL_NOT_UNIQUE.equals(userService.checkEmailUnique(user))) {
+				&& userService.checkEmailUnique(user)) {
 			return error("修改用户'" + user.getLoginName() + "'失败，邮箱账号已存在");
 		}
 		user.setUpdateBy(getLoginName());
@@ -240,7 +240,7 @@ public class SysUserController extends BaseController {
 	 */
 	@PostMapping("/checkLoginNameUnique")
 	@ResponseBody
-	public String checkLoginNameUnique(SysUser user) {
+	public boolean checkLoginNameUnique(SysUser user) {
 		return userService.checkLoginNameUnique(user);
 	}
 
@@ -249,7 +249,7 @@ public class SysUserController extends BaseController {
 	 */
 	@PostMapping("/checkPhoneUnique")
 	@ResponseBody
-	public String checkPhoneUnique(SysUser user) {
+	public boolean checkPhoneUnique(SysUser user) {
 		return userService.checkPhoneUnique(user);
 	}
 
@@ -258,7 +258,7 @@ public class SysUserController extends BaseController {
 	 */
 	@PostMapping("/checkEmailUnique")
 	@ResponseBody
-	public String checkEmailUnique(SysUser user) {
+	public boolean checkEmailUnique(SysUser user) {
 		return userService.checkEmailUnique(user);
 	}
 

@@ -1133,7 +1133,7 @@ public class ExcelUtil<T> {
 	 * 编码文件名
 	 */
 	public String encodingFilename(String filename) {
-		filename = UUID.randomUUID().toString() + "_" + filename + ".xlsx";
+		filename = UUID.randomUUID() + "_" + filename + ".xlsx";
 		return filename;
 	}
 
