@@ -3,12 +3,10 @@ package top.reed.framework.aspectj;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.support.spring.PropertyPreFilters;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.NamedThreadLocal;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
@@ -41,11 +39,19 @@ public class LogAspect {
 	public static final String[] EXCLUDE_PROPERTIES = {"password", "oldPassword", "newPassword", "confirmPassword"};
 	private static final Logger log = LoggerFactory.getLogger(LogAspect.class);
 
-	// 配置织入点
-	@Pointcut("@annotation(top.reed.common.annotation.Log)")
-	public void logPointCut() {
-		//信息织入,方法为空
+	/**
+	 * 计算操作消耗时间
+	 */
+	private static final ThreadLocal<Long> TIME_THREADLOCAL = new NamedThreadLocal<Long>("Cost Time");
+
+	/**
+	 * 处理请求前执行
+	 */
+	@Before(value = "@annotation(controllerLog)")
+	public void boBefore(JoinPoint joinPoint, Log controllerLog) {
+		TIME_THREADLOCAL.set(System.currentTimeMillis());
 	}
+
 
 	/**
 	 * 处理完请求后执行
@@ -100,6 +106,8 @@ public class LogAspect {
 			operLog.setRequestMethod(ServletUtils.getRequest().getMethod());
 			// 处理设置注解上的参数
 			getControllerMethodDescription(joinPoint, controllerLog, operLog, jsonResult);
+			// 设置消耗时间
+			operLog.setCostTime(System.currentTimeMillis() - TIME_THREADLOCAL.get());
 			// 执行任务 记录日志
 			AsyncManager.me().execute(AsyncFactory.recordOper(operLog));
 		} catch (Exception exp) {
@@ -107,6 +115,8 @@ public class LogAspect {
 			log.error("==前置通知异常==");
 			log.error("异常信息:{}", exp.getMessage());
 			exp.printStackTrace();
+		} finally {
+			TIME_THREADLOCAL.remove();
 		}
 	}
 

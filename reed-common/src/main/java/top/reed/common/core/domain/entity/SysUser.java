@@ -265,7 +265,7 @@ public class SysUser extends BaseEntity {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	@JsonIgnore
 	public String getSalt() {
 		return salt;
 	}
