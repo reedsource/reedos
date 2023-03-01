@@ -12,6 +12,7 @@ import top.reed.common.exception.user.*;
 import top.reed.common.utils.*;
 import top.reed.framework.manager.AsyncManager;
 import top.reed.framework.manager.factory.AsyncFactory;
+import top.reed.system.service.ISysConfigService;
 import top.reed.system.service.ISysMenuService;
 import top.reed.system.service.ISysUserService;
 
@@ -33,6 +34,9 @@ public class SysLoginService {
 
 	@Autowired
 	private ISysMenuService menuService;
+
+	@Autowired
+	private ISysConfigService configService;
 
 	/**
 	 * 登录
@@ -60,6 +64,12 @@ public class SysLoginService {
 				|| username.length() > UserConstants.USERNAME_MAX_LENGTH) {
 			AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_FAIL, MessageUtils.message("user.password.not.match")));
 			throw new UserPasswordNotMatchException();
+		}
+		// IP黑名单校验
+		String blackStr = configService.selectConfigByKey("sys.login.blackIPList");
+		if (IpUtils.isMatchedIp(blackStr, ShiroUtils.getIp())) {
+			AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_FAIL, MessageUtils.message("login.blocked")));
+			throw new BlackListException();
 		}
 
 		// 查询用户信息
