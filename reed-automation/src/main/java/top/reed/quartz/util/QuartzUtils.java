@@ -122,6 +122,8 @@ public class QuartzUtils {
 			return StringUtils.containsAnyIgnoreCase(invokeTarget, Constants.JOB_WHITELIST_STR);
 		}
 		Object obj = SpringUtils.getBean(StringUtils.split(invokeTarget, ".")[0]);
-		return StringUtils.containsAnyIgnoreCase(obj.getClass().getPackage().getName(), Constants.JOB_WHITELIST_STR);
+		String beanPackageName = obj.getClass().getPackage().getName();
+		//查找指定字符串是否包含指定字符串列表中的任意一个字符串同时串忽略大小写
+		return StringUtils.containsAnyIgnoreCase(beanPackageName, Constants.JOB_WHITELIST_STR) && !StringUtils.containsAnyIgnoreCase(beanPackageName, Constants.JOB_ERROR_STR);
 	}
 }
