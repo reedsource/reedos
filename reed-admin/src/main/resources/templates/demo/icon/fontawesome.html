@@ -1,13 +1,43 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <th:block th:include="include :: header('fontawesome图标')" />
+    <th:block th:include="include :: header('fontawesome图标')"/>
     <style type="text/css">
-        .fontawesome-icon-list .fa-hover{cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block;color:#222222;line-height:32px;height:32px;padding-left:10px;border-radius:4px;}
-        .fontawesome-icon-list .fa-hover .fa{width:32px;font-size:14px;display:inline-block;text-align:right;margin-right:10px}
-        .fontawesome-icon-list .fa-hover:hover{background-color:#1d9d74;color:#fff;text-decoration:none}
-        .fontawesome-icon-list .fa-hover:hover .fa{font-size:30px !important;vertical-align:-6px}
-        .fontawesome-icon-list .fa-hover .text-muted{color:#bbe2d5}
+        .fontawesome-icon-list .fa-hover {
+            cursor: pointer;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: block;
+            color: #222222;
+            line-height: 32px;
+            height: 32px;
+            padding-left: 10px;
+            border-radius: 4px;
+        }
+
+        .fontawesome-icon-list .fa-hover .fa {
+            width: 32px;
+            font-size: 14px;
+            display: inline-block;
+            text-align: right;
+            margin-right: 10px
+        }
+
+        .fontawesome-icon-list .fa-hover:hover {
+            background-color: #1d9d74;
+            color: #fff;
+            text-decoration: none
+        }
+
+        .fontawesome-icon-list .fa-hover:hover .fa {
+            font-size: 30px !important;
+            vertical-align: -6px
+        }
+
+        .fontawesome-icon-list .fa-hover .text-muted {
+            color: #bbe2d5
+        }
     </style>
 </head>
 <body class="gray-bg">
@@ -1049,6 +1079,6 @@
         </div>
     </div>
 </div>
-<th:block th:include="include :: footer" />
+<th:block th:include="include :: footer"/>
 </body>
 </html>
