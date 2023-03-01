@@ -2,6 +2,7 @@ package top.reed.common.core.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -52,7 +53,9 @@ public class BaseEntity implements Serializable {
 
 	/**
 	 * 请求参数
+	 * JsonInclude NON_EMPTY表示仅包含具有空值的数据被视为空属性
 	 */
+	@JsonInclude(JsonInclude.Include.NON_EMPTY)
 	private Map<String, Object> params;
 
 	public String getSearchValue() {
