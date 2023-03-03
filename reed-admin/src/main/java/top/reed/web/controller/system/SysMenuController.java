@@ -7,7 +7,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import top.reed.common.annotation.Log;
-import top.reed.common.constant.UserConstants;
 import top.reed.common.core.controller.BaseController;
 import top.reed.common.core.domain.AjaxResult;
 import top.reed.common.core.domain.Ztree;

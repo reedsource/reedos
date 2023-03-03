@@ -112,14 +112,6 @@
 		</foreach>
 	</select>
 
-	<select id="selectTableByName" parameterType="String" resultMap="GenTableResult">
-		select table_name, table_comment, create_time, update_time
-		from information_schema.tables
-		where table_comment <![CDATA[ <> ]]> ''
-		  and table_schema = (select database())
-		  and table_name = #{tableName}
-	</select>
-
 	<select id="selectGenTableById" parameterType="Long" resultMap="GenTableResult">
 		SELECT t.table_id,
 		       t.table_name,
