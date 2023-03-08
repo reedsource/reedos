@@ -272,6 +272,18 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/ajax/**", "anon");
 		filterChainDefinitionMap.put("/js/**", "anon");
 		filterChainDefinitionMap.put("/ruoyi/**", "anon");
+
+
+		//公共模块
+		//reed-blog博客
+		filterChainDefinitionMap.put("/blog/**", "anon");
+		//reed-cms
+		filterChainDefinitionMap.put("/images/**", "anon");
+		filterChainDefinitionMap.put("/loginPage/**", "anon");
+		filterChainDefinitionMap.put("/public/**", "anon");
+
+		//filterChainDefinitionMap.put("/", "anon");
+
 		//验证码
 		filterChainDefinitionMap.put("/captcha/**", "anon");
 		// 退出 logout地址，shiro去清除session

@@ -1,29 +1,33 @@
 package top.reed.common.utils;
 
-import org.springframework.web.context.request.RequestAttributes;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import top.reed.common.constant.Constants;
 import top.reed.common.core.text.Convert;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 客户端工具类
  *
  * @author reedsource
  */
-public class ServletUtils {
+public enum ServletUtils {
+	;
+
+	public static final String WINDOWS_NT = "Windows NT";
+	private static final Logger log = LoggerFactory.getLogger(ServletUtils.class);
 	/**
 	 * 定义移动端请求的所有可能类型
 	 */
-	private final static String[] agent = {"Android", "iPhone", "iPod", "iPad", "Windows Phone", "MQQBrowser"};
+	private static final String[] agent = {"Android", "iPhone", "iPod", "iPad", "Windows Phone", "MQQBrowser"};
 
 	/**
 	 * 获取String参数
@@ -33,38 +37,10 @@ public class ServletUtils {
 	}
 
 	/**
-	 * 获取String参数
-	 */
-	public static String getParameter(String name, String defaultValue) {
-		return Convert.toStr(getRequest().getParameter(name), defaultValue);
-	}
-
-	/**
-	 * 获取Integer参数
-	 */
-	public static Integer getParameterToInt(String name) {
-		return Convert.toInt(getRequest().getParameter(name));
-	}
-
-	/**
-	 * 获取Integer参数
-	 */
-	public static Integer getParameterToInt(String name, Integer defaultValue) {
-		return Convert.toInt(getRequest().getParameter(name), defaultValue);
-	}
-
-	/**
 	 * 获取Boolean参数
 	 */
 	public static Boolean getParameterToBool(String name) {
 		return Convert.toBool(getRequest().getParameter(name));
-	}
-
-	/**
-	 * 获取Boolean参数
-	 */
-	public static Boolean getParameterToBool(String name, Boolean defaultValue) {
-		return Convert.toBool(getRequest().getParameter(name), defaultValue);
 	}
 
 	/**
@@ -89,8 +65,7 @@ public class ServletUtils {
 	}
 
 	public static ServletRequestAttributes getRequestAttributes() {
-		RequestAttributes attributes = RequestContextHolder.getRequestAttributes();
-		return (ServletRequestAttributes) attributes;
+		return (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 	}
 
 	/**
@@ -106,7 +81,7 @@ public class ServletUtils {
 			response.setCharacterEncoding("utf-8");
 			response.getWriter().print(string);
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error("将字符串渲染到客户端", e);
 		}
 		return null;
 	}
@@ -114,7 +89,7 @@ public class ServletUtils {
 	/**
 	 * 是否是Ajax异步请求
 	 *
-	 * @param request
+	 * @param request request
 	 */
 	public static boolean isAjaxRequest(HttpServletRequest request) {
 		String accept = request.getHeader("accept");
@@ -128,12 +103,12 @@ public class ServletUtils {
 		}
 
 		String uri = request.getRequestURI();
-		if (StringUtils.inStringIgnoreCase(uri, ".json", ".xml")) {
+		if (RStringUtils.inStringIgnoreCase(uri, ".json", ".xml")) {
 			return true;
 		}
 
 		String ajax = request.getParameter("__ajax");
-		return StringUtils.inStringIgnoreCase(ajax, "json", "xml");
+		return RStringUtils.inStringIgnoreCase(ajax, "json", "xml");
 	}
 
 	/**
@@ -141,14 +116,12 @@ public class ServletUtils {
 	 */
 	public static boolean checkAgentIsMobile(String ua) {
 		boolean flag = false;
-		if (!ua.contains("Windows NT") || (ua.contains("Windows NT") && ua.contains("compatible; MSIE 9.0;"))) {
-			// 排除 苹果桌面系统
-			if (!ua.contains("Windows NT") && !ua.contains("Macintosh")) {
-				for (String item : agent) {
-					if (ua.contains(item)) {
-						flag = true;
-						break;
-					}
+		// 排除 苹果桌面系统
+		if ((!ua.contains(WINDOWS_NT) || (ua.contains(WINDOWS_NT) && ua.contains("compatible; MSIE 9.0;"))) && (!ua.contains(WINDOWS_NT) && !ua.contains("Macintosh"))) {
+			for (String item : agent) {
+				if (ua.contains(item)) {
+					flag = true;
+					break;
 				}
 			}
 		}
@@ -156,30 +129,24 @@ public class ServletUtils {
 	}
 
 	/**
-	 * 内容编码
+	 * 返回包含此请求中包含的参数名称的String对象的Enumeration
 	 *
-	 * @param str 内容
-	 * @return 编码后的内容
+	 * @param req 请求对象
+	 * @return 请求对象集
 	 */
-	public static String urlEncode(String str) {
-		try {
-			return URLEncoder.encode(str, Constants.UTF8);
-		} catch (UnsupportedEncodingException e) {
-			return StringUtils.EMPTY;
+	public static Map<String, String> getMap(HttpServletRequest req) {
+		Map<String, String> map = new HashMap<>();
+		Enumeration<String> enu = req.getParameterNames();
+		while (enu.hasMoreElements()) {
+			String paramName = enu.nextElement();
+			String[] paramValues = req.getParameterValues(paramName);
+			if (paramValues.length == 1) {
+				String paramValue = paramValues[0];
+				if (paramValue.length() != 0) {
+					map.put(paramName, paramValue);
+				}
+			}
 		}
-	}
-
-	/**
-	 * 内容解码
-	 *
-	 * @param str 内容
-	 * @return 解码后的内容
-	 */
-	public static String urlDecode(String str) {
-		try {
-			return URLDecoder.decode(str, Constants.UTF8);
-		} catch (UnsupportedEncodingException e) {
-			return StringUtils.EMPTY;
-		}
+		return map;
 	}
 }

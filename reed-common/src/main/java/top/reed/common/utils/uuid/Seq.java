@@ -1,28 +1,29 @@
 package top.reed.common.utils.uuid;
 
-import top.reed.common.utils.DateUtils;
-import top.reed.common.utils.StringUtils;
+import top.reed.common.utils.RDateUtils;
+import top.reed.common.utils.RStringUtils;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author reedsource 序列生成类
  */
-public class Seq {
+public enum Seq {
+	;
 	// 通用序列类型
-	public static final String commSeqType = "COMMON";
+	public static final String COMM_SEQ_TYPE = "COMMON";
 
 	// 上传序列类型
-	public static final String uploadSeqType = "UPLOAD";
+	public static final String UPLOAD_SEQ_TYPE = "UPLOAD";
 
 	// 通用接口序列数
-	private static AtomicInteger commSeq = new AtomicInteger(1);
+	private static final AtomicInteger commSeq = new AtomicInteger(1);
 
 	// 上传接口序列数
-	private static AtomicInteger uploadSeq = new AtomicInteger(1);
+	private static final AtomicInteger uploadSeq = new AtomicInteger(1);
 
 	// 机器标识
-	private static final String machineCode = "A";
+	private static final String MACHINE_CODE = "A";
 
 	/**
 	 * 获取通用序列号
@@ -30,7 +31,7 @@ public class Seq {
 	 * @return 序列值
 	 */
 	public static String getId() {
-		return getId(commSeqType);
+		return getId(COMM_SEQ_TYPE);
 	}
 
 	/**
@@ -40,7 +41,7 @@ public class Seq {
 	 */
 	public static String getId(String type) {
 		AtomicInteger atomicInt = commSeq;
-		if (uploadSeqType.equals(type)) {
+		if (UPLOAD_SEQ_TYPE.equals(type)) {
 			atomicInt = uploadSeq;
 		}
 		return getId(atomicInt, 3);
@@ -54,8 +55,8 @@ public class Seq {
 	 * @return 序列值
 	 */
 	public static String getId(AtomicInteger atomicInt, int length) {
-		String result = DateUtils.dateTimeNow();
-		result += machineCode;
+		String result = RDateUtils.dateTimeNow();
+		result += MACHINE_CODE;
 		result += getSeq(atomicInt, length);
 		return result;
 	}
@@ -65,7 +66,7 @@ public class Seq {
 	 *
 	 * @return 序列值
 	 */
-	private synchronized static String getSeq(AtomicInteger atomicInt, int length) {
+	private static synchronized String getSeq(AtomicInteger atomicInt, int length) {
 		// 先取值再+1
 		int value = atomicInt.getAndIncrement();
 
@@ -75,6 +76,6 @@ public class Seq {
 			atomicInt.set(1);
 		}
 		// 转字符串，用0左补齐
-		return StringUtils.padl(value, length);
+		return RStringUtils.padl(value, length);
 	}
 }

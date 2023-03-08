@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('修改素材专辑')"/>
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-album-edit" th:object="${album}">
+        <input name="albumId" th:field="*{albumId}" type="hidden">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">相册名称：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="albumName" required th:field="*{albumName}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">编码：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="code" required th:field="*{code}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">相册类型：</label>
+            <div class="col-sm-8">
+                <div class="radio-box" th:each="dict : ${@dict.getType('album_type')}">
+                    <input name="albumType" th:field="*{albumType}" th:id="${'albumType_' + dict.dictCode}"
+                           th:value="${dict.dictValue}" type="radio">
+                    <label th:for="${'albumType_' + dict.dictCode}" th:text="${dict.dictLabel}"></label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">宽度：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="width" th:field="*{width}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">高度：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="height" th:field="*{height}" type="text">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">描述：</label>
+            <div class="col-sm-8">
+                <textarea class="form-control" name="description">[[*{description}]]</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">审核状态：</label>
+            <div class="col-sm-8">
+                <div class="radio-box" th:each="dict : ${@dict.getType('audit_state')}">
+                    <input name="auditState" th:field="*{auditState}" th:id="${'auditState_' + dict.dictCode}"
+                           th:value="${dict.dictValue}" type="radio">
+                    <label th:for="${'auditState_' + dict.dictCode}" th:text="${dict.dictLabel}"></label>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<th:block th:include="include :: footer"/>
+<script type="text/javascript">
+    var prefix = ctx + "cms/album";
+    $("#form-album-edit").validate({
+        focusCleanup: true
+    });
+
+    function submitHandler() {
+        if ($.validate.form()) {
+            $.operate.save(prefix + "/edit", $('#form-album-edit').serialize());
+        }
+    }
+</script>
+</body>
+</html>

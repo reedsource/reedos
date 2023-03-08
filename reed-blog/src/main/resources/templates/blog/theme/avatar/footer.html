@@ -1,0 +1,46 @@
+<!-- footer -->
+<div class="commonFooterGrid layoutHide">
+
+    <div class="baseGroup w1200">
+        <div class="footerGrid">
+            <div class="menuGroup">
+                <span class="item"><a th:href="@{/blog}">首页</a></span>
+                <span class="item">
+                    <a th:class="${categoryId=='category'? 'current':''}" th:href="@{/blog/category}">文章分类</a>
+        		</span>
+                <span class="item">
+                    <a th:href="@{/blog/resource/list?pageSize=6}">资源</a>
+        		</span>
+                <span class="item">
+                    <a th:class="${categoryId=='nav'? 'current':''}" th:href="@{/blog/nav}">导航</a>
+        		</span>
+                <span class="item">
+                    <a th:href="@{/blog/siteMsg}">留言</a>
+        		</span>
+
+            </div>
+            <!-- copyright -->
+            <div class="copyright">
+                <p>骄傲的使用了轻量级开源内容管理系统 <a target="_blank"
+                                                         th:href="${@config.getKey('site.url')}">ReedOS</a></p>
+            </div>
+        </div>
+        <div class="otherGrid">
+            <p><span style="padding-right:20px;">Copyright © [[${#dates.format(new java.util.Date().getTime(), 'yyyy')}]].[[${@config.getKey('site.name')}]] 版权所有 技术支持 <a
+                    style="color: #888;" target="_blank" th:href="${@config.getKey('site.url')}"
+                    title="ReedOS综合信息助理系统">ReedOS</a>.</span>
+                <span>[[${@config.getKey('site.beian')}]]</span>
+            </p>
+
+        </div>
+    </div>
+
+</div>
+<!-- / footer -->
+
+<!-- fixedWidget -->
+<div class="fixedWidget layoutHide">
+    <a class="mail" href="#" rel="nofollow" target="_blank" title="联系我"></a>
+    <a class="top backTop" href="#" rel="nofollow" title="返回顶部"></a>
+</div>
+<script th:src="@{/blog/avatar/js/dgy.index.js}"></script>

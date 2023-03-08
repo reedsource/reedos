@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import top.reed.cms.util.CmsConstants;
 import top.reed.common.core.controller.BaseController;
 import top.reed.common.core.domain.AjaxResult;
 import top.reed.common.core.text.Convert;
@@ -18,6 +19,7 @@ import top.reed.common.utils.ShiroUtils;
 import top.reed.common.utils.StringUtils;
 import top.reed.common.utils.security.RsaUtils;
 import top.reed.framework.web.service.ConfigService;
+import top.reed.system.service.ISysConfigService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,7 +39,13 @@ public class SysLoginController extends BaseController {
 
 	@Autowired
 	private ConfigService configService;
+	@Autowired
+	private ISysConfigService iSysConfigService;
 
+	/**
+	 * @param mmap 数据
+	 * @return 登陆页面
+	 */
 	@GetMapping("/login")
 	public String login(HttpServletRequest request, HttpServletResponse response, ModelMap mmap) {
 		// 如果是Ajax请求，返回Json字符串。
@@ -61,7 +69,15 @@ public class SysLoginController extends BaseController {
 			return redirect("/index");
 		}
 
-		return "login";
+		String loginPageCode = iSysConfigService.selectConfigByKey(CmsConstants.KEY_LOGIN_PAGE);
+
+		if ("默认".equals(loginPageCode)) {
+			return "login";
+		}else{
+			//配置了login.page参数
+			//页面在cms模块loginPage文件夹下
+			return "loginPage/" + loginPageCode + "/login";
+		}
 	}
 
 	@PostMapping("/login")

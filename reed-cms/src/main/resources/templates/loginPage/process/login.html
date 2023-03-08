@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport">
+
+    <title>登录ReedOS系统</title>
+    <meta content="登录ReedOS系统" name="description">
+    <link rel="shortcut icon" th:href="@{favicon.ico}"/>
+    <script>
+        if (window.top !== window.self) {
+            window.top.location = window.location
+        }
+
+    </script>
+    <style>
+        body, html {
+            color: #000;
+            margin: 0;
+            overflow: hidden;
+            font: 400 13px arial, Microsoft Yahei !important
+        }
+
+        a {
+            font-size: inherit;
+            text-decoration: none;
+            color: #666;
+            cursor: pointer
+        }
+
+        .txt {
+            width: 90%;
+            padding: 4px 20px;
+            border-radius: 22px;
+            border: solid 1px #ccc;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            height: 3.6em;
+            outline: 0
+        }
+
+        .txt:focus {
+            border-color: #4386f5
+        }
+
+        .button {
+            background: #4386f5;
+            color: #fff;
+            padding: 6px 0;
+            height: 25px;
+            line-height: 25px;
+            border-radius: 5px;
+            width: 90%;
+            border-radius: 22px;
+            display: inline-block;
+            cursor: pointer
+        }
+
+        .page-con {
+            text-align: center;
+            width: 400px;
+            margin: 0 auto;
+            height: 362px;
+            position: absolute;
+            top: 50%;
+            margin-top: -181px;
+            left: 50%;
+            margin-left: -200px;
+            background-color: #fff;
+            padding: 27px;
+            border-radius: 5px;
+            border: 1px solid #e8e1e1;
+        }
+
+        .page-con .sep {
+            border-top: 1px solid #ddd;
+            height: 20px;
+            text-align: center
+        }
+
+        .page-con label {
+            color: #666;
+            display: inline-block;
+            padding: 0 10px;
+        }
+
+        .page-con .signup {
+            font-size: 12px;
+            margin-top: 19px;
+            color: #666;
+            text-align: left;
+            padding-left: 26px
+        }
+
+        .page-con .signup a {
+            color: #333
+        }
+
+        #bg-canvas {
+            position: absolute;
+            z-index: -1
+        }
+
+        #logo-text {
+            display: inline-block;
+            margin-left: 8px;
+            font-size: 35px;
+            vertical-align: 7px;
+            font-family: arial;
+            height: 60px;
+            text-shadow: 1px 1px 2px #bbb inset
+        }
+
+        #logo-text .logo-dot {
+            width: 68px;
+            height: 6px;
+            display: inline-block;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -34px;
+            margin-top: -3px;
+            display: none
+        }
+
+        #logo-text .logo-dot:after {
+            width: 6px;
+            background: #4386f5;
+            height: 6px;
+            display: inline-block;
+            position: absolute;
+            right: -4px;
+            border-radius: 50%;
+            content: ""
+        }
+
+        #logo-text label {
+            display: inline-block;
+            background: #4386f5;
+            border-radius: 50%;
+            color: #fff;
+            padding: 11px 8px;
+            margin-left: 6px;
+            position: relative;
+            box-shadow: 1px 1px 6px #ccc
+        }
+
+        .login-input {
+            position: relative
+        }
+
+        .login-input a {
+            position: absolute;
+            right: 33px;
+            top: 13px;
+            width: auto;
+            height: 20px;
+            line-height: 20px;
+            text-align: right;
+            color: #888;
+            z-index: 1
+        }
+
+
+        .error-tip {
+            height: 30px;
+            line-height: 30px;
+            position: absolute;
+            right: 32px;
+            color: red;
+            bottom: 6px;
+            font-size: 12px;
+            z-index: 2;
+            background: #fff
+        }
+
+
+        .morelogo-con > span {
+            display: block;
+            font-size: 13px;
+            color: #3d474d
+        }
+
+        .morelogo-con .mingdao {
+            display: inline-block;
+            vertical-align: middle;
+            background-position: 0 -257px;
+            background-size: 44px;
+            margin-right: 11px
+        }
+
+        @-webkit-keyframes rotate {
+            from {
+                -webkit-transform: rotate(0)
+            }
+            to {
+                -webkit-transform: rotate(360deg)
+            }
+        }
+
+        @-moz-keyframes rotate {
+            from {
+                -moz-transform: rotate(0)
+            }
+            to {
+                -moz-transform: rotate(360deg)
+            }
+        }
+
+        @-ms-keyframes rotate {
+            from {
+                -ms-transform: rotate(0)
+            }
+            to {
+                -ms-transform: rotate(360deg)
+            }
+        }
+
+        @-o-keyframes rotate {
+            from {
+                -o-transform: rotate(0)
+            }
+            to {
+                -o-transform: rotate(360deg)
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0)
+            }
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+
+        .bind .button, .bind .txt {
+            width: 55%
+        }
+
+        .bind #logo-text {
+            vertical-align: -7px
+        }
+
+        .bind .icons {
+            background: url(/resources/images/login_processon.png) no-repeat;
+            display: inline-block;
+            width: 74px;
+            height: 74px;
+            vertical-align: top
+        }
+
+        .bind .icons.weixin {
+            background-position: 0 0;
+            background-size: 70px;
+            width: 70px;
+            height: 68px
+        }
+
+        .bind .icons.qq {
+            background-position: 0 -141px;
+            background-size: 70px;
+            width: 70px;
+            height: 68px
+        }
+
+        .bind .icons.weibo {
+            background-position: 0 -211px;
+            background-size: 70px;
+            width: 70px;
+            height: 68px
+        }
+
+        .bind .icons.google {
+            background-position: 0 -73px;
+            background-size: 70px;
+            width: 70px;
+            height: 68px
+        }
+
+        @media screen and (max-width: 760px) {
+            .page-con {
+                width: 100%;
+                left: 0;
+                margin-left: 0
+            }
+        }
+    </style>
+</head>
+
+<body>
+<canvas height="590" id="bg-canvas" width="1280"></canvas>
+<div class="page-con">
+    <form id="loginform" name="loginform">
+        <input id="redirectUrl" name="redirectUrl" type="hidden" value="${redirectUrl}">
+        <div><span id="logo-text">ReedOS后台管理系统</span></div>
+
+        <div style="margin-top:25px;position:relative;">
+            <input class="txt" id="username" name="username" placeholder="用户名/邮箱" type="text" value="admin">
+            <div class="error-tip"></div>
+        </div>
+        <div class="login-input" style="margin-top:20px;position:relative;">
+            <input class="txt" id="password" name="password" placeholder="密码" type="password" value="admin123">
+            <a href="/forget">忘记密码</a>
+            <div class="error-tip"></div>
+        </div>
+
+        <div style="margin-top:25px;position:relative;" th:if="${captchaEnabled==true}">
+            <input class="txt" id="validateCode" name="validateCode" placeholder="验证码"
+                   style="float: left;margin-left: 20px;width: 230px;" type="text"/>
+
+            <a href="javascript:void(0);" title="点击更换验证码">
+                <img class="radius imgcode" height="30" style="position:absolute;right:40px;top:7px;"
+                     th:src="@{captcha/captchaImage(type=${captchaType})}" width="100"/>
+            </a>
+            <div class="error-tip"
+                 style="display: inline-block;float: left;position: relative;top:10px;right: 150px;"></div>
+        </div>
+        <div style="clear:both;"></div>
+        <div style="margin-top:20px;">
+            <span class="button" id="signin_btn" onclick="login.login();">立即登录</span>
+        </div>
+        <div class="signup"><a href="/reg">注册</a> <label for="rememberMe"
+                                                           style="float:right;margin-right: 15px;color:#000;"><input
+                id="rememberMe" name="rememberMe" type="checkbox">记住密码</label></div>
+    </form>
+</div>
+
+<script th:inline="javascript"> var ctx = [[@{/}]]; var captchaType = [[${captchaType}]];var captchaEnabled= [[${captchaEnabled}]]; </script>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/ajax/libs/layer/layer.js}"></script>
+<script th:src="@{/ajax/libs/blockUI/jquery.blockUI.js}"></script>
+<script th:src="@{/ruoyi/js/ry-ui.js?v=4.1.0}"></script>
+<script th:src="@{/loginPage/process/canvasBg.js}"></script>
+<script th:src="@{/loginPage/process/common.js}"></script>
+<script th:src="@{/loginPage/process/login.js}"></script>
+
+
+<script type="text/javascript">
+    $(function () {
+        //绘制背景
+        canvasBg.init();
+    })
+</script>
+
+</body>
+</html>
