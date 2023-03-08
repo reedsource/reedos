@@ -8,7 +8,7 @@ create table reedos.sys_user_role
     comment '用户和角色关联表';
 
 insert into reedos.sys_user_role (user_id, role_id)
-values  (1, 1),
-        (2, 2),
-        (3, 3),
-        (4, 4);
+values (1, 1),
+       (2, 2),
+       (3, 3),
+       (4, 4);

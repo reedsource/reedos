@@ -20,6 +20,6 @@ create table reedos.auto_job
     comment '定时任务调度表';
 
 insert into reedos.auto_job (job_id, job_name, job_group, job_type, invoke_target, cron_expression, misfire_policy, concurrent, status, create_by, create_time, update_by, update_time, remark)
-values  (1, '系统默认（无参）', 'DEFAULT', '1', 'ryTask.ryNoParams', '0/10 * * * * ?', '3', '1', '1', 'admin', '2023-03-07 17:10:32', '', null, ''),
-        (2, '系统默认（有参）', 'DEFAULT', '1', 'ryTask.ryParams(''ry'')', '0/15 * * * * ?', '3', '1', '1', 'admin', '2023-03-07 17:10:32', '', null, ''),
-        (3, '系统默认（多参）', 'DEFAULT', '1', 'ryTask.ryMultipleParams(''ry'', true, 2000L, 316.50D, 100)', '0/20 * * * * ?', '3', '1', '1', 'admin', '2023-03-07 17:10:32', '', null, '');
+values (1, '系统默认（无参）', 'DEFAULT', '1', 'ryTask.ryNoParams', '0/10 * * * * ?', '3', '1', '1', 'admin', '2023-03-07 17:10:32', '', null, ''),
+       (2, '系统默认（有参）', 'DEFAULT', '1', 'ryTask.ryParams(''ry'')', '0/15 * * * * ?', '3', '1', '1', 'admin', '2023-03-07 17:10:32', '', null, ''),
+       (3, '系统默认（多参）', 'DEFAULT', '1', 'ryTask.ryMultipleParams(''ry'', true, 2000L, 316.50D, 100)', '0/20 * * * * ?', '3', '1', '1', 'admin', '2023-03-07 17:10:32', '', null, '');

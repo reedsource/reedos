@@ -16,6 +16,6 @@ create table reedos.sys_post
     comment '岗位信息表';
 
 insert into reedos.sys_post (post_id, post_code, post_name, post_sort, status, create_by, create_time, update_by, update_time, remark)
-values  (1, 'ceo', '系统管理', 1, '0', 'admin', '2023-03-07 17:10:31', '', null, ''),
-        (2, 'vip', '系统会员', 2, '0', 'admin', '2023-03-07 17:10:31', '', null, ''),
-        (3, 'de', '默认用户', 3, '0', 'admin', '2023-03-07 17:10:31', '', null, '');
+values (1, 'ceo', '系统管理', 1, '0', 'admin', '2023-03-07 17:10:31', '', null, ''),
+       (2, 'vip', '系统会员', 2, '0', 'admin', '2023-03-07 17:10:31', '', null, ''),
+       (3, 'de', '默认用户', 3, '0', 'admin', '2023-03-07 17:10:31', '', null, '');

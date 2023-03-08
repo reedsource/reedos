@@ -11,7 +11,7 @@ create table reedos.auto_flow
     comment '自动化任务表';
 
 insert into reedos.auto_flow (id, name, xml, status, create_date)
-values  (1, '爬取码云GVP', '<mxGraphModel>
+values (1, '爬取码云GVP', '<mxGraphModel>
   <root>
     <mxCell id="0">
       <JsonProperty as="data">
@@ -88,7 +88,7 @@ values  (1, '爬取码云GVP', '<mxGraphModel>
   </root>
 </mxGraphModel>
 ', '0', '2019-08-22 13:46:54'),
-        (2, '抓取每日菜价', '<mxGraphModel>
+       (2, '抓取每日菜价', '<mxGraphModel>
   <root>
     <mxCell id="0">
       <JsonProperty as="data">
@@ -141,7 +141,7 @@ values  (1, '爬取码云GVP', '<mxGraphModel>
   </root>
 </mxGraphModel>
 ', '0', '2019-08-22 13:48:22'),
-        (3, '爬取开源中国动弹', '<mxGraphModel>
+       (3, '爬取开源中国动弹', '<mxGraphModel>
   <root>
     <mxCell id="0">
       <JsonProperty as="data">
@@ -230,7 +230,7 @@ values  (1, '爬取码云GVP', '<mxGraphModel>
   </root>
 </mxGraphModel>
 ', '0', '2019-11-03 17:02:49'),
-        (4, '百度热点', '<mxGraphModel>
+       (4, '百度热点', '<mxGraphModel>
   <root>
     <mxCell id="0">
       <JsonProperty as="data">

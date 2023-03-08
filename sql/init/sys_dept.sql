@@ -20,9 +20,9 @@ create table reedos.sys_dept
     comment '部门表';
 
 insert into reedos.sys_dept (dept_id, parent_id, ancestors, dept_name, order_num, leader, phone, email, status, del_flag, create_by, create_time, update_by, update_time)
-values  (100, 0, '0', 'ReedOS', 0, 'reed', '18101351078', 'reedsource@189.cn', '0', '0', 'admin', '2023-03-07 17:10:31', '', null),
-        (110, 100, '0,100', '管理部', 1, 'reed', '18101351078', 'reedsource@189.cn', '0', '0', 'admin', '2023-03-07 17:10:31', '', null),
-        (111, 110, '0,100,110', '系统管理', 1, 'reed', '18101351078', 'reedsource@189.cn', '0', '0', 'admin', '2023-03-07 17:10:31', '', null),
-        (120, 100, '0,100', '市场部', 1, 'reed', '18101351078', 'reedsource@189.cn', '0', '0', 'admin', '2023-03-07 17:10:31', '', null),
-        (121, 120, '0,100,120', '会员', 1, 'reed', '18101351078', 'reedsource@189.cn', '0', '0', 'admin', '2023-03-07 17:10:31', '', null),
-        (122, 120, '0,100,120', '默认用户', 1, 'reed', '18101351078', 'reedsource@189.cn', '0', '0', 'admin', '2023-03-07 17:10:31', '', null);
+values (100, 0, '0', 'ReedOS', 0, 'reed', '18101351078', 'reedsource@189.cn', '0', '0', 'admin', '2023-03-07 17:10:31', '', null),
+       (110, 100, '0,100', '管理部', 1, 'reed', '18101351078', 'reedsource@189.cn', '0', '0', 'admin', '2023-03-07 17:10:31', '', null),
+       (111, 110, '0,100,110', '系统管理', 1, 'reed', '18101351078', 'reedsource@189.cn', '0', '0', 'admin', '2023-03-07 17:10:31', '', null),
+       (120, 100, '0,100', '市场部', 1, 'reed', '18101351078', 'reedsource@189.cn', '0', '0', 'admin', '2023-03-07 17:10:31', '', null),
+       (121, 120, '0,100,120', '会员', 1, 'reed', '18101351078', 'reedsource@189.cn', '0', '0', 'admin', '2023-03-07 17:10:31', '', null),
+       (122, 120, '0,100,120', '默认用户', 1, 'reed', '18101351078', 'reedsource@189.cn', '0', '0', 'admin', '2023-03-07 17:10:31', '', null);

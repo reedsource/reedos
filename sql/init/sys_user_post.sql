@@ -8,7 +8,7 @@ create table reedos.sys_user_post
     comment '用户与岗位关联表';
 
 insert into reedos.sys_user_post (user_id, post_id)
-values  (1, 1),
-        (2, 1),
-        (3, 2),
-        (4, 3);
+values (1, 1),
+       (2, 1),
+       (3, 2),
+       (4, 3);
