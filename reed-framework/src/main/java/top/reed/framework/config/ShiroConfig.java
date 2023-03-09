@@ -2,6 +2,7 @@ package top.reed.framework.config;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import com.anji.captcha.service.CaptchaService;
+import net.sf.ehcache.CacheManager;
 import org.apache.commons.io.IOUtils;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.codec.Base64;
@@ -136,31 +137,31 @@ public class ShiroConfig {
 	 */
 	@Bean
 	public EhCacheManager getEhCacheManager() {
-		net.sf.ehcache.CacheManager cacheManager = net.sf.ehcache.CacheManager.getCacheManager("ruoyi");
+		//检查给定名称的缓存管理器是否已存在并获取它。
+		//如果存在具有给定名称的缓存管理器，则返回 CacheManager，否则返回 null。
+		CacheManager cacheManager = CacheManager.getCacheManager("reed_ehcache");
 		EhCacheManager em = new EhCacheManager();
 		if (StringUtils.isNull(cacheManager)) {
-			em.setCacheManager(new net.sf.ehcache.CacheManager(getCacheManagerConfigFileInputStream()));
-			return em;
+			//创建一个缓存管理器
+			em.setCacheManager(new CacheManager(getCacheManagerConfigFileInputStream()));
 		} else {
 			em.setCacheManager(cacheManager);
-			return em;
 		}
+		return em;
 	}
 
 	/**
 	 * 返回配置文件流 避免ehcache配置文件一直被占用，无法完全销毁项目重新部署
 	 */
 	protected InputStream getCacheManagerConfigFileInputStream() {
-		String configFile = "classpath:ehcache/ehcache-shiro.xml";
+		String configFile = "classpath:ehcache/reed_ehcache.xml";
 		InputStream inputStream = null;
 		try {
 			inputStream = ResourceUtils.getInputStreamForPath(configFile);
 			byte[] b = IOUtils.toByteArray(inputStream);
-			InputStream in = new ByteArrayInputStream(b);
-			return in;
+			return new ByteArrayInputStream(b);
 		} catch (IOException e) {
-			throw new ConfigurationException(
-					"Unable to obtain input stream for cacheManagerConfigFile [" + configFile + "]", e);
+			throw new ConfigurationException("无法获取 的输入流 cacheManagerConfigFile [" + configFile + "]", e);
 		} finally {
 			IOUtils.closeQuietly(inputStream);
 		}
