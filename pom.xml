@@ -20,7 +20,6 @@
 		<module>reed-system</module>
 		<module>reed-cms</module>
 		<module>reed-blog</module>
-		<module>reed-ehcache</module>
 	</modules>
 	<packaging>pom</packaging>
 

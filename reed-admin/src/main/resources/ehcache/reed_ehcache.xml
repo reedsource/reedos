@@ -90,5 +90,22 @@
 	       timeToIdleSeconds="0"
 	       statistics="false"/>
 
+
+	<!-- cms缓存 -->
+	<cache name="reed-cms"
+		   maxEntriesLocalHeap="1000"
+		   eternal="true"
+		   overflowToDisk="true"
+		   statistics="false">
+	</cache>
+
+	<!-- cms最新文章缓存 -->
+	<cache name="reed-cms-new"
+		   maxEntriesLocalHeap="1000"
+		   eternal="true"
+		   overflowToDisk="true"
+		   statistics="false">
+	</cache>
+
 </ehcache>
 	

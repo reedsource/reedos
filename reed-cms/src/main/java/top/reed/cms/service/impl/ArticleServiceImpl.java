@@ -19,10 +19,10 @@ import top.reed.cms.service.IArticleService;
 import top.reed.cms.service.ICategoryService;
 import top.reed.common.core.domain.entity.SysUser;
 import top.reed.common.core.text.Convert;
+import top.reed.common.utils.CacheUtils;
 import top.reed.common.utils.DateUtils;
 import top.reed.common.utils.Guid;
 import top.reed.common.utils.ShiroUtils;
-import top.reed.ehcache.util.EhCacheUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -171,12 +171,17 @@ public class ArticleServiceImpl implements IArticleService {
 		return articleMapper.deleteArticleById(id);
 	}
 
+	/**
+	 * 获取最新的文章
+	 * @param articleRegionType 文章类型
+	 * @return
+	 */
 	@Override
 	public List<Article> selectArticlesByArticleRegionType(ArticleRegionType articleRegionType) {
-		List<Article> list = (List<Article>) EhCacheUtils.getSysInfo("ArticleRegionType_", articleRegionType.getVal());
+		List<Article> list = (List<Article>) CacheUtils.get("reed-cms-new", articleRegionType.getVal());
 		if (CollectionUtils.isEmpty(list)) {
 			list = this.selectArticlesByArticleRegionTypeInDb(articleRegionType);
-			EhCacheUtils.putSysInfo("ArticleRegionType_", articleRegionType.getVal(), list);
+			CacheUtils.put("reed-cms-new", articleRegionType.getVal(), list);
 		}
 		//selectCategory(list);
 		return list;

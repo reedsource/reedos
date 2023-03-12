@@ -12,7 +12,7 @@ import top.reed.cms.mapper.TagsMapper;
 import top.reed.cms.service.ITagsService;
 import top.reed.cms.util.CmsConstants;
 import top.reed.common.core.text.Convert;
-import top.reed.ehcache.util.EhCacheUtils;
+import top.reed.common.utils.CacheUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -132,7 +132,7 @@ public class TagsServiceImpl implements ITagsService {
 
 	@Override
 	public List<Tags> selectBlogTabs() {
-		Object object = EhCacheUtils.getDefaultInfo(CmsConstants.KEY_TAGS_BLOG);
+		Object object = CacheUtils.get("reed-cms",CmsConstants.KEY_TAGS_BLOG);
 		List<Tags> tags = null;
 		if (object instanceof ArrayList) {
 			tags = (ArrayList) object;
@@ -142,7 +142,7 @@ public class TagsServiceImpl implements ITagsService {
 				tags = JSONArray.parseArray(s, Tags.class);
 			} else {
 				tags = tagsMapper.selectBlogTabs();
-				EhCacheUtils.putDefaultInfo(CmsConstants.KEY_TAGS_BLOG, tags);
+				CacheUtils.put("reed-cms",CmsConstants.KEY_TAGS_BLOG, tags);
 			}
 		}
 
