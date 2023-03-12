@@ -207,9 +207,6 @@
 		</dependencies>
 	</dependencyManagement>
 
-
-
-
 	<dependencies>
 
 	</dependencies>
@@ -281,9 +278,6 @@
 				<jdbc.connectionProperties>
 					MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALmqArpMKBqcQhFPIH7fRRfkZn8sBDFpKRovm/mjEGeitFJ4yGIZQ4boaLdcZDb1FoZqoZM0WAjfp1uaI1TnDS8CAwEAAQ==
 				</jdbc.connectionProperties>
-				<redis.host>192.168.200.7</redis.host>
-				<redis.port>6379</redis.port>
-				<redis.password>ReedGORedis07.!#</redis.password>
 				<!--默认debug 设置为trace时打印查出的结果-->
 				<logging.level>trace</logging.level>
 				<logging.spring>info</logging.spring>
@@ -302,9 +296,6 @@
 				<jdbc.connectionProperties>
 					MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJQY7KTp5w863CoVnFxDLHb9oBqWFVatNL0dzrWCs9t/vTMp/a9fJjja6w3/DsIHp2CzAn7myiZCmP9TkiOWPKUCAwEAAQ==
 				</jdbc.connectionProperties>
-				<redis.host>localhost</redis.host>
-				<redis.port>6379</redis.port>
-				<redis.password>ReedGORedis07.!#</redis.password>
 				<reed.profile>/home/reedos/filePath</reed.profile>
 				<!--默认debug 设置为trace时打印查出的结果-->
 				<logging.level>debug</logging.level>
