@@ -28,7 +28,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/cms/material")
 public class MaterialController extends BaseController {
-    private final String prefix = "cms/material";
 
     @Autowired
     private IMaterialService materialService;
@@ -36,7 +35,7 @@ public class MaterialController extends BaseController {
     @RequiresPermissions("cms:material:view")
     @GetMapping()
     public String material() {
-        return prefix + "/material";
+        return  "cms/material/material";
     }
 
     /**
@@ -72,7 +71,7 @@ public class MaterialController extends BaseController {
         material.setGroupId("1");
         material.setGroupName("默认分组");
         mmap.put("material", material);
-        return prefix + "/add";
+        return  "cms/material/add";
     }
 
     /**
@@ -93,7 +92,7 @@ public class MaterialController extends BaseController {
     public String edit(@PathVariable("materialId") String materialId, ModelMap mmap) {
         Material material = materialService.selectMaterialById(materialId);
         mmap.put("material", material);
-        return prefix + "/edit";
+        return  "cms/material/edit";
     }
 
     /**
@@ -142,7 +141,7 @@ public class MaterialController extends BaseController {
     @GetMapping("/toUseList/{materialId}")
     public String toUseList(@PathVariable("materialId") String materialId, ModelMap mmap) {
         mmap.put("materialId", materialId);
-        return prefix + "/materialUse";
+        return  "cms/material/materialUse";
     }
 
     /**
@@ -182,7 +181,7 @@ public class MaterialController extends BaseController {
         mmap.put("materialId", StringUtils.isNotEmpty(materialId) ? materialId : "");
         mmap.put("materialName", StringUtils.isNotEmpty(materialName) ? materialName : "");
         mmap.put("materialPath", StringUtils.isNotEmpty(materialPath) ? materialPath : "");
-        return prefix + "/selectMaterialWithGroup";
+        return  "cms/material/selectMaterialWithGroup";
     }
 
 }
