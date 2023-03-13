@@ -25,7 +25,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/cms/blogTheme")
 public class BlogThemeController extends BaseController {
-    private final String prefix = "cms/blogTheme";
 
     @Autowired
     private IBlogThemeService blogThemeService;
@@ -33,7 +32,7 @@ public class BlogThemeController extends BaseController {
     @RequiresPermissions("cms:blogTheme:view")
     @GetMapping()
     public String blogTheme() {
-        return prefix + "/blogTheme";
+        return "cms/blogTheme/blogTheme";
     }
 
     /**
@@ -66,7 +65,7 @@ public class BlogThemeController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return prefix + "/add";
+        return "cms/blogTheme/add";
     }
 
     /**
@@ -87,7 +86,7 @@ public class BlogThemeController extends BaseController {
     public String edit(@PathVariable("id") Long id, ModelMap mmap) {
         BlogTheme blogTheme = blogThemeService.selectBlogThemeById(id);
         mmap.put("blogTheme", blogTheme);
-        return prefix + "/edit";
+        return "cms/blogTheme/edit";
     }
 
     /**
