@@ -27,7 +27,7 @@ public class FastJsonSerializer implements ObjectSerializer {
 	}
 
 	@Override
-	public void write(JSONSerializer serializer, Object object, Object fieldName, Type fieldType, int features) throws IOException {
+	public void write(JSONSerializer serializer, Object object, Object fieldName, Type fieldType, int features) {
 		if (object == null) {
 			if (serializer.isEnabled(SerializerFeature.WriteNullNumberAsZero)) {
 				serializer.out.write("0");

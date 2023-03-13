@@ -151,7 +151,7 @@ public class LogAspect {
 	 *
 	 * @param operLog 操作日志
 	 */
-	private void setRequestValue(JoinPoint joinPoint, SysOperLog operLog, String[] excludeParamNames) throws Exception {
+	private void setRequestValue(JoinPoint joinPoint, SysOperLog operLog, String[] excludeParamNames) {
 		Map<String, String[]> map = ServletUtils.getRequest().getParameterMap();
 		if (StringUtils.isNotEmpty(map)) {
 			String params = JSONObject.toJSONString(map, excludePropertyPreFilter(excludeParamNames));

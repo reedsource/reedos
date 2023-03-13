@@ -41,7 +41,7 @@ public class WebSocketController {
 	@PostMapping("/notice")
 	@Log(title = "通过websocket向前台用户发送通知", businessType = BusinessType.OTHER)
 	@ResponseBody
-	public AjaxResult notice(String msg) throws UnsupportedEncodingException {
+	public AjaxResult notice(String msg) {
 		log.info("发送全局用户socket消息 {}", msg);
 		WebSocketUsers.sendMessageToUsersByText(msg);
 		return AjaxResult.success("消息发送成功");

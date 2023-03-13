@@ -38,6 +38,3 @@ create table reedos.cms_article
     extra3            varchar(255) null comment '附加字段3'
 ) comment '文章管理对象';
 
-create index index_title
-    on cms_article (title);
-
