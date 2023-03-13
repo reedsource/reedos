@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.reed.cms.mapper.PvMapper">
 
-    <resultMap type="Pv" id="PvResult">
+    <resultMap type="top.reed.cms.domain.Pv" id="PvResult">
         <result property="id" column="id"/>
         <result property="uid" column="uid"/>
         <result property="module" column="module"/>
@@ -37,7 +37,7 @@
         from cms_pv
     </sql>
 
-    <select id="selectPvList" parameterType="Pv" resultMap="PvResult">
+    <select id="selectPvList" parameterType="top.reed.cms.domain.Pv" resultMap="PvResult">
         <include refid="selectPvVo"/>
         <where>
             <if test="uid != null  and uid != ''">and uid = #{uid}</if>
@@ -53,7 +53,7 @@
         where id = #{id}
     </select>
 
-    <insert id="insertPv" parameterType="Pv" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertPv" parameterType="top.reed.cms.domain.Pv" useGeneratedKeys="true" keyProperty="id">
         insert into cms_pv
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="uid != null  and uid != ''">uid,</if>
@@ -94,7 +94,7 @@
         </foreach>
     </insert>
 
-    <update id="updatePv" parameterType="Pv">
+    <update id="updatePv" parameterType="top.reed.cms.domain.Pv">
         update cms_pv
         <trim prefix="SET" suffixOverrides=",">
             <if test="uid != null  and uid != ''">uid = #{uid},</if>

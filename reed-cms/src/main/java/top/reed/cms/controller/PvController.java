@@ -16,7 +16,7 @@ import top.reed.common.enums.BusinessType;
 import java.util.List;
 
 /**
- * PVController
+ * PVController页面浏览量
  *
  * @author reedsource
  * date 2022/9/12
@@ -24,15 +24,13 @@ import java.util.List;
 @Controller
 @RequestMapping("/cms/pv")
 public class PvController extends BaseController {
-    private final String prefix = "cms/pv";
-
     @Autowired
     private IPvService pvService;
 
     @RequiresPermissions("cms:pv:view")
     @GetMapping()
     public String pv() {
-        return prefix + "/pv";
+        return "cms/pv/pv";
     }
 
     /**
@@ -52,7 +50,7 @@ public class PvController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return prefix + "/add";
+        return "cms/pv/add";
     }
 
     /**
@@ -73,7 +71,7 @@ public class PvController extends BaseController {
     public String edit(@PathVariable("id") Long id, ModelMap mmap) {
         Pv pv = pvService.selectPvById(id);
         mmap.put("pv", pv);
-        return prefix + "/edit";
+        return "cms/pv/edit";
     }
 
     /**
