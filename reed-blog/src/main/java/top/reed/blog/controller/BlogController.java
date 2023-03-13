@@ -71,7 +71,7 @@ public class BlogController extends BaseController {
     /**
      * 首页
      *
-     * @param model
+     * @param model model
      * @return
      */
     @GetMapping({"/", "", "/index"})
@@ -109,7 +109,7 @@ public class BlogController extends BaseController {
     /**
      * 文章详情
      *
-     * @param model
+     * @param model model
      * @param articleId
      * @return
      */
@@ -127,7 +127,7 @@ public class BlogController extends BaseController {
     /**
      * 分类列表
      *
-     * @param model
+     * @param model model
      * @return
      */
     @GetMapping("/category")
@@ -155,7 +155,7 @@ public class BlogController extends BaseController {
      * 分类列表
      *
      * @param categoryId
-     * @param model
+     * @param model model
      * @return
      */
     @GetMapping("/category/{categoryId}")
@@ -187,7 +187,7 @@ public class BlogController extends BaseController {
     /**
      * 分类列表
      *
-     * @param model
+     * @param model model
      * @return
      */
     @GetMapping("/resource/list")
@@ -216,7 +216,7 @@ public class BlogController extends BaseController {
     /**
      * 资源详情
      *
-     * @param model
+     * @param model model
      * @param id
      * @return
      */
@@ -236,7 +236,7 @@ public class BlogController extends BaseController {
      * 目前仅支持文章标题模糊搜索
      *
      * @param content
-     * @param model
+     * @param model model
      * @return
      */
     @GetMapping("/search")
@@ -265,7 +265,7 @@ public class BlogController extends BaseController {
      * 标签列表
      *
      * @param tagId
-     * @param model
+     * @param model model
      * @return
      */
     @GetMapping("/tag/{tagId}")
@@ -298,7 +298,7 @@ public class BlogController extends BaseController {
     /**
      * 留言
      *
-     * @param model
+     * @param model model
      * @return
      */
     @GetMapping("/siteMsg")
@@ -444,7 +444,7 @@ public class BlogController extends BaseController {
     /**
      * 导航
      *
-     * @param model
+     * @param model model
      * @return
      */
     @GetMapping("/nav")
@@ -478,7 +478,7 @@ public class BlogController extends BaseController {
     /**
      * 导航
      *
-     * @param model
+     * @param model model
      * @return
      */
     @GetMapping("/nav/{type}")

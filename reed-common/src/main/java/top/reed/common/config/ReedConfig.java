@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @author reedsource
  */
 @Component
-@ConfigurationProperties(prefix = "reed")
+@ConfigurationProperties(prefix = "reed-config")
 public class ReedConfig {
     /**
      * 项目名称

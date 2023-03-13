@@ -10,7 +10,8 @@ create table reedos.cms_material_use
     user_id     varchar(50) null comment '创建人ID',
     create_by   varchar(50) null comment '创建人名称',
     create_time datetime    null comment '创建时间'
-);
+)
+    comment '素材使用记录表';
 
 INSERT INTO reedos.cms_material_use (id, material_id, use_table, use_id, use_column, user_id, create_by, create_time) VALUES (50, '2019111009322629296151', 'cms_album_material', '2019111014175065994146', 'album_id', null, 'markbro', '2019-11-17 16:56:17');
 INSERT INTO reedos.cms_material_use (id, material_id, use_table, use_id, use_column, user_id, create_by, create_time) VALUES (51, '2019111009381073394848', 'cms_album_material', '2019111014175065994146', 'album_id', null, 'markbro', '2019-11-17 16:56:17');

@@ -1,4 +1,4 @@
-Application Version: ${reedconfig.version}
+Application Version: ${reed-config.version}
 Spring Boot Version: ${spring-boot.version}
 ////////////////////////////////////////////////////////////////////
 //                          _ooOoo_                               //

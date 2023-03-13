@@ -115,8 +115,8 @@ public class AlbumServiceImpl implements IAlbumService {
     /**
      * 查询专辑【关联】的素材
      *
-     * @param material
-     * @return
+     * @param material 素材对象
+     * @return 相册素材实体类集
      */
     @Override
     public List<AlbumMaterial> selectAlbumMaterialList(Material material) {
@@ -128,8 +128,8 @@ public class AlbumServiceImpl implements IAlbumService {
     /**
      * 查询专辑【未关联】的素材
      *
-     * @param material
-     * @return
+     * @param material 素材对象
+     * @return 素材对象集
      */
     @Override
     public List<Material> selectAlbumUnMaterialList(Material material) {
@@ -152,13 +152,13 @@ public class AlbumServiceImpl implements IAlbumService {
     /**
      * 删除专辑关联的素材
      *
-     * @param ids
+     * @param ids 待删除素材集
      */
     @Override
     @Transactional
     public void deleteMaterialBatch(String ids) {
         String[] arr = Convert.toStrArray(ids);
-        //删除使用记录
+        //in查询全部素材
         List<AlbumMaterial> albumMaterials = albumMapper.selectAlbumMaterialByIds(arr);
         for (AlbumMaterial albumMaterial : albumMaterials) {
             materialMapper.deleteMaterialUseByMx(albumMaterial.getMaterialId(), "cms_album_material", albumMaterial.getAlbumId(), "album_id");
@@ -229,8 +229,7 @@ public class AlbumServiceImpl implements IAlbumService {
             queryForm.setAlbumId(album.getAlbumId());
             List<AlbumMaterial> images = materialMapper.selectAlbumMaterialList(queryForm);
             album.setImages(images);
-            Map map = JSON.parseObject(JSON.toJSONString(album), Map.class);
-            return map;
+            return JSON.parseObject(JSON.toJSONString(album), Map.class);
         }
         return null;
     }

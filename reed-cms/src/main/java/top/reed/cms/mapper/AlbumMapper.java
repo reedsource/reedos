@@ -95,5 +95,9 @@ public interface AlbumMapper {
     int deleteAlbumMaterialByIds(String[] ids);
 
 
+    /**
+     * @param ids in集合
+     * @return 结果集合
+     */
     List<AlbumMaterial> selectAlbumMaterialByIds(String[] ids);
 }

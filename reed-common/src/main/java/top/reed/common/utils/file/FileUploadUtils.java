@@ -302,7 +302,7 @@ public enum FileUploadUtils {
     /**
      * 删除素材文件
      *
-     * @param fileName /profile/material/2019/11/06/f4395e7b74fe673893ffd7d2f317dbdc.png
+     * @param fileName /profile/public/blog/f4395e7b74fe673893ffd7d2f317dbdc.png
      * @return
      */
     public static final boolean deleteFile(String fileName) {

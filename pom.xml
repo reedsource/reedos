@@ -281,7 +281,7 @@
                 <logging.level>trace</logging.level>
                 <logging.spring>info</logging.spring>
                 <!--项目文件目录-->
-                <reed.profile>D:/clouds/codes/ReedOS/filePath</reed.profile>
+                <reed.profile>D:/clouds/codes/ReedOS/profile</reed.profile>
             </properties>
         </profile>
         <profile>
@@ -295,7 +295,7 @@
                 <jdbc.connectionProperties>
                     MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJQY7KTp5w863CoVnFxDLHb9oBqWFVatNL0dzrWCs9t/vTMp/a9fJjja6w3/DsIHp2CzAn7myiZCmP9TkiOWPKUCAwEAAQ==
                 </jdbc.connectionProperties>
-                <reed.profile>/home/reedos/filePath</reed.profile>
+                <reed.profile>/home/reedos/profile</reed.profile>
                 <!--默认debug 设置为trace时打印查出的结果-->
                 <logging.level>debug</logging.level>
                 <logging.spring>info</logging.spring>

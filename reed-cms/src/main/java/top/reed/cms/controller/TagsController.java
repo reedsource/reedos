@@ -25,7 +25,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/cms/tags")
 public class TagsController extends BaseController {
-    private final String prefix = "cms/tags";
 
     @Autowired
     private ITagsService tagsService;
@@ -33,7 +32,7 @@ public class TagsController extends BaseController {
     @RequiresPermissions("cms:tags:view")
     @GetMapping()
     public String tags() {
-        return prefix + "/tags";
+        return "cms/tags/tags";
     }
 
     /**
@@ -65,7 +64,7 @@ public class TagsController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return prefix + "/add";
+        return "cms/tags/add";
     }
 
     /**
@@ -86,7 +85,7 @@ public class TagsController extends BaseController {
     public String edit(@PathVariable("tagId") Long tagId, ModelMap mmap) {
         Tags tags = tagsService.selectTagsById(tagId);
         mmap.put("tags", tags);
-        return prefix + "/edit";
+        return "cms/tags/edit";
     }
 
     /**

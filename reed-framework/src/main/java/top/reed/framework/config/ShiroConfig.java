@@ -283,6 +283,9 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/loginPage/**", "anon");
         filterChainDefinitionMap.put("/public/**", "anon");
 
+        //文件公共目录
+        filterChainDefinitionMap.put("/profile/public/**", "anon");
+
         //filterChainDefinitionMap.put("/", "anon");
 
         //验证码
