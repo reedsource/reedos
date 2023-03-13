@@ -64,11 +64,11 @@ public class CmsController extends BaseController {
             int sortNum = 1;
             try {
                 sortNum = Integer.parseInt(sort);
-            } catch (Exception ex) {
+            } catch (Exception ignored) {
             }
             attachment.setSort(sortNum);
             String suffix = FileUploadUtils.getExtension(file);
-            String fileType = MimeTypeUtils.MATERIAL_TYPE_OTHER;//文件类型-其它
+            String fileType;//文件类型-其它
             if (FileUploadUtils.isImage(suffix)) {
                 fileType = MimeTypeUtils.MATERIAL_TYPE_IMG;
             } else if (FileUploadUtils.isText(suffix)) {
@@ -149,7 +149,7 @@ public class CmsController extends BaseController {
             // 上传并返回新文件名称
             String path = FileUploadUtils.upload(ReedConfig.getMaterialPath(), file);
             String url = serverConfig.getUrl() + path;
-            Map<String, Object> data = new HashMap();
+            Map<String, Object> data = new HashMap<>();
             int width = FileUploadUtils.getImgWidth(file);
             int height = FileUploadUtils.getImgHeight(file);
             data.put("path", path);

@@ -158,8 +158,8 @@ public class MaterialController extends BaseController {
     /**
      * 删除素材使用记录
      *
-     * @param materialUse
-     * @return
+     * @param materialUse 素材使用记录
+     * @return data
      */
     @PostMapping("/deleteMaterialUseBatch")
     @ResponseBody
@@ -171,7 +171,7 @@ public class MaterialController extends BaseController {
     /**
      * 打开素材选择界面
      *
-     * @return
+     * @return  data
      */
     @GetMapping("/selectMaterialWithGroup")
     public String selectMaterialWithGroup(HttpServletRequest request, ModelMap mmap) {

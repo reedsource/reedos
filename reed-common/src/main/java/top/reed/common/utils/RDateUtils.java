@@ -63,7 +63,7 @@ public class RDateUtils extends org.apache.commons.lang3.time.DateUtils {
      */
     public static String datePath() {
         Date now = new Date();
-        return DateFormatUtils.format(now, "yyyy/MM/dd");
+        return DateFormatUtils.format(now, "yyyyMMdd");
     }
 
     /**

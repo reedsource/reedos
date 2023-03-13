@@ -26,7 +26,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/cms/materialGroup")
 public class MaterialGroupController extends BaseController {
-    private final String prefix = "cms/materialGroup";
 
     @Autowired
     private IMaterialGroupService materialGroupService;
@@ -34,7 +33,7 @@ public class MaterialGroupController extends BaseController {
     @RequiresPermissions("cms:materialGroup:view")
     @GetMapping()
     public String materialGroup() {
-        return prefix + "/materialGroup";
+        return "cms/materialGroup/materialGroup";
     }
 
     /**
@@ -44,8 +43,7 @@ public class MaterialGroupController extends BaseController {
     @PostMapping("/list")
     @ResponseBody
     public List<MaterialGroup> list(MaterialGroup materialGroup) {
-        List<MaterialGroup> list = materialGroupService.selectMaterialGroupList(materialGroup);
-        return list;
+        return materialGroupService.selectMaterialGroupList(materialGroup);
     }
 
     /**
@@ -68,7 +66,7 @@ public class MaterialGroupController extends BaseController {
         if (RStringUtils.isNotNull(groupId)) {
             mmap.put("materialGroup", materialGroupService.selectMaterialGroupById(groupId));
         }
-        return prefix + "/add";
+        return "cms/materialGroup/add";
     }
 
     /**
@@ -89,7 +87,7 @@ public class MaterialGroupController extends BaseController {
     public String edit(@PathVariable("groupId") Long groupId, ModelMap mmap) {
         MaterialGroup materialGroup = materialGroupService.selectMaterialGroupById(groupId);
         mmap.put("materialGroup", materialGroup);
-        return prefix + "/edit";
+        return "cms/materialGroup/edit";
     }
 
     /**
@@ -122,7 +120,7 @@ public class MaterialGroupController extends BaseController {
         if (RStringUtils.isNotNull(groupId)) {
             mmap.put("materialGroup", materialGroupService.selectMaterialGroupById(groupId));
         }
-        return prefix + "/tree";
+        return "cms/materialGroup/tree";
     }
 
     /**
@@ -131,7 +129,6 @@ public class MaterialGroupController extends BaseController {
     @GetMapping("/treeData")
     @ResponseBody
     public List<Ztree> treeData() {
-        List<Ztree> ztrees = materialGroupService.selectMaterialGroupTree();
-        return ztrees;
+        return materialGroupService.selectMaterialGroupTree();
     }
 }

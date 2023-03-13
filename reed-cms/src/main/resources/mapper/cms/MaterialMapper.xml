@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.reed.cms.mapper.MaterialMapper">
 
-    <resultMap type="Material" id="MaterialResult">
+    <resultMap type="top.reed.cms.domain.Material" id="MaterialResult">
         <result property="materialId" column="material_id"/>
         <result property="groupId" column="group_id"/>
         <result property="groupName" column="group_name"/>
@@ -46,7 +46,7 @@
                  inner join cms_material_group b on a.group_id = b.group_id
     </sql>
 
-    <select id="selectMaterialList" parameterType="Material" resultMap="MaterialResult">
+    <select id="selectMaterialList" parameterType="top.reed.cms.domain.Material" resultMap="MaterialResult">
         <include refid="selectMaterialVo"/>
         <where>
             <if test="groupId != null  and groupId != ''">and a.group_id = #{groupId}</if>
@@ -66,7 +66,7 @@
         where a.material_id = #{materialId}
     </select>
 
-    <insert id="insertMaterial" parameterType="Material">
+    <insert id="insertMaterial" parameterType="top.reed.cms.domain.Material">
         insert into cms_material
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="materialId != null  and materialId != ''">material_id,</if>
@@ -106,7 +106,7 @@
         </trim>
     </insert>
 
-    <update id="updateMaterial" parameterType="Material">
+    <update id="updateMaterial" parameterType="top.reed.cms.domain.Material">
         update cms_material
         <trim prefix="SET" suffixOverrides=",">
             <if test="groupId != null  and groupId != ''">group_id = #{groupId},</if>
@@ -157,7 +157,7 @@
     </select>
 
 
-    <resultMap type="AlbumMaterial" id="AlbumMaterialResult">
+    <resultMap type="top.reed.cms.domain.AlbumMaterial" id="AlbumMaterialResult">
         <result property="id" column="id"/>
         <result property="link" column="link"/>
         <result property="sort" column="sort"/>
@@ -181,7 +181,7 @@
     </resultMap>
 
 
-    <select id="selectAlbumMaterialList" parameterType="Material" resultMap="AlbumMaterialResult">
+    <select id="selectAlbumMaterialList" parameterType="top.reed.cms.domain.Material" resultMap="AlbumMaterialResult">
         select b.id,a.material_id, a.group_id, a.material_name, a.material_type, a.description, a.material_size,
         a.save_path, a.thumbnail, a.audit_state, a.audit_reason, a.use_state, a.width, a.height, a.uploader_id,
         a.upload_time, a.remark
@@ -196,10 +196,10 @@
             AND a.material_name like concat('%', #{materialName}, '%')
         </if>
         and a.audit_state=1
-        order by b.sort asc
+        order by b.sort
     </select>
 
-    <select id="selectAlbumUnMaterialList" parameterType="Material" resultMap="MaterialResult">
+    <select id="selectAlbumUnMaterialList" parameterType="top.reed.cms.domain.Material" resultMap="MaterialResult">
         <include refid="selectMaterialVo"/>
         where a.material_id not in
         (select material_id from cms_album_material where album_id=#{albumId})
@@ -209,7 +209,7 @@
         and a.audit_state=1
     </select>
 
-    <resultMap type="MaterialUse" id="MaterialUseResult">
+    <resultMap type="top.reed.cms.domain.MaterialUse" id="MaterialUseResult">
         <result property="id" column="id"/>
         <result property="useId" column="use_id"/>
         <result property="userId" column="user_id"/>
@@ -237,7 +237,7 @@
         <result property="remark" column="remark"/>
     </resultMap>
 
-    <insert id="insertMaterialUse" useGeneratedKeys="true" keyProperty="id" parameterType="MaterialUse">
+    <insert id="insertMaterialUse" useGeneratedKeys="true" keyProperty="id" parameterType="top.reed.cms.domain.MaterialUse">
         insert into cms_material_use
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null  and id != ''">id,</if>
@@ -259,7 +259,7 @@
         </trim>
     </insert>
 
-    <insert id="insertMaterialUseBatch" useGeneratedKeys="true" keyProperty="id" parameterType="MaterialUse">
+    <insert id="insertMaterialUseBatch" useGeneratedKeys="true" keyProperty="id" parameterType="top.reed.cms.domain.MaterialUse">
         insert into cms_material_use (id,material_id,use_table,use_id,use_column,create_by,create_time)
         values
         <foreach collection="list" item="item" separator=",">
@@ -267,7 +267,7 @@
         </foreach>
     </insert>
 
-    <select id="selectMaterialUseList" parameterType="MaterialUse" resultMap="MaterialUseResult">
+    <select id="selectMaterialUseList" parameterType="top.reed.cms.domain.MaterialUse" resultMap="MaterialUseResult">
         select b.id,b.use_id,b.use_table,b.use_column,b.create_by,b.create_time,a.material_id, a.group_id,
         a.material_name, a.material_type, a.description, a.material_size, a.save_path, a.audit_state, a.audit_reason,
         a.use_state, a.width, a.height, a.upload_time
@@ -281,7 +281,7 @@
     </select>
 
 
-    <select id="selectMaterialUseByIds" parameterType="MaterialUse" resultMap="MaterialUseResult">
+    <select id="selectMaterialUseByIds" parameterType="top.reed.cms.domain.MaterialUse" resultMap="MaterialUseResult">
         select * from cms_material_use
         where id in
         <foreach item="id" collection="array" open="(" separator="," close=")">
@@ -306,7 +306,7 @@
           and use_column = #{column}
     </delete>
     <!--删除素材使用表记录-->
-    <delete id="deleteMaterialUse" parameterType="MaterialUse">
+    <delete id="deleteMaterialUse" parameterType="top.reed.cms.domain.MaterialUse">
         delete
         from ${useTable}
         where material_id = #{materialId}
