@@ -13,13 +13,12 @@
 	<modules>
 		<module>reed-admin</module>
 		<module>reed-automation</module>
+		<module>reed-blog</module>
+		<module>reed-cms</module>
 		<module>reed-common</module>
 		<module>reed-framework</module>
 		<module>reed-generator</module>
-		<module>reed-information</module>
 		<module>reed-system</module>
-		<module>reed-cms</module>
-		<module>reed-blog</module>
 	</modules>
 	<packaging>pom</packaging>
 
