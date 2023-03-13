@@ -2,29 +2,29 @@ package top.reed.api.model;
 
 public class Plugin {
 
-	private String name;
+    private String name;
 
-	private String url;
+    private String url;
 
-	public Plugin(String name, String url) {
-		this.name = name;
-		this.url = url;
-	}
+    public Plugin(String name, String url) {
+        this.name = name;
+        this.url = url;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getUrl() {
-		return url;
-	}
+    public String getUrl() {
+        return url;
+    }
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
 }

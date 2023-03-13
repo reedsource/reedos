@@ -16,72 +16,72 @@ import top.reed.common.core.domain.BaseEntity;
 @Getter
 @Setter
 public class Ad extends BaseEntity {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * 广告位ID
-	 */
-	private Long adId;
+    /**
+     * 广告位ID
+     */
+    private Long adId;
 
-	/**
-	 * 广告位编码
-	 */
-	@Excel(name = "广告位编码")
-	private String adCode;
+    /**
+     * 广告位编码
+     */
+    @Excel(name = "广告位编码")
+    private String adCode;
 
-	/**
-	 * 广告位名称
-	 */
-	@Excel(name = "广告位名称")
-	private String adName;
+    /**
+     * 广告位名称
+     */
+    @Excel(name = "广告位名称")
+    private String adName;
 
-	/**
-	 * 宽度
-	 */
-	@Excel(name = "宽度")
-	private Integer width;
+    /**
+     * 宽度
+     */
+    @Excel(name = "宽度")
+    private Integer width;
 
-	/**
-	 * 高度
-	 */
-	@Excel(name = "高度")
-	private Integer height;
+    /**
+     * 高度
+     */
+    @Excel(name = "高度")
+    private Integer height;
 
-	/**
-	 * 状态
-	 */
-	@Excel(name = "状态")
-	private Integer status;
+    /**
+     * 状态
+     */
+    @Excel(name = "状态")
+    private Integer status;
 
-	/**
-	 * 创建人ID
-	 */
-	private String userId;
+    /**
+     * 创建人ID
+     */
+    private String userId;
 
-	/**
-	 * 部门ID
-	 */
-	private String deptId;
+    /**
+     * 部门ID
+     */
+    private String deptId;
 
-	/**
-	 * 描述
-	 */
-	private String description;
+    /**
+     * 描述
+     */
+    private String description;
 
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-				.append("adId", getAdId())
-				.append("adCode", getAdCode())
-				.append("adName", getAdName())
-				.append("width", getWidth())
-				.append("height", getHeight())
-				.append("status", getStatus())
-				.append("userId", getUserId())
-				.append("deptId", getDeptId())
-				.append("description", getDescription())
-				.append("createBy", getCreateBy())
-				.append("createTime", getCreateTime())
-				.toString();
-	}
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+                .append("adId", getAdId())
+                .append("adCode", getAdCode())
+                .append("adName", getAdName())
+                .append("width", getWidth())
+                .append("height", getHeight())
+                .append("status", getStatus())
+                .append("userId", getUserId())
+                .append("deptId", getDeptId())
+                .append("description", getDescription())
+                .append("createBy", getCreateBy())
+                .append("createTime", getCreateTime())
+                .toString();
+    }
 }

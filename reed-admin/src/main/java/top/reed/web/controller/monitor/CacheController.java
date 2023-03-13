@@ -22,61 +22,61 @@ import top.reed.framework.web.service.CacheService;
 @RequestMapping("/monitor/cache")
 public class CacheController extends BaseController {
 
-	@Autowired
-	private CacheService cacheService;
+    @Autowired
+    private CacheService cacheService;
 
-	@RequiresPermissions("monitor:cache:view")
-	@GetMapping()
-	public String cache(ModelMap mmap) {
-		mmap.put("cacheNames", cacheService.getCacheNames());
-		return "monitor/cache/cache";
-	}
+    @RequiresPermissions("monitor:cache:view")
+    @GetMapping()
+    public String cache(ModelMap mmap) {
+        mmap.put("cacheNames", cacheService.getCacheNames());
+        return "monitor/cache/cache";
+    }
 
-	@RequiresPermissions("monitor:cache:view")
-	@PostMapping("/getNames")
-	public String getCacheNames(String fragment, ModelMap mmap) {
-		mmap.put("cacheNames", cacheService.getCacheNames());
-		return "monitor/cache/cache::" + fragment;
-	}
+    @RequiresPermissions("monitor:cache:view")
+    @PostMapping("/getNames")
+    public String getCacheNames(String fragment, ModelMap mmap) {
+        mmap.put("cacheNames", cacheService.getCacheNames());
+        return "monitor/cache/cache::" + fragment;
+    }
 
-	@RequiresPermissions("monitor:cache:view")
-	@PostMapping("/getKeys")
-	public String getCacheKeys(String fragment, String cacheName, ModelMap mmap) {
-		mmap.put("cacheName", cacheName);
-		mmap.put("cacheKeys", cacheService.getCacheKeys(cacheName));
-		return "monitor/cache/cache::" + fragment;
-	}
+    @RequiresPermissions("monitor:cache:view")
+    @PostMapping("/getKeys")
+    public String getCacheKeys(String fragment, String cacheName, ModelMap mmap) {
+        mmap.put("cacheName", cacheName);
+        mmap.put("cacheKeys", cacheService.getCacheKeys(cacheName));
+        return "monitor/cache/cache::" + fragment;
+    }
 
-	@RequiresPermissions("monitor:cache:view")
-	@PostMapping("/getValue")
-	public String getCacheValue(String fragment, String cacheName, String cacheKey, ModelMap mmap) {
-		mmap.put("cacheName", cacheName);
-		mmap.put("cacheKey", cacheKey);
-		mmap.put("cacheValue", cacheService.getCacheValue(cacheName, cacheKey));
-		return "monitor/cache/cache::" + fragment;
-	}
+    @RequiresPermissions("monitor:cache:view")
+    @PostMapping("/getValue")
+    public String getCacheValue(String fragment, String cacheName, String cacheKey, ModelMap mmap) {
+        mmap.put("cacheName", cacheName);
+        mmap.put("cacheKey", cacheKey);
+        mmap.put("cacheValue", cacheService.getCacheValue(cacheName, cacheKey));
+        return "monitor/cache/cache::" + fragment;
+    }
 
-	@RequiresPermissions("monitor:cache:view")
-	@PostMapping("/clearCacheName")
-	@ResponseBody
-	public AjaxResult clearCacheName(String cacheName, ModelMap mmap) {
-		cacheService.clearCacheName(cacheName);
-		return AjaxResult.success();
-	}
+    @RequiresPermissions("monitor:cache:view")
+    @PostMapping("/clearCacheName")
+    @ResponseBody
+    public AjaxResult clearCacheName(String cacheName, ModelMap mmap) {
+        cacheService.clearCacheName(cacheName);
+        return AjaxResult.success();
+    }
 
-	@RequiresPermissions("monitor:cache:view")
-	@PostMapping("/clearCacheKey")
-	@ResponseBody
-	public AjaxResult clearCacheKey(String cacheName, String cacheKey, ModelMap mmap) {
-		cacheService.clearCacheKey(cacheName, cacheKey);
-		return AjaxResult.success();
-	}
+    @RequiresPermissions("monitor:cache:view")
+    @PostMapping("/clearCacheKey")
+    @ResponseBody
+    public AjaxResult clearCacheKey(String cacheName, String cacheKey, ModelMap mmap) {
+        cacheService.clearCacheKey(cacheName, cacheKey);
+        return AjaxResult.success();
+    }
 
-	@RequiresPermissions("monitor:cache:view")
-	@GetMapping("/clearAll")
-	@ResponseBody
-	public AjaxResult clearAll(ModelMap mmap) {
-		cacheService.clearAll();
-		return AjaxResult.success();
-	}
+    @RequiresPermissions("monitor:cache:view")
+    @GetMapping("/clearAll")
+    @ResponseBody
+    public AjaxResult clearAll(ModelMap mmap) {
+        cacheService.clearAll();
+        return AjaxResult.success();
+    }
 }

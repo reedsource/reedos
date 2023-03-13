@@ -24,77 +24,77 @@ import java.util.List;
 @Controller
 @RequestMapping("/cms/siteMsg")
 public class SiteMsgController extends BaseController {
-	private final String prefix = "cms/siteMsg";
+    private final String prefix = "cms/siteMsg";
 
-	@Autowired
-	private ISiteMsgService siteMsgService;
+    @Autowired
+    private ISiteMsgService siteMsgService;
 
-	@RequiresPermissions("cms:siteMsg:view")
-	@GetMapping()
-	public String siteMsg() {
-		return prefix + "/siteMsg";
-	}
+    @RequiresPermissions("cms:siteMsg:view")
+    @GetMapping()
+    public String siteMsg() {
+        return prefix + "/siteMsg";
+    }
 
-	/**
-	 * 查询站内消息列表
-	 */
-	@RequiresPermissions("cms:siteMsg:list")
-	@PostMapping("/list")
-	@ResponseBody
-	public TableDataInfo list(SiteMsg siteMsg) {
-		startPage();
-		List<SiteMsg> list = siteMsgService.selectSiteMsgList(siteMsg);
-		return getDataTable(list);
-	}
+    /**
+     * 查询站内消息列表
+     */
+    @RequiresPermissions("cms:siteMsg:list")
+    @PostMapping("/list")
+    @ResponseBody
+    public TableDataInfo list(SiteMsg siteMsg) {
+        startPage();
+        List<SiteMsg> list = siteMsgService.selectSiteMsgList(siteMsg);
+        return getDataTable(list);
+    }
 
-	/**
-	 * 新增站内消息
-	 */
-	@GetMapping("/add")
-	public String add() {
-		return prefix + "/add";
-	}
+    /**
+     * 新增站内消息
+     */
+    @GetMapping("/add")
+    public String add() {
+        return prefix + "/add";
+    }
 
-	/**
-	 * 新增保存站内消息
-	 */
-	@RequiresPermissions("cms:siteMsg:add")
-	@Log(title = "站内消息", businessType = BusinessType.INSERT)
-	@PostMapping("/add")
-	@ResponseBody
-	public AjaxResult addSave(SiteMsg siteMsg) {
-		return toAjax(siteMsgService.insertSiteMsg(siteMsg));
-	}
+    /**
+     * 新增保存站内消息
+     */
+    @RequiresPermissions("cms:siteMsg:add")
+    @Log(title = "站内消息", businessType = BusinessType.INSERT)
+    @PostMapping("/add")
+    @ResponseBody
+    public AjaxResult addSave(SiteMsg siteMsg) {
+        return toAjax(siteMsgService.insertSiteMsg(siteMsg));
+    }
 
-	/**
-	 * 修改站内消息
-	 */
-	@GetMapping("/edit/{id}")
-	public String edit(@PathVariable("id") Long id, ModelMap mmap) {
-		SiteMsg siteMsg = siteMsgService.selectSiteMsgById(id);
-		mmap.put("siteMsg", siteMsg);
-		return prefix + "/edit";
-	}
+    /**
+     * 修改站内消息
+     */
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable("id") Long id, ModelMap mmap) {
+        SiteMsg siteMsg = siteMsgService.selectSiteMsgById(id);
+        mmap.put("siteMsg", siteMsg);
+        return prefix + "/edit";
+    }
 
-	/**
-	 * 修改保存站内消息
-	 */
-	@RequiresPermissions("cms:siteMsg:edit")
-	@Log(title = "站内消息", businessType = BusinessType.UPDATE)
-	@PostMapping("/edit")
-	@ResponseBody
-	public AjaxResult editSave(SiteMsg siteMsg) {
-		return toAjax(siteMsgService.updateSiteMsg(siteMsg));
-	}
+    /**
+     * 修改保存站内消息
+     */
+    @RequiresPermissions("cms:siteMsg:edit")
+    @Log(title = "站内消息", businessType = BusinessType.UPDATE)
+    @PostMapping("/edit")
+    @ResponseBody
+    public AjaxResult editSave(SiteMsg siteMsg) {
+        return toAjax(siteMsgService.updateSiteMsg(siteMsg));
+    }
 
-	/**
-	 * 删除站内消息
-	 */
-	@RequiresPermissions("cms:siteMsg:remove")
-	@Log(title = "站内消息", businessType = BusinessType.DELETE)
-	@PostMapping("/remove")
-	@ResponseBody
-	public AjaxResult remove(String ids) {
-		return toAjax(siteMsgService.deleteSiteMsgByIds(ids));
-	}
+    /**
+     * 删除站内消息
+     */
+    @RequiresPermissions("cms:siteMsg:remove")
+    @Log(title = "站内消息", businessType = BusinessType.DELETE)
+    @PostMapping("/remove")
+    @ResponseBody
+    public AjaxResult remove(String ids) {
+        return toAjax(siteMsgService.deleteSiteMsgByIds(ids));
+    }
 }

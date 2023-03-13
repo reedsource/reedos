@@ -16,45 +16,45 @@ import top.reed.common.core.domain.BaseEntity;
 @Getter
 @Setter
 public class Template extends BaseEntity {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * ID
-	 */
-	private Long templateId;
+    /**
+     * ID
+     */
+    private Long templateId;
 
-	/**
-	 * 模板代码
-	 */
-	@Excel(name = "模板代码")
-	private String templateCode;
+    /**
+     * 模板代码
+     */
+    @Excel(name = "模板代码")
+    private String templateCode;
 
-	/**
-	 * 模板分类
-	 */
-	@Excel(name = "模板分类")
-	private String templateType;
+    /**
+     * 模板分类
+     */
+    @Excel(name = "模板分类")
+    private String templateType;
 
-	/**
-	 * 模板名称
-	 */
-	@Excel(name = "模板名称")
-	private String templateName;
+    /**
+     * 模板名称
+     */
+    @Excel(name = "模板名称")
+    private String templateName;
 
-	/**
-	 * 模板内容
-	 */
-	@Excel(name = "模板内容")
-	private String templateContent;
+    /**
+     * 模板内容
+     */
+    @Excel(name = "模板内容")
+    private String templateContent;
 
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-				.append("templateId", getTemplateId())
-				.append("templateCode", getTemplateCode())
-				.append("templateType", getTemplateType())
-				.append("templateName", getTemplateName())
-				.append("templateContent", getTemplateContent())
-				.toString();
-	}
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+                .append("templateId", getTemplateId())
+                .append("templateCode", getTemplateCode())
+                .append("templateType", getTemplateType())
+                .append("templateName", getTemplateName())
+                .append("templateContent", getTemplateContent())
+                .toString();
+    }
 }

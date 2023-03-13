@@ -15,14 +15,14 @@ import java.util.Map;
 @Component
 public class StartExecutor implements ShapeExecutor {
 
-	@Override
-	public void execute(SpiderNode node, SpiderContext context, Map<String, Object> variables) {
+    @Override
+    public void execute(SpiderNode node, SpiderContext context, Map<String, Object> variables) {
 
-	}
+    }
 
-	@Override
-	public String supportShape() {
-		return "start";
-	}
+    @Override
+    public String supportShape() {
+        return "start";
+    }
 
 }

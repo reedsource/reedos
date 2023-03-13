@@ -6,9 +6,9 @@ package top.reed.common.exception.user;
  * @author reedsource
  */
 public class CaptchaException extends UserException {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public CaptchaException() {
-		super("user.jcaptcha.error", null);
-	}
+    public CaptchaException() {
+        super("user.jcaptcha.error", null);
+    }
 }

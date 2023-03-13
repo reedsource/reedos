@@ -16,67 +16,67 @@ import java.util.List;
  */
 @Service
 public class AutoJobLogServiceImpl implements AutoJobLogService {
-	@Autowired
-	private AutoJobLogMapper jobLogMapper;
+    @Autowired
+    private AutoJobLogMapper jobLogMapper;
 
-	/**
-	 * 获取quartz调度器日志的计划任务
-	 *
-	 * @param jobLog 调度日志信息
-	 * @return 调度任务日志集合
-	 */
-	@Override
-	public List<AutoJobLog> selectJobLogList(AutoJobLog jobLog) {
-		return jobLogMapper.selectJobLogList(jobLog);
-	}
+    /**
+     * 获取quartz调度器日志的计划任务
+     *
+     * @param jobLog 调度日志信息
+     * @return 调度任务日志集合
+     */
+    @Override
+    public List<AutoJobLog> selectJobLogList(AutoJobLog jobLog) {
+        return jobLogMapper.selectJobLogList(jobLog);
+    }
 
-	/**
-	 * 通过调度任务日志ID查询调度信息
-	 *
-	 * @param jobLogId 调度任务日志ID
-	 * @return 调度任务日志对象信息
-	 */
-	@Override
-	public AutoJobLog selectJobLogById(Long jobLogId) {
-		return jobLogMapper.selectJobLogById(jobLogId);
-	}
+    /**
+     * 通过调度任务日志ID查询调度信息
+     *
+     * @param jobLogId 调度任务日志ID
+     * @return 调度任务日志对象信息
+     */
+    @Override
+    public AutoJobLog selectJobLogById(Long jobLogId) {
+        return jobLogMapper.selectJobLogById(jobLogId);
+    }
 
-	/**
-	 * 新增任务日志
-	 *
-	 * @param jobLog 调度日志信息
-	 */
-	@Override
-	public void addJobLog(AutoJobLog jobLog) {
-		jobLogMapper.insertJobLog(jobLog);
-	}
+    /**
+     * 新增任务日志
+     *
+     * @param jobLog 调度日志信息
+     */
+    @Override
+    public void addJobLog(AutoJobLog jobLog) {
+        jobLogMapper.insertJobLog(jobLog);
+    }
 
-	/**
-	 * 批量删除调度日志信息
-	 *
-	 * @param ids 需要删除的数据ID
-	 * @return 结果
-	 */
-	@Override
-	public int deleteJobLogByIds(String ids) {
-		return jobLogMapper.deleteJobLogByIds(Convert.toStrArray(ids));
-	}
+    /**
+     * 批量删除调度日志信息
+     *
+     * @param ids 需要删除的数据ID
+     * @return 结果
+     */
+    @Override
+    public int deleteJobLogByIds(String ids) {
+        return jobLogMapper.deleteJobLogByIds(Convert.toStrArray(ids));
+    }
 
-	/**
-	 * 删除任务日志
-	 *
-	 * @param jobId 调度日志ID
-	 */
-	@Override
-	public int deleteJobLogById(Long jobId) {
-		return jobLogMapper.deleteJobLogById(jobId);
-	}
+    /**
+     * 删除任务日志
+     *
+     * @param jobId 调度日志ID
+     */
+    @Override
+    public int deleteJobLogById(Long jobId) {
+        return jobLogMapper.deleteJobLogById(jobId);
+    }
 
-	/**
-	 * 清空任务日志
-	 */
-	@Override
-	public void cleanJobLog() {
-		jobLogMapper.cleanJobLog();
-	}
+    /**
+     * 清空任务日志
+     */
+    @Override
+    public void cleanJobLog() {
+        jobLogMapper.cleanJobLog();
+    }
 }

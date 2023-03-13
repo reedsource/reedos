@@ -18,12 +18,12 @@ import top.reed.framework.web.domain.Server;
 @RequestMapping("/monitor/server")
 public class ServerController extends BaseController {
 
-	@RequiresPermissions("monitor:server:view")
-	@GetMapping()
-	public String server(ModelMap mmap) throws Exception {
-		Server server = new Server();
-		server.copyTo();
-		mmap.put("server", server);
-		return "monitor/server/server";
-	}
+    @RequiresPermissions("monitor:server:view")
+    @GetMapping()
+    public String server(ModelMap mmap) throws Exception {
+        Server server = new Server();
+        server.copyTo();
+        mmap.put("server", server);
+        return "monitor/server/server";
+    }
 }

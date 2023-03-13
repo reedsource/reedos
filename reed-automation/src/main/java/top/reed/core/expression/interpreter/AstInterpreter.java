@@ -25,42 +25,42 @@ import java.util.List;
  * </p>
  **/
 public class AstInterpreter {
-	public static Object interpret(ExpressionTemplate template, ExpressionTemplateContext context) {
-		try {
-			return interpretNodeList(template.getNodes(), template, context);
-		} catch (Throwable t) {
-			if (t instanceof TemplateException)
-				throw (TemplateException) t;
-			else {
-				ExpressionError.error("执行表达式出错 " + t.getMessage(), template.getNodes().get(0).getSpan(), t);
-				return null; // never reached
-			}
-		}
-	}
+    public static Object interpret(ExpressionTemplate template, ExpressionTemplateContext context) {
+        try {
+            return interpretNodeList(template.getNodes(), template, context);
+        } catch (Throwable t) {
+            if (t instanceof TemplateException)
+                throw (TemplateException) t;
+            else {
+                ExpressionError.error("执行表达式出错 " + t.getMessage(), template.getNodes().get(0).getSpan(), t);
+                return null; // never reached
+            }
+        }
+    }
 
-	public static Object interpretNodeList(List<Node> nodes, ExpressionTemplate template, ExpressionTemplateContext context) throws IOException {
-		String result = "";
-		for (int i = 0, n = nodes.size(); i < n; i++) {
-			Node node = nodes.get(i);
-			Object value = node.evaluate(template, context);
-			if (node instanceof Text) {
-				result += node.getSpan().getText();
-			} else if (value == null) {
-				if (i == 0 && i + 1 == n) {
-					return null;
-				}
-				result += "null";
-			} else if (value instanceof String || value instanceof Number || value instanceof Boolean) {
-				if (i == 0 && i + 1 == n) {
-					return value;
-				}
-				result += value;
-			} else if (i + 1 < n) {
-				ExpressionError.error("表达式执行错误", node.getSpan());
-			} else {
-				return value;
-			}
-		}
-		return result;
-	}
+    public static Object interpretNodeList(List<Node> nodes, ExpressionTemplate template, ExpressionTemplateContext context) throws IOException {
+        String result = "";
+        for (int i = 0, n = nodes.size(); i < n; i++) {
+            Node node = nodes.get(i);
+            Object value = node.evaluate(template, context);
+            if (node instanceof Text) {
+                result += node.getSpan().getText();
+            } else if (value == null) {
+                if (i == 0 && i + 1 == n) {
+                    return null;
+                }
+                result += "null";
+            } else if (value instanceof String || value instanceof Number || value instanceof Boolean) {
+                if (i == 0 && i + 1 == n) {
+                    return value;
+                }
+                result += value;
+            } else if (i + 1 < n) {
+                ExpressionError.error("表达式执行错误", node.getSpan());
+            } else {
+                return value;
+            }
+        }
+        return result;
+    }
 }

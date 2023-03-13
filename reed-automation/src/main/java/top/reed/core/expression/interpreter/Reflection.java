@@ -6,47 +6,47 @@ package top.reed.core.expression.interpreter;
  * must be thread-safe.
  */
 public abstract class Reflection {
-	private static Reflection instance = new JavaReflection();
+    private static Reflection instance = new JavaReflection();
 
-	/**
-	 * Returns the Reflection instance used to fetch field and call methods
-	 **/
-	public synchronized static Reflection getInstance() {
-		return instance;
-	}
+    /**
+     * Returns the Reflection instance used to fetch field and call methods
+     **/
+    public synchronized static Reflection getInstance() {
+        return instance;
+    }
 
-	/**
-	 * Sets the Reflection instance to be used by all Template interpreters
-	 **/
-	public synchronized static void setInstance(Reflection reflection) {
-		instance = reflection;
-	}
+    /**
+     * Sets the Reflection instance to be used by all Template interpreters
+     **/
+    public synchronized static void setInstance(Reflection reflection) {
+        instance = reflection;
+    }
 
-	/**
-	 * Returns an opaque handle to a field with the given name or null if the field could not be found
-	 **/
-	public abstract Object getField(Object obj, String name);
+    /**
+     * Returns an opaque handle to a field with the given name or null if the field could not be found
+     **/
+    public abstract Object getField(Object obj, String name);
 
-	/**
-	 * Returns an opaque handle to the method with the given name best matching the signature implied by the given arguments, or
-	 * null if the method could not be found. If obj is an instance of Class, the matching static method is returned. If the name
-	 * is null and the object is a {@link FunctionalInterface}, the first declared method on the object is returned.
-	 **/
-	public abstract Object getMethod(Object obj, String name, Object... arguments);
+    /**
+     * Returns an opaque handle to the method with the given name best matching the signature implied by the given arguments, or
+     * null if the method could not be found. If obj is an instance of Class, the matching static method is returned. If the name
+     * is null and the object is a {@link FunctionalInterface}, the first declared method on the object is returned.
+     **/
+    public abstract Object getMethod(Object obj, String name, Object... arguments);
 
-	public abstract Object getExtensionMethod(Object obj, String name, Object... arguments);
+    public abstract Object getExtensionMethod(Object obj, String name, Object... arguments);
 
-	public abstract void registerExtensionClass(Class<?> target, Class<?> clazz);
+    public abstract void registerExtensionClass(Class<?> target, Class<?> clazz);
 
-	/**
-	 * Returns the value of the field from the object. The field must have been previously retrieved via
-	 * {@link #getField(Object, String)}.
-	 **/
-	public abstract Object getFieldValue(Object obj, Object field);
+    /**
+     * Returns the value of the field from the object. The field must have been previously retrieved via
+     * {@link #getField(Object, String)}.
+     **/
+    public abstract Object getFieldValue(Object obj, Object field);
 
-	/**
-	 * Calls the method on the object with the given arguments. The method must have been previously retrieved via
-	 * {@link #getMethod(Object, String, Object...)}.
-	 **/
-	public abstract Object callMethod(Object obj, Object method, Object... arguments);
+    /**
+     * Calls the method on the object with the given arguments. The method must have been previously retrieved via
+     * {@link #getMethod(Object, String, Object...)}.
+     **/
+    public abstract Object callMethod(Object obj, Object method, Object... arguments);
 }

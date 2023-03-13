@@ -21,35 +21,35 @@ import java.util.stream.Collectors;
 @Component
 public class ExecutorsUtils implements ApplicationContextAware {
 
-	/**
-	 * 节点执行器列表 当前自动化任务的全部流程
-	 */
-	private static List<ShapeExecutor> executors;
+    /**
+     * 节点执行器列表 当前自动化任务的全部流程
+     */
+    private static List<ShapeExecutor> executors;
 
-	private static Map<String, ShapeExecutor> executorMap;
+    private static Map<String, ShapeExecutor> executorMap;
 
-	private static ApplicationContext applicationContext;
+    private static ApplicationContext applicationContext;
 
-	@Autowired
-	ExecutorsUtils(List<ShapeExecutor> executors) {
-		ExecutorsUtils.executors = executors;
-	}
+    @Autowired
+    ExecutorsUtils(List<ShapeExecutor> executors) {
+        ExecutorsUtils.executors = executors;
+    }
 
-	public static List<Shape> shapes() {
-		return executors.stream().filter(e -> e.shape() != null).map(executor -> executor.shape()).collect(Collectors.toList());
-	}
+    public static List<Shape> shapes() {
+        return executors.stream().filter(e -> e.shape() != null).map(executor -> executor.shape()).collect(Collectors.toList());
+    }
 
-	public static ShapeExecutor get(String shape) {
-		return executorMap.get(shape);
-	}
+    public static ShapeExecutor get(String shape) {
+        return executorMap.get(shape);
+    }
 
-	@PostConstruct
-	private void init() {
-		executorMap = executors.stream().collect(Collectors.toMap(ShapeExecutor::supportShape, v -> v));
-	}
+    @PostConstruct
+    private void init() {
+        executorMap = executors.stream().collect(Collectors.toMap(ShapeExecutor::supportShape, v -> v));
+    }
 
-	@Override
-	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		ExecutorsUtils.applicationContext = applicationContext;
-	}
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        ExecutorsUtils.applicationContext = applicationContext;
+    }
 }

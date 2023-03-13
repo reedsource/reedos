@@ -12,14 +12,14 @@ import java.util.Map;
  * @author reedsource
  */
 public class DynamicDataSource extends AbstractRoutingDataSource {
-	public DynamicDataSource(DataSource defaultTargetDataSource, Map<Object, Object> targetDataSources) {
-		super.setDefaultTargetDataSource(defaultTargetDataSource);
-		super.setTargetDataSources(targetDataSources);
-		super.afterPropertiesSet();
-	}
+    public DynamicDataSource(DataSource defaultTargetDataSource, Map<Object, Object> targetDataSources) {
+        super.setDefaultTargetDataSource(defaultTargetDataSource);
+        super.setTargetDataSources(targetDataSources);
+        super.afterPropertiesSet();
+    }
 
-	@Override
-	protected Object determineCurrentLookupKey() {
-		return DynamicDataSourceContextHolder.getDataSourceType();
-	}
+    @Override
+    protected Object determineCurrentLookupKey() {
+        return DynamicDataSourceContextHolder.getDataSourceType();
+    }
 }

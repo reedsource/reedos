@@ -18,19 +18,19 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Component
 public class ReedInterceptor implements HandlerInterceptor {
-	private static final Logger log = LoggerFactory.getLogger(ReedInterceptor.class);
+    private static final Logger log = LoggerFactory.getLogger(ReedInterceptor.class);
 
-	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-		//获取用户的请求uri
-		String url = request.getRequestURI();
-		String[] split = url.split("\\.");
-		//屏蔽结尾为.js和.css的请求打印
-		if (split.length > 1) {
-			if (!split[split.length - 1].equals("js") && !split[split.length - 1].equals("css")) {
-				log.info("请求 {}", url);
-			}
-		}
-		return true;
-	}
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+        //获取用户的请求uri
+        String url = request.getRequestURI();
+        String[] split = url.split("\\.");
+        //屏蔽结尾为.js和.css的请求打印
+        if (split.length > 1) {
+            if (!split[split.length - 1].equals("js") && !split[split.length - 1].equals("css")) {
+                log.info("请求 {}", url);
+            }
+        }
+        return true;
+    }
 }

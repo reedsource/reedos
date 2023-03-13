@@ -16,40 +16,40 @@ import top.reed.common.core.domain.BaseEntity;
 @Getter
 @Setter
 public class LoginPage extends BaseEntity {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * ID
-	 */
-	private Long id;
+    /**
+     * ID
+     */
+    private Long id;
 
-	/**
-	 * 登录主题名称
-	 */
-	@Excel(name = "登录主题名称")
-	private String name;
+    /**
+     * 登录主题名称
+     */
+    @Excel(name = "登录主题名称")
+    private String name;
 
-	/**
-	 * 页面代码
-	 */
-	@Excel(name = "页面代码")
-	private String code;
+    /**
+     * 页面代码
+     */
+    @Excel(name = "页面代码")
+    private String code;
 
-	/**
-	 * 封面图片
-	 */
-	@Excel(name = "封面图片")
-	private String coverImg;
+    /**
+     * 封面图片
+     */
+    @Excel(name = "封面图片")
+    private String coverImg;
 
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-				.append("id", getId())
-				.append("name", getName())
-				.append("code", getCode())
-				.append("coverImg", getCoverImg())
-				.append("createTime", getCreateTime())
-				.append("createBy", getCreateBy())
-				.toString();
-	}
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+                .append("id", getId())
+                .append("name", getName())
+                .append("code", getCode())
+                .append("coverImg", getCoverImg())
+                .append("createTime", getCreateTime())
+                .append("createBy", getCreateBy())
+                .toString();
+    }
 }

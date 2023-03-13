@@ -1,78 +1,78 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.reed.automation.mapper.AutoFunctionMapper">
 
-	<resultMap type="top.reed.automation.domain.AutoFunction" id="AutoFunctionResult">
-		<result property="id" column="id"/>
-		<result property="name" column="name"/>
-		<result property="parameter" column="parameter"/>
-		<result property="script" column="script"/>
-		<result property="createDate" column="create_date"/>
-	</resultMap>
+    <resultMap type="top.reed.automation.domain.AutoFunction" id="AutoFunctionResult">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="parameter" column="parameter"/>
+        <result property="script" column="script"/>
+        <result property="createDate" column="create_date"/>
+    </resultMap>
 
-	<sql id="selectAutoFunctionVo">
-		select id, name, parameter, script, create_date
-		from auto_function
-	</sql>
+    <sql id="selectAutoFunctionVo">
+        select id, name, parameter, script, create_date
+        from auto_function
+    </sql>
 
-	<select id="selectAutoFunctionList" parameterType="top.reed.automation.domain.AutoFunction"
-	        resultMap="AutoFunctionResult">
-		<include refid="selectAutoFunctionVo"/>
-		<where>
-			<if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
-			<if test="parameter != null  and parameter != ''">and parameter = #{parameter}</if>
-			<if test="params.beginCreateDate != null and params.beginCreateDate != '' and params.endCreateDate != null and params.endCreateDate != ''">
-				and create_date between #{params.beginCreateDate} and #{params.endCreateDate}
-			</if>
-		</where>
-	</select>
+    <select id="selectAutoFunctionList" parameterType="top.reed.automation.domain.AutoFunction"
+            resultMap="AutoFunctionResult">
+        <include refid="selectAutoFunctionVo"/>
+        <where>
+            <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
+            <if test="parameter != null  and parameter != ''">and parameter = #{parameter}</if>
+            <if test="params.beginCreateDate != null and params.beginCreateDate != '' and params.endCreateDate != null and params.endCreateDate != ''">
+                and create_date between #{params.beginCreateDate} and #{params.endCreateDate}
+            </if>
+        </where>
+    </select>
 
-	<select id="selectAutoFunctionById" parameterType="Long" resultMap="AutoFunctionResult">
-		<include refid="selectAutoFunctionVo"/>
-		where id = #{id}
-	</select>
+    <select id="selectAutoFunctionById" parameterType="Long" resultMap="AutoFunctionResult">
+        <include refid="selectAutoFunctionVo"/>
+        where id = #{id}
+    </select>
 
-	<insert id="insertAutoFunction" parameterType="top.reed.automation.domain.AutoFunction" useGeneratedKeys="true"
-	        keyProperty="id">
-		insert into auto_function
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="name != null and name != ''">name,</if>
-			<if test="parameter != null and parameter != ''">parameter,</if>
-			<if test="script != null">script,</if>
-			<if test="createDate != null">create_date,</if>
-		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="name != null and name != ''">#{name},</if>
-			<if test="parameter != null and parameter != ''">#{parameter},</if>
-			<if test="script != null">#{script},</if>
-			<if test="createDate != null">#{createDate},</if>
-		</trim>
-	</insert>
+    <insert id="insertAutoFunction" parameterType="top.reed.automation.domain.AutoFunction" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into auto_function
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null and name != ''">name,</if>
+            <if test="parameter != null and parameter != ''">parameter,</if>
+            <if test="script != null">script,</if>
+            <if test="createDate != null">create_date,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null and name != ''">#{name},</if>
+            <if test="parameter != null and parameter != ''">#{parameter},</if>
+            <if test="script != null">#{script},</if>
+            <if test="createDate != null">#{createDate},</if>
+        </trim>
+    </insert>
 
-	<update id="updateAutoFunction" parameterType="top.reed.automation.domain.AutoFunction">
-		update auto_function
-		<trim prefix="SET" suffixOverrides=",">
-			<if test="name != null and name != ''">name = #{name},</if>
-			<if test="parameter != null and parameter != ''">parameter = #{parameter},</if>
-			<if test="script != null">script = #{script},</if>
-			<if test="createDate != null">create_date = #{createDate},</if>
-		</trim>
-		where id = #{id}
-	</update>
+    <update id="updateAutoFunction" parameterType="top.reed.automation.domain.AutoFunction">
+        update auto_function
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="parameter != null and parameter != ''">parameter = #{parameter},</if>
+            <if test="script != null">script = #{script},</if>
+            <if test="createDate != null">create_date = #{createDate},</if>
+        </trim>
+        where id = #{id}
+    </update>
 
-	<delete id="deleteAutoFunctionById" parameterType="Long">
-		delete
-		from auto_function
-		where id = #{id}
-	</delete>
+    <delete id="deleteAutoFunctionById" parameterType="Long">
+        delete
+        from auto_function
+        where id = #{id}
+    </delete>
 
-	<delete id="deleteAutoFunctionByIds" parameterType="String">
-		delete from auto_function where id in
-		<foreach item="id" collection="array" open="(" separator="," close=")">
-			#{id}
-		</foreach>
-	</delete>
+    <delete id="deleteAutoFunctionByIds" parameterType="String">
+        delete from auto_function where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
 
 </mapper>

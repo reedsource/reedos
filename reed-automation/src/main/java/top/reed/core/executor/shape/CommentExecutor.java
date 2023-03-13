@@ -10,14 +10,14 @@ import java.util.Map;
 @Component
 public class CommentExecutor implements ShapeExecutor {
 
-	@Override
-	public void execute(SpiderNode node, SpiderContext context, Map<String, Object> variables) {
+    @Override
+    public void execute(SpiderNode node, SpiderContext context, Map<String, Object> variables) {
 
-	}
+    }
 
-	@Override
-	public String supportShape() {
-		return "comment";
-	}
+    @Override
+    public String supportShape() {
+        return "comment";
+    }
 
 }

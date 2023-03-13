@@ -6,9 +6,9 @@ package top.reed.common.exception.user;
  * @author reedsource
  */
 public class UserDeleteException extends UserException {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public UserDeleteException() {
-		super("user.password.delete", null);
-	}
+    public UserDeleteException() {
+        super("user.password.delete", null);
+    }
 }

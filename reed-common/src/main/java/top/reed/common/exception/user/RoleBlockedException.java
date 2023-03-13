@@ -6,9 +6,9 @@ package top.reed.common.exception.user;
  * @author reedsource
  */
 public class RoleBlockedException extends UserException {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public RoleBlockedException() {
-		super("role.blocked", null);
-	}
+    public RoleBlockedException() {
+        super("role.blocked", null);
+    }
 }

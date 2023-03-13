@@ -18,24 +18,24 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Component
 public class OnlineSessionFactory implements SessionFactory {
-	@Override
-	public Session createSession(SessionContext initData) {
-		OnlineSession session = new OnlineSession();
-		if (initData instanceof WebSessionContext) {
-			WebSessionContext sessionContext = (WebSessionContext) initData;
-			HttpServletRequest request = (HttpServletRequest) sessionContext.getServletRequest();
-			if (request != null) {
-				//获取用户User-Agent并解析为userAgent对象
-				UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
-				// 获取客户端操作系统
-				String os = userAgent.getOperatingSystem();
-				// 获取客户端浏览器
-				String browser = userAgent.getBrowser();
-				session.setHost(IpUtils.getIpAddr(request));
-				session.setBrowser(browser);
-				session.setOs(os);
-			}
-		}
-		return session;
-	}
+    @Override
+    public Session createSession(SessionContext initData) {
+        OnlineSession session = new OnlineSession();
+        if (initData instanceof WebSessionContext) {
+            WebSessionContext sessionContext = (WebSessionContext) initData;
+            HttpServletRequest request = (HttpServletRequest) sessionContext.getServletRequest();
+            if (request != null) {
+                //获取用户User-Agent并解析为userAgent对象
+                UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
+                // 获取客户端操作系统
+                String os = userAgent.getOperatingSystem();
+                // 获取客户端浏览器
+                String browser = userAgent.getBrowser();
+                session.setHost(IpUtils.getIpAddr(request));
+                session.setBrowser(browser);
+                session.setOs(os);
+            }
+        }
+        return session;
+    }
 }

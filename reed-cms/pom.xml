@@ -2,37 +2,37 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<parent>
-		<artifactId>reed</artifactId>
-		<groupId>top.reed</groupId>
-		<version>0.0.1</version>
-	</parent>
-	<modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>reed</artifactId>
+        <groupId>top.reed</groupId>
+        <version>0.0.1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
 
-	<artifactId>reed-cms</artifactId>
+    <artifactId>reed-cms</artifactId>
 
-	<description>
-		内容管理系统
-	</description>
+    <description>
+        内容管理系统
+    </description>
 
-	<dependencies>
-		<!-- 核心模块-->
-		<dependency>
-			<groupId>top.reed</groupId>
-			<artifactId>reed-framework</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient</artifactId>
-			<version>${httpclient.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.mail</groupId>
-			<artifactId>javax.mail</artifactId>
-			<version>${javax-mail.version}</version>
-		</dependency>
+    <dependencies>
+        <!-- 核心模块-->
+        <dependency>
+            <groupId>top.reed</groupId>
+            <artifactId>reed-framework</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpclient.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>${javax-mail.version}</version>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
 
 
 </project>

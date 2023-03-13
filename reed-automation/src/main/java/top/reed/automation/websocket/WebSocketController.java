@@ -22,28 +22,28 @@ import java.io.UnsupportedEncodingException;
 @RequestMapping("/automation")
 public class WebSocketController {
 
-	private static final Logger log = LoggerFactory.getLogger(WebSocketController.class);
+    private static final Logger log = LoggerFactory.getLogger(WebSocketController.class);
 
-	@Autowired
-	private WebSocketServer websocketServer;
+    @Autowired
+    private WebSocketServer websocketServer;
 
-	@RequiresPermissions("automation:websocket:view")
-	@GetMapping("/notice")
-	public String notice(Model model) {
-		model.addAttribute("online", websocketServer.getOnlineUserCount());
-		return "/websocket/notification";
-	}
+    @RequiresPermissions("automation:websocket:view")
+    @GetMapping("/notice")
+    public String notice(Model model) {
+        model.addAttribute("online", websocketServer.getOnlineUserCount());
+        return "/websocket/notification";
+    }
 
-	/**
-	 * 发送消息通知
-	 */
-	@RequiresPermissions("automation:websocket:view")
-	@PostMapping("/notice")
-	@Log(title = "通过websocket向前台用户发送通知", businessType = BusinessType.OTHER)
-	@ResponseBody
-	public AjaxResult notice(String msg) {
-		log.info("发送全局用户socket消息 {}", msg);
-		WebSocketUsers.sendMessageToUsersByText(msg);
-		return AjaxResult.success("消息发送成功");
-	}
+    /**
+     * 发送消息通知
+     */
+    @RequiresPermissions("automation:websocket:view")
+    @PostMapping("/notice")
+    @Log(title = "通过websocket向前台用户发送通知", businessType = BusinessType.OTHER)
+    @ResponseBody
+    public AjaxResult notice(String msg) {
+        log.info("发送全局用户socket消息 {}", msg);
+        WebSocketUsers.sendMessageToUsersByText(msg);
+        return AjaxResult.success("消息发送成功");
+    }
 }

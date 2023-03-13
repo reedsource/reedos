@@ -29,166 +29,166 @@ import java.util.stream.Collectors;
  */
 @Service
 public class AutoFlowServiceImpl implements AutoFlowService {
-	private static Logger logger = LoggerFactory.getLogger(AutoFlowServiceImpl.class);
+    private static Logger logger = LoggerFactory.getLogger(AutoFlowServiceImpl.class);
 
-	/**
-	 * 日志路径
-	 */
-	private final String workspace = "/data/spider";
-	private final AutoFlowMapper autoFlowMapper;
-	@Autowired
-	private Spider spider;
+    /**
+     * 日志路径
+     */
+    private final String workspace = "/data/spider";
+    private final AutoFlowMapper autoFlowMapper;
+    @Autowired
+    private Spider spider;
 
-	public AutoFlowServiceImpl(AutoFlowMapper autoFlowMapper) {
-		this.autoFlowMapper = autoFlowMapper;
-	}
+    public AutoFlowServiceImpl(AutoFlowMapper autoFlowMapper) {
+        this.autoFlowMapper = autoFlowMapper;
+    }
 
-	/**
-	 * 查询自动化任务
-	 *
-	 * @param id 自动化任务主键
-	 * @return 自动化任务
-	 */
-	@Override
-	public AutoFlow selectAutoFlowById(Long id) {
-		return autoFlowMapper.selectAutoFlowById(id);
-	}
+    /**
+     * 查询自动化任务
+     *
+     * @param id 自动化任务主键
+     * @return 自动化任务
+     */
+    @Override
+    public AutoFlow selectAutoFlowById(Long id) {
+        return autoFlowMapper.selectAutoFlowById(id);
+    }
 
-	/**
-	 * 查询自动化任务列表
-	 *
-	 * @param autoFlow 自动化任务
-	 * @return 自动化任务
-	 */
-	@Override
-	public List<AutoFlow> selectAutoFlowList(AutoFlow autoFlow) {
-		return autoFlowMapper.selectAutoFlowList(autoFlow);
-	}
+    /**
+     * 查询自动化任务列表
+     *
+     * @param autoFlow 自动化任务
+     * @return 自动化任务
+     */
+    @Override
+    public List<AutoFlow> selectAutoFlowList(AutoFlow autoFlow) {
+        return autoFlowMapper.selectAutoFlowList(autoFlow);
+    }
 
-	/**
-	 * 保存自动化任务
-	 *
-	 * @param autoFlow 自动化任务
-	 * @return 结果
-	 */
-	@Override
-	public int saveAutoFlow(AutoFlow autoFlow) {
-		int i;
-		//任务存在更新
-		if (autoFlowMapper.selectAutoFlowById(autoFlow.getId()) != null) {
-			i = autoFlowMapper.updateAutoFlow(autoFlow);
-		} else {
-			//任务不存在添加
-			i = autoFlowMapper.insertAutoFlow(autoFlow);
-		}
-		String id = autoFlowMapper.selectAutoFlowList(autoFlow).get(0).getId().toString();
-		//更新缓存
-		CacheUtils.put("auto_job_name", id, autoFlow.getName());
-		File file = new File(workspace, id + File.separator + "xmls" + File.separator + System.currentTimeMillis() + ".xml");
-		try {
-			FileUtils.write(file, autoFlow.getXml(), "UTF-8");
-		} catch (IOException e) {
-			logger.error("保存历史记录出错", e);
-		}
-		return i;
-	}
+    /**
+     * 保存自动化任务
+     *
+     * @param autoFlow 自动化任务
+     * @return 结果
+     */
+    @Override
+    public int saveAutoFlow(AutoFlow autoFlow) {
+        int i;
+        //任务存在更新
+        if (autoFlowMapper.selectAutoFlowById(autoFlow.getId()) != null) {
+            i = autoFlowMapper.updateAutoFlow(autoFlow);
+        } else {
+            //任务不存在添加
+            i = autoFlowMapper.insertAutoFlow(autoFlow);
+        }
+        String id = autoFlowMapper.selectAutoFlowList(autoFlow).get(0).getId().toString();
+        //更新缓存
+        CacheUtils.put("auto_job_name", id, autoFlow.getName());
+        File file = new File(workspace, id + File.separator + "xmls" + File.separator + System.currentTimeMillis() + ".xml");
+        try {
+            FileUtils.write(file, autoFlow.getXml(), "UTF-8");
+        } catch (IOException e) {
+            logger.error("保存历史记录出错", e);
+        }
+        return i;
+    }
 
-	/**
-	 * 修改自动化任务状态
-	 *
-	 * @param autoFlow 自动化任务
-	 * @return 结果
-	 */
-	@Override
-	public int updateStatus(AutoFlow autoFlow) {
-		int i = 0;
-		//任务存在更新
-		if (autoFlowMapper.selectAutoFlowById(autoFlow.getId()) != null) {
-			i = autoFlowMapper.updateAutoFlow(autoFlow);
-		} else {
-			logger.error("修改自动化任务状态出错,任务id不存在");
-		}
-		return i;
-	}
+    /**
+     * 修改自动化任务状态
+     *
+     * @param autoFlow 自动化任务
+     * @return 结果
+     */
+    @Override
+    public int updateStatus(AutoFlow autoFlow) {
+        int i = 0;
+        //任务存在更新
+        if (autoFlowMapper.selectAutoFlowById(autoFlow.getId()) != null) {
+            i = autoFlowMapper.updateAutoFlow(autoFlow);
+        } else {
+            logger.error("修改自动化任务状态出错,任务id不存在");
+        }
+        return i;
+    }
 
 
-	/**
-	 * 批量删除自动化任务
-	 *
-	 * @param ids 需要删除的自动化任务主键
-	 * @return 结果
-	 */
-	@Override
-	public int deleteAutoFlowByIds(String ids) {
-		return autoFlowMapper.deleteAutoFlowByIds(Convert.toStrArray(ids));
-	}
+    /**
+     * 批量删除自动化任务
+     *
+     * @param ids 需要删除的自动化任务主键
+     * @return 结果
+     */
+    @Override
+    public int deleteAutoFlowByIds(String ids) {
+        return autoFlowMapper.deleteAutoFlowByIds(Convert.toStrArray(ids));
+    }
 
-	/**
-	 * 删除自动化任务信息
-	 *
-	 * @param id 自动化任务主键
-	 * @return 结果
-	 */
-	@Override
-	public int deleteAutoFlowById(Long id) {
-		return autoFlowMapper.deleteAutoFlowById(id);
-	}
+    /**
+     * 删除自动化任务信息
+     *
+     * @param id 自动化任务主键
+     * @return 结果
+     */
+    @Override
+    public int deleteAutoFlowById(Long id) {
+        return autoFlowMapper.deleteAutoFlowById(id);
+    }
 
-	/**
-	 * 执行一次流程
-	 *
-	 * @param id 自动化流程id
-	 */
-	@Override
-	public void run(Long id) {
-		Spider.executorInstance.submit(() -> {
-			run(selectAutoFlowById(id));
-		});
-	}
+    /**
+     * 执行一次流程
+     *
+     * @param id 自动化流程id
+     */
+    @Override
+    public void run(Long id) {
+        Spider.executorInstance.submit(() -> {
+            run(selectAutoFlowById(id));
+        });
+    }
 
-	/**
-	 * 执行一次流程
-	 *
-	 * @param autoFlow 自动化流程
-	 */
-	public void run(AutoFlow autoFlow) {
-		SpiderJobContext context = null;
-		try {
-			context = SpiderJobContext.create(this.workspace, autoFlow.getId().toString(), false);
-			SpiderContextHolder.set(context);
-			logger.info("开始执行任务{}", autoFlow.getName());
-			spider.run(autoFlow, context);
-			logger.info("执行任务{}完毕", autoFlow.getName());
-		} catch (Exception e) {
-			logger.error("执行任务{}出错", autoFlow.getName(), e);
-		} finally {
-			if (context != null) {
-				context.close();
-			}
-			SpiderContextHolder.remove();
-		}
-	}
+    /**
+     * 执行一次流程
+     *
+     * @param autoFlow 自动化流程
+     */
+    public void run(AutoFlow autoFlow) {
+        SpiderJobContext context = null;
+        try {
+            context = SpiderJobContext.create(this.workspace, autoFlow.getId().toString(), false);
+            SpiderContextHolder.set(context);
+            logger.info("开始执行任务{}", autoFlow.getName());
+            spider.run(autoFlow, context);
+            logger.info("执行任务{}完毕", autoFlow.getName());
+        } catch (Exception e) {
+            logger.error("执行任务{}出错", autoFlow.getName(), e);
+        } finally {
+            if (context != null) {
+                context.close();
+            }
+            SpiderContextHolder.remove();
+        }
+    }
 
-	public String readHistory(String id, String timestamp) {
-		File file = new File(workspace, id + File.separator + "xmls" + File.separator + timestamp + ".xml");
-		if (file.exists()) {
-			try {
-				return FileUtils.readFileToString(file, "UTF-8");
-			} catch (IOException e) {
-				logger.error("读取历史版本出错", e);
-			}
-		}
-		return null;
-	}
+    public String readHistory(String id, String timestamp) {
+        File file = new File(workspace, id + File.separator + "xmls" + File.separator + timestamp + ".xml");
+        if (file.exists()) {
+            try {
+                return FileUtils.readFileToString(file, "UTF-8");
+            } catch (IOException e) {
+                logger.error("读取历史版本出错", e);
+            }
+        }
+        return null;
+    }
 
-	public List<Long> historyList(String id) {
-		File directory = new File(workspace, id + File.separator + "xmls");
-		if (directory.exists() && directory.isDirectory()) {
-			File[] files = directory.listFiles((dir, name) -> name.endsWith(".xml"));
-			if (files != null && files.length > 0) {
-				return Arrays.stream(files).map(f -> Long.parseLong(f.getName().replace(".xml", ""))).sorted().collect(Collectors.toList());
-			}
-		}
-		return Collections.emptyList();
-	}
+    public List<Long> historyList(String id) {
+        File directory = new File(workspace, id + File.separator + "xmls");
+        if (directory.exists() && directory.isDirectory()) {
+            File[] files = directory.listFiles((dir, name) -> name.endsWith(".xml"));
+            if (files != null && files.length > 0) {
+                return Arrays.stream(files).map(f -> Long.parseLong(f.getName().replace(".xml", ""))).sorted().collect(Collectors.toList());
+            }
+        }
+        return Collections.emptyList();
+    }
 }

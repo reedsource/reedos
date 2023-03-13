@@ -25,89 +25,89 @@ import java.util.List;
 @Controller
 @RequestMapping("/cms/comment")
 public class CommentController extends BaseController {
-	private final String prefix = "cms/comment";
+    private final String prefix = "cms/comment";
 
-	@Autowired
-	private ICommentService commentService;
+    @Autowired
+    private ICommentService commentService;
 
-	@RequiresPermissions("cms:comment:view")
-	@GetMapping()
-	public String comment() {
-		return prefix + "/comment";
-	}
+    @RequiresPermissions("cms:comment:view")
+    @GetMapping()
+    public String comment() {
+        return prefix + "/comment";
+    }
 
-	/**
-	 * 查询评论列表
-	 */
-	@RequiresPermissions("cms:comment:list")
-	@PostMapping("/list")
-	@ResponseBody
-	public TableDataInfo list(Comment comment) {
-		startPage();
-		List<Comment> list = commentService.selectCommentList(comment);
-		return getDataTable(list);
-	}
+    /**
+     * 查询评论列表
+     */
+    @RequiresPermissions("cms:comment:list")
+    @PostMapping("/list")
+    @ResponseBody
+    public TableDataInfo list(Comment comment) {
+        startPage();
+        List<Comment> list = commentService.selectCommentList(comment);
+        return getDataTable(list);
+    }
 
-	/**
-	 * 导出评论列表
-	 */
-	@RequiresPermissions("cms:comment:export")
-	@PostMapping("/export")
-	@ResponseBody
-	public AjaxResult export(Comment comment) {
-		List<Comment> list = commentService.selectCommentList(comment);
-		ExcelUtil<Comment> util = new ExcelUtil<>(Comment.class);
-		return util.exportExcel(list, "comment");
-	}
+    /**
+     * 导出评论列表
+     */
+    @RequiresPermissions("cms:comment:export")
+    @PostMapping("/export")
+    @ResponseBody
+    public AjaxResult export(Comment comment) {
+        List<Comment> list = commentService.selectCommentList(comment);
+        ExcelUtil<Comment> util = new ExcelUtil<>(Comment.class);
+        return util.exportExcel(list, "comment");
+    }
 
-	/**
-	 * 新增评论
-	 */
-	@GetMapping("/add")
-	public String add() {
-		return prefix + "/add";
-	}
+    /**
+     * 新增评论
+     */
+    @GetMapping("/add")
+    public String add() {
+        return prefix + "/add";
+    }
 
-	/**
-	 * 新增保存评论
-	 */
-	@RequiresPermissions("cms:comment:add")
-	@Log(title = "评论", businessType = BusinessType.INSERT)
-	@PostMapping("/add")
-	@ResponseBody
-	public AjaxResult addSave(Comment comment) {
-		return toAjax(commentService.insertComment(comment));
-	}
+    /**
+     * 新增保存评论
+     */
+    @RequiresPermissions("cms:comment:add")
+    @Log(title = "评论", businessType = BusinessType.INSERT)
+    @PostMapping("/add")
+    @ResponseBody
+    public AjaxResult addSave(Comment comment) {
+        return toAjax(commentService.insertComment(comment));
+    }
 
-	/**
-	 * 修改评论
-	 */
-	@GetMapping("/edit/{id}")
-	public String edit(@PathVariable("id") Long id, ModelMap mmap) {
-		Comment comment = commentService.selectCommentById(id);
-		mmap.put("comment", comment);
-		return prefix + "/edit";
-	}
+    /**
+     * 修改评论
+     */
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable("id") Long id, ModelMap mmap) {
+        Comment comment = commentService.selectCommentById(id);
+        mmap.put("comment", comment);
+        return prefix + "/edit";
+    }
 
-	/**
-	 * 修改保存评论
-	 */
-	@RequiresPermissions("cms:comment:edit")
-	@Log(title = "评论", businessType = BusinessType.UPDATE)
-	@PostMapping("/edit")
-	@ResponseBody
-	public AjaxResult editSave(Comment comment) {
-		return toAjax(commentService.updateComment(comment));
-	}
+    /**
+     * 修改保存评论
+     */
+    @RequiresPermissions("cms:comment:edit")
+    @Log(title = "评论", businessType = BusinessType.UPDATE)
+    @PostMapping("/edit")
+    @ResponseBody
+    public AjaxResult editSave(Comment comment) {
+        return toAjax(commentService.updateComment(comment));
+    }
 
-	/**
-	 * 删除评论
-	 */
-	@RequiresPermissions("cms:comment:remove")
-	@Log(title = "评论", businessType = BusinessType.DELETE)
-	@PostMapping("/remove")
-	@ResponseBody
-	public AjaxResult remove(String ids) {
-		return toAjax(commentService.deleteCommentByIds(ids));
-	}
+    /**
+     * 删除评论
+     */
+    @RequiresPermissions("cms:comment:remove")
+    @Log(title = "评论", businessType = BusinessType.DELETE)
+    @PostMapping("/remove")
+    @ResponseBody
+    public AjaxResult remove(String ids) {
+        return toAjax(commentService.deleteCommentByIds(ids));
+    }
 }

@@ -17,75 +17,75 @@ import java.util.List;
 @Service
 public class AutoDataSourceServiceImpl implements AutoDataSourceService {
 
-	private final AutoDataSourceMapper autoDataSourceMapper;
+    private final AutoDataSourceMapper autoDataSourceMapper;
 
-	public AutoDataSourceServiceImpl(AutoDataSourceMapper autoDataSourceMapper) {
-		this.autoDataSourceMapper = autoDataSourceMapper;
-	}
+    public AutoDataSourceServiceImpl(AutoDataSourceMapper autoDataSourceMapper) {
+        this.autoDataSourceMapper = autoDataSourceMapper;
+    }
 
-	/**
-	 * 查询自动化数据源
-	 *
-	 * @param id 自动化数据源主键
-	 * @return 自动化数据源
-	 */
-	@Override
-	public AutoDataSource selectAutoDataSourceById(String id) {
-		return autoDataSourceMapper.selectAutoDataSourceById(id);
-	}
+    /**
+     * 查询自动化数据源
+     *
+     * @param id 自动化数据源主键
+     * @return 自动化数据源
+     */
+    @Override
+    public AutoDataSource selectAutoDataSourceById(String id) {
+        return autoDataSourceMapper.selectAutoDataSourceById(id);
+    }
 
-	/**
-	 * 查询自动化数据源列表
-	 *
-	 * @param autoDataSource 自动化数据源
-	 * @return 自动化数据源
-	 */
-	@Override
-	public List<AutoDataSource> selectAutoDataSourceList(AutoDataSource autoDataSource) {
-		return autoDataSourceMapper.selectAutoDataSourceList(autoDataSource);
-	}
+    /**
+     * 查询自动化数据源列表
+     *
+     * @param autoDataSource 自动化数据源
+     * @return 自动化数据源
+     */
+    @Override
+    public List<AutoDataSource> selectAutoDataSourceList(AutoDataSource autoDataSource) {
+        return autoDataSourceMapper.selectAutoDataSourceList(autoDataSource);
+    }
 
-	/**
-	 * 新增自动化数据源
-	 *
-	 * @param autoDataSource 自动化数据源
-	 * @return 结果
-	 */
-	@Override
-	public int insertAutoDataSource(AutoDataSource autoDataSource) {
-		return autoDataSourceMapper.insertAutoDataSource(autoDataSource);
-	}
+    /**
+     * 新增自动化数据源
+     *
+     * @param autoDataSource 自动化数据源
+     * @return 结果
+     */
+    @Override
+    public int insertAutoDataSource(AutoDataSource autoDataSource) {
+        return autoDataSourceMapper.insertAutoDataSource(autoDataSource);
+    }
 
-	/**
-	 * 修改自动化数据源
-	 *
-	 * @param autoDataSource 自动化数据源
-	 * @return 结果
-	 */
-	@Override
-	public int updateAutoDataSource(AutoDataSource autoDataSource) {
-		return autoDataSourceMapper.updateAutoDataSource(autoDataSource);
-	}
+    /**
+     * 修改自动化数据源
+     *
+     * @param autoDataSource 自动化数据源
+     * @return 结果
+     */
+    @Override
+    public int updateAutoDataSource(AutoDataSource autoDataSource) {
+        return autoDataSourceMapper.updateAutoDataSource(autoDataSource);
+    }
 
-	/**
-	 * 批量删除自动化数据源
-	 *
-	 * @param ids 需要删除的自动化数据源主键
-	 * @return 结果
-	 */
-	@Override
-	public int deleteAutoDataSourceByIds(String ids) {
-		return autoDataSourceMapper.deleteAutoDataSourceByIds(Convert.toStrArray(ids));
-	}
+    /**
+     * 批量删除自动化数据源
+     *
+     * @param ids 需要删除的自动化数据源主键
+     * @return 结果
+     */
+    @Override
+    public int deleteAutoDataSourceByIds(String ids) {
+        return autoDataSourceMapper.deleteAutoDataSourceByIds(Convert.toStrArray(ids));
+    }
 
-	/**
-	 * 删除自动化数据源信息
-	 *
-	 * @param id 自动化数据源主键
-	 * @return 结果
-	 */
-	@Override
-	public int deleteAutoDataSourceById(String id) {
-		return autoDataSourceMapper.deleteAutoDataSourceById(id);
-	}
+    /**
+     * 删除自动化数据源信息
+     *
+     * @param id 自动化数据源主键
+     * @return 结果
+     */
+    @Override
+    public int deleteAutoDataSourceById(String id) {
+        return autoDataSourceMapper.deleteAutoDataSourceById(id);
+    }
 }

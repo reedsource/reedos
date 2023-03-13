@@ -25,59 +25,59 @@ import javax.websocket.server.ServerEndpoint;
 public class WebSocketEditorServer {
 
 
-	/**
-	 * 以下3 注入静态资源
-	 */
-	@Autowired
-	public Spider spider;
-	@Autowired
-	private static Spider spider_to;
+    /**
+     * 以下3 注入静态资源
+     */
+    @Autowired
+    public Spider spider;
+    @Autowired
+    private static Spider spider_to;
 
-	@PostConstruct
-	public void init() {
-		spider_to = spider;
-	}
+    @PostConstruct
+    public void init() {
+        spider_to = spider;
+    }
 
-	private WebSocketContext context;
+    private WebSocketContext context;
 
-	/**
-	 * 收到客户端消息后调用的方法
-	 *
-	 * @param message 客户端发送过来的消息
-	 */
-	@OnMessage
-	public void onMessage(String message, Session session) {
-		JSONObject event = JSON.parseObject(message);
-		String eventType = event.getString("eventType");
-		boolean isDebug = "debug".equalsIgnoreCase(eventType);
-		if ("test".equalsIgnoreCase(eventType) || isDebug) {
-			context = new WebSocketContext(session);
-			context.setDebug(isDebug);
-			context.setRunning(true);
-			new Thread(() -> {
-				String xml = event.getString("message");
-				if (xml != null) {
-					spider_to.runWithTest(AutoFlowUtils.loadXMLFromString(xml), context);
-					context.write(new WebSocket<>("finish", null));
-				} else {
-					context.write(new WebSocket<>("error", "xml不正确！"));
-				}
-				context.setRunning(false);
-			}).start();
-		} else if ("stop".equals(eventType) && context != null) {
-			context.setRunning(false);
-			context.stop();
-		} else if ("resume".equalsIgnoreCase(eventType) && context != null) {
-			context.resume();
-		}
-	}
+    /**
+     * 收到客户端消息后调用的方法
+     *
+     * @param message 客户端发送过来的消息
+     */
+    @OnMessage
+    public void onMessage(String message, Session session) {
+        JSONObject event = JSON.parseObject(message);
+        String eventType = event.getString("eventType");
+        boolean isDebug = "debug".equalsIgnoreCase(eventType);
+        if ("test".equalsIgnoreCase(eventType) || isDebug) {
+            context = new WebSocketContext(session);
+            context.setDebug(isDebug);
+            context.setRunning(true);
+            new Thread(() -> {
+                String xml = event.getString("message");
+                if (xml != null) {
+                    spider_to.runWithTest(AutoFlowUtils.loadXMLFromString(xml), context);
+                    context.write(new WebSocket<>("finish", null));
+                } else {
+                    context.write(new WebSocket<>("error", "xml不正确！"));
+                }
+                context.setRunning(false);
+            }).start();
+        } else if ("stop".equals(eventType) && context != null) {
+            context.setRunning(false);
+            context.stop();
+        } else if ("resume".equalsIgnoreCase(eventType) && context != null) {
+            context.resume();
+        }
+    }
 
-	/**
-	 * 连接关闭调用的方法
-	 */
-	@OnClose
-	public void onClose() {
-		context.setRunning(false);
-		context.stop();
-	}
+    /**
+     * 连接关闭调用的方法
+     */
+    @OnClose
+    public void onClose() {
+        context.setRunning(false);
+        context.stop();
+    }
 }

@@ -23,11 +23,11 @@ create table reedos.sys_oper_log
     comment '操作日志记录';
 
 create index idx_sys_oper_log_bt
-    on sys_oper_log (business_type);
+    on reedos.sys_oper_log (business_type);
 
 create index idx_sys_oper_log_ot
-    on sys_oper_log (oper_time);
+    on reedos.sys_oper_log (oper_time);
 
 create index idx_sys_oper_log_s
-    on sys_oper_log (status);
+    on reedos.sys_oper_log (status);
 

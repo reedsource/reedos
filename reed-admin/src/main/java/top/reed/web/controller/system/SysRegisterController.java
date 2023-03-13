@@ -19,24 +19,24 @@ import top.reed.system.service.ISysConfigService;
  */
 @Controller
 public class SysRegisterController extends BaseController {
-	@Autowired
-	private SysRegisterService registerService;
+    @Autowired
+    private SysRegisterService registerService;
 
-	@Autowired
-	private ISysConfigService configService;
+    @Autowired
+    private ISysConfigService configService;
 
-	@GetMapping("/register")
-	public String register() {
-		return "register";
-	}
+    @GetMapping("/register")
+    public String register() {
+        return "register";
+    }
 
-	@PostMapping("/register")
-	@ResponseBody
-	public AjaxResult ajaxRegister(SysUser user) {
-		if (!("true".equals(configService.selectConfigByKey("sys.account.registerUser")))) {
-			return error("当前系统没有开启注册功能！");
-		}
-		String msg = registerService.register(user);
-		return StringUtils.isEmpty(msg) ? success() : error(msg);
-	}
+    @PostMapping("/register")
+    @ResponseBody
+    public AjaxResult ajaxRegister(SysUser user) {
+        if (!("true".equals(configService.selectConfigByKey("sys.account.registerUser")))) {
+            return error("当前系统没有开启注册功能！");
+        }
+        String msg = registerService.register(user);
+        return StringUtils.isEmpty(msg) ? success() : error(msg);
+    }
 }

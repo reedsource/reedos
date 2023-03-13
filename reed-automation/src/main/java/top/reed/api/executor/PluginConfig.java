@@ -4,6 +4,6 @@ import top.reed.api.model.Plugin;
 
 public interface PluginConfig {
 
-	Plugin plugin();
+    Plugin plugin();
 
 }

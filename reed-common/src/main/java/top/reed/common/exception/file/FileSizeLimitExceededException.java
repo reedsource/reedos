@@ -6,9 +6,9 @@ package top.reed.common.exception.file;
  * @author reedsource
  */
 public class FileSizeLimitExceededException extends FileException {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public FileSizeLimitExceededException(long defaultMaxSize) {
-		super("upload.exceed.maxSize", new Object[]{defaultMaxSize});
-	}
+    public FileSizeLimitExceededException(long defaultMaxSize) {
+        super("upload.exceed.maxSize", new Object[]{defaultMaxSize});
+    }
 }

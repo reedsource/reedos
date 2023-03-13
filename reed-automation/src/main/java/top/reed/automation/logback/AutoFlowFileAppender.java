@@ -16,39 +16,39 @@ import java.io.OutputStream;
  */
 public class AutoFlowFileAppender extends FileAppender<ILoggingEvent> {
 
-	@Override
-	protected void subAppend(ILoggingEvent event) {
-		SpiderContext context = SpiderContextHolder.get();
-		OutputStream os = getOutputStream();
-		if (context instanceof SpiderJobContext) {
-			SpiderJobContext jobContext = (SpiderJobContext) context;
-			os = jobContext.getOutputstream();
-		}
-		try {
-			if (event instanceof DeferredProcessingAware) {
-				((DeferredProcessingAware) event).prepareForDeferredProcessing();
-			}
-			byte[] byteArray = this.encoder.encode(event);
-			writeBytes(os, byteArray);
+    @Override
+    protected void subAppend(ILoggingEvent event) {
+        SpiderContext context = SpiderContextHolder.get();
+        OutputStream os = getOutputStream();
+        if (context instanceof SpiderJobContext) {
+            SpiderJobContext jobContext = (SpiderJobContext) context;
+            os = jobContext.getOutputstream();
+        }
+        try {
+            if (event instanceof DeferredProcessingAware) {
+                ((DeferredProcessingAware) event).prepareForDeferredProcessing();
+            }
+            byte[] byteArray = this.encoder.encode(event);
+            writeBytes(os, byteArray);
 
-		} catch (IOException ioe) {
-			this.started = false;
-			addStatus(new ErrorStatus("IO failure in appender", this, ioe));
-		}
-	}
+        } catch (IOException ioe) {
+            this.started = false;
+            addStatus(new ErrorStatus("IO failure in appender", this, ioe));
+        }
+    }
 
-	private void writeBytes(OutputStream os, byte[] byteArray) throws IOException {
-		if (byteArray == null || byteArray.length == 0)
-			return;
+    private void writeBytes(OutputStream os, byte[] byteArray) throws IOException {
+        if (byteArray == null || byteArray.length == 0)
+            return;
 
-		lock.lock();
-		try {
-			os.write(byteArray);
-			if (isImmediateFlush()) {
-				os.flush();
-			}
-		} finally {
-			lock.unlock();
-		}
-	}
+        lock.lock();
+        try {
+            os.write(byteArray);
+            if (isImmediateFlush()) {
+                os.flush();
+            }
+        } finally {
+            lock.unlock();
+        }
+    }
 }

@@ -10,16 +10,16 @@ import lombok.Setter;
 @Setter
 public class AlbumMaterial extends Material {
 
-	private Long id;
+    private Long id;
 
-	/**
-	 * link
-	 */
-	private String link;
-	/**
-	 * sort
-	 */
-	private String sort;
+    /**
+     * link
+     */
+    private String link;
+    /**
+     * sort
+     */
+    private String sort;
 
 
 }

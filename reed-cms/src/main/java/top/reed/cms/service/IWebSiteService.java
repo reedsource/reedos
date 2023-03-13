@@ -9,10 +9,10 @@ import java.util.Map;
  * date 2022/9/12
  */
 public interface IWebSiteService {
-	/**
-	 * 获得站点相关数据
-	 *
-	 * @return
-	 */
-	Map getSiteInfo();
+    /**
+     * 获得站点相关数据
+     *
+     * @return
+     */
+    Map getSiteInfo();
 }

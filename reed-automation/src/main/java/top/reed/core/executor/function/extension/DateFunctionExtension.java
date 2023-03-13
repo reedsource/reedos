@@ -11,20 +11,20 @@ import java.util.Date;
 @Component
 public class DateFunctionExtension implements FunctionExtension {
 
-	@Comment("格式化日期")
-	@Example("${dateVar.format()}")
-	public static String format(Date date) {
-		return format(date, "yyyy-MM-dd HH:mm:ss");
-	}
+    @Comment("格式化日期")
+    @Example("${dateVar.format()}")
+    public static String format(Date date) {
+        return format(date, "yyyy-MM-dd HH:mm:ss");
+    }
 
-	@Comment("格式化日期")
-	@Example("${dateVar.format('yyyy-MM-dd HH:mm:ss')}")
-	public static String format(Date date, String pattern) {
-		return DateFormatUtils.format(date, pattern);
-	}
+    @Comment("格式化日期")
+    @Example("${dateVar.format('yyyy-MM-dd HH:mm:ss')}")
+    public static String format(Date date, String pattern) {
+        return DateFormatUtils.format(date, pattern);
+    }
 
-	@Override
-	public Class<?> support() {
-		return Date.class;
-	}
+    @Override
+    public Class<?> support() {
+        return Date.class;
+    }
 }

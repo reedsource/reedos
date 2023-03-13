@@ -32,49 +32,49 @@ import java.util.List;
 @RequestMapping("/monitor/online")
 public class SysUserOnlineController extends BaseController {
 
-	@Autowired
-	private ISysUserOnlineService userOnlineService;
+    @Autowired
+    private ISysUserOnlineService userOnlineService;
 
-	@Autowired
-	private OnlineSessionDAO onlineSessionDAO;
+    @Autowired
+    private OnlineSessionDAO onlineSessionDAO;
 
-	@RequiresPermissions("monitor:online:view")
-	@GetMapping()
-	public String online() {
-		return "monitor/online/online";
-	}
+    @RequiresPermissions("monitor:online:view")
+    @GetMapping()
+    public String online() {
+        return "monitor/online/online";
+    }
 
-	@RequiresPermissions("monitor:online:list")
-	@PostMapping("/list")
-	@ResponseBody
-	public TableDataInfo list(SysUserOnline userOnline) {
-		startPage();
-		List<SysUserOnline> list = userOnlineService.selectUserOnlineList(userOnline);
-		return getDataTable(list);
-	}
+    @RequiresPermissions("monitor:online:list")
+    @PostMapping("/list")
+    @ResponseBody
+    public TableDataInfo list(SysUserOnline userOnline) {
+        startPage();
+        List<SysUserOnline> list = userOnlineService.selectUserOnlineList(userOnline);
+        return getDataTable(list);
+    }
 
-	@RequiresPermissions(value = {"monitor:online:batchForceLogout", "monitor:online:forceLogout"}, logical = Logical.OR)
-	@Log(title = "在线用户", businessType = BusinessType.FORCE)
-	@PostMapping("/batchForceLogout")
-	@ResponseBody
-	public AjaxResult batchForceLogout(String ids) {
-		for (String sessionId : Convert.toStrArray(ids)) {
-			SysUserOnline online = userOnlineService.selectOnlineById(sessionId);
-			if (online == null) {
-				return error("用户已下线");
-			}
-			OnlineSession onlineSession = (OnlineSession) onlineSessionDAO.readSession(online.getSessionId());
-			if (onlineSession == null) {
-				return error("用户已下线");
-			}
-			if (sessionId.equals(ShiroUtils.getSessionId())) {
-				return error("当前登录用户无法强退");
-			}
-			onlineSessionDAO.delete(onlineSession);
-			online.setStatus(OnlineStatus.off_line);
-			userOnlineService.saveOnline(online);
-			userOnlineService.removeUserCache(online.getLoginName(), sessionId);
-		}
-		return success();
-	}
+    @RequiresPermissions(value = {"monitor:online:batchForceLogout", "monitor:online:forceLogout"}, logical = Logical.OR)
+    @Log(title = "在线用户", businessType = BusinessType.FORCE)
+    @PostMapping("/batchForceLogout")
+    @ResponseBody
+    public AjaxResult batchForceLogout(String ids) {
+        for (String sessionId : Convert.toStrArray(ids)) {
+            SysUserOnline online = userOnlineService.selectOnlineById(sessionId);
+            if (online == null) {
+                return error("用户已下线");
+            }
+            OnlineSession onlineSession = (OnlineSession) onlineSessionDAO.readSession(online.getSessionId());
+            if (onlineSession == null) {
+                return error("用户已下线");
+            }
+            if (sessionId.equals(ShiroUtils.getSessionId())) {
+                return error("当前登录用户无法强退");
+            }
+            onlineSessionDAO.delete(onlineSession);
+            online.setStatus(OnlineStatus.off_line);
+            userOnlineService.saveOnline(online);
+            userOnlineService.removeUserCache(online.getLoginName(), sessionId);
+        }
+        return success();
+    }
 }

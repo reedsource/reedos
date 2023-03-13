@@ -1,331 +1,331 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>top.reed</groupId>
-	<artifactId>reed</artifactId>
-	<version>0.0.1</version>
+    <groupId>top.reed</groupId>
+    <artifactId>reed</artifactId>
+    <version>0.0.1</version>
 
-	<name>ReedOS</name>
-	<description>ReedOS</description>
+    <name>ReedOS</name>
+    <description>ReedOS</description>
 
-	<modules>
-		<module>reed-admin</module>
-		<module>reed-automation</module>
-		<module>reed-blog</module>
-		<module>reed-cms</module>
-		<module>reed-common</module>
-		<module>reed-framework</module>
-		<module>reed-generator</module>
-		<module>reed-system</module>
-	</modules>
-	<packaging>pom</packaging>
+    <modules>
+        <module>reed-admin</module>
+        <module>reed-automation</module>
+        <module>reed-blog</module>
+        <module>reed-cms</module>
+        <module>reed-common</module>
+        <module>reed-framework</module>
+        <module>reed-generator</module>
+        <module>reed-system</module>
+    </modules>
+    <packaging>pom</packaging>
 
-	<properties>
-		<reed.version>0.0.1</reed.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>17</java.version>
-		<springboot.version>2.7.3</springboot.version>
-		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
-		<shiro.version>1.10.1</shiro.version>
-		<thymeleaf.extras.shiro.version>2.1.0</thymeleaf.extras.shiro.version>
-		<druid.version>1.2.16</druid.version>
-		<browscap.version>1.3.12</browscap.version>
-		<kaptcha.version>2.3.3</kaptcha.version>
-		<swagger.version>3.0.0</swagger.version>
-		<pagehelper.boot.version>1.4.6</pagehelper.boot.version>
-		<fastjson.version>1.2.83</fastjson.version>
-		<oshi.version>6.4.0</oshi.version>
-		<commons.io.version>2.11.0</commons.io.version>
-		<poi.version>4.1.2</poi.version>
-		<velocity.version>2.3</velocity.version>
-		<mybatis.plus.version>3.4.2</mybatis.plus.version>
+    <properties>
+        <reed.version>0.0.1</reed.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>17</java.version>
+        <springboot.version>2.7.3</springboot.version>
+        <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+        <shiro.version>1.10.1</shiro.version>
+        <thymeleaf.extras.shiro.version>2.1.0</thymeleaf.extras.shiro.version>
+        <druid.version>1.2.16</druid.version>
+        <browscap.version>1.3.12</browscap.version>
+        <kaptcha.version>2.3.3</kaptcha.version>
+        <swagger.version>3.0.0</swagger.version>
+        <pagehelper.boot.version>1.4.6</pagehelper.boot.version>
+        <fastjson.version>1.2.83</fastjson.version>
+        <oshi.version>6.4.0</oshi.version>
+        <commons.io.version>2.11.0</commons.io.version>
+        <poi.version>4.1.2</poi.version>
+        <velocity.version>2.3</velocity.version>
+        <mybatis.plus.version>3.4.2</mybatis.plus.version>
 
-		<guava.version>31.1-jre</guava.version>
-		<jsoup.version>1.11.3</jsoup.version>
-		<xsoup.version>0.3.5</xsoup.version>
-		<alibaba.transmittable.version>2.14.0</alibaba.transmittable.version>
-		<apache.commons.text.verion>1.9</apache.commons.text.verion>
-		<apache.commons.csv.verion>1.9.0</apache.commons.csv.verion>
+        <guava.version>31.1-jre</guava.version>
+        <jsoup.version>1.11.3</jsoup.version>
+        <xsoup.version>0.3.5</xsoup.version>
+        <alibaba.transmittable.version>2.14.0</alibaba.transmittable.version>
+        <apache.commons.text.verion>1.9</apache.commons.text.verion>
+        <apache.commons.csv.verion>1.9.0</apache.commons.csv.verion>
 
-		<lombok.version>1.18.24</lombok.version>
-		<javax-mail.version>1.6.2</javax-mail.version>
-		<hutool-all.version>5.8.6</hutool-all.version>
-		<ehcache.version>2.6.11</ehcache.version>
-		<guava.version>31.1-jre</guava.version>
-		<httpclient.version>4.5.13</httpclient.version>
-	</properties>
+        <lombok.version>1.18.24</lombok.version>
+        <javax-mail.version>1.6.2</javax-mail.version>
+        <hutool-all.version>5.8.6</hutool-all.version>
+        <ehcache.version>2.6.11</ehcache.version>
+        <guava.version>31.1-jre</guava.version>
+        <httpclient.version>4.5.13</httpclient.version>
+    </properties>
 
-	<!-- 依赖声明 -->
-	<dependencyManagement>
-		<dependencies>
+    <!-- 依赖声明 -->
+    <dependencyManagement>
+        <dependencies>
 
-			<!-- SpringBoot的依赖配置-->
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-dependencies</artifactId>
-				<version>2.5.14</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
+            <!-- SpringBoot的依赖配置-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.5.14</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
-			<!-- 阿里数据库连接池 -->
-			<dependency>
-				<groupId>com.alibaba</groupId>
-				<artifactId>druid-spring-boot-starter</artifactId>
-				<version>${druid.version}</version>
-			</dependency>
+            <!-- 阿里数据库连接池 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
 
-			<!-- Shiro核心框架 -->
-			<dependency>
-				<groupId>org.apache.shiro</groupId>
-				<artifactId>shiro-core</artifactId>
-				<version>${shiro.version}</version>
-			</dependency>
+            <!-- Shiro核心框架 -->
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-core</artifactId>
+                <version>${shiro.version}</version>
+            </dependency>
 
-			<!-- Shiro使用Spring框架 -->
-			<dependency>
-				<groupId>org.apache.shiro</groupId>
-				<artifactId>shiro-spring</artifactId>
-				<version>${shiro.version}</version>
-			</dependency>
+            <!-- Shiro使用Spring框架 -->
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-spring</artifactId>
+                <version>${shiro.version}</version>
+            </dependency>
 
-			<!-- Shiro使用EhCache缓存框架 -->
-			<dependency>
-				<groupId>org.apache.shiro</groupId>
-				<artifactId>shiro-ehcache</artifactId>
-				<version>${shiro.version}</version>
-			</dependency>
+            <!-- Shiro使用EhCache缓存框架 -->
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-ehcache</artifactId>
+                <version>${shiro.version}</version>
+            </dependency>
 
-			<!-- thymeleaf模板引擎和shiro框架的整合 -->
-			<dependency>
-				<groupId>com.github.theborakompanioni</groupId>
-				<artifactId>thymeleaf-extras-shiro</artifactId>
-				<version>${thymeleaf.extras.shiro.version}</version>
-			</dependency>
+            <!-- thymeleaf模板引擎和shiro框架的整合 -->
+            <dependency>
+                <groupId>com.github.theborakompanioni</groupId>
+                <artifactId>thymeleaf-extras-shiro</artifactId>
+                <version>${thymeleaf.extras.shiro.version}</version>
+            </dependency>
 
-			<!-- 解析客户端操作系统、浏览器等 -->
-			<dependency>
-				<groupId>com.blueconic</groupId>
-				<artifactId>browscap-java</artifactId>
-				<version>${browscap.version}</version>
-			</dependency>
+            <!-- 解析客户端操作系统、浏览器等 -->
+            <dependency>
+                <groupId>com.blueconic</groupId>
+                <artifactId>browscap-java</artifactId>
+                <version>${browscap.version}</version>
+            </dependency>
 
-			<!-- pagehelper 分页插件 -->
-			<dependency>
-				<groupId>com.github.pagehelper</groupId>
-				<artifactId>pagehelper-spring-boot-starter</artifactId>
-				<version>${pagehelper.boot.version}</version>
-			</dependency>
+            <!-- pagehelper 分页插件 -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper.boot.version}</version>
+            </dependency>
 
-			<!-- 获取系统信息 -->
-			<dependency>
-				<groupId>com.github.oshi</groupId>
-				<artifactId>oshi-core</artifactId>
-				<version>${oshi.version}</version>
-			</dependency>
+            <!-- 获取系统信息 -->
+            <dependency>
+                <groupId>com.github.oshi</groupId>
+                <artifactId>oshi-core</artifactId>
+                <version>${oshi.version}</version>
+            </dependency>
 
-			<!-- Swagger3依赖 -->
-			<dependency>
-				<groupId>io.springfox</groupId>
-				<artifactId>springfox-boot-starter</artifactId>
-				<version>${swagger.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>io.swagger</groupId>
-						<artifactId>swagger-models</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
+            <!-- Swagger3依赖 -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-boot-starter</artifactId>
+                <version>${swagger.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>io.swagger</groupId>
+                        <artifactId>swagger-models</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
 
-			<!-- io常用工具类 -->
-			<dependency>
-				<groupId>commons-io</groupId>
-				<artifactId>commons-io</artifactId>
-				<version>${commons.io.version}</version>
-			</dependency>
+            <!-- io常用工具类 -->
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons.io.version}</version>
+            </dependency>
 
-			<!-- excel工具 -->
-			<dependency>
-				<groupId>org.apache.poi</groupId>
-				<artifactId>poi-ooxml</artifactId>
-				<version>${poi.version}</version>
-			</dependency>
+            <!-- excel工具 -->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
 
-			<!-- velocity代码生成使用模板 -->
-			<dependency>
-				<groupId>org.apache.velocity</groupId>
-				<artifactId>velocity-engine-core</artifactId>
-				<version>${velocity.version}</version>
-			</dependency>
+            <!-- velocity代码生成使用模板 -->
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-engine-core</artifactId>
+                <version>${velocity.version}</version>
+            </dependency>
 
-			<!-- 阿里JSON解析器 -->
-			<dependency>
-				<groupId>com.alibaba</groupId>
-				<artifactId>fastjson</artifactId>
-				<version>${fastjson.version}</version>
-			</dependency>
+            <!-- 阿里JSON解析器 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
 
-			<!-- 自动化任务-->
-			<dependency>
-				<groupId>top.reed</groupId>
-				<artifactId>reed-automation</artifactId>
-				<version>${reed.version}</version>
-			</dependency>
+            <!-- 自动化任务-->
+            <dependency>
+                <groupId>top.reed</groupId>
+                <artifactId>reed-automation</artifactId>
+                <version>${reed.version}</version>
+            </dependency>
 
-			<!-- 代码生成-->
-			<dependency>
-				<groupId>top.reed</groupId>
-				<artifactId>reed-generator</artifactId>
-				<version>${reed.version}</version>
-			</dependency>
+            <!-- 代码生成-->
+            <dependency>
+                <groupId>top.reed</groupId>
+                <artifactId>reed-generator</artifactId>
+                <version>${reed.version}</version>
+            </dependency>
 
-			<!-- 核心模块-->
-			<dependency>
-				<groupId>top.reed</groupId>
-				<artifactId>reed-framework</artifactId>
-				<version>${reed.version}</version>
-			</dependency>
+            <!-- 核心模块-->
+            <dependency>
+                <groupId>top.reed</groupId>
+                <artifactId>reed-framework</artifactId>
+                <version>${reed.version}</version>
+            </dependency>
 
-			<!-- 系统模块-->
-			<dependency>
-				<groupId>top.reed</groupId>
-				<artifactId>reed-system</artifactId>
-				<version>${reed.version}</version>
-			</dependency>
+            <!-- 系统模块-->
+            <dependency>
+                <groupId>top.reed</groupId>
+                <artifactId>reed-system</artifactId>
+                <version>${reed.version}</version>
+            </dependency>
 
-			<!-- 通用工具-->
-			<dependency>
-				<groupId>top.reed</groupId>
-				<artifactId>reed-common</artifactId>
-				<version>${reed.version}</version>
-			</dependency>
+            <!-- 通用工具-->
+            <dependency>
+                <groupId>top.reed</groupId>
+                <artifactId>reed-common</artifactId>
+                <version>${reed.version}</version>
+            </dependency>
 
-		</dependencies>
-	</dependencyManagement>
+        </dependencies>
+    </dependencyManagement>
 
-	<dependencies>
+    <dependencies>
 
-	</dependencies>
+    </dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-					<encoding>${project.build.sourceEncoding}</encoding>
-				</configuration>
-			</plugin>
-		</plugins>
-		<resources>
-			<!--编译xml文件-->
-			<resource>
-				<directory>src/main/java</directory>
-				<includes>
-					<include>**/*.xml</include>
-				</includes>
-			</resource>
-			<!--编译resources下全部文件-->
-			<resource>
-				<directory>src/main/resources</directory>
-				<includes>
-					<include>**/*.*</include>
-				</includes>
-			</resource>
-			<!--设置文件过滤,即yaml编译时,@@会替换为pom文件中对应的参数-->
-			<resource>
-				<directory>src/main/resources</directory>
-				<includes>
-					<include>application.yml</include>
-				</includes>
-				<filtering>true</filtering>
-			</resource>
-			<resource>
-				<directory>src/main/resources</directory>
-				<includes>
-					<include>application-druid.yml</include>
-				</includes>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
-	</build>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+        <resources>
+            <!--编译xml文件-->
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <!--编译resources下全部文件-->
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+            </resource>
+            <!--设置文件过滤,即yaml编译时,@@会替换为pom文件中对应的参数-->
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>application.yml</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>application-druid.yml</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
 
-	<!--配置打包部署开发多环境-->
-	<!--注意 这种配置对于类似本项目包含多个子项目的项目 maven勾选界面只会在顶部出现一个勾选面板-->
-	<profiles>
-		<profile>
-			<id>开发环境</id>
-			<properties>
-				<!--useUnicode=true                   使用Unicode字符集
-				characterEncoding=utf8                字符编码为utf8
-				zeroDateTimeBehavior=convertToNull    操作值为0的timestamp类型时不能正确的处理 将日期转换成NULL值
-				serverTimezone=GMT%2B8                北京时间东8区-->
-				<jdbc.url>jdbc:mysql://192.168.200.7:3306/reedos?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull&amp;serverTimezone=GMT%2B8</jdbc.url>
-				<jdbc.username>mysql</jdbc.username>
-				<!--数据库密码加密配置 publicKey  java -cp D:\clouds\codetools\apache-maven-3.8.6\repository\com\alibaba\druid\1.2.4\druid-1.2.4.jar com.alibaba.druid.filter.config.ConfigTools 数据库密码生成-->
-				<!--数据库密码 -->
-				<jdbc.password>
-					HIwC2VyRURGPOgtLUZIFnGMCLzfs9wOknBgjvlr6HiVEQUCccFTEpzfJenGjbpX7rlTru6wNeUIc9yJDXIpr2g==
-				</jdbc.password>
-				<!--密码加密公钥 publicKey-->
-				<jdbc.connectionProperties>
-					MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALmqArpMKBqcQhFPIH7fRRfkZn8sBDFpKRovm/mjEGeitFJ4yGIZQ4boaLdcZDb1FoZqoZM0WAjfp1uaI1TnDS8CAwEAAQ==
-				</jdbc.connectionProperties>
-				<!--默认debug 设置为trace时打印查出的结果-->
-				<logging.level>trace</logging.level>
-				<logging.spring>info</logging.spring>
-				<!--项目文件目录-->
-				<reed.profile>D:/clouds/codes/ReedOS/filePath</reed.profile>
-			</properties>
-		</profile>
-		<profile>
-			<id>生产环境</id>
-			<properties>
-				<jdbc.url>jdbc:mysql://localhost:3306/reedos?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull&amp;serverTimezone=GMT%2B8</jdbc.url>
-				<jdbc.username>mysql</jdbc.username>
-				<jdbc.password>
-					hQOS4yqXN+yQJW6b6LrGo6zc6lX1ABMaHBKSvBwYklE6Kw9GsDjaSdcm7Fy98ciUAOuWver7hkq+IEEzydZ5HA==
-				</jdbc.password>
-				<jdbc.connectionProperties>
-					MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJQY7KTp5w863CoVnFxDLHb9oBqWFVatNL0dzrWCs9t/vTMp/a9fJjja6w3/DsIHp2CzAn7myiZCmP9TkiOWPKUCAwEAAQ==
-				</jdbc.connectionProperties>
-				<reed.profile>/home/reedos/filePath</reed.profile>
-				<!--默认debug 设置为trace时打印查出的结果-->
-				<logging.level>debug</logging.level>
-				<logging.spring>info</logging.spring>
-			</properties>
-		</profile>
-	</profiles>
+    <!--配置打包部署开发多环境-->
+    <!--注意 这种配置对于类似本项目包含多个子项目的项目 maven勾选界面只会在顶部出现一个勾选面板-->
+    <profiles>
+        <profile>
+            <id>开发环境</id>
+            <properties>
+                <!--useUnicode=true                   使用Unicode字符集
+                characterEncoding=utf8                字符编码为utf8
+                zeroDateTimeBehavior=convertToNull    操作值为0的timestamp类型时不能正确的处理 将日期转换成NULL值
+                serverTimezone=GMT%2B8                北京时间东8区-->
+                <jdbc.url>jdbc:mysql://192.168.200.7:3306/reedos?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull&amp;serverTimezone=GMT%2B8</jdbc.url>
+                <jdbc.username>mysql</jdbc.username>
+                <!--数据库密码加密配置 publicKey  java -cp D:\clouds\codetools\apache-maven-3.8.6\repository\com\alibaba\druid\1.2.4\druid-1.2.4.jar com.alibaba.druid.filter.config.ConfigTools 数据库密码生成-->
+                <!--数据库密码 -->
+                <jdbc.password>
+                    HIwC2VyRURGPOgtLUZIFnGMCLzfs9wOknBgjvlr6HiVEQUCccFTEpzfJenGjbpX7rlTru6wNeUIc9yJDXIpr2g==
+                </jdbc.password>
+                <!--密码加密公钥 publicKey-->
+                <jdbc.connectionProperties>
+                    MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALmqArpMKBqcQhFPIH7fRRfkZn8sBDFpKRovm/mjEGeitFJ4yGIZQ4boaLdcZDb1FoZqoZM0WAjfp1uaI1TnDS8CAwEAAQ==
+                </jdbc.connectionProperties>
+                <!--默认debug 设置为trace时打印查出的结果-->
+                <logging.level>trace</logging.level>
+                <logging.spring>info</logging.spring>
+                <!--项目文件目录-->
+                <reed.profile>D:/clouds/codes/ReedOS/filePath</reed.profile>
+            </properties>
+        </profile>
+        <profile>
+            <id>生产环境</id>
+            <properties>
+                <jdbc.url>jdbc:mysql://localhost:3306/reedos?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull&amp;serverTimezone=GMT%2B8</jdbc.url>
+                <jdbc.username>mysql</jdbc.username>
+                <jdbc.password>
+                    hQOS4yqXN+yQJW6b6LrGo6zc6lX1ABMaHBKSvBwYklE6Kw9GsDjaSdcm7Fy98ciUAOuWver7hkq+IEEzydZ5HA==
+                </jdbc.password>
+                <jdbc.connectionProperties>
+                    MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJQY7KTp5w863CoVnFxDLHb9oBqWFVatNL0dzrWCs9t/vTMp/a9fJjja6w3/DsIHp2CzAn7myiZCmP9TkiOWPKUCAwEAAQ==
+                </jdbc.connectionProperties>
+                <reed.profile>/home/reedos/filePath</reed.profile>
+                <!--默认debug 设置为trace时打印查出的结果-->
+                <logging.level>debug</logging.level>
+                <logging.spring>info</logging.spring>
+            </properties>
+        </profile>
+    </profiles>
 
-	<repositories>
-		<repository>
-			<id>public</id>
-			<name>aliyun nexus</name>
-			<url>https://maven.aliyun.com/repository/public</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-		</repository>
-	</repositories>
+    <repositories>
+        <repository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
 
-	<pluginRepositories>
-		<pluginRepository>
-			<id>public</id>
-			<name>aliyun nexus</name>
-			<url>https://maven.aliyun.com/repository/public</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
 </project>

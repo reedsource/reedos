@@ -27,60 +27,60 @@ import java.util.List;
 @Controller
 @RequestMapping("/monitor/logininfor")
 public class SysLogininforController extends BaseController {
-	@Autowired
-	private ISysLogininforService logininforService;
+    @Autowired
+    private ISysLogininforService logininforService;
 
-	@Autowired
-	private SysPasswordService passwordService;
+    @Autowired
+    private SysPasswordService passwordService;
 
-	@RequiresPermissions("monitor:logininfor:view")
-	@GetMapping()
-	public String logininfor() {
-		return "monitor/logininfor/logininfor";
-	}
+    @RequiresPermissions("monitor:logininfor:view")
+    @GetMapping()
+    public String logininfor() {
+        return "monitor/logininfor/logininfor";
+    }
 
-	@RequiresPermissions("monitor:logininfor:list")
-	@PostMapping("/list")
-	@ResponseBody
-	public TableDataInfo list(SysLogininfor logininfor) {
-		startPage();
-		List<SysLogininfor> list = logininforService.selectLogininforList(logininfor);
-		return getDataTable(list);
-	}
+    @RequiresPermissions("monitor:logininfor:list")
+    @PostMapping("/list")
+    @ResponseBody
+    public TableDataInfo list(SysLogininfor logininfor) {
+        startPage();
+        List<SysLogininfor> list = logininforService.selectLogininforList(logininfor);
+        return getDataTable(list);
+    }
 
-	@Log(title = "登录日志", businessType = BusinessType.EXPORT)
-	@RequiresPermissions("monitor:logininfor:export")
-	@PostMapping("/export")
-	@ResponseBody
-	public AjaxResult export(SysLogininfor logininfor) {
-		List<SysLogininfor> list = logininforService.selectLogininforList(logininfor);
-		ExcelUtil<SysLogininfor> util = new ExcelUtil<>(SysLogininfor.class);
-		return util.exportExcel(list, "登录日志");
-	}
+    @Log(title = "登录日志", businessType = BusinessType.EXPORT)
+    @RequiresPermissions("monitor:logininfor:export")
+    @PostMapping("/export")
+    @ResponseBody
+    public AjaxResult export(SysLogininfor logininfor) {
+        List<SysLogininfor> list = logininforService.selectLogininforList(logininfor);
+        ExcelUtil<SysLogininfor> util = new ExcelUtil<>(SysLogininfor.class);
+        return util.exportExcel(list, "登录日志");
+    }
 
-	@RequiresPermissions("monitor:logininfor:remove")
-	@Log(title = "登录日志", businessType = BusinessType.DELETE)
-	@PostMapping("/remove")
-	@ResponseBody
-	public AjaxResult remove(String ids) {
-		return toAjax(logininforService.deleteLogininforByIds(ids));
-	}
+    @RequiresPermissions("monitor:logininfor:remove")
+    @Log(title = "登录日志", businessType = BusinessType.DELETE)
+    @PostMapping("/remove")
+    @ResponseBody
+    public AjaxResult remove(String ids) {
+        return toAjax(logininforService.deleteLogininforByIds(ids));
+    }
 
-	@RequiresPermissions("monitor:logininfor:remove")
-	@Log(title = "登录日志", businessType = BusinessType.CLEAN)
-	@PostMapping("/clean")
-	@ResponseBody
-	public AjaxResult clean() {
-		logininforService.cleanLogininfor();
-		return success();
-	}
+    @RequiresPermissions("monitor:logininfor:remove")
+    @Log(title = "登录日志", businessType = BusinessType.CLEAN)
+    @PostMapping("/clean")
+    @ResponseBody
+    public AjaxResult clean() {
+        logininforService.cleanLogininfor();
+        return success();
+    }
 
-	@RequiresPermissions("monitor:logininfor:unlock")
-	@Log(title = "账户解锁", businessType = BusinessType.OTHER)
-	@PostMapping("/unlock")
-	@ResponseBody
-	public AjaxResult unlock(String loginName) {
-		passwordService.clearLoginRecordCache(loginName);
-		return success();
-	}
+    @RequiresPermissions("monitor:logininfor:unlock")
+    @Log(title = "账户解锁", businessType = BusinessType.OTHER)
+    @PostMapping("/unlock")
+    @ResponseBody
+    public AjaxResult unlock(String loginName) {
+        passwordService.clearLoginRecordCache(loginName);
+        return success();
+    }
 }

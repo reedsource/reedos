@@ -16,64 +16,64 @@ import top.reed.common.core.domain.BaseEntity;
 @Getter
 @Setter
 public class Tags extends BaseEntity {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * ID
-	 */
-	private Long tagId;
+    /**
+     * ID
+     */
+    private Long tagId;
 
-	/**
-	 * 标签类型，如s系统标签，p个人标签
-	 */
-	@Excel(name = "标签类型，如s系统标签，p个人标签")
-	private String tagType;
+    /**
+     * 标签类型，如s系统标签，p个人标签
+     */
+    @Excel(name = "标签类型，如s系统标签，p个人标签")
+    private String tagType;
 
-	/**
-	 * 谁增加的该标签
-	 */
-	@Excel(name = "谁增加的该标签")
-	private String userId;
+    /**
+     * 谁增加的该标签
+     */
+    @Excel(name = "谁增加的该标签")
+    private String userId;
 
-	/**
-	 * 分类名称
-	 */
-	@Excel(name = "分类名称")
-	private String tagName;
+    /**
+     * 分类名称
+     */
+    @Excel(name = "分类名称")
+    private String tagName;
 
-	/**
-	 * 排序
-	 */
-	@Excel(name = "排序")
-	private Long sort;
+    /**
+     * 排序
+     */
+    @Excel(name = "排序")
+    private Long sort;
 
-	/**
-	 * 状态
-	 */
-	@Excel(name = "状态")
-	private Integer status;
+    /**
+     * 状态
+     */
+    @Excel(name = "状态")
+    private Integer status;
 
-	/**
-	 * 链接
-	 */
-	@Excel(name = "链接")
-	private String url;
+    /**
+     * 链接
+     */
+    @Excel(name = "链接")
+    private String url;
 
-	/**
-	 * 是否选中，默认否。
-	 */
-	private boolean selected = false;
+    /**
+     * 是否选中，默认否。
+     */
+    private boolean selected = false;
 
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-				.append("tagId", getTagId())
-				.append("tagType", getTagType())
-				.append("userId", getUserId())
-				.append("tagName", getTagName())
-				.append("sort", getSort())
-				.append("status", getStatus())
-				.append("url", getUrl())
-				.toString();
-	}
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+                .append("tagId", getTagId())
+                .append("tagType", getTagType())
+                .append("userId", getUserId())
+                .append("tagName", getTagName())
+                .append("sort", getSort())
+                .append("status", getStatus())
+                .append("url", getUrl())
+                .toString();
+    }
 }

@@ -26,84 +26,84 @@ import java.util.Date;
  * @author reedsource
  */
 public abstract class QuartzJob implements Job {
-	private static final Logger log = LoggerFactory.getLogger(QuartzJob.class);
+    private static final Logger log = LoggerFactory.getLogger(QuartzJob.class);
 
-	/**
-	 * 线程本地变量
-	 */
-	private static ThreadLocal<Date> threadLocal = new ThreadLocal<>();
+    /**
+     * 线程本地变量
+     */
+    private static ThreadLocal<Date> threadLocal = new ThreadLocal<>();
 
-	/**
-	 * 当触发与作业关联的触发器时，由调度程序调用
-	 * 在该方法退出之前，实现可能希望在JobExecutionContext上设置一个结果对象。
-	 * 结果本身对Quartz来说没有意义，但对于正在监视作业执行的JobListeners或TriggerListeners来说可能有提示信息。
-	 * 抛出: JobExecutionException–如果在执行作业时出现异常。
-	 *
-	 * @param context 结果对象
-	 */
-	@Override
-	public void execute(JobExecutionContext context) {
-		//定时任务调度表对象
-		AutoJob autoJob = new AutoJob();
-		BeanUtils.copyBeanProp(autoJob, context.getMergedJobDataMap().get(ScheduleConstants.TASK_PROPERTIES));
-		try {
-			//调度执行前记录时间
-			before(context, autoJob);
-			//调度任务
-			doExecute(context, autoJob);
-			//调度后记录日志信息
-			after(context, autoJob, null);
-		} catch (Exception e) {
-			log.error("任务执行异常  - ：", e);
-			after(context, autoJob, e);
-		}
-	}
+    /**
+     * 当触发与作业关联的触发器时，由调度程序调用
+     * 在该方法退出之前，实现可能希望在JobExecutionContext上设置一个结果对象。
+     * 结果本身对Quartz来说没有意义，但对于正在监视作业执行的JobListeners或TriggerListeners来说可能有提示信息。
+     * 抛出: JobExecutionException–如果在执行作业时出现异常。
+     *
+     * @param context 结果对象
+     */
+    @Override
+    public void execute(JobExecutionContext context) {
+        //定时任务调度表对象
+        AutoJob autoJob = new AutoJob();
+        BeanUtils.copyBeanProp(autoJob, context.getMergedJobDataMap().get(ScheduleConstants.TASK_PROPERTIES));
+        try {
+            //调度执行前记录时间
+            before(context, autoJob);
+            //调度任务
+            doExecute(context, autoJob);
+            //调度后记录日志信息
+            after(context, autoJob, null);
+        } catch (Exception e) {
+            log.error("任务执行异常  - ：", e);
+            after(context, autoJob, e);
+        }
+    }
 
-	/**
-	 * 执行前
-	 *
-	 * @param context 工作执行上下文对象
-	 * @param autoJob  系统计划任务
-	 */
-	protected void before(JobExecutionContext context, AutoJob autoJob) {
-		threadLocal.set(new Date());
-	}
+    /**
+     * 执行前
+     *
+     * @param context 工作执行上下文对象
+     * @param autoJob 系统计划任务
+     */
+    protected void before(JobExecutionContext context, AutoJob autoJob) {
+        threadLocal.set(new Date());
+    }
 
-	/**
-	 * 执行后
-	 *
-	 * @param context 工作执行上下文对象
-	 */
-	protected void after(JobExecutionContext context, AutoJob autoJob, Exception e) {
-		Date startTime = threadLocal.get();
-		threadLocal.remove();
+    /**
+     * 执行后
+     *
+     * @param context 工作执行上下文对象
+     */
+    protected void after(JobExecutionContext context, AutoJob autoJob, Exception e) {
+        Date startTime = threadLocal.get();
+        threadLocal.remove();
 
-		final AutoJobLog autoJobLog = new AutoJobLog();
-		autoJobLog.setJobName(autoJob.getJobName());
-		autoJobLog.setJobGroup(autoJob.getJobGroup());
-		autoJobLog.setInvokeTarget(autoJob.getInvokeTarget());
-		autoJobLog.setStartTime(startTime);
-		autoJobLog.setEndTime(new Date());
-		long runMs = autoJobLog.getEndTime().getTime() - autoJobLog.getStartTime().getTime();
-		autoJobLog.setJobMessage(autoJobLog.getJobName() + " 总共耗时：" + runMs + "毫秒");
-		if (e != null) {
-			autoJobLog.setStatus(Constants.FAIL);
-			String errorMsg = StringUtils.substring(ExceptionUtil.getExceptionMessage(e), 0, 2000);
-			autoJobLog.setExceptionInfo(errorMsg);
-		} else {
-			autoJobLog.setStatus(Constants.SUCCESS);
-		}
+        final AutoJobLog autoJobLog = new AutoJobLog();
+        autoJobLog.setJobName(autoJob.getJobName());
+        autoJobLog.setJobGroup(autoJob.getJobGroup());
+        autoJobLog.setInvokeTarget(autoJob.getInvokeTarget());
+        autoJobLog.setStartTime(startTime);
+        autoJobLog.setEndTime(new Date());
+        long runMs = autoJobLog.getEndTime().getTime() - autoJobLog.getStartTime().getTime();
+        autoJobLog.setJobMessage(autoJobLog.getJobName() + " 总共耗时：" + runMs + "毫秒");
+        if (e != null) {
+            autoJobLog.setStatus(Constants.FAIL);
+            String errorMsg = StringUtils.substring(ExceptionUtil.getExceptionMessage(e), 0, 2000);
+            autoJobLog.setExceptionInfo(errorMsg);
+        } else {
+            autoJobLog.setStatus(Constants.SUCCESS);
+        }
 
-		// 写入数据库当中
-		SpringUtils.getBean(AutoJobLogService.class).addJobLog(autoJobLog);
-	}
+        // 写入数据库当中
+        SpringUtils.getBean(AutoJobLogService.class).addJobLog(autoJobLog);
+    }
 
-	/**
-	 * 执行方法，由子类重载
-	 *
-	 * @param context 工作执行上下文对象
-	 * @param autoJob  系统计划任务
-	 *                throws Exception 执行过程中的异常
-	 */
-	protected abstract void doExecute(JobExecutionContext context, AutoJob autoJob) throws Exception;
+    /**
+     * 执行方法，由子类重载
+     *
+     * @param context 工作执行上下文对象
+     * @param autoJob 系统计划任务
+     *                throws Exception 执行过程中的异常
+     */
+    protected abstract void doExecute(JobExecutionContext context, AutoJob autoJob) throws Exception;
 }

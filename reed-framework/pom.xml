@@ -2,78 +2,78 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<parent>
-		<artifactId>reed</artifactId>
-		<groupId>top.reed</groupId>
-		<version>0.0.1</version>
-	</parent>
-	<modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>reed</artifactId>
+        <groupId>top.reed</groupId>
+        <version>0.0.1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
 
-	<artifactId>reed-framework</artifactId>
+    <artifactId>reed-framework</artifactId>
 
-	<description>
-		springboot framework框架核心 集成依赖关系注入、事件、资源、i18n、验证、数据绑定、类型转换、SpEL、AOP
-	</description>
+    <description>
+        springboot framework框架核心 集成依赖关系注入、事件、资源、i18n、验证、数据绑定、类型转换、SpEL、AOP
+    </description>
 
-	<dependencies>
+    <dependencies>
 
-		<!-- SpringBoot Web容器 -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+        <!-- SpringBoot Web容器 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
 
-		<!-- SpringBoot 拦截器 -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-aop</artifactId>
-		</dependency>
+        <!-- SpringBoot 拦截器 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
 
-		<!-- 阿里数据库连接池 -->
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid-spring-boot-starter</artifactId>
-		</dependency>
+        <!-- 阿里数据库连接池 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+        </dependency>
 
-		<!-- Shiro使用Spring框架 -->
-		<dependency>
-			<groupId>org.apache.shiro</groupId>
-			<artifactId>shiro-spring</artifactId>
-		</dependency>
+        <!-- Shiro使用Spring框架 -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+        </dependency>
 
-		<!-- thymeleaf模板引擎和shiro框架的整合 -->
-		<dependency>
-			<groupId>com.github.theborakompanioni</groupId>
-			<artifactId>thymeleaf-extras-shiro</artifactId>
-		</dependency>
+        <!-- thymeleaf模板引擎和shiro框架的整合 -->
+        <dependency>
+            <groupId>com.github.theborakompanioni</groupId>
+            <artifactId>thymeleaf-extras-shiro</artifactId>
+        </dependency>
 
-		<!-- 获取系统信息 -->
-		<dependency>
-			<groupId>com.github.oshi</groupId>
-			<artifactId>oshi-core</artifactId>
-		</dependency>
+        <!-- 获取系统信息 -->
+        <dependency>
+            <groupId>com.github.oshi</groupId>
+            <artifactId>oshi-core</artifactId>
+        </dependency>
 
-		<!--websocket-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-websocket</artifactId>
-			<version>${springboot.version}</version>
-		</dependency>
+        <!--websocket-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+            <version>${springboot.version}</version>
+        </dependency>
 
-		<!-- 滑块验证码  -->
-		<dependency>
-			<groupId>com.github.anji-plus</groupId>
-			<artifactId>captcha-spring-boot-starter</artifactId>
-			<version>1.2.7</version>
-		</dependency>
+        <!-- 滑块验证码  -->
+        <dependency>
+            <groupId>com.github.anji-plus</groupId>
+            <artifactId>captcha-spring-boot-starter</artifactId>
+            <version>1.2.7</version>
+        </dependency>
 
-		<!-- 系统模块-->
-		<dependency>
-			<groupId>top.reed</groupId>
-			<artifactId>reed-system</artifactId>
-			<version>${reed.version}</version>
-		</dependency>
+        <!-- 系统模块-->
+        <dependency>
+            <groupId>top.reed</groupId>
+            <artifactId>reed-system</artifactId>
+            <version>${reed.version}</version>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
 
 </project>

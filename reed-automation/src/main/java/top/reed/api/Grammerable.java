@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface Grammerable {
 
-	List<Grammer> grammers();
+    List<Grammer> grammers();
 
 }

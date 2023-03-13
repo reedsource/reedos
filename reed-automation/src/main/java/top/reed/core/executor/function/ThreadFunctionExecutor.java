@@ -13,18 +13,18 @@ import top.reed.api.executor.FunctionExecutor;
 @Component
 @Comment("thread常用方法")
 public class ThreadFunctionExecutor implements FunctionExecutor {
-	@Comment("线程休眠")
-	@Example("${thread.sleep(1000L)}")
-	public static void sleep(Long sleepTime) {
-		try {
-			Thread.sleep(sleepTime);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
+    @Comment("线程休眠")
+    @Example("${thread.sleep(1000L)}")
+    public static void sleep(Long sleepTime) {
+        try {
+            Thread.sleep(sleepTime);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
-	@Override
-	public String getFunctionPrefix() {
-		return "thread";
-	}
+    @Override
+    public String getFunctionPrefix() {
+        return "thread";
+    }
 }

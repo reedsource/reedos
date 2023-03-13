@@ -13,51 +13,51 @@ import java.util.List;
  */
 @Mapper
 public interface TemplateMapper {
-	/**
-	 * 查询模板
-	 *
-	 * @param templateId 模板ID
-	 * @return 模板
-	 */
-	Template selectTemplateById(Long templateId);
+    /**
+     * 查询模板
+     *
+     * @param templateId 模板ID
+     * @return 模板
+     */
+    Template selectTemplateById(Long templateId);
 
-	/**
-	 * 查询模板列表
-	 *
-	 * @param template 模板
-	 * @return 模板集合
-	 */
-	List<Template> selectTemplateList(Template template);
+    /**
+     * 查询模板列表
+     *
+     * @param template 模板
+     * @return 模板集合
+     */
+    List<Template> selectTemplateList(Template template);
 
-	/**
-	 * 新增模板
-	 *
-	 * @param template 模板
-	 * @return 结果
-	 */
-	int insertTemplate(Template template);
+    /**
+     * 新增模板
+     *
+     * @param template 模板
+     * @return 结果
+     */
+    int insertTemplate(Template template);
 
-	/**
-	 * 修改模板
-	 *
-	 * @param template 模板
-	 * @return 结果
-	 */
-	int updateTemplate(Template template);
+    /**
+     * 修改模板
+     *
+     * @param template 模板
+     * @return 结果
+     */
+    int updateTemplate(Template template);
 
-	/**
-	 * 删除模板
-	 *
-	 * @param templateId 模板ID
-	 * @return 结果
-	 */
-	int deleteTemplateById(Long templateId);
+    /**
+     * 删除模板
+     *
+     * @param templateId 模板ID
+     * @return 结果
+     */
+    int deleteTemplateById(Long templateId);
 
-	/**
-	 * 批量删除模板
-	 *
-	 * @param templateIds 需要删除的数据ID
-	 * @return 结果
-	 */
-	int deleteTemplateByIds(String[] templateIds);
+    /**
+     * 批量删除模板
+     *
+     * @param templateIds 需要删除的数据ID
+     * @return 结果
+     */
+    int deleteTemplateByIds(String[] templateIds);
 }

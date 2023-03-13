@@ -16,12 +16,12 @@ import top.reed.common.utils.StringUtils;
 @Aspect
 @Component
 public class PermissionsAspect {
-	@Before("@annotation(controllerRequiresPermissions)")
-	public void doBefore(JoinPoint point, RequiresPermissions controllerRequiresPermissions) {
-		handleRequiresPermissions(point, controllerRequiresPermissions);
-	}
+    @Before("@annotation(controllerRequiresPermissions)")
+    public void doBefore(JoinPoint point, RequiresPermissions controllerRequiresPermissions) {
+        handleRequiresPermissions(point, controllerRequiresPermissions);
+    }
 
-	protected void handleRequiresPermissions(final JoinPoint joinPoint, RequiresPermissions requiresPermissions) {
-		PermissionContextHolder.setContext(StringUtils.join(requiresPermissions.value(), ","));
-	}
+    protected void handleRequiresPermissions(final JoinPoint joinPoint, RequiresPermissions requiresPermissions) {
+        PermissionContextHolder.setContext(StringUtils.join(requiresPermissions.value(), ","));
+    }
 }

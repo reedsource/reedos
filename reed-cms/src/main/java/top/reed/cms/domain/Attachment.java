@@ -16,77 +16,77 @@ import top.reed.common.core.domain.BaseEntity;
 @Getter
 @Setter
 public class Attachment extends BaseEntity {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * ID
-	 */
-	private String attachId;
+    /**
+     * ID
+     */
+    private String attachId;
 
-	/**
-	 * 组ID
-	 */
-	@Excel(name = "组ID")
-	private String zid;
+    /**
+     * 组ID
+     */
+    @Excel(name = "组ID")
+    private String zid;
 
-	/**
-	 * 用户ID
-	 */
-	@Excel(name = "用户ID")
-	private String userId;
+    /**
+     * 用户ID
+     */
+    @Excel(name = "用户ID")
+    private String userId;
 
-	/**
-	 * 类型
-	 */
-	@Excel(name = "类型")
-	private String fileType;
+    /**
+     * 类型
+     */
+    @Excel(name = "类型")
+    private String fileType;
 
-	/**
-	 * 名称
-	 */
-	@Excel(name = "名称")
-	private String fileName;
+    /**
+     * 名称
+     */
+    @Excel(name = "名称")
+    private String fileName;
 
-	/**
-	 * 路径
-	 */
-	@Excel(name = "路径")
-	private String filePath;
+    /**
+     * 路径
+     */
+    @Excel(name = "路径")
+    private String filePath;
 
-	/**
-	 * URL
-	 */
-	@Excel(name = "URL")
-	private String fileUrl;
+    /**
+     * URL
+     */
+    @Excel(name = "URL")
+    private String fileUrl;
 
-	/**
-	 * 大小
-	 */
-	@Excel(name = "大小")
-	private Long size;
+    /**
+     * 大小
+     */
+    @Excel(name = "大小")
+    private Long size;
 
-	/**
-	 * 排序
-	 */
-	@Excel(name = "排序")
-	private Integer sort;
+    /**
+     * 排序
+     */
+    @Excel(name = "排序")
+    private Integer sort;
 
-	private String suffix;
+    private String suffix;
 
 
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-				.append("attachId", getAttachId())
-				.append("zid", getZid())
-				.append("userId", getUserId())
-				.append("fileType", getFileType())
-				.append("fileName", getFileName())
-				.append("filePath", getFilePath())
-				.append("size", getSize())
-				.append("createBy", getCreateBy())
-				.append("createTime", getCreateTime())
-				.append("sort", getSort())
-				.toString();
-	}
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+                .append("attachId", getAttachId())
+                .append("zid", getZid())
+                .append("userId", getUserId())
+                .append("fileType", getFileType())
+                .append("fileName", getFileName())
+                .append("filePath", getFilePath())
+                .append("size", getSize())
+                .append("createBy", getCreateBy())
+                .append("createTime", getCreateTime())
+                .append("sort", getSort())
+                .toString();
+    }
 }

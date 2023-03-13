@@ -7,13 +7,13 @@ import java.util.Map;
  */
 public interface ExpressionEngine {
 
-	/**
-	 * 执行表达式
-	 *
-	 * @param expression 表达式
-	 * @param variables  变量
-	 * @return
-	 */
-	Object execute(String expression, Map<String, Object> variables);
+    /**
+     * 执行表达式
+     *
+     * @param expression 表达式
+     * @param variables  变量
+     * @return
+     */
+    Object execute(String expression, Map<String, Object> variables);
 
 }

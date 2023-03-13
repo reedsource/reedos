@@ -14,9 +14,9 @@ import top.reed.common.core.controller.BaseController;
 @Controller
 @RequestMapping("/tool/swagger")
 public class SwaggerController extends BaseController {
-	@RequiresPermissions("tool:swagger:view")
-	@GetMapping()
-	public String index() {
-		return redirect("/swagger-ui/index.html");
-	}
+    @RequiresPermissions("tool:swagger:view")
+    @GetMapping()
+    public String index() {
+        return redirect("/swagger-ui/index.html");
+    }
 }

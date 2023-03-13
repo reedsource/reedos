@@ -9,27 +9,27 @@ import javax.mail.PasswordAuthentication;
  * @author Administrator
  */
 public class MyAuthenticator extends Authenticator {
-	private String userName;
-	private String password;
+    private String userName;
+    private String password;
 
-	public MyAuthenticator() {
+    public MyAuthenticator() {
 
-	}
+    }
 
-	public MyAuthenticator(String userName, String password) {
-		super();
-		this.userName = userName;
-		this.password = password;
-	}
+    public MyAuthenticator(String userName, String password) {
+        super();
+        this.userName = userName;
+        this.password = password;
+    }
 
-	/**
-	 * 重写验证方法
-	 */
-	@Override
-	protected PasswordAuthentication getPasswordAuthentication() {
+    /**
+     * 重写验证方法
+     */
+    @Override
+    protected PasswordAuthentication getPasswordAuthentication() {
 
-		return new PasswordAuthentication(userName, password);
-	}
+        return new PasswordAuthentication(userName, password);
+    }
 
 
 }

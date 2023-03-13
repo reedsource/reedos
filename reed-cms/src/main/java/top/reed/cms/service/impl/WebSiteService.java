@@ -9,11 +9,11 @@ import java.util.Map;
 
 @Service
 public class WebSiteService implements IWebSiteService {
-	@Autowired
-	private WebSiteMapper webSiteMapper;
+    @Autowired
+    private WebSiteMapper webSiteMapper;
 
-	@Override
-	public Map getSiteInfo() {
-		return webSiteMapper.getSiteInfo();
-	}
+    @Override
+    public Map getSiteInfo() {
+        return webSiteMapper.getSiteInfo();
+    }
 }

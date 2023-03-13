@@ -24,77 +24,77 @@ import java.util.List;
 @Controller
 @RequestMapping("/cms/pv")
 public class PvController extends BaseController {
-	private final String prefix = "cms/pv";
+    private final String prefix = "cms/pv";
 
-	@Autowired
-	private IPvService pvService;
+    @Autowired
+    private IPvService pvService;
 
-	@RequiresPermissions("cms:pv:view")
-	@GetMapping()
-	public String pv() {
-		return prefix + "/pv";
-	}
+    @RequiresPermissions("cms:pv:view")
+    @GetMapping()
+    public String pv() {
+        return prefix + "/pv";
+    }
 
-	/**
-	 * 查询PV列表
-	 */
-	@RequiresPermissions("cms:pv:list")
-	@PostMapping("/list")
-	@ResponseBody
-	public TableDataInfo list(Pv pv) {
-		startPage();
-		List<Pv> list = pvService.selectPvList(pv);
-		return getDataTable(list);
-	}
+    /**
+     * 查询PV列表
+     */
+    @RequiresPermissions("cms:pv:list")
+    @PostMapping("/list")
+    @ResponseBody
+    public TableDataInfo list(Pv pv) {
+        startPage();
+        List<Pv> list = pvService.selectPvList(pv);
+        return getDataTable(list);
+    }
 
-	/**
-	 * 新增PV
-	 */
-	@GetMapping("/add")
-	public String add() {
-		return prefix + "/add";
-	}
+    /**
+     * 新增PV
+     */
+    @GetMapping("/add")
+    public String add() {
+        return prefix + "/add";
+    }
 
-	/**
-	 * 新增保存PV
-	 */
-	@RequiresPermissions("cms:pv:add")
-	@Log(title = "PV", businessType = BusinessType.INSERT)
-	@PostMapping("/add")
-	@ResponseBody
-	public AjaxResult addSave(Pv pv) {
-		return toAjax(pvService.insertPv(pv));
-	}
+    /**
+     * 新增保存PV
+     */
+    @RequiresPermissions("cms:pv:add")
+    @Log(title = "PV", businessType = BusinessType.INSERT)
+    @PostMapping("/add")
+    @ResponseBody
+    public AjaxResult addSave(Pv pv) {
+        return toAjax(pvService.insertPv(pv));
+    }
 
-	/**
-	 * 修改PV
-	 */
-	@GetMapping("/edit/{id}")
-	public String edit(@PathVariable("id") Long id, ModelMap mmap) {
-		Pv pv = pvService.selectPvById(id);
-		mmap.put("pv", pv);
-		return prefix + "/edit";
-	}
+    /**
+     * 修改PV
+     */
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable("id") Long id, ModelMap mmap) {
+        Pv pv = pvService.selectPvById(id);
+        mmap.put("pv", pv);
+        return prefix + "/edit";
+    }
 
-	/**
-	 * 修改保存PV
-	 */
-	@RequiresPermissions("cms:pv:edit")
-	@Log(title = "PV", businessType = BusinessType.UPDATE)
-	@PostMapping("/edit")
-	@ResponseBody
-	public AjaxResult editSave(Pv pv) {
-		return toAjax(pvService.updatePv(pv));
-	}
+    /**
+     * 修改保存PV
+     */
+    @RequiresPermissions("cms:pv:edit")
+    @Log(title = "PV", businessType = BusinessType.UPDATE)
+    @PostMapping("/edit")
+    @ResponseBody
+    public AjaxResult editSave(Pv pv) {
+        return toAjax(pvService.updatePv(pv));
+    }
 
-	/**
-	 * 删除PV
-	 */
-	@RequiresPermissions("cms:pv:remove")
-	@Log(title = "PV", businessType = BusinessType.DELETE)
-	@PostMapping("/remove")
-	@ResponseBody
-	public AjaxResult remove(String ids) {
-		return toAjax(pvService.deletePvByIds(ids));
-	}
+    /**
+     * 删除PV
+     */
+    @RequiresPermissions("cms:pv:remove")
+    @Log(title = "PV", businessType = BusinessType.DELETE)
+    @PostMapping("/remove")
+    @ResponseBody
+    public AjaxResult remove(String ids) {
+        return toAjax(pvService.deletePvByIds(ids));
+    }
 }

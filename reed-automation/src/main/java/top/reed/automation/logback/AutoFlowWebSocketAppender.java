@@ -15,18 +15,18 @@ import java.util.List;
 
 public class AutoFlowWebSocketAppender extends UnsynchronizedAppenderBase<ILoggingEvent> {
 
-	@Override
-	protected void append(ILoggingEvent event) {
-		SpiderContext context = SpiderContextHolder.get();
-		if (context instanceof WebSocketContext) {
-			WebSocketContext socketContext = (WebSocketContext) context;
-			Object[] argumentArray = event.getArgumentArray();
-			List<Object> arguments = argumentArray == null ? Collections.emptyList() : new ArrayList<>(Arrays.asList(argumentArray));
-			ThrowableProxy throwableProxy = (ThrowableProxy) event.getThrowableProxy();
-			if (throwableProxy != null) {
-				arguments.add(throwableProxy.getThrowable());
-			}
-			socketContext.log(new SpiderLog(event.getLevel().levelStr.toLowerCase(), event.getMessage(), arguments));
-		}
-	}
+    @Override
+    protected void append(ILoggingEvent event) {
+        SpiderContext context = SpiderContextHolder.get();
+        if (context instanceof WebSocketContext) {
+            WebSocketContext socketContext = (WebSocketContext) context;
+            Object[] argumentArray = event.getArgumentArray();
+            List<Object> arguments = argumentArray == null ? Collections.emptyList() : new ArrayList<>(Arrays.asList(argumentArray));
+            ThrowableProxy throwableProxy = (ThrowableProxy) event.getThrowableProxy();
+            if (throwableProxy != null) {
+                arguments.add(throwableProxy.getThrowable());
+            }
+            socketContext.log(new SpiderLog(event.getLevel().levelStr.toLowerCase(), event.getMessage(), arguments));
+        }
+    }
 }

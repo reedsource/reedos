@@ -11,8 +11,8 @@ import top.reed.quartz.domain.AutoJob;
  */
 @DisallowConcurrentExecution
 public class QuartzJobDisallowConcurrentExecution extends QuartzJob {
-	@Override
-	protected void doExecute(JobExecutionContext context, AutoJob autoJob) throws Exception {
-		QuartzJobInvokeUtil.invokeMethod(autoJob);
-	}
+    @Override
+    protected void doExecute(JobExecutionContext context, AutoJob autoJob) throws Exception {
+        QuartzJobInvokeUtil.invokeMethod(autoJob);
+    }
 }

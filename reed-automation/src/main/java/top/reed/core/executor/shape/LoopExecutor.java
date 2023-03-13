@@ -15,18 +15,18 @@ import java.util.Map;
 @Component
 public class LoopExecutor implements ShapeExecutor {
 
-	public static final String LOOP_ITEM = "loopItem";
+    public static final String LOOP_ITEM = "loopItem";
 
-	public static final String LOOP_START = "loopStart";
+    public static final String LOOP_START = "loopStart";
 
-	public static final String LOOP_END = "loopEnd";
+    public static final String LOOP_END = "loopEnd";
 
-	@Override
-	public void execute(SpiderNode node, SpiderContext context, Map<String, Object> variables) {
-	}
+    @Override
+    public void execute(SpiderNode node, SpiderContext context, Map<String, Object> variables) {
+    }
 
-	@Override
-	public String supportShape() {
-		return "loop";
-	}
+    @Override
+    public String supportShape() {
+        return "loop";
+    }
 }

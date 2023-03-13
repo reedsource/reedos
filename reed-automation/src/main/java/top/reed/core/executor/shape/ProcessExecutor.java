@@ -22,30 +22,30 @@ import java.util.Map;
 @Component
 public class ProcessExecutor implements ShapeExecutor {
 
-	private static Logger logger = LoggerFactory.getLogger(ProcessExecutor.class);
+    private static Logger logger = LoggerFactory.getLogger(ProcessExecutor.class);
 
-	@Autowired
-	private AutoFlowService autoFlowService;
+    @Autowired
+    private AutoFlowService autoFlowService;
 
-	@Autowired
-	private Spider spider;
+    @Autowired
+    private Spider spider;
 
-	@Override
-	public void execute(SpiderNode node, SpiderContext context, Map<String, Object> variables) {
-		Long flowId = Long.valueOf(node.getStringJsonValue("flowId"));
-		AutoFlow autoFlow = autoFlowService.selectAutoFlowById(flowId);
-		if (autoFlow != null) {
-			logger.info("执行子流程:{}", autoFlow.getName());
-			SpiderNode root = AutoFlowUtils.loadXMLFromString(autoFlow.getXml());
-			spider.executeNode(null, root, context, variables);
-		} else {
-			logger.info("执行子流程:{}失败，找不到该子流程", flowId);
-		}
-	}
+    @Override
+    public void execute(SpiderNode node, SpiderContext context, Map<String, Object> variables) {
+        Long flowId = Long.valueOf(node.getStringJsonValue("flowId"));
+        AutoFlow autoFlow = autoFlowService.selectAutoFlowById(flowId);
+        if (autoFlow != null) {
+            logger.info("执行子流程:{}", autoFlow.getName());
+            SpiderNode root = AutoFlowUtils.loadXMLFromString(autoFlow.getXml());
+            spider.executeNode(null, root, context, variables);
+        } else {
+            logger.info("执行子流程:{}失败，找不到该子流程", flowId);
+        }
+    }
 
-	@Override
-	public String supportShape() {
-		return "process";
-	}
+    @Override
+    public String supportShape() {
+        return "process";
+    }
 
 }

@@ -16,41 +16,41 @@ import top.reed.common.core.domain.BaseEntity;
 @Getter
 @Setter
 public class BlogTheme extends BaseEntity {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * ID
-	 */
-	private Long id;
+    /**
+     * ID
+     */
+    private Long id;
 
-	/**
-	 * 主题名称
-	 */
-	@Excel(name = "主题名称")
-	private String name;
+    /**
+     * 主题名称
+     */
+    @Excel(name = "主题名称")
+    private String name;
 
-	/**
-	 * 主题代码
-	 */
-	@Excel(name = "主题代码")
-	private String code;
+    /**
+     * 主题代码
+     */
+    @Excel(name = "主题代码")
+    private String code;
 
-	/**
-	 * 封面图片
-	 */
-	@Excel(name = "封面图片")
-	private String coverImg;
+    /**
+     * 封面图片
+     */
+    @Excel(name = "封面图片")
+    private String coverImg;
 
 
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-				.append("id", getId())
-				.append("name", getName())
-				.append("code", getCode())
-				.append("coverImg", getCoverImg())
-				.append("createTime", getCreateTime())
-				.append("createBy", getCreateBy())
-				.toString();
-	}
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+                .append("id", getId())
+                .append("name", getName())
+                .append("code", getCode())
+                .append("coverImg", getCoverImg())
+                .append("createTime", getCreateTime())
+                .append("createBy", getCreateBy())
+                .toString();
+    }
 }

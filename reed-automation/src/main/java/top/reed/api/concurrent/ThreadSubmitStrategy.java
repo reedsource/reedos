@@ -6,11 +6,11 @@ import java.util.Comparator;
 
 public interface ThreadSubmitStrategy {
 
-	Comparator<SpiderNode> comparator();
+    Comparator<SpiderNode> comparator();
 
-	void add(SpiderFutureTask<?> task);
+    void add(SpiderFutureTask<?> task);
 
-	boolean isEmpty();
+    boolean isEmpty();
 
-	SpiderFutureTask<?> get();
+    SpiderFutureTask<?> get();
 }

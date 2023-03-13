@@ -9,8 +9,8 @@ import top.reed.quartz.domain.AutoJob;
  * @author reedsource
  */
 public class QuartzJobExecution extends QuartzJob {
-	@Override
-	protected void doExecute(JobExecutionContext context, AutoJob autoJob) throws Exception {
-		QuartzJobInvokeUtil.invokeMethod(autoJob);
-	}
+    @Override
+    protected void doExecute(JobExecutionContext context, AutoJob autoJob) throws Exception {
+        QuartzJobInvokeUtil.invokeMethod(autoJob);
+    }
 }

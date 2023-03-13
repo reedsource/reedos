@@ -16,54 +16,54 @@ import top.reed.common.core.domain.TreeEntity;
 @Getter
 @Setter
 public class MaterialGroup extends TreeEntity {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * ID
-	 */
-	private Long groupId;
+    /**
+     * ID
+     */
+    private Long groupId;
 
-	/**
-	 * 部门ID
-	 */
-	@Excel(name = "部门ID")
-	private String deptId;
+    /**
+     * 部门ID
+     */
+    @Excel(name = "部门ID")
+    private String deptId;
 
-	/**
-	 * 分组名称
-	 */
-	@Excel(name = "分组名称")
-	private String groupName;
+    /**
+     * 分组名称
+     */
+    @Excel(name = "分组名称")
+    private String groupName;
 
-	/**
-	 * 描述
-	 */
-	@Excel(name = "描述")
-	private String description;
+    /**
+     * 描述
+     */
+    @Excel(name = "描述")
+    private String description;
 
-	/**
-	 * 排序
-	 */
-	@Excel(name = "排序")
-	private Integer sort;
+    /**
+     * 排序
+     */
+    @Excel(name = "排序")
+    private Integer sort;
 
-	/**
-	 * 创建人用户ID
-	 */
-	private String userId;
+    /**
+     * 创建人用户ID
+     */
+    private String userId;
 
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-				.append("groupId", getGroupId())
-				.append("parentId", getParentId())
-				.append("deptId", getDeptId())
-				.append("groupName", getGroupName())
-				.append("description", getDescription())
-				.append("sort", getSort())
-				.append("userId", getUserId())
-				.append("createBy", getCreateBy())
-				.append("createTime", getCreateTime())
-				.toString();
-	}
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+                .append("groupId", getGroupId())
+                .append("parentId", getParentId())
+                .append("deptId", getDeptId())
+                .append("groupName", getGroupName())
+                .append("description", getDescription())
+                .append("sort", getSort())
+                .append("userId", getUserId())
+                .append("createBy", getCreateBy())
+                .append("createTime", getCreateTime())
+                .toString();
+    }
 }

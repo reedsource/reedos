@@ -6,31 +6,31 @@ package top.reed.cms.domain;
  * @author reedsource
  */
 public enum ArticleRegionType {
-	REGION_TOP("top", "头条"),
-	REGION_FOCUS("focus", "焦点"),
-	REGION_HOT("hot", "热门"),
-	REGION_RECOMMEND("recommend", "精选推荐"),
-	REGION_MOST_COMMENT("most_comment", "评论最多"),
-	REGION_NEW("new", "最新");
+    REGION_TOP("top", "头条"),
+    REGION_FOCUS("focus", "焦点"),
+    REGION_HOT("hot", "热门"),
+    REGION_RECOMMEND("recommend", "精选推荐"),
+    REGION_MOST_COMMENT("most_comment", "评论最多"),
+    REGION_NEW("new", "最新");
 
-	private final String val;
-	private final String desc;
+    private final String val;
+    private final String desc;
 
-	ArticleRegionType(String v, String desc) {
-		this.val = v;
-		this.desc = desc;
-	}
+    ArticleRegionType(String v, String desc) {
+        this.val = v;
+        this.desc = desc;
+    }
 
-	public String getDesc() {
-		return desc;
-	}
+    public String getDesc() {
+        return desc;
+    }
 
-	public String getVal() {
-		return val;
-	}
+    public String getVal() {
+        return val;
+    }
 
-	@Override
-	public String toString() {
-		return val;
-	}
+    @Override
+    public String toString() {
+        return val;
+    }
 }

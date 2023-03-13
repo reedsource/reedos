@@ -15,9 +15,9 @@ import top.reed.common.core.controller.BaseController;
 @RequestMapping("/monitor/data")
 public class DruidController extends BaseController {
 
-	@RequiresPermissions("monitor:data:view")
-	@GetMapping()
-	public String index() {
-		return redirect("/druid/index.html");
-	}
+    @RequiresPermissions("monitor:data:view")
+    @GetMapping()
+    public String index() {
+        return redirect("/druid/index.html");
+    }
 }

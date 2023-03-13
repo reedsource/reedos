@@ -6,13 +6,13 @@ package top.reed.common.enums;
  * @author reedsource
  */
 public enum DataSourceType {
-	/**
-	 * 主库
-	 */
-	MASTER,
+    /**
+     * 主库
+     */
+    MASTER,
 
-	/**
-	 * 从库
-	 */
-	SLAVE
+    /**
+     * 从库
+     */
+    SLAVE
 }

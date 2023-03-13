@@ -14,9 +14,9 @@ import top.reed.common.core.controller.BaseController;
 @Controller
 @RequestMapping("/tool/build")
 public class BuildController extends BaseController {
-	@RequiresPermissions("tool:build:view")
-	@GetMapping()
-	public String build() {
-		return "tool/build/build";
-	}
+    @RequiresPermissions("tool:build:view")
+    @GetMapping()
+    public String build() {
+        return "tool/build/build";
+    }
 }

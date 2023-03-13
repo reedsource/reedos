@@ -11,30 +11,30 @@ import java.util.Map;
 
 @Component
 public class SqlRowSetExtension implements FunctionExtension {
-	public static Map<String, String[]> tableMetaMap = new HashMap<>();
+    public static Map<String, String[]> tableMetaMap = new HashMap<>();
 
-	@Example("${rs.nextToMap()}")
-	public static Map<String, Object> nextToMap(SqlRowSet sqlRowSet) {
-		try {
-			if (!sqlRowSet.next()) {
-				return null;
-			}
-			String[] columnNames = sqlRowSet.getMetaData().getColumnNames();
-			Map<String, Object> result = new HashMap<>();
-			for (String columnName : columnNames) {
-				result.put(columnName, sqlRowSet.getObject(columnName));
-			}
-			return result;
-		} catch (Exception e) {
-			ExceptionUtils.wrapAndThrow(e);
-		}
-		return null;
-	}
+    @Example("${rs.nextToMap()}")
+    public static Map<String, Object> nextToMap(SqlRowSet sqlRowSet) {
+        try {
+            if (!sqlRowSet.next()) {
+                return null;
+            }
+            String[] columnNames = sqlRowSet.getMetaData().getColumnNames();
+            Map<String, Object> result = new HashMap<>();
+            for (String columnName : columnNames) {
+                result.put(columnName, sqlRowSet.getObject(columnName));
+            }
+            return result;
+        } catch (Exception e) {
+            ExceptionUtils.wrapAndThrow(e);
+        }
+        return null;
+    }
 
-	@Override
-	public Class<?> support() {
-		return SqlRowSet.class;
-	}
+    @Override
+    public Class<?> support() {
+        return SqlRowSet.class;
+    }
 
 
 }
