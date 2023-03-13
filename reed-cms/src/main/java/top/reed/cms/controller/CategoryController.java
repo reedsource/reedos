@@ -26,7 +26,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/cms/category")
 public class CategoryController extends BaseController {
-    private final String prefix = "cms/category";
 
     @Autowired
     private ICategoryService categoryService;
@@ -34,7 +33,7 @@ public class CategoryController extends BaseController {
     @RequiresPermissions("cms:category:view")
     @GetMapping()
     public String category() {
-        return prefix + "/category";
+        return  "cms/category/category";
     }
 
     /**
@@ -44,8 +43,7 @@ public class CategoryController extends BaseController {
     @PostMapping("/list")
     @ResponseBody
     public List<Category> list(Category category) {
-        List<Category> list = categoryService.selectCategoryList(category);
-        return list;
+        return categoryService.selectCategoryList(category);
     }
 
     /**
@@ -68,7 +66,7 @@ public class CategoryController extends BaseController {
         if (RStringUtils.isNotNull(categoryId)) {
             mmap.put("category", categoryService.selectCategoryById(categoryId));
         }
-        return prefix + "/add";
+        return  "cms/category/add";
     }
 
     /**
@@ -89,7 +87,7 @@ public class CategoryController extends BaseController {
     public String edit(@PathVariable("categoryId") Long categoryId, ModelMap mmap) {
         Category category = categoryService.selectCategoryById(categoryId);
         mmap.put("category", category);
-        return prefix + "/edit";
+        return  "cms/category/edit";
     }
 
     /**
@@ -122,7 +120,7 @@ public class CategoryController extends BaseController {
         if (RStringUtils.isNotNull(categoryId)) {
             mmap.put("category", categoryService.selectCategoryById(categoryId));
         }
-        return prefix + "/tree";
+        return  "cms/category/tree";
     }
 
     /**
@@ -131,7 +129,6 @@ public class CategoryController extends BaseController {
     @GetMapping("/treeData")
     @ResponseBody
     public List<Ztree> treeData() {
-        List<Ztree> ztrees = categoryService.selectCategoryTree();
-        return ztrees;
+        return categoryService.selectCategoryTree();
     }
 }

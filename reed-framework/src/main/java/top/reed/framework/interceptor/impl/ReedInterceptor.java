@@ -30,6 +30,9 @@ public class ReedInterceptor implements HandlerInterceptor {
             if (!split[split.length - 1].equals("js") && !split[split.length - 1].equals("css")) {
                 log.info("请求 {}", url);
             }
+        }else{
+            //非文件的请求类直接打印
+            log.info("请求 {}", url);
         }
         return true;
     }

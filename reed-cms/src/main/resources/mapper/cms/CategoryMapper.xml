@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.reed.cms.mapper.CategoryMapper">
 
-    <resultMap type="Category" id="CategoryResult">
+    <resultMap type="top.reed.cms.domain.Category" id="CategoryResult">
         <result property="categoryId" column="category_id"/>
         <result property="categoryName" column="category_name"/>
         <result property="parentId" column="parent_id"/>
@@ -20,7 +20,7 @@
         <result property="parentName" column="parent_name"/>
     </resultMap>
 
-    <resultMap id="rm" type="Category">
+    <resultMap id="rm" type="top.reed.cms.domain.Category">
         <result property="categoryId" column="category_id"/>
         <result property="categoryName" column="category_name"/>
         <result property="parentId" column="parent_id"/>
@@ -34,14 +34,14 @@
         <result property="status" column="status"/>
         <result property="delFlag" column="del_flag"/>
 
-        <association property="parent" javaType="Category">
+        <association property="parent" javaType="top.reed.cms.domain.Category">
             <result property="categoryId" column="p_id"/>
             <result property="parentId" column="p_pid"/>
             <result property="categoryName" column="p_name"/>
             <result property="description" column="p_description"/>
             <result property="status" column="p_status"/>
         </association>
-        <collection property="nodes" column="n_id" javaType="ArrayList" ofType="Category">
+        <collection property="nodes" column="n_id" javaType="ArrayList" ofType="top.reed.cms.domain.Category">
             <result property="categoryId" column="n_id"/>
             <result property="parentId" column="n_pid"/>
             <result property="categoryName" column="n_name"/>
@@ -50,7 +50,7 @@
         </collection>
     </resultMap>
 
-    <select id="selectNavCategories" parameterType="Category" resultMap="rm">
+    <select id="selectNavCategories" parameterType="top.reed.cms.domain.Category" resultMap="rm">
         select t.*,
         p.category_id p_id,
         p.parent_id p_pid,
@@ -66,7 +66,7 @@
         from cms_category t
         LEFT JOIN cms_category p ON t.parent_id = p.category_id
         LEFT JOIN cms_category n ON n.parent_id = t.category_id
-        WHERE 1=1
+        WHERE t.`status` = 0
         <if test="categoryName !=null and categoryName != ''">
             AND t.`category_name` like concat('%', #{categoryName}, '%')
         </if>
@@ -76,8 +76,7 @@
         <if test="parentId !=null">
             AND t.parent_id = #{parentId}
         </if>
-        AND t.`status` = 0
-        ORDER BY t.sort ASC
+        ORDER BY t.sort
     </select>
     <sql id="selectCategoryVo">
         select category_id,
@@ -95,7 +94,7 @@
         from cms_category
     </sql>
 
-    <select id="selectCategoryList" parameterType="Category" resultMap="CategoryResult">
+    <select id="selectCategoryList" parameterType="top.reed.cms.domain.Category" resultMap="CategoryResult">
         <include refid="selectCategoryVo"/>
         <where>
             <if test="categoryName != null  and categoryName != ''">and category_name like concat('%', #{categoryName},
@@ -107,7 +106,7 @@
             <if test="description != null  and description != ''">and description = #{description}</if>
             <if test="status != null ">and status = #{status}</if>
         </where>
-        order by parent_id
+        order by sort
     </select>
 
     <select id="selectCategoryById" resultMap="CategoryResult">
@@ -129,7 +128,7 @@
         where t.category_id = #{categoryId}
     </select>
 
-    <insert id="insertCategory" parameterType="Category" useGeneratedKeys="true" keyProperty="categoryId">
+    <insert id="insertCategory" parameterType="top.reed.cms.domain.Category" useGeneratedKeys="true" keyProperty="categoryId">
         insert into cms_category
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="categoryId != null  and categoryId != ''">category_id,</if>
@@ -161,7 +160,7 @@
         </trim>
     </insert>
 
-    <update id="updateCategory" parameterType="Category">
+    <update id="updateCategory" parameterType="top.reed.cms.domain.Category">
         update cms_category
         <trim prefix="SET" suffixOverrides=",">
             <if test="categoryName != null  and categoryName != ''">category_name = #{categoryName},</if>
