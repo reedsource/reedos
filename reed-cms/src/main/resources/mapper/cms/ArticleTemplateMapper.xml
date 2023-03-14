@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.reed.cms.mapper.ArticleTemplateMapper">
 
-    <resultMap type="ArticleTemplate" id="ArticleTemplateResult">
+    <resultMap type="top.reed.cms.domain.ArticleTemplate" id="ArticleTemplateResult">
         <result property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="tags" column="tags"/>
@@ -43,7 +43,7 @@
         from cms_article_template
     </sql>
 
-    <select id="selectArticleTemplateList" parameterType="ArticleTemplate" resultMap="ArticleTemplateResult">
+    <select id="selectArticleTemplateList" parameterType="top.reed.cms.domain.ArticleTemplate" resultMap="ArticleTemplateResult">
         <include refid="selectArticleTemplateVo"/>
         <where>
             <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
@@ -57,7 +57,7 @@
         where id = #{id}
     </select>
 
-    <insert id="insertArticleTemplate" parameterType="ArticleTemplate" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertArticleTemplate" parameterType="top.reed.cms.domain.ArticleTemplate" useGeneratedKeys="true" keyProperty="id">
         insert into cms_article_template
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="name != null  and name != ''">name,</if>
@@ -95,7 +95,7 @@
         </trim>
     </insert>
 
-    <update id="updateArticleTemplate" parameterType="ArticleTemplate">
+    <update id="updateArticleTemplate" parameterType="top.reed.cms.domain.ArticleTemplate">
         update cms_article_template
         <trim prefix="SET" suffixOverrides=",">
             <if test="name != null  and name != ''">name = #{name},</if>
@@ -131,7 +131,7 @@
     </delete>
 
 
-    <resultMap type="Tags" id="TagsResult">
+    <resultMap type="top.reed.cms.domain.Tags" id="TagsResult">
         <result property="tagId" column="tag_id"/>
         <result property="tagType" column="tag_type"/>
         <result property="userId" column="user_id"/>

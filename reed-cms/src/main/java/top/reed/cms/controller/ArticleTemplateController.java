@@ -27,7 +27,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/cms/articleTemplate")
 public class ArticleTemplateController extends BaseController {
-    private final String prefix = "cms/articleTemplate";
 
     @Autowired
     private IArticleTemplateService articleTemplateService;
@@ -49,7 +48,7 @@ public class ArticleTemplateController extends BaseController {
         } else {
             mmap.put("editorOK", true);
         }
-        return prefix + "/articleTemplate";
+        return "cms/articleTemplate/articleTemplate";
     }
 
     /**
@@ -71,7 +70,7 @@ public class ArticleTemplateController extends BaseController {
     public String add(ModelMap mmap) {
         List<Tags> tags = articleTemplateService.selectArticleTemplateTags("");
         mmap.put("tags", tags);
-        return prefix + "/add";
+        return "cms/articleTemplate/add";
     }
 
     /**
@@ -94,7 +93,7 @@ public class ArticleTemplateController extends BaseController {
         mmap.put("articleTemplate", articleTemplate);
         List<Tags> tags = articleTemplateService.selectArticleTemplateTags(articleTemplate.getTags());
         mmap.put("tags", tags);
-        return prefix + "/edit";
+        return "cms/articleTemplate/edit";
     }
 
     /**
@@ -122,7 +121,7 @@ public class ArticleTemplateController extends BaseController {
     /*#############################华丽的分割线#####################################*/
     @GetMapping("/listNew")
     public String articleTemplateList() {
-        return prefix + "/articleTemplateList";
+        return "cms/articleTemplate/articleTemplateList";
     }
 
 }
