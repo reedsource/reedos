@@ -21,7 +21,7 @@ create table reedos.cms_material
 );
 
 INSERT INTO reedos.cms_material (material_id, group_id, material_name, material_type, description, material_size, save_path, thumbnail, audit_state, audit_reason, use_state, width, height, uploader_id, upload_time, remark)
-VALUES ('2019111009322629296151', '1', '180828012300500.jpg', '1', null, '211753', '/profile/public/blog/9b155fd8d237dc02380965143e67fd28.jpg', null, '1', '同意', '1', '960', '320', '1', sysdate(), null),
-       ('2019111009381073394848', '1', '180828105347992.jpg', '1', null, '99552', '/profile/public/blog/1af5f3fc7abbfa2ac7d7ebe5ece0aa87.jpg', null, '1', '同意', '1', '960', '320', '1', sysdate(), null),
-       ('2019111009382058929539', '1', '180829122443368.jpg', '1', null, '185844', '/profile/public/blog/159943c9310fae5b8c4e1da79e5ad3da.jpg', null, '1', '同意', '1', '960', '320', '1', sysdate(), null),
-       ('2019111009383084394915', '1', '180909053041227.jpg', '1', null, '72684', '/profile/public/blog/e6bd3afbc4975df0ac6f20a25718fcb1.jpg', null, '1', '同意', '0', '960', '320', '1', sysdate(), null);
+VALUES ('2019111009381073394848', '1', '180828105347992.jpg', '1', null, '99552', '/profile/public/blog/blog_index_init_01.jpg', null, '1', '同意', '1', '960', '320', '1', sysdate(), null),
+       ('2019111009382058929539', '1', '180829122443368.jpg', '1', null, '185844', '/profile/public/blog/blog_index_init_02.jpg', null, '1', '同意', '1', '960', '320', '1', sysdate(), null),
+       ('2019111009383084394915', '1', '180909053041227.jpg', '1', null, '72684', '/profile/public/blog/blog_index_init_03.jpg', null, '1', '同意', '0', '960', '320', '1', sysdate(), null),
+       ('2019111009322629296151', '1', '180828012300500.jpg', '1', null, '211753', '/profile/public/blog/blog_index_init_04.jpg', null, '1', '同意', '1', '960', '320', '1', sysdate(), null);
