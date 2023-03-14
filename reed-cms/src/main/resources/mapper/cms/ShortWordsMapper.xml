@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.reed.cms.mapper.ShortWordsMapper">
 
-    <resultMap type="ShortWords" id="ShortWordsResult">
+    <resultMap type="top.reed.cms.domain.ShortWords" id="ShortWordsResult">
         <result property="id" column="id"/>
         <result property="shortWords" column="short_words"/>
         <result property="tagids" column="tagIds"/>
@@ -19,7 +19,7 @@
         from cms_short_words
     </sql>
 
-    <select id="selectShortWordsList" parameterType="ShortWords" resultMap="ShortWordsResult">
+    <select id="selectShortWordsList" parameterType="top.reed.cms.domain.ShortWords" resultMap="ShortWordsResult">
         <include refid="selectShortWordsVo"/>
         <where>
             <if test="shortWords != null  and shortWords != ''">and short_words = #{shortWords}</if>
@@ -36,7 +36,7 @@
         where id = #{id}
     </select>
 
-    <insert id="insertShortWords" parameterType="ShortWords" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertShortWords" parameterType="top.reed.cms.domain.ShortWords" useGeneratedKeys="true" keyProperty="id">
         insert into cms_short_words
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="shortWords != null  and shortWords != ''">short_words,</if>
@@ -56,7 +56,7 @@
         </trim>
     </insert>
 
-    <update id="updateShortWords" parameterType="ShortWords">
+    <update id="updateShortWords" parameterType="top.reed.cms.domain.ShortWords">
         update cms_short_words
         <trim prefix="SET" suffixOverrides=",">
             <if test="shortWords != null  and shortWords != ''">short_words = #{shortWords},</if>

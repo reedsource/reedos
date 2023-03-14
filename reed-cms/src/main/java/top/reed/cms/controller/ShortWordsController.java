@@ -25,7 +25,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/cms/shortWords")
 public class ShortWordsController extends BaseController {
-    private final String prefix = "cms/shortWords";
 
     @Autowired
     private IShortWordsService shortWordsService;
@@ -33,7 +32,7 @@ public class ShortWordsController extends BaseController {
     @RequiresPermissions("cms:shortWords:view")
     @GetMapping()
     public String shortWords() {
-        return prefix + "/shortWords";
+        return "cms/shortWords/shortWords";
     }
 
     /**
@@ -65,7 +64,7 @@ public class ShortWordsController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return prefix + "/add";
+        return "cms/shortWords/add";
     }
 
     /**
@@ -86,7 +85,7 @@ public class ShortWordsController extends BaseController {
     public String edit(@PathVariable("id") Long id, ModelMap mmap) {
         ShortWords shortWords = shortWordsService.selectShortWordsById(id);
         mmap.put("shortWords", shortWords);
-        return prefix + "/edit";
+        return "cms/shortWords/edit";
     }
 
     /**
