@@ -133,4 +133,10 @@ values (1, 1, '男', '0', 'sys_user_sex', '', '', 'Y', '0', 'admin', sysdate(), 
        (178, 2, '会员', 'vip', 'share_type', '', 'success', 'N', '0', 'admin', sysdate(), 'admin', null, ''),
        (207, 9, '清空数据', '9', 'sys_oper_type', '', 'danger', 'N', '0', 'admin', sysdate(), '', null, '清空操作'),
        (208, 1, '成功', '0', 'sys_common_status', '', 'primary', 'N', '0', 'admin', sysdate(), '', null, '正常状态'),
-       (209, 2, '失败', '1', 'sys_common_status', '', 'danger', 'N', '0', 'admin', sysdate(), '', null, '停用状态');
+       (209, 2, '失败', '1', 'sys_common_status', '', 'danger', 'N', '0', 'admin', sysdate(), '', null, '停用状态'),
+       (210, 1, '图片', '1', 'cms_attachment_type', '', 'danger', 'N', '0', 'admin', sysdate(), '', null, null),
+       (211, 2, '视频', '2', 'cms_attachment_type', '', 'danger', 'N', '0', 'admin', sysdate(), '', null, null),
+       (212, 3, '文本', '3', 'cms_attachment_type', '', 'danger', 'N', '0', 'admin', sysdate(), '', null, null),
+       (213, 4, '音频', '4', 'cms_attachment_type', '', 'danger', 'N', '0', 'admin', sysdate(), '', null, null),
+       (214, 5, '压缩', '5', 'cms_attachment_type', '', 'danger', 'N', '0', 'admin', sysdate(), '', null, null),
+       (215, 6, '其他', '6', 'cms_attachment_type', '', 'danger', 'N', '0', 'admin', sysdate(), '', null, null);

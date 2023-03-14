@@ -53,4 +53,5 @@ values (1, '用户性别', 'sys_user_sex', '0', 'admin', sysdate(), '', null, '�
        (120, '支付类型', 'cms_pay_type', '0', 'admin', sysdate(), '', null, null),
        (121, '资源类型', 'cms_resource_type', '0', 'admin', sysdate(), '', null, null),
        (122, '客户端设备类型', 'client_device_type', '0', 'admin', sysdate(), '', null, null),
-       (123, '共享类型', 'share_type', '0', 'admin', sysdate(), '', null, null);
+       (123, '共享类型', 'share_type', '0', 'admin', sysdate(), '', null, null),
+       (124, '附件类型', 'cms_attachment_type', '0', 'admin', sysdate(), '', null, null);

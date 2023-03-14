@@ -22,10 +22,8 @@
         <div class="form-group">
             <label class="col-sm-3 control-label">类型：</label>
             <div class="col-sm-8">
-                <select class="form-control" name="fileType" th:with="types=${@cms.selectFileTypeDictData()}">
-                    <option value="">所有</option>
-                    <option th:each="type : ${types}" th:field="*{fileType}" th:text="${type.dictLabel}"
-                            th:value="${type.dictValue}"></option>
+                <select class="form-control" name="fileType" th:with="type=${@dict.getType('cms_attachment_type')}">
+                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
                 </select>
             </div>
         </div>
