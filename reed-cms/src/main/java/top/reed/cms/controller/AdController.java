@@ -26,7 +26,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/cms/ad")
 public class AdController extends BaseController {
-    private final String prefix = "cms/ad";
 
     @Autowired
     private IAdService adService;
@@ -34,7 +33,7 @@ public class AdController extends BaseController {
     @RequiresPermissions("cms:ad:view")
     @GetMapping()
     public String ad() {
-        return prefix + "/ad";
+        return "cms/ad/ad";
     }
 
     /**
@@ -66,7 +65,7 @@ public class AdController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return prefix + "/add";
+        return "cms/ad/add";
     }
 
     /**
@@ -87,7 +86,7 @@ public class AdController extends BaseController {
     public String edit(@PathVariable("adId") Long adId, ModelMap mmap) {
         Ad ad = adService.selectAdById(adId);
         mmap.put("ad", ad);
-        return prefix + "/edit";
+        return "cms/ad/edit";
     }
 
     /**
@@ -121,7 +120,7 @@ public class AdController extends BaseController {
     @GetMapping("/adMaterial/{adId}")
     public String adMaterial(@PathVariable("adId") String adId, ModelMap mmap) {
         mmap.put("adId", adId);
-        return prefix + "/adMaterial";
+        return "cms/ad/adMaterial";
     }
 
     /**
@@ -140,7 +139,7 @@ public class AdController extends BaseController {
     @GetMapping("/addAdMaterial/{adId}")
     public String addAdMaterial(@PathVariable("adId") String adId, ModelMap mmap) {
         mmap.put("adId", adId);
-        return prefix + "/addAdMaterial";
+        return "cms/ad/addAdMaterial";
     }
 
     /**
@@ -161,7 +160,7 @@ public class AdController extends BaseController {
         AdMaterial adMaterial = adService.selectAdMaterialById(id);
 
         mmap.put("adMaterial", adMaterial);
-        return prefix + "/editAdMaterial";
+        return "cms/ad/editAdMaterial";
     }
 
     /**
@@ -191,7 +190,7 @@ public class AdController extends BaseController {
     @GetMapping("/selectAdMaterial/{adId}")
     public String selectAdMaterial(@PathVariable("adId") String adId, ModelMap mmap) {
         mmap.put("adId", adId);
-        return prefix + "/selectAdMaterial";
+        return "cms/ad/selectAdMaterial";
     }
 
     /**
