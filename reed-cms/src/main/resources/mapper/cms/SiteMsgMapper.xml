@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.reed.cms.mapper.SiteMsgMapper">
 
-    <resultMap type="SiteMsg" id="SiteMsgResult">
+    <resultMap type="top.reed.cms.domain.SiteMsg" id="SiteMsgResult">
         <result property="id" column="id"/>
         <result property="fromId" column="from_id"/>
         <result property="fromName" column="from_name"/>
@@ -27,7 +27,7 @@
         from cms_site_msg
     </sql>
 
-    <select id="selectSiteMsgList" parameterType="SiteMsg" resultMap="SiteMsgResult">
+    <select id="selectSiteMsgList" parameterType="top.reed.cms.domain.SiteMsg" resultMap="SiteMsgResult">
         <include refid="selectSiteMsgVo"/>
         <where>
             <if test="fromName != null  and fromName != ''">and from_name like concat('%', #{fromName}, '%')</if>
@@ -41,7 +41,7 @@
         where id = #{id}
     </select>
 
-    <insert id="insertSiteMsg" parameterType="SiteMsg" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSiteMsg" parameterType="top.reed.cms.domain.SiteMsg" useGeneratedKeys="true" keyProperty="id">
         insert into cms_site_msg
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="fromId != null  and fromId != ''">from_id,</if>
@@ -63,7 +63,7 @@
         </trim>
     </insert>
 
-    <update id="updateSiteMsg" parameterType="SiteMsg">
+    <update id="updateSiteMsg" parameterType="top.reed.cms.domain.SiteMsg">
         update cms_site_msg
         <trim prefix="SET" suffixOverrides=",">
             <if test="fromId != null  and fromId != ''">from_id = #{fromId},</if>

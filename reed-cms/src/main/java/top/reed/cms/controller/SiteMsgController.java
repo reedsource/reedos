@@ -24,7 +24,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/cms/siteMsg")
 public class SiteMsgController extends BaseController {
-    private final String prefix = "cms/siteMsg";
 
     @Autowired
     private ISiteMsgService siteMsgService;
@@ -32,7 +31,7 @@ public class SiteMsgController extends BaseController {
     @RequiresPermissions("cms:siteMsg:view")
     @GetMapping()
     public String siteMsg() {
-        return prefix + "/siteMsg";
+        return  "cms/siteMsg/siteMsg";
     }
 
     /**
@@ -52,7 +51,7 @@ public class SiteMsgController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return prefix + "/add";
+        return  "cms/siteMsg/add";
     }
 
     /**
@@ -73,7 +72,7 @@ public class SiteMsgController extends BaseController {
     public String edit(@PathVariable("id") Long id, ModelMap mmap) {
         SiteMsg siteMsg = siteMsgService.selectSiteMsgById(id);
         mmap.put("siteMsg", siteMsg);
-        return prefix + "/edit";
+        return  "cms/siteMsg/edit";
     }
 
     /**
