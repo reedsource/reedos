@@ -25,7 +25,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/cms/template")
 public class TemplateController extends BaseController {
-    private final String prefix = "cms/template";
 
     @Autowired
     private ITemplateService templateService;
@@ -33,7 +32,7 @@ public class TemplateController extends BaseController {
     @RequiresPermissions("cms:template:view")
     @GetMapping()
     public String template() {
-        return prefix + "/template";
+        return "cms/template/template";
     }
 
     /**
@@ -65,7 +64,7 @@ public class TemplateController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return prefix + "/add";
+        return "cms/template/add";
     }
 
     /**
@@ -86,7 +85,7 @@ public class TemplateController extends BaseController {
     public String edit(@PathVariable("templateId") Long templateId, ModelMap mmap) {
         Template template = templateService.selectTemplateById(templateId);
         mmap.put("template", template);
-        return prefix + "/edit";
+        return "cms/template/edit";
     }
 
     /**

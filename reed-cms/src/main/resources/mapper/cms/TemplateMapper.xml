@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.reed.cms.mapper.TemplateMapper">
 
-    <resultMap type="Template" id="TemplateResult">
+    <resultMap type="top.reed.cms.domain.Template" id="TemplateResult">
         <result property="templateId" column="template_id"/>
         <result property="templateCode" column="template_code"/>
         <result property="templateType" column="template_type"/>
@@ -17,7 +17,7 @@
         from cms_template
     </sql>
 
-    <select id="selectTemplateList" parameterType="Template" resultMap="TemplateResult">
+    <select id="selectTemplateList" parameterType="top.reed.cms.domain.Template" resultMap="TemplateResult">
         <include refid="selectTemplateVo"/>
         <where>
             <if test="templateCode != null  and templateCode != ''">and template_code = #{templateCode}</if>
@@ -34,7 +34,7 @@
         where template_id = #{templateId}
     </select>
 
-    <insert id="insertTemplate" parameterType="Template" useGeneratedKeys="true" keyProperty="templateId">
+    <insert id="insertTemplate" parameterType="top.reed.cms.domain.Template" useGeneratedKeys="true" keyProperty="templateId">
         insert into cms_template
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="templateCode != null  and templateCode != ''">template_code,</if>
@@ -50,7 +50,7 @@
         </trim>
     </insert>
 
-    <update id="updateTemplate" parameterType="Template">
+    <update id="updateTemplate" parameterType="top.reed.cms.domain.Template">
         update cms_template
         <trim prefix="SET" suffixOverrides=",">
             <if test="templateCode != null  and templateCode != ''">template_code = #{templateCode},</if>
