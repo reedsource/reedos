@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.reed.cms.mapper.ResourceMapper">
 
-    <resultMap type="Resource" id="ResourceResult">
+    <resultMap type="top.reed.cms.domain.Resource" id="ResourceResult">
         <result property="id" column="id"/>
         <result property="resourceRegion" column="resource_region"/>
         <result property="title" column="title"/>
@@ -63,7 +63,7 @@
         from cms_resource
     </sql>
 
-    <select id="selectResourceList" parameterType="Resource" resultMap="ResourceResult">
+    <select id="selectResourceList" parameterType="top.reed.cms.domain.Resource" resultMap="ResourceResult">
         <include refid="selectResourceVo"/>
         <where>
             <if test="resourceRegion != null  and resourceRegion != ''">and resource_region = #{resourceRegion}</if>
@@ -81,7 +81,7 @@
         where id = #{id}
     </select>
 
-    <insert id="insertResource" parameterType="Resource">
+    <insert id="insertResource" parameterType="top.reed.cms.domain.Resource">
         insert into cms_resource
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null  and id != ''">id,</if>
@@ -141,7 +141,7 @@
         </trim>
     </insert>
 
-    <update id="updateResource" parameterType="Resource">
+    <update id="updateResource" parameterType="top.reed.cms.domain.Resource">
         update cms_resource
         <trim prefix="SET" suffixOverrides=",">
             <if test="title != null  and title != ''">title = #{title},</if>

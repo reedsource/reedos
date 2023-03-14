@@ -30,7 +30,6 @@ import java.util.Map;
 @Controller
 @RequestMapping("/cms/resource")
 public class ResourceController extends BaseController {
-    private final String prefix = "cms/resource";
 
     @Autowired
     private IResourceService resourceService;
@@ -38,7 +37,7 @@ public class ResourceController extends BaseController {
     @RequiresPermissions("cms:resource:view")
     @GetMapping()
     public String resource() {
-        return prefix + "/resource";
+        return "cms/resource/resource";
     }
 
     /**
@@ -70,7 +69,7 @@ public class ResourceController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return prefix + "/add";
+        return "cms/resource/add";
     }
 
     /**
@@ -91,7 +90,7 @@ public class ResourceController extends BaseController {
     public String edit(@PathVariable("id") String id, ModelMap mmap) {
         Resource resource = resourceService.selectResourceById(id);
         mmap.put("resource", resource);
-        return prefix + "/edit";
+        return "cms/resource/edit";
     }
 
     /**
