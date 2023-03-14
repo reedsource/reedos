@@ -25,7 +25,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/cms/comment")
 public class CommentController extends BaseController {
-    private final String prefix = "cms/comment";
 
     @Autowired
     private ICommentService commentService;
@@ -33,7 +32,7 @@ public class CommentController extends BaseController {
     @RequiresPermissions("cms:comment:view")
     @GetMapping()
     public String comment() {
-        return prefix + "/comment";
+        return "cms/comment/comment";
     }
 
     /**
@@ -65,7 +64,7 @@ public class CommentController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return prefix + "/add";
+        return "cms/comment/add";
     }
 
     /**
@@ -86,7 +85,7 @@ public class CommentController extends BaseController {
     public String edit(@PathVariable("id") Long id, ModelMap mmap) {
         Comment comment = commentService.selectCommentById(id);
         mmap.put("comment", comment);
-        return prefix + "/edit";
+        return "cms/comment/edit";
     }
 
     /**
