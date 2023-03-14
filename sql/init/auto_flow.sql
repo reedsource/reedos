@@ -87,7 +87,7 @@ values (1, '爬取码云GVP', '<mxGraphModel>
     </mxCell>
   </root>
 </mxGraphModel>
-', '0', '2019-08-22 13:46:54'),
+', '0', sysdate()),
        (2, '抓取每日菜价', '<mxGraphModel>
   <root>
     <mxCell id="0">
@@ -140,7 +140,7 @@ values (1, '爬取码云GVP', '<mxGraphModel>
     </mxCell>
   </root>
 </mxGraphModel>
-', '0', '2019-08-22 13:48:22'),
+', '0', sysdate()),
        (3, '爬取开源中国动弹', '<mxGraphModel>
   <root>
     <mxCell id="0">
@@ -229,7 +229,7 @@ values (1, '爬取码云GVP', '<mxGraphModel>
     </mxCell>
   </root>
 </mxGraphModel>
-', '0', '2019-11-03 17:02:49'),
+', '0', sysdate()),
        (4, '百度热点', '<mxGraphModel>
   <root>
     <mxCell id="0">
@@ -282,4 +282,4 @@ values (1, '爬取码云GVP', '<mxGraphModel>
     </mxCell>
   </root>
 </mxGraphModel>
-', '1', '2019-10-20 17:24:21');
+', '1', sysdate());

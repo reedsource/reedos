@@ -17,5 +17,6 @@ create table reedos.cms_album
 )
     comment '素材表';
 
-INSERT INTO reedos.cms_album (album_id, album_name, user_id, dept_id, album_type, description, create_by, create_time, audit_state, code, width, height) VALUES ('2019111014175065994146', '首页banner', '3', '103', 'banner', null, 'yf', '2019-11-10 14:17:51', 1, 'main', 960, 320);
-INSERT INTO reedos.cms_album (album_id, album_name, user_id, dept_id, album_type, description, create_by, create_time, audit_state, code, width, height) VALUES ('2019111014175065994147', '博客首页banner', '3', '103', 'banner', null, 'yf', '2019-11-19 10:47:24', 1, 'blog_index', 798, 256);
+INSERT INTO reedos.cms_album (album_id, album_name, user_id, dept_id, album_type, description, create_by, create_time, audit_state, code, width, height)
+VALUES ('2019111014175065994146', '首页banner', '3', '103', 'banner', null, 'yf', sysdate(), 1, 'main', 960, 320),
+       ('2019111014175065994147', '博客首页banner', '3', '103', 'banner', null, 'yf', sysdate(), 1, 'blog_index', 798, 256);

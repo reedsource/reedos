@@ -15,4 +15,5 @@ create table reedos.cms_ad
     create_time datetime     null comment '创建时间'
 );
 
-INSERT INTO reedos.cms_ad (ad_id, ad_code, ad_name, width, height, status, user_id, dept_id, description, create_by, create_time) VALUES (1, 'main', '首页顶部', 1280, 38, 0, '1', '103', '测试', null, '2019-11-16 20:26:57');
+INSERT INTO reedos.cms_ad (ad_id, ad_code, ad_name, width, height, status, user_id, dept_id, description, create_by, create_time)
+VALUES (1, 'main', '首页顶部', 1280, 38, 0, '1', '103', '测试', null, sysdate());

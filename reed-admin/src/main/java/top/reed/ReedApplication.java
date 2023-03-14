@@ -13,7 +13,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 public class ReedApplication {
     public static void main(String[] args) {
         SpringApplication.run(ReedApplication.class, args);
-        System.out.println("主页 http://localhost/blog");
+        System.out.println("博客主页 http://localhost/blog");
         System.out.println("后台主页 http://localhost/login");
     }
 }

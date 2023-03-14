@@ -10,5 +10,6 @@ create table reedos.cms_login_page
     create_by   varchar(50)  null
 );
 
-INSERT INTO reedos.cms_login_page (id, name, code, cover_img, create_time, create_by) VALUES (1, '默认', 'default', '/images/loginPage/default.jpg', '2019-12-24 10:54:32', 'ry');
-INSERT INTO reedos.cms_login_page (id, name, code, cover_img, create_time, create_by) VALUES (2, 'process', 'process', '/images/loginPage/process.jpg', '2019-12-24 10:54:32', 'ry');
+INSERT INTO reedos.cms_login_page (id, name, code, cover_img, create_time, create_by)
+VALUES (1, '默认', 'default', '/images/loginPage/default.jpg', sysdate(), 'ry'),
+       (2, 'process', 'process', '/images/loginPage/process.jpg', sysdate(), 'ry');

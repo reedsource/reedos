@@ -12,4 +12,5 @@ create table reedos.cms_site_msg
     create_time datetime    null comment '消息时间'
 );
 
-INSERT INTO reedos.cms_site_msg (id, from_id, from_name, to_id, to_name, msg_type, content, create_time) VALUES (1, '1', '系统', '1', '测试', 'system', '测试系统通知', '2019-11-17 20:15:08');
+INSERT INTO reedos.cms_site_msg (id, from_id, from_name, to_id, to_name, msg_type, content, create_time)
+VALUES (1, '1', '系统', '1', '测试', 'system', '测试系统通知', '2019-11-17 20:15:08');

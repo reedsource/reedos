@@ -25,7 +25,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/cms/loginPage")
 public class LoginPageController extends BaseController {
-    private final String prefix = "cms/loginPage";
 
     @Autowired
     private ILoginPageService loginPageService;
@@ -33,7 +32,7 @@ public class LoginPageController extends BaseController {
     @RequiresPermissions("cms:loginPage:view")
     @GetMapping()
     public String loginPage() {
-        return prefix + "/loginPage";
+        return "cms/loginPage/loginPage";
     }
 
     /**
@@ -64,7 +63,7 @@ public class LoginPageController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return prefix + "/add";
+        return "cms/loginPage/add";
     }
 
     /**
@@ -84,7 +83,7 @@ public class LoginPageController extends BaseController {
     public String edit(@PathVariable("id") Long id, ModelMap mmap) {
         LoginPage loginPage = loginPageService.selectLoginPageById(id);
         mmap.put("loginPage", loginPage);
-        return prefix + "/edit";
+        return "cms/loginPage/edit";
     }
 
     /**

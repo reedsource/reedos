@@ -13,7 +13,8 @@ create table reedos.cms_material_use
 )
     comment '素材使用记录表';
 
-INSERT INTO reedos.cms_material_use (id, material_id, use_table, use_id, use_column, user_id, create_by, create_time) VALUES (50, '2019111009322629296151', 'cms_album_material', '2019111014175065994146', 'album_id', null, 'markbro', '2019-11-17 16:56:17');
-INSERT INTO reedos.cms_material_use (id, material_id, use_table, use_id, use_column, user_id, create_by, create_time) VALUES (51, '2019111009381073394848', 'cms_album_material', '2019111014175065994146', 'album_id', null, 'markbro', '2019-11-17 16:56:17');
-INSERT INTO reedos.cms_material_use (id, material_id, use_table, use_id, use_column, user_id, create_by, create_time) VALUES (57, '2019111009382058929539', 'cms_album_material', '2019111014175065994147', 'album_id', null, 'markbro', '2019-11-19 10:42:53');
-INSERT INTO reedos.cms_material_use (id, material_id, use_table, use_id, use_column, user_id, create_by, create_time) VALUES (58, '2019111009382058929539', 'cms_album_material', '2019111014175065994146', 'album_id', null, 'markbro', '2019-11-20 15:45:35');
+INSERT INTO reedos.cms_material_use (id, material_id, use_table, use_id, use_column, user_id, create_by, create_time)
+VALUES (1, '2019111009322629296151', 'cms_album_material', '2019111014175065994146', 'album_id', null, 'markbro', '2019-11-17 16:56:17'),
+       (2, '2019111009381073394848', 'cms_album_material', '2019111014175065994146', 'album_id', null, 'markbro', '2019-11-17 16:56:17'),
+       (3, '2019111009382058929539', 'cms_album_material', '2019111014175065994147', 'album_id', null, 'markbro', '2019-11-19 10:42:53'),
+       (4, '2019111009382058929539', 'cms_album_material', '2019111014175065994146', 'album_id', null, 'markbro', '2019-11-20 15:45:35');

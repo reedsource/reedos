@@ -18,7 +18,7 @@ create table reedos.sys_role
     comment '角色信息表';
 
 insert into reedos.sys_role (role_id, role_name, role_key, role_sort, data_scope, status, del_flag, create_by, create_time, update_by, update_time, remark)
-values (1, '超级管理员', 'super', 1, '1', '0', '0', 'admin', '2023-03-07 17:10:31', '', null, '超级管理员'),
-       (2, '管理员', 'admin', 2, '1', '0', '0', 'admin', '2023-03-07 17:10:31', '', null, '管理员'),
-       (3, '系统会员', 'vip', 3, '2', '0', '0', 'admin', '2023-03-07 17:10:31', '', null, '系统会员'),
-       (4, '注册默认角色', 'default', 4, '2', '0', '0', 'admin', '2023-03-07 17:10:31', '', null, '注册默认角色');
+values (1, '超级管理员', 'super', 1, '1', '0', '0', 'admin', sysdate(), '', null, '超级管理员'),
+       (2, '管理员', 'admin', 2, '1', '0', '0', 'admin', sysdate(), '', null, '管理员'),
+       (3, '系统会员', 'vip', 3, '2', '0', '0', 'admin', sysdate(), '', null, '系统会员'),
+       (4, '注册默认角色', 'default', 4, '2', '0', '0', 'admin', sysdate(), '', null, '注册默认角色');

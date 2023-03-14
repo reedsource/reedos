@@ -17,7 +17,8 @@ create table reedos.cms_category
 )
     comment '导航栏目表';
 
-INSERT INTO reedos.cms_category (category_id, category_name, parent_id, ancestors, sort, description, create_time, update_time, create_by, update_by, status, del_flag) VALUES (1, '其它', null, '1,', 3, '1', '2022-09-28 16:14:32', '2022-09-28 20:01:44', '1', '1', 0, null);
-INSERT INTO reedos.cms_category (category_id, category_name, parent_id, ancestors, sort, description, create_time, update_time, create_by, update_by, status, del_flag) VALUES (2, '资讯', 1, '1,2,', 1, '1', '2022-09-28 16:15:11', '2022-09-28 20:01:44', '1', '1', 0, null);
-INSERT INTO reedos.cms_category (category_id, category_name, parent_id, ancestors, sort, description, create_time, update_time, create_by, update_by, status, del_flag) VALUES (3, '后端技术', null, '3,', 2, '1', '2022-09-28 16:15:24', '2022-09-28 20:01:44', '1', '1', 0, null);
-INSERT INTO reedos.cms_category (category_id, category_name, parent_id, ancestors, sort, description, create_time, update_time, create_by, update_by, status, del_flag) VALUES (4, '前端技术', null, null, 1, null, '2022-09-28 16:15:24', '2022-09-28 16:15:24', '1', '1', 0, null);
+INSERT INTO reedos.cms_category (category_id, category_name, parent_id, ancestors, sort, description, create_time, update_time, create_by, update_by, status, del_flag)
+VALUES (1, '其它', null, '1,', 3, '1', '2022-09-28 16:14:32', sysdate(), '1', '1', 0, null),
+       (2, '资讯', 1, '1,2,', 1, '1', '2022-09-28 16:15:11', sysdate(), '1', '1', 0, null),
+       (3, '后端技术', null, '3,', 2, '1', '2022-09-28 16:15:24', sysdate(), '1', '1', 0, null),
+       (4, '前端技术', null, null, 1, null, '2022-09-28 16:15:24', sysdate(), '1', '1', 0, null);

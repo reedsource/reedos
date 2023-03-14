@@ -20,7 +20,8 @@ create table reedos.cms_article_template
     audit_reason varchar(255) null comment '原因'
 );
 
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (1, '1', '48', '1', 'ry', '<fieldset  style="font-family: sans-serif; border: 0px none;">
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (1, '1', '48', '1', 'ry', '<fieldset  style="font-family: sans-serif; border: 0px none;">
     <section style="margin:10px 0px;border-radius:4px;padding:50px 0px;color:#ffffff;text-align:center;border-color:#ff8124;background-color:#6b4d40;">
         <span  data-brushtype="text" style="border-radius:4px;border:1px solid #fbfbfb;color:inherit;font-size:18px;line-height:42px;padding:10px 15px;">微信+编辑器</span>
         <section  style="color:inherit;margin-top:30px;">
@@ -32,8 +33,9 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
             </p>
         </section>
     </section>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:18:21', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (2, '2', '48', '1', 'markbro', '<fieldset  style="font-family: sans-serif; border: 0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (2, '2', '48', '1', 'markbro', '<fieldset  style="font-family: sans-serif; border: 0px none;">
     <fieldset style="border:0px;margin:5px 0px;box-sizing:border-box;padding:0px;">
         <section style="box-sizing:border-box;">
             <section style="height:16px;width:1.5em;float:left;border-top-width:0.4em;border-top-style:solid;border-color:#f96e57;border-left-width:0.4em;border-left-style:solid;box-sizing:border-box;"></section>
@@ -50,16 +52,21 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
             <section style="height:16px;width:1.5em;float:right;border-bottom-width:0.4em;border-bottom-style:solid;border-color:#f96e57;border-right-width:0.4em;border-right-style:solid;box-sizing:border-box;"></section>
         </section>
     </fieldset>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (3, '3', '48,49', '1', 'markbro', '<fieldset style="font-family: sans-serif; border: 0px none;"><h2 style="margin:8px 0px 0px;padding:0px;font-size:16px;line-height:28px;max-width:100%;color:#0070c0;min-height:32px;border-bottom-width:2px;border-bottom-style:solid;border-bottom-color:#0070c0;text-align:justify;"><span class="autonum" placeholder="1" style="border-radius:80% 100% 90% 20%;color:#ffffff;display:block;float:left;line-height:20px;margin:0px 8px 0px 0px;max-width:100%;padding:4px 10px;word-wrap:break-word !important;background-color:#0070c0;">1</span><strong data-brushtype="text">第一标题sd</strong>
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (3, '3', '48,49', '1', 'markbro', '<fieldset style="font-family: sans-serif; border: 0px none;"><h2 style="margin:8px 0px 0px;padding:0px;font-size:16px;line-height:28px;max-width:100%;color:#0070c0;min-height:32px;border-bottom-width:2px;border-bottom-style:solid;border-bottom-color:#0070c0;text-align:justify;"><span class="autonum" placeholder="1" style="border-radius:80% 100% 90% 20%;color:#ffffff;display:block;float:left;line-height:20px;margin:0px 8px 0px 0px;max-width:100%;padding:4px 10px;word-wrap:break-word !important;background-color:#0070c0;">1</span><strong data-brushtype="text">第一标题sd</strong>
  &nbsp; &nbsp;</h2></fieldset><fieldset style="font-family: sans-serif; border: 0px none;"><blockquote style="border-width:1px 1px 1px 5px;border-style:solid;border-color:#eeeeee #eeeeee #eeeeee #9f887f;border-radius:3px;padding:10px;margin:10px 0px;"><h4 style="color:#9f887f;font-size:18px;margin:5px 0px;border-color:#9f887f;">标题文字</h4><section data-style="color:inherit;font-size:14px;" style="color:inherit;font-size:14px;line-height:20px;"><p>内容描述.</p></section></blockquote></fieldset>', 'public', 1, 0, 0, '2019-12-31 10:38:25', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (4, '4', '48,49', '1', 'markbro', '<fieldset style="font-family: sans-serif; border: 0px none;"><section style="color:inherit;padding:5px 10px 0px 35px;border-left-width:2px;border-left-style:dotted;border-left-color:#e4e4e4;margin-left:27px;"><section class="autonum" style="width:32px;height:32px;color:#cafbd7;text-align:center;line-height:32px;border-radius:16px;background:#0eb83a;margin-left:-53px;margin-top:23px;">1</section><section style="color:inherit;padding-bottom:10px;margin-top:-30px;"><p style="clear:both;line-height:1.5em;font-size:14px;color:inherit;"><span style="color:inherit;font-size:16px;"><strong class="135title" style="color:inherit;">如何进入【微信+编辑器】？</strong></span>
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (4, '4', '48,49', '1', 'markbro', '<fieldset style="font-family: sans-serif; border: 0px none;"><section style="color:inherit;padding:5px 10px 0px 35px;border-left-width:2px;border-left-style:dotted;border-left-color:#e4e4e4;margin-left:27px;"><section class="autonum" style="width:32px;height:32px;color:#cafbd7;text-align:center;line-height:32px;border-radius:16px;background:#0eb83a;margin-left:-53px;margin-top:23px;">1</section><section style="color:inherit;padding-bottom:10px;margin-top:-30px;"><p style="clear:both;line-height:1.5em;font-size:14px;color:inherit;"><span style="color:inherit;font-size:16px;"><strong class="135title" style="color:inherit;">如何进入【微信+编辑器】？</strong></span>
  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p><p style="clear:both;line-height:1.5em;font-size:14px;color:inherit;">网页搜索“微信+编辑器”，点击第一条搜索结果即可进入编辑器页面</p></section></section></fieldset>', 'public', 1, 0, 0, '2019-12-31 10:38:25', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (5, '5', '48,49', '1', 'markbro', '<fieldset style="font-family:sans-serif;border:0px none;"><fieldset style="margin:2em 1em 1em;padding:0px;border:0px #ffb3a7;border-image-source:none;max-width:100%;box-sizing:border-box;color:#3e3e3e;line-height:25px;word-wrap:break-word !important;"><section style="max-width:100%;box-sizing:border-box;line-height:1.4;word-wrap:break-word !important;margin-left:-0.5em;"><section style="max-width:100%;box-sizing:border-box;border-color:#000000;padding:3px 8px;border-radius:4px;color:#a71700;font-size:1em;display:inline-block;-webkit-transform:rotatez(-10deg);transform:rotate(-10deg);transform-origin:left center 0px;-webkit-transform-origin:0% 100% 0px;word-wrap:break-word !important;background-color:#ffb3a7;"><span data-brushtype="text" style="color:#ffffff;">微信+编辑器</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</section></section><section data-style="line-height:24px;color:rgb(89, 89, 89); font-size:14px" style="max-width:100%;box-sizing:border-box;padding:22px 16px 16px;border:1px solid #ffb3a7;color:#000000;font-size:14px;margin-top:-24px;"><p style="line-height:24px;"><span style="color:#595959;">微信+编辑器提供非常好用的微信图文编辑器。可以随心所欲的变换颜色调整格式，更有神奇的自动配色方案。</span>
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (5, '5', '48,49', '1', 'markbro', '<fieldset style="font-family:sans-serif;border:0px none;"><fieldset style="margin:2em 1em 1em;padding:0px;border:0px #ffb3a7;border-image-source:none;max-width:100%;box-sizing:border-box;color:#3e3e3e;line-height:25px;word-wrap:break-word !important;"><section style="max-width:100%;box-sizing:border-box;line-height:1.4;word-wrap:break-word !important;margin-left:-0.5em;"><section style="max-width:100%;box-sizing:border-box;border-color:#000000;padding:3px 8px;border-radius:4px;color:#a71700;font-size:1em;display:inline-block;-webkit-transform:rotatez(-10deg);transform:rotate(-10deg);transform-origin:left center 0px;-webkit-transform-origin:0% 100% 0px;word-wrap:break-word !important;background-color:#ffb3a7;"><span data-brushtype="text" style="color:#ffffff;">微信+编辑器</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</section></section><section data-style="line-height:24px;color:rgb(89, 89, 89); font-size:14px" style="max-width:100%;box-sizing:border-box;padding:22px 16px 16px;border:1px solid #ffb3a7;color:#000000;font-size:14px;margin-top:-24px;"><p style="line-height:24px;"><span style="color:#595959;">微信+编辑器提供非常好用的微信图文编辑器。可以随心所欲的变换颜色调整格式，更有神奇的自动配色方案。</span>
  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p></section></fieldset></fieldset>', 'public', 1, 0, 0, '2019-12-31 10:38:25', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (6, '6', '48,49', '1', 'markbro', '<fieldset style="font-family:sans-serif;border:0px none;"><fieldset style="margin:0px;padding:5px;border:1px solid #cccccc;max-width:100%;color:#3e3e3e;line-height:24px;text-align:justify;box-shadow:#a5a5a5 5px 5px 2px;background-color:#fafafa;"><legend style="margin:0px 0px 0px 20px;padding:0px;text-align:left;width:auto;"><strong><strong style="color:#666666;line-height:20px;background-color:#fffff5;"><span data-brushtype="text" style="border-radius:0.5em 4em 3em 1em 0.5em 2em;box-shadow:#a5a5a5 4px 4px 2px;color:white;max-width:100%;padding:4px 10px;text-align:justify;background-color:red;">公告通知</span></strong></strong>
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (6, '6', '48,49', '1', 'markbro', '<fieldset style="font-family:sans-serif;border:0px none;"><fieldset style="margin:0px;padding:5px;border:1px solid #cccccc;max-width:100%;color:#3e3e3e;line-height:24px;text-align:justify;box-shadow:#a5a5a5 5px 5px 2px;background-color:#fafafa;"><legend style="margin:0px 0px 0px 20px;padding:0px;text-align:left;width:auto;"><strong><strong style="color:#666666;line-height:20px;background-color:#fffff5;"><span data-brushtype="text" style="border-radius:0.5em 4em 3em 1em 0.5em 2em;box-shadow:#a5a5a5 4px 4px 2px;color:white;max-width:100%;padding:4px 10px;text-align:justify;background-color:red;">公告通知</span></strong></strong>
  &nbsp; &nbsp; &nbsp; &nbsp;</legend><section data-style="margin-top:2px; margin-bottom:0px; padding:0px; max-width:100%; min-height:1.5em; line-height:2em;font-weight:bold;"><p style="padding:0px;max-width:100%;min-height:1.5em;line-height:2em;margin-top:0px;margin-bottom:0px;">各位小伙伴们，微信图文美化编辑器正式上线了，欢迎大家多使用多提供反馈意见。使用<span style="color:inherit;"><strong>谷歌与火狐浏览器</strong></span>，可获得与手机端一致的显示效果。ie内核的低版本浏览器可能有不兼容的情况</p></section></fieldset></fieldset>', 'public', 1, 0, 0, '2019-12-31 10:38:25', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (7, '7', '48', '1', 'markbro', '
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (7, '7', '48', '1', 'markbro', '
 
 <fieldset  style="font-family:sans-serif;border:0px none;">
     <section style="border:1px solid #dbdbdb;margin:5px 5px 5px 5px;background-color:#ffffff;padding:5px;">
@@ -73,8 +80,9 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
             </p>
         </section>
     </section>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:38:25', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (8, '8', '48', '1', 'markbro', '
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (8, '8', '48', '1', 'markbro', '
 <fieldset  style="font-family:sans-serif;border:0px none;">
     <section style="width:92px;margin-bottom:0px;">
         <p style="text-align:center;color:inherit;line-height:2em;">
@@ -94,14 +102,16 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
             <section style="margin:0px auto 1px;border-radius:100%;line-height:1;box-sizing:border-box;text-decoration:inherit;border-color:#ff8124;display:inline-block;height:8px;width:8px;color:inherit;background-color:#ff8124;"></section>
         </section>
     </fieldset>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:38:25', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (9, '9', '48', '1', 'markbro', '
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (9, '9', '48', '1', 'markbro', '
 <fieldset  style="font-family:sans-serif;border:0px none;">
     <h2  placeholder="请输入标题" style="font-size:16px;margin:10px 0px;padding:10px;max-width:100%;border-top-style:solid;border-top-width:2px;border-left-width:0px;border-bottom-style:solid;border-bottom-width:2px;line-height:25px;color:#6d97c8;text-align:center;">
         请输入标题
     </h2>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (10, '10', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (10, '10', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <section style="border:3px solid #ff8124;padding:5px;">
         <section data-bcless="lighten" style="border:1px solid #ff9e57;padding:15px;text-align:center;color:inherit;">
             <p class="135title" style="color:inherit;font-size:12px;">
@@ -112,8 +122,9 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
             </p>
         </section>
     </section>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (11, '11', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (11, '11', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <section style="margin:2px 0.8em 1em 0px;text-align:center;font-size:1em;vertical-align:middle;">
         <section style="height:0px;border-top-width:1.5em;border-top-style:solid;border-bottom-width:1.5em;border-bottom-style:solid;border-color:#47c1a8;border-left-width:1.5em !important;border-left-style:solid !important;border-right-width:1.5em !important;border-right-style:solid !important;"></section>
         <section style="height:0px;margin:-2.75em 1.65em;border-width:1.3em;border-style:solid;border-color:#ffffff transparent;"></section>
@@ -123,8 +134,9 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
             </section>
         </section>
     </section>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (12, '12', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (12, '12', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <section style="box-sizing:border-box;padding:0px;margin:0px;">
         <section style="display:inline-block;line-height:20px;vertical-align:top;text-align:center;color:inherit;box-sizing:border-box;padding:0px;margin-top:0.5em;">
             <img src="/public/static/images/editor/img06.jpg" style="box-sizing:border-box;color:inherit;margin:0px;padding:0px;vertical-align:top;width:40px;"/>
@@ -141,8 +153,9 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
             </p>
         </section>
     </section>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (13, '13', '48', '1', 'markbro', '
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (13, '13', '48', '1', 'markbro', '
 <fieldset  style="font-family:sans-serif;border:0px none;">
     <fieldset style="clear:both;padding:0px;border:0px none;margin:1em 0px 0.5em;">
         <section style="border-top-width:2px;border-top-style:solid;border-color:#8ec965;font-size:1em;font-weight:inherit;text-decoration:inherit;color:#ffffff;box-sizing:border-box;">
@@ -151,8 +164,9 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
             </section>
         </section>
     </fieldset>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (14, '14', '48', '1', 'markbro', '<fieldset  style="font-family: sans-serif; border: 0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (14, '14', '48', '1', 'markbro', '<fieldset  style="font-family: sans-serif; border: 0px none;">
     <section style="max-width:100%;margin:2px;padding:0px;">
         <section style="max-width:100%;line-height:1.4em;margin-left:1em;">
             <span style="font-size:14px;"><strong style="color:#3e3e3e;line-height:32px;"><span  data-brushtype="text" data-mce-style="color:#a5a5a5;" placeholder="关于微信+编辑器" style="border-radius:5px;color:#ffffff;padding:4px 10px;background-color:#569f08;">关于微信+编辑器</span></strong></span>
@@ -169,8 +183,9 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
             </p>
         </section>
     </section>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (15, '15', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (15, '15', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <section style="margin:0.3em 0px;font-size:14px;font-weight:bold;text-align:center;text-decoration:inherit;box-sizing:border-box;padding-bottom:1.5em;">
         <img src="/public/static/images/editor/img02.jpg" style="border-radius:50%;color:inherit;vertical-align:middle;width:112px;height:112px !important;margin-right:10px;"/> 
         <section style="border-left-width:1px;border-left-style:solid;border-color:#d3ac9c;text-align:left;display:inline-block;height:6em;vertical-align:top;color:#d3ac9c;padding-left:1em;margin-top:1em;">
@@ -184,13 +199,15 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
             </section>
         </section>
     </section>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (16, '16', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (16, '16', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <blockquote  style="orphans:2;widows:2;font-size:14px;line-height:22.39px;margin:10px 0px;padding:15px 20px 15px 45px;outline:0px;border:0px currentcolor;color:#3e3e3e;vertical-align:baseline;background-image:url(/public/static/images/editor/left_quote.jpg);background-color:#f1f1f1;background-position:1% 5px;background-repeat:no-repeat;">
         这里插入分号引用样式的内容。
     </blockquote>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (17, '17', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (17, '17', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <fieldset style="border:none;margin:0.8em 0px 0.3em;box-sizing:border-box;padding:0px;">
         <section style="line-height:0;box-sizing:border-box;">
             <img src="/public/static/images/editor/img03.jpg" style="border:0px;box-sizing:border-box;display:inline-block;max-width:100%;height:auto !important;"/> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -221,8 +238,9 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
             </section>
         </section>
     </fieldset>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (18, '18', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (18, '18', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <fieldset style="margin:0.5em 0px;padding:0px;max-width:100%;box-sizing:border-box;color:#3e3e3e;line-height:25px;border:0px #eedeb0;word-wrap:break-word !important;">
         <section style="margin:0px;padding:0px;width:100%;box-sizing:border-box;display:inline-block;text-align:center;word-wrap:break-word !important;">
             <img src="/public/static/images/editor/bg03.png" style="box-sizing:border-box;color:inherit;height:65px;margin:0px auto;padding:0px;width:60px;visibility:visible !important;word-wrap:break-word !important;"/>
@@ -242,8 +260,9 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
             </section>
         </section>
     </fieldset>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (19, '19', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (19, '19', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <section style="width:100%;text-align:center;">
         <section style="width:100%;padding:0px;border-top-width:2px;border-top-style:solid;border-top-color:#ac1d10;border-bottom-width:2px;border-bottom-style:solid;border-bottom-color:#ac1d10;color:inherit;font-size:14px;margin:15px 0px;display:inline-block;background-color:#ffffff;">
             <section  data-style="line-height:24px;color:rgb(89, 89, 89); font-size:20px;" style="padding:30px;margin:-15px 15px;border-right-width:2px;border-right-style:solid;border-right-color:#ac1d10;border-left-width:2px;border-left-style:solid;border-left-color:#ac1d10;color:inherit;">
@@ -253,30 +272,34 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
             </section>
         </section>
     </section>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (20, '20', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (20, '20', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <section style="max-width:100%;margin:0px;border-radius:2em;height:2.5em;line-height:2.5em;color:#ffffff;font-size:13.33px;word-wrap:break-word !important;box-sizing:border-box !important;background-color:#bddd22;">
         <img src="/public/static/images/editor/bg02.jpg" style="border:0px #bddd22;float:left;margin:5px 10px;vertical-align:top;box-sizing:border-box !important;height:auto !important;visibility:visible !important;width:auto !important;word-wrap:break-word !important;"/>
         <p  data-brushtype="text" style="max-width:100%;color:inherit;display:inline-block;font-size:16px;">
             关注一下又不会怀孕！
         </p>
     </section>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (21, '21', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (21, '21', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <section style="border-color:transparent transparent #0070c0;border-style:solid;border-width:12px;float:none;font-size:medium;height:0px;margin:-12px auto 0px 90px;orphans:2;text-align:-webkit-auto;width:0px;"></section>
     <p  data-brushtype="text" style="orphans:2;widows:2;min-height:30px;visibility:visible;height:30px;line-height:30px;color:#ffffff;border-radius:3px;box-shadow:1px 1px 3px;text-align:center;font-size:14px;font-weight:bold;background-color:#0070c0;margin-top:-1px;margin-bottom:0px;">
         点击标题下「蓝色微信名」可快速关注
     </p>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (22, '22', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (22, '22', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <fieldset style="border:none;margin:0.8em 22.6875px 0.3em;">
         <section  data-brushtype="text" style="color:#ff6450;font-size:20px;letter-spacing:3px;padding:9px 4px 14px;text-align:center;margin:0px auto;border:4px solid #ff6450;border-radius:8px;">
             理念<span  data-brushtype="text" style="display:block;font-size:10px;line-height:12px;">PHILOSOPHY</span>
         </section>
         <section style="width:0px;border-top-width:0.6em;border-top-style:solid;border-bottom-color:#ff6450;border-top-color:#ff6450;height:10px;border-left-width:0.7em !important;border-left-style:solid !important;border-left-color:transparent !important;border-right-width:0.7em !important;border-right-style:solid !important;border-right-color:transparent !important;margin-right:auto;margin-left:auto;"></section>
     </fieldset>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (23, '23', '48', '1', 'markbro', '
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (23, '23', '48', '1', 'markbro', '
 <fieldset  style="font-family:sans-serif;border:0px none;">
     <section style="margin:0.8em 0px 0.5em;line-height:32px;font-weight:bold;">
         <section style="display:inline-block;float:left;width:32px;height:32px;vertical-align:top;text-align:center;">
@@ -291,8 +314,9 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
             <span  data-brushtype="text" style="font-size:20px;">请输入标题</span>
         </section>
     </section>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (24, '24', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (24, '24', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <section style="font-size:1em;margin:1em 0px 0.8em;text-align:center;vertical-align:middle;">
         <section style="height:0px;margin:0px 1em;border-width:1.5em;border-style:solid;border-top-color:#ffca00;border-bottom-color:#ffca00;border-left-color:transparent !important;border-right-color:transparent !important;"></section>
         <section style="height:0px;margin:-2.75em 1.65em;border-width:1.3em;border-style:solid;border-color:#ffffff transparent;"></section>
@@ -302,8 +326,9 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
             </section>
         </section>
     </section>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (25, '25', '48', '1', 'markbro', '
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (25, '25', '48', '1', 'markbro', '
 <fieldset  style="font-family:sans-serif;border:0px none;">
     <fieldset style="border:0px;text-align:center;box-sizing:border-box;padding:0px;">
         <section style="display:inline-block;box-sizing:border-box;color:inherit;">
@@ -315,26 +340,30 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
             </section>
         </section>
     </fieldset>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (26, '26', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (26, '26', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <section data-bcless="true" style="font-size:20px;border:0px none;padding:0px;margin:0px;background:#dff0cb;">
         <span  data-brushtype="text" style="color:#96ce54;display:inline-block;padding:0px 15px 0px 0px;background:#ffffff;">微信+编辑器</span> <span style="color:#ffffff;display:inline-block;background:#ffffff;margin-left:5px;">-</span> <span style="color:#ffffff;display:inline-block;background:#ffffff;margin-left:5px;">-</span> <span style="color:#ffffff;display:inline-block;background:#ffffff;margin-left:5px;">-</span>
     </section>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (27, '27', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (27, '27', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <section  placeholder="上下渐变格式内容" style="padding:8px 30px;font-weight:bold;max-width:100%;min-height:1.5em;line-height:2em;color:#74b90b;border-color:#e5f3d0;background-image:-webkit-linear-gradient(top, #e6f9ca, #cfe9a7);background-color:#ffffdc;">
         <p>
             上下渐变格式内容
         </p>
     </section>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (28, '28', '48', '1', 'markbro', '
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (28, '28', '48', '1', 'markbro', '
 <fieldset  style="font-family:sans-serif;border:0px none;">
     <p  placeholder="请输入标题" style="max-width:100%;min-line-height:25px;font-size:20px;text-shadow:#00bbec 1px 0px 4px, #00bbec 0px 1px 4px, #00bbec 0px -1px 4px, #00bbec -1px 0px 4px;color:#ffffff;font-weight:bold;box-sizing:border-box !important;word-wrap:break-word !important;">
         请输入标题
     </p>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (29, '29', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (29, '29', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <blockquote style="margin:0px;padding:12px 15px;border:0px solid #d0dafe;color:#002dcf;min-text-align:justify;background-image:-webkit-linear-gradient(left, #cfd9ff, #9eb3fd, #cfd9ff);background-color:#fffff0;">
         <section  style="border-color:#d0dafe;color:inherit;">
             <p style="border-color:#d0dafe;color:inherit;">
@@ -342,8 +371,9 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
             </p>
         </section>
     </blockquote>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (30, '30', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (30, '30', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <section style="margin:3px;box-shadow:0px 1px 3px;background-color:#ffffff;">
         <img src="/public/static/images/editor/img04.jpg" style="max-width:100%;"/> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         <section  data-type="main">
@@ -369,25 +399,29 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
     <p>
         <br/>
     </p>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (31, '31', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (31, '31', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <p  data-brushtype="text" placeholder="请输入标题" style="max-width:100%;line-height:24px;font-weight:bold;color:#ffffff;border-radius:45%;text-align:center;padding:10px 15px;background-color:#f49c04;margin-top:10px;margin-bottom:10px;">
         请输入标题
     </p>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (32, '32', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (32, '32', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <section style="-webkit-box-reflect:below 0px -webkit-gradient(linear, 0% 0%, 0% 100%, from(transparent), color-stop(0.2, transparent), to());line-height:20px;margin-top:15px;">
         <p style="text-align:center;">
             <span style="font-family:微软雅黑;font-size:30px;"><strong>文字倒影效果样式</strong></span>
         </p>
     </section>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (33, '33', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (33, '33', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <h2  data-brushtype="text" style="border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:#eeeeee;font-weight:500;line-height:1.1;font-size:22px;padding-bottom:9px;margin-bottom:10px;">
         极简标题
     </h2>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (34, '34', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (34, '34', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <blockquote class="135bg" style="max-width:100%;padding:5px 15px;border:none #ff8124;word-wrap:break-word !important;box-sizing:border-box !important;background-image:url(/public/static/images/editor/img07.gif);background-size:cover;">
         <section  style="color:#ffffff;">
             <p style="text-align:center;color:inherit;">
@@ -398,13 +432,15 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
             </p>
         </section>
     </blockquote>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (35, '35', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (35, '35', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <p>
         <span style="border-color:#1e9be8;color:#1e9be8;font-size:4em;font-weight:bolder;line-vertical-align:middle;">“</span> <span  data-brushtype="text" style="color:inherit;font-size:2em;line-height:1.2em;vertical-align:middle;">标题</span> <span  data-brushtype="text" style="border-color:#1e9be8;color:#1e9be8;font-size:2em;line-height:1.2em;vertical-align:middle;">标题</span> <span style="border-color:#1e9be8;color:#1e9be8;font-size:4em;font-weight:bolder;line-vertical-align:middle;">”</span>
     </p>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (36, '36', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (36, '36', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <fieldset style="padding:5px;border:1px solid #cccccc;line-height:24px;color:inherit;">
         <legend style="margin:0px 0px 0px 15px;padding:0px;width:auto;color:inherit;">
             <span style="color:inherit;margin:0px;padding:0px;"><strong style="color:#666666;margin:15px 8px 0px 0px;"><span  data-brushtype="text" style="border-color:#91a8fc;border-radius:5px;color:#ffffff;padding:4px 10px;background-color:#91a8fc;">微信+编辑器</span> &nbsp;</strong><span  data-brushtype="text" style="border-color:#91a8fc;color:#91a8fc;margin:0px;padding:0px;">ID:wxj &nbsp;</span></span>
@@ -415,8 +451,9 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
             </p>
         </section>
     </fieldset>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (37, '37', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (37, '37', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <section style="padding:0px 8px;border-left-width:3px;border-left-style:solid;border-color:;font-size:22px;font-weight:inherit;text-align:inherit;text-decoration:inherit;box-sizing:border-box;">
         <section style="line-height:1.4;box-sizing:border-box;color:inherit;">
             <section  data-brushtype="text" style="border-color:#757576;color:#757576;font-size:20px;">
@@ -429,8 +466,9 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
             </p>
         </section>
     </section>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (38, '38', '48', '1', 'markbro', '
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (38, '38', '48', '1', 'markbro', '
 <fieldset  style="font-family: sans-serif; border: 0px none;">
     <section style="border-style:solid;border-width:1px 1px 1px 60px;border-color:#a40000;color:#a40000;padding-left:20px;padding-top:10px;">
         <section style="border-bottom-width:2px;border-bottom-style:solid;border-bottom-color:#a40000;clear:both;float:left;">
@@ -448,8 +486,9 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
             提子微信+ &nbsp; &nbsp;HAPPY NEW YEAR <em>!!!</em>
         </p>
     </section>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (39, '39', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (39, '39', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <fieldset style="border:0px #6b4d40;text-align:center;margin:0.8em 0px 0.5em;box-sizing:border-box;padding:0px;">
         <section style="color:#6b4d40;display:inline-block;width:1em;font-size:2.5em;font-weight:inherit;line-vertical-align:top;text-align:inherit;text-decoration:inherit;box-sizing:border-box;border-color:#6b4d40;">
             <section  data-brushtype="text" style="box-sizing:border-box;color:inherit;border-color:#6b4d40;">
@@ -469,13 +508,15 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
             </section>
         </section>
     </fieldset>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (40, '40', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (40, '40', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <p  style="font-size:15.5555562973022px;padding:0px;max-width:100%;min-height:1.5em;line-height:2em;word-wrap:break-word;word-break:normal;border-radius:5px;color:#ffffff;text-align:center;background-color:#5996eb;margin-top:0px;margin-bottom:0px;">
         ↓↓↓ 点击&quot;阅读原文&quot; 【查看更多信息】 &nbsp;
     </p>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (41, '41', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (41, '41', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <section style="margin:10px 0px;border:1px solid #c9c9c9;text-align:center;">
         <section style="border:0.1em solid #ffca00;margin:1em auto;width:12em;height:12em;border-radius:6em;">
             <section style="display:table;max-height:11em;border-radius:5.5em;height:11em;width:11em;margin:0.5em;background-color:#ffca00;">
@@ -490,8 +531,9 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
             </p>
         </section>
     </section>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (42, '42', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (42, '42', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <fieldset style="margin:0.5em 0px;padding:0px;max-width:100%;box-sizing:border-box;color:#3e3e3e;font-family:inherit;font-size:medium;line-height:25px;border:none #fefdfe;word-wrap:break-word !important;">
         <section style="margin:0px;padding:3.8em 0px;max-width:100%;box-sizing:border-box;width:12.5em;height:12.5em;float:right;text-align:center;word-wrap:break-word !important;background-image:url(/public/static/images/editor/bg06.png);background-size:cover;">
             <section data-width="140px" style="margin:0px 0px 0px 16px;padding:0px;max-width:100%;box-sizing:border-box;width:140px;overflow:hidden;-webkit-transform:rotate(-13deg);font-size:22px;font-family:inherit;font-weight:inherit;text-decoration:inherit;color:#666666;word-wrap:break-word !important;">
@@ -508,8 +550,9 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
             </section>
         </section>
     </fieldset>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (43, '43', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (43, '43', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <section style="margin-top:5px;">
         <section style="width:227px;display:inline-block;float:left;padding-right:10px;">
             <section style="padding:20px 25px;border:1px solid #e7e7e7;text-align:center;">
@@ -548,8 +591,9 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
             </section>
         </section>
     </section>
-</fieldset>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
-INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason) VALUES (44, '44', '48', '1', 'markbro', '
+</fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
+INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
+VALUES (44, '44', '48', '1', 'markbro', '
 <fieldset  style="font-family:sans-serif;border:0px none;">
     <fieldset style="border:none;margin:0.8em 0px 0.3em;box-sizing:border-box;padding:0px;">
         <section  data-brushtype="text" style="width:2.5em;height:2.5em;margin:0px auto 1px;border-radius:100%;line-height:2.5em;box-sizing:border-box;overflow:hidden;font-size:40px;text-align:center;text-decoration:inherit;color:#ffffff;border-color:#c3272b;background-color:#c3272b;">
@@ -565,4 +609,4 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
 </fieldset>
 <p style="color: red;">
     <br/>
-</p>', 'public', 1, 0, 0, '2019-12-31 10:37:56', 0, null, null, null, null);
+</p>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
