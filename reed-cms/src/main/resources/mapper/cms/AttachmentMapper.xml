@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.reed.cms.mapper.AttachmentMapper">
 
-    <resultMap type="Attachment" id="AttachmentResult">
+    <resultMap type="top.reed.cms.domain.Attachment" id="AttachmentResult">
         <result property="attachId" column="attach_id"/>
         <result property="zid" column="zid"/>
         <result property="userId" column="user_id"/>
@@ -33,7 +33,7 @@
         from cms_attachment
     </sql>
 
-    <select id="selectAttachmentList" parameterType="Attachment" resultMap="AttachmentResult">
+    <select id="selectAttachmentList" parameterType="top.reed.cms.domain.Attachment" resultMap="AttachmentResult">
         select a.attach_id, a.zid, a.user_id,a.file_type, a.file_name, a.file_path,a.file_url, a.size, a.create_by,
         a.create_time, a.sort from cms_attachment a
 
@@ -54,7 +54,7 @@
         where attach_id = #{attachId}
     </select>
 
-    <insert id="insertAttachment" parameterType="Attachment" useGeneratedKeys="true" keyProperty="attachId">
+    <insert id="insertAttachment" parameterType="top.reed.cms.domain.Attachment" useGeneratedKeys="true" keyProperty="attachId">
         insert into cms_attachment
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="attachId != null  and attachId != ''">attach_id,</if>
@@ -84,7 +84,7 @@
         </trim>
     </insert>
 
-    <update id="updateAttachment" parameterType="Attachment">
+    <update id="updateAttachment" parameterType="top.reed.cms.domain.Attachment">
         update cms_attachment
         <trim prefix="SET" suffixOverrides=",">
             <if test="zid != null  and zid != ''">zid = #{zid},</if>

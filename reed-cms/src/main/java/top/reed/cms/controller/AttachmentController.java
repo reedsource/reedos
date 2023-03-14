@@ -25,7 +25,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/cms/attachment")
 public class AttachmentController extends BaseController {
-    private final String prefix = "cms/attachment";
 
     @Autowired
     private IAttachmentService attachmentService;
@@ -33,7 +32,7 @@ public class AttachmentController extends BaseController {
     @RequiresPermissions("cms:attachment:view")
     @GetMapping()
     public String attachment() {
-        return prefix + "/attachment";
+        return "cms/attachment/attachment";
     }
 
     /**
@@ -65,7 +64,7 @@ public class AttachmentController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return prefix + "/add";
+        return "cms/attachment/add";
     }
 
     /**
@@ -86,7 +85,7 @@ public class AttachmentController extends BaseController {
     public String edit(@PathVariable("attachId") String attachId, ModelMap mmap) {
         Attachment attachment = attachmentService.selectAttachmentById(attachId);
         mmap.put("attachment", attachment);
-        return prefix + "/edit";
+        return "cms/attachment/edit";
     }
 
     /**
