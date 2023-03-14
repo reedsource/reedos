@@ -70,13 +70,6 @@
             <version>${reed.version}</version>
         </dependency>
 
-        <!-- 博客-->
-        <dependency>
-            <groupId>top.reed</groupId>
-            <artifactId>reed-blog</artifactId>
-            <version>${reed.version}</version>
-        </dependency>
-
         <!--内容管理模块-->
         <dependency>
             <groupId>top.reed</groupId>

@@ -13,7 +13,6 @@
     <modules>
         <module>reed-admin</module>
         <module>reed-automation</module>
-        <module>reed-blog</module>
         <module>reed-cms</module>
         <module>reed-common</module>
         <module>reed-framework</module>
