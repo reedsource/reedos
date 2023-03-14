@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.reed.cms.mapper.LinkTypeMapper">
 
-    <resultMap type="LinkType" id="LinkTypeResult">
+    <resultMap type="top.reed.cms.domain.LinkType" id="LinkTypeResult">
         <result property="id" column="id"/>
         <result property="linkType" column="link_type"/>
         <result property="linkTypeName" column="link_type_name"/>
@@ -19,7 +19,7 @@
         from cms_link_type
     </sql>
 
-    <select id="selectLinkTypeList" parameterType="LinkType" resultMap="LinkTypeResult">
+    <select id="selectLinkTypeList" parameterType="top.reed.cms.domain.LinkType" resultMap="LinkTypeResult">
         <include refid="selectLinkTypeVo"/>
         <where>
             <if test="linkType != null  and linkType != ''">and link_type = #{linkType}</if>
@@ -39,7 +39,7 @@
         where link_type = #{type}
     </select>
 
-    <insert id="insertLinkType" parameterType="LinkType" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertLinkType" parameterType="top.reed.cms.domain.LinkType" useGeneratedKeys="true" keyProperty="id">
         insert into cms_link_type
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="linkType != null  and linkType != ''">link_type,</if>
@@ -59,7 +59,7 @@
         </trim>
     </insert>
 
-    <update id="updateLinkType" parameterType="LinkType">
+    <update id="updateLinkType" parameterType="top.reed.cms.domain.LinkType">
         update cms_link_type
         <trim prefix="SET" suffixOverrides=",">
             <if test="linkType != null  and linkType != ''">link_type = #{linkType},</if>

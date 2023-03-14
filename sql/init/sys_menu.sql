@@ -202,6 +202,10 @@ values (4000000, '内容管理', 0, 4, '#', 'menuItem', 'M', '0', '1', null, 'fa
        (4101005, '资源导出', 4101000, 5, '#', '', 'F', '0', '1', 'cms:resource:export', '#', 'admin', sysdate(), 'admin', sysdate(), ''),
        (4101100, '链接分类管理', 4100000, 11, '/cms/linkType', 'menuItem', 'C', '0', '1', 'cms:linkType:view', '#', 'admin', sysdate(), 'admin', sysdate(), ''),
        (4101101, '链接分类列表', 4101100, 1, '#', '', 'F', '0', '1', 'cms:linkType:list', '#', 'admin', sysdate(), 'admin', sysdate(), ''),
+       (4101102, '链接分类添加', 4101100, 2, '#', '', 'F', '0', '1', 'cms:linkType:add', '#', 'admin', sysdate(), 'admin', sysdate(), ''),
+       (4101103, '链接分类修改', 4101100, 3, '#', '', 'F', '0', '1', 'cms:linkType:edit', '#', 'admin', sysdate(), 'admin', sysdate(), ''),
+       (4101104, '链接分类删除', 4101100, 4, '#', '', 'F', '0', '1', 'cms:linkType:remove', '#', 'admin', sysdate(), 'admin', sysdate(), ''),
+       (4101105, '链接分类导出', 4101100, 5, '#', '', 'F', '0', '1', 'cms:linkType:export', '#', 'admin', sysdate(), 'admin', sysdate(), ''),
        (4101200, '链接管理', 4100000, 12, '/cms/link', 'menuItem', 'C', '0', '1', 'cms:link:view', '#', 'admin', sysdate(), '', null, ''),
        (4101201, '链接列表', 4101200, 1, '#', '', 'F', '0', '1', 'cms:link:list', '#', 'admin', sysdate(), 'admin', sysdate(), '');
 
