@@ -25,7 +25,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/cms/link")
 public class LinkController extends BaseController {
-    private final String prefix = "cms/link";
 
     @Autowired
     private ILinkService linkService;
@@ -33,7 +32,7 @@ public class LinkController extends BaseController {
     @RequiresPermissions("cms:link:view")
     @GetMapping()
     public String link() {
-        return prefix + "/link";
+        return "cms/link/link";
     }
 
     /**
@@ -65,7 +64,7 @@ public class LinkController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return prefix + "/add";
+        return "cms/link/add";
     }
 
     /**
@@ -86,7 +85,7 @@ public class LinkController extends BaseController {
     public String edit(@PathVariable("linkId") Long linkId, ModelMap mmap) {
         Link link = linkService.selectLinkById(linkId);
         mmap.put("link", link);
-        return prefix + "/edit";
+        return "cms/link/edit";
     }
 
     /**

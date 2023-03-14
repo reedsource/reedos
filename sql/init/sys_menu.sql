@@ -207,7 +207,11 @@ values (4000000, '内容管理', 0, 4, '#', 'menuItem', 'M', '0', '1', null, 'fa
        (4101104, '链接分类删除', 4101100, 4, '#', '', 'F', '0', '1', 'cms:linkType:remove', '#', 'admin', sysdate(), 'admin', sysdate(), ''),
        (4101105, '链接分类导出', 4101100, 5, '#', '', 'F', '0', '1', 'cms:linkType:export', '#', 'admin', sysdate(), 'admin', sysdate(), ''),
        (4101200, '链接管理', 4100000, 12, '/cms/link', 'menuItem', 'C', '0', '1', 'cms:link:view', '#', 'admin', sysdate(), '', null, ''),
-       (4101201, '链接列表', 4101200, 1, '#', '', 'F', '0', '1', 'cms:link:list', '#', 'admin', sysdate(), 'admin', sysdate(), '');
+       (4101201, '链接列表', 4101200, 1, '#', '', 'F', '0', '1', 'cms:link:list', '#', 'admin', sysdate(), 'admin', sysdate(), ''),
+       (4101202, '链接添加', 4101200, 2, '#', '', 'F', '0', '1', 'cms:link:add', '#', 'admin', sysdate(), 'admin', sysdate(), ''),
+       (4101203, '链接修改', 4101200, 3, '#', '', 'F', '0', '1', 'cms:link:edit', '#', 'admin', sysdate(), 'admin', sysdate(), ''),
+       (4101204, '链接删除', 4101200, 4, '#', '', 'F', '0', '1', 'cms:link:remove', '#', 'admin', sysdate(), 'admin', sysdate(), ''),
+       (4101205, '链接导出', 4101200, 5, '#', '', 'F', '0', '1', 'cms:link:export', '#', 'admin', sysdate(), 'admin', sysdate(), '');
 
 insert into reedos.sys_menu (menu_id, menu_name, parent_id, order_num, url, target, menu_type, visible, is_refresh, perms, icon, create_by, create_time, update_by, update_time, remark)
 values (5000000, '自动化管理', 0, 5, '#', '', 'M', '0', '1', '', 'fa fa-refresh', 'admin', sysdate(), '', null, '自动化工具目录'),

@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.reed.cms.mapper.LinkMapper">
 
-    <resultMap type="Link" id="LinkResult">
+    <resultMap type="top.reed.cms.domain.Link" id="LinkResult">
         <result property="linkId" column="link_id"/>
         <result property="linkType" column="link_type"/>
         <result property="linkName" column="link_name"/>
@@ -37,7 +37,7 @@
         from cms_link
     </sql>
 
-    <select id="selectLinkList" parameterType="Link" resultMap="LinkResult">
+    <select id="selectLinkList" parameterType="top.reed.cms.domain.Link" resultMap="LinkResult">
         <include refid="selectLinkVo"/>
         <where>
             <if test="linkType != null  and linkType != ''">and link_type = #{linkType}</if>
@@ -52,7 +52,7 @@
         where link_id = #{linkId}
     </select>
 
-    <insert id="insertLink" parameterType="Link" useGeneratedKeys="true" keyProperty="linkId">
+    <insert id="insertLink" parameterType="top.reed.cms.domain.Link" useGeneratedKeys="true" keyProperty="linkId">
         insert into cms_link
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="linkType != null  and linkType != ''">link_type,</if>
@@ -84,7 +84,7 @@
         </trim>
     </insert>
 
-    <update id="updateLink" parameterType="Link">
+    <update id="updateLink" parameterType="top.reed.cms.domain.Link">
         update cms_link
         <trim prefix="SET" suffixOverrides=",">
             <if test="linkType != null  and linkType != ''">link_type = #{linkType},</if>
