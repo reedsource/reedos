@@ -25,7 +25,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/cms/friendLink")
 public class FriendLinkController extends BaseController {
-    private final String prefix = "cms/friendLink";
 
     @Autowired
     private IFriendLinkService friendLinkService;
@@ -33,7 +32,7 @@ public class FriendLinkController extends BaseController {
     @RequiresPermissions("cms:friendLink:view")
     @GetMapping()
     public String friendLink() {
-        return prefix + "/friendLink";
+        return "cms/friendLink/friendLink";
     }
 
     /**
@@ -65,7 +64,7 @@ public class FriendLinkController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return prefix + "/add";
+        return "cms/friendLink/add";
     }
 
     /**
@@ -86,7 +85,7 @@ public class FriendLinkController extends BaseController {
     public String edit(@PathVariable("id") Long id, ModelMap mmap) {
         FriendLink friendLink = friendLinkService.selectFriendLinkById(id);
         mmap.put("friendLink", friendLink);
-        return prefix + "/edit";
+        return "cms/friendLink/edit";
     }
 
     /**
