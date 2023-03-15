@@ -31,11 +31,12 @@ import java.util.stream.Collectors;
  *
  * @author reedsource
  */
+@SuppressWarnings("SpringMVCViewInspection")
 @Controller
 @RequestMapping("/blog")
 public class BlogController extends BaseController {
 
-    private static final String PREFIX = "blog/theme";
+    private static final String PREFIX = "blog/theme/";
     private static final String KEY_LINK_TYPE_LIST = "linkTypeList";
     private static final String KEY_LINK_LIST = "linkList_";
     private static final Cache<String, Integer> articleViewCache = CacheUtil.newLRUCache(1000, 1000 * 60 * 60);
@@ -64,6 +65,9 @@ public class BlogController extends BaseController {
     @Autowired
     private IBlogThemeService blogThemeService;
 
+    /**
+     * @return 查询博客模板信息
+     */
     private String getTheme() {
         return configService.selectConfigByKey(CmsConstants.KEY_BLOG_THEME);
     }
@@ -72,7 +76,6 @@ public class BlogController extends BaseController {
      * 首页
      *
      * @param model model
-     * @return
      */
     @GetMapping({"/", "", "/index"})
     public String index(Model model) {
@@ -86,7 +89,7 @@ public class BlogController extends BaseController {
         model.addAttribute("pageSize", new PageInfo(articles).getPageSize());
         model.addAttribute("totalPages", new PageInfo(articles).getPages());
         model.addAttribute("articleList", articles);
-        return PREFIX + "/" + getTheme() + "/index";
+        return PREFIX + getTheme() + "/index";
     }
 
     /**
@@ -109,9 +112,8 @@ public class BlogController extends BaseController {
     /**
      * 文章详情
      *
-     * @param model model
-     * @param articleId
-     * @return
+     * @param model     model
+     * @param articleId 文章id
      */
     @GetMapping("/article/{articleId}")
     public String article(HttpServletRequest request, Model model, @PathVariable("articleId") String articleId) {
@@ -121,14 +123,13 @@ public class BlogController extends BaseController {
         }
         model.addAttribute("article", article);
         model.addAttribute("categoryId", article.getCategoryId());
-        return PREFIX + "/" + getTheme() + "/article";
+        return PREFIX + getTheme() + "/article";
     }
 
     /**
      * 分类列表
      *
      * @param model model
-     * @return
      */
     @GetMapping("/category")
     public String category(Model model) {
@@ -148,15 +149,14 @@ public class BlogController extends BaseController {
         model.addAttribute("nextPage", pageInfo.getNextPage());
         model.addAttribute("navNums", pageInfo.getNavigatepageNums());
         model.addAttribute("articleList", articles);
-        return PREFIX + "/" + getTheme() + "/category_article";
+        return PREFIX + getTheme() + "/category_article";
     }
 
     /**
      * 分类列表
      *
-     * @param categoryId
-     * @param model model
-     * @return
+     * @param categoryId 分类id
+     * @param model      model
      */
     @GetMapping("/category/{categoryId}")
     public String categoryBy(@PathVariable("categoryId") String categoryId, Model model) {
@@ -181,14 +181,13 @@ public class BlogController extends BaseController {
         model.addAttribute("nextPage", pageInfo.getNextPage());
         model.addAttribute("navNums", pageInfo.getNavigatepageNums());
         model.addAttribute("articleList", articles);
-        return PREFIX + "/" + getTheme() + "/category";
+        return PREFIX + getTheme() + "/category";
     }
 
     /**
      * 分类列表
      *
      * @param model model
-     * @return
      */
     @GetMapping("/resource/list")
     public String resourceList(Model model) {
@@ -210,7 +209,7 @@ public class BlogController extends BaseController {
         model.addAttribute("nextPage", pageInfo.getNextPage());
         model.addAttribute("navNums", pageInfo.getNavigatepageNums());
         model.addAttribute("resourceList", resources);
-        return PREFIX + "/" + getTheme() + "/list_resource";
+        return PREFIX + getTheme() + "/list_resource";
     }
 
     /**
@@ -218,7 +217,6 @@ public class BlogController extends BaseController {
      *
      * @param model model
      * @param id
-     * @return
      */
     @GetMapping("/resource/{id}")
     public String resource(HttpServletRequest request, Model model, @PathVariable("id") String id) {
@@ -228,7 +226,7 @@ public class BlogController extends BaseController {
         }
         model.addAttribute("resource", resource);
         model.addAttribute("categoryId", "resource");
-        return PREFIX + "/" + getTheme() + "/resource";
+        return PREFIX + getTheme() + "/resource";
     }
 
     /**
@@ -236,8 +234,7 @@ public class BlogController extends BaseController {
      * 目前仅支持文章标题模糊搜索
      *
      * @param content
-     * @param model model
-     * @return
+     * @param model   model
      */
     @GetMapping("/search")
     public String search(String content, Model model) {
@@ -258,7 +255,7 @@ public class BlogController extends BaseController {
         model.addAttribute("nextPage", pageInfo.getNextPage());
         model.addAttribute("navNums", pageInfo.getNavigatepageNums());
         model.addAttribute("articleList", articles);
-        return PREFIX + "/" + getTheme() + "/search";
+        return PREFIX + getTheme() + "/search";
     }
 
     /**
@@ -266,7 +263,6 @@ public class BlogController extends BaseController {
      *
      * @param tagId
      * @param model model
-     * @return
      */
     @GetMapping("/tag/{tagId}")
     public String tag(@PathVariable("tagId") String tagId, Model model) {
@@ -292,19 +288,18 @@ public class BlogController extends BaseController {
         model.addAttribute("nextPage", pageInfo.getNextPage());
         model.addAttribute("navNums", pageInfo.getNavigatepageNums());
         model.addAttribute("articleList", articles);
-        return PREFIX + "/" + getTheme() + "/tag";
+        return PREFIX + getTheme() + "/tag";
     }
 
     /**
      * 留言
      *
      * @param model model
-     * @return
      */
     @GetMapping("/siteMsg")
     public String comment(Model model) {
         model.addAttribute("categoryId", "siteMsg");
-        return PREFIX + "/" + getTheme() + "/siteMsg";
+        return PREFIX + getTheme() + "/siteMsg";
     }
 
     @PostMapping("/article/view")
@@ -320,7 +315,7 @@ public class BlogController extends BaseController {
             articleViewCache.put(ip + "|" + articleId, 1);
             return AjaxResult.success("浏览数+1");
         } else {
-            articleViewCache.put(ip + "|" + articleId, n++);
+            articleViewCache.put(ip + "|" + articleId, n + 1);
             return AjaxResult.error("系统错误!");
         }
     }
@@ -338,7 +333,7 @@ public class BlogController extends BaseController {
             articleUpVoteCache.put(ip + "|" + articleId, 1);
             return AjaxResult.success("点赞数+1");
         } else {
-            articleUpVoteCache.put(ip + "|" + articleId, n++);
+            articleUpVoteCache.put(ip + "|" + articleId, n + 1);
             return AjaxResult.error("系统错误!");
         }
     }
@@ -356,7 +351,7 @@ public class BlogController extends BaseController {
             articleViewCache.put(ip + "|" + id, 1);
             return AjaxResult.success("浏览数+1");
         } else {
-            articleViewCache.put(ip + "|" + id, n++);
+            articleViewCache.put(ip + "|" + id, n + 1);
             return AjaxResult.error("系统错误!");
         }
     }
@@ -374,7 +369,7 @@ public class BlogController extends BaseController {
             articleUpVoteCache.put(ip + "|" + id, 1);
             return AjaxResult.success("点赞数+1");
         } else {
-            articleUpVoteCache.put(ip + "|" + id, n++);
+            articleUpVoteCache.put(ip + "|" + id, n + 1);
             return AjaxResult.error("系统错误!");
         }
     }
@@ -436,7 +431,7 @@ public class BlogController extends BaseController {
             commentUpVoteCache.put(ip + "|" + commentId, 1);
             return AjaxResult.success("支持数+1");
         } else {
-            commentUpVoteCache.put(ip + "|" + commentId, n++);
+            commentUpVoteCache.put(ip + "|" + commentId, n + 1);
             return AjaxResult.error("系统错误!");
         }
     }
@@ -445,7 +440,6 @@ public class BlogController extends BaseController {
      * 导航
      *
      * @param model model
-     * @return
      */
     @GetMapping("/nav")
     public String nav(Model model) {
@@ -472,14 +466,13 @@ public class BlogController extends BaseController {
         }
         model.addAttribute("linkTypeList", linkTypeList);
 
-        return PREFIX + "/" + getTheme() + "/navAll";
+        return PREFIX + getTheme() + "/navAll";
     }
 
     /**
      * 导航
      *
      * @param model model
-     * @return
      */
     @GetMapping("/nav/{type}")
     public String navByType(@PathVariable("type") String type, Model model) {
@@ -519,13 +512,14 @@ public class BlogController extends BaseController {
         model.addAttribute("navNums", pageInfo.getNavigatepageNums());
         model.addAttribute("linkList", linkList);
 
-        return PREFIX + "/" + getTheme() + "/list_nav";
+        return PREFIX + getTheme() + "/list_nav";
     }
 
     @GetMapping("/blogTheme")
     public String blogTheme(Model model) {
         BlogTheme form = new BlogTheme();
         startPage();
+        //博客主题对象
         List<BlogTheme> themes = blogThemeService.selectBlogThemeList(form);
         PageInfo pageInfo = new PageInfo(themes);
         model.addAttribute("total", pageInfo.getTotal());
