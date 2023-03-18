@@ -135,7 +135,7 @@
             <div class="indexListGrid mt20">
 
                 <a class="item" target="_blank"
-                   th:each="item,temp:${@cms.avatarIndexList(10)}" th:href="@{${'/blog/'+type+'/'+item.id}}"
+                   th:each="item,temp:${@cms.avatarIndexList(8,2)}" th:href="@{${'/blog/'+type+'/'+item.id}}"
                    th:with="type=${item.extraName}">
 
                     <div class="content " th:classappend="${not #strings.isEmpty(item.coverImage)}?'img'">

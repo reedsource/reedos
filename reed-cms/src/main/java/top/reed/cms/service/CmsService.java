@@ -21,7 +21,7 @@ import java.util.Map;
 public class CmsService {
 
     private static final String KEY_SITE_INFO = "siteInfo";
-    private static final String KEY_FRIEND_LINKS = "friendLinks";
+    private static final String KEY_FRIEND_LINKS = "friendLinks";//友链
     private static final String KEY_TAGS = "tags";
     private static final String KEY_CATEGORY = "category";
     private static final String KEY_INDEX_LIST = "indexList";
@@ -61,6 +61,9 @@ public class CmsService {
         siteInfoCache.clear();
     }
 
+    /**
+     * @return 查询友链列表
+     */
     public Object getFriendLinks() {
         List<FriendLink> list = (List<FriendLink>) siteInfoCache.get(KEY_FRIEND_LINKS, false);
         if (list == null) {
@@ -83,8 +86,6 @@ public class CmsService {
 
     /**
      * 获得标签云
-     *
-     * @return
      */
     public Object getTagsCloud() {
         List<Tags> list = (List<Tags>) siteInfoCache.get(KEY_TAGS, false);
@@ -134,8 +135,6 @@ public class CmsService {
 
     /**
      * 最新文章列表
-     *
-     * @return
      */
     public List<Article> recentList(Integer limit) {
         if (limit == null) {
@@ -158,8 +157,6 @@ public class CmsService {
 
     /**
      * 推荐文章列表
-     *
-     * @return
      */
     public List<Article> recommendedList(Integer limit) {
         if (limit == null) {
@@ -182,8 +179,6 @@ public class CmsService {
 
     /**
      * 热点文章列表
-     *
-     * @return
      */
     public List<Article> hotList(Integer limit) {
         if (limit == null) {
@@ -206,8 +201,6 @@ public class CmsService {
 
     /**
      * 置顶文章列表
-     *
-     * @return
      */
     public List<Article> topList(Integer limit) {
         if (limit == null) {
@@ -230,8 +223,6 @@ public class CmsService {
 
     /**
      * 焦点列表
-     *
-     * @return
      */
     public List<Article> focusList(Integer limit) {
         if (limit == null) {
@@ -296,18 +287,13 @@ public class CmsService {
         }
         if (data != null) {
             Album album = JSON.parseObject(JSON.toJSONString(data), Album.class);
-            List<AlbumMaterial> images = album.getImages();
-            return images;
+            return album.getImages();
         }
         return null;
     }
 
-    /************************资源********** start ************/
-
     /**
      * 推荐文章列表
-     *
-     * @return
      */
     public List<Resource> recommendedResourceList(Integer limit) {
         if (limit == null) {
@@ -332,18 +318,24 @@ public class CmsService {
         return list;
     }
 
-    /************************资源********** end ************/
-    //Avatar模板首页获取文章和资源列表
-    public Object avatarIndexList(Integer limit) {
+
+    /**
+     * Avatar模板首页获取文章和资源列表
+     * limit 文章数
+     * limit1 资源数
+     *
+     */
+    public Object avatarIndexList(Integer limit, Integer limit1) {
         if (limit == null) {
             limit = 10;
+            limit1 = 10 - limit1;
         }
         //8个文章+2个资源
-        List<Article> articleList = this.indexList(8);
+        List<Article> articleList = this.indexList(limit);
         articleList.forEach(a -> {
             a.setExtraName("article");
         });
-        List<Resource> resourceList = this.recommendedResourceList(2);
+        List<Resource> resourceList = this.recommendedResourceList(limit1);
         resourceList.forEach(r -> {
             r.setExtraName("resource");
         });
@@ -364,10 +356,8 @@ public class CmsService {
             Comment form = new Comment();
             form.setType(CmsConstants.COMMENT_TYPE_LIUYAN);
             form.setStatus(CmsConstants.STATUS_NORMAL);
-            Integer pageNum = 1;
-            Integer pageSize = limit;
-            if (RStringUtils.isNotNull(pageNum) && RStringUtils.isNotNull(pageSize)) {
-                PageHelper.startPage(pageNum, pageSize);
+            if (RStringUtils.isNotNull(limit)) {
+                PageHelper.startPage(1, limit);
             }
             list = commentService.selectCommentList(form);
             siteInfoCache.put(KEY_NEW_COMMENT_LIST, list);

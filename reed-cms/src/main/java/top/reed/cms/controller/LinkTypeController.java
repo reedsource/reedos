@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import top.reed.cms.domain.LinkType;
+import top.reed.cms.service.CmsService;
 import top.reed.cms.service.ILinkTypeService;
 import top.reed.common.annotation.Log;
 import top.reed.common.core.controller.BaseController;

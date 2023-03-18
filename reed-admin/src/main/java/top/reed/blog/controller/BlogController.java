@@ -27,7 +27,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * 代码生成 操作处理
+ * 博客blog界面跳转后端
  *
  * @author reedsource
  */
@@ -36,6 +36,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/blog")
 public class BlogController extends BaseController {
 
+    // 请求路径
     private static final String PREFIX = "blog/theme/";
     private static final String KEY_LINK_TYPE_LIST = "linkTypeList";
     private static final String KEY_LINK_LIST = "linkList_";
