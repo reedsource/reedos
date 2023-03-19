@@ -111,10 +111,4 @@ public class BlogThemeController extends BaseController {
         return toAjax(blogThemeService.deleteBlogThemeByIds(ids));
     }
 
-    @PostMapping("/updateBlogThemeConfig")
-    @ResponseBody
-    public AjaxResult updateBlogThemeConfig(String code) {
-        blogThemeService.updateBlogThemeConfig(code);
-        return success();
-    }
 }

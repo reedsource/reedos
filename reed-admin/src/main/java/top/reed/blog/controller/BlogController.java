@@ -515,27 +515,4 @@ public class BlogController extends BaseController {
 
         return PREFIX + getTheme() + "/list_nav";
     }
-
-    @GetMapping("/blogTheme")
-    public String blogTheme(Model model) {
-        BlogTheme form = new BlogTheme();
-        startPage();
-        //博客主题对象
-        List<BlogTheme> themes = blogThemeService.selectBlogThemeList(form);
-        PageInfo pageInfo = new PageInfo(themes);
-        model.addAttribute("total", pageInfo.getTotal());
-        model.addAttribute("pageNo", pageInfo.getPageNum());
-        model.addAttribute("pageSize", pageInfo.getPageSize());
-        model.addAttribute("totalPages", pageInfo.getPages());
-        model.addAttribute("hasPrevious", pageInfo.isHasPreviousPage());
-        model.addAttribute("hasNext", pageInfo.isHasNextPage());
-        model.addAttribute("currentPage", pageInfo.getPageNum());
-        model.addAttribute("prePage", pageInfo.getPrePage());
-        model.addAttribute("nextPage", pageInfo.getNextPage());
-        model.addAttribute("navNums", pageInfo.getNavigatepageNums());
-        model.addAttribute("themeList", themes);
-        String currentTheme = blogThemeService.queryCurrentBlogTheme();
-        model.addAttribute("currentTheme", currentTheme);
-        return PREFIX + "/blogTheme";
-    }
 }

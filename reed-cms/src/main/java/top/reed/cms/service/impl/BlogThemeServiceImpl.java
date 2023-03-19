@@ -88,13 +88,4 @@ public class BlogThemeServiceImpl implements IBlogThemeService {
         return blogThemeMapper.deleteBlogThemeById(id);
     }
 
-    @Override
-    public int updateBlogThemeConfig(String theme) {
-        return blogThemeMapper.updateBlogThemeConfig(theme);
-    }
-
-    @Override
-    public String queryCurrentBlogTheme() {
-        return blogThemeMapper.queryCurrentBlogTheme();
-    }
 }

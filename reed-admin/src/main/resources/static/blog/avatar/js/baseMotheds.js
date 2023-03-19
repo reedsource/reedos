@@ -5,18 +5,6 @@
 *  date: 2019/04/17 10:30
 *
 */
-/* 切换主题 */
-function switchBlogTheme() {
-    $.modal.alertWarning("该功能移到了后台管理中!请到后台切换!");
-    return;
-    layer.open({
-        type : 2,
-        shadeClose : true,
-        title : "切换主题",
-        area : ["1428px", "470px"],
-        content : [ctx + "blog/blogTheme?pageSize=3", 'no']
-    })
-}
 
 $(function(){
     baseMotheds.init();

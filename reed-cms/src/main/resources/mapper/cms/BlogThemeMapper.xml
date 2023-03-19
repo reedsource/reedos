@@ -74,14 +74,4 @@
             #{id}
         </foreach>
     </delete>
-    <update id="updateBlogThemeConfig" parameterType="String">
-        update sys_config
-        set config_value=#{theme}
-        where config_key = 'blog.theme'
-    </update>
-    <select id="queryCurrentBlogTheme" resultType="String">
-        select config_value
-        from sys_config
-        where config_key = 'blog.theme'
-    </select>
 </mapper>

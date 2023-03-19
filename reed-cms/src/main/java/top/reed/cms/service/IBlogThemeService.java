@@ -59,18 +59,4 @@ public interface IBlogThemeService {
      */
     int deleteBlogThemeById(Long id);
 
-    /**
-     * 更新博客主题配置
-     *
-     * @param theme
-     * @return
-     */
-    int updateBlogThemeConfig(String theme);
-
-    /**
-     * 查询当前博客主题
-     *
-     * @return
-     */
-    String queryCurrentBlogTheme();
 }
