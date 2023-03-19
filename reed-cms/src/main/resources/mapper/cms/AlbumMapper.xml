@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.reed.cms.mapper.AlbumMapper">
 
-    <resultMap type="Album" id="AlbumResult">
+    <resultMap type="top.reed.cms.domain.Album" id="AlbumResult">
         <result property="albumId" column="album_id"/>
         <result property="albumName" column="album_name"/>
         <result property="userId" column="user_id"/>
@@ -35,7 +35,7 @@
         from cms_album a
     </sql>
 
-    <select id="selectAlbumList" parameterType="Album" resultMap="AlbumResult">
+    <select id="selectAlbumList" parameterType="top.reed.cms.domain.Album" resultMap="AlbumResult">
         <include refid="selectAlbumVo"/>
         <where>
             <if test="albumName != null  and albumName != ''">and a.album_name like concat('%', #{albumName}, '%')</if>
@@ -57,7 +57,7 @@
         where a.code = #{code}
     </select>
 
-    <insert id="insertAlbum" parameterType="Album">
+    <insert id="insertAlbum" parameterType="top.reed.cms.domain.Album">
         insert into cms_album
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="albumId != null  and albumId != ''">album_id,</if>
@@ -91,7 +91,7 @@
         </trim>
     </insert>
 
-    <insert id="insertAlbumMaterial" useGeneratedKeys="true" keyProperty="id" parameterType="AlbumMaterial">
+    <insert id="insertAlbumMaterial" useGeneratedKeys="true" keyProperty="id" parameterType="top.reed.cms.domain.AlbumMaterial">
         insert into cms_album_material (id,album_id,material_id,link,sort)
         values
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -103,7 +103,7 @@
         </trim>
     </insert>
 
-    <insert id="insertAlbumMaterialBatch" parameterType="AlbumMaterial">
+    <insert id="insertAlbumMaterialBatch" parameterType="top.reed.cms.domain.AlbumMaterial">
         insert into cms_album_material (id,album_id,material_id,link,sort)
         values
         <foreach collection="list" item="item" separator=",">
@@ -111,7 +111,7 @@
         </foreach>
     </insert>
 
-    <resultMap type="AlbumMaterial" id="AlbumMaterialResult">
+    <resultMap type="top.reed.cms.domain.AlbumMaterial" id="AlbumMaterialResult">
         <result property="id" column="id"/>
         <result property="link" column="link"/>
         <result property="sort" column="sort"/>
@@ -133,7 +133,7 @@
             #{id}
         </foreach>
     </delete>
-    <update id="updateAlbum" parameterType="Album">
+    <update id="updateAlbum" parameterType="top.reed.cms.domain.Album">
         update cms_album
         <trim prefix="SET" suffixOverrides=",">
             <if test="albumName != null  and albumName != ''">album_name = #{albumName},</if>
