@@ -270,11 +270,17 @@
 
     function submitHandler() {
         if ($.validate.form()) {
+
+            var treeName = $("#treeName").val();
+            if ($.common.isEmpty(treeName)) {
+                $.modal.alertWarning("请选择栏目分类!");
+                return;
+            }
+
+
             var title = $("#title").val();
             if ($.common.isEmpty(title)) {
-                alert(111)
                 $.modal.alertWarning("请输入标题!");
-                alert(111)
                 return;
             }
             var copyFlag = $("#copyFlag").val();

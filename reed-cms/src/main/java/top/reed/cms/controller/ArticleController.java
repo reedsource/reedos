@@ -42,7 +42,6 @@ import java.util.Map;
 @Controller
 @RequestMapping("/cms/article")
 public class ArticleController extends BaseController {
-    private final String prefix = "cms/article";
 
     @Autowired
     private IArticleService articleService;
@@ -55,7 +54,7 @@ public class ArticleController extends BaseController {
     @RequiresPermissions("cms:article:view")
     @GetMapping()
     public String article() {
-        return prefix + "/article";
+        return "cms/article/article";
     }
 
     /**
@@ -89,7 +88,7 @@ public class ArticleController extends BaseController {
     public String add(ModelMap mmap) {
         List<Tags> tags = tagsService.selectTagsAll();
         mmap.put("tags", tags);
-        return prefix + "/add";
+        return "cms/article/add";
     }
 
     /**
@@ -113,7 +112,7 @@ public class ArticleController extends BaseController {
         String tagIds = article.getTags();
         List<Tags> tags = tagsService.selectSelectedTagsAll(tagIds);
         mmap.put("tags", tags);
-        return prefix + "/edit";
+        return "cms/article/edit";
     }
 
     /**
@@ -169,7 +168,7 @@ public class ArticleController extends BaseController {
         } else {
 
         }
-        return prefix + "/article-duoguyu";
+        return "cms/article/article-duoguyu";
 
     }
 

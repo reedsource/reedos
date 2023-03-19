@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.reed.cms.mapper.ArticleMapper">
 
-    <resultMap type="Article" id="ArticleResult">
+    <resultMap type="top.reed.cms.domain.Article" id="ArticleResult">
         <result property="id" column="id"/>
         <result property="yhid" column="yhid"/>
         <result property="articleRegion" column="article_region"/>
@@ -81,7 +81,7 @@
         from cms_article
     </sql>
 
-    <select id="selectArticleList" parameterType="Article" resultMap="ArticleResult">
+    <select id="selectArticleList" parameterType="top.reed.cms.domain.Article" resultMap="ArticleResult">
         <include refid="selectArticleVo"/>
         <where>
             <if test="yhid != null  and yhid != ''">and yhid = #{yhid}</if>
@@ -126,7 +126,7 @@
         order by create_time desc
     </select>
 
-    <select id="selectArticlesRegionNotNull" parameterType="Article" resultMap="ArticleResult">
+    <select id="selectArticlesRegionNotNull" parameterType="top.reed.cms.domain.Article" resultMap="ArticleResult">
         <include refid="selectArticleVo"/>
         <where>
             1=1
@@ -170,7 +170,7 @@
         </where>
         order by create_time desc
     </select>
-    <select id="selectArticlesRegionIsNull" parameterType="Article" resultMap="ArticleResult">
+    <select id="selectArticlesRegionIsNull" parameterType="top.reed.cms.domain.Article" resultMap="ArticleResult">
         <include refid="selectArticleVo"/>
         <where>
             1=1
@@ -224,7 +224,7 @@
             id=#{article_id}
         </where>
     </select>
-    <insert id="insertArticle" parameterType="Article">
+    <insert id="insertArticle" parameterType="top.reed.cms.domain.Article">
         insert into cms_article
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null  and id != ''">id,</if>
@@ -299,11 +299,11 @@
             <if test="extra3 != null  and extra3 != ''">#{extra3},</if>
         </trim>
     </insert>
-    <insert id="insertArticleContent" parameterType="Article">
+    <insert id="insertArticleContent" parameterType="top.reed.cms.domain.Article">
         insert into cms_article_content(id, content, content_markdown_source)
         values (#{id}, #{content}, #{content_markdown_source})
     </insert>
-    <update id="updateArticle" parameterType="Article">
+    <update id="updateArticle" parameterType="top.reed.cms.domain.Article">
         update cms_article
         <trim prefix="SET" suffixOverrides=",">
             <if test="yhid != null  and yhid != ''">yhid = #{yhid},</if>
@@ -343,7 +343,7 @@
         </trim>
         where id = #{id}
     </update>
-    <update id="updateArticleContent" parameterType="Article">
+    <update id="updateArticleContent" parameterType="top.reed.cms.domain.Article">
         update cms_article_content
         <set>
             <if test="content != null">content=#{content},</if>
