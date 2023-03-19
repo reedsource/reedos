@@ -44,7 +44,7 @@ public class SysLoginController extends BaseController {
 
     /**
      * @param mmap 数据
-     * @return 登陆页面
+     * @return 登录页面
      */
     @GetMapping("/login")
     public String login(HttpServletRequest request, HttpServletResponse response, ModelMap mmap) {

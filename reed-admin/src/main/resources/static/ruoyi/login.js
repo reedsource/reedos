@@ -15,7 +15,7 @@ function showVerfyImage() {
     $("#verfyImg").find(".mask").css("display", "block");
 }
 
-//登陆
+//登录
 function postLogin(data) {
     $.modal.loading($("#btnSubmit").data("loading"));
     $.ajax({

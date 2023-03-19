@@ -24,14 +24,14 @@ public class ShiroUtils {
     }
 
     /**
-     * 注销当前登陆用户
+     * 注销当前登录用户
      */
     public static void logout() {
         getSubject().logout();
     }
 
     /**
-     * @return 获取当前登陆用户
+     * @return 获取当前登录用户
      */
     public static SysUser getSysUser() {
         SysUser user = null;

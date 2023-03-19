@@ -55,7 +55,7 @@ public class SysPasswordService {
             retryCount = new AtomicInteger(0);
             loginRecordCache.put(loginName, retryCount);
         }
-        //如果加入缓存后的总登陆用户数量大于设定的最大用户数量
+        //如果加入缓存后的总登录用户数量大于设定的最大用户数量
         if (retryCount.incrementAndGet() > Integer.parseInt(maxRetryCount)) {
             //根据消息键和参数 获取消息 委托给spring messageSource
             //记录登录信息

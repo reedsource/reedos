@@ -80,7 +80,7 @@ var login = {
                 },
                 3e3)
     },
-    /* 登陆 */
+    /* 登录 */
     login: function () {
         // $.modal.loading($("#btnSubmit").data("loading"));
         var a = document,
