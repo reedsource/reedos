@@ -5,6 +5,8 @@ import lombok.Setter;
 import top.reed.common.annotation.Excel;
 import top.reed.common.core.domain.BaseEntity;
 
+import java.io.Serial;
+
 /**
  * 友情链接对象 cms_friend_link
  *
@@ -14,6 +16,7 @@ import top.reed.common.core.domain.BaseEntity;
 @Getter
 @Setter
 public class FriendLink extends BaseEntity {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**
@@ -33,7 +36,7 @@ public class FriendLink extends BaseEntity {
     @Excel(name = "链接")
     private String link;
     @Excel(name = "站点描述")
-    /** description*/
+    /* description*/
     private String description;
     /**
      * logo

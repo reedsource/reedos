@@ -4,6 +4,7 @@ import top.reed.api.concurrent.SpiderFlowThreadPoolExecutor.SubThreadPoolExecuto
 import top.reed.api.model.SpiderNode;
 import top.reed.api.model.SpiderOutput;
 
+import java.io.Serial;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class SpiderContext extends HashMap<String, Object> {
 
+    @Serial
     private static final long serialVersionUID = 8379177178417619790L;
     private String id = UUID.randomUUID().toString().replace("-", "");
     /**

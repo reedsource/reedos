@@ -13,6 +13,7 @@ import top.reed.common.xss.Xss;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.io.Serial;
 import java.util.Date;
 import java.util.List;
 
@@ -22,6 +23,7 @@ import java.util.List;
  * @author reedsource
  */
 public class SysUser extends BaseEntity {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**

@@ -1,11 +1,14 @@
 package top.reed.common.core.domain;
 
+import java.io.Serial;
+
 /**
  * Tree基类
  *
  * @author reedsource
  */
 public class TreeEntity extends BaseEntity {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**

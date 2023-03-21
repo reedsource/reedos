@@ -9,6 +9,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serial;
 
 /**
  * 部门表 sys_dept
@@ -16,6 +17,7 @@ import javax.validation.constraints.Size;
  * @author reedsource
  */
 public class SysDept extends BaseEntity {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**

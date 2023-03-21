@@ -7,6 +7,7 @@ import top.reed.common.xss.Xss;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.io.Serial;
 
 /**
  * 通知公告表 sys_notice
@@ -14,6 +15,7 @@ import javax.validation.constraints.Size;
  * @author reedsource
  */
 public class SysNotice extends BaseEntity {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**

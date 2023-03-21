@@ -1,11 +1,14 @@
 package top.reed.common.exception.job;
 
+import java.io.Serial;
+
 /**
  * 计划策略异常
  *
  * @author reedsource
  */
 public class TaskException extends Exception {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private Code code;

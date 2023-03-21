@@ -7,6 +7,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import top.reed.common.annotation.Excel;
 import top.reed.common.core.domain.BaseEntity;
 
+import java.io.Serial;
 import java.util.List;
 
 /**
@@ -18,6 +19,7 @@ import java.util.List;
 @Getter
 @Setter
 public class Article extends BaseEntity {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**

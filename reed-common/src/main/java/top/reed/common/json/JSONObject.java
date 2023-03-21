@@ -3,6 +3,7 @@ package top.reed.common.json;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import top.reed.common.utils.StringUtils;
 
+import java.io.Serial;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,6 +14,7 @@ import java.util.regex.Pattern;
  * @author reedsource
  */
 public class JSONObject extends LinkedHashMap<String, Object> {
+    @Serial
     private static final long serialVersionUID = 1L;
     private static final Pattern arrayNamePattern = Pattern.compile("(\\w+)((\\[\\d+\\])+)");
     private static final ObjectMapper objectMapper = new ObjectMapper();
@@ -576,6 +578,7 @@ public class JSONObject extends LinkedHashMap<String, Object> {
      * 数组结构。
      */
     public static class JSONArray extends ArrayList<Object> {
+        @Serial
         private static final long serialVersionUID = 1L;
 
         public JSONArray() {

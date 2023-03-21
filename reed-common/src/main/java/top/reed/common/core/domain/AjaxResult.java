@@ -2,6 +2,7 @@ package top.reed.common.core.domain;
 
 import top.reed.common.utils.StringUtils;
 
+import java.io.Serial;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -23,6 +24,7 @@ public class AjaxResult extends HashMap<String, Object> {
      * 数据对象
      */
     public static final String DATA_TAG = "data";
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**

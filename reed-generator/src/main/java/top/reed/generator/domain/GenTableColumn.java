@@ -4,6 +4,7 @@ import top.reed.common.core.domain.BaseEntity;
 import top.reed.common.utils.StringUtils;
 
 import javax.validation.constraints.NotBlank;
+import java.io.Serial;
 
 /**
  * 代码生成业务字段表 gen_table_column
@@ -11,6 +12,7 @@ import javax.validation.constraints.NotBlank;
  * @author reedsource
  */
 public class GenTableColumn extends BaseEntity {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**

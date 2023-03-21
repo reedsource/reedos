@@ -7,6 +7,8 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import top.reed.common.annotation.Excel;
 import top.reed.common.core.domain.BaseEntity;
 
+import java.io.Serial;
+
 /**
  * 链接对象 cms_link
  *
@@ -16,6 +18,7 @@ import top.reed.common.core.domain.BaseEntity;
 @Getter
 @Setter
 public class Link extends BaseEntity {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**

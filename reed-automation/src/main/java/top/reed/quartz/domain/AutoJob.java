@@ -11,6 +11,7 @@ import top.reed.quartz.util.CronUtils;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -20,6 +21,7 @@ import java.util.Date;
  * @author reedsource
  */
 public class AutoJob extends BaseEntity implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**

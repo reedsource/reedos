@@ -6,6 +6,7 @@ import top.reed.common.core.domain.BaseEntity;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.io.Serial;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import java.util.List;
  * @author reedsource
  */
 public class SysMenu extends BaseEntity {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**

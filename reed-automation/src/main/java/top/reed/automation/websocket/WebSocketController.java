@@ -16,8 +16,6 @@ import top.reed.common.enums.BusinessType;
 import top.reed.framework.websocket.server.WebSocketServer;
 import top.reed.framework.websocket.util.WebSocketUsers;
 
-import java.io.UnsupportedEncodingException;
-
 @Controller
 @RequestMapping("/automation")
 public class WebSocketController {

@@ -9,6 +9,7 @@ import top.reed.common.core.domain.BaseEntity;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.io.Serial;
 
 /**
  * 字典类型表 sys_dict_type
@@ -16,6 +17,7 @@ import javax.validation.constraints.Size;
  * @author reedsource
  */
 public class SysDictType extends BaseEntity {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**

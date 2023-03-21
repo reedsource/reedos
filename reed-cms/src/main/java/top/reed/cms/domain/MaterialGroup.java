@@ -7,6 +7,8 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import top.reed.common.annotation.Excel;
 import top.reed.common.core.domain.TreeEntity;
 
+import java.io.Serial;
+
 /**
  * 素材分组对象 cms_material_group
  *
@@ -16,6 +18,7 @@ import top.reed.common.core.domain.TreeEntity;
 @Getter
 @Setter
 public class MaterialGroup extends TreeEntity {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**

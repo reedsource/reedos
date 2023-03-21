@@ -8,6 +8,7 @@ import top.reed.common.core.domain.BaseEntity;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.io.Serial;
 
 /**
  * 参数配置表 sys_config
@@ -15,6 +16,7 @@ import javax.validation.constraints.Size;
  * @author reedsource
  */
 public class SysConfig extends BaseEntity {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**

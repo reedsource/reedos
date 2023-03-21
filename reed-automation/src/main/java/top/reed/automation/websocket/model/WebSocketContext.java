@@ -8,6 +8,7 @@ import top.reed.api.model.SpiderOutput;
 import top.reed.core.serializer.FastJsonSerializer;
 
 import javax.websocket.Session;
+import java.io.Serial;
 import java.util.Date;
 
 /**
@@ -17,6 +18,7 @@ import java.util.Date;
  */
 public class WebSocketContext extends SpiderContext {
 
+    @Serial
     private static final long serialVersionUID = -1205530535069540245L;
 
     private Session session;

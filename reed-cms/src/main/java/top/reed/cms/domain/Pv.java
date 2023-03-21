@@ -7,6 +7,8 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import top.reed.common.annotation.Excel;
 import top.reed.common.core.domain.BaseEntity;
 
+import java.io.Serial;
+
 /**
  * PV对象 cms_pv
  *
@@ -16,6 +18,7 @@ import top.reed.common.core.domain.BaseEntity;
 @Getter
 @Setter
 public class Pv extends BaseEntity {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**

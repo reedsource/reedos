@@ -1,11 +1,14 @@
 package top.reed.common.exception;
 
+import java.io.Serial;
+
 /**
  * 业务异常
  *
  * @author reedsource
  */
 public final class ServiceException extends RuntimeException {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**
@@ -16,7 +19,7 @@ public final class ServiceException extends RuntimeException {
     /**
      * 错误明细，内部调试错误
      * <p>
-     * 和 {@link CommonResult#getDetailMessage()} 一致的设计
+     * 和  一致的设计
      */
     private String detailMessage;
 

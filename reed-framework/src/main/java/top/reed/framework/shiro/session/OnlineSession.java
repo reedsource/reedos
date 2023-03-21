@@ -5,12 +5,15 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import org.apache.shiro.session.mgt.SimpleSession;
 import top.reed.common.enums.OnlineStatus;
 
+import java.io.Serial;
+
 /**
  * 在线用户会话属性
  *
  * @author reedsource
  */
 public class OnlineSession extends SimpleSession {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**

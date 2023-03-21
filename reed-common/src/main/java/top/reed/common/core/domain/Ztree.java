@@ -1,5 +1,6 @@
 package top.reed.common.core.domain;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -8,6 +9,7 @@ import java.io.Serializable;
  * @author reedsource
  */
 public class Ztree implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**

@@ -217,7 +217,6 @@ public class BlogController extends BaseController {
      * 资源详情
      *
      * @param model model
-     * @param id
      */
     @GetMapping("/resource/{id}")
     public String resource(HttpServletRequest request, Model model, @PathVariable("id") String id) {

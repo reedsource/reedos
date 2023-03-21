@@ -5,6 +5,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import top.reed.common.core.domain.BaseEntity;
 import top.reed.common.enums.OnlineStatus;
 
+import java.io.Serial;
 import java.util.Date;
 
 /**
@@ -13,6 +14,7 @@ import java.util.Date;
  * @author reedsource
  */
 public class SysUserOnline extends BaseEntity {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**

@@ -1,5 +1,6 @@
 package top.reed.common.core.page;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import java.util.List;
  * @author reedsource
  */
 public class TableDataInfo implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**

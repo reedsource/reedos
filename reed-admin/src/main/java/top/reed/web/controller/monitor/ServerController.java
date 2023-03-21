@@ -20,7 +20,7 @@ public class ServerController extends BaseController {
 
     @RequiresPermissions("monitor:server:view")
     @GetMapping()
-    public String server(ModelMap mmap) throws Exception {
+    public String server(ModelMap mmap) {
         Server server = new Server();
         server.copyTo();
         mmap.put("server", server);

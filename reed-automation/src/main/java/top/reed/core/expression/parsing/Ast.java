@@ -1207,7 +1207,7 @@ public abstract class Ast {
 
         /**
          * Returns the cached member descriptor as returned by {@link Reflection#getMethod(Object, String, Object...)}. See
-         * {@link #setCachedMember(Object)}.
+         * .
          **/
         public Object getCachedMethod() {
             return cachedMethod;

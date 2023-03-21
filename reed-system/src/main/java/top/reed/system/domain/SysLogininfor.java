@@ -6,6 +6,7 @@ import top.reed.common.annotation.Excel;
 import top.reed.common.annotation.Excel.ColumnType;
 import top.reed.common.core.domain.BaseEntity;
 
+import java.io.Serial;
 import java.util.Date;
 
 /**
@@ -14,6 +15,7 @@ import java.util.Date;
  * @author reedsource
  */
 public class SysLogininfor extends BaseEntity {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**

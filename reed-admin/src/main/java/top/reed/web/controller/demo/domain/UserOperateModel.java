@@ -5,9 +5,11 @@ import top.reed.common.annotation.Excel.Type;
 import top.reed.common.core.domain.BaseEntity;
 import top.reed.common.utils.DateUtils;
 
+import java.io.Serial;
 import java.util.Date;
 
 public class UserOperateModel extends BaseEntity {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private int userId;

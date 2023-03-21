@@ -1,11 +1,14 @@
 package top.reed.common.exception;
 
+import java.io.Serial;
+
 /**
  * 全局异常
  *
  * @author reedsource
  */
 public class GlobalException extends RuntimeException {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**

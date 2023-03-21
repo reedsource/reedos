@@ -3,12 +3,15 @@ package top.reed.common.exception.base;
 import top.reed.common.utils.MessageUtils;
 import top.reed.common.utils.StringUtils;
 
+import java.io.Serial;
+
 /**
  * 基础异常
  *
  * @author reedsource
  */
 public class BaseException extends RuntimeException {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**

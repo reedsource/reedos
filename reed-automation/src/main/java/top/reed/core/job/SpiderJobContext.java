@@ -8,11 +8,13 @@ import top.reed.api.model.SpiderOutput;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.io.Serial;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SpiderJobContext extends SpiderContext {
 
+    @Serial
     private static final long serialVersionUID = 9099787449108938453L;
 
     private static Logger logger = LoggerFactory.getLogger(SpiderJobContext.class);

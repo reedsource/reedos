@@ -4,6 +4,8 @@ import top.reed.core.expression.parsing.Span;
 import top.reed.core.expression.parsing.Span.Line;
 import top.reed.core.expression.parsing.TokenStream;
 
+import java.io.Serial;
+
 /**
  * All errors reported by the library go through the static functions of this class.
  */
@@ -69,6 +71,7 @@ public class ExpressionError {
      * list of included templates, the {@link #getMessage()} method will return a condensed error message.
      **/
     public static class TemplateException extends RuntimeException {
+        @Serial
         private static final long serialVersionUID = 1L;
         private final Span location;
         private final String errorMessage;
@@ -121,6 +124,7 @@ public class ExpressionError {
 
     public static class StringLiteralException extends RuntimeException {
 
+        @Serial
         private static final long serialVersionUID = 1L;
 
     }
