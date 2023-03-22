@@ -111,8 +111,6 @@ public class AdController extends BaseController {
         return toAjax(adService.deleteAdByIds(ids));
     }
 
-    /****************************************分割线****************************************************/
-
 
     /**
      * 跳转配置广告页面
@@ -185,7 +183,6 @@ public class AdController extends BaseController {
     /**
      * 打开广告素材选择界面
      *
-     * @return
      */
     @GetMapping("/selectAdMaterial/{adId}")
     public String selectAdMaterial(@PathVariable("adId") String adId, ModelMap mmap) {
@@ -196,8 +193,7 @@ public class AdController extends BaseController {
     /**
      * 查询未配置的素材
      *
-     * @param adMaterial
-     * @return
+     * @param adMaterial 广告素材
      */
     @PostMapping("/unMaterialList")
     @ResponseBody
