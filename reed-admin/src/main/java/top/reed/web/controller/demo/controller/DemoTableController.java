@@ -33,7 +33,7 @@ public class DemoTableController extends BaseController {
     private final static List<AreaModel> areas = new ArrayList<>();
     private final static List<UserTableColumn> columns = new ArrayList<>();
 
-    {
+    static {
         users.add(new UserTableModel(1, "1000001", "测试1", "0", "18101351078", "reedsource@189.cn", 150.0, "0"));
         users.add(new UserTableModel(2, "1000002", "测试2", "1", "18101351078", "reedsource@189.cn", 180.0, "1"));
         users.add(new UserTableModel(3, "1000003", "测试3", "0", "18101351078", "reedsource@189.cn", 110.0, "1"));
@@ -62,7 +62,7 @@ public class DemoTableController extends BaseController {
         users.add(new UserTableModel(26, "1000026", "测试26", "1", "18101351078", "reedsource@189.cn", 250.0, "1"));
     }
 
-    {
+    static {
         areas.add(new AreaModel(1, 0, "广东省", "440000", "GDS", "GuangDongSheng", 1));
         areas.add(new AreaModel(2, 0, "湖南省", "430000", "HNS", "HuNanSheng", 1));
         areas.add(new AreaModel(3, 0, "河南省", "410000", "HNS", "HeNanSheng", 0));
@@ -112,7 +112,7 @@ public class DemoTableController extends BaseController {
         areas.add(new AreaModel(1007, 103, "雨花区", "410011", "YHQ", "YuHuaQu", 0));
     }
 
-    {
+    static {
         columns.add(new UserTableColumn("用户ID", "userId"));
         columns.add(new UserTableColumn("用户编号", "userCode"));
         columns.add(new UserTableColumn("用户姓名", "userName"));
@@ -166,7 +166,7 @@ public class DemoTableController extends BaseController {
      */
     @PostMapping("/exportData")
     @ResponseBody
-    public AjaxResult exportSelected(UserTableModel userModel, String userIds) {
+    public AjaxResult exportSelected(String userIds) {
         List<UserTableModel> userList = new ArrayList<>(Arrays.asList(new UserTableModel[users.size()]));
         Collections.copy(userList, users);
 
@@ -416,8 +416,8 @@ public class DemoTableController extends BaseController {
             rspData.setTotal(userList.size());
             return rspData;
         }
-        Integer pageNum = (pageDomain.getPageNum() - 1) * 10;
-        Integer pageSize = pageDomain.getPageNum() * 10;
+        int pageNum = (pageDomain.getPageNum() - 1) * 10;
+        int pageSize = pageDomain.getPageNum() * 10;
         if (pageSize > userList.size()) {
             pageSize = userList.size();
         }
@@ -451,8 +451,8 @@ public class DemoTableController extends BaseController {
             }
         }
         PageDomain pageDomain = TableSupport.buildPageRequest();
-        Integer pageNum = (pageDomain.getPageNum() - 1) * pageDomain.getPageSize();
-        Integer pageSize = pageDomain.getPageNum() * pageDomain.getPageSize();
+        int pageNum = (pageDomain.getPageNum() - 1) * pageDomain.getPageSize();
+        int pageSize = pageDomain.getPageNum() * pageDomain.getPageSize();
         if (pageSize > areaList.size()) {
             pageSize = areaList.size();
         }
@@ -707,8 +707,8 @@ class AreaModel {
     }
 
     public AreaModel(int id, int parentId, String areaName, String areaCode, String simplePy, String pinYin, Integer isTreeLeaf) {
-        this.id = Long.valueOf(id);
-        this.parentId = Long.valueOf(parentId);
+        this.id = (long) id;
+        this.parentId = (long) parentId;
         this.areaName = areaName;
         this.areaCode = areaCode;
         this.simplePy = simplePy;
