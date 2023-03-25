@@ -47,7 +47,6 @@ public class SpiderFlowThreadPoolExecutor {
      * 创建子线程池
      *
      * @param threads 线程池大小
-     * @return
      */
     public SubThreadPoolExecutor createSubThreadPoolExecutor(int threads, ThreadSubmitStrategy submitStrategy) {
         return new SubThreadPoolExecutor(Math.min(maxThreads, threads), submitStrategy);

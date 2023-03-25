@@ -32,8 +32,6 @@ public class JSON {
     public static void marshal(OutputStream os, Object value) throws Exception {
         try {
             objectWriter.writeValue(os, value);
-        } catch (JsonMappingException e) {
-            throw new Exception(e);
         } catch (IOException e) {
             throw new Exception(e);
         }
@@ -42,8 +40,6 @@ public class JSON {
     public static String marshal(Object value) throws Exception {
         try {
             return objectWriter.writeValueAsString(value);
-        } catch (JsonMappingException e) {
-            throw new Exception(e);
         } catch (IOException e) {
             throw new Exception(e);
         }

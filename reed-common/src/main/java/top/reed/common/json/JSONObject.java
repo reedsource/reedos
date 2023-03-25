@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 public class JSONObject extends LinkedHashMap<String, Object> {
     @Serial
     private static final long serialVersionUID = 1L;
-    private static final Pattern arrayNamePattern = Pattern.compile("(\\w+)((\\[\\d+\\])+)");
+    private static final Pattern arrayNamePattern = Pattern.compile("(\\w+)((\\[\\d+])+)");
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     public JSONObject() {
