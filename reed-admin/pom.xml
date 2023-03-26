@@ -59,7 +59,7 @@
         <!-- 自动化任务-->
         <dependency>
             <groupId>top.reed</groupId>
-            <artifactId>reed-automation</artifactId>
+            <artifactId>reed-core</artifactId>
             <version>${reed.version}</version>
         </dependency>
 
