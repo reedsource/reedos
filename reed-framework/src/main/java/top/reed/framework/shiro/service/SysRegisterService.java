@@ -44,7 +44,8 @@ public class SysRegisterService {
         } else if (loginName.length() < UserConstants.USERNAME_MIN_LENGTH
                 || loginName.length() > UserConstants.USERNAME_MAX_LENGTH) {
             msg = "账户长度必须在2到20个字符之间";
-        } else if (userService.checkLoginNameUnique(user)) {
+            //校验用户名称是否唯一
+        } else if (!userService.checkLoginNameUnique(user)) {
             msg = "保存用户'" + loginName + "'失败，注册账号已存在";
         } else {
             //密码最后更新时间
