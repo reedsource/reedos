@@ -10,8 +10,47 @@
  * Released on: July 31, 2018
  */
 
-import { $, addClass, removeClass, hasClass, toggleClass, attr, removeAttr, data, transform, transition, on, off, trigger, transitionEnd, outerWidth, outerHeight, offset, css, each, html, text, is, index, eq, append, prepend, next, nextAll, prev, prevAll, parent, parents, closest, find, children, remove, add, styles } from 'dom7/dist/dom7.modular';
-import { window, document } from 'ssr-window';
+import {
+    $,
+    add,
+    addClass,
+    append,
+    attr,
+    children,
+    closest,
+    css,
+    data,
+    each,
+    eq,
+    find,
+    hasClass,
+    html,
+    index,
+    is,
+    next,
+    nextAll,
+    off,
+    offset,
+    on,
+    outerHeight,
+    outerWidth,
+    parent,
+    parents,
+    prepend,
+    prev,
+    prevAll,
+    remove,
+    removeAttr,
+    removeClass,
+    styles,
+    text,
+    toggleClass,
+    transform,
+    transition,
+    transitionEnd,
+    trigger
+} from 'dom7/dist/dom7.modular';
+import {document, window} from 'ssr-window';
 
 const Methods = {
   addClass,
