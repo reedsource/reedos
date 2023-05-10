@@ -22,11 +22,11 @@ public class SpiderFlowThreadPoolExecutor {
     /**
      * 最大线程数
      */
-    private int maxThreads;
+    private final int maxThreads;
     /**
      * 真正线程池
      */
-    private ThreadPoolExecutor executor;
+    private final ThreadPoolExecutor executor;
 
     public SpiderFlowThreadPoolExecutor(int maxThreads) {
         super();
@@ -60,17 +60,17 @@ public class SpiderFlowThreadPoolExecutor {
         /**
          * 线程池大小
          */
-        private int threads;
+        private final int threads;
 
         /**
          * 正在执行中的任务
          */
-        private Future<?>[] futures;
+        private final Future<?>[] futures;
 
         /**
          * 执行中的数量
          */
-        private AtomicInteger executing = new AtomicInteger(0);
+        private final AtomicInteger executing = new AtomicInteger(0);
 
         /**
          * 是否运行中
@@ -82,7 +82,7 @@ public class SpiderFlowThreadPoolExecutor {
          */
         private volatile boolean submitting = false;
 
-        private ThreadSubmitStrategy submitStrategy;
+        private final ThreadSubmitStrategy submitStrategy;
 
         public SubThreadPoolExecutor(int threads, ThreadSubmitStrategy submitStrategy) {
             super();

@@ -19,7 +19,7 @@ import java.util.Objects;
 @Component
 public class ExpressionUtils {
 
-    private static Logger logger = LoggerFactory.getLogger(ExpressionUtils.class);
+    private static final Logger logger = LoggerFactory.getLogger(ExpressionUtils.class);
 
     /**
      * 选择器

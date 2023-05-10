@@ -27,6 +27,7 @@ import top.reed.core.utils.ExpressionUtils;
 import javax.annotation.PostConstruct;
 import java.io.*;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 /**
@@ -440,7 +441,7 @@ public class RequestExecutor implements ShapeExecutor, Grammerable, SpiderListen
     private BloomFilter<String> createBloomFilter(SpiderContext context) {
         BloomFilter<String> filter = context.get(BLOOM_FILTER_KEY);
         if (filter == null) {
-            Funnel<CharSequence> funnel = Funnels.stringFunnel(Charset.forName("UTF-8"));
+            Funnel<CharSequence> funnel = Funnels.stringFunnel(StandardCharsets.UTF_8);
             String fileName = context.getFlowId() + File.separator + "url.bf";
             File file = new File(workspcace, fileName);
             if (file.exists()) {

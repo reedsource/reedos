@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 public class RandomAccessFileReader implements Closeable {
 
-    private RandomAccessFile raf;
+    private final RandomAccessFile raf;
 
     /**
      * 从index位置开始读取
@@ -19,12 +19,12 @@ public class RandomAccessFileReader implements Closeable {
     /**
      * 读取顺序，默认倒叙
      */
-    private boolean reversed;
+    private final boolean reversed;
 
     /**
      * 缓冲区大小
      */
-    private int bufSize;
+    private final int bufSize;
 
     public RandomAccessFileReader(RandomAccessFile raf, long index, boolean reversed) throws IOException {
         this(raf, index, 1024, reversed);

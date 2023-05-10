@@ -54,7 +54,7 @@ public enum TokenType {
     Identifier("an identifier");
     // @on
 
-    private static TokenType[] values;
+    private static final TokenType[] values;
 
     static {
         // Sort the token types by their literal length. The character stream uses this

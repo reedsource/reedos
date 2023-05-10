@@ -189,8 +189,7 @@ public class ExecuteSQLExecutor implements ShapeExecutor, Grammerable {
     private Object getValue(Object object, int index) {
         if (object == null) {
             return null;
-        } else if (object instanceof List) {
-            List<?> list = (List<?>) object;
+        } else if (object instanceof List<?> list) {
             int size = list.size();
             if (size > 0) {
                 return list.get(Math.min(list.size() - 1, index));

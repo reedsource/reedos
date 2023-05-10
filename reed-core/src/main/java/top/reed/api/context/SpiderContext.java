@@ -21,7 +21,7 @@ public class SpiderContext extends HashMap<String, Object> {
 
     @Serial
     private static final long serialVersionUID = 8379177178417619790L;
-    private String id = UUID.randomUUID().toString().replace("-", "");
+    private final String id = UUID.randomUUID().toString().replace("-", "");
     /**
      * 流程ID
      */
@@ -44,12 +44,12 @@ public class SpiderContext extends HashMap<String, Object> {
     /**
      * Future队列
      */
-    private LinkedBlockingQueue<Future<?>> futureQueue = new LinkedBlockingQueue<>();
+    private final LinkedBlockingQueue<Future<?>> futureQueue = new LinkedBlockingQueue<>();
 
     /**
      * Cookie上下文
      */
-    private CookieContext cookieContext = new CookieContext();
+    private final CookieContext cookieContext = new CookieContext();
 
     public List<SpiderOutput> getOutputs() {
         return Collections.emptyList();

@@ -21,13 +21,13 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  */
 public class ScriptManager {
 
-    private static Logger logger = LoggerFactory.getLogger(ScriptManager.class);
+    private static final Logger logger = LoggerFactory.getLogger(ScriptManager.class);
 
     private static ScriptEngine scriptEngine;
 
-    private static Set<String> functions = new HashSet<>();
+    private static final Set<String> functions = new HashSet<>();
 
-    private static ReadWriteLock lock = new ReentrantReadWriteLock();
+    private static final ReadWriteLock lock = new ReentrantReadWriteLock();
 
     public static void setScriptEngine(ScriptEngine engine) {
         scriptEngine = engine;
@@ -92,15 +92,14 @@ public class ScriptManager {
      * @return 组合字符串
      */
     private static String concatScript(String functionName, String parameters, String script) {
-        StringBuffer scriptBuffer = new StringBuffer();
-        scriptBuffer.append("function ")
-                .append(functionName)
-                .append("(")
-                .append(parameters == null ? "" : parameters)
-                .append("){")
-                .append(script)
-                .append("}");
-        return scriptBuffer.toString();
+        String scriptBuffer = "function " +
+                functionName +
+                "(" +
+                (parameters == null ? "" : parameters) +
+                "){" +
+                script +
+                "}";
+        return scriptBuffer;
     }
 
     public static boolean containsFunction(String functionName) {
@@ -144,8 +143,7 @@ public class ScriptManager {
     }
 
     private static Object convertObject(Object object) {
-        if (object instanceof ScriptObjectMirror) {
-            ScriptObjectMirror mirror = (ScriptObjectMirror) object;
+        if (object instanceof ScriptObjectMirror mirror) {
             if (mirror.isArray()) {
                 int size = mirror.size();
                 Object[] array = new Object[size];

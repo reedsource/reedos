@@ -17,13 +17,13 @@ public class SpiderJobContext extends SpiderContext {
     @Serial
     private static final long serialVersionUID = 9099787449108938453L;
 
-    private static Logger logger = LoggerFactory.getLogger(SpiderJobContext.class);
+    private static final Logger logger = LoggerFactory.getLogger(SpiderJobContext.class);
 
-    private OutputStream outputstream;
+    private final OutputStream outputstream;
 
-    private List<SpiderOutput> outputs = new ArrayList<>();
+    private final List<SpiderOutput> outputs = new ArrayList<>();
 
-    private boolean output;
+    private final boolean output;
 
     public SpiderJobContext(OutputStream outputstream, boolean output) {
         super();

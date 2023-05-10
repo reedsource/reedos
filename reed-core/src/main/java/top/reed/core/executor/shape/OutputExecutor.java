@@ -51,12 +51,12 @@ public class OutputExecutor implements ShapeExecutor, SpiderListener {
 
     public static final String CSV_ENCODING = "csvEncoding";
 
-    private static Logger logger = LoggerFactory.getLogger(OutputExecutor.class);
+    private static final Logger logger = LoggerFactory.getLogger(OutputExecutor.class);
 
     /**
      * 输出CSVPrinter节点变量
      */
-    private Map<String, CSVPrinter> cachePrinter = new HashMap<>();
+    private final Map<String, CSVPrinter> cachePrinter = new HashMap<>();
 
     @Override
     public void execute(SpiderNode node, SpiderContext context, Map<String, Object> variables) {
@@ -117,8 +117,7 @@ public class OutputExecutor implements ShapeExecutor, SpiderListener {
     private void outputAll(SpiderOutput output, Map<String, Object> variables) {
         for (Map.Entry<String, Object> item : variables.entrySet()) {
             Object value = item.getValue();
-            if (value instanceof SpiderResponse) {
-                SpiderResponse resp = (SpiderResponse) value;
+            if (value instanceof SpiderResponse resp) {
                 output.addOutput(item.getKey() + ".html", resp.getHtml());
                 continue;
             }

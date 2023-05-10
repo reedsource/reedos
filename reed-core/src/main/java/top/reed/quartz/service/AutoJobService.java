@@ -18,7 +18,7 @@ public interface AutoJobService {
      * @param job 调度信息
      * @return 调度任务集合
      */
-    public List<AutoJob> selectJobList(AutoJob job);
+    List<AutoJob> selectJobList(AutoJob job);
 
     /**
      * 通过调度任务ID查询调度信息
@@ -26,7 +26,7 @@ public interface AutoJobService {
      * @param jobId 调度任务ID
      * @return 调度任务对象信息
      */
-    public AutoJob selectJobById(Long jobId);
+    AutoJob selectJobById(Long jobId);
 
     /**
      * 暂停任务
@@ -34,7 +34,7 @@ public interface AutoJobService {
      * @param job 调度信息
      * @return 结果
      */
-    public int pauseJob(AutoJob job) throws SchedulerException;
+    int pauseJob(AutoJob job) throws SchedulerException;
 
     /**
      * 恢复任务
@@ -42,7 +42,7 @@ public interface AutoJobService {
      * @param job 调度信息
      * @return 结果
      */
-    public int resumeJob(AutoJob job) throws SchedulerException;
+    int resumeJob(AutoJob job) throws SchedulerException;
 
     /**
      * 删除任务后，所对应的trigger也将被删除
@@ -50,7 +50,7 @@ public interface AutoJobService {
      * @param job 调度信息
      * @return 结果
      */
-    public int deleteJob(AutoJob job) throws SchedulerException;
+    int deleteJob(AutoJob job) throws SchedulerException;
 
     /**
      * 批量删除调度信息
@@ -58,7 +58,7 @@ public interface AutoJobService {
      * @param ids 需要删除的数据ID
      * @return 结果
      */
-    public void deleteJobByIds(String ids) throws SchedulerException;
+    void deleteJobByIds(String ids) throws SchedulerException;
 
     /**
      * 任务调度状态修改
@@ -66,7 +66,7 @@ public interface AutoJobService {
      * @param job 调度信息
      * @return 结果
      */
-    public int changeStatus(AutoJob job) throws SchedulerException;
+    int changeStatus(AutoJob job) throws SchedulerException;
 
     /**
      * 立即运行任务
@@ -74,7 +74,7 @@ public interface AutoJobService {
      * @param job 调度信息
      * @return 结果
      */
-    public boolean run(AutoJob job) throws SchedulerException;
+    boolean run(AutoJob job) throws SchedulerException;
 
     /**
      * 新增任务
@@ -82,7 +82,7 @@ public interface AutoJobService {
      * @param job 调度信息
      * @return 结果
      */
-    public int insertJob(AutoJob job) throws SchedulerException, TaskException;
+    int insertJob(AutoJob job) throws SchedulerException, TaskException;
 
     /**
      * 更新任务
@@ -90,7 +90,7 @@ public interface AutoJobService {
      * @param job 调度信息
      * @return 结果
      */
-    public int updateJob(AutoJob job) throws SchedulerException, TaskException;
+    int updateJob(AutoJob job) throws SchedulerException, TaskException;
 
     /**
      * 校验cron表达式是否有效
@@ -98,5 +98,5 @@ public interface AutoJobService {
      * @param cronExpression 表达式
      * @return 结果
      */
-    public boolean checkCronExpressionIsValid(String cronExpression);
+    boolean checkCronExpressionIsValid(String cronExpression);
 }

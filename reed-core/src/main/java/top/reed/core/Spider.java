@@ -41,7 +41,7 @@ public class Spider {
 
     private static final String ATOMIC_DEAD_CYCLE = "__atomic_dead_cycle";
     public static SpiderFlowThreadPoolExecutor executorInstance;
-    private static Logger logger = LoggerFactory.getLogger(Spider.class);
+    private static final Logger logger = LoggerFactory.getLogger(Spider.class);
     @Autowired(required = false)
     private List<SpiderListener> listeners;
     /**

@@ -15,11 +15,11 @@ import java.util.Map;
  */
 public class HttpResponse implements SpiderResponse {
 
-    private Response response;
+    private final Response response;
 
-    private int statusCode;
+    private final int statusCode;
 
-    private String urlLink;
+    private final String urlLink;
 
     private String htmlValue;
 

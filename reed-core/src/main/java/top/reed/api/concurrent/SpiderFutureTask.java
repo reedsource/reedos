@@ -7,9 +7,9 @@ import java.util.concurrent.FutureTask;
 
 public class SpiderFutureTask<V> extends FutureTask {
 
-    private SubThreadPoolExecutor executor;
+    private final SubThreadPoolExecutor executor;
 
-    private SpiderNode node;
+    private final SpiderNode node;
 
     public SpiderFutureTask(Runnable runnable, V result, SpiderNode node, SubThreadPoolExecutor executor) {
         super(runnable, result);

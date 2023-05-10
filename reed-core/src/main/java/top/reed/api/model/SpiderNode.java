@@ -21,12 +21,12 @@ public class SpiderNode {
     /**
      * 节点列表中的下一个节点
      */
-    private List<SpiderNode> nextNodes = new ArrayList<>();
+    private final List<SpiderNode> nextNodes = new ArrayList<>();
 
     /**
      * 节点列表中的上一个节点
      */
-    private List<SpiderNode> prevNodes = new ArrayList<>();
+    private final List<SpiderNode> prevNodes = new ArrayList<>();
 
     /**
      * 父级节点ID
@@ -36,17 +36,17 @@ public class SpiderNode {
     /**
      * 节点流转条件
      */
-    private Map<String, String> condition = new HashMap<>();
+    private final Map<String, String> condition = new HashMap<>();
 
     /**
      * 异常流转
      */
-    private Map<String, String> exception = new HashMap<>();
+    private final Map<String, String> exception = new HashMap<>();
 
     /**
      * 传递变量
      */
-    private Map<String, String> transmitVariable = new HashMap<>();
+    private final Map<String, String> transmitVariable = new HashMap<>();
     /**
      * 节点名称
      */
@@ -59,7 +59,7 @@ public class SpiderNode {
     /**
      * 计数器,用来计算当前节点执行中的个数
      */
-    private AtomicInteger counter = new AtomicInteger();
+    private final AtomicInteger counter = new AtomicInteger();
 
     public String getNodeId() {
         return nodeId;

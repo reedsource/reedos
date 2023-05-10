@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
  */
 public class ExtractUtils {
 
-    private static Map<String, Pattern> patterns = new HashMap<>();
+    private static final Map<String, Pattern> patterns = new HashMap<>();
 
     private static Pattern compile(String regx) {
         Pattern pattern = patterns.get(regx);

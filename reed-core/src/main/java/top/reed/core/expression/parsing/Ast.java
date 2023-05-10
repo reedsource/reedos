@@ -150,7 +150,7 @@ public abstract class Ast {
             }
         }
 
-        public static enum UnaryOperator {
+        public enum UnaryOperator {
             Not, Negate, Positive;
 
             public static UnaryOperator getOperator(Token op) {
@@ -478,7 +478,7 @@ public abstract class Ast {
             }
         }
 
-        public static enum BinaryOperator {
+        public enum BinaryOperator {
             Addition, Subtraction, Multiplication, Division, Modulo, Equal, NotEqual, Less, LessEqual, Greater, GreaterEqual, And, Or, Xor, Assignment;
 
             public static BinaryOperator getOperator(Token op) {
@@ -980,8 +980,7 @@ public abstract class Ast {
             }
 
             // special case for map, allows to do map.key instead of map[key]
-            if (object instanceof Map) {
-                Map map = (Map) object;
+            if (object instanceof Map map) {
                 return map.get(getName().getText());
             }
 
@@ -1124,8 +1123,7 @@ public abstract class Ast {
                 // if the function expression is a VariableAccess and if so, if it can be found
                 // in the context.
                 Object function = null;
-                if (getFunction() instanceof VariableAccess) {
-                    VariableAccess varAccess = (VariableAccess) getFunction();
+                if (getFunction() instanceof VariableAccess varAccess) {
                     function = context.get(varAccess.getVariableName().getText());
                 } else {
                     function = getFunction().evaluate(template, context);
@@ -1297,9 +1295,7 @@ public abstract class Ast {
                         int argumentLength = argumentValues == null ? 0 : argumentValues.length;
                         Object[] parameters = new Object[argumentLength + 1];
                         if (argumentLength > 0) {
-                            for (int i = 0; i < argumentLength; i++) {
-                                parameters[i + 1] = argumentValues[i];
-                            }
+                            System.arraycopy(argumentValues, 0, parameters, 1, argumentLength);
                         }
                         parameters[0] = object;
                         if (object.getClass().isArray()) {

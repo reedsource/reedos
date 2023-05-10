@@ -187,7 +187,7 @@ public class QuartzJobInvokeUtil {
         Object[] classs = new Object[methodParams.size()];
         int index = 0;
         for (Object[] os : methodParams) {
-            classs[index] = (Object) os[0];
+            classs[index] = os[0];
             index++;
         }
         return classs;

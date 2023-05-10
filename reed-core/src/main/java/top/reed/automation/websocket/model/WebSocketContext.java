@@ -21,11 +21,11 @@ public class WebSocketContext extends SpiderContext {
     @Serial
     private static final long serialVersionUID = -1205530535069540245L;
 
-    private Session session;
+    private final Session session;
 
     private boolean debug;
 
-    private Object lock = new Object();
+    private final Object lock = new Object();
 
     public WebSocketContext(Session session) {
         this.session = session;

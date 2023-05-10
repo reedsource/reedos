@@ -6,10 +6,7 @@ import top.reed.api.annotation.Example;
 import top.reed.api.executor.FunctionExecutor;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * String 工具类 防止NPE
@@ -149,7 +146,7 @@ public class StringFunctionExecutor implements FunctionExecutor {
     @Comment("判断两个字符串是否相同")
     @Example("${string.newString(bytes,charset)}")
     public static boolean equals(String str1, String str2) {
-        return str1 == null ? str2 == null : str1.equals(str2);
+        return Objects.equals(str1, str2);
     }
 
     @Comment("生成UUID")

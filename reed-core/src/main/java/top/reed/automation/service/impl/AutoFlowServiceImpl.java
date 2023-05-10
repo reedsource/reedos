@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
  */
 @Service
 public class AutoFlowServiceImpl implements AutoFlowService {
-    private static Logger logger = LoggerFactory.getLogger(AutoFlowServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(AutoFlowServiceImpl.class);
 
     /**
      * 日志路径

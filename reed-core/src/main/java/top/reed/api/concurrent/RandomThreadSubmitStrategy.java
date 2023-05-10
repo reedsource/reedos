@@ -9,7 +9,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class RandomThreadSubmitStrategy implements ThreadSubmitStrategy {
 
-    private List<SpiderFutureTask<?>> taskList = new CopyOnWriteArrayList<>();
+    private final List<SpiderFutureTask<?>> taskList = new CopyOnWriteArrayList<>();
 
     @Override
     public Comparator<SpiderNode> comparator() {

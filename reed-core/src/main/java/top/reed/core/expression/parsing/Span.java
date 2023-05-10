@@ -15,11 +15,11 @@ public class Span {
     /**
      * start index in source string, starting at 0
      **/
-    private int start;
+    private final int start;
     /**
      * end index in source string, exclusive, starting at 0
      **/
-    private int end;
+    private final int end;
 
     public Span(String source) {
         this(source, 0, source.length());

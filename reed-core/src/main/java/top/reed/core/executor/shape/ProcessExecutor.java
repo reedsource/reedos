@@ -22,7 +22,7 @@ import java.util.Map;
 @Component
 public class ProcessExecutor implements ShapeExecutor {
 
-    private static Logger logger = LoggerFactory.getLogger(ProcessExecutor.class);
+    private static final Logger logger = LoggerFactory.getLogger(ProcessExecutor.class);
 
     @Autowired
     private AutoFlowService autoFlowService;

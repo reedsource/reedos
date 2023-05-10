@@ -103,17 +103,16 @@ public class ExpressionError {
                 return super.getMessage();
             }
 
-            builder.append(errorMessage.substring(0, errorMessage.indexOf('\n')));
+            builder.append(errorMessage, 0, errorMessage.indexOf('\n'));
             builder.append("\n");
 
             Throwable cause = getCause();
             while (cause != null && cause != this) {
-                if (cause instanceof TemplateException) {
-                    TemplateException ex = (TemplateException) cause;
+                if (cause instanceof TemplateException ex) {
                     if (ex.getCause() == null || ex.getCause() == ex)
                         builder.append(ex.errorMessage);
                     else
-                        builder.append(ex.errorMessage.substring(0, ex.errorMessage.indexOf('\n')));
+                        builder.append(ex.errorMessage, 0, ex.errorMessage.indexOf('\n'));
                     builder.append("\n");
                 }
                 cause = cause.getCause();

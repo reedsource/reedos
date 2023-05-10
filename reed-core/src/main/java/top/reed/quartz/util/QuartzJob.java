@@ -31,7 +31,7 @@ public abstract class QuartzJob implements Job {
     /**
      * 线程本地变量
      */
-    private static ThreadLocal<Date> threadLocal = new ThreadLocal<>();
+    private static final ThreadLocal<Date> threadLocal = new ThreadLocal<>();
 
     /**
      * 当触发与作业关联的触发器时，由调度程序调用

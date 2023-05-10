@@ -20,8 +20,7 @@ public class AutoFlowFileAppender extends FileAppender<ILoggingEvent> {
     protected void subAppend(ILoggingEvent event) {
         SpiderContext context = SpiderContextHolder.get();
         OutputStream os = getOutputStream();
-        if (context instanceof SpiderJobContext) {
-            SpiderJobContext jobContext = (SpiderJobContext) context;
+        if (context instanceof SpiderJobContext jobContext) {
             os = jobContext.getOutputstream();
         }
         try {

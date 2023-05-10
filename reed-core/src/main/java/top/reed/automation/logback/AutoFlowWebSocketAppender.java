@@ -18,8 +18,7 @@ public class AutoFlowWebSocketAppender extends UnsynchronizedAppenderBase<ILoggi
     @Override
     protected void append(ILoggingEvent event) {
         SpiderContext context = SpiderContextHolder.get();
-        if (context instanceof WebSocketContext) {
-            WebSocketContext socketContext = (WebSocketContext) context;
+        if (context instanceof WebSocketContext socketContext) {
             Object[] argumentArray = event.getArgumentArray();
             List<Object> arguments = argumentArray == null ? Collections.emptyList() : new ArrayList<>(Arrays.asList(argumentArray));
             ThrowableProxy throwableProxy = (ThrowableProxy) event.getThrowableProxy();

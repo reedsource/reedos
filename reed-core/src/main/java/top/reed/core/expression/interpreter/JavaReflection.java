@@ -98,8 +98,7 @@ public class JavaReflection extends Reflection {
         if ((from == Byte.class || from == byte.class) && (to == byte.class || to == Byte.class)) return true;
         if ((from == Short.class || from == short.class) && (to == short.class || to == Short.class)) return true;
         if ((from == Long.class || from == long.class) && (to == long.class || to == Long.class)) return true;
-        if ((from == Character.class || from == char.class) && (to == char.class || to == Character.class)) return true;
-        return false;
+        return (from == Character.class || from == char.class) && (to == char.class || to == Character.class);
     }
 
     public static String[] getStringTypes(Object[] objects) {
@@ -363,8 +362,7 @@ public class JavaReflection extends Reflection {
             if (name == null) {
                 if (other.name != null) return false;
             } else if (!name.equals(other.name)) return false;
-            if (!Arrays.equals(parameters, other.parameters)) return false;
-            return true;
+            return Arrays.equals(parameters, other.parameters);
         }
     }
 }
