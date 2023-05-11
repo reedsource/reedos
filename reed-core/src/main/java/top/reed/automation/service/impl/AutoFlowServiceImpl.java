@@ -5,14 +5,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import top.reed.api.context.SpiderContextHolder;
+import top.reed.core.context.AutomationContextHolder;
 import top.reed.automation.domain.AutoFlow;
 import top.reed.automation.mapper.AutoFlowMapper;
 import top.reed.automation.service.AutoFlowService;
 import top.reed.common.core.text.Convert;
 import top.reed.common.utils.CacheUtils;
 import top.reed.core.Spider;
-import top.reed.core.job.SpiderJobContext;
+import top.reed.core.context.AutomationJobContext;
 
 import java.io.File;
 import java.io.IOException;
@@ -152,10 +152,10 @@ public class AutoFlowServiceImpl implements AutoFlowService {
      * @param autoFlow 自动化流程
      */
     public void run(AutoFlow autoFlow) {
-        SpiderJobContext context = null;
+        AutomationJobContext context = null;
         try {
-            context = SpiderJobContext.create(this.workspace, autoFlow.getId().toString(), false);
-            SpiderContextHolder.set(context);
+            context = AutomationJobContext.create(this.workspace, autoFlow.getId().toString(), false);
+            AutomationContextHolder.set(context);
             logger.info("开始执行任务{}", autoFlow.getName());
             spider.run(autoFlow, context);
             logger.info("执行任务{}完毕", autoFlow.getName());
@@ -165,7 +165,7 @@ public class AutoFlowServiceImpl implements AutoFlowService {
             if (context != null) {
                 context.close();
             }
-            SpiderContextHolder.remove();
+            AutomationContextHolder.remove();
         }
     }
 

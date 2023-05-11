@@ -2,9 +2,9 @@ package top.reed.core.executor.function;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
-import top.reed.api.annotation.Comment;
-import top.reed.api.annotation.Example;
-import top.reed.api.executor.FunctionExecutor;
+import top.reed.core.annotation.Comment;
+import top.reed.core.annotation.Example;
+import top.reed.core.executor.FunctionExecutor;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;

@@ -2,9 +2,9 @@ package top.reed.automation.websocket.model;
 
 import com.alibaba.fastjson.JSON;
 import org.apache.commons.lang3.time.DateFormatUtils;
-import top.reed.api.context.SpiderContext;
-import top.reed.api.model.SpiderLog;
-import top.reed.api.model.SpiderOutput;
+import top.reed.core.context.AutomationContext;
+import top.reed.core.model.AutomationLog;
+import top.reed.core.model.AutomationOutput;
 import top.reed.core.serializer.FastJsonSerializer;
 
 import javax.websocket.Session;
@@ -16,7 +16,7 @@ import java.util.Date;
  *
  * @author reedsource
  */
-public class WebSocketContext extends SpiderContext {
+public class WebSocketContext extends AutomationContext {
 
     @Serial
     private static final long serialVersionUID = -1205530535069540245L;
@@ -40,11 +40,11 @@ public class WebSocketContext extends SpiderContext {
     }
 
     @Override
-    public void addOutput(SpiderOutput output) {
+    public void addOutput(AutomationOutput output) {
         this.write(new WebSocket<>("output", output));
     }
 
-    public void log(SpiderLog log) {
+    public void log(AutomationLog log) {
         write(new WebSocket<>("log", DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss.SSS"), log));
     }
 

@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 /**
  * 抽取数据工具类
  *
- * @author jmxd
+ * @author reedsource
  */
 public class ExtractUtils {
 

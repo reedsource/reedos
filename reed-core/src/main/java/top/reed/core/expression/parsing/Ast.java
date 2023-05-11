@@ -2,7 +2,7 @@ package top.reed.core.expression.parsing;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import top.reed.api.expression.DynamicMethod;
+import top.reed.core.expression.DynamicMethod;
 import top.reed.core.expression.ExpressionError;
 import top.reed.core.expression.ExpressionError.TemplateException;
 import top.reed.core.expression.ExpressionTemplate;

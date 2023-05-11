@@ -4,9 +4,9 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.FileAppender;
 import ch.qos.logback.core.spi.DeferredProcessingAware;
 import ch.qos.logback.core.status.ErrorStatus;
-import top.reed.api.context.SpiderContext;
-import top.reed.api.context.SpiderContextHolder;
-import top.reed.core.job.SpiderJobContext;
+import top.reed.core.context.AutomationContext;
+import top.reed.core.context.AutomationContextHolder;
+import top.reed.core.context.AutomationJobContext;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -18,9 +18,9 @@ public class AutoFlowFileAppender extends FileAppender<ILoggingEvent> {
 
     @Override
     protected void subAppend(ILoggingEvent event) {
-        SpiderContext context = SpiderContextHolder.get();
+        AutomationContext context = AutomationContextHolder.get();
         OutputStream os = getOutputStream();
-        if (context instanceof SpiderJobContext jobContext) {
+        if (context instanceof AutomationJobContext jobContext) {
             os = jobContext.getOutputstream();
         }
         try {

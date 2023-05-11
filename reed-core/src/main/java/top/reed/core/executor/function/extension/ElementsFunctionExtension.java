@@ -3,9 +3,9 @@ package top.reed.core.executor.function.extension;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
-import top.reed.api.annotation.Comment;
-import top.reed.api.annotation.Example;
-import top.reed.api.executor.FunctionExtension;
+import top.reed.core.annotation.Comment;
+import top.reed.core.annotation.Example;
+import top.reed.core.executor.FunctionExtension;
 import top.reed.core.utils.ExtractUtils;
 
 import java.util.ArrayList;

@@ -3,8 +3,8 @@ package top.reed.core.executor.function.extension;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
-import top.reed.api.annotation.Example;
-import top.reed.api.executor.FunctionExtension;
+import top.reed.core.annotation.Example;
+import top.reed.core.executor.FunctionExtension;
 
 import java.util.HashMap;
 import java.util.Map;

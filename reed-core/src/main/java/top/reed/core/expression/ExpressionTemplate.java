@@ -10,17 +10,15 @@ import java.util.List;
 
 
 /**
- * A template is loaded by a {@link } from a file marked up with the basis-template language. The template can be
- * rendered to a {@link String} or {@link OutputStream} by calling one of the <code>render()</code> methods. The
- * {@link ExpressionTemplateContext} passed to the <code>render()</code> methods is used to look up variable values referenced in the
- * template.
+ * 表达式模板
+ * <p>
+ * 模板由 从标有基础模板语言的文件加载。
+ * 模板可以通过调用其中一个方法呈现为 或StringOutputStream。
+ * render()传递给render()方法用于ExpressionTemplateContext查找模板中引用的变量值。
  */
 public class ExpressionTemplate {
     private final List<Node> nodes;
 
-    /**
-     * Internal. Created by {@link Parser}.
-     **/
     private ExpressionTemplate(List<Node> nodes) {
         this.nodes = nodes;
     }
@@ -30,14 +28,14 @@ public class ExpressionTemplate {
     }
 
     /**
-     * Internal. The AST nodes representing this template after parsing. See {@link Ast}. Used by {@link AstInterpreter}.
+     * 内部。解析后表示此模板的 AST 节点。请参阅 Ast。由 使用 AstInterpreter。
      **/
     public List<Node> getNodes() {
         return nodes;
     }
 
     /**
-     * Renders the template using the TemplateContext to resolve variable values referenced in the template.
+     * 使用 TemplateContext 呈现模板以解析模板中引用的变量值。
      **/
     public Object render(ExpressionTemplateContext context) {
         return AstInterpreter.interpret(this, context);

@@ -1,9 +1,9 @@
 package top.reed.core.executor.shape;
 
 import org.springframework.stereotype.Component;
-import top.reed.api.context.SpiderContext;
-import top.reed.api.executor.ShapeExecutor;
-import top.reed.api.model.SpiderNode;
+import top.reed.core.context.AutomationContext;
+import top.reed.core.executor.ShapeExecutor;
+import top.reed.core.model.AutomationNode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +20,7 @@ public class ForkJoinExecutor implements ShapeExecutor {
     private final Map<String, Map<String, Object>> cachedVariables = new HashMap<>();
 
     @Override
-    public void execute(SpiderNode node, SpiderContext context, Map<String, Object> variables) {
+    public void execute(AutomationNode node, AutomationContext context, Map<String, Object> variables) {
     }
 
     @Override
@@ -29,7 +29,7 @@ public class ForkJoinExecutor implements ShapeExecutor {
     }
 
     @Override
-    public boolean allowExecuteNext(SpiderNode node, SpiderContext context, Map<String, Object> variables) {
+    public boolean allowExecuteNext(AutomationNode node, AutomationContext context, Map<String, Object> variables) {
         String key = context.getId() + "-" + node.getNodeId();
         synchronized (node) {
             boolean isDone = node.isDone();

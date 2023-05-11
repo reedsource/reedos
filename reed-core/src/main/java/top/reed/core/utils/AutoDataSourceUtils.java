@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * 数据库连接工具类
  *
- * @author jmxd
+ * @author reedsource
  */
 @Component
 public class AutoDataSourceUtils {

@@ -3,7 +3,7 @@ package top.reed.core.http;
 import com.alibaba.fastjson.JSON;
 import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
-import top.reed.api.io.SpiderResponse;
+import top.reed.core.io.AutomationResponse;
 
 import java.io.InputStream;
 import java.util.Map;
@@ -13,7 +13,7 @@ import java.util.Map;
  *
  * @author reedsource
  */
-public class HttpResponse implements SpiderResponse {
+public class HttpResponse implements AutomationResponse {
 
     private final Response response;
 

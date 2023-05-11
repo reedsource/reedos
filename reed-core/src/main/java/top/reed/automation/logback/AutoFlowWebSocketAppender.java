@@ -3,9 +3,9 @@ package top.reed.automation.logback;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.classic.spi.ThrowableProxy;
 import ch.qos.logback.core.UnsynchronizedAppenderBase;
-import top.reed.api.context.SpiderContext;
-import top.reed.api.context.SpiderContextHolder;
-import top.reed.api.model.SpiderLog;
+import top.reed.core.context.AutomationContext;
+import top.reed.core.context.AutomationContextHolder;
+import top.reed.core.model.AutomationLog;
 import top.reed.automation.websocket.model.WebSocketContext;
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class AutoFlowWebSocketAppender extends UnsynchronizedAppenderBase<ILoggi
 
     @Override
     protected void append(ILoggingEvent event) {
-        SpiderContext context = SpiderContextHolder.get();
+        AutomationContext context = AutomationContextHolder.get();
         if (context instanceof WebSocketContext socketContext) {
             Object[] argumentArray = event.getArgumentArray();
             List<Object> arguments = argumentArray == null ? Collections.emptyList() : new ArrayList<>(Arrays.asList(argumentArray));
@@ -25,7 +25,7 @@ public class AutoFlowWebSocketAppender extends UnsynchronizedAppenderBase<ILoggi
             if (throwableProxy != null) {
                 arguments.add(throwableProxy.getThrowable());
             }
-            socketContext.log(new SpiderLog(event.getLevel().levelStr.toLowerCase(), event.getMessage(), arguments));
+            socketContext.log(new AutomationLog(event.getLevel().levelStr.toLowerCase(), event.getMessage(), arguments));
         }
     }
 }

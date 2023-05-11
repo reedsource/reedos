@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
-import top.reed.api.executor.ShapeExecutor;
-import top.reed.api.model.Shape;
+import top.reed.core.executor.ShapeExecutor;
+import top.reed.core.model.Shape;
 
 import javax.annotation.PostConstruct;
 import java.util.List;

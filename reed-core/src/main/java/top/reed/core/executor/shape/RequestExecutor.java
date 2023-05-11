@@ -11,14 +11,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import top.reed.api.Grammerable;
-import top.reed.api.context.CookieContext;
-import top.reed.api.context.SpiderContext;
-import top.reed.api.executor.ShapeExecutor;
-import top.reed.api.io.SpiderResponse;
-import top.reed.api.listener.SpiderListener;
-import top.reed.api.model.Grammer;
-import top.reed.api.model.SpiderNode;
+import top.reed.core.Grammerable;
+import top.reed.core.context.CookieContext;
+import top.reed.core.context.AutomationContext;
+import top.reed.core.executor.ShapeExecutor;
+import top.reed.core.io.AutomationResponse;
+import top.reed.core.listener.AutomationListener;
+import top.reed.core.model.AutomationNode;
+import top.reed.core.model.Grammer;
 import top.reed.core.executor.function.MD5FunctionExecutor;
 import top.reed.core.http.HttpRequest;
 import top.reed.core.http.HttpResponse;
@@ -26,7 +26,6 @@ import top.reed.core.utils.ExpressionUtils;
 
 import javax.annotation.PostConstruct;
 import java.io.*;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
@@ -36,7 +35,7 @@ import java.util.*;
  * @author reedsource
  */
 @Component
-public class RequestExecutor implements ShapeExecutor, Grammerable, SpiderListener {
+public class RequestExecutor implements ShapeExecutor, Grammerable, AutomationListener {
 
     public static final String SLEEP = "sleep";
 
@@ -111,7 +110,7 @@ public class RequestExecutor implements ShapeExecutor, Grammerable, SpiderListen
     }
 
     @Override
-    public void execute(SpiderNode node, SpiderContext context, Map<String, Object> variables) {
+    public void execute(AutomationNode node, AutomationContext context, Map<String, Object> variables) {
         CookieContext cookieContext = context.getCookieContext();
         String sleepCondition = node.getStringJsonValue(SLEEP);
         if (StringUtils.isNotBlank(sleepCondition)) {
@@ -185,7 +184,7 @@ public class RequestExecutor implements ShapeExecutor, Grammerable, SpiderListen
                 request.validateTLSCertificates(false);
                 logger.debug("设置TLS证书验证：{}", false);
             }
-            SpiderNode root = context.getRootNode();
+            AutomationNode root = context.getRootNode();
             //设置请求header
             setRequestHeader(root, request, root.getListJsonValue(HEADER_NAME, HEADER_VALUE), context, variables);
             setRequestHeader(node, request, node.getListJsonValue(HEADER_NAME, HEADER_VALUE), context, variables);
@@ -313,7 +312,7 @@ public class RequestExecutor implements ShapeExecutor, Grammerable, SpiderListen
         }
     }
 
-    private List<InputStream> setRequestFormParameter(SpiderNode node, HttpRequest request, List<Map<String, String>> parameters, SpiderContext context, Map<String, Object> variables) {
+    private List<InputStream> setRequestFormParameter(AutomationNode node, HttpRequest request, List<Map<String, String>> parameters, AutomationContext context, Map<String, Object> variables) {
         List<InputStream> streams = new ArrayList<>();
         if (parameters != null) {
             for (Map<String, String> nameValue : parameters) {
@@ -358,7 +357,7 @@ public class RequestExecutor implements ShapeExecutor, Grammerable, SpiderListen
         return streams;
     }
 
-    private Map<String, String> getRequestCookie(SpiderNode node, List<Map<String, String>> cookies, SpiderContext context, Map<String, Object> variables) {
+    private Map<String, String> getRequestCookie(AutomationNode node, List<Map<String, String>> cookies, AutomationContext context, Map<String, Object> variables) {
         Map<String, String> cookieMap = new HashMap<>();
         if (cookies != null) {
             for (Map<String, String> nameValue : cookies) {
@@ -382,7 +381,7 @@ public class RequestExecutor implements ShapeExecutor, Grammerable, SpiderListen
         return cookieMap;
     }
 
-    private void setRequestParameter(SpiderNode node, HttpRequest request, List<Map<String, String>> parameters, SpiderContext context, Map<String, Object> variables) {
+    private void setRequestParameter(AutomationNode node, HttpRequest request, List<Map<String, String>> parameters, AutomationContext context, Map<String, Object> variables) {
         if (parameters != null) {
             for (Map<String, String> nameValue : parameters) {
                 Object value = null;
@@ -402,7 +401,7 @@ public class RequestExecutor implements ShapeExecutor, Grammerable, SpiderListen
         }
     }
 
-    private void setRequestHeader(SpiderNode node, HttpRequest request, List<Map<String, String>> headers, SpiderContext context, Map<String, Object> variables) {
+    private void setRequestHeader(AutomationNode node, HttpRequest request, List<Map<String, String>> headers, AutomationContext context, Map<String, Object> variables) {
         if (headers != null) {
             for (Map<String, String> nameValue : headers) {
                 Object value = null;
@@ -424,21 +423,21 @@ public class RequestExecutor implements ShapeExecutor, Grammerable, SpiderListen
 
     @Override
     public List<Grammer> grammers() {
-        List<Grammer> grammers = Grammer.findGrammers(SpiderResponse.class, "resp", "SpiderResponse", false);
+        List<Grammer> grammers = Grammer.findGrammers(AutomationResponse.class, "resp", "AutomationResponse", false);
         Grammer grammer = new Grammer();
         grammer.setFunction("resp");
         grammer.setComment("抓取结果");
-        grammer.setOwner("SpiderResponse");
+        grammer.setOwner("AutomationResponse");
         grammers.add(grammer);
         return grammers;
     }
 
     @Override
-    public void beforeStart(SpiderContext context) {
+    public void beforeStart(AutomationContext context) {
 
     }
 
-    private BloomFilter<String> createBloomFilter(SpiderContext context) {
+    private BloomFilter<String> createBloomFilter(AutomationContext context) {
         BloomFilter<String> filter = context.get(BLOOM_FILTER_KEY);
         if (filter == null) {
             Funnel<CharSequence> funnel = Funnels.stringFunnel(StandardCharsets.UTF_8);
@@ -460,7 +459,7 @@ public class RequestExecutor implements ShapeExecutor, Grammerable, SpiderListen
     }
 
     @Override
-    public void afterEnd(SpiderContext context) {
+    public void afterEnd(AutomationContext context) {
         BloomFilter<String> filter = context.get(BLOOM_FILTER_KEY);
         if (filter != null) {
             File file = new File(workspcace, context.getFlowId() + File.separator + "url.bf");

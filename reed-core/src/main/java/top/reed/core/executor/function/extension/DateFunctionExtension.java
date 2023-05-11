@@ -2,9 +2,9 @@ package top.reed.core.executor.function.extension;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.stereotype.Component;
-import top.reed.api.annotation.Comment;
-import top.reed.api.annotation.Example;
-import top.reed.api.executor.FunctionExtension;
+import top.reed.core.annotation.Comment;
+import top.reed.core.annotation.Example;
+import top.reed.core.executor.FunctionExtension;
 
 import java.util.Date;
 

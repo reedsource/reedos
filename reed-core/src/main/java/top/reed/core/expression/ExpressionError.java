@@ -7,20 +7,15 @@ import top.reed.core.expression.parsing.TokenStream;
 import java.io.Serial;
 
 /**
- * All errors reported by the library go through the static functions of this class.
+ * 表达式错误
+ * 库报告的所有错误都通过此类的静态函数
  */
 public class ExpressionError {
 
     /**
-     * <p>
-     * Create an error message based on the provided message and stream, highlighting the line on which the error happened. If the
-     * stream has more tokens, the next token will be highlighted. Otherwise the end of the source of the stream will be
-     * highlighted.
-     * </p>
      *
-     * <p>
-     * Throws a {@link RuntimeException}
-     * </p>
+     * 根据提供的消息和流创建错误消息，突出显示发生错误的行。如果流具有更多令牌，则会突出显示下一个令牌。否则，流源的末尾将突出显示。
+     * 抛出一个 RuntimeException
      */
     public static void error(String message, TokenStream stream) {
         if (stream.hasMore())
@@ -35,8 +30,7 @@ public class ExpressionError {
     }
 
     /**
-     * Create an error message based on the provided message and location, highlighting the location in the line on which the
-     * error happened. Throws a {@link TemplateException}
+     * 据提供的消息和位置创建错误消息，突出显示发生错误的行中的位置。抛出一个 ExpressionError.TemplateException
      **/
     public static void error(String message, Span location, Throwable cause) {
 
@@ -59,16 +53,14 @@ public class ExpressionError {
     }
 
     /**
-     * Create an error message based on the provided message and location, highlighting the location in the line on which the
-     * error happened. Throws a {@link TemplateException}
+     * 据提供的消息和位置创建错误消息，突出显示发生错误的行中的位置。抛出一个 ExpressionError.TemplateException
      **/
     public static void error(String message, Span location) {
         error(message, location, null);
     }
 
     /**
-     * Exception thrown by all basis-template code via {@link ExpressionError#error(String, Span)}. In case an error happens deep inside a
-     * list of included templates, the {@link #getMessage()} method will return a condensed error message.
+     * 所有基础模板代码通过 引发 error(String, Span)的异常。如果在包含的模板列表中深处发生错误， getMessage() 该方法将返回压缩的错误消息。
      **/
     public static class TemplateException extends RuntimeException {
         @Serial
@@ -89,7 +81,7 @@ public class ExpressionError {
         }
 
         /**
-         * Returns the location in the template at which the error happened.
+         * 返回模板中发生错误的位置。
          **/
         public Span getLocation() {
             return location;

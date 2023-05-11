@@ -9,11 +9,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
-import top.reed.api.Grammerable;
-import top.reed.api.context.SpiderContext;
-import top.reed.api.executor.ShapeExecutor;
-import top.reed.api.model.Grammer;
-import top.reed.api.model.SpiderNode;
+import top.reed.core.Grammerable;
+import top.reed.core.context.AutomationContext;
+import top.reed.core.executor.ShapeExecutor;
+import top.reed.core.model.Grammer;
+import top.reed.core.model.AutomationNode;
 import top.reed.core.utils.AutoDataSourceUtils;
 import top.reed.core.utils.ExpressionUtils;
 import top.reed.core.utils.ExtractUtils;
@@ -26,7 +26,7 @@ import java.util.*;
 /**
  * SQL执行器
  *
- * @author jmxd
+ * @author reedsource
  */
 @Component
 public class ExecuteSQLExecutor implements ShapeExecutor, Grammerable {
@@ -54,7 +54,7 @@ public class ExecuteSQLExecutor implements ShapeExecutor, Grammerable {
     private static final Logger logger = LoggerFactory.getLogger(ExecuteSQLExecutor.class);
 
     @Override
-    public void execute(SpiderNode node, SpiderContext context, Map<String, Object> variables) {
+    public void execute(AutomationNode node, AutomationContext context, Map<String, Object> variables) {
         String dsId = node.getStringJsonValue(DATASOURCE_ID);
         String sql = node.getStringJsonValue(SQL);
         if (StringUtils.isBlank(dsId)) {

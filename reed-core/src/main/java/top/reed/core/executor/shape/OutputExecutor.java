@@ -10,12 +10,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import top.reed.api.context.SpiderContext;
-import top.reed.api.executor.ShapeExecutor;
-import top.reed.api.io.SpiderResponse;
-import top.reed.api.listener.SpiderListener;
-import top.reed.api.model.SpiderNode;
-import top.reed.api.model.SpiderOutput;
+import top.reed.core.context.AutomationContext;
+import top.reed.core.executor.ShapeExecutor;
+import top.reed.core.io.AutomationResponse;
+import top.reed.core.listener.AutomationListener;
+import top.reed.core.model.AutomationNode;
+import top.reed.core.model.AutomationOutput;
 import top.reed.core.serializer.FastJsonSerializer;
 import top.reed.core.utils.AutoDataSourceUtils;
 import top.reed.core.utils.ExpressionUtils;
@@ -31,7 +31,7 @@ import java.util.*;
  * @author reedsource
  */
 @Component
-public class OutputExecutor implements ShapeExecutor, SpiderListener {
+public class OutputExecutor implements ShapeExecutor, AutomationListener {
 
     public static final String OUTPUT_ALL = "output-all";
 
@@ -59,8 +59,8 @@ public class OutputExecutor implements ShapeExecutor, SpiderListener {
     private final Map<String, CSVPrinter> cachePrinter = new HashMap<>();
 
     @Override
-    public void execute(SpiderNode node, SpiderContext context, Map<String, Object> variables) {
-        SpiderOutput output = new SpiderOutput();
+    public void execute(AutomationNode node, AutomationContext context, Map<String, Object> variables) {
+        AutomationOutput output = new AutomationOutput();
         output.setNodeName(node.getNodeName());
         output.setNodeId(node.getNodeId());
         boolean outputAll = "1".equals(node.getStringJsonValue(OUTPUT_ALL));
@@ -114,10 +114,10 @@ public class OutputExecutor implements ShapeExecutor, SpiderListener {
      * @param output
      * @param variables
      */
-    private void outputAll(SpiderOutput output, Map<String, Object> variables) {
+    private void outputAll(AutomationOutput output, Map<String, Object> variables) {
         for (Map.Entry<String, Object> item : variables.entrySet()) {
             Object value = item.getValue();
-            if (value instanceof SpiderResponse resp) {
+            if (value instanceof AutomationResponse resp) {
                 output.addOutput(item.getKey() + ".html", resp.getHtml());
                 continue;
             }
@@ -163,7 +163,7 @@ public class OutputExecutor implements ShapeExecutor, SpiderListener {
         }
     }
 
-    private void outputCSV(SpiderNode node, SpiderContext context, String csvName, Map<String, Object> data) {
+    private void outputCSV(AutomationNode node, AutomationContext context, String csvName, Map<String, Object> data) {
         if (data == null || data.isEmpty()) {
             return;
         }
@@ -209,12 +209,12 @@ public class OutputExecutor implements ShapeExecutor, SpiderListener {
     }
 
     @Override
-    public void beforeStart(SpiderContext context) {
+    public void beforeStart(AutomationContext context) {
 
     }
 
     @Override
-    public void afterEnd(SpiderContext context) {
+    public void afterEnd(AutomationContext context) {
         this.releasePrinters();
     }
 

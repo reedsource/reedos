@@ -1,9 +1,9 @@
 package top.reed.core.executor.shape;
 
 import org.springframework.stereotype.Component;
-import top.reed.api.context.SpiderContext;
-import top.reed.api.executor.ShapeExecutor;
-import top.reed.api.model.SpiderNode;
+import top.reed.core.context.AutomationContext;
+import top.reed.core.executor.ShapeExecutor;
+import top.reed.core.model.AutomationNode;
 
 import java.util.Map;
 
@@ -22,7 +22,7 @@ public class LoopExecutor implements ShapeExecutor {
     public static final String LOOP_END = "loopEnd";
 
     @Override
-    public void execute(SpiderNode node, SpiderContext context, Map<String, Object> variables) {
+    public void execute(AutomationNode node, AutomationContext context, Map<String, Object> variables) {
     }
 
     @Override

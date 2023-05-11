@@ -8,14 +8,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import top.reed.api.concurrent.*;
-import top.reed.api.concurrent.SpiderFlowThreadPoolExecutor.SubThreadPoolExecutor;
-import top.reed.api.context.SpiderContext;
-import top.reed.api.context.SpiderContextHolder;
-import top.reed.api.executor.ShapeExecutor;
-import top.reed.api.listener.SpiderListener;
-import top.reed.api.model.SpiderNode;
-import top.reed.api.model.SpiderOutput;
+import top.reed.core.concurrent.*;
+import top.reed.core.concurrent.AutomationFlowThreadPoolExecutor.SubThreadPoolExecutor;
+import top.reed.core.context.AutomationContext;
+import top.reed.core.context.AutomationContextHolder;
+import top.reed.core.executor.ShapeExecutor;
+import top.reed.core.listener.AutomationListener;
+import top.reed.core.model.AutomationNode;
+import top.reed.core.model.AutomationOutput;
 import top.reed.automation.domain.AutoFlow;
 import top.reed.core.executor.shape.LoopExecutor;
 import top.reed.core.utils.AutoFlowUtils;
@@ -34,16 +34,16 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * 自动化任务的核心类
  *
- * @author jmxd
+ * @author reedsource
  */
 @Component
 public class Spider {
 
     private static final String ATOMIC_DEAD_CYCLE = "__atomic_dead_cycle";
-    public static SpiderFlowThreadPoolExecutor executorInstance;
+    public static AutomationFlowThreadPoolExecutor executorInstance;
     private static final Logger logger = LoggerFactory.getLogger(Spider.class);
     @Autowired(required = false)
-    private List<SpiderListener> listeners;
+    private List<AutomationListener> listeners;
     /**
      * 自动化总线程数
      */
@@ -63,27 +63,27 @@ public class Spider {
 
     @PostConstruct
     private void init() {
-        executorInstance = new SpiderFlowThreadPoolExecutor(totalThreads);
+        executorInstance = new AutomationFlowThreadPoolExecutor(totalThreads);
     }
 
-    public List<SpiderOutput> run(AutoFlow autoFlow, SpiderContext context, Map<String, Object> variables) {
+    public List<AutomationOutput> run(AutoFlow autoFlow, AutomationContext context, Map<String, Object> variables) {
         if (variables == null) {
             variables = new HashMap<>();
         }
-        SpiderNode root = AutoFlowUtils.loadXMLFromString(autoFlow.getXml());
+        AutomationNode root = AutoFlowUtils.loadXMLFromString(autoFlow.getXml());
         //执行流程节点
         executeRoot(root, context, variables);
 
         return context.getOutputs();
     }
 
-    public List<SpiderOutput> run(AutoFlow autoFlow, SpiderContext context) {
+    public List<AutomationOutput> run(AutoFlow autoFlow, AutomationContext context) {
         return run(autoFlow, context, new HashMap<>());
     }
 
-    public void runWithTest(SpiderNode root, SpiderContext context) {
+    public void runWithTest(AutomationNode root, AutomationContext context) {
         //将上下文存到ThreadLocal里，以便后续使用
-        SpiderContextHolder.set(context);
+        AutomationContextHolder.set(context);
         //死循环检测的计数器（死循环检测只在测试时有效）
         AtomicInteger executeCount = new AtomicInteger(0);
         //存入到上下文中，以供后续检测
@@ -97,13 +97,13 @@ public class Spider {
             logger.info("测试完毕！");
         }
         //将上下文从ThreadLocal移除，防止内存泄漏
-        SpiderContextHolder.remove();
+        AutomationContextHolder.remove();
     }
 
     /**
      * 执行根节点
      */
-    private void executeRoot(SpiderNode root, SpiderContext context, Map<String, Object> variables) {
+    private void executeRoot(AutomationNode root, AutomationContext context, Map<String, Object> variables) {
         //获取当前流程执行线程数
         int nThreads = NumberUtils.toInt(root.getStringJsonValue(ShapeExecutor.THREAD_COUNT), defaultThreads);
         String strategy = root.getStringJsonValue("submit-strategy");
@@ -126,7 +126,7 @@ public class Spider {
         if (listeners != null) {
             listeners.forEach(listener -> listener.beforeStart(context));
         }
-        Comparator<SpiderNode> comparator = submitStrategy.comparator();
+        Comparator<AutomationNode> comparator = submitStrategy.comparator();
         //启动一个线程开始执行任务,并监听其结束并执行下一级
         Future<?> f = pool.submitAsync(TtlRunnable.get(() -> {
             try {
@@ -184,10 +184,10 @@ public class Spider {
     /**
      * 执行下一级节点
      */
-    private void executeNextNodes(SpiderNode node, SpiderContext context, Map<String, Object> variables) {
-        List<SpiderNode> nextNodes = node.getNextNodes();
+    private void executeNextNodes(AutomationNode node, AutomationContext context, Map<String, Object> variables) {
+        List<AutomationNode> nextNodes = node.getNextNodes();
         if (nextNodes != null) {
-            for (SpiderNode nextNode : nextNodes) {
+            for (AutomationNode nextNode : nextNodes) {
                 executeNode(node, nextNode, context, variables);
             }
         }
@@ -196,7 +196,7 @@ public class Spider {
     /**
      * 执行节点
      */
-    public void executeNode(SpiderNode fromNode, SpiderNode node, SpiderContext context, Map<String, Object> variables) {
+    public void executeNode(AutomationNode fromNode, AutomationNode node, AutomationContext context, Map<String, Object> variables) {
         String shape = node.getStringJsonValue("shape");
         if (StringUtils.isBlank(shape)) {
             executeNextNodes(node, context, variables);
@@ -308,7 +308,7 @@ public class Spider {
     /**
      * 判断箭头上的表达式是否成立
      */
-    private boolean executeCondition(SpiderNode fromNode, SpiderNode node, Map<String, Object> variables, SpiderContext context) {
+    private boolean executeCondition(AutomationNode fromNode, AutomationNode node, Map<String, Object> variables, AutomationContext context) {
         if (fromNode != null) {
             boolean hasException = variables.get("ex") != null;
             String exceptionFlow = node.getExceptionFlow(fromNode.getNodeId());
@@ -340,13 +340,13 @@ public class Spider {
 
         Runnable runnable;
 
-        SpiderNode node;
+        AutomationNode node;
 
         Map<String, Object> variables;
 
         ShapeExecutor executor;
 
-        public SpiderTask(Runnable runnable, SpiderNode node, Map<String, Object> variables, ShapeExecutor executor) {
+        public SpiderTask(Runnable runnable, AutomationNode node, Map<String, Object> variables, ShapeExecutor executor) {
             this.runnable = runnable;
             this.node = node;
             this.variables = variables;

@@ -4,9 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import top.reed.api.context.SpiderContext;
-import top.reed.api.executor.ShapeExecutor;
-import top.reed.api.model.SpiderNode;
+import top.reed.core.context.AutomationContext;
+import top.reed.core.executor.ShapeExecutor;
+import top.reed.core.model.AutomationNode;
 import top.reed.automation.domain.AutoFlow;
 import top.reed.automation.service.AutoFlowService;
 import top.reed.core.Spider;
@@ -31,12 +31,12 @@ public class ProcessExecutor implements ShapeExecutor {
     private Spider spider;
 
     @Override
-    public void execute(SpiderNode node, SpiderContext context, Map<String, Object> variables) {
+    public void execute(AutomationNode node, AutomationContext context, Map<String, Object> variables) {
         Long flowId = Long.valueOf(node.getStringJsonValue("flowId"));
         AutoFlow autoFlow = autoFlowService.selectAutoFlowById(flowId);
         if (autoFlow != null) {
             logger.info("执行子流程:{}", autoFlow.getName());
-            SpiderNode root = AutoFlowUtils.loadXMLFromString(autoFlow.getXml());
+            AutomationNode root = AutoFlowUtils.loadXMLFromString(autoFlow.getXml());
             spider.executeNode(null, root, context, variables);
         } else {
             logger.info("执行子流程:{}失败，找不到该子流程", flowId);

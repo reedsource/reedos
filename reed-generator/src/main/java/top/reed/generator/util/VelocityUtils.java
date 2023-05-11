@@ -138,7 +138,7 @@ public class VelocityUtils {
             templates.add("vm/html/list.html.vm");
             templates.add("vm/java/sub-domain.java.vm");
         }
-        templates.add("vm/html/add.html.vm");
+        templates.add("vm/html/add.html.txt");
         templates.add("vm/html/edit.html.vm");
         templates.add("vm/sql/sql.vm");
         return templates;
@@ -184,7 +184,7 @@ public class VelocityUtils {
             fileName = StringUtils.format("{}/{}.html", htmlPath, businessName);
         } else if (template.contains("tree.html.vm")) {
             fileName = StringUtils.format("{}/tree.html", htmlPath);
-        } else if (template.contains("add.html.vm")) {
+        } else if (template.contains("add.html.txt")) {
             fileName = StringUtils.format("{}/add.html", htmlPath);
         } else if (template.contains("edit.html.vm")) {
             fileName = StringUtils.format("{}/edit.html", htmlPath);

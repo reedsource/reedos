@@ -15,17 +15,17 @@ public class Tokenizer {
         CharacterStream stream = new CharacterStream(source, span.getStart(), span.getEnd());
         List<Token> tokens = new ArrayList<Token>();
 
-        // match opening tag and throw it away
+        // 匹配开始标签并将其扔掉
         if (!stream.match("${", true))
             ExpressionError.error("Expected ${", new Span(source, stream.getPosition(), stream.getPosition() + 1));
         int leftCount = 0;
         int rightCount = 0;
         outer:
         while (stream.hasMore()) {
-            // skip whitespace
+            // 跳过空格
             stream.skipWhiteSpace();
 
-            // Number literal, both integers and floats. Number literals may be suffixed by a type identifier.
+            // 数字文字，包括整数和浮点数。数字文本可以由类型标识符后缀。
             if (stream.matchDigit(false)) {
                 TokenType type = TokenType.IntegerLiteral;
                 stream.startSpan();

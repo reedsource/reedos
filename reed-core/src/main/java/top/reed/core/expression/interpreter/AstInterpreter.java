@@ -12,19 +12,20 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * <p>
- * Interprets a Template given a TemplateContext to lookup variable values in and writes the evaluation results to an output
- * stream. Uses the global {@link Reflection} instance as returned by {@link Reflection#getInstance()} to access members and call
- * methods.
- * </p>
+ * 解释给定模板上下文的模板以查找变量值，并将评估结果写入输出流。
+ * 使用返回Reflection.getInstance()的全局Reflection实例来访问成员和调用方法。
  *
- * <p>
- * The interpeter traverses the AST as stored in {@link ExpressionTemplate#getNodes()}. the interpeter has a method for each AST node type
- * (see {@link Ast} that evaluates that node. A node may return a value, to be used in the interpretation of a parent node or to
- * be written to the output stream.
- * </p>
+ * 交互器遍历存储在 中的 ExpressionTemplate.getNodes()AST。
+ * 交互器对每个 AST 节点类型都有一个方法（请参阅 Ast 评估该节点的方法。节点可以返回一个值，用于解释父节点或写入输出流。
  **/
 public class AstInterpreter {
+    /**
+     * 解释
+     *
+     * @param template
+     * @param context
+     * @return
+     */
     public static Object interpret(ExpressionTemplate template, ExpressionTemplateContext context) {
         try {
             return interpretNodeList(template.getNodes(), template, context);

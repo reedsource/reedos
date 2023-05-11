@@ -1,9 +1,9 @@
 package top.reed.core.executor.function;
 
 import org.springframework.stereotype.Component;
-import top.reed.api.annotation.Comment;
-import top.reed.api.annotation.Example;
-import top.reed.api.executor.FunctionExecutor;
+import top.reed.core.annotation.Comment;
+import top.reed.core.annotation.Example;
+import top.reed.core.executor.FunctionExecutor;
 
 /**
  * Created on 2019-12-06

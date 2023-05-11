@@ -2,9 +2,9 @@ package top.reed.core.executor.function;
 
 import org.apache.commons.lang3.RandomUtils;
 import org.springframework.stereotype.Component;
-import top.reed.api.annotation.Comment;
-import top.reed.api.annotation.Example;
-import top.reed.api.executor.FunctionExecutor;
+import top.reed.core.annotation.Comment;
+import top.reed.core.annotation.Example;
+import top.reed.core.executor.FunctionExecutor;
 
 /**
  * 随机数/字符串 生成方法
