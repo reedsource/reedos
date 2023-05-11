@@ -132,7 +132,7 @@ public class GenController extends BaseController {
      */
     @RequiresPermissions("tool:gen:edit")
     @GetMapping("/edit/{tableId}")
-    public String edit(@PathVariable("tableId") Long tableId, ModelMap mmap) {
+    public String edit(@PathVariable("tableId") Long tableId, ModelMap modelMap) {
         GenTable table = genTableService.selectGenTableById(tableId);
         List<GenTable> genTables = genTableService.selectGenTableAll();
         List<CxSelect> cxSelect = new ArrayList<>();
@@ -147,8 +147,8 @@ public class GenController extends BaseController {
                 cxSelect.add(cxTable);
             }
         }
-        mmap.put("table", table);
-        mmap.put("data", JSON.toJSON(cxSelect));
+        modelMap.put("table", table);
+        modelMap.put("data", JSON.toJSON(cxSelect));
         return prefix + "/edit";
     }
 

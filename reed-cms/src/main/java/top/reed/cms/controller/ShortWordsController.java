@@ -82,9 +82,9 @@ public class ShortWordsController extends BaseController {
      * 修改励志短语
      */
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable("id") Long id, ModelMap mmap) {
+    public String edit(@PathVariable("id") Long id, ModelMap modelMap) {
         ShortWords shortWords = shortWordsService.selectShortWordsById(id);
-        mmap.put("shortWords", shortWords);
+        modelMap.put("shortWords", shortWords);
         return "cms/shortWords/edit";
     }
 

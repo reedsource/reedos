@@ -20,10 +20,10 @@ public class ServerController extends BaseController {
 
     @RequiresPermissions("monitor:server:view")
     @GetMapping()
-    public String server(ModelMap mmap) {
+    public String server(ModelMap modelMap) {
         Server server = new Server();
         server.copyTo();
-        mmap.put("server", server);
+        modelMap.put("server", server);
         return "monitor/server/server";
     }
 }

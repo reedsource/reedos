@@ -83,9 +83,9 @@ public class AutoJobController extends BaseController {
 
     @RequiresPermissions("quartz:job:detail")
     @GetMapping("/detail/{jobId}")
-    public String detail(@PathVariable("jobId") Long jobId, ModelMap mmap) {
-        mmap.put("name", "job");
-        mmap.put("job", jobService.selectJobById(jobId));
+    public String detail(@PathVariable("jobId") Long jobId, ModelMap modelMap) {
+        modelMap.put("name", "job");
+        modelMap.put("job", jobService.selectJobById(jobId));
         return "quartz/job/detail";
     }
 
@@ -171,8 +171,8 @@ public class AutoJobController extends BaseController {
      */
     @RequiresPermissions("quartz:job:edit")
     @GetMapping("/edit/{jobId}")
-    public String edit(@PathVariable("jobId") Long jobId, ModelMap mmap) {
-        mmap.put("job", jobService.selectJobById(jobId));
+    public String edit(@PathVariable("jobId") Long jobId, ModelMap modelMap) {
+        modelMap.put("job", jobService.selectJobById(jobId));
         return "quartz/job/edit";
     }
 

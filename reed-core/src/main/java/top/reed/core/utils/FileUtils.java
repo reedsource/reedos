@@ -112,8 +112,8 @@ public class FileUtils {
     }
 
     public static DownloadStatus downloadFile(String savePath, String fileUrl, boolean downNew) {
-        URL urlfile = null;
-        HttpURLConnection httpUrl = null;
+        URL urlfile;
+        HttpURLConnection httpUrl;
         BufferedInputStream bis = null;
         BufferedOutputStream bos = null;
         if (fileUrl.startsWith("//")) {

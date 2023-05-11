@@ -69,9 +69,9 @@ public class SiteMsgController extends BaseController {
      * 修改站内消息
      */
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable("id") Long id, ModelMap mmap) {
+    public String edit(@PathVariable("id") Long id, ModelMap modelMap) {
         SiteMsg siteMsg = siteMsgService.selectSiteMsgById(id);
-        mmap.put("siteMsg", siteMsg);
+        modelMap.put("siteMsg", siteMsg);
         return  "cms/siteMsg/edit";
     }
 

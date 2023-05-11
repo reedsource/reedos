@@ -121,7 +121,7 @@ public class DemoOperateController extends BaseController {
      * 新增用户
      */
     @GetMapping("/add")
-    public String add(ModelMap mmap) {
+    public String add(ModelMap modelMap) {
         return prefix + "/add";
     }
 
@@ -150,8 +150,8 @@ public class DemoOperateController extends BaseController {
      * 修改用户
      */
     @GetMapping("/edit/{userId}")
-    public String edit(@PathVariable("userId") Integer userId, ModelMap mmap) {
-        mmap.put("user", users.get(userId));
+    public String edit(@PathVariable("userId") Integer userId, ModelMap modelMap) {
+        modelMap.put("user", users.get(userId));
         return prefix + "/edit";
     }
 
@@ -214,8 +214,8 @@ public class DemoOperateController extends BaseController {
      * 查看详细
      */
     @GetMapping("/detail/{userId}")
-    public String detail(@PathVariable("userId") Integer userId, ModelMap mmap) {
-        mmap.put("user", users.get(userId));
+    public String detail(@PathVariable("userId") Integer userId, ModelMap modelMap) {
+        modelMap.put("user", users.get(userId));
         return prefix + "/detail";
     }
 

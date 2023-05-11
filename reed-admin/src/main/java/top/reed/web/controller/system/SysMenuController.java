@@ -68,8 +68,8 @@ public class SysMenuController extends BaseController {
      * 新增
      */
     @GetMapping("/add/{parentId}")
-    public String add(@PathVariable("parentId") Long parentId, ModelMap mmap) {
-        SysMenu menu = null;
+    public String add(@PathVariable("parentId") Long parentId, ModelMap modelMap) {
+        SysMenu menu;
         if (0L != parentId) {
             menu = menuService.selectMenuById(parentId);
         } else {
@@ -77,7 +77,7 @@ public class SysMenuController extends BaseController {
             menu.setMenuId(0L);
             menu.setMenuName("主目录");
         }
-        mmap.put("menu", menu);
+        modelMap.put("menu", menu);
         return "system/menu/add";
     }
 
@@ -102,8 +102,8 @@ public class SysMenuController extends BaseController {
      */
     @RequiresPermissions("system:menu:edit")
     @GetMapping("/edit/{menuId}")
-    public String edit(@PathVariable("menuId") Long menuId, ModelMap mmap) {
-        mmap.put("menu", menuService.selectMenuById(menuId));
+    public String edit(@PathVariable("menuId") Long menuId, ModelMap modelMap) {
+        modelMap.put("menu", menuService.selectMenuById(menuId));
         return "system/menu/edit";
     }
 
@@ -166,8 +166,8 @@ public class SysMenuController extends BaseController {
      * 选择菜单树
      */
     @GetMapping("/selectMenuTree/{menuId}")
-    public String selectMenuTree(@PathVariable("menuId") Long menuId, ModelMap mmap) {
-        mmap.put("menu", menuService.selectMenuById(menuId));
+    public String selectMenuTree(@PathVariable("menuId") Long menuId, ModelMap modelMap) {
+        modelMap.put("menu", menuService.selectMenuById(menuId));
         return "system/menu/tree";
     }
 }

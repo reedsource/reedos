@@ -27,39 +27,39 @@ public class CacheController extends BaseController {
 
     @RequiresPermissions("monitor:cache:view")
     @GetMapping()
-    public String cache(ModelMap mmap) {
-        mmap.put("cacheNames", cacheService.getCacheNames());
+    public String cache(ModelMap modelMap) {
+        modelMap.put("cacheNames", cacheService.getCacheNames());
         return "monitor/cache/cache";
     }
 
     @RequiresPermissions("monitor:cache:view")
     @PostMapping("/getNames")
-    public String getCacheNames(String fragment, ModelMap mmap) {
-        mmap.put("cacheNames", cacheService.getCacheNames());
+    public String getCacheNames(String fragment, ModelMap modelMap) {
+        modelMap.put("cacheNames", cacheService.getCacheNames());
         return "monitor/cache/cache::" + fragment;
     }
 
     @RequiresPermissions("monitor:cache:view")
     @PostMapping("/getKeys")
-    public String getCacheKeys(String fragment, String cacheName, ModelMap mmap) {
-        mmap.put("cacheName", cacheName);
-        mmap.put("cacheKeys", cacheService.getCacheKeys(cacheName));
+    public String getCacheKeys(String fragment, String cacheName, ModelMap modelMap) {
+        modelMap.put("cacheName", cacheName);
+        modelMap.put("cacheKeys", cacheService.getCacheKeys(cacheName));
         return "monitor/cache/cache::" + fragment;
     }
 
     @RequiresPermissions("monitor:cache:view")
     @PostMapping("/getValue")
-    public String getCacheValue(String fragment, String cacheName, String cacheKey, ModelMap mmap) {
-        mmap.put("cacheName", cacheName);
-        mmap.put("cacheKey", cacheKey);
-        mmap.put("cacheValue", cacheService.getCacheValue(cacheName, cacheKey));
+    public String getCacheValue(String fragment, String cacheName, String cacheKey, ModelMap modelMap) {
+        modelMap.put("cacheName", cacheName);
+        modelMap.put("cacheKey", cacheKey);
+        modelMap.put("cacheValue", cacheService.getCacheValue(cacheName, cacheKey));
         return "monitor/cache/cache::" + fragment;
     }
 
     @RequiresPermissions("monitor:cache:view")
     @PostMapping("/clearCacheName")
     @ResponseBody
-    public AjaxResult clearCacheName(String cacheName, ModelMap mmap) {
+    public AjaxResult clearCacheName(String cacheName, ModelMap modelMap) {
         cacheService.clearCacheName(cacheName);
         return AjaxResult.success();
     }
@@ -67,7 +67,7 @@ public class CacheController extends BaseController {
     @RequiresPermissions("monitor:cache:view")
     @PostMapping("/clearCacheKey")
     @ResponseBody
-    public AjaxResult clearCacheKey(String cacheName, String cacheKey, ModelMap mmap) {
+    public AjaxResult clearCacheKey(String cacheName, String cacheKey, ModelMap modelMap) {
         cacheService.clearCacheKey(cacheName, cacheKey);
         return AjaxResult.success();
     }
@@ -75,7 +75,7 @@ public class CacheController extends BaseController {
     @RequiresPermissions("monitor:cache:view")
     @GetMapping("/clearAll")
     @ResponseBody
-    public AjaxResult clearAll(ModelMap mmap) {
+    public AjaxResult clearAll(ModelMap modelMap) {
         cacheService.clearAll();
         return AjaxResult.success();
     }

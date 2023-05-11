@@ -39,7 +39,7 @@ public class Parser {
      * include statement or an expression.
      **/
     private static Node parseStatement(TokenStream tokens) {
-        Node result = null;
+        Node result;
 
         if (tokens.match(TokenType.TextBlock, false))
             result = new Text(tokens.consume().getSpan());
@@ -134,7 +134,7 @@ public class Parser {
             return new NullLiteral(stream.expect(TokenType.NullLiteral).getSpan());
         } else {
             ExpressionError.error("Expected a variable, field, map, array, function or method call, or literal.", stream);
-            return null; // not reached
+            return null; // 从未达到
         }
     }
 

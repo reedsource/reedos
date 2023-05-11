@@ -62,9 +62,9 @@ public class MaterialGroupController extends BaseController {
      * 新增素材分组
      */
     @GetMapping(value = {"/add/{groupId}", "/add/"})
-    public String add(@PathVariable(value = "groupId", required = false) Long groupId, ModelMap mmap) {
+    public String add(@PathVariable(value = "groupId", required = false) Long groupId, ModelMap modelMap) {
         if (RStringUtils.isNotNull(groupId)) {
-            mmap.put("materialGroup", materialGroupService.selectMaterialGroupById(groupId));
+            modelMap.put("materialGroup", materialGroupService.selectMaterialGroupById(groupId));
         }
         return "cms/materialGroup/add";
     }
@@ -84,9 +84,9 @@ public class MaterialGroupController extends BaseController {
      * 修改素材分组
      */
     @GetMapping("/edit/{groupId}")
-    public String edit(@PathVariable("groupId") Long groupId, ModelMap mmap) {
+    public String edit(@PathVariable("groupId") Long groupId, ModelMap modelMap) {
         MaterialGroup materialGroup = materialGroupService.selectMaterialGroupById(groupId);
-        mmap.put("materialGroup", materialGroup);
+        modelMap.put("materialGroup", materialGroup);
         return "cms/materialGroup/edit";
     }
 
@@ -116,9 +116,9 @@ public class MaterialGroupController extends BaseController {
      * 选择素材分组树
      */
     @GetMapping(value = {"/selectMaterialGroupTree/{groupId}", "/selectMaterialGroupTree/"})
-    public String selectMaterialGroupTree(@PathVariable(value = "groupId", required = false) Long groupId, ModelMap mmap) {
+    public String selectMaterialGroupTree(@PathVariable(value = "groupId", required = false) Long groupId, ModelMap modelMap) {
         if (RStringUtils.isNotNull(groupId)) {
-            mmap.put("materialGroup", materialGroupService.selectMaterialGroupById(groupId));
+            modelMap.put("materialGroup", materialGroupService.selectMaterialGroupById(groupId));
         }
         return "cms/materialGroup/tree";
     }

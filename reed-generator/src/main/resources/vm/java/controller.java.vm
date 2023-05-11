@@ -96,9 +96,9 @@ public class ${ClassName}Controller extends BaseController {
      * 新增${functionName}
      */
     @GetMapping(value = { "/add/{${pkColumn.javaField}}", "/add/" })
-    public String add(@PathVariable(value = "${pkColumn.javaField}", required = false) Long ${pkColumn.javaField}, ModelMap mmap) {
+    public String add(@PathVariable(value = "${pkColumn.javaField}", required = false) Long ${pkColumn.javaField}, ModelMap modelMap) {
         if (StringUtils.isNotNull(${pkColumn.javaField})) {
-            mmap.put("${className}", ${className}Service.select${ClassName}By${pkColumn.capJavaField}(${pkColumn.javaField}));
+            modelMap.put("${className}", ${className}Service.select${ClassName}By${pkColumn.capJavaField}(${pkColumn.javaField}));
         }
         return "${moduleName}/${businessName}/add";
     }
@@ -120,9 +120,9 @@ public class ${ClassName}Controller extends BaseController {
      */
     @RequiresPermissions("${permissionPrefix}:edit")
     @GetMapping("/edit/{${pkColumn.javaField}}")
-    public String edit(@PathVariable("${pkColumn.javaField}") ${pkColumn.javaType} ${pkColumn.javaField}, ModelMap mmap) {
+    public String edit(@PathVariable("${pkColumn.javaField}") ${pkColumn.javaType} ${pkColumn.javaField}, ModelMap modelMap) {
         ${ClassName} ${className} = ${className}Service.select${ClassName}By${pkColumn.capJavaField}(${pkColumn.javaField});
-        mmap.put("${className}", ${className});
+        modelMap.put("${className}", ${className});
         return "${moduleName}/${businessName}/edit";
     }
 
@@ -167,9 +167,9 @@ public class ${ClassName}Controller extends BaseController {
      */
 #set($BusinessName=$businessName.substring(0,1).toUpperCase() + ${businessName.substring(1)})
     @GetMapping(value = { "/select${BusinessName}Tree/{${pkColumn.javaField}}", "/select${BusinessName}Tree/" })
-    public String select${BusinessName}Tree(@PathVariable(value = "${pkColumn.javaField}", required = false) Long ${pkColumn.javaField}, ModelMap mmap) {
+    public String select${BusinessName}Tree(@PathVariable(value = "${pkColumn.javaField}", required = false) Long ${pkColumn.javaField}, ModelMap modelMap) {
         if (StringUtils.isNotNull(${pkColumn.javaField})) {
-            mmap.put("${className}", ${className}Service.select${ClassName}By${pkColumn.capJavaField}(${pkColumn.javaField}));
+            modelMap.put("${className}", ${className}Service.select${ClassName}By${pkColumn.capJavaField}(${pkColumn.javaField}));
         }
         return "${moduleName}/${businessName}/tree";
     }

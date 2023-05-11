@@ -285,7 +285,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
         return
       }
     }
-    // Fall through means this is global
+    //  空 不处理 means this is global
     if (parserConfig.globalVars && !inList(varname, state.globalVars))
       state.globalVars = new Var(varname, state.globalVars)
   }

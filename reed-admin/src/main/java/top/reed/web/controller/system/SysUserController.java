@@ -103,9 +103,9 @@ public class SysUserController extends BaseController {
      * 新增用户
      */
     @GetMapping("/add")
-    public String add(ModelMap mmap) {
-        mmap.put("roles", roleService.selectRoleAll().stream().filter(r -> !r.isSuper()).collect(Collectors.toList()));
-        mmap.put("posts", postService.selectPostAll());
+    public String add(ModelMap modelMap) {
+        modelMap.put("roles", roleService.selectRoleAll().stream().filter(r -> !r.isSuper()).collect(Collectors.toList()));
+        modelMap.put("posts", postService.selectPostAll());
         return "system/user/add";
     }
 
@@ -137,13 +137,13 @@ public class SysUserController extends BaseController {
      */
     @RequiresPermissions("system:user:edit")
     @GetMapping("/edit/{userId}")
-    public String edit(@PathVariable("userId") Long userId, ModelMap mmap) {
+    public String edit(@PathVariable("userId") Long userId, ModelMap modelMap) {
         userService.checkUserDataScope(userId);
         List<SysRole> roles = roleService.selectRolesByUserId(userId);
-        mmap.put("user", userService.selectUserById(userId));
+        modelMap.put("user", userService.selectUserById(userId));
         //如果是超级管理员 全部角色, 否 剔除超级管理员的其它角色
-        mmap.put("roles", SysUser.isSuper(userId) ? roles : roles.stream().filter(r -> !r.isSuper()).collect(Collectors.toList()));
-        mmap.put("posts", postService.selectPostsByUserId(userId));
+        modelMap.put("roles", SysUser.isSuper(userId) ? roles : roles.stream().filter(r -> !r.isSuper()).collect(Collectors.toList()));
+        modelMap.put("posts", postService.selectPostsByUserId(userId));
         return "system/user/edit";
     }
 
@@ -173,8 +173,8 @@ public class SysUserController extends BaseController {
 
     @RequiresPermissions("system:user:resetPwd")
     @GetMapping("/resetPwd/{userId}")
-    public String resetPwd(@PathVariable("userId") Long userId, ModelMap mmap) {
-        mmap.put("user", userService.selectUserById(userId));
+    public String resetPwd(@PathVariable("userId") Long userId, ModelMap modelMap) {
+        modelMap.put("user", userService.selectUserById(userId));
         return "system/user/resetPwd";
     }
 
@@ -200,12 +200,12 @@ public class SysUserController extends BaseController {
      * 进入授权角色页
      */
     @GetMapping("/authRole/{userId}")
-    public String authRole(@PathVariable("userId") Long userId, ModelMap mmap) {
+    public String authRole(@PathVariable("userId") Long userId, ModelMap modelMap) {
         SysUser user = userService.selectUserById(userId);
         // 获取用户所属的角色列表
         List<SysRole> roles = roleService.selectRolesByUserId(userId);
-        mmap.put("user", user);
-        mmap.put("roles", SysUser.isSuper(userId) ? roles : roles.stream().filter(r -> !r.isSuper()).collect(Collectors.toList()));
+        modelMap.put("user", user);
+        modelMap.put("roles", SysUser.isSuper(userId) ? roles : roles.stream().filter(r -> !r.isSuper()).collect(Collectors.toList()));
         return "system/user/authRole";
     }
 
@@ -292,8 +292,8 @@ public class SysUserController extends BaseController {
      */
     @RequiresPermissions("system:user:list")
     @GetMapping("/selectDeptTree/{deptId}")
-    public String selectDeptTree(@PathVariable("deptId") Long deptId, ModelMap mmap) {
-        mmap.put("dept", deptService.selectDeptById(deptId));
+    public String selectDeptTree(@PathVariable("deptId") Long deptId, ModelMap modelMap) {
+        modelMap.put("dept", deptService.selectDeptById(deptId));
         return "system/user/deptTree";
     }
 }

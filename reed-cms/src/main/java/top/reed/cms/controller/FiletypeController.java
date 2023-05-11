@@ -83,9 +83,9 @@ public class FiletypeController extends BaseController {
      * 修改文件类型
      */
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable("id") Long id, ModelMap mmap) {
+    public String edit(@PathVariable("id") Long id, ModelMap modelMap) {
         Filetype filetype = filetypeService.selectFiletypeById(id);
-        mmap.put("filetype", filetype);
+        modelMap.put("filetype", filetype);
         return prefix + "/edit";
     }
 

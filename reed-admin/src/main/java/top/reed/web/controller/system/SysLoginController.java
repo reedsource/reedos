@@ -43,19 +43,21 @@ public class SysLoginController extends BaseController {
     private ISysConfigService iSysConfigService;
 
     /**
-     * @param mmap 数据
+     * 进入登录界面
+     *
+     * @param modelMap 数据
      * @return 登录页面
      */
     @GetMapping("/login")
-    public String login(HttpServletRequest request, HttpServletResponse response, ModelMap mmap) {
+    public String login(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) {
         // 如果是Ajax请求，返回Json字符串。
         if (ServletUtils.isAjaxRequest(request)) {
             return ServletUtils.renderString(response, "{\"code\":\"1\",\"msg\":\"未登录或登录超时。请重新登录\"}");
         }
         // 是否开启记住我
-        mmap.put("isRemembered", rememberMe);
+        modelMap.put("isRemembered", rememberMe);
         // 是否开启用户注册
-        mmap.put("isAllowRegister", Convert.toBool(configService.getKey("sys.account.registerUser"), false));
+        modelMap.put("isAllowRegister", Convert.toBool(configService.getKey("sys.account.registerUser"), false));
         //当前用户是否已经登录时 直接跳转到登录页
         //如果此主题/用户在当前会话期间通过提供与系统已知凭据匹配的有效凭据来证明其身份，则返回true，否则返回false。
         //请注意，即使通过“记住我”服务记住了此主题的身份，此方法仍将返回false，除非用户在当前会话期间实际使用正确的凭据登录
@@ -80,6 +82,14 @@ public class SysLoginController extends BaseController {
         }
     }
 
+    /**
+     * 登录界面点击登录
+     *
+     * @param username   账户
+     * @param password   密码
+     * @param rememberMe 记住我
+     * @return 登录结构
+     */
     @PostMapping("/login")
     @ResponseBody
     public AjaxResult ajaxLogin(String username, String password, Boolean rememberMe) {

@@ -229,8 +229,8 @@ public class DemoTableController extends BaseController {
      * 直接加载表格数据
      */
     @GetMapping("/data")
-    public String data(ModelMap mmap) {
-        mmap.put("users", users);
+    public String data(ModelMap modelMap) {
+        modelMap.put("users", users);
         return "demo/table/data";
     }
 

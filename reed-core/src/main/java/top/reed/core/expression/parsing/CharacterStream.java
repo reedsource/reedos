@@ -3,13 +3,12 @@ package top.reed.core.expression.parsing;
 import javax.xml.transform.Source;
 
 /**
- * Wraps a the content of a {@link Source} and handles traversing the contained characters. Manages a current {@link Span} via
- * the {@link #startSpan()} and {@link #endSpan()} methods.
+ * 包装一个源的内容，并处理遍历包含的字符。通过startSpan（）和endSpan（（）方法管理当前Span。
  */
 public class CharacterStream {
     private final String source;
     private final int end;
-    private int index = 0;
+    private int index;
     private int spanStart = 0;
 
     public CharacterStream(String source) {
@@ -28,14 +27,14 @@ public class CharacterStream {
     }
 
     /**
-     * Returns whether there are more characters in the stream
+     * 返回流中是否有更多字符
      **/
     public boolean hasMore() {
         return index < end;
     }
 
     /**
-     * Returns the next character without advancing the stream
+     * 返回下一个字符而不推进流
      **/
     public char peek() {
         if (!hasMore()) throw new RuntimeException("No more characters in stream.");
@@ -43,7 +42,7 @@ public class CharacterStream {
     }
 
     /**
-     * Returns the next character and advance the stream
+     * 返回下一个字符并推进
      **/
     public char consume() {
         if (!hasMore()) throw new RuntimeException("No more characters in stream.");
@@ -51,8 +50,7 @@ public class CharacterStream {
     }
 
     /**
-     * Matches the given needle with the next characters. Returns true if the needle is matched, false otherwise. If there's a
-     * match and consume is true, the stream is advanced by the needle's length.
+     * 将给定的针与下一个字符匹配。如果指针匹配，则返回true，否则返回false。如果有匹配并且消耗是真的，那么流将前进针头的长度。
      */
     public boolean match(String needle, boolean consume) {
         int needleLength = needle.length();
@@ -68,7 +66,7 @@ public class CharacterStream {
     }
 
     /**
-     * Returns whether the next character is a digit and optionally consumes it.
+     * 返回下一个字符是否为数字，并可选择使用该数字。
      **/
     public boolean matchDigit(boolean consume) {
         if (index >= end) return false;
@@ -81,8 +79,7 @@ public class CharacterStream {
     }
 
     /**
-     * Returns whether the next character is the start of an identifier and optionally consumes it. Adheres to
-     * {@link Character#isJavaIdentifierStart(char)}.
+     * 返回下一个字符是否是标识符的开头，并可选择使用它。附加到character.isJavaIdentifierStart（char）
      **/
     public boolean matchIdentifierStart(boolean consume) {
         if (index >= end) return false;
@@ -95,8 +92,7 @@ public class CharacterStream {
     }
 
     /**
-     * Returns whether the next character is the start of an identifier and optionally consumes it. Adheres to
-     * {@link Character#isJavaIdentifierPart(char)}.
+     * 返回下一个字符是否是标识符的开头，并可选择使用它。附加到character.isJavaIdentifierPart（char）。
      **/
     public boolean matchIdentifierPart(boolean consume) {
         if (index >= end) return false;
@@ -109,7 +105,7 @@ public class CharacterStream {
     }
 
     /**
-     * Skips any number of successive whitespace characters.
+     * 跳过任意数量的连续空白字符
      **/
     public void skipWhiteSpace() {
         while (true) {
@@ -125,14 +121,14 @@ public class CharacterStream {
     }
 
     /**
-     * Start a new Span at the current stream position. Call {@link #endSpan()} to complete the span.
+     * 在当前流位置开始一个新的跨度。调用endSpan（）来完成跨度
      **/
     public void startSpan() {
         spanStart = index;
     }
 
     /**
-     * Completes the span started with {@link #startSpan()} at the current stream position.
+     * 在当前流位置完成以startSpan（）开始的跨度。
      **/
     public Span endSpan() {
         return new Span(source, spanStart, index);
@@ -143,7 +139,7 @@ public class CharacterStream {
     }
 
     /**
-     * Returns the current character position in the stream.
+     * 返回流中的当前字符位置
      **/
     public int getPosition() {
         return index;

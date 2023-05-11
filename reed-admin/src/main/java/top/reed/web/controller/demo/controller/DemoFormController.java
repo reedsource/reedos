@@ -191,7 +191,7 @@ public class DemoFormController {
      * 多级联动下拉
      */
     @GetMapping("/cxselect")
-    public String cxselect(ModelMap mmap) {
+    public String cxselect(ModelMap modelMap) {
         CxSelect cxSelectTB = new CxSelect();
         cxSelectTB.setN("淘宝");
         cxSelectTB.setV("taobao");
@@ -224,7 +224,7 @@ public class DemoFormController {
         cxList.add(cxSelectTB);
         cxList.add(cxSelectJD);
 
-        mmap.put("data", JSON.toJSON(cxList));
+        modelMap.put("data", JSON.toJSON(cxList));
         return prefix + "/cxselect";
     }
 
@@ -232,16 +232,16 @@ public class DemoFormController {
      * 局部刷新
      */
     @GetMapping("/localrefresh")
-    public String localRefresh(ModelMap mmap) {
+    public String localRefresh(ModelMap modelMap) {
         JSONArray list = new JSONArray();
         JSONObject item = new JSONObject();
         item.put("name", "这条任务数据是由ModelMap传递到页面的，点击添加按钮后会将这条数据替换为新数据");
         item.put("type", "默认");
         item.put("date", "2020.06.10");
         list.add(item);
-        mmap.put("tasks", list);
-        mmap.put("min", 2);
-        mmap.put("max", 10);
+        modelMap.put("tasks", list);
+        modelMap.put("min", 2);
+        modelMap.put("max", 10);
         return prefix + "/localrefresh";
     }
 
@@ -252,7 +252,7 @@ public class DemoFormController {
      * @param taskName 任务名称
      */
     @PostMapping("/localrefresh/task")
-    public String localRefreshTask(String fragment, String taskName, ModelMap mmap) {
+    public String localRefreshTask(String fragment, String taskName, ModelMap modelMap) {
         JSONArray list = new JSONArray();
         JSONObject item = new JSONObject();
         item.put("name", StringUtils.defaultIfBlank(taskName, "通过电话销售过程中了解各盛市的设备仪器使用、采购情况及相关重要追踪人"));
@@ -264,7 +264,7 @@ public class DemoFormController {
         item.put("type", "新增");
         item.put("date", "2018.06.12");
         list.add(item);
-        mmap.put("tasks", list);
+        modelMap.put("tasks", list);
         return prefix + "/localrefresh::" + fragment;
     }
 

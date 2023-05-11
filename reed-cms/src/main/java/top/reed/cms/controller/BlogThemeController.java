@@ -83,9 +83,9 @@ public class BlogThemeController extends BaseController {
      * 修改博客主题
      */
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable("id") Long id, ModelMap mmap) {
+    public String edit(@PathVariable("id") Long id, ModelMap modelMap) {
         BlogTheme blogTheme = blogThemeService.selectBlogThemeById(id);
-        mmap.put("blogTheme", blogTheme);
+        modelMap.put("blogTheme", blogTheme);
         return "cms/blogTheme/edit";
     }
 

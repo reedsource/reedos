@@ -252,7 +252,7 @@ public enum FileUploadUtils {
         if (!isImage(suffix)) {
             return 0;
         }
-        BufferedImage src = null;
+        BufferedImage src;
         int ret = -1;
         try {
             src = javax.imageio.ImageIO.read(file.getInputStream());
@@ -274,7 +274,7 @@ public enum FileUploadUtils {
         if (!isImage(suffix)) {
             return 0;
         }
-        BufferedImage src = null;
+        BufferedImage src;
         int ret = -1;
         try {
             src = javax.imageio.ImageIO.read(file.getInputStream());

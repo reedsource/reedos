@@ -82,9 +82,9 @@ public class LinkController extends BaseController {
      * 修改链接
      */
     @GetMapping("/edit/{linkId}")
-    public String edit(@PathVariable("linkId") Long linkId, ModelMap mmap) {
+    public String edit(@PathVariable("linkId") Long linkId, ModelMap modelMap) {
         Link link = linkService.selectLinkById(linkId);
-        mmap.put("link", link);
+        modelMap.put("link", link);
         return "cms/link/edit";
     }
 

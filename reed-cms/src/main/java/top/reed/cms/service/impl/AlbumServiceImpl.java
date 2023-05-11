@@ -185,7 +185,7 @@ public class AlbumServiceImpl implements IAlbumService {
 
         if (addArr != null && addArr.length > 0) {
             List<AlbumMaterial> list = Lists.newArrayList();
-            AlbumMaterial albumMaterial = null;
+            AlbumMaterial albumMaterial;
             Integer i = 0;
             for (String s : addArr) {
                 i++;
@@ -199,7 +199,7 @@ public class AlbumServiceImpl implements IAlbumService {
 
             //插入使用记录 cms_material_use
             List<MaterialUse> useList = Lists.newArrayList();
-            MaterialUse use = null;
+            MaterialUse use;
             for (String s : addArr) {
                 use = new MaterialUse();
                 use.setUseId(albumId);

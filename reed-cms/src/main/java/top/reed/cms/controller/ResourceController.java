@@ -87,9 +87,9 @@ public class ResourceController extends BaseController {
      * 修改资源
      */
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable("id") String id, ModelMap mmap) {
+    public String edit(@PathVariable("id") String id, ModelMap modelMap) {
         Resource resource = resourceService.selectResourceById(id);
-        mmap.put("resource", resource);
+        modelMap.put("resource", resource);
         return "cms/resource/edit";
     }
 

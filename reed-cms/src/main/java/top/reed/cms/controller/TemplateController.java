@@ -82,9 +82,9 @@ public class TemplateController extends BaseController {
      * 修改模板
      */
     @GetMapping("/edit/{templateId}")
-    public String edit(@PathVariable("templateId") Long templateId, ModelMap mmap) {
+    public String edit(@PathVariable("templateId") Long templateId, ModelMap modelMap) {
         Template template = templateService.selectTemplateById(templateId);
-        mmap.put("template", template);
+        modelMap.put("template", template);
         return "cms/template/edit";
     }
 

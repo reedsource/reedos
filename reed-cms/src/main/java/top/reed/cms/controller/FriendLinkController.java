@@ -82,9 +82,9 @@ public class FriendLinkController extends BaseController {
      * 修改友情链接
      */
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable("id") Long id, ModelMap mmap) {
+    public String edit(@PathVariable("id") Long id, ModelMap modelMap) {
         FriendLink friendLink = friendLinkService.selectFriendLinkById(id);
-        mmap.put("friendLink", friendLink);
+        modelMap.put("friendLink", friendLink);
         return "cms/friendLink/edit";
     }
 

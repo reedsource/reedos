@@ -82,9 +82,9 @@ public class CommentController extends BaseController {
      * 修改评论
      */
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable("id") Long id, ModelMap mmap) {
+    public String edit(@PathVariable("id") Long id, ModelMap modelMap) {
         Comment comment = commentService.selectCommentById(id);
-        mmap.put("comment", comment);
+        modelMap.put("comment", comment);
         return "cms/comment/edit";
     }
 

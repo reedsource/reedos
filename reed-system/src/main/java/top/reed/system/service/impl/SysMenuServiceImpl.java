@@ -38,7 +38,7 @@ public class SysMenuServiceImpl implements ISysMenuService {
      */
     @Override
     public List<SysMenu> selectMenusByUser(SysUser user) {
-        List<SysMenu> menus = new LinkedList<>();
+        List<SysMenu> menus;
         // 管理员显示所有菜单信息
         if (user.isSuper()) {
             menus = menuMapper.selectMenuNormalAll();
@@ -55,7 +55,7 @@ public class SysMenuServiceImpl implements ISysMenuService {
      */
     @Override
     public List<SysMenu> selectMenuList(SysMenu menu, Long userId) {
-        List<SysMenu> menuList = null;
+        List<SysMenu> menuList;
         if (SysUser.isSuper(userId)) {
             menuList = menuMapper.selectMenuList(menu);
         } else {
@@ -72,7 +72,7 @@ public class SysMenuServiceImpl implements ISysMenuService {
      */
     @Override
     public List<SysMenu> selectMenuAll(Long userId) {
-        List<SysMenu> menuList = null;
+        List<SysMenu> menuList;
         if (SysUser.isSuper(userId)) {
             menuList = menuMapper.selectMenuAll();
         } else {
@@ -126,7 +126,7 @@ public class SysMenuServiceImpl implements ISysMenuService {
     @Override
     public List<Ztree> roleMenuTreeData(SysRole role, Long userId) {
         Long roleId = role.getRoleId();
-        List<Ztree> ztrees = new ArrayList<>();
+        List<Ztree> ztrees;
         List<SysMenu> menuList = selectMenuAll(userId);
         if (StringUtils.isNotNull(roleId)) {
             List<String> roleMenuList = menuMapper.selectMenuTree(roleId);

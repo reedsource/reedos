@@ -88,9 +88,9 @@ public class EmailController extends BaseController {
      * 修改邮件
      */
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable("id") String id, ModelMap mmap) {
+    public String edit(@PathVariable("id") String id, ModelMap modelMap) {
         Email email = emailService.selectEmailById(id);
-        mmap.put("email", email);
+        modelMap.put("email", email);
         return prefix + "/edit";
     }
 

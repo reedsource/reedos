@@ -218,7 +218,7 @@ public class Spider {
         int loopEnd = 1;    //循环结束位置
         String loopCountStr = node.getStringJsonValue(ShapeExecutor.LOOP_COUNT);
         Object loopArray = null;
-        boolean isLoop = false;
+        boolean isLoop;
         if (isLoop = StringUtils.isNotBlank(loopCountStr)) {
             try {
                 loopArray = ExpressionUtils.execute(loopCountStr, variables);
@@ -336,7 +336,7 @@ public class Spider {
         return true;
     }
 
-    class SpiderTask {
+    static class SpiderTask {
 
         Runnable runnable;
 

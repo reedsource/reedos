@@ -96,8 +96,8 @@ public class SysPostController extends BaseController {
      */
     @RequiresPermissions("system:post:edit")
     @GetMapping("/edit/{postId}")
-    public String edit(@PathVariable("postId") Long postId, ModelMap mmap) {
-        mmap.put("post", postService.selectPostById(postId));
+    public String edit(@PathVariable("postId") Long postId, ModelMap modelMap) {
+        modelMap.put("post", postService.selectPostById(postId));
         return "system/post/edit";
     }
 

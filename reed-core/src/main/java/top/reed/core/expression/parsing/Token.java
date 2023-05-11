@@ -1,7 +1,7 @@
 package top.reed.core.expression.parsing;
 
 /**
- * A token produced by the {@link Tokenizer}.
+ * 令牌生成器生成的令牌
  */
 public class Token {
     private final TokenType type;

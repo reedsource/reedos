@@ -82,9 +82,9 @@ public class LinkTypeController extends BaseController {
      * 修改链接分类
      */
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable("id") Long id, ModelMap mmap) {
+    public String edit(@PathVariable("id") Long id, ModelMap modelMap) {
         LinkType linkType = linkTypeService.selectLinkTypeById(id);
-        mmap.put("linkType", linkType);
+        modelMap.put("linkType", linkType);
         return "cms/linkType/edit";
     }
 

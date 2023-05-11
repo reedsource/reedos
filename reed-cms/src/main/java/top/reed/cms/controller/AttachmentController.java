@@ -82,9 +82,9 @@ public class AttachmentController extends BaseController {
      * 修改附件
      */
     @GetMapping("/edit/{attachId}")
-    public String edit(@PathVariable("attachId") String attachId, ModelMap mmap) {
+    public String edit(@PathVariable("attachId") String attachId, ModelMap modelMap) {
         Attachment attachment = attachmentService.selectAttachmentById(attachId);
-        mmap.put("attachment", attachment);
+        modelMap.put("attachment", attachment);
         return "cms/attachment/edit";
     }
 

@@ -71,7 +71,7 @@ public class FileUtils {
      */
     public static String writeBytes(byte[] data, String uploadDir) throws IOException {
         FileOutputStream fos = null;
-        String pathName = "";
+        String pathName;
         try {
             String extension = getFileExtendName(data);
             pathName = DateUtils.datePath() + "/" + IdUtils.fastUUID() + "." + extension;

@@ -83,8 +83,8 @@ public class SysDictTypeController extends BaseController {
      */
     @RequiresPermissions("system:dict:edit")
     @GetMapping("/edit/{dictId}")
-    public String edit(@PathVariable("dictId") Long dictId, ModelMap mmap) {
-        mmap.put("dict", dictTypeService.selectDictTypeById(dictId));
+    public String edit(@PathVariable("dictId") Long dictId, ModelMap modelMap) {
+        modelMap.put("dict", dictTypeService.selectDictTypeById(dictId));
         return "system/dict/type/edit";
     }
 
@@ -129,9 +129,9 @@ public class SysDictTypeController extends BaseController {
      */
     @RequiresPermissions("system:dict:list")
     @GetMapping("/detail/{dictId}")
-    public String detail(@PathVariable("dictId") Long dictId, ModelMap mmap) {
-        mmap.put("dict", dictTypeService.selectDictTypeById(dictId));
-        mmap.put("dictList", dictTypeService.selectDictTypeAll());
+    public String detail(@PathVariable("dictId") Long dictId, ModelMap modelMap) {
+        modelMap.put("dict", dictTypeService.selectDictTypeById(dictId));
+        modelMap.put("dictList", dictTypeService.selectDictTypeAll());
         return "system/dict/data/data";
     }
 
@@ -149,9 +149,9 @@ public class SysDictTypeController extends BaseController {
      */
     @GetMapping("/selectDictTree/{columnId}/{dictType}")
     public String selectDeptTree(@PathVariable("columnId") Long columnId, @PathVariable("dictType") String dictType,
-                                 ModelMap mmap) {
-        mmap.put("columnId", columnId);
-        mmap.put("dict", dictTypeService.selectDictTypeByType(dictType));
+                                 ModelMap modelMap) {
+        modelMap.put("columnId", columnId);
+        modelMap.put("dict", dictTypeService.selectDictTypeByType(dictType));
         return "system/dict/type/tree";
     }
 

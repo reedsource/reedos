@@ -68,9 +68,9 @@ public class PvController extends BaseController {
      * 修改PV
      */
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable("id") Long id, ModelMap mmap) {
+    public String edit(@PathVariable("id") Long id, ModelMap modelMap) {
         Pv pv = pvService.selectPvById(id);
-        mmap.put("pv", pv);
+        modelMap.put("pv", pv);
         return "cms/pv/edit";
     }
 

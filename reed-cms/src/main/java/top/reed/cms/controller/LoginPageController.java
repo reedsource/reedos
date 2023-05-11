@@ -80,9 +80,9 @@ public class LoginPageController extends BaseController {
      * 修改登录页面
      */
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable("id") Long id, ModelMap mmap) {
+    public String edit(@PathVariable("id") Long id, ModelMap modelMap) {
         LoginPage loginPage = loginPageService.selectLoginPageById(id);
-        mmap.put("loginPage", loginPage);
+        modelMap.put("loginPage", loginPage);
         return "cms/loginPage/edit";
     }
 

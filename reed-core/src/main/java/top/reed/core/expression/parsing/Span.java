@@ -1,23 +1,23 @@
 package top.reed.core.expression.parsing;
 
 /**
- * A span within a source string denoted by start and end index, with the latter being exclusive.
+ * 源字符串中的跨度，由起始索引和结束索引表示，后者是互斥的。
  */
 public class Span {
     /**
-     * the source string this span refers to
+     * 此跨度所指的源字符串
      **/
     private final String source;
     /**
-     * Cached String instance to reduce pressure on GC
+     * 缓存字符串实例以减轻GC的压力
      **/
     private final String cachedText;
     /**
-     * start index in source string, starting at 0
+     * 源字符串中的起始索引，从0开始
      **/
     private final int start;
     /**
-     * end index in source string, exclusive, starting at 0
+     * 源字符串中的结束索引，独占，从0开始
      **/
     private final int end;
 
@@ -40,7 +40,7 @@ public class Span {
 
     public Span(Span start, Span end) {
         if (!start.source.equals(end.source))
-            throw new IllegalArgumentException("The two spans do not reference the same source.");
+            throw new IllegalArgumentException("这两个跨度不引用同一个源。");
         if (start.start > end.end) throw new IllegalArgumentException("Start must be <= end.");
         if (start.start < 0) throw new IndexOutOfBoundsException("Start must be >= 0.");
         if (start.start > start.source.length() - 1) throw new IndexOutOfBoundsException("Start outside of string.");
@@ -53,28 +53,28 @@ public class Span {
     }
 
     /**
-     * Returns the text referenced by this span
+     * 返回此跨度引用的文本
      **/
     public String getText() {
         return cachedText;
     }
 
     /**
-     * Returns the index of the first character of this span.
+     * 返回此跨度的第一个字符的索引
      **/
     public int getStart() {
         return start;
     }
 
     /**
-     * Returns the index of the last character of this span plus 1.
+     * 返回此跨度的最后一个字符的索引加1
      **/
     public int getEnd() {
         return end;
     }
 
     /**
-     * Returns the source string this span references.
+     * 返回此跨度引用的源字符串
      **/
     public String getSource() {
         return source;
@@ -86,7 +86,7 @@ public class Span {
     }
 
     /**
-     * Returns the line this span is on. Does not return a correct result for spans across multiple lines.
+     * 返回此跨度所在的行。对于跨多行的跨度，不返回正确的结果
      **/
     public Line getLine() {
         int lineStart = start;
@@ -126,7 +126,7 @@ public class Span {
     }
 
     /**
-     * A line within a Source
+     * 源中的一行
      **/
     public static class Line {
         private final String source;

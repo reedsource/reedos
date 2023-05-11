@@ -41,11 +41,11 @@ public class SysProfileController extends BaseController {
      * 个人信息
      */
     @GetMapping()
-    public String profile(ModelMap mmap) {
+    public String profile(ModelMap modelMap) {
         SysUser user = getSysUser();
-        mmap.put("user", user);
-        mmap.put("roleGroup", userService.selectUserRoleGroup(user.getUserId()));
-        mmap.put("postGroup", userService.selectUserPostGroup(user.getUserId()));
+        modelMap.put("user", user);
+        modelMap.put("roleGroup", userService.selectUserRoleGroup(user.getUserId()));
+        modelMap.put("postGroup", userService.selectUserPostGroup(user.getUserId()));
         return "system/user/profile/profile";
     }
 
@@ -57,9 +57,9 @@ public class SysProfileController extends BaseController {
     }
 
     @GetMapping("/resetPwd")
-    public String resetPwd(ModelMap mmap) {
+    public String resetPwd(ModelMap modelMap) {
         SysUser user = getSysUser();
-        mmap.put("user", userService.selectUserById(user.getUserId()));
+        modelMap.put("user", userService.selectUserById(user.getUserId()));
         return "system/user/profile/resetPwd";
     }
 
@@ -88,9 +88,9 @@ public class SysProfileController extends BaseController {
      * 修改用户
      */
     @GetMapping("/edit")
-    public String edit(ModelMap mmap) {
+    public String edit(ModelMap modelMap) {
         SysUser user = getSysUser();
-        mmap.put("user", userService.selectUserById(user.getUserId()));
+        modelMap.put("user", userService.selectUserById(user.getUserId()));
         return "system/user/profile/edit";
     }
 
@@ -98,9 +98,9 @@ public class SysProfileController extends BaseController {
      * 修改头像
      */
     @GetMapping("/avatar")
-    public String avatar(ModelMap mmap) {
+    public String avatar(ModelMap modelMap) {
         SysUser user = getSysUser();
-        mmap.put("user", userService.selectUserById(user.getUserId()));
+        modelMap.put("user", userService.selectUserById(user.getUserId()));
         return "system/user/profile/avatar";
     }
 

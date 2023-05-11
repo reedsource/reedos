@@ -172,7 +172,7 @@ public class JavaReflection extends Reflection {
                 field.setAccessible(true);
                 fields.put(name, field);
             } catch (Throwable t) {
-                // fall through, try super classes
+                //  空 不处理, try super classes
             }
 
             if (field == null) {
@@ -183,7 +183,7 @@ public class JavaReflection extends Reflection {
                         field.setAccessible(true);
                         fields.put(name, field);
                     } catch (NoSuchFieldException e) {
-                        // fall through
+                        //  空 不处理
                     }
                     parentClass = parentClass.getSuperclass();
                 }
@@ -295,7 +295,7 @@ public class JavaReflection extends Reflection {
                 method.setAccessible(true);
                 methods.put(signature, method);
             } catch (Throwable e) {
-                // fall through
+                //  空 不处理
             }
 
             if (method == null) {
@@ -310,7 +310,7 @@ public class JavaReflection extends Reflection {
                         method.setAccessible(true);
                         methods.put(signature, method);
                     } catch (Throwable e) {
-                        // fall through
+                        //  空 不处理
                     }
                     parentClass = parentClass.getSuperclass();
                 }

@@ -74,9 +74,9 @@ public class AlbumController extends BaseController {
      * 修改素材专辑
      */
     @GetMapping("/edit/{albumId}")
-    public String edit(@PathVariable("albumId") String albumId, ModelMap mmap) {
+    public String edit(@PathVariable("albumId") String albumId, ModelMap modelMap) {
         Album album = albumService.selectAlbumById(albumId);
-        mmap.put("album", album);
+        modelMap.put("album", album);
         return "cms/album/edit";
     }
 
@@ -108,8 +108,8 @@ public class AlbumController extends BaseController {
      */
     @RequiresPermissions("cms:album:addMaterial")
     @GetMapping("/toAddMaterial/{albumId}")
-    public String toAddMaterial(@PathVariable("albumId") String albumId, ModelMap mmap) {
-        mmap.put("albumId", albumId);
+    public String toAddMaterial(@PathVariable("albumId") String albumId, ModelMap modelMap) {
+        modelMap.put("albumId", albumId);
         return "cms/album/addMaterial";
     }
 
@@ -128,8 +128,8 @@ public class AlbumController extends BaseController {
      * 跳转选择未分配素材页面
      */
     @GetMapping("/selectMaterial/{albumId}")
-    public String selectMaterial(@PathVariable("albumId") String albumId, ModelMap mmap) {
-        mmap.put("albumId", albumId);
+    public String selectMaterial(@PathVariable("albumId") String albumId, ModelMap modelMap) {
+        modelMap.put("albumId", albumId);
         return "cms/album/selectMaterial";
     }
 

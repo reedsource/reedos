@@ -44,9 +44,9 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection arg0) {
         SysUser user = ShiroUtils.getSysUser();
         // 角色列表
-        Set<String> roles = new HashSet<>();
+        Set<String> roles;
         // 功能列表
-        Set<String> menus = new HashSet<>();
+        Set<String> menus;
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         // 超级管理员拥有所有权限
         if (user.isSuper()) {
@@ -75,7 +75,7 @@ public class UserRealm extends AuthorizingRealm {
             password = new String(upToken.getPassword());
         }
 
-        SysUser user = null;
+        SysUser user;
         try {
             user = loginService.login(username, password);
         } catch (CaptchaException e) {

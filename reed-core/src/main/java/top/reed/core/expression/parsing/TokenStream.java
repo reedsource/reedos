@@ -2,13 +2,11 @@ package top.reed.core.expression.parsing;
 
 import top.reed.core.expression.ExpressionError;
 
-import javax.xml.transform.Source;
 import java.util.List;
 
 
 /**
- * Iterates over a list of {@link Token} instances, provides methods to match expected tokens and throw errors in case of a
- * mismatch.
+ * 在令牌实例列表上迭代，提供匹配预期令牌的方法，并在不匹配的情况下抛出错误
  */
 public class TokenStream {
     private final List<Token> tokens;
@@ -22,7 +20,7 @@ public class TokenStream {
     }
 
     /**
-     * Returns whether there are more tokens in the stream.
+     * 返回流中是否有更多令牌。
      **/
     public boolean hasMore() {
         return index < end;
@@ -37,7 +35,7 @@ public class TokenStream {
     }
 
     /**
-     * Consumes the next token and returns it.
+     * 消耗下一个令牌并将其返回。
      **/
     public Token consume() {
         if (!hasMore()) throw new RuntimeException("Reached the end of the source.");
@@ -57,8 +55,7 @@ public class TokenStream {
     }
 
     /**
-     * Checks if the next token has the give type and optionally consumes, or throws an error if the next token did not match the
-     * type.
+     * 检查下一个令牌是否具有给定类型并可选地消耗，或者如果下一个标记与该类型不匹配则抛出错误。
      */
     public Token expect(TokenType type) {
         boolean result = match(type, true);
@@ -69,15 +66,14 @@ public class TokenStream {
                 ExpressionError.error("Expected '" + type.getError() + "', but reached the end of the source.", this);
             else
                 ExpressionError.error("Expected '" + type.getError() + "', but got '" + token.getText() + "'", span);
-            return null; // never reached
+            return null; // 从未达到
         } else {
             return tokens.get(index - 1);
         }
     }
 
     /**
-     * Checks if the next token matches the given text and optionally consumes, or throws an error if the next token did not match
-     * the text.
+     * 检查下一个令牌是否与给定的文本匹配并可选地消耗，或者如果下一个标记与文本不匹配则抛出错误。
      */
     public Token expect(String text) {
         boolean result = match(text, true);
@@ -88,14 +84,14 @@ public class TokenStream {
                 ExpressionError.error("Expected '" + text + "', but reached the end of the source.", this);
             else
                 ExpressionError.error("Expected '" + text + "', but got '" + token.getText() + "'", span);
-            return null; // never reached
+            return null; // 从未达到
         } else {
             return tokens.get(index - 1);
         }
     }
 
     /**
-     * Matches and optionally consumes the next token in case of a match. Returns whether the token matched.
+     * 匹配并在匹配的情况下选择性地消耗下一个令牌。返回令牌是否匹配。
      */
     public boolean match(TokenType type, boolean consume) {
         if (index >= end) return false;
@@ -107,7 +103,7 @@ public class TokenStream {
     }
 
     /**
-     * Matches and optionally consumes the next token in case of a match. Returns whether the token matched.
+     * 匹配并在匹配的情况下选择性地消耗下一个令牌。返回令牌是否匹配。
      */
     public boolean match(String text, boolean consume) {
         if (index >= end) return false;
@@ -119,8 +115,7 @@ public class TokenStream {
     }
 
     /**
-     * Matches any of the token types and optionally consumes the next token in case of a match. Returns whether the token
-     * matched.
+     * 匹配任何一种令牌类型，并在匹配的情况下选择性地使用下一个令牌。返回令牌是否匹配。
      */
     public boolean match(boolean consume, TokenType... types) {
         for (TokenType type : types) {
@@ -130,8 +125,7 @@ public class TokenStream {
     }
 
     /**
-     * Matches any of the token texts and optionally consumes the next token in case of a match. Returns whether the token
-     * matched.
+     * 匹配任何令牌文本，并在匹配的情况下选择性地使用下一个令牌。返回令牌是否匹配。
      */
     public boolean match(boolean consume, String... tokenTexts) {
         for (String text : tokenTexts) {
@@ -141,7 +135,7 @@ public class TokenStream {
     }
 
     /**
-     * Returns the {@link Source} this stream wraps.
+     * 返回此流包装的源
      */
     public String getSource() {
         if (tokens.size() == 0) return null;

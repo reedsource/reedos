@@ -4,9 +4,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 /**
- * Enumeration of token types. A token type consists of a representation for error messages, and may optionally specify a literal
- * to be used by the {@link CharacterStream} to recognize the token. Token types are sorted by their literal length to easy
- * matching of token types with common prefixes, e.g. "<" and "<=". Token types with longer literals are matched first.
+ * 令牌类型的枚举。令牌类型由错误消息的表示形式组成，并且可以选择指定CharacterStream用于识别令牌的文字。
+ * 令牌类型根据其文字长度进行排序，以便将令牌类型与常见前缀（例如“<”和“<=”）轻松匹配。首先匹配文本较长的令牌类型。
  */
 public enum TokenType {
     // @off
@@ -26,7 +25,7 @@ public enum TokenType {
     LeftBracket("[", "["),
     RightBracket("]", "]"),
     LeftCurly("{", "{"),
-    RightCurly("}"), // special treatment!
+    RightCurly("}"), // 特殊待遇！
     Less("<", "<"),
     Greater(">", ">"),
     LessEqual("<=", "<="),
@@ -42,9 +41,9 @@ public enum TokenType {
     DoubleQuote("\"", "\""),
     SingleQuote("'", "'"),
     BooleanLiteral("true or false"),
-    DoubleLiteral("a double floating point number"),
-    FloatLiteral("a floating point number"),
-    LongLiteral("a long integer number"),
+    DoubleLiteral("双浮点数"),
+    FloatLiteral("浮点数"),
+    LongLiteral("一个长整数"),
     IntegerLiteral("an integer number"),
     ShortLiteral("a short integer number"),
     ByteLiteral("a byte integer number"),
@@ -52,13 +51,11 @@ public enum TokenType {
     StringLiteral("a string"),
     NullLiteral("null"),
     Identifier("an identifier");
-    // @on
 
     private static final TokenType[] values;
 
     static {
-        // Sort the token types by their literal length. The character stream uses this
-        // this order to match tokens with the longest length first.
+        // 按标记类型的文字长度对其进行排序。字符流使用此顺序首先匹配长度最长的令牌。
         values = TokenType.values();
         Arrays.sort(values, new Comparator<TokenType>() {
             @Override
@@ -85,22 +82,21 @@ public enum TokenType {
     }
 
     /**
-     * Returns an array of token types, sorted in descending order based on their literal length. This is used by the
-     * {@link CharacterStream} to match token types with the longest literal first. E.g. "<=" will be matched before "<".
+     * 返回一个令牌类型数组，根据其文字长度按降序排序。CharacterStream首先使用它来匹配具有最长文字的令牌类型。例如，“<=”将在“<”之前匹配。
      **/
     public static TokenType[] getSortedValues() {
         return values;
     }
 
     /**
-     * The literal to match, may be null.
+     * 要匹配的文字可能为null
      **/
     public String getLiteral() {
         return literal;
     }
 
     /**
-     * The error string to use when reporting this token type in an error message.
+     * 在错误消息中报告此令牌类型时要使用的错误字符串
      **/
     public String getError() {
         return error;

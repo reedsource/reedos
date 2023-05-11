@@ -98,9 +98,9 @@ public class SysRoleController extends BaseController {
      */
     @RequiresPermissions("system:role:edit")
     @GetMapping("/edit/{roleId}")
-    public String edit(@PathVariable("roleId") Long roleId, ModelMap mmap) {
+    public String edit(@PathVariable("roleId") Long roleId, ModelMap modelMap) {
         roleService.checkRoleDataScope(roleId);
-        mmap.put("role", roleService.selectRoleById(roleId));
+        modelMap.put("role", roleService.selectRoleById(roleId));
         return "system/role/edit";
     }
 
@@ -128,8 +128,8 @@ public class SysRoleController extends BaseController {
      * 角色分配数据权限
      */
     @GetMapping("/authDataScope/{roleId}")
-    public String authDataScope(@PathVariable("roleId") Long roleId, ModelMap mmap) {
-        mmap.put("role", roleService.selectRoleById(roleId));
+    public String authDataScope(@PathVariable("roleId") Long roleId, ModelMap modelMap) {
+        modelMap.put("role", roleService.selectRoleById(roleId));
         return "system/role/dataScope";
     }
 
@@ -203,8 +203,8 @@ public class SysRoleController extends BaseController {
      */
     @RequiresPermissions("system:role:edit")
     @GetMapping("/authUser/{roleId}")
-    public String authUser(@PathVariable("roleId") Long roleId, ModelMap mmap) {
-        mmap.put("role", roleService.selectRoleById(roleId));
+    public String authUser(@PathVariable("roleId") Long roleId, ModelMap modelMap) {
+        modelMap.put("role", roleService.selectRoleById(roleId));
         return "system/role/authUser";
     }
 
@@ -246,8 +246,8 @@ public class SysRoleController extends BaseController {
      * 选择用户
      */
     @GetMapping("/authUser/selectUser/{roleId}")
-    public String selectUser(@PathVariable("roleId") Long roleId, ModelMap mmap) {
-        mmap.put("role", roleService.selectRoleById(roleId));
+    public String selectUser(@PathVariable("roleId") Long roleId, ModelMap modelMap) {
+        modelMap.put("role", roleService.selectRoleById(roleId));
         return "system/role/selectUser";
     }
 

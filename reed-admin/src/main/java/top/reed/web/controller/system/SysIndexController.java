@@ -45,25 +45,25 @@ public class SysIndexController extends BaseController {
 
     // 系统首页
     @GetMapping("/index")
-    public String index(ModelMap mmap) {
+    public String index(ModelMap modelMap) {
         // 取身份信息
         SysUser user = getSysUser();
         // 根据用户id取出菜单
         List<SysMenu> menus = menuService.selectMenusByUser(user);
-        mmap.put("menus", menus);
-        mmap.put("user", user);
-        mmap.put("sideTheme", configService.selectConfigByKey("sys.index.sideTheme"));
-        mmap.put("skinName", configService.selectConfigByKey("sys.index.skinName"));
+        modelMap.put("menus", menus);
+        modelMap.put("user", user);
+        modelMap.put("sideTheme", configService.selectConfigByKey("sys.index.sideTheme"));
+        modelMap.put("skinName", configService.selectConfigByKey("sys.index.skinName"));
         Boolean footer = Convert.toBool(configService.selectConfigByKey("sys.index.footer"), true);
         Boolean tagsView = Convert.toBool(configService.selectConfigByKey("sys.index.tagsView"), true);
-        mmap.put("footer", footer);
-        mmap.put("tagsView", tagsView);
-        mmap.put("mainClass", contentMainClass(footer, tagsView));
-        mmap.put("copyrightYear", ReedConfig.getCopyrightYear());
-        mmap.put("demoEnabled", ReedConfig.isDemoEnabled());
-        mmap.put("isDefaultModifyPwd", initPasswordIsModify(user.getPwdUpdateDate()));
-        mmap.put("isPasswordExpired", passwordIsExpiration(user.getPwdUpdateDate()));
-        mmap.put("isMobile", ServletUtils.checkAgentIsMobile(ServletUtils.getRequest().getHeader("User-Agent")));
+        modelMap.put("footer", footer);
+        modelMap.put("tagsView", tagsView);
+        modelMap.put("mainClass", contentMainClass(footer, tagsView));
+        modelMap.put("copyrightYear", ReedConfig.getCopyrightYear());
+        modelMap.put("demoEnabled", ReedConfig.isDemoEnabled());
+        modelMap.put("isDefaultModifyPwd", initPasswordIsModify(user.getPwdUpdateDate()));
+        modelMap.put("isPasswordExpired", passwordIsExpiration(user.getPwdUpdateDate()));
+        modelMap.put("isMobile", ServletUtils.checkAgentIsMobile(ServletUtils.getRequest().getHeader("User-Agent")));
 
         // 菜单导航显示风格
         String menuStyle = configService.selectConfigByKey("sys.index.menuStyle");
@@ -83,8 +83,8 @@ public class SysIndexController extends BaseController {
 
     // 锁定屏幕
     @GetMapping("/lockscreen")
-    public String lockscreen(ModelMap mmap) {
-        mmap.put("user", getSysUser());
+    public String lockscreen(ModelMap modelMap) {
+        modelMap.put("user", getSysUser());
         ServletUtils.getSession().setAttribute(ShiroConstants.LOCK_SCREEN, true);
         return "lock";
     }
@@ -118,8 +118,8 @@ public class SysIndexController extends BaseController {
 
     // 系统介绍
     @GetMapping("/system/main")
-    public String main(ModelMap mmap) {
-        mmap.put("version", ReedConfig.getVersion());
+    public String main(ModelMap modelMap) {
+        modelMap.put("version", ReedConfig.getVersion());
         return "main";
     }
 

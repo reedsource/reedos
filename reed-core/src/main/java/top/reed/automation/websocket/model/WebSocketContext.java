@@ -95,7 +95,7 @@ public class WebSocketContext extends AutomationContext {
         }
     }
 
-    class DebugInfo {
+    static class DebugInfo {
 
         private String nodeId;
 

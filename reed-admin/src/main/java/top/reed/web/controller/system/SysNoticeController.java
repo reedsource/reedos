@@ -70,8 +70,8 @@ public class SysNoticeController extends BaseController {
      */
     @RequiresPermissions("system:notice:edit")
     @GetMapping("/edit/{noticeId}")
-    public String edit(@PathVariable("noticeId") Long noticeId, ModelMap mmap) {
-        mmap.put("notice", noticeService.selectNoticeById(noticeId));
+    public String edit(@PathVariable("noticeId") Long noticeId, ModelMap modelMap) {
+        modelMap.put("notice", noticeService.selectNoticeById(noticeId));
         return "system/notice/edit";
     }
 

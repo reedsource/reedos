@@ -20,13 +20,12 @@ import java.util.*;
 
 
 /**
- * Templates are parsed into an abstract syntax tree (AST) nodes by a Parser. This class contains all AST node types.
+ * 模板由解析器解析为抽象语法树（AST）节点。此类包含所有AST节点类型
  */
 public abstract class Ast {
 
     /**
-     * Base class for all AST nodes. A node minimally stores the {@link Span} that references its location in the
-     * {@link Source}.
+     * 所有AST节点的基类。节点最低限度地存储引用其在源中位置的Span。
      **/
     public abstract static class Node {
         private final Span span;
@@ -36,7 +35,7 @@ public abstract class Ast {
         }
 
         /**
-         * Returns the {@link Span} referencing this node's location in the {@link Source}.
+         * 返回引用此节点在源中的位置的跨度
          **/
         public Span getSpan() {
             return span;
@@ -51,7 +50,7 @@ public abstract class Ast {
     }
 
     /**
-     * A text node represents an "un-templated" span in the source that should be emitted verbatim.
+     * 文本节点表示源中应该逐字发出的“未模板化”跨度。
      **/
     public static class Text extends Node {
         private final String content;
@@ -75,7 +74,7 @@ public abstract class Ast {
         }
 
         /**
-         * Returns the UTF-8 representation of this text node.
+         * 返回此文本节点的UTF-8表示形式
          **/
         public String getContent() {
             return content;
@@ -88,8 +87,7 @@ public abstract class Ast {
     }
 
     /**
-     * All expressions are subclasses of this node type. Expressions are separated into unary operations (!, -), binary operations
-     * (+, -, *, /, etc.) and ternary operations (?:).
+     * 所有表达式都是此节点类型的子类。表达式分为一元运算（！，-）、二元运算（+，-，*，/等）和三元运算（？：）
      */
     public abstract static class Expression extends Node {
         public Expression(Span span) {
@@ -98,7 +96,7 @@ public abstract class Ast {
     }
 
     /**
-     * An unary operation node represents a logical or numerical negation.
+     * 一元运算节点表示逻辑或数字的否定。
      **/
     public static class UnaryOperation extends Expression {
 
@@ -138,7 +136,7 @@ public abstract class Ast {
                     return -(Long) operand;
                 } else {
                     ExpressionError.error("Operand of operator '" + getOperator().name() + "' must be a number, got " + operand, getSpan());
-                    return null; // never reached
+                    return null; // 从未达到
                 }
             } else if (getOperator() == UnaryOperator.Not) {
                 if (!(operand instanceof Boolean)) {
@@ -164,14 +162,13 @@ public abstract class Ast {
                     return UnaryOperator.Negate;
                 }
                 ExpressionError.error("Unknown unary operator " + op + ".", op.getSpan());
-                return null; // not reached
+                return null; // 从未达到
             }
         }
     }
 
     /**
-     * A binary operation represents arithmetic operators, like addition or division, comparison operators, like less than or
-     * equals, logical operators, like and, or an assignment.
+     * 二进制运算表示算术运算符，如加法或除法，比较运算符，如小于或等于，逻辑运算符，如和，或赋值
      **/
     public static class BinaryOperation extends Expression {
 
@@ -222,7 +219,7 @@ public abstract class Ast {
             }
 
             ExpressionError.error("Operands for addition operator must be numbers or strings, got " + left + ", " + right + ".", getSpan());
-            return null; // never reached
+            return null; // 从未达到
         }
 
         private Object evaluateSubtraction(Object left, Object right) {
@@ -240,7 +237,7 @@ public abstract class Ast {
                 return ((Number) left).byteValue() - ((Number) right).byteValue();
             } else {
                 ExpressionError.error("Operands for subtraction operator must be numbers" + left + ", " + right + ".", getSpan());
-                return null; // never reached
+                return null; // 从未达到
             }
         }
 
@@ -259,7 +256,7 @@ public abstract class Ast {
                 return ((Number) left).byteValue() * ((Number) right).byteValue();
             } else {
                 ExpressionError.error("Operands for multiplication operator must be numbers" + left + ", " + right + ".", getSpan());
-                return null; // never reached
+                return null; // 从未达到
             }
         }
 
@@ -278,7 +275,7 @@ public abstract class Ast {
                 return ((Number) left).byteValue() / ((Number) right).byteValue();
             } else {
                 ExpressionError.error("Operands for division operator must be numbers" + left + ", " + right + ".", getSpan());
-                return null; // never reached
+                return null; // 从未达到
             }
         }
 
@@ -297,7 +294,7 @@ public abstract class Ast {
                 return ((Number) left).byteValue() % ((Number) right).byteValue();
             } else {
                 ExpressionError.error("Operands for modulo operator must be numbers" + left + ", " + right + ".", getSpan());
-                return null; // never reached
+                return null; // 从未达到
             }
         }
 
@@ -316,7 +313,7 @@ public abstract class Ast {
                 return ((Number) left).byteValue() < ((Number) right).byteValue();
             } else {
                 ExpressionError.error("Operands for less operator must be numbers" + left + ", " + right + ".", getSpan());
-                return false; // never reached
+                return false; // 从未达到
             }
         }
 
@@ -335,7 +332,7 @@ public abstract class Ast {
                 return ((Number) left).byteValue() <= ((Number) right).byteValue();
             } else {
                 ExpressionError.error("Operands for less/equal operator must be numbers" + left + ", " + right + ".", getSpan());
-                return null; // never reached
+                return null; // 从未达到
             }
         }
 
@@ -354,7 +351,7 @@ public abstract class Ast {
                 return ((Number) left).byteValue() > ((Number) right).byteValue();
             } else {
                 ExpressionError.error("Operands for greater operator must be numbers" + left + ", " + right + ".", getSpan());
-                return null; // never reached
+                return null; // 从未达到
             }
         }
 
@@ -373,7 +370,7 @@ public abstract class Ast {
                 return ((Number) left).byteValue() >= ((Number) right).byteValue();
             } else {
                 ExpressionError.error("Operands for greater/equal operator must be numbers" + left + ", " + right + ".", getSpan());
-                return null; // never reached
+                return null; // 从未达到
             }
         }
 
@@ -528,13 +525,13 @@ public abstract class Ast {
                     return BinaryOperator.Assignment;
                 }
                 ExpressionError.error("Unknown binary operator " + op + ".", op.getSpan());
-                return null; // not reached
+                return null; // 从未达到
             }
         }
     }
 
     /**
-     * A ternary operation is an abbreviated if/then/else operation, and equivalent to the the ternary operator in Java.
+     * 三元运算是一种缩写的if/then/else运算，相当于Java中的三元运算符
      **/
     public static class TernaryOperation extends Expression {
         private final Expression condition;
@@ -564,14 +561,14 @@ public abstract class Ast {
         public Object evaluate(ExpressionTemplate template, ExpressionTemplateContext context) throws IOException {
             Object condition = getCondition().evaluate(template, context);
             if (!(condition instanceof Boolean)) {
-                ExpressionError.error("Condition of ternary operator must be a boolean, got " + condition + ".", getSpan());
+                ExpressionError.error("三元运算符的条件必须是布尔值，得到 " + condition + ".", getSpan());
             }
             return ((Boolean) condition) ? getTrueExpression().evaluate(template, context) : getFalseExpression().evaluate(template, context);
         }
     }
 
     /**
-     * A null literal, with the single value <code>null</code>
+     * null文本，单个值为null
      **/
     public static class NullLiteral extends Expression {
         public NullLiteral(Span span) {
@@ -585,7 +582,7 @@ public abstract class Ast {
     }
 
     /**
-     * A boolean literal, with the values <code>true</code> and <code>false</code>
+     * 布尔文字，值为true和false
      **/
     public static class BooleanLiteral extends Expression {
         private final Boolean value;
@@ -606,7 +603,7 @@ public abstract class Ast {
     }
 
     /**
-     * A double precision floating point literal. Must be marked with the <code>d</code> suffix, e.g. "1.0d".
+     * 双精度浮点文字。必须标有d后缀，例如“1.0d”
      **/
     public static class DoubleLiteral extends Expression {
         private final Double value;
@@ -627,7 +624,7 @@ public abstract class Ast {
     }
 
     /**
-     * A single precision floating point literla. May be optionally marked with the <code>f</code> suffix, e.g. "1.0f".
+     * 单精度浮点literal。可以选择标记f后缀，例如“1.0f”
      **/
     public static class FloatLiteral extends Expression {
         private final Float value;
@@ -652,7 +649,7 @@ public abstract class Ast {
     }
 
     /**
-     * A byte literal. Must be marked with the <code>b</code> suffix, e.g. "123b".
+     * 字节文字。必须标有b后缀，例如“123b”。
      **/
     public static class ByteLiteral extends Expression {
         private final Byte value;
@@ -673,7 +670,7 @@ public abstract class Ast {
     }
 
     /**
-     * A short literal. Must be marked with the <code>s</code> suffix, e.g. "123s".
+     * 简短的文字。必须标有s后缀，例如“123s”。
      **/
     public static class ShortLiteral extends Expression {
         private final Short value;
@@ -694,7 +691,7 @@ public abstract class Ast {
     }
 
     /**
-     * An integer literal.
+     * 一个整数文本。
      **/
     public static class IntegerLiteral extends Expression {
         private final Integer value;
@@ -715,7 +712,7 @@ public abstract class Ast {
     }
 
     /**
-     * A long integer literal. Must be marked with the <code>l</code> suffix, e.g. "123l".
+     * 一个长的整数文本。必须标有l后缀，例如“123l”。
      **/
     public static class LongLiteral extends Expression {
         private final Long value;
@@ -736,7 +733,7 @@ public abstract class Ast {
     }
 
     /**
-     * A character literal, enclosed in single quotes. Supports escape sequences \n, \r,\t, \' and \\.
+     * 一种文字字符，用单引号括起来。支持转义序列\n、\r、\t、\'和\\。
      **/
     public static class CharacterLiteral extends Expression {
         private final Character value;
@@ -758,7 +755,7 @@ public abstract class Ast {
                     value = '\'';
                 } else {
                     ExpressionError.error("Unknown escape sequence '" + literal.getText() + "'.", literal);
-                    value = 0; // never reached
+                    value = 0; // 从未达到
                 }
             } else {
                 this.value = literal.getText().charAt(1);
@@ -776,7 +773,7 @@ public abstract class Ast {
     }
 
     /**
-     * A string literal, enclosed in double quotes. Supports escape sequences \n, \r, \t, \" and \\.
+     * 字符串文字，用双引号括起来。支持转义序列\n、\r、\t、\“和\\
      **/
     public static class StringLiteral extends Expression {
         private final String value;
@@ -807,7 +804,7 @@ public abstract class Ast {
         }
 
         /**
-         * Returns the literal without quotes
+         * 返回不带引号的文字
          **/
         public String getValue() {
             return value;
@@ -820,9 +817,8 @@ public abstract class Ast {
     }
 
     /**
-     * Represents a top-level variable access by name. E.g. in the expression "a + 1", <code>a</code> would be encoded as a
-     * VariableAccess node. Variables can be both read (in expressions) and written to (in assignments). Variable values are looked
-     * up and written to a {@link ExpressionTemplateContext}.
+     * 按名称表示顶级变量访问。例如，在表达式“a+1”中，a将被编码为VariableAccess节点。
+     * 变量既可以读取（在表达式中），也可以写入（在赋值中）。查找变量值并将其写入ExpressionTemplateContext
      **/
     public static class VariableAccess extends Expression {
         public VariableAccess(Span name) {
@@ -842,8 +838,7 @@ public abstract class Ast {
     }
 
     /**
-     * Represents a map or array element access of the form <code>mapOrArray[keyOrIndex]</code>. Maps and arrays may only be read
-     * from.
+     * 表示形式为mapOrArray[keyOrIndex]的映射或数组元素访问。映射和数组只能从中读取。
      **/
     public static class MapOrArrayAccess extends Expression {
         private final Expression mapOrArray;
@@ -856,14 +851,14 @@ public abstract class Ast {
         }
 
         /**
-         * Returns an expression that must evaluate to a map or array.
+         * 返回一个必须计算为映射或数组的表达式。
          **/
         public Expression getMapOrArray() {
             return mapOrArray;
         }
 
         /**
-         * Returns an expression that is used as the key or index to fetch a map or array element.
+         * 返回一个表达式，该表达式用作获取映射或数组元素的键或索引。
          **/
         public Expression getKeyOrIndex() {
             return keyOrIndex;
@@ -885,13 +880,13 @@ public abstract class Ast {
                 return ((Map) mapOrArray).get(keyOrIndex);
             } else if (mapOrArray instanceof List) {
                 if (!(keyOrIndex instanceof Number)) {
-                    ExpressionError.error("List index must be an integer, but was " + keyOrIndex.getClass().getSimpleName(), getKeyOrIndex().getSpan());
+                    ExpressionError.error("列表索引必须是整数，但" + keyOrIndex.getClass().getSimpleName(), getKeyOrIndex().getSpan());
                 }
                 int index = ((Number) keyOrIndex).intValue();
                 return ((List) mapOrArray).get(index);
             } else {
                 if (!(keyOrIndex instanceof Number)) {
-                    ExpressionError.error("Array index must be an integer, but was " + keyOrIndex.getClass().getSimpleName(), getKeyOrIndex().getSpan());
+                    ExpressionError.error("数组索引必须是整数，但为 " + keyOrIndex.getClass().getSimpleName(), getKeyOrIndex().getSpan());
                 }
                 int index = ((Number) keyOrIndex).intValue();
                 if (mapOrArray instanceof int[]) {
@@ -920,8 +915,7 @@ public abstract class Ast {
     }
 
     /**
-     * Represents an access of a member (field or method or entry in a map) of the form <code>object.member</code>. Members may
-     * only be read from.
+     * 表示对窗体对象.member的成员（字段、方法或映射中的条目）的访问。只能从中读取成员
      **/
     public static class MemberAccess extends Expression {
         private final Expression object;
@@ -935,7 +929,7 @@ public abstract class Ast {
         }
 
         /**
-         * Returns the object on which to access the member.
+         * 返回要访问其成员的对象
          **/
         public Expression getObject() {
             return object;
@@ -949,18 +943,15 @@ public abstract class Ast {
         }
 
         /**
-         * Returns the cached member descriptor as returned by {@link Reflection#getField(Object, String)} or
-         * {@link Reflection#getMethod(Object, String, Object...)}. See {@link #setCachedMember(Object)}.
+         * 返回Reflection.getField（Object，String）或Reflection.getMethod（Object，String，Object…）返回的缓存成员描述符。请参阅setCachedMember（Object）
          **/
         public Object getCachedMember() {
             return cachedMember;
         }
 
         /**
-         * Sets the member descriptor as returned by {@link Reflection#getField(Object, String)} or
-         * {@link Reflection#getMethod(Object, String, Object...)} for faster member lookups. Called by {@link AstInterpreter} the
-         * first time this node is evaluated. Subsequent evaluations can use the cached descriptor, avoiding a costly reflective
-         * lookup.
+         * 将成员描述符设置为由Reflection.getField（Object，String）或Reflection.getMethod（Object，String，Object…）返回，
+         * 以便更快地查找成员。在第一次评估此节点时由AstInterpreter调用。后续的求值可以使用缓存的描述符，从而避免了代价高昂的反射查找
          **/
         public void setCachedMember(Object cachedMember) {
             this.cachedMember = cachedMember;
@@ -974,12 +965,12 @@ public abstract class Ast {
                 return null;
             }
 
-            // special case for array.length
+            // 数组长度的特殊情况
             if (object.getClass().isArray() && getName().getText().equals("length")) {
                 return Array.getLength(object);
             }
 
-            // special case for map, allows to do map.key instead of map[key]
+            // map的特殊情况，允许使用map.key而不是map[key]
             if (object instanceof Map map) {
                 return map.get(getName().getText());
             }
@@ -989,13 +980,13 @@ public abstract class Ast {
                 try {
                     return Reflection.getInstance().getFieldValue(object, field);
                 } catch (Throwable t) {
-                    // fall through
+                    //  空 不处理
                 }
             }
             String text = getName().getText();
             field = Reflection.getInstance().getField(object, text);
             if (field == null) {
-                String methodName = null;
+                String methodName;
                 if (text.length() > 1) {
                     methodName = text.substring(0, 1).toUpperCase() + text.substring(1);
                 } else {
@@ -1037,8 +1028,7 @@ public abstract class Ast {
     }
 
     /**
-     * Represents a call to a top-level function. A function may either be a {@link FunctionalInterface} stored in a
-     * {@link ExpressionTemplateContext}, or a {@link} defined in a template.
+     * 表示对顶级函数的调用。函数可以是存储在ExpressionTemplateContext中的FunctionalInterface，也可以是在模板中定义的。
      */
     public static class FunctionCall extends Expression {
         private final Expression function;
@@ -1054,39 +1044,36 @@ public abstract class Ast {
         }
 
         /**
-         * Return the expression that must evaluate to a {@link FunctionalInterface} or a {@link}.
+         * 返回必须计算为FunctionalInterface或的表达式。
          **/
         public Expression getFunction() {
             return function;
         }
 
         /**
-         * Returns the list of expressions to be passed to the function as arguments.
+         * 返回要作为参数传递给函数的表达式列表
          **/
         public List<Expression> getArguments() {
             return arguments;
         }
 
         /**
-         * Returns the cached "function" descriptor as returned by {@link Reflection#getMethod(Object, String, Object...)} or the
-         * {@link}. See {@link #setCachedFunction(Object)}.
+         * 返回Reflection.getMethod（Object，String，Object…）或返回的缓存“函数”描述符。请参见setCachedFunction（对象）。
          **/
         public Object getCachedFunction() {
             return cachedFunction;
         }
 
         /**
-         * Sets the "function" descriptor as returned by {@link Reflection#getMethod(Object, String, Object...)} for faster
-         * lookups, or the {@link} to be called. Called by {@link AstInterpreter} the first time this node is evaluated.
-         * Subsequent evaluations can use the cached descriptor, avoiding a costly reflective lookup.
+         * 将Reflection.getMethod（Object、String、Object…）返回的“函数”描述符设置为更快的查找或要调用的。
+         * 在第一次评估此节点时由AstInterpreter调用。后续的求值可以使用缓存的描述符，从而避免了代价高昂的反射查找
          **/
         public void setCachedFunction(Object cachedFunction) {
             this.cachedFunction = cachedFunction;
         }
 
         /**
-         * Returns a scratch buffer to store arguments in when calling the function in {@link AstInterpreter}. Avoids generating
-         * garbage.
+         * 在AstInterpreter中调用函数时，返回一个临时缓冲区以存储参数。避免产生垃圾
          **/
         public Object[] getCachedArguments() {
             Object[] args = cachedArguments.get();
@@ -1098,7 +1085,7 @@ public abstract class Ast {
         }
 
         /**
-         * Must be invoked when this node is done evaluating so we don't leak memory
+         * 必须在完成此节点的评估时调用，这样我们就不会泄露内存
          **/
         public void clearCachedArguments() {
             Object[] args = getCachedArguments();
@@ -1117,12 +1104,9 @@ public abstract class Ast {
                     argumentValues[i] = expr.evaluate(template, context);
                 }
 
-                // This is a special case to handle template level macros. If a call to a macro is
-                // made, evaluating the function expression will result in an exception, as the
-                // function name can't be found in the context. Instead we need to manually check
-                // if the function expression is a VariableAccess and if so, if it can be found
-                // in the context.
-                Object function = null;
+                // 这是处理模板级宏的特殊情况。如果调用宏，由于在上下文中找不到函数名，因此计算函数表达式将导致异常。
+                // 相反，我们需要手动检查函数表达式是否是VariableAccess，如果是，是否可以在上下文中找到它
+                Object function;
                 if (getFunction() instanceof VariableAccess varAccess) {
                     function = context.get(varAccess.getVariableName().getText());
                 } else {
@@ -1135,7 +1119,7 @@ public abstract class Ast {
                         try {
                             return Reflection.getInstance().callMethod(function, method, argumentValues);
                         } catch (Throwable t) {
-                            // fall through
+                            //  空 不处理
                         }
                     }
                     method = Reflection.getInstance().getMethod(function, null, argumentValues);
@@ -1147,18 +1131,18 @@ public abstract class Ast {
                         return Reflection.getInstance().callMethod(function, method, argumentValues);
                     } catch (Throwable t) {
                         ExpressionError.error(t.getMessage(), getSpan(), t);
-                        return null; // never reached
+                        return null; // 从未达到
                     }
                 } else if (ScriptManager.containsFunction(getFunction().getSpan().getText())) {
                     try {
                         return ScriptManager.eval(context, getFunction().getSpan().getText(), argumentValues);
                     } catch (Throwable t) {
                         ExpressionError.error(t.getMessage(), getSpan(), t);
-                        return null; // never reached
+                        return null; // 从未达到
                     }
                 } else {
                     ExpressionError.error("Couldn't find function " + getFunction(), getSpan());
-                    return null; // never reached
+                    return null; // 从未达到
                 }
             } finally {
                 clearCachedArguments();
@@ -1167,7 +1151,7 @@ public abstract class Ast {
     }
 
     /**
-     * Represents a call to a method of the form <code>object.method(a, b, c)</code>.
+     * 表示对窗体对象.method（a，b，c）的方法的调用。
      **/
     public static class MethodCall extends Expression {
         private final MemberAccess method;
@@ -1183,46 +1167,43 @@ public abstract class Ast {
         }
 
         /**
-         * Returns the object on which to call the method.
+         * 返回要调用该方法的对象
          **/
         public Expression getObject() {
             return method.getObject();
         }
 
         /**
-         * Returns the method to call.
+         * 返回要调用的方法
          **/
         public MemberAccess getMethod() {
             return method;
         }
 
         /**
-         * Returns the list of expressions to be passed to the function as arguments.
+         * 返回要作为参数传递给函数的表达式列表
          **/
         public List<Expression> getArguments() {
             return arguments;
         }
 
         /**
-         * Returns the cached member descriptor as returned by {@link Reflection#getMethod(Object, String, Object...)}. See
-         * .
+         * 返回Reflection.getMethod（Object，String，Object…）返回的缓存成员描述符。
          **/
         public Object getCachedMethod() {
             return cachedMethod;
         }
 
         /**
-         * Sets the method descriptor as returned by {@link Reflection#getMethod(Object, String, Object...)} for faster lookups.
-         * Called by {@link AstInterpreter} the first time this node is evaluated. Subsequent evaluations can use the cached
-         * descriptor, avoiding a costly reflective lookup.
+         * 将方法描述符设置为Reflection.getMethod（Object，String，Object…）返回的值，以加快查找速度。
+         * 在第一次评估此节点时由AstInterpreter调用。后续的求值可以使用缓存的描述符，从而避免了代价高昂的反射查找。
          **/
         public void setCachedMethod(Object cachedMethod) {
             this.cachedMethod = cachedMethod;
         }
 
         /**
-         * Returns a scratch buffer to store arguments in when calling the function in {@link AstInterpreter}. Avoids generating
-         * garbage.
+         * 在AstInterpreter中调用函数时，返回一个临时缓冲区以存储参数。避免产生垃圾。
          **/
         public Object[] getCachedArguments() {
             Object[] args = cachedArguments.get();
@@ -1234,7 +1215,7 @@ public abstract class Ast {
         }
 
         /**
-         * Must be invoked when this node is done evaluating so we don't leak memory
+         * 必须在完成此节点的评估时调用，这样我们就不会泄露内存
          **/
         public void clearCachedArguments() {
             Object[] args = getCachedArguments();
@@ -1264,29 +1245,29 @@ public abstract class Ast {
                         return Reflection.getInstance().callMethod(object, method, newArgumentValues);
                     } catch (Throwable t) {
                         ExpressionError.error(t.getMessage(), getSpan(), t);
-                        return null; // never reached
+                        return null; // 从未达到
                     }
                 }
 
-                // Otherwise try to find a corresponding method or field pointing to a lambda.
+                // 否则，请尝试查找指向lambda的相应方法或字段
                 Object method = getCachedMethod();
                 if (method != null) {
                     try {
                         return Reflection.getInstance().callMethod(object, method, argumentValues);
                     } catch (Throwable t) {
-                        // fall through
+                        //  空 不处理
                     }
                 }
 
                 method = Reflection.getInstance().getMethod(object, getMethod().getName().getText(), argumentValues);
                 if (method != null) {
-                    // found the method on the object, call it
+                    //在对象上找到方法，调用它
                     setCachedMethod(method);
                     try {
                         return Reflection.getInstance().callMethod(object, method, argumentValues);
                     } catch (Throwable t) {
                         ExpressionError.error(t.getMessage(), getSpan(), t);
-                        return null; // never reached
+                        return null; // 从未达到
                     }
                 }
                 method = Reflection.getInstance().getExtensionMethod(object, getMethod().getName().getText(), argumentValues);
@@ -1308,11 +1289,11 @@ public abstract class Ast {
                         return Reflection.getInstance().callMethod(object, method, parameters);
                     } catch (Throwable t) {
                         ExpressionError.error(t.getMessage(), getSpan(), t);
-                        // fall through
+                        //  空 不处理
                         return null;
                     }
                 } else {
-                    // didn't find the method on the object, try to find a field pointing to a lambda
+                    // 在对象上找不到方法，请尝试查找指向lambda的字段
                     Object field = Reflection.getInstance().getField(object, getMethod().getName().getText());
                     if (field == null) {
                         ExpressionError.error("在'" + object.getClass() + "'中找不到方法 " + getMethod().getName().getText() + "(" + StringUtils.join(JavaReflection.getStringTypes(argumentValues), ",") + ")",
@@ -1328,7 +1309,7 @@ public abstract class Ast {
                         return Reflection.getInstance().callMethod(function, method, argumentValues);
                     } catch (Throwable t) {
                         ExpressionError.error(t.getMessage(), getSpan(), t);
-                        return null; // never reached
+                        return null; // 从未达到
                     }
                 }
             } finally {
@@ -1338,7 +1319,7 @@ public abstract class Ast {
     }
 
     /**
-     * Represents a map literal of the form <code>{ key: value, key2: value, ... }</code> which can be nested.
+     * 表示可以嵌套的形式为｛key:value，key2:value，…｝的映射文本
      */
     public static class MapLiteral extends Expression {
         private final List<Token> keys;
@@ -1382,7 +1363,7 @@ public abstract class Ast {
     }
 
     /**
-     * Represents a list literal of the form <code>[ value, value2, value3, ...]</code> which can be nested.
+     * 表示可以嵌套的[value，value2，value3，…]形式的列表文字
      */
     public static class ListLiteral extends Expression {
         public final List<Expression> values;

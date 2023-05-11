@@ -133,7 +133,7 @@ public class TagsServiceImpl implements ITagsService {
     @Override
     public List<Tags> selectBlogTabs() {
         Object object = CacheUtils.get("reed-cms", CmsConstants.KEY_TAGS_BLOG);
-        List<Tags> tags = null;
+        List<Tags> tags;
         if (object instanceof ArrayList) {
             tags = (ArrayList) object;
         } else {

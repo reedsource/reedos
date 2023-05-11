@@ -34,7 +34,7 @@ public class AstInterpreter {
                 throw (TemplateException) t;
             else {
                 ExpressionError.error("执行表达式出错 " + t.getMessage(), template.getNodes().get(0).getSpan(), t);
-                return null; // never reached
+                return null; // 从未达到
             }
         }
     }

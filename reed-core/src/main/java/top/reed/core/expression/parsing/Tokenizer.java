@@ -58,12 +58,12 @@ public class Tokenizer {
                 continue;
             }
 
-            // String literal
+            // 字符串文字
             if (stream.match(TokenType.SingleQuote.getLiteral(), true)) {
                 stream.startSpan();
                 boolean matchedEndQuote = false;
                 while (stream.hasMore()) {
-                    // Note: escape sequences like \n are parsed in StringLiteral
+                    //注意：像这样的转义序列 \n  是在StringLiteral中解析的
                     if (stream.match("\\", true)) {
                         stream.consume();
                     }
@@ -81,12 +81,12 @@ public class Tokenizer {
                 continue;
             }
 
-            // String literal
+            // 字符串文字
             if (stream.match(TokenType.DoubleQuote.getLiteral(), true)) {
                 stream.startSpan();
                 boolean matchedEndQuote = false;
                 while (stream.hasMore()) {
-                    // Note: escape sequences like \n are parsed in StringLiteral
+                    //注意：像这样的转义序列 \n  是在StringLiteral中解析的
                     if (stream.match("\\", true)) {
                         stream.consume();
                     }
@@ -104,7 +104,7 @@ public class Tokenizer {
                 continue;
             }
 
-            // Identifier, keyword, boolean literal, or null literal
+            // 标识符、关键字、布尔文字或null文字
             if (stream.matchIdentifierStart(true)) {
                 stream.startSpan();
                 while (stream.matchIdentifierPart(true))
@@ -122,7 +122,7 @@ public class Tokenizer {
                 continue;
             }
 
-            // Simple tokens
+            // 简单令牌
             for (TokenType t : TokenType.getSortedValues()) {
                 if (t.getLiteral() != null) {
                     if (stream.match(t.getLiteral(), true)) {
@@ -139,22 +139,21 @@ public class Tokenizer {
                 tokens.add(new Token(TokenType.RightCurly, new Span(source, stream.getPosition() - 1, stream.getPosition())));
                 continue outer;
             }
-            // match closing tag
+            // 匹配结束标记
             if (stream.match("}", false)) break;
 
             ExpressionError.error("Unknown token", new Span(source, stream.getPosition(), stream.getPosition() + 1));
         }
 
-        // code spans must end with }
+        // 代码跨度必须以｝结尾
         if (!stream.match("}", true))
             ExpressionError.error("Expected }", new Span(source, stream.getPosition(), stream.getPosition() + 1));
         return tokens;
     }
 
     /**
-     * Tokenizes the source into tokens with a {@link TokenType}. Text blocks not enclosed in {{ }} are returned as a single token
-     * of type {@link TokenType.TextBlock}. {{ and }} are not returned as individual tokens. See {@link TokenType} for the list of
-     * tokens this tokenizer understands.
+     * 将源标记为具有TokenType的标记。未包含在｛｛｝｝中的文本块将作为类型为TokenType.TextBlock的单个令牌返回。
+     * ｛{和｝}不会作为单独的令牌返回。请参阅TokenType以获取此令牌化器所理解的令牌列表
      */
     public List<Token> tokenize(String source) {
         List<Token> tokens = new ArrayList<Token>();
@@ -162,7 +161,7 @@ public class Tokenizer {
         CharacterStream stream = new CharacterStream(source);
         stream.startSpan();
 
-        RuntimeException re = null;
+        RuntimeException re;
         while (stream.hasMore()) {
             if (stream.match("${", false)) {
                 if (!stream.isSpanEmpty()) tokens.add(new Token(TokenType.TextBlock, stream.endSpan()));

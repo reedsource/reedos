@@ -147,9 +147,9 @@ public class AutoDataSourceController extends BaseController {
      */
     @RequiresPermissions("automation:autodatasource:edit")
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable("id") String id, ModelMap mmap) {
+    public String edit(@PathVariable("id") String id, ModelMap modelMap) {
         AutoDataSource autoDataSource = autoDataSourceService.selectAutoDataSourceById(id);
-        mmap.put("autoDataSource", autoDataSource);
+        modelMap.put("autoDataSource", autoDataSource);
         return "automation/autodatasource/edit";
     }
 

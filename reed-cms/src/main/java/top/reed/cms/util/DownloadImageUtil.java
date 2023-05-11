@@ -75,7 +75,7 @@ public class DownloadImageUtil {
             HttpEntity entity = response.getEntity();
             try (InputStream in = entity.getContent()) {
                 FileOutputStream fout = new FileOutputStream(file);
-                int l = -1;
+                int l;
                 byte[] tmp = new byte[1024];
                 while ((l = in.read(tmp)) != -1) {
                     fout.write(tmp, 0, l);

@@ -41,12 +41,12 @@ public class ArticleTemplateController extends BaseController {
 
     @RequiresPermissions("cms:articleTemplate:view")
     @GetMapping()
-    public String articleTemplate(ModelMap mmap) {
+    public String articleTemplate(ModelMap modelMap) {
         String editor = getEditorType();
         if (!CmsConstants.EDITOR_TYPE_UEDITOR.equals(editor)) {
-            mmap.put("editorOK", false);
+            modelMap.put("editorOK", false);
         } else {
-            mmap.put("editorOK", true);
+            modelMap.put("editorOK", true);
         }
         return "cms/articleTemplate/articleTemplate";
     }
@@ -67,9 +67,9 @@ public class ArticleTemplateController extends BaseController {
      * 新增文章模板
      */
     @GetMapping("/add")
-    public String add(ModelMap mmap) {
+    public String add(ModelMap modelMap) {
         List<Tags> tags = articleTemplateService.selectArticleTemplateTags("");
-        mmap.put("tags", tags);
+        modelMap.put("tags", tags);
         return "cms/articleTemplate/add";
     }
 
@@ -88,11 +88,11 @@ public class ArticleTemplateController extends BaseController {
      * 修改文章模板
      */
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable("id") Long id, ModelMap mmap) {
+    public String edit(@PathVariable("id") Long id, ModelMap modelMap) {
         ArticleTemplate articleTemplate = articleTemplateService.selectArticleTemplateById(id);
-        mmap.put("articleTemplate", articleTemplate);
+        modelMap.put("articleTemplate", articleTemplate);
         List<Tags> tags = articleTemplateService.selectArticleTemplateTags(articleTemplate.getTags());
-        mmap.put("tags", tags);
+        modelMap.put("tags", tags);
         return "cms/articleTemplate/edit";
     }
 

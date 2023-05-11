@@ -86,9 +86,9 @@ public class AutoFunctionController extends BaseController {
      */
     @RequiresPermissions("automation:autofunction:edit")
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable("id") Long id, ModelMap mmap) {
+    public String edit(@PathVariable("id") Long id, ModelMap modelMap) {
         AutoFunction autoFunction = autoFunctionService.selectAutoFunctionById(id);
-        mmap.put("autoFunction", autoFunction);
+        modelMap.put("autoFunction", autoFunction);
         return "automation/autofunction/edit";
     }
 

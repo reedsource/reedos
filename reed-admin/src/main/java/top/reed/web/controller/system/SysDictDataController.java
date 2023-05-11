@@ -58,8 +58,8 @@ public class SysDictDataController extends BaseController {
      * 新增字典类型
      */
     @GetMapping("/add/{dictType}")
-    public String add(@PathVariable("dictType") String dictType, ModelMap mmap) {
-        mmap.put("dictType", dictType);
+    public String add(@PathVariable("dictType") String dictType, ModelMap modelMap) {
+        modelMap.put("dictType", dictType);
         return "system/dict/data/add";
     }
 
@@ -80,8 +80,8 @@ public class SysDictDataController extends BaseController {
      */
     @RequiresPermissions("system:dict:edit")
     @GetMapping("/edit/{dictCode}")
-    public String edit(@PathVariable("dictCode") Long dictCode, ModelMap mmap) {
-        mmap.put("dict", dictDataService.selectDictDataById(dictCode));
+    public String edit(@PathVariable("dictCode") Long dictCode, ModelMap modelMap) {
+        modelMap.put("dict", dictDataService.selectDictDataById(dictCode));
         return "system/dict/data/edit";
     }
 

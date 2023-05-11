@@ -64,7 +64,7 @@ public class CategoryServiceImpl implements ICategoryService {
         //更新parentids
         Long pid = category.getParentId();
         Category p = categoryMapper.selectCategoryById(pid);
-        String ancestors = "";
+        String ancestors;
         if (p != null) {
             ancestors = p.getAncestors();
             ancestors += category.getCategoryId() + ",";

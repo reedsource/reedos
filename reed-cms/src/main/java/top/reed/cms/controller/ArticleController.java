@@ -85,9 +85,9 @@ public class ArticleController extends BaseController {
      * 新增文章管理
      */
     @GetMapping("/add")
-    public String add(ModelMap mmap) {
+    public String add(ModelMap modelMap) {
         List<Tags> tags = tagsService.selectTagsAll();
-        mmap.put("tags", tags);
+        modelMap.put("tags", tags);
         return "cms/article/add";
     }
 
@@ -106,12 +106,12 @@ public class ArticleController extends BaseController {
      * 修改文章管理
      */
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable("id") String id, ModelMap mmap) {
+    public String edit(@PathVariable("id") String id, ModelMap modelMap) {
         Article article = articleService.selectArticleById(id);
-        mmap.put("article", article);
+        modelMap.put("article", article);
         String tagIds = article.getTags();
         List<Tags> tags = tagsService.selectSelectedTagsAll(tagIds);
-        mmap.put("tags", tags);
+        modelMap.put("tags", tags);
         return "cms/article/edit";
     }
 
@@ -152,7 +152,7 @@ public class ArticleController extends BaseController {
             if (RStringUtils.isNotEmpty(tagIds)) {
                 String[] arr = Convert.toStrArray(tagIds);
                 List<Tags> tagsList = new ArrayList<>();
-                Tags tmp = null;
+                Tags tmp;
                 for (String tid : arr) {
                     //检测每个标签再数据库cms_tag表中是否存在（根据名称），如果存在记下id，不存在则新增并记下id
                     tmp = tagsService.selectTagsById(Long.valueOf(tid));

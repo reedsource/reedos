@@ -48,11 +48,11 @@ public class SysDeptController extends BaseController {
      * 新增部门
      */
     @GetMapping("/add/{parentId}")
-    public String add(@PathVariable("parentId") Long parentId, ModelMap mmap) {
+    public String add(@PathVariable("parentId") Long parentId, ModelMap modelMap) {
         if (!getSysUser().isSuper()) {
             parentId = getSysUser().getDeptId();
         }
-        mmap.put("dept", deptService.selectDeptById(parentId));
+        modelMap.put("dept", deptService.selectDeptById(parentId));
         return "system/dept/add";
     }
 
@@ -76,13 +76,13 @@ public class SysDeptController extends BaseController {
      */
     @RequiresPermissions("system:dept:edit")
     @GetMapping("/edit/{deptId}")
-    public String edit(@PathVariable("deptId") Long deptId, ModelMap mmap) {
+    public String edit(@PathVariable("deptId") Long deptId, ModelMap modelMap) {
         deptService.checkDeptDataScope(deptId);
         SysDept dept = deptService.selectDeptById(deptId);
         if (StringUtils.isNotNull(dept) && 100L == deptId) {
             dept.setParentName("无");
         }
-        mmap.put("dept", dept);
+        modelMap.put("dept", dept);
         return "system/dept/edit";
     }
 
@@ -142,9 +142,9 @@ public class SysDeptController extends BaseController {
      */
     @GetMapping(value = {"/selectDeptTree/{deptId}", "/selectDeptTree/{deptId}/{excludeId}"})
     public String selectDeptTree(@PathVariable("deptId") Long deptId,
-                                 @PathVariable(value = "excludeId", required = false) Long excludeId, ModelMap mmap) {
-        mmap.put("dept", deptService.selectDeptById(deptId));
-        mmap.put("excludeId", excludeId);
+                                 @PathVariable(value = "excludeId", required = false) Long excludeId, ModelMap modelMap) {
+        modelMap.put("dept", deptService.selectDeptById(deptId));
+        modelMap.put("excludeId", excludeId);
         return "system/dept/tree";
     }
 

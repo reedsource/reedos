@@ -62,9 +62,9 @@ public class CategoryController extends BaseController {
      * 新增栏目分类
      */
     @GetMapping(value = {"/add/{categoryId}", "/add/"})
-    public String add(@PathVariable(value = "categoryId", required = false) Long categoryId, ModelMap mmap) {
+    public String add(@PathVariable(value = "categoryId", required = false) Long categoryId, ModelMap modelMap) {
         if (RStringUtils.isNotNull(categoryId)) {
-            mmap.put("category", categoryService.selectCategoryById(categoryId));
+            modelMap.put("category", categoryService.selectCategoryById(categoryId));
         }
         return  "cms/category/add";
     }
@@ -84,9 +84,9 @@ public class CategoryController extends BaseController {
      * 修改栏目分类
      */
     @GetMapping("/edit/{categoryId}")
-    public String edit(@PathVariable("categoryId") Long categoryId, ModelMap mmap) {
+    public String edit(@PathVariable("categoryId") Long categoryId, ModelMap modelMap) {
         Category category = categoryService.selectCategoryById(categoryId);
-        mmap.put("category", category);
+        modelMap.put("category", category);
         return  "cms/category/edit";
     }
 
@@ -116,9 +116,9 @@ public class CategoryController extends BaseController {
      * 选择栏目分类树
      */
     @GetMapping(value = {"/selectCategoryTree/{categoryId}", "/selectCategoryTree/"})
-    public String selectCategoryTree(@PathVariable(value = "categoryId", required = false) Long categoryId, ModelMap mmap) {
+    public String selectCategoryTree(@PathVariable(value = "categoryId", required = false) Long categoryId, ModelMap modelMap) {
         if (RStringUtils.isNotNull(categoryId)) {
-            mmap.put("category", categoryService.selectCategoryById(categoryId));
+            modelMap.put("category", categoryService.selectCategoryById(categoryId));
         }
         return  "cms/category/tree";
     }

@@ -83,9 +83,9 @@ public class AdController extends BaseController {
      * 修改广告位
      */
     @GetMapping("/edit/{adId}")
-    public String edit(@PathVariable("adId") Long adId, ModelMap mmap) {
+    public String edit(@PathVariable("adId") Long adId, ModelMap modelMap) {
         Ad ad = adService.selectAdById(adId);
-        mmap.put("ad", ad);
+        modelMap.put("ad", ad);
         return "cms/ad/edit";
     }
 
@@ -116,8 +116,8 @@ public class AdController extends BaseController {
      * 跳转配置广告页面
      */
     @GetMapping("/adMaterial/{adId}")
-    public String adMaterial(@PathVariable("adId") String adId, ModelMap mmap) {
-        mmap.put("adId", adId);
+    public String adMaterial(@PathVariable("adId") String adId, ModelMap modelMap) {
+        modelMap.put("adId", adId);
         return "cms/ad/adMaterial";
     }
 
@@ -135,8 +135,8 @@ public class AdController extends BaseController {
      * 跳转新增广告素材页面
      */
     @GetMapping("/addAdMaterial/{adId}")
-    public String addAdMaterial(@PathVariable("adId") String adId, ModelMap mmap) {
-        mmap.put("adId", adId);
+    public String addAdMaterial(@PathVariable("adId") String adId, ModelMap modelMap) {
+        modelMap.put("adId", adId);
         return "cms/ad/addAdMaterial";
     }
 
@@ -154,10 +154,10 @@ public class AdController extends BaseController {
      * 跳转编辑广告素材页面
      */
     @GetMapping("/editAdMaterial/{id}")
-    public String editAdMaterial(@PathVariable("id") Long id, ModelMap mmap) {
+    public String editAdMaterial(@PathVariable("id") Long id, ModelMap modelMap) {
         AdMaterial adMaterial = adService.selectAdMaterialById(id);
 
-        mmap.put("adMaterial", adMaterial);
+        modelMap.put("adMaterial", adMaterial);
         return "cms/ad/editAdMaterial";
     }
 
@@ -185,8 +185,8 @@ public class AdController extends BaseController {
      *
      */
     @GetMapping("/selectAdMaterial/{adId}")
-    public String selectAdMaterial(@PathVariable("adId") String adId, ModelMap mmap) {
-        mmap.put("adId", adId);
+    public String selectAdMaterial(@PathVariable("adId") String adId, ModelMap modelMap) {
+        modelMap.put("adId", adId);
         return "cms/ad/selectAdMaterial";
     }
 

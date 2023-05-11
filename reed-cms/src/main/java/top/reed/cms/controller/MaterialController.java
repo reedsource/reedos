@@ -66,11 +66,11 @@ public class MaterialController extends BaseController {
      * 新增素材
      */
     @GetMapping("/add")
-    public String add(ModelMap mmap) {
+    public String add(ModelMap modelMap) {
         Material material = new Material();
         material.setGroupId("1");
         material.setGroupName("默认分组");
-        mmap.put("material", material);
+        modelMap.put("material", material);
         return  "cms/material/add";
     }
 
@@ -89,9 +89,9 @@ public class MaterialController extends BaseController {
      * 修改素材
      */
     @GetMapping("/edit/{materialId}")
-    public String edit(@PathVariable("materialId") String materialId, ModelMap mmap) {
+    public String edit(@PathVariable("materialId") String materialId, ModelMap modelMap) {
         Material material = materialService.selectMaterialById(materialId);
-        mmap.put("material", material);
+        modelMap.put("material", material);
         return  "cms/material/edit";
     }
 
@@ -139,8 +139,8 @@ public class MaterialController extends BaseController {
      */
     @RequiresPermissions("cms:material:materialUse")
     @GetMapping("/toUseList/{materialId}")
-    public String toUseList(@PathVariable("materialId") String materialId, ModelMap mmap) {
-        mmap.put("materialId", materialId);
+    public String toUseList(@PathVariable("materialId") String materialId, ModelMap modelMap) {
+        modelMap.put("materialId", materialId);
         return  "cms/material/materialUse";
     }
 
@@ -174,13 +174,13 @@ public class MaterialController extends BaseController {
      * @return  data
      */
     @GetMapping("/selectMaterialWithGroup")
-    public String selectMaterialWithGroup(HttpServletRequest request, ModelMap mmap) {
+    public String selectMaterialWithGroup(HttpServletRequest request, ModelMap modelMap) {
         String materialId = request.getParameter("materialId");
         String materialName = request.getParameter("materialName");
         String materialPath = request.getParameter("materialPath");
-        mmap.put("materialId", StringUtils.isNotEmpty(materialId) ? materialId : "");
-        mmap.put("materialName", StringUtils.isNotEmpty(materialName) ? materialName : "");
-        mmap.put("materialPath", StringUtils.isNotEmpty(materialPath) ? materialPath : "");
+        modelMap.put("materialId", StringUtils.isNotEmpty(materialId) ? materialId : "");
+        modelMap.put("materialName", StringUtils.isNotEmpty(materialName) ? materialName : "");
+        modelMap.put("materialPath", StringUtils.isNotEmpty(materialPath) ? materialPath : "");
         return  "cms/material/selectMaterialWithGroup";
     }
 

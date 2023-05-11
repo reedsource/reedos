@@ -82,9 +82,9 @@ public class TagsController extends BaseController {
      * 修改标签管理
      */
     @GetMapping("/edit/{tagId}")
-    public String edit(@PathVariable("tagId") Long tagId, ModelMap mmap) {
+    public String edit(@PathVariable("tagId") Long tagId, ModelMap modelMap) {
         Tags tags = tagsService.selectTagsById(tagId);
-        mmap.put("tags", tags);
+        modelMap.put("tags", tags);
         return "cms/tags/edit";
     }
 

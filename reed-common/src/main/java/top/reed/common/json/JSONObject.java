@@ -177,7 +177,7 @@ public class JSONObject extends LinkedHashMap<String, Object> {
     }
 
     private static int[] parseIndexes(final String s) {
-        int[] indexes = null;
+        int[] indexes;
         List<Integer> list = new ArrayList<>();
 
         final StringTokenizer st = new StringTokenizer(s, "[]");
