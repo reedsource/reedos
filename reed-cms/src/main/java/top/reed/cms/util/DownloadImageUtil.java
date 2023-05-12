@@ -31,8 +31,6 @@ public class DownloadImageUtil {
     /**
      * 检测一个网络路径文件是否存在
      *
-     * @param url
-     * @return
      */
     public static boolean checkNetUrlExists(String url) {
         try {

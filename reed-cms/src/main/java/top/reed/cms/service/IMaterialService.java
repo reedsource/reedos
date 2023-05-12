@@ -71,15 +71,12 @@ public interface IMaterialService {
     /**
      * 查询素材使用记录
      *
-     * @param materialUse
-     * @return
      */
     List<MaterialUse> selectMaterialUseList(MaterialUse materialUse);
 
     /**
      * 1.删除素材使用记录，2.更新素材表use_state字段 3删除使用地方的表的真实使用记录
      *
-     * @param materialUse
      */
     void deleteMaterialUseBatch(MaterialUse materialUse);
 }

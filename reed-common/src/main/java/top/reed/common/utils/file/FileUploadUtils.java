@@ -193,8 +193,6 @@ public enum FileUploadUtils {
     /**
      * 是否图片
      *
-     * @param suffix
-     * @return
      */
     public static final boolean isImage(String suffix) {
         for (String str : MimeTypeUtils.IMAGE_EXTENSION) {
@@ -303,7 +301,6 @@ public enum FileUploadUtils {
      * 删除素材文件
      *
      * @param fileName /profile/public/blog/f4395e7b74fe673893ffd7d2f317dbdc.png
-     * @return
      */
     public static final boolean deleteFile(String fileName) {
         File target = getAbsoluteFile(ReedConfig.getProfile(), fileName.replace(Constants.RESOURCE_PREFIX, ""));

@@ -26,7 +26,6 @@ public class CacheUtils {
      * 获取SYS_CACHE缓存
      *
      * @param key 缓存组下的具体key名称
-     * @return
      */
     public static Object getSysCache(String key) {
         return get(SYS_CACHE, key);
@@ -37,7 +36,6 @@ public class CacheUtils {
      *
      * @param key          缓存组下的具体key名称
      * @param defaultValue 如空默认值
-     * @return
      */
     public static Object getDefaultSysCache(String key, Object defaultValue) {
         Object value = getSysCache(key);
@@ -48,7 +46,6 @@ public class CacheUtils {
      * 写入SYS_CACHE缓存
      *
      * @param key 缓存组下的具体key名称
-     * @return
      */
     public static void putSysCache(String key, Object value) {
         put(SYS_CACHE, key, value);
@@ -58,7 +55,6 @@ public class CacheUtils {
      * 从SYS_CACHE缓存中移除
      *
      * @param key 缓存组下的具体key名称
-     * @return
      */
     public static void removeSysCache(String key) {
         remove(SYS_CACHE, key);
@@ -79,7 +75,6 @@ public class CacheUtils {
      *
      * @param cacheName 缓存组名称
      * @param key       缓存组下的具体key名称
-     * @return
      */
     public static Object get(String cacheName, String key) {
         return getCache(cacheName).get(key);
@@ -91,7 +86,6 @@ public class CacheUtils {
      * @param cacheName    缓存组名称
      * @param key          缓存组下的具体key名称
      * @param defaultValue 如空默认值
-     * @return
      */
     public static Object get(String cacheName, String key, Object defaultValue) {
         Object value = get(cacheName, key);
@@ -103,7 +97,6 @@ public class CacheUtils {
      *
      * @param cacheName 缓存组名称
      * @param key       缓存组下的具体key名称
-     * @param value
      */
     public static void put(String cacheName, String key, Object value) {
         getCache(cacheName).put(key, value);

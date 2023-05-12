@@ -83,15 +83,12 @@ public interface MaterialMapper {
     /**
      * 查询专辑关联的素材
      *
-     * @param material
-     * @return
      */
     List<AlbumMaterial> selectAlbumMaterialList(Material material);
 
     /**
      * 排除ids查询素材（查询专辑未关联的素材）
      *
-     * @param material
      * @return 结果
      */
     List<Material> selectAlbumUnMaterialList(Material material);
@@ -100,8 +97,6 @@ public interface MaterialMapper {
     /**
      * 插入使用记录
      *
-     * @param materialUse
-     * @return
      */
 
     int insertMaterialUse(MaterialUse materialUse);
@@ -109,8 +104,6 @@ public interface MaterialMapper {
     /**
      * 批量插入使用记录
      *
-     * @param materialUses
-     * @return
      */
 
     int insertMaterialUseBatch(List<MaterialUse> materialUses);
@@ -118,16 +111,12 @@ public interface MaterialMapper {
     /**
      * 查询素材使用记录
      *
-     * @param materialUse
-     * @return
      */
     List<MaterialUse> selectMaterialUseList(MaterialUse materialUse);
 
     /**
      * 根据主键查询素材使用记录
      *
-     * @param ids
-     * @return
      */
     List<MaterialUse> selectMaterialUseByIds(String[] ids);
 
@@ -142,8 +131,6 @@ public interface MaterialMapper {
     /**
      * 删除素材使用；注意和上面的方法区分，有本质的不同，请看sql
      *
-     * @param materialUse
-     * @return
      */
     int deleteMaterialUse(MaterialUse materialUse);
 
@@ -153,25 +140,18 @@ public interface MaterialMapper {
     /**
      * 查询某个素材有几条使用记录（cms_material_use）
      *
-     * @param materialId
-     * @return
      */
     int selectCountMaterialUse(String materialId);
 
     /**
      * 根据素材ids查询素材是否在使用（cms_material）
      *
-     * @param materialIds
-     * @return
      */
     int selectCountUse(String[] materialIds);
 
     /**
      * 更新素材的使用状态
      *
-     * @param materialId
-     * @param useState
-     * @return
      */
     int updateMaterialUseState(@Param("materialId") String materialId, @Param("useState") String useState);
 }

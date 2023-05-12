@@ -162,8 +162,6 @@ public class AlbumServiceImpl implements IAlbumService {
     /**
      * 保存专辑关联的素材
      *
-     * @param albumId
-     * @param materialIds
      */
     @Override
     @Transactional

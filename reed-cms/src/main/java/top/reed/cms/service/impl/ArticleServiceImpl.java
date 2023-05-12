@@ -175,7 +175,6 @@ public class ArticleServiceImpl implements IArticleService {
      * 获取最新的文章
      *
      * @param articleRegionType 文章类型
-     * @return
      */
     @Override
     public List<Article> selectArticlesByArticleRegionType(ArticleRegionType articleRegionType) {

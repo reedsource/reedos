@@ -509,9 +509,6 @@ public class RStringUtils extends StringUtils {
     /**
      * 如果target不为空返回target,否则返回一个默认值
      *
-     * @param target
-     * @param defaultValue
-     * @return
      */
     public static String assertNotNullOrEmpty(String target, String defaultValue) {
         if (isNotEmpty(target)) {
@@ -524,8 +521,6 @@ public class RStringUtils extends StringUtils {
     /**
      * 截取endStr之前的内容(不包含endStr)
      *
-     * @param s
-     * @param endStr
      * @return String
      */
     public static String trim_before_exclu(String s, String endStr) {
@@ -536,8 +531,6 @@ public class RStringUtils extends StringUtils {
     /**
      * 截取beginStr之后的内容(不包含beginStr)
      *
-     * @param s
-     * @param beginStr
      * @return String
      */
     public static String trim_end_exclu(String s, String beginStr) {

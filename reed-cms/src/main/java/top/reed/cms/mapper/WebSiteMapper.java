@@ -15,7 +15,6 @@ public interface WebSiteMapper {
     /**
      * 获得站点相关数据
      *
-     * @return
      */
     Map getSiteInfo();
 }

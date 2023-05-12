@@ -1,7 +1,5 @@
 package top.reed.core.expression.parsing;
 
-import javax.xml.transform.Source;
-
 /**
  * 包装一个源的内容，并处理遍历包含的字符。通过startSpan（）和endSpan（（）方法管理当前Span。
  */

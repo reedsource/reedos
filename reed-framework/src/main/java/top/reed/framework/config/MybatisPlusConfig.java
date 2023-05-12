@@ -30,7 +30,7 @@ public class MybatisPlusConfig {
     }
 
     /**
-     * 分页插件，自动识别数据库类型 https://baomidou.com/guide/interceptor-pagination.html
+     * 分页插件，自动识别数据库类型 <a href="https://baomidou.com/guide/interceptor-pagination.html">...</a>
      */
     public PaginationInnerInterceptor paginationInnerInterceptor() {
         PaginationInnerInterceptor paginationInnerInterceptor = new PaginationInnerInterceptor();
@@ -42,14 +42,14 @@ public class MybatisPlusConfig {
     }
 
     /**
-     * 乐观锁插件 https://baomidou.com/guide/interceptor-optimistic-locker.html
+     * 乐观锁插件 <a href="https://baomidou.com/guide/interceptor-optimistic-locker.html">...</a>
      */
     public OptimisticLockerInnerInterceptor optimisticLockerInnerInterceptor() {
         return new OptimisticLockerInnerInterceptor();
     }
 
     /**
-     * 如果是对全表的删除或更新操作，就会终止该操作 https://baomidou.com/guide/interceptor-block-attack.html
+     * 如果是对全表的删除或更新操作，就会终止该操作 <a href="https://baomidou.com/guide/interceptor-block-attack.html">...</a>
      */
     public BlockAttackInnerInterceptor blockAttackInnerInterceptor() {
         return new BlockAttackInnerInterceptor();

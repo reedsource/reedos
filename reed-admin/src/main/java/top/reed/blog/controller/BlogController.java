@@ -233,7 +233,6 @@ public class BlogController extends BaseController {
      * 搜索内容
      * 目前仅支持文章标题模糊搜索
      *
-     * @param content
      * @param model   model
      */
     @GetMapping("/search")
@@ -261,7 +260,6 @@ public class BlogController extends BaseController {
     /**
      * 标签列表
      *
-     * @param tagId
      * @param model model
      */
     @GetMapping("/tag/{tagId}")

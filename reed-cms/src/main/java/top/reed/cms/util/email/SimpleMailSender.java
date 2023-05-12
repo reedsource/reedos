@@ -14,8 +14,6 @@ public class SimpleMailSender {
     /**
      * 发送html格式邮件
      *
-     * @param mail
-     * @return
      */
     public boolean sendHtmlMail(MailSenderInfo mail) {
         boolean result = false;

@@ -66,7 +66,6 @@ public interface ArticleTemplateMapper {
     /**
      * 查询文字模板标签
      *
-     * @return
      */
     List<Tags> selectArticleTemplateTags();
 }

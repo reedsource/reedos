@@ -64,16 +64,12 @@ public interface ResourceMapper {
     /**
      * 点赞+1
      *
-     * @param id
-     * @return
      */
     int upVote(String id);
 
     /**
      * 点击数+1
      *
-     * @param id
-     * @return
      */
     int resourceLook(String id);
 

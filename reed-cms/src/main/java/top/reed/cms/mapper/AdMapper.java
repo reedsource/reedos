@@ -62,20 +62,17 @@ public interface AdMapper {
      */
     int deleteAdByIds(String[] adIds);
 
-    /****************************************分割线****************************************************/
+    /* ***************************************分割线****************************************************/
     /**
      * 查询广告位素材
      *
      * @param id 广告位素材ID
-     * @return
      */
     AdMaterial selectAdMaterialById(Long id);
 
     /**
      * 查询广告位素材列表
      *
-     * @param adMaterial
-     * @return
      */
     List<AdMaterial> selectAdMaterialList(AdMaterial adMaterial);
 
@@ -106,16 +103,12 @@ public interface AdMapper {
     /**
      * 查询广告位未绑定的广告素材列表
      *
-     * @param adMaterial
-     * @return
      */
     List<AdMaterial> selectAdUnMaterialList(AdMaterial adMaterial);
 
     /**
      * 根据主键查询广告位素材列表
      *
-     * @param ids
-     * @return
      */
     List<AdMaterial> selectAdMaterialByIds(String[] ids);
 }

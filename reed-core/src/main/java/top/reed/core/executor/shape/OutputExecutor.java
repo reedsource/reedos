@@ -111,8 +111,6 @@ public class OutputExecutor implements ShapeExecutor, AutomationListener {
     /**
      * 输出所有参数
      *
-     * @param output
-     * @param variables
      */
     private void outputAll(AutomationOutput output, Map<String, Object> variables) {
         for (Map.Entry<String, Object> item : variables.entrySet()) {

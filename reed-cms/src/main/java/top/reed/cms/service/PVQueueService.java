@@ -76,7 +76,7 @@ public class PVQueueService implements InitializingBean {
         String browser = userAgent.getBrowser();
         pv.setBrowser(browser);
         String deviceType = userAgent.getOperatingSystem();
-        ;//客户端操作系统
+        //客户端操作系统
         pv.setDeviceType(deviceType);
 
         //add(anObject):添加元素到队列里，添加成功返回true，容量满了添加失败会抛出IllegalStateException异常

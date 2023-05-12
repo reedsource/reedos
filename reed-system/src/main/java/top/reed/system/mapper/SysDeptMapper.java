@@ -19,7 +19,7 @@ public interface SysDeptMapper {
      * @param dept 部门信息
      * @return 结果
      */
-    public int selectDeptCount(SysDept dept);
+    int selectDeptCount(SysDept dept);
 
     /**
      * 查询部门是否存在用户
@@ -27,7 +27,7 @@ public interface SysDeptMapper {
      * @param deptId 部门ID
      * @return 结果
      */
-    public int checkDeptExistUser(Long deptId);
+    int checkDeptExistUser(Long deptId);
 
     /**
      * 查询部门管理数据
@@ -35,7 +35,7 @@ public interface SysDeptMapper {
      * @param dept 部门信息
      * @return 部门信息集合
      */
-    public List<SysDept> selectDeptList(SysDept dept);
+    List<SysDept> selectDeptList(SysDept dept);
 
     /**
      * 删除部门管理信息
@@ -43,7 +43,7 @@ public interface SysDeptMapper {
      * @param deptId 部门ID
      * @return 结果
      */
-    public int deleteDeptById(Long deptId);
+    int deleteDeptById(Long deptId);
 
     /**
      * 新增部门信息
@@ -51,7 +51,7 @@ public interface SysDeptMapper {
      * @param dept 部门信息
      * @return 结果
      */
-    public int insertDept(SysDept dept);
+    int insertDept(SysDept dept);
 
     /**
      * 修改部门信息
@@ -59,7 +59,7 @@ public interface SysDeptMapper {
      * @param dept 部门信息
      * @return 结果
      */
-    public int updateDept(SysDept dept);
+    int updateDept(SysDept dept);
 
     /**
      * 修改子元素关系
@@ -67,7 +67,7 @@ public interface SysDeptMapper {
      * @param depts 子元素
      * @return 结果
      */
-    public int updateDeptChildren(@Param("depts") List<SysDept> depts);
+    int updateDeptChildren(@Param("depts") List<SysDept> depts);
 
     /**
      * 根据部门ID查询信息
@@ -75,7 +75,7 @@ public interface SysDeptMapper {
      * @param deptId 部门ID
      * @return 部门信息
      */
-    public SysDept selectDeptById(Long deptId);
+    SysDept selectDeptById(Long deptId);
 
     /**
      * 校验部门名称是否唯一
@@ -84,7 +84,7 @@ public interface SysDeptMapper {
      * @param parentId 父部门ID
      * @return 结果
      */
-    public SysDept checkDeptNameUnique(@Param("deptName") String deptName, @Param("parentId") Long parentId);
+    SysDept checkDeptNameUnique(@Param("deptName") String deptName, @Param("parentId") Long parentId);
 
     /**
      * 根据角色ID查询部门
@@ -92,14 +92,14 @@ public interface SysDeptMapper {
      * @param roleId 角色ID
      * @return 部门列表
      */
-    public List<String> selectRoleDeptTree(Long roleId);
+    List<String> selectRoleDeptTree(Long roleId);
 
     /**
      * 修改所在部门正常状态
      *
      * @param deptIds 部门ID组
      */
-    public void updateDeptStatusNormal(Long[] deptIds);
+    void updateDeptStatusNormal(Long[] deptIds);
 
     /**
      * 根据ID查询所有子部门
@@ -107,7 +107,7 @@ public interface SysDeptMapper {
      * @param deptId 部门ID
      * @return 部门列表
      */
-    public List<SysDept> selectChildrenDeptById(Long deptId);
+    List<SysDept> selectChildrenDeptById(Long deptId);
 
     /**
      * 根据ID查询所有子部门（正常状态）
@@ -115,5 +115,5 @@ public interface SysDeptMapper {
      * @param deptId 部门ID
      * @return 子部门数
      */
-    public int selectNormalChildrenDeptById(Long deptId);
+    int selectNormalChildrenDeptById(Long deptId);
 }

@@ -112,7 +112,7 @@ public class JavaReflection extends Reflection {
 
     /**
      * Returns whether the from type can be coerced to the to type. The coercion rules follow those of Java. See JLS 5.1.2
-     * https://docs.oracle.com/javase/specs/jls/se7/html/jls-5.html
+     * <a href="https://docs.oracle.com/javase/specs/jls/se7/html/jls-5.html">...</a>
      **/
     private static boolean isCoercible(Class<?> from, Class<?> to) {
         if (from == Integer.class || from == int.class) {

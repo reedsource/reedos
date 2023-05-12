@@ -22,7 +22,6 @@ public class FileUtils {
      *
      * @param filePath 文件路径
      * @param os       输出流
-     * @return
      */
     public static void writeBytes(String filePath, OutputStream os) throws IOException {
         FileInputStream fis = null;
@@ -61,7 +60,6 @@ public class FileUtils {
      * 删除文件
      *
      * @param filePath 文件
-     * @return
      */
     public static boolean deleteFile(String filePath) {
         boolean flag = false;

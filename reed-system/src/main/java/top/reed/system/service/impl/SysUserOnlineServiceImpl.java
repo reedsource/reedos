@@ -42,7 +42,6 @@ public class SysUserOnlineServiceImpl implements ISysUserOnlineService {
      * 通过会话序号删除信息
      *
      * @param sessionId 会话ID
-     * @return 在线用户信息
      */
     @Override
     public void deleteOnlineById(String sessionId) {
@@ -56,7 +55,6 @@ public class SysUserOnlineServiceImpl implements ISysUserOnlineService {
      * 通过会话序号删除信息
      *
      * @param sessions 会话ID集合
-     * @return 在线用户信息
      */
     @Override
     public void batchDeleteOnline(List<String> sessions) {

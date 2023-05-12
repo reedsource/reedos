@@ -70,8 +70,6 @@ public interface ICategoryService {
     /**
      * 查询导航栏目
      *
-     * @param category
-     * @return
      */
     List<Category> selectNavCategories(Category category);
 }

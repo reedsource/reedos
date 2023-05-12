@@ -26,8 +26,6 @@ public interface ArticleMapper {
     /**
      * 查询文章内容
      *
-     * @param article_id
-     * @return
      */
     Map<String, Object> getArticleContent(String article_id);
 
@@ -69,7 +67,6 @@ public interface ArticleMapper {
     /**
      * 插入文章内容
      *
-     * @param article
      */
     int insertArticleContent(Article article);
 
@@ -84,8 +81,6 @@ public interface ArticleMapper {
     /**
      * 更新文章内容
      *
-     * @param article
-     * @return
      */
     int updateArticleContent(Article article);
 
@@ -127,16 +122,12 @@ public interface ArticleMapper {
     /**
      * 文章点赞+1
      *
-     * @param id
-     * @return
      */
     int upVote(String id);
 
     /**
      * 文章点击数+1
      *
-     * @param id
-     * @return
      */
     int articleLook(String id);
 }

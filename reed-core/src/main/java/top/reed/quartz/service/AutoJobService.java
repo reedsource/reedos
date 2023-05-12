@@ -56,7 +56,6 @@ public interface AutoJobService {
      * 批量删除调度信息
      *
      * @param ids 需要删除的数据ID
-     * @return 结果
      */
     void deleteJobByIds(String ids) throws SchedulerException;
 

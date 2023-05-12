@@ -12,7 +12,6 @@ public interface IWebSiteService {
     /**
      * 获得站点相关数据
      *
-     * @return
      */
     Map getSiteInfo();
 }

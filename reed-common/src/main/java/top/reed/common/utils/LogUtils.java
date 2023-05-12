@@ -47,8 +47,6 @@ public class LogUtils {
     /**
      * 记录异常错误 格式 [exception]
      *
-     * @param message
-     * @param e
      */
     public static void logError(String message, Throwable e) {
         String username = getUsername();
@@ -61,7 +59,6 @@ public class LogUtils {
     /**
      * 记录页面错误 错误日志记录 [page/eception][username][statusCode][errorMessage][servletName][uri][exceptionName][ip][exception]
      *
-     * @param request
      */
     public static void logPageError(HttpServletRequest request) {
         String username = getUsername();
@@ -99,7 +96,7 @@ public class LogUtils {
         if (msg == null) {
             msg = "";
         }
-        return "[" + msg.toString() + "]";
+        return "[" + msg + "]";
     }
 
     protected static String getParams(HttpServletRequest request) throws Exception {

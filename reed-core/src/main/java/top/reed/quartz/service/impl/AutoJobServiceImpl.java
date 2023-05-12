@@ -56,7 +56,6 @@ public class AutoJobServiceImpl implements AutoJobService {
      * 获取quartz调度器的计划任务列表
      *
      * @param job 调度信息
-     * @return
      */
     @Override
     public List<AutoJob> selectJobList(AutoJob job) {
@@ -131,7 +130,6 @@ public class AutoJobServiceImpl implements AutoJobService {
      * 批量删除调度信息
      *
      * @param ids 需要删除的数据ID
-     * @return 结果
      */
     @Override
     @Transactional(rollbackFor = Exception.class)

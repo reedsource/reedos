@@ -17,7 +17,7 @@ public interface IGenTableService {
      * @param genTable 业务信息
      * @return 业务集合
      */
-    public List<GenTable> selectGenTableList(GenTable genTable);
+    List<GenTable> selectGenTableList(GenTable genTable);
 
     /**
      * 查询据库列表
@@ -25,7 +25,7 @@ public interface IGenTableService {
      * @param genTable 业务信息
      * @return 数据库表集合
      */
-    public List<GenTable> selectDbTableList(GenTable genTable);
+    List<GenTable> selectDbTableList(GenTable genTable);
 
     /**
      * 查询据库列表
@@ -33,14 +33,14 @@ public interface IGenTableService {
      * @param tableNames 表名称组
      * @return 数据库表集合
      */
-    public List<GenTable> selectDbTableListByNames(String[] tableNames);
+    List<GenTable> selectDbTableListByNames(String[] tableNames);
 
     /**
      * 查询所有表信息
      *
      * @return 表信息集合
      */
-    public List<GenTable> selectGenTableAll();
+    List<GenTable> selectGenTableAll();
 
     /**
      * 查询业务信息
@@ -48,23 +48,21 @@ public interface IGenTableService {
      * @param id 业务ID
      * @return 业务信息
      */
-    public GenTable selectGenTableById(Long id);
+    GenTable selectGenTableById(Long id);
 
     /**
      * 修改业务
      *
      * @param genTable 业务信息
-     * @return 结果
      */
-    public void updateGenTable(GenTable genTable);
+    void updateGenTable(GenTable genTable);
 
     /**
      * 删除业务信息
      *
      * @param ids 需要删除的数据ID
-     * @return 结果
      */
-    public void deleteGenTableByIds(String ids);
+    void deleteGenTableByIds(String ids);
 
     /**
      * 创建表
@@ -72,7 +70,7 @@ public interface IGenTableService {
      * @param sql 创建表语句
      * @return 结果
      */
-    public boolean createTable(String sql);
+    boolean createTable(String sql);
 
     /**
      * 导入表结构
@@ -80,7 +78,7 @@ public interface IGenTableService {
      * @param tableList 导入表列表
      * @param operName  操作人员
      */
-    public void importGenTable(List<GenTable> tableList, String operName);
+    void importGenTable(List<GenTable> tableList, String operName);
 
     /**
      * 预览代码
@@ -88,7 +86,7 @@ public interface IGenTableService {
      * @param tableId 表编号
      * @return 预览数据列表
      */
-    public Map<String, String> previewCode(Long tableId);
+    Map<String, String> previewCode(Long tableId);
 
     /**
      * 生成代码（下载方式）
@@ -96,21 +94,21 @@ public interface IGenTableService {
      * @param tableName 表名称
      * @return 数据
      */
-    public byte[] downloadCode(String tableName);
+    byte[] downloadCode(String tableName);
 
     /**
      * 生成代码（自定义路径）
      *
      * @param tableName 表名称
      */
-    public void generatorCode(String tableName);
+    void generatorCode(String tableName);
 
     /**
      * 同步数据库
      *
      * @param tableName 表名称
      */
-    public void synchDb(String tableName);
+    void synchDb(String tableName);
 
     /**
      * 批量生成代码（下载方式）
@@ -118,12 +116,12 @@ public interface IGenTableService {
      * @param tableNames 表数组
      * @return 数据
      */
-    public byte[] downloadCode(String[] tableNames);
+    byte[] downloadCode(String[] tableNames);
 
     /**
      * 修改保存参数校验
      *
      * @param genTable 业务信息
      */
-    public void validateEdit(GenTable genTable);
+    void validateEdit(GenTable genTable);
 }

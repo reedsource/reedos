@@ -23,8 +23,6 @@ public enum ArticleModel {
     /**
      * 根据val获取去desc
      *
-     * @param val
-     * @return
      */
     public static String getDescByVal(String val) {
         if (StringUtils.isEmpty(val)) {

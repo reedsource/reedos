@@ -33,8 +33,6 @@ public class AutomationJobContext extends AutomationContext {
     /**
      * @param directory 自动化日志路径
      * @param id        自动化流程id
-     * @param output
-     * @return
      */
     public static AutomationJobContext create(String directory, String id, boolean output) {
         OutputStream os = null;

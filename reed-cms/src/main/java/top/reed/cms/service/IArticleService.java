@@ -63,8 +63,6 @@ public interface IArticleService {
     /**
      * 根据文章专区查询文章列表
      *
-     * @param articleRegionType
-     * @return
      */
     List<Article> selectArticlesByArticleRegionType(ArticleRegionType articleRegionType);
 
@@ -91,16 +89,12 @@ public interface IArticleService {
     /**
      * 文章点赞+1
      *
-     * @param id
-     * @return
      */
     int upVote(String id);
 
     /**
      * 文章点击数+1
      *
-     * @param id
-     * @return
      */
     int articleLook(String id);
 

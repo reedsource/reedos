@@ -32,8 +32,6 @@ public class SysShiroService {
     /**
      * 获取会话信息
      *
-     * @param sessionId
-     * @return
      */
     public Session getSession(Serializable sessionId) {
         SysUserOnline userOnline = onlineService.selectOnlineById(String.valueOf(sessionId));

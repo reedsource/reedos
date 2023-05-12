@@ -136,8 +136,6 @@ public class AlbumController extends BaseController {
     /**
      * 查询未配置的素材
      *
-     * @param material
-     * @return
      */
     @PostMapping("/unMaterialList")
     @ResponseBody

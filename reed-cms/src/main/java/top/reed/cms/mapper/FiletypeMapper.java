@@ -74,7 +74,6 @@ public interface FiletypeMapper {
      * 查询字典格式的数据
      * dictValue,dictLabel
      *
-     * @return
      */
     List<Map<String, Object>> selectDictData();
 }

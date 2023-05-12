@@ -70,8 +70,6 @@ public interface ICommentService {
     /**
      * 评论点赞+1
      *
-     * @param id
-     * @return
      */
     int upVote(String id);
 }

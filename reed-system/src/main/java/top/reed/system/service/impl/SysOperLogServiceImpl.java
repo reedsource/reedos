@@ -44,7 +44,6 @@ public class SysOperLogServiceImpl implements ISysOperLogService {
      * 批量删除系统操作日志
      *
      * @param ids 需要删除的数据
-     * @return
      */
     @Override
     public int deleteOperLogByIds(String ids) {

@@ -614,7 +614,6 @@ public class ExcelUtil<T> {
     /**
      * 对list数据源将其里面的数据导入到excel表单
      *
-     * @return 结果
      */
     public void exportExcel(HttpServletResponse response) {
         try {
@@ -1083,7 +1082,6 @@ public class ExcelUtil<T> {
      *
      * @param value 数据值
      * @param excel 数据注解
-     * @return
      */
     public String dataFormatHandlerAdapter(Object value, Excel excel) {
         try {
@@ -1183,8 +1181,6 @@ public class ExcelUtil<T> {
     /**
      * 以类的属性的get方法方法形式获取值
      *
-     * @param o
-     * @param name
      * @return value
      * throws Exception
      */
@@ -1330,7 +1326,6 @@ public class ExcelUtil<T> {
      * 判断是否是空行
      *
      * @param row 判断的行
-     * @return
      */
     private boolean isRowEmpty(Row row) {
         if (row == null) {
