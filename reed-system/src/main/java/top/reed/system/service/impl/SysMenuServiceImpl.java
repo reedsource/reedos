@@ -145,8 +145,7 @@ public class SysMenuServiceImpl implements ISysMenuService {
     @Override
     public List<Ztree> menuTreeData(Long userId) {
         List<SysMenu> menuList = selectMenuAll(userId);
-        List<Ztree> ztrees = initZtree(menuList);
-        return ztrees;
+        return initZtree(menuList);
     }
 
     /**

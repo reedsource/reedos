@@ -121,8 +121,7 @@ public class AlbumServiceImpl implements IAlbumService {
     @Override
     public List<AlbumMaterial> selectAlbumMaterialList(Material material) {
 
-        List<AlbumMaterial> list = materialMapper.selectAlbumMaterialList(material);
-        return list;
+        return materialMapper.selectAlbumMaterialList(material);
     }
 
     /**
@@ -134,8 +133,7 @@ public class AlbumServiceImpl implements IAlbumService {
     @Override
     public List<Material> selectAlbumUnMaterialList(Material material) {
 
-        List<Material> list = materialMapper.selectAlbumUnMaterialList(material);
-        return list;
+        return materialMapper.selectAlbumUnMaterialList(material);
     }
 
     /**

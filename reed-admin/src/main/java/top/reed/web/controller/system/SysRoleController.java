@@ -282,7 +282,6 @@ public class SysRoleController extends BaseController {
     @GetMapping("/deptTreeData")
     @ResponseBody
     public List<Ztree> deptTreeData(SysRole role) {
-        List<Ztree> ztrees = deptService.roleDeptTreeData(role);
-        return ztrees;
+        return deptService.roleDeptTreeData(role);
     }
 }

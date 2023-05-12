@@ -193,7 +193,7 @@ public enum FileUploadUtils {
     /**
      * 是否图片
      */
-    public static final boolean isImage(String suffix) {
+    public static boolean isImage(String suffix) {
         for (String str : MimeTypeUtils.IMAGE_EXTENSION) {
             if (str.equalsIgnoreCase(suffix)) {
                 return true;
@@ -202,7 +202,7 @@ public enum FileUploadUtils {
         return false;
     }
 
-    public static final boolean isText(String suffix) {
+    public static boolean isText(String suffix) {
         for (String str : MimeTypeUtils.TEXT_EXTENSION) {
             if (str.equalsIgnoreCase(suffix)) {
                 return true;
@@ -211,7 +211,7 @@ public enum FileUploadUtils {
         return false;
     }
 
-    public static final boolean isVideo(String suffix) {
+    public static boolean isVideo(String suffix) {
         for (String str : MimeTypeUtils.VIDEO_EXTENSION) {
             if (str.equalsIgnoreCase(suffix)) {
                 return true;
@@ -220,7 +220,7 @@ public enum FileUploadUtils {
         return false;
     }
 
-    public static final boolean isAudio(String suffix) {
+    public static boolean isAudio(String suffix) {
         for (String str : MimeTypeUtils.AUDIO_EXTENSION) {
             if (str.equalsIgnoreCase(suffix)) {
                 return true;
@@ -229,7 +229,7 @@ public enum FileUploadUtils {
         return false;
     }
 
-    public static final boolean isZip(String suffix) {
+    public static boolean isZip(String suffix) {
         for (String str : MimeTypeUtils.ZIP_EXTENSION) {
             if (str.equalsIgnoreCase(suffix)) {
                 return true;
@@ -301,7 +301,7 @@ public enum FileUploadUtils {
      *
      * @param fileName /profile/public/blog/f4395e7b74fe673893ffd7d2f317dbdc.png
      */
-    public static final boolean deleteFile(String fileName) {
+    public static boolean deleteFile(String fileName) {
         File target = getAbsoluteFile(ReedConfig.getProfile(), fileName.replace(Constants.RESOURCE_PREFIX, ""));
         if (target.exists() && target.isFile()) {
             target.delete();
@@ -313,7 +313,7 @@ public enum FileUploadUtils {
     /**
      * 编码文件名
      */
-    public static final String encodingFilename(String fileName) {
+    public static String encodingFilename(String fileName) {
         fileName = fileName.replace("_", " ");
         fileName = Md5Utils.hash(fileName + System.nanoTime() + counter++);
         return fileName;

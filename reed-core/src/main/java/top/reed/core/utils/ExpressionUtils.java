@@ -39,7 +39,7 @@ public class ExpressionUtils {
                 try {
                     result = engine.execute(condition, variables);
                 } catch (Exception e) {
-                    logger.error("判断{}出错,异常信息：{}", condition, e);
+                    logger.error("判断{}出错,异常信息： {}", condition, e.toString());
                 }
                 if (result != null) {
                     boolean isContinue = "true".equals(result) || Objects.equals(result, true);

@@ -196,9 +196,8 @@ public class ArticleServiceImpl implements IArticleService {
 
     @Override
     public List<Article> selectArticlesRegionIsNull(Article article) {
-        List<Article> list = articleMapper.selectArticlesRegionIsNull(article);
         //selectCategory(list);
-        return list;
+        return articleMapper.selectArticlesRegionIsNull(article);
     }
 
     @Override

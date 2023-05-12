@@ -53,8 +53,7 @@ public class SysDeptServiceImpl implements ISysDeptService {
     @DataScope(deptAlias = "d")
     public List<Ztree> selectDeptTree(SysDept dept) {
         List<SysDept> deptList = deptMapper.selectDeptList(dept);
-        List<Ztree> ztrees = initZtree(deptList);
-        return ztrees;
+        return initZtree(deptList);
     }
 
     /**

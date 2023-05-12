@@ -35,7 +35,7 @@ public class FunctionExecutor implements ShapeExecutor {
                     logger.debug("执行函数{}", function);
                     ExpressionUtils.execute(function, variables);
                 } catch (Exception e) {
-                    logger.error("执行函数{}失败,异常信息:{}", function, e);
+                    logger.error("执行函数{}失败,异常信息:{}", function, e.toString());
                     ExceptionUtils.wrapAndThrow(e);
                 }
             }

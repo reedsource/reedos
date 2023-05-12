@@ -161,7 +161,6 @@ public class SysDictTypeController extends BaseController {
     @GetMapping("/treeData")
     @ResponseBody
     public List<Ztree> treeData() {
-        List<Ztree> ztrees = dictTypeService.selectDictTree(new SysDictType());
-        return ztrees;
+        return dictTypeService.selectDictTree(new SysDictType());
     }
 }

@@ -234,8 +234,7 @@ public class FileUtils {
         if (fileName == null) {
             return null;
         }
-        String baseName = FilenameUtils.getBaseName(fileName);
-        return baseName;
+        return FilenameUtils.getBaseName(fileName);
     }
 }
 

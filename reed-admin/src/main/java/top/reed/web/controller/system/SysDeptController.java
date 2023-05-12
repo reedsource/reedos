@@ -40,8 +40,7 @@ public class SysDeptController extends BaseController {
     @PostMapping("/list")
     @ResponseBody
     public List<SysDept> list(SysDept dept) {
-        List<SysDept> deptList = deptService.selectDeptList(dept);
-        return deptList;
+        return deptService.selectDeptList(dept);
     }
 
     /**
@@ -156,7 +155,6 @@ public class SysDeptController extends BaseController {
     public List<Ztree> treeDataExcludeChild(@PathVariable(value = "excludeId", required = false) Long excludeId) {
         SysDept dept = new SysDept();
         dept.setExcludeId(excludeId);
-        List<Ztree> ztrees = deptService.selectDeptTreeExcludeChild(dept);
-        return ztrees;
+        return deptService.selectDeptTreeExcludeChild(dept);
     }
 }

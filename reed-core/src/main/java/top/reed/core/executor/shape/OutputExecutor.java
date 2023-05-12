@@ -83,7 +83,7 @@ public class OutputExecutor implements ShapeExecutor, AutomationListener {
                 context.pause(node.getNodeId(), "common", outputName, value);
                 logger.debug("输出{}={}", outputName, value);
             } catch (Exception e) {
-                logger.error("输出{}出错，异常信息：{}", outputName, e);
+                logger.error("输出{}出错，异常信息：{}", outputName, e.toString());
             }
             output.addOutput(outputName, value);
             if ((databaseFlag || csvFlag) && value != null) {

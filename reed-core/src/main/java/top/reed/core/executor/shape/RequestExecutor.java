@@ -247,7 +247,7 @@ public class RequestExecutor implements ShapeExecutor, Grammerable, AutomationLi
                         }
                     }
                 } catch (Exception e) {
-                    logger.error("设置代理出错，异常信息:{}", e);
+                    logger.error("设置代理出错，异常信息:{}",e.toString());
                 }
             }
             Throwable exception = null;

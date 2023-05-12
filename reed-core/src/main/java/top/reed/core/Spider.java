@@ -246,7 +246,7 @@ public class Spider {
                 logger.info("获取循环次数{}={}", loopCountStr, loopCount);
             } catch (Throwable t) {
                 loopCount = 0;
-                logger.error("获取循环次数失败,异常信息：{}", t);
+                logger.error("获取循环次数失败,异常信息：{}", t.toString());
             }
         }
         if (loopCount > 0) {
@@ -285,7 +285,7 @@ public class Spider {
                                 nVariables.remove("ex");
                             } catch (Throwable t) {
                                 nVariables.put("ex", t);
-                                logger.error("执行节点[{}:{}]出错,异常信息：{}", node.getNodeName(), node.getNodeId(), t);
+                                logger.error("执行节点[{}:{}]出错,异常信息：{}", node.getNodeName(), node.getNodeId(), t.toString());
                             }
                         }
                     }), node, nVariables, executor));
@@ -323,7 +323,7 @@ public class Spider {
                 try {
                     result = ExpressionUtils.execute(condition, variables);
                 } catch (Exception e) {
-                    logger.error("判断{}出错,异常信息：{}", condition, e);
+                    logger.error("判断{}出错,异常信息：{}", condition, e.toString());
                 }
                 if (result != null) {
                     boolean isContinue = "true".equals(result) || Objects.equals(result, true);

@@ -281,8 +281,7 @@ public class SysUserController extends BaseController {
     @GetMapping("/deptTreeData")
     @ResponseBody
     public List<Ztree> deptTreeData() {
-        List<Ztree> ztrees = deptService.selectDeptTree(new SysDept());
-        return ztrees;
+        return deptService.selectDeptTree(new SysDept());
     }
 
     /**

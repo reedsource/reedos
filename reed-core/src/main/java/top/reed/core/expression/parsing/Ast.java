@@ -829,9 +829,8 @@ public abstract class Ast {
 
         @Override
         public Object evaluate(ExpressionTemplate template, ExpressionTemplateContext context) {
-            Object value = context.get(getSpan().getText());
             //if (value == null) ExpressionError.error("找不到变量'" + getSpan().getText() + "'或变量值为null", getSpan());
-            return value;
+            return context.get(getSpan().getText());
         }
     }
 

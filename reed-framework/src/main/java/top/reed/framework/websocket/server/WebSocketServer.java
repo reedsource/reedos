@@ -78,7 +78,7 @@ public class WebSocketServer {
             session.close();
         }
         String sessionId = session.getId();
-        LOGGER.info("连接异常 - {} 异常信息 - {}", sessionId, exception);
+        LOGGER.info("连接异常 - {} 异常信息 - {}", sessionId, exception.toString());
         // 移出用户
         WebSocketUsers.remove(sessionId);
         // 获取到信号量则需释放

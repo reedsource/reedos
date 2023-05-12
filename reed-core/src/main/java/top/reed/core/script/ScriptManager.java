@@ -89,14 +89,13 @@ public class ScriptManager {
      * @return 组合字符串
      */
     private static String concatScript(String functionName, String parameters, String script) {
-        String scriptBuffer = "function " +
+        return "function " +
                 functionName +
                 "(" +
                 (parameters == null ? "" : parameters) +
                 "){" +
                 script +
                 "}" ;
-        return scriptBuffer;
     }
 
     public static boolean containsFunction(String functionName) {
