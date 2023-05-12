@@ -15,12 +15,12 @@ import java.util.*;
  */
 public class ExpressionTemplateContext {
     private final static ThreadLocal<ExpressionTemplateContext> CONTEXT_THREAD_LOCAL = new ThreadLocal<>();
-    private final List<Map<String, Object>> scopes = new ArrayList<Map<String, Object>>();
+    private final List<Map<String, Object>> scopes = new ArrayList<>();
     /**
      * Keeps track of previously allocated, unused scopes. New scopes are first tried to be retrieved from this pool to avoid
      * generating garbage.
      **/
-    private final List<Map<String, Object>> freeScopes = new ArrayList<Map<String, Object>>();
+    private final List<Map<String, Object>> freeScopes = new ArrayList<>();
 
     public ExpressionTemplateContext() {
         push();
@@ -89,9 +89,9 @@ public class ExpressionTemplateContext {
      * Internal. Returns all variables currently defined in this context.
      */
     public Set<String> getVariables() {
-        Set<String> variables = new HashSet<String>();
-        for (int i = 0, n = scopes.size(); i < n; i++) {
-            variables.addAll(scopes.get(i).keySet());
+        Set<String> variables = new HashSet<>();
+        for (Map<String, Object> scope : scopes) {
+            variables.addAll(scope.keySet());
         }
         return variables;
     }
@@ -100,7 +100,7 @@ public class ExpressionTemplateContext {
      * Internal. Pushes a new "scope" onto the stack.
      **/
     public void push() {
-        Map<String, Object> newScope = freeScopes.size() > 0 ? freeScopes.remove(freeScopes.size() - 1) : new HashMap<String, Object>();
+        Map<String, Object> newScope = freeScopes.size() > 0 ? freeScopes.remove(freeScopes.size() - 1) : new HashMap<>();
         scopes.add(newScope);
     }
 

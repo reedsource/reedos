@@ -804,7 +804,7 @@ public class Convert {
 
             if (c[i] == '\u3000') {
                 c[i] = ' ';
-            } else if (c[i] > '\uFF00' && c[i] < '\uFF5F') {
+            } else if (c[i] > '\uFF00' && c[i] < '｟') {
                 c[i] = (char) (c[i] - 65248);
             }
         }

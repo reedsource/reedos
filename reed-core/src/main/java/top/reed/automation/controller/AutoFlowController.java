@@ -49,7 +49,7 @@ public class AutoFlowController extends BaseController {
         this.autoFlowService = autoFlowService;
     }
 
-    private final List<Grammer> grammers = new ArrayList<Grammer>();
+    private final List<Grammer> grammers = new ArrayList<>();
     @Autowired
     private List<FunctionExecutor> functionExecutors;
     @Autowired

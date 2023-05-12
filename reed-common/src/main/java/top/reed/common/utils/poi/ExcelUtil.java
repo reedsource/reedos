@@ -54,7 +54,7 @@ public class ExcelUtil<T> {
     /**
      * 用于dictType属性数据存储，避免重复查缓存
      */
-    public Map<String, String> sysDictMap = new HashMap<String, String>();
+    public Map<String, String> sysDictMap = new HashMap<>();
     /**
      * Excel sheet最大行数，默认65536
      */
@@ -1107,7 +1107,7 @@ public class ExcelUtil<T> {
             }
             try {
                 temp = Double.valueOf(text);
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException ignored) {
             }
             statistics.put(index, statistics.get(index) + temp);
         }

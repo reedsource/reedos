@@ -112,7 +112,7 @@ public class AutoDataSourceController extends BaseController {
             if (connection != null) {
                 try {
                     connection.close();
-                } catch (Exception e) {
+                } catch (Exception ignored) {
                 }
             }
         }

@@ -140,7 +140,7 @@ public class Spider {
                         Optional<Future<?>> max = queue.stream().filter(Future::isDone).max((o1, o2) -> {
                             try {
                                 return comparator.compare(((SpiderTask) o1.get()).node, ((SpiderTask) o2.get()).node);
-                            } catch (InterruptedException | ExecutionException e) {
+                            } catch (InterruptedException | ExecutionException ignored) {
                             }
                             return 0;
 
@@ -218,8 +218,8 @@ public class Spider {
         int loopEnd = 1;    //循环结束位置
         String loopCountStr = node.getStringJsonValue(ShapeExecutor.LOOP_COUNT);
         Object loopArray = null;
-        boolean isLoop;
-        if (isLoop = StringUtils.isNotBlank(loopCountStr)) {
+        boolean isLoop = StringUtils.isNotBlank(loopCountStr);
+        if (isLoop) {
             try {
                 loopArray = ExpressionUtils.execute(loopCountStr, variables);
                 if (loopArray == null) {

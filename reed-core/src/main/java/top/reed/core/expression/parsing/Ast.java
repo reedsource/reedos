@@ -1040,7 +1040,7 @@ public abstract class Ast {
             super(span);
             this.function = function;
             this.arguments = arguments;
-            this.cachedArguments = new ThreadLocal<Object[]>();
+            this.cachedArguments = new ThreadLocal<>();
         }
 
         /**
@@ -1163,7 +1163,7 @@ public abstract class Ast {
             super(span);
             this.method = method;
             this.arguments = arguments;
-            this.cachedArguments = new ThreadLocal<Object[]>();
+            this.cachedArguments = new ThreadLocal<>();
         }
 
         /**
@@ -1380,8 +1380,8 @@ public abstract class Ast {
         @Override
         public Object evaluate(ExpressionTemplate template, ExpressionTemplateContext context) throws IOException {
             List<Object> list = new ArrayList<>();
-            for (int i = 0, n = values.size(); i < n; i++) {
-                list.add(values.get(i).evaluate(template, context));
+            for (Expression value : values) {
+                list.add(value.evaluate(template, context));
             }
             return list;
         }

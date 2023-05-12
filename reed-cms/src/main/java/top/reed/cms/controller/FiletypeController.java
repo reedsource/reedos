@@ -110,9 +110,4 @@ public class FiletypeController extends BaseController {
         return toAjax(filetypeService.deleteFiletypeByIds(ids));
     }
 
-    /*@GetMapping( "/selectDictData")
-    @ResponseBody
-    public Object selectDictData(){
-        return filetypeService.selectDictData();
-    }*/
 }

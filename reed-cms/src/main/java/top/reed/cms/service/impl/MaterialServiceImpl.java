@@ -104,7 +104,7 @@ public class MaterialServiceImpl implements IMaterialService {
             if (m != null) {
                 try {
                     FileUploadUtils.deleteFile(m.getSavePath());
-                } catch (Exception ex) {
+                } catch (Exception ignored) {
                 }
             }
         }

@@ -278,7 +278,7 @@ public class RequestExecutor implements ShapeExecutor, Grammerable, AutomationLi
                     for (InputStream is : streams) {
                         try {
                             is.close();
-                        } catch (Exception e) {
+                        } catch (Exception ignored) {
                         }
                     }
                 }

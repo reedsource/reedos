@@ -13,7 +13,7 @@ public class Tokenizer {
     private static List<Token> tokenizeCodeSpan(Span span) {
         String source = span.getSource();
         CharacterStream stream = new CharacterStream(source, span.getStart(), span.getEnd());
-        List<Token> tokens = new ArrayList<Token>();
+        List<Token> tokens = new ArrayList<>();
 
         // 匹配开始标签并将其扔掉
         if (!stream.match("${", true))
@@ -156,7 +156,7 @@ public class Tokenizer {
      * ｛{和｝}不会作为单独的令牌返回。请参阅TokenType以获取此令牌化器所理解的令牌列表
      */
     public List<Token> tokenize(String source) {
-        List<Token> tokens = new ArrayList<Token>();
+        List<Token> tokens = new ArrayList<>();
         if (source.length() == 0) return tokens;
         CharacterStream stream = new CharacterStream(source);
         stream.startSpan();

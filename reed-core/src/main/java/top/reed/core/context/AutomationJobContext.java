@@ -57,7 +57,7 @@ public class AutomationJobContext extends AutomationContext {
     public void close() {
         try {
             this.outputstream.close();
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
     }
 

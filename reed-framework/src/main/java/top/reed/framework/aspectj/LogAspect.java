@@ -46,7 +46,7 @@ public class LogAspect {
     /**
      * 计算操作消耗时间
      */
-    private static final ThreadLocal<Long> TIME_THREADLOCAL = new NamedThreadLocal<Long>("Cost Time");
+    private static final ThreadLocal<Long> TIME_THREADLOCAL = new NamedThreadLocal<>("Cost Time");
 
     /**
      * 处理请求前执行
@@ -186,7 +186,7 @@ public class LogAspect {
                     try {
                         Object jsonObj = JSONObject.toJSONString(o, excludePropertyPreFilter(excludeParamNames));
                         params += jsonObj.toString() + " ";
-                    } catch (Exception e) {
+                    } catch (Exception ignored) {
                     }
                 }
             }

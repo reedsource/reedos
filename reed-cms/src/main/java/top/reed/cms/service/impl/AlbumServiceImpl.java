@@ -138,17 +138,6 @@ public class AlbumServiceImpl implements IAlbumService {
         return list;
     }
 
-    public boolean containsId(String tarId, String[] arr) {
-        boolean flag = false;
-        for (String id : arr) {
-            if (id.equals(tarId)) {
-                flag = true;
-                break;
-            }
-        }
-        return flag;
-    }
-
     /**
      * 删除专辑关联的素材
      *

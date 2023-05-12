@@ -43,8 +43,8 @@ public class Grammer {
                 if (returns != null) {
                     Class<?>[] clazzs = returns.value();
                     List<String> returnTypes = new ArrayList<>();
-                    for (int i = 0; i < clazzs.length; i++) {
-                        returnTypes.add(clazzs[i].getSimpleName());
+                    for (Class<?> aClass : clazzs) {
+                        returnTypes.add(aClass.getSimpleName());
                     }
                     grammer.setReturns(returnTypes);
                 } else {

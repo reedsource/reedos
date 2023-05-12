@@ -158,7 +158,7 @@ public class StringFunctionExecutor implements FunctionExecutor {
     @Comment("生成多个UUID")
     @Example("${string.uuid(size)}")
     public static List<String> uuids(Integer size) {
-        List<String> ids = new ArrayList<String>();
+        List<String> ids = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             ids.add(UUID.randomUUID().toString().replace("-", ""));
         }

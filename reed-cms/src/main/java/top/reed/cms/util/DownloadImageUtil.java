@@ -41,7 +41,7 @@ public class DownloadImageUtil {
             if (urlcon.getResponseCode() == 200) {
                 return true;
             }
-        } catch (Exception ex) {
+        } catch (Exception ignored) {
         }
         return false;
     }

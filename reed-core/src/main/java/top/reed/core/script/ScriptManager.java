@@ -31,7 +31,7 @@ public class ScriptManager {
 
     public static void setScriptEngine(ScriptEngine engine) {
         scriptEngine = engine;
-        StringBuffer script = new StringBuffer();
+        StringBuilder script = new StringBuilder();
         script.append("var ExpressionTemplate = Java.type('")
                 .append(ExpressionTemplate.class.getName())
                 .append("');")

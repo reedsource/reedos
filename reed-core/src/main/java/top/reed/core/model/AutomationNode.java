@@ -94,8 +94,8 @@ public class AutomationNode {
         List<JSONArray> arrays = new ArrayList<>();
         int size = -1;
         List<Map<String, String>> result = new ArrayList<>();
-        for (int i = 0; i < keys.length; i++) {
-            JSONArray jsonArray = (JSONArray) this.jsonProperty.get(keys[i]);
+        for (String key : keys) {
+            JSONArray jsonArray = (JSONArray) this.jsonProperty.get(key);
             if (jsonArray != null) {
                 if (size == -1) {
                     size = jsonArray.size();

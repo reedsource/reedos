@@ -7,8 +7,8 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class JavaReflection extends Reflection {
-    private final Map<Class<?>, Map<String, Field>> fieldCache = new ConcurrentHashMap<Class<?>, Map<String, Field>>();
-    private final Map<Class<?>, Map<MethodSignature, Method>> methodCache = new ConcurrentHashMap<Class<?>, Map<MethodSignature, Method>>();
+    private final Map<Class<?>, Map<String, Field>> fieldCache = new ConcurrentHashMap<>();
+    private final Map<Class<?>, Map<MethodSignature, Method>> methodCache = new ConcurrentHashMap<>();
     private final Map<Class<?>, Map<String, List<Method>>> extensionmethodCache = new ConcurrentHashMap<>();
 
     /**
@@ -73,9 +73,7 @@ public class JavaReflection extends Reflection {
     private static Method findMethod(Class<?> cls, String name, Class<?>[] parameterTypes) {
         Method[] methods = cls.getDeclaredMethods();
         List<Method> methodList = new ArrayList<>();
-        for (int i = 0, n = methods.length; i < n; i++) {
-            Method method = methods[i];
-
+        for (Method method : methods) {
             // if neither name or parameter list size match, bail on this method
             if (!method.getName().equals(name)) continue;
             if (method.getParameterTypes().length != parameterTypes.length) continue;
@@ -161,7 +159,7 @@ public class JavaReflection extends Reflection {
         Class cls = obj instanceof Class ? (Class) obj : obj.getClass();
         Map<String, Field> fields = fieldCache.get(cls);
         if (fields == null) {
-            fields = new ConcurrentHashMap<String, Field>();
+            fields = new ConcurrentHashMap<>();
             fieldCache.put(cls, fields);
         }
 
@@ -270,7 +268,7 @@ public class JavaReflection extends Reflection {
         Class<?> cls = obj instanceof Class ? (Class<?>) obj : obj.getClass();
         Map<MethodSignature, Method> methods = methodCache.get(cls);
         if (methods == null) {
-            methods = new ConcurrentHashMap<MethodSignature, Method>();
+            methods = new ConcurrentHashMap<>();
             methodCache.put(cls, methods);
         }
 

@@ -191,8 +191,8 @@ public class OutputExecutor implements ShapeExecutor, AutomationListener {
                     }
                 }
             }
-            for (int i = 0; i < headers.length; i++) {
-                records.add(data.get(headers[i]).toString());
+            for (String header : headers) {
+                records.add(data.get(header).toString());
             }
             synchronized (cachePrinter) {
                 printer.printRecord(records);
@@ -219,8 +219,7 @@ public class OutputExecutor implements ShapeExecutor, AutomationListener {
     }
 
     private void releasePrinters() {
-        for (Iterator<Map.Entry<String, CSVPrinter>> iterator = this.cachePrinter.entrySet().iterator(); iterator.hasNext(); ) {
-            Map.Entry<String, CSVPrinter> entry = iterator.next();
+        for (Map.Entry<String, CSVPrinter> entry : this.cachePrinter.entrySet()) {
             CSVPrinter printer = entry.getValue();
             if (printer != null) {
                 try {

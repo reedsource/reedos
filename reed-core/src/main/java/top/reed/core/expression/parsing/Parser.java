@@ -26,7 +26,7 @@ public class Parser {
      * Parses a {@link Source} into a {@link ExpressionTemplate}.
      **/
     public static List<Node> parse(String source) {
-        List<Node> nodes = new ArrayList<Node>();
+        List<Node> nodes = new ArrayList<>();
         TokenStream stream = new TokenStream(new Tokenizer().tokenize(source));
         while (stream.hasMore()) {
             nodes.add(parseStatement(stream));
@@ -172,8 +172,6 @@ public class Parser {
     }
 
     private static Expression parseAccessOrCall(TokenStream stream, TokenType tokenType) {
-        //Span identifier = stream.expect(TokenType.Identifier);
-        //Expression result = new VariableAccess(identifier);
         Span identifier = stream.expect(tokenType).getSpan();
         Expression result = tokenType == TokenType.StringLiteral ? new StringLiteral(identifier) : new VariableAccess(identifier);
 
@@ -214,7 +212,7 @@ public class Parser {
      **/
     private static List<Expression> parseArguments(TokenStream stream) {
         stream.expect(TokenType.LeftParantheses);
-        List<Expression> arguments = new ArrayList<Expression>();
+        List<Expression> arguments = new ArrayList<>();
         while (stream.hasMore() && !stream.match(TokenType.RightParantheses, false)) {
             arguments.add(parseExpression(stream));
             if (!stream.match(TokenType.RightParantheses, false)) stream.expect(TokenType.Comma);

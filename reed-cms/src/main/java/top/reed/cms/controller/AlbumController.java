@@ -28,7 +28,6 @@ import java.util.Map;
 @Controller
 @RequestMapping("/cms/album")
 public class AlbumController extends BaseController {
-    private final String prefix = "cms/album";
 
     @Autowired
     private IAlbumService albumService;

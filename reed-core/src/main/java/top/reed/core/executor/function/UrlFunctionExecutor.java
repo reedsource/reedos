@@ -28,7 +28,7 @@ public class UrlFunctionExecutor implements FunctionExecutor {
     @Comment("获取url全部参数")
     @Example("${url.parameterMap('http://www.baidu.com/s?wd=spider-flow&abbr=sf')}")
     public static Map<String, String> parameterMap(String url) {
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, String> map = new HashMap<>();
         int index = url.indexOf("?");
         if (index != -1) {
             String param = url.substring(index + 1);

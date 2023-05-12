@@ -57,7 +57,7 @@ public enum TokenType {
     static {
         // 按标记类型的文字长度对其进行排序。字符流使用此顺序首先匹配长度最长的令牌。
         values = TokenType.values();
-        Arrays.sort(values, new Comparator<TokenType>() {
+        Arrays.sort(values, new Comparator<>() {
             @Override
             public int compare(TokenType o1, TokenType o2) {
                 if (o1.literal == null && o2.literal == null) return 0;
