@@ -25,7 +25,6 @@ import java.util.List;
 @RequestMapping("/demo/form")
 public class DemoFormController {
     private final static List<UserFormModel> users = new ArrayList<>();
-    private String prefix = "demo/form";
 
     {
         users.add(new UserFormModel(1, "1000001", "测试1", "18101351078"));
@@ -40,7 +39,7 @@ public class DemoFormController {
      */
     @GetMapping("/button")
     public String button() {
-        return prefix + "/button";
+        return "demo/form/button";
     }
 
     /**
@@ -48,7 +47,7 @@ public class DemoFormController {
      */
     @GetMapping("/select")
     public String select() {
-        return prefix + "/select";
+        return "demo/form/select";
     }
 
     /**
@@ -56,7 +55,7 @@ public class DemoFormController {
      */
     @GetMapping("/timeline")
     public String timeline() {
-        return prefix + "/timeline";
+        return "demo/form/timeline";
     }
 
     /**
@@ -64,7 +63,7 @@ public class DemoFormController {
      */
     @GetMapping("/progress_bars")
     public String progress_bars() {
-        return prefix + "/progress_bars";
+        return "demo/form/progress_bars";
     }
 
     /**
@@ -72,7 +71,7 @@ public class DemoFormController {
      */
     @GetMapping("/validate")
     public String validate() {
-        return prefix + "/validate";
+        return "demo/form/validate";
     }
 
     /**
@@ -80,7 +79,7 @@ public class DemoFormController {
      */
     @GetMapping("/jasny")
     public String jasny() {
-        return prefix + "/jasny";
+        return "demo/form/jasny";
     }
 
     /**
@@ -88,7 +87,7 @@ public class DemoFormController {
      */
     @GetMapping("/sortable")
     public String sortable() {
-        return prefix + "/sortable";
+        return "demo/form/sortable";
     }
 
     /**
@@ -96,7 +95,7 @@ public class DemoFormController {
      */
     @GetMapping("/invoice")
     public String invoice() {
-        return prefix + "/invoice";
+        return "demo/form/invoice";
     }
 
     /**
@@ -104,7 +103,7 @@ public class DemoFormController {
      */
     @GetMapping("/labels_tips")
     public String labels_tips() {
-        return prefix + "/labels_tips";
+        return "demo/form/labels_tips";
     }
 
     /**
@@ -112,7 +111,7 @@ public class DemoFormController {
      */
     @GetMapping("/tabs_panels")
     public String tabs_panels() {
-        return prefix + "/tabs_panels";
+        return "demo/form/tabs_panels";
     }
 
     /**
@@ -120,7 +119,7 @@ public class DemoFormController {
      */
     @GetMapping("/grid")
     public String grid() {
-        return prefix + "/grid";
+        return "demo/form/grid";
     }
 
     /**
@@ -128,7 +127,7 @@ public class DemoFormController {
      */
     @GetMapping("/wizard")
     public String wizard() {
-        return prefix + "/wizard";
+        return "demo/form/wizard";
     }
 
     /**
@@ -136,7 +135,7 @@ public class DemoFormController {
      */
     @GetMapping("/upload")
     public String upload() {
-        return prefix + "/upload";
+        return "demo/form/upload";
     }
 
     /**
@@ -144,7 +143,7 @@ public class DemoFormController {
      */
     @GetMapping("/datetime")
     public String datetime() {
-        return prefix + "/datetime";
+        return "demo/form/datetime";
     }
 
     /**
@@ -152,7 +151,7 @@ public class DemoFormController {
      */
     @GetMapping("/duallistbox")
     public String duallistbox() {
-        return prefix + "/duallistbox";
+        return "demo/form/duallistbox";
     }
 
     /**
@@ -160,7 +159,7 @@ public class DemoFormController {
      */
     @GetMapping("/basic")
     public String basic() {
-        return prefix + "/basic";
+        return "demo/form/basic";
     }
 
     /**
@@ -168,7 +167,7 @@ public class DemoFormController {
      */
     @GetMapping("/cards")
     public String cards() {
-        return prefix + "/cards";
+        return "demo/form/cards";
     }
 
     /**
@@ -176,7 +175,7 @@ public class DemoFormController {
      */
     @GetMapping("/summernote")
     public String summernote() {
-        return prefix + "/summernote";
+        return "demo/form/summernote";
     }
 
     /**
@@ -184,7 +183,7 @@ public class DemoFormController {
      */
     @GetMapping("/autocomplete")
     public String autocomplete() {
-        return prefix + "/autocomplete";
+        return "demo/form/autocomplete";
     }
 
     /**
@@ -225,7 +224,7 @@ public class DemoFormController {
         cxList.add(cxSelectJD);
 
         modelMap.put("data", JSON.toJSON(cxList));
-        return prefix + "/cxselect";
+        return "demo/form/cxselect";
     }
 
     /**
@@ -242,7 +241,7 @@ public class DemoFormController {
         modelMap.put("tasks", list);
         modelMap.put("min", 2);
         modelMap.put("max", 10);
-        return prefix + "/localrefresh";
+        return "demo/form/localrefresh";
     }
 
     /**
@@ -265,7 +264,7 @@ public class DemoFormController {
         item.put("date", "2018.06.12");
         list.add(item);
         modelMap.put("tasks", list);
-        return prefix + "/localrefresh::" + fragment;
+        return "demo/form/localrefresh::" + fragment;
     }
 
     /**

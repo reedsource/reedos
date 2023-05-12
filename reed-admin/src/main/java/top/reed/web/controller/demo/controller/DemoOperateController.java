@@ -30,7 +30,6 @@ import java.util.Map;
 @RequestMapping("/demo/operate")
 public class DemoOperateController extends BaseController {
     private final static Map<Integer, UserOperateModel> users = new LinkedHashMap<>();
-    private String prefix = "demo/operate";
 
     {
         users.put(1, new UserOperateModel(1, "1000001", "测试1", "0", "18101351078", "reedsource@189.cn", 150.0, "0"));
@@ -66,7 +65,7 @@ public class DemoOperateController extends BaseController {
      */
     @GetMapping("/table")
     public String table() {
-        return prefix + "/table";
+        return "demo/operate/table";
     }
 
     /**
@@ -74,7 +73,7 @@ public class DemoOperateController extends BaseController {
      */
     @GetMapping("/other")
     public String other() {
-        return prefix + "/other";
+        return "demo/operate/other";
     }
 
     /**
@@ -122,7 +121,7 @@ public class DemoOperateController extends BaseController {
      */
     @GetMapping("/add")
     public String add(ModelMap modelMap) {
-        return prefix + "/add";
+        return "demo/operate/add";
     }
 
     /**
@@ -152,7 +151,7 @@ public class DemoOperateController extends BaseController {
     @GetMapping("/edit/{userId}")
     public String edit(@PathVariable("userId") Integer userId, ModelMap modelMap) {
         modelMap.put("user", users.get(userId));
-        return prefix + "/edit";
+        return "demo/operate/edit";
     }
 
     /**
@@ -216,7 +215,7 @@ public class DemoOperateController extends BaseController {
     @GetMapping("/detail/{userId}")
     public String detail(@PathVariable("userId") Integer userId, ModelMap modelMap) {
         modelMap.put("user", users.get(userId));
-        return prefix + "/detail";
+        return "demo/operate/detail";
     }
 
     @PostMapping("/clean")

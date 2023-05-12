@@ -26,7 +26,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/cms/email")
 public class EmailController extends BaseController {
-    private final String prefix = "cms/email";
 
     @Autowired
     private IEmailService emailService;
@@ -34,7 +33,7 @@ public class EmailController extends BaseController {
     @RequiresPermissions("cms:email:view")
     @GetMapping()
     public String email() {
-        return prefix + "/email";
+        return "cms/email/email";
     }
 
     /**
@@ -66,7 +65,7 @@ public class EmailController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return prefix + "/add";
+        return "cms/email/add";
     }
 
     /**
@@ -91,7 +90,7 @@ public class EmailController extends BaseController {
     public String edit(@PathVariable("id") String id, ModelMap modelMap) {
         Email email = emailService.selectEmailById(id);
         modelMap.put("email", email);
-        return prefix + "/edit";
+        return "cms/email/edit";
     }
 
     /**

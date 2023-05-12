@@ -25,7 +25,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/cms/filetype")
 public class FiletypeController extends BaseController {
-    private final String prefix = "cms/filetype";
 
     @Autowired
     private IFiletypeService filetypeService;
@@ -33,7 +32,7 @@ public class FiletypeController extends BaseController {
     @RequiresPermissions("cms:filetype:view")
     @GetMapping()
     public String filetype() {
-        return prefix + "/filetype";
+        return "cms/filetype/filetype";
     }
 
     /**
@@ -65,7 +64,7 @@ public class FiletypeController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return prefix + "/add";
+        return "cms/filetype/add";
     }
 
     /**
@@ -86,7 +85,7 @@ public class FiletypeController extends BaseController {
     public String edit(@PathVariable("id") Long id, ModelMap modelMap) {
         Filetype filetype = filetypeService.selectFiletypeById(id);
         modelMap.put("filetype", filetype);
-        return prefix + "/edit";
+        return "cms/filetype/edit";
     }
 
     /**

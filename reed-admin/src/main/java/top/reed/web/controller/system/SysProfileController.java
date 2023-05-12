@@ -91,7 +91,7 @@ public class SysProfileController extends BaseController {
     public String edit(ModelMap modelMap) {
         SysUser user = getSysUser();
         modelMap.put("user", userService.selectUserById(user.getUserId()));
-        return "system/user/profile/edit";
+        return "system/user/edit";
     }
 
     /**

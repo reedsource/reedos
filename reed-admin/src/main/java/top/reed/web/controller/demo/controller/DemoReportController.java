@@ -19,7 +19,7 @@ public class DemoReportController {
      */
     @GetMapping("/echarts")
     public String echarts() {
-        return prefix + "/echarts";
+        return "demo/report/echarts";
     }
 
     /**
@@ -27,7 +27,7 @@ public class DemoReportController {
      */
     @GetMapping("/peity")
     public String peity() {
-        return prefix + "/peity";
+        return "demo/report/peity";
     }
 
     /**
@@ -35,7 +35,7 @@ public class DemoReportController {
      */
     @GetMapping("/sparkline")
     public String sparkline() {
-        return prefix + "/sparkline";
+        return "demo/report/sparkline";
     }
 
     /**
@@ -43,6 +43,6 @@ public class DemoReportController {
      */
     @GetMapping("/metrics")
     public String metrics() {
-        return prefix + "/metrics";
+        return "demo/report/metrics";
     }
 }

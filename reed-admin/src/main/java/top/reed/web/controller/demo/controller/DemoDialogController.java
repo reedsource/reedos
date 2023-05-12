@@ -12,14 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/demo/modal")
 public class DemoDialogController {
-    private String prefix = "demo/modal";
 
     /**
      * 模态窗口
      */
     @GetMapping("/dialog")
     public String dialog() {
-        return prefix + "/dialog";
+        return "demo/modal/dialog";
     }
 
     /**
@@ -27,7 +26,7 @@ public class DemoDialogController {
      */
     @GetMapping("/layer")
     public String layer() {
-        return prefix + "/layer";
+        return "demo/modal/layer";
     }
 
     /**
@@ -35,7 +34,7 @@ public class DemoDialogController {
      */
     @GetMapping("/form")
     public String form() {
-        return prefix + "/form";
+        return "demo/modal/form";
     }
 
     /**
@@ -43,7 +42,7 @@ public class DemoDialogController {
      */
     @GetMapping("/table")
     public String table() {
-        return prefix + "/table";
+        return "demo/modal/table";
     }
 
     /**
@@ -51,7 +50,7 @@ public class DemoDialogController {
      */
     @GetMapping("/check")
     public String check() {
-        return prefix + "/table/check";
+        return "demo/modal/table/check";
     }
 
     /**
@@ -59,7 +58,7 @@ public class DemoDialogController {
      */
     @GetMapping("/radio")
     public String radio() {
-        return prefix + "/table/radio";
+        return "demo/modal/table/radio";
     }
 
     /**
@@ -67,7 +66,7 @@ public class DemoDialogController {
      */
     @GetMapping("/parent")
     public String parent() {
-        return prefix + "/table/parent";
+        return "demo/modal/table/parent";
     }
 
     /**
@@ -75,7 +74,7 @@ public class DemoDialogController {
      */
     @GetMapping("/frame1")
     public String frame1() {
-        return prefix + "/table/frame1";
+        return "demo/modal/table/frame1";
     }
 
     /**
@@ -83,6 +82,6 @@ public class DemoDialogController {
      */
     @GetMapping("/frame2")
     public String frame2() {
-        return prefix + "/table/frame2";
+        return "demo/modal/table/frame2";
     }
 }
