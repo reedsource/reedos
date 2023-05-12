@@ -42,7 +42,6 @@ import java.util.Map;
 @Controller
 @RequestMapping("/tool/gen")
 public class GenController extends BaseController {
-    private String prefix = "tool/gen" ;
 
     @Autowired
     private IGenTableService genTableService;
@@ -53,7 +52,7 @@ public class GenController extends BaseController {
     @RequiresPermissions("tool:gen:view")
     @GetMapping()
     public String gen() {
-        return prefix + "/gen" ;
+        return "tool/gen/gen" ;
     }
 
     /**
@@ -100,7 +99,7 @@ public class GenController extends BaseController {
     @RequiresPermissions("tool:gen:list")
     @GetMapping("/importTable")
     public String importTable() {
-        return prefix + "/importTable" ;
+        return "tool/gen/importTable" ;
     }
 
     /**
@@ -108,7 +107,7 @@ public class GenController extends BaseController {
      */
     @GetMapping("/createTable")
     public String createTable() {
-        return prefix + "/createTable" ;
+        return "tool/gen/createTable" ;
     }
 
     /**
@@ -149,7 +148,7 @@ public class GenController extends BaseController {
         }
         modelMap.put("table", table);
         modelMap.put("data", JSON.toJSON(cxSelect));
-        return prefix + "/edit" ;
+        return "tool/gen/edit" ;
     }
 
     /**
