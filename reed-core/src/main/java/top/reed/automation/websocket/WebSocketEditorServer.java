@@ -25,20 +25,19 @@ import javax.websocket.server.ServerEndpoint;
 public class WebSocketEditorServer {
 
 
+    @Autowired
+    private static Spider spider_to;
     /**
      * 以下3 注入静态资源
      */
     @Autowired
     public Spider spider;
-    @Autowired
-    private static Spider spider_to;
+    private WebSocketContext context;
 
     @PostConstruct
     public void init() {
         spider_to = spider;
     }
-
-    private WebSocketContext context;
 
     /**
      * 收到客户端消息后调用的方法

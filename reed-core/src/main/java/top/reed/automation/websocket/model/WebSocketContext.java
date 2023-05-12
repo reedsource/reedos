@@ -22,10 +22,8 @@ public class WebSocketContext extends AutomationContext {
     private static final long serialVersionUID = -1205530535069540245L;
 
     private final Session session;
-
-    private boolean debug;
-
     private final Object lock = new Object();
+    private boolean debug;
 
     public WebSocketContext(Session session) {
         this.session = session;

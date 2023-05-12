@@ -78,7 +78,7 @@ public class SysIndexController extends BaseController {
                 break;
             }
         }
-        return "topnav".equalsIgnoreCase(indexStyle) ? "index-topnav" : "index";
+        return "topnav".equalsIgnoreCase(indexStyle) ? "index-topnav" : "index" ;
     }
 
     // 锁定屏幕
@@ -86,7 +86,7 @@ public class SysIndexController extends BaseController {
     public String lockscreen(ModelMap modelMap) {
         modelMap.put("user", getSysUser());
         ServletUtils.getSession().setAttribute(ShiroConstants.LOCK_SCREEN, true);
-        return "lock";
+        return "lock" ;
     }
 
     // 解锁屏幕
@@ -107,7 +107,7 @@ public class SysIndexController extends BaseController {
     // 切换主题
     @GetMapping("/system/switchSkin")
     public String switchSkin() {
-        return "skin";
+        return "skin" ;
     }
 
     // 切换菜单
@@ -120,17 +120,17 @@ public class SysIndexController extends BaseController {
     @GetMapping("/system/main")
     public String main(ModelMap modelMap) {
         modelMap.put("version", ReedConfig.getVersion());
-        return "main";
+        return "main" ;
     }
 
     // content-main class
     public String contentMainClass(Boolean footer, Boolean tagsView) {
         if (!footer && !tagsView) {
-            return "tagsview-footer-hide";
+            return "tagsview-footer-hide" ;
         } else if (!footer) {
-            return "footer-hide";
+            return "footer-hide" ;
         } else if (!tagsView) {
-            return "tagsview-hide";
+            return "tagsview-hide" ;
         }
         return StringUtils.EMPTY;
     }

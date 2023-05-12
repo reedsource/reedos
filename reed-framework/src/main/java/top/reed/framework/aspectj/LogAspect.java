@@ -179,13 +179,13 @@ public class LogAspect {
      * 参数拼装
      */
     private String argsArrayToString(Object[] paramsArray, String[] excludeParamNames) {
-        String params = "";
+        String params = "" ;
         if (paramsArray != null && paramsArray.length > 0) {
             for (Object o : paramsArray) {
                 if (StringUtils.isNotNull(o) && !isFilterObject(o)) {
                     try {
                         Object jsonObj = JSONObject.toJSONString(o, excludePropertyPreFilter(excludeParamNames));
-                        params += jsonObj + " ";
+                        params += jsonObj + " " ;
                     } catch (Exception ignored) {
                     }
                 }

@@ -37,9 +37,9 @@ import java.util.stream.Collectors;
 public class BlogController extends BaseController {
 
     // 请求路径
-    private static final String PREFIX = "blog/theme/";
-    private static final String KEY_LINK_TYPE_LIST = "linkTypeList";
-    private static final String KEY_LINK_LIST = "linkList_";
+    private static final String PREFIX = "blog/theme/" ;
+    private static final String KEY_LINK_TYPE_LIST = "linkTypeList" ;
+    private static final String KEY_LINK_LIST = "linkList_" ;
     private static final Cache<String, Integer> articleViewCache = CacheUtil.newLRUCache(1000, 1000 * 60 * 60);
     private static final Cache<String, Integer> articleUpVoteCache = CacheUtil.newLRUCache(1000, 1000 * 60 * 60);
     private static final Cache<String, Integer> commentUpVoteCache = CacheUtil.newLRUCache(1000, 1000 * 60 * 60);
@@ -90,7 +90,7 @@ public class BlogController extends BaseController {
         model.addAttribute("pageSize", new PageInfo(articles).getPageSize());
         model.addAttribute("totalPages", new PageInfo(articles).getPages());
         model.addAttribute("articleList", articles);
-        return PREFIX + getTheme() + "/index";
+        return PREFIX + getTheme() + "/index" ;
     }
 
     /**
@@ -124,7 +124,7 @@ public class BlogController extends BaseController {
         }
         model.addAttribute("article", article);
         model.addAttribute("categoryId", article.getCategoryId());
-        return PREFIX + getTheme() + "/article";
+        return PREFIX + getTheme() + "/article" ;
     }
 
     /**
@@ -150,7 +150,7 @@ public class BlogController extends BaseController {
         model.addAttribute("nextPage", pageInfo.getNextPage());
         model.addAttribute("navNums", pageInfo.getNavigatepageNums());
         model.addAttribute("articleList", articles);
-        return PREFIX + getTheme() + "/category_article";
+        return PREFIX + getTheme() + "/category_article" ;
     }
 
     /**
@@ -182,7 +182,7 @@ public class BlogController extends BaseController {
         model.addAttribute("nextPage", pageInfo.getNextPage());
         model.addAttribute("navNums", pageInfo.getNavigatepageNums());
         model.addAttribute("articleList", articles);
-        return PREFIX + getTheme() + "/category";
+        return PREFIX + getTheme() + "/category" ;
     }
 
     /**
@@ -210,7 +210,7 @@ public class BlogController extends BaseController {
         model.addAttribute("nextPage", pageInfo.getNextPage());
         model.addAttribute("navNums", pageInfo.getNavigatepageNums());
         model.addAttribute("resourceList", resources);
-        return PREFIX + getTheme() + "/list_resource";
+        return PREFIX + getTheme() + "/list_resource" ;
     }
 
     /**
@@ -226,14 +226,14 @@ public class BlogController extends BaseController {
         }
         model.addAttribute("resource", resource);
         model.addAttribute("categoryId", "resource");
-        return PREFIX + getTheme() + "/resource";
+        return PREFIX + getTheme() + "/resource" ;
     }
 
     /**
      * 搜索内容
      * 目前仅支持文章标题模糊搜索
      *
-     * @param model   model
+     * @param model model
      */
     @GetMapping("/search")
     public String search(String content, Model model) {
@@ -254,7 +254,7 @@ public class BlogController extends BaseController {
         model.addAttribute("nextPage", pageInfo.getNextPage());
         model.addAttribute("navNums", pageInfo.getNavigatepageNums());
         model.addAttribute("articleList", articles);
-        return PREFIX + getTheme() + "/search";
+        return PREFIX + getTheme() + "/search" ;
     }
 
     /**
@@ -286,7 +286,7 @@ public class BlogController extends BaseController {
         model.addAttribute("nextPage", pageInfo.getNextPage());
         model.addAttribute("navNums", pageInfo.getNavigatepageNums());
         model.addAttribute("articleList", articles);
-        return PREFIX + getTheme() + "/tag";
+        return PREFIX + getTheme() + "/tag" ;
     }
 
     /**
@@ -297,7 +297,7 @@ public class BlogController extends BaseController {
     @GetMapping("/siteMsg")
     public String comment(Model model) {
         model.addAttribute("categoryId", "siteMsg");
-        return PREFIX + getTheme() + "/siteMsg";
+        return PREFIX + getTheme() + "/siteMsg" ;
     }
 
     @PostMapping("/article/view")
@@ -464,7 +464,7 @@ public class BlogController extends BaseController {
         }
         model.addAttribute("linkTypeList", linkTypeList);
 
-        return PREFIX + getTheme() + "/navAll";
+        return PREFIX + getTheme() + "/navAll" ;
     }
 
     /**
@@ -510,6 +510,6 @@ public class BlogController extends BaseController {
         model.addAttribute("navNums", pageInfo.getNavigatepageNums());
         model.addAttribute("linkList", linkList);
 
-        return PREFIX + getTheme() + "/list_nav";
+        return PREFIX + getTheme() + "/list_nav" ;
     }
 }

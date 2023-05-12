@@ -32,7 +32,7 @@ public class TagsController extends BaseController {
     @RequiresPermissions("cms:tags:view")
     @GetMapping()
     public String tags() {
-        return "cms/tags/tags";
+        return "cms/tags/tags" ;
     }
 
     /**
@@ -64,7 +64,7 @@ public class TagsController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return "cms/tags/add";
+        return "cms/tags/add" ;
     }
 
     /**
@@ -85,7 +85,7 @@ public class TagsController extends BaseController {
     public String edit(@PathVariable("tagId") Long tagId, ModelMap modelMap) {
         Tags tags = tagsService.selectTagsById(tagId);
         modelMap.put("tags", tags);
-        return "cms/tags/edit";
+        return "cms/tags/edit" ;
     }
 
     /**

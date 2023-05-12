@@ -31,7 +31,7 @@ public class SysOperlogController extends BaseController {
     @RequiresPermissions("monitor:operlog:view")
     @GetMapping()
     public String operlog() {
-        return "monitor/operlog/operlog";
+        return "monitor/operlog/operlog" ;
     }
 
     @RequiresPermissions("monitor:operlog:list")
@@ -65,7 +65,7 @@ public class SysOperlogController extends BaseController {
     @GetMapping("/detail/{operId}")
     public String detail(@PathVariable("operId") Long operId, ModelMap modelMap) {
         modelMap.put("operLog", operLogService.selectOperLogById(operId));
-        return "monitor/operlog/detail";
+        return "monitor/operlog/detail" ;
     }
 
     @Log(title = "操作日志", businessType = BusinessType.CLEAN)

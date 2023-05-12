@@ -32,7 +32,7 @@ public class CommentController extends BaseController {
     @RequiresPermissions("cms:comment:view")
     @GetMapping()
     public String comment() {
-        return "cms/comment/comment";
+        return "cms/comment/comment" ;
     }
 
     /**
@@ -64,7 +64,7 @@ public class CommentController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return "cms/comment/add";
+        return "cms/comment/add" ;
     }
 
     /**
@@ -85,7 +85,7 @@ public class CommentController extends BaseController {
     public String edit(@PathVariable("id") Long id, ModelMap modelMap) {
         Comment comment = commentService.selectCommentById(id);
         modelMap.put("comment", comment);
-        return "cms/comment/edit";
+        return "cms/comment/edit" ;
     }
 
     /**

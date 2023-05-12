@@ -95,7 +95,7 @@ public class ArticleServiceImpl implements IArticleService {
         String tags = article.getTags();
         if (StringUtils.isNotEmpty(tags)) {
             if (!tags.endsWith(",")) {
-                tags += ",";
+                tags += "," ;
                 article.setTags(tags);
             }
         }
@@ -129,7 +129,7 @@ public class ArticleServiceImpl implements IArticleService {
         String tags = article.getTags();
         if (StringUtils.isNotEmpty(tags)) {
             if (!tags.endsWith(",")) {
-                tags += ",";
+                tags += "," ;
                 article.setTags(tags);
             }
         }
@@ -257,7 +257,7 @@ public class ArticleServiceImpl implements IArticleService {
             String tagsStr = a.getTags();
             if (StringUtils.isNotEmpty(tagsStr)) {
                 String[] tagsArr = Convert.toStrArray(tagsStr);
-                String tags_name = "";
+                String tags_name = "" ;
                 List<Tags> tags = Lists.newArrayList();
                 for (String id : tagsArr) {
                     if (StringUtils.isNotEmpty(id)) {
@@ -269,7 +269,7 @@ public class ArticleServiceImpl implements IArticleService {
                         }
                         tags.add(tag);
                         if (tag != null) {
-                            tags_name += tag.getTagName() + ",";
+                            tags_name += tag.getTagName() + "," ;
                         }
                     }
                 }

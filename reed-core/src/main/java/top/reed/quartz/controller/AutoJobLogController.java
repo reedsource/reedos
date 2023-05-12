@@ -41,7 +41,7 @@ public class AutoJobLogController extends BaseController {
             AutoJob job = jobService.selectJobById(jobId);
             modelMap.put("job", job);
         }
-        return "quartz/job/jobLog";
+        return "quartz/job/jobLog" ;
     }
 
     @RequiresPermissions("quartz:job:list")
@@ -76,7 +76,7 @@ public class AutoJobLogController extends BaseController {
     public String detail(@PathVariable("jobLogId") Long jobLogId, ModelMap modelMap) {
         modelMap.put("name", "jobLog");
         modelMap.put("jobLog", jobLogService.selectJobLogById(jobLogId));
-        return "quartz/job/detail";
+        return "quartz/job/detail" ;
     }
 
     @Log(title = "调度日志", businessType = BusinessType.CLEAN)

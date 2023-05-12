@@ -44,7 +44,7 @@ public class SysRoleController extends BaseController {
     @RequiresPermissions("system:role:view")
     @GetMapping()
     public String role() {
-        return "system/role/role";
+        return "system/role/role" ;
     }
 
     @RequiresPermissions("system:role:list")
@@ -71,7 +71,7 @@ public class SysRoleController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return "system/role/add";
+        return "system/role/add" ;
     }
 
     /**
@@ -101,7 +101,7 @@ public class SysRoleController extends BaseController {
     public String edit(@PathVariable("roleId") Long roleId, ModelMap modelMap) {
         roleService.checkRoleDataScope(roleId);
         modelMap.put("role", roleService.selectRoleById(roleId));
-        return "system/role/edit";
+        return "system/role/edit" ;
     }
 
     /**
@@ -130,7 +130,7 @@ public class SysRoleController extends BaseController {
     @GetMapping("/authDataScope/{roleId}")
     public String authDataScope(@PathVariable("roleId") Long roleId, ModelMap modelMap) {
         modelMap.put("role", roleService.selectRoleById(roleId));
-        return "system/role/dataScope";
+        return "system/role/dataScope" ;
     }
 
     /**
@@ -182,7 +182,7 @@ public class SysRoleController extends BaseController {
      */
     @GetMapping("/selectMenuTree")
     public String selectMenuTree() {
-        return "system/role/tree";
+        return "system/role/tree" ;
     }
 
     /**
@@ -205,7 +205,7 @@ public class SysRoleController extends BaseController {
     @GetMapping("/authUser/{roleId}")
     public String authUser(@PathVariable("roleId") Long roleId, ModelMap modelMap) {
         modelMap.put("role", roleService.selectRoleById(roleId));
-        return "system/role/authUser";
+        return "system/role/authUser" ;
     }
 
     /**
@@ -248,7 +248,7 @@ public class SysRoleController extends BaseController {
     @GetMapping("/authUser/selectUser/{roleId}")
     public String selectUser(@PathVariable("roleId") Long roleId, ModelMap modelMap) {
         modelMap.put("role", roleService.selectRoleById(roleId));
-        return "system/role/selectUser";
+        return "system/role/selectUser" ;
     }
 
     /**

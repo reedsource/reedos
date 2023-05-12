@@ -133,7 +133,7 @@ public class ArticleTemplateServiceImpl implements IArticleTemplateService {
             String tagsStr = a.getTags();
             if (StringUtils.isNotEmpty(tagsStr)) {
                 String[] tagsArr = Convert.toStrArray(tagsStr);
-                String tags_name = "";
+                String tags_name = "" ;
                 List<Tags> tags = Lists.newArrayList();
                 for (String id : tagsArr) {
                     if (StringUtils.isNotEmpty(id)) {
@@ -145,7 +145,7 @@ public class ArticleTemplateServiceImpl implements IArticleTemplateService {
                         }
                         tags.add(tag);
                         if (tag != null) {
-                            tags_name += tag.getTagName() + ",";
+                            tags_name += tag.getTagName() + "," ;
                         }
                     }
                 }

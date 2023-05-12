@@ -22,7 +22,7 @@ public class StartExecutor implements ShapeExecutor {
 
     @Override
     public String supportShape() {
-        return "start";
+        return "start" ;
     }
 
 }

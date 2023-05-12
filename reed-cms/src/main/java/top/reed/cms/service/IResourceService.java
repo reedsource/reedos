@@ -61,13 +61,11 @@ public interface IResourceService {
 
     /**
      * 点赞+1
-     *
      */
     int upVote(String id);
 
     /**
      * 点击数+1
-     *
      */
     int resourceLook(String id);
 }

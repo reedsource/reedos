@@ -32,7 +32,7 @@ public class ShortWordsController extends BaseController {
     @RequiresPermissions("cms:shortWords:view")
     @GetMapping()
     public String shortWords() {
-        return "cms/shortWords/shortWords";
+        return "cms/shortWords/shortWords" ;
     }
 
     /**
@@ -64,7 +64,7 @@ public class ShortWordsController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return "cms/shortWords/add";
+        return "cms/shortWords/add" ;
     }
 
     /**
@@ -85,7 +85,7 @@ public class ShortWordsController extends BaseController {
     public String edit(@PathVariable("id") Long id, ModelMap modelMap) {
         ShortWords shortWords = shortWordsService.selectShortWordsById(id);
         modelMap.put("shortWords", shortWords);
-        return "cms/shortWords/edit";
+        return "cms/shortWords/edit" ;
     }
 
     /**

@@ -33,20 +33,20 @@ public class SysRegisterService {
         String msg = "", loginName = user.getLoginName(), password = user.getPassword();
 
         if (ShiroConstants.CAPTCHA_ERROR.equals(ServletUtils.getRequest().getAttribute(ShiroConstants.CURRENT_CAPTCHA))) {
-            msg = "验证码错误";
+            msg = "验证码错误" ;
         } else if (StringUtils.isEmpty(loginName)) {
-            msg = "用户名不能为空";
+            msg = "用户名不能为空" ;
         } else if (StringUtils.isEmpty(password)) {
-            msg = "用户密码不能为空";
+            msg = "用户密码不能为空" ;
         } else if (password.length() < UserConstants.PASSWORD_MIN_LENGTH
                 || password.length() > UserConstants.PASSWORD_MAX_LENGTH) {
-            msg = "密码长度必须在5到20个字符之间";
+            msg = "密码长度必须在5到20个字符之间" ;
         } else if (loginName.length() < UserConstants.USERNAME_MIN_LENGTH
                 || loginName.length() > UserConstants.USERNAME_MAX_LENGTH) {
-            msg = "账户长度必须在2到20个字符之间";
+            msg = "账户长度必须在2到20个字符之间" ;
             //校验用户名称是否唯一
         } else if (!userService.checkLoginNameUnique(user)) {
-            msg = "保存用户'" + loginName + "'失败，注册账号已存在";
+            msg = "保存用户'" + loginName + "'失败，注册账号已存在" ;
         } else {
             //密码最后更新时间
             user.setPwdUpdateDate(DateUtils.getNowDate());
@@ -59,7 +59,7 @@ public class SysRegisterService {
             //注册用户信息
             boolean regFlag = userService.registerUser(user);
             if (!regFlag) {
-                msg = "注册失败,请联系系统管理人员";
+                msg = "注册失败,请联系系统管理人员" ;
             } else {
                 // 执行任务 记录日志
                 AsyncManager.me().execute(AsyncFactory.recordLogininfor(loginName, Constants.REGISTER, MessageUtils.message("user.register.success")));

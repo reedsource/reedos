@@ -32,7 +32,7 @@ public class FiletypeController extends BaseController {
     @RequiresPermissions("cms:filetype:view")
     @GetMapping()
     public String filetype() {
-        return "cms/filetype/filetype";
+        return "cms/filetype/filetype" ;
     }
 
     /**
@@ -64,7 +64,7 @@ public class FiletypeController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return "cms/filetype/add";
+        return "cms/filetype/add" ;
     }
 
     /**
@@ -85,7 +85,7 @@ public class FiletypeController extends BaseController {
     public String edit(@PathVariable("id") Long id, ModelMap modelMap) {
         Filetype filetype = filetypeService.selectFiletypeById(id);
         modelMap.put("filetype", filetype);
-        return "cms/filetype/edit";
+        return "cms/filetype/edit" ;
     }
 
     /**

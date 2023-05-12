@@ -17,6 +17,6 @@ public class BuildController extends BaseController {
     @RequiresPermissions("tool:build:view")
     @GetMapping()
     public String build() {
-        return "tool/build/build";
+        return "tool/build/build" ;
     }
 }

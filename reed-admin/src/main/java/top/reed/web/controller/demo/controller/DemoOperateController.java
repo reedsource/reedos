@@ -65,7 +65,7 @@ public class DemoOperateController extends BaseController {
      */
     @GetMapping("/table")
     public String table() {
-        return "demo/operate/table";
+        return "demo/operate/table" ;
     }
 
     /**
@@ -73,7 +73,7 @@ public class DemoOperateController extends BaseController {
      */
     @GetMapping("/other")
     public String other() {
-        return "demo/operate/other";
+        return "demo/operate/other" ;
     }
 
     /**
@@ -121,7 +121,7 @@ public class DemoOperateController extends BaseController {
      */
     @GetMapping("/add")
     public String add(ModelMap modelMap) {
-        return "demo/operate/add";
+        return "demo/operate/add" ;
     }
 
     /**
@@ -151,7 +151,7 @@ public class DemoOperateController extends BaseController {
     @GetMapping("/edit/{userId}")
     public String edit(@PathVariable("userId") Integer userId, ModelMap modelMap) {
         modelMap.put("user", users.get(userId));
-        return "demo/operate/edit";
+        return "demo/operate/edit" ;
     }
 
     /**
@@ -215,7 +215,7 @@ public class DemoOperateController extends BaseController {
     @GetMapping("/detail/{userId}")
     public String detail(@PathVariable("userId") Integer userId, ModelMap modelMap) {
         modelMap.put("user", users.get(userId));
-        return "demo/operate/detail";
+        return "demo/operate/detail" ;
     }
 
     @PostMapping("/clean")
@@ -266,7 +266,7 @@ public class DemoOperateController extends BaseController {
                 }
             } catch (Exception e) {
                 failureNum++;
-                String msg = "<br/>" + failureNum + "、账号 " + user.getUserName() + " 导入失败：";
+                String msg = "<br/>" + failureNum + "、账号 " + user.getUserName() + " 导入失败：" ;
                 failureMsg.append(msg + e.getMessage());
             }
         }

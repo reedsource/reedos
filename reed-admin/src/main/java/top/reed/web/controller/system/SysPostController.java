@@ -32,7 +32,7 @@ public class SysPostController extends BaseController {
     @RequiresPermissions("system:post:view")
     @GetMapping()
     public String operlog() {
-        return "system/post/post";
+        return "system/post/post" ;
     }
 
     @RequiresPermissions("system:post:list")
@@ -71,7 +71,7 @@ public class SysPostController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return "system/post/add";
+        return "system/post/add" ;
     }
 
     /**
@@ -98,7 +98,7 @@ public class SysPostController extends BaseController {
     @GetMapping("/edit/{postId}")
     public String edit(@PathVariable("postId") Long postId, ModelMap modelMap) {
         modelMap.put("post", postService.selectPostById(postId));
-        return "system/post/edit";
+        return "system/post/edit" ;
     }
 
     /**

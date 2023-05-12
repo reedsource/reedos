@@ -25,7 +25,7 @@ public class ForkJoinExecutor implements ShapeExecutor {
 
     @Override
     public String supportShape() {
-        return "forkJoin";
+        return "forkJoin" ;
     }
 
     @Override

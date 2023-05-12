@@ -68,6 +68,6 @@ public class AutomationOutput {
     @Override
     public String toString() {
         return "AutomationOutput [nodeName=" + nodeName + ", nodeId=" + nodeId + ", outputNames=" + outputNames
-                + ", values=" + values + "]";
+                + ", values=" + values + "]" ;
     }
 }

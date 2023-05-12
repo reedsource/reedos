@@ -30,7 +30,7 @@ public class PvController extends BaseController {
     @RequiresPermissions("cms:pv:view")
     @GetMapping()
     public String pv() {
-        return "cms/pv/pv";
+        return "cms/pv/pv" ;
     }
 
     /**
@@ -50,7 +50,7 @@ public class PvController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return "cms/pv/add";
+        return "cms/pv/add" ;
     }
 
     /**
@@ -71,7 +71,7 @@ public class PvController extends BaseController {
     public String edit(@PathVariable("id") Long id, ModelMap modelMap) {
         Pv pv = pvService.selectPvById(id);
         modelMap.put("pv", pv);
-        return "cms/pv/edit";
+        return "cms/pv/edit" ;
     }
 
     /**

@@ -5,13 +5,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import top.reed.core.context.AutomationContextHolder;
 import top.reed.automation.domain.AutoFlow;
 import top.reed.automation.mapper.AutoFlowMapper;
 import top.reed.automation.service.AutoFlowService;
 import top.reed.common.core.text.Convert;
 import top.reed.common.utils.CacheUtils;
 import top.reed.core.Spider;
+import top.reed.core.context.AutomationContextHolder;
 import top.reed.core.context.AutomationJobContext;
 
 import java.io.File;
@@ -34,7 +34,7 @@ public class AutoFlowServiceImpl implements AutoFlowService {
     /**
      * 日志路径
      */
-    private final String workspace = "/data/spider";
+    private final String workspace = "/data/spider" ;
     private final AutoFlowMapper autoFlowMapper;
     @Autowired
     private Spider spider;

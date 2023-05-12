@@ -19,7 +19,7 @@ import java.util.Date;
 @Comment("日期常用方法")
 public class DateFunctionExecutor implements FunctionExecutor {
 
-    private static final String DEFAULT_PATTERN = "yyyy-MM-dd HH:mm:ss";
+    private static final String DEFAULT_PATTERN = "yyyy-MM-dd HH:mm:ss" ;
 
     @Comment("格式化日期")
     @Example("${date.format(date.now())}")
@@ -107,6 +107,6 @@ public class DateFunctionExecutor implements FunctionExecutor {
 
     @Override
     public String getFunctionPrefix() {
-        return "date";
+        return "date" ;
     }
 }

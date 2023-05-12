@@ -227,6 +227,6 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService {
     }
 
     public String transDictName(SysDictType dictType) {
-        return  "(" + dictType.getDictName() + ")" + "&nbsp;&nbsp;&nbsp;" + dictType.getDictType();
+        return "(" + dictType.getDictName() + ")" + "&nbsp;&nbsp;&nbsp;" + dictType.getDictType();
     }
 }

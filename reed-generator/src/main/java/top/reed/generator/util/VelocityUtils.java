@@ -17,22 +17,22 @@ public class VelocityUtils {
     /**
      * 项目空间路径
      */
-    private static final String PROJECT_PATH = "main/java";
+    private static final String PROJECT_PATH = "main/java" ;
 
     /**
      * mybatis空间路径
      */
-    private static final String MYBATIS_PATH = "main/resources/mapper";
+    private static final String MYBATIS_PATH = "main/resources/mapper" ;
 
     /**
      * html空间路径
      */
-    private static final String TEMPLATES_PATH = "main/resources/templates";
+    private static final String TEMPLATES_PATH = "main/resources/templates" ;
 
     /**
      * 默认上级菜单，系统工具
      */
-    private static final String DEFAULT_PARENT_MENU_ID = "3";
+    private static final String DEFAULT_PARENT_MENU_ID = "3" ;
 
     /**
      * 设置模板变量信息
@@ -149,7 +149,7 @@ public class VelocityUtils {
      */
     public static String getFileName(String template, GenTable genTable) {
         // 文件名称
-        String fileName = "";
+        String fileName = "" ;
         // 包路径
         String packageName = genTable.getPackageName();
         // 模块名
@@ -189,7 +189,7 @@ public class VelocityUtils {
         } else if (template.contains("edit.html.vm")) {
             fileName = StringUtils.format("{}/edit.html", htmlPath);
         } else if (template.contains("sql.vm")) {
-            fileName = businessName + "Menu.sql";
+            fileName = businessName + "Menu.sql" ;
         }
         return fileName;
     }

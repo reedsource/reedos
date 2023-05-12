@@ -21,7 +21,7 @@ import java.util.Map;
 @Component
 public class FunctionExecutor implements ShapeExecutor {
 
-    public static final String FUNCTION = "function";
+    public static final String FUNCTION = "function" ;
 
     private static final Logger logger = LoggerFactory.getLogger(FunctionExecutor.class);
 
@@ -44,7 +44,7 @@ public class FunctionExecutor implements ShapeExecutor {
 
     @Override
     public String supportShape() {
-        return "function";
+        return "function" ;
     }
 
 }

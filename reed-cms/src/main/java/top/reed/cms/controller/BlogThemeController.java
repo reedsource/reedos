@@ -32,7 +32,7 @@ public class BlogThemeController extends BaseController {
     @RequiresPermissions("cms:blogTheme:view")
     @GetMapping()
     public String blogTheme() {
-        return "cms/blogTheme/blogTheme";
+        return "cms/blogTheme/blogTheme" ;
     }
 
     /**
@@ -65,7 +65,7 @@ public class BlogThemeController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return "cms/blogTheme/add";
+        return "cms/blogTheme/add" ;
     }
 
     /**
@@ -86,7 +86,7 @@ public class BlogThemeController extends BaseController {
     public String edit(@PathVariable("id") Long id, ModelMap modelMap) {
         BlogTheme blogTheme = blogThemeService.selectBlogThemeById(id);
         modelMap.put("blogTheme", blogTheme);
-        return "cms/blogTheme/edit";
+        return "cms/blogTheme/edit" ;
     }
 
     /**

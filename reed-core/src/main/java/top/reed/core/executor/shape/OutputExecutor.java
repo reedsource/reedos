@@ -33,23 +33,23 @@ import java.util.*;
 @Component
 public class OutputExecutor implements ShapeExecutor, AutomationListener {
 
-    public static final String OUTPUT_ALL = "output-all";
+    public static final String OUTPUT_ALL = "output-all" ;
 
-    public static final String OUTPUT_NAME = "output-name";
+    public static final String OUTPUT_NAME = "output-name" ;
 
-    public static final String OUTPUT_VALUE = "output-value";
+    public static final String OUTPUT_VALUE = "output-value" ;
 
-    public static final String DATASOURCE_ID = "datasourceId";
+    public static final String DATASOURCE_ID = "datasourceId" ;
 
-    public static final String OUTPUT_DATABASE = "output-database";
+    public static final String OUTPUT_DATABASE = "output-database" ;
 
-    public static final String OUTPUT_CSV = "output-csv";
+    public static final String OUTPUT_CSV = "output-csv" ;
 
-    public static final String TABLE_NAME = "tableName";
+    public static final String TABLE_NAME = "tableName" ;
 
-    public static final String CSV_NAME = "csvName";
+    public static final String CSV_NAME = "csvName" ;
 
-    public static final String CSV_ENCODING = "csvEncoding";
+    public static final String CSV_ENCODING = "csvEncoding" ;
 
     private static final Logger logger = LoggerFactory.getLogger(OutputExecutor.class);
 
@@ -110,7 +110,6 @@ public class OutputExecutor implements ShapeExecutor, AutomationListener {
 
     /**
      * 输出所有参数
-     *
      */
     private void outputAll(AutomationOutput output, Map<String, Object> variables) {
         for (Map.Entry<String, Object> item : variables.entrySet()) {
@@ -203,7 +202,7 @@ public class OutputExecutor implements ShapeExecutor, AutomationListener {
 
     @Override
     public String supportShape() {
-        return "output";
+        return "output" ;
     }
 
     @Override

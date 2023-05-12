@@ -13,7 +13,6 @@ import java.io.Serial;
 public class ExpressionError {
 
     /**
-     *
      * 根据提供的消息和流创建错误消息，突出显示发生错误的行。如果流具有更多令牌，则会突出显示下一个令牌。否则，流源的末尾将突出显示。
      * 抛出一个 RuntimeException
      */
@@ -35,15 +34,15 @@ public class ExpressionError {
     public static void error(String message, Span location, Throwable cause) {
 
         Line line = location.getLine();
-        message = "Error (" + line.getLineNumber() + "): " + message + "\n\n";
+        message = "Error (" + line.getLineNumber() + "): " + message + "\n\n" ;
         message += line.getText();
-        message += "\n";
+        message += "\n" ;
 
         int errorStart = location.getStart() - line.getStart();
         int errorEnd = errorStart + location.getText().length() - 1;
         for (int i = 0, n = line.getText().length(); i < n; i++) {
             boolean useTab = line.getText().charAt(i) == '\t';
-            message += i >= errorStart && i <= errorEnd ? "^" : useTab ? "\t" : " ";
+            message += i >= errorStart && i <= errorEnd ? "^" : useTab ? "\t" : " " ;
         }
 
         if (cause == null)

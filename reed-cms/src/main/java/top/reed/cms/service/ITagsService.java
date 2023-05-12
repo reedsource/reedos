@@ -70,19 +70,16 @@ public interface ITagsService {
 
     /**
      * 查询所有标签展示到页面
-     *
      */
     List<Tags> selectTagsAll();
 
     /**
      * 查询所有标签并标记选中的标签
-     *
      */
     List<Tags> selectSelectedTagsAll(String selectedIds);
 
     /**
      * 查询前台页面fullTabs标签
-     *
      */
     List<Tags> selectBlogTabs();
 }

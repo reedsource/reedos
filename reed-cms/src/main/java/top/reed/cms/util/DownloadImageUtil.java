@@ -30,7 +30,6 @@ public class DownloadImageUtil {
 
     /**
      * 检测一个网络路径文件是否存在
-     *
      */
     public static boolean checkNetUrlExists(String url) {
         try {
@@ -54,7 +53,7 @@ public class DownloadImageUtil {
     public static String downloadImageToLocal(String urlPath, String appendPath) {
         try {
             if (!checkNetUrlExists(urlPath)) {
-                return "";
+                return "" ;
             }
             String saveBathPath = ReedConfig.getUploadPath();
             if (StringUtils.isNotEmpty(appendPath)) {
@@ -84,7 +83,7 @@ public class DownloadImageUtil {
             return FileUploadUtils.getPathFileName(saveBathPath, fileName);
         } catch (Exception ex) {
             ex.printStackTrace();
-            return "error";
+            return "error" ;
         }
     }
 

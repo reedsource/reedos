@@ -8,16 +8,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import top.reed.automation.domain.AutoFlow;
 import top.reed.core.concurrent.*;
 import top.reed.core.concurrent.AutomationFlowThreadPoolExecutor.SubThreadPoolExecutor;
 import top.reed.core.context.AutomationContext;
 import top.reed.core.context.AutomationContextHolder;
 import top.reed.core.executor.ShapeExecutor;
+import top.reed.core.executor.shape.LoopExecutor;
 import top.reed.core.listener.AutomationListener;
 import top.reed.core.model.AutomationNode;
 import top.reed.core.model.AutomationOutput;
-import top.reed.automation.domain.AutoFlow;
-import top.reed.core.executor.shape.LoopExecutor;
 import top.reed.core.utils.AutoFlowUtils;
 import top.reed.core.utils.ExecutorsUtils;
 import top.reed.core.utils.ExpressionUtils;
@@ -39,9 +39,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Component
 public class Spider {
 
-    private static final String ATOMIC_DEAD_CYCLE = "__atomic_dead_cycle";
-    public static AutomationFlowThreadPoolExecutor executorInstance;
+    private static final String ATOMIC_DEAD_CYCLE = "__atomic_dead_cycle" ;
     private static final Logger logger = LoggerFactory.getLogger(Spider.class);
+    public static AutomationFlowThreadPoolExecutor executorInstance;
     @Autowired(required = false)
     private List<AutomationListener> listeners;
     /**

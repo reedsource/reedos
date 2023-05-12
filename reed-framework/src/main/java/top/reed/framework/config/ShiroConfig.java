@@ -154,7 +154,7 @@ public class ShiroConfig {
      * 返回配置文件流 避免ehcache配置文件一直被占用，无法完全销毁项目重新部署
      */
     protected InputStream getCacheManagerConfigFileInputStream() {
-        String configFile = "classpath:ehcache/reed_ehcache.xml";
+        String configFile = "classpath:ehcache/reed_ehcache.xml" ;
         InputStream inputStream = null;
         try {
             inputStream = ResourceUtils.getInputStreamForPath(configFile);

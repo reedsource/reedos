@@ -30,7 +30,7 @@ public class SysNoticeController extends BaseController {
     @RequiresPermissions("system:notice:view")
     @GetMapping()
     public String notice() {
-        return "system/notice/notice";
+        return "system/notice/notice" ;
     }
 
     /**
@@ -50,7 +50,7 @@ public class SysNoticeController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return "system/notice/add";
+        return "system/notice/add" ;
     }
 
     /**
@@ -72,7 +72,7 @@ public class SysNoticeController extends BaseController {
     @GetMapping("/edit/{noticeId}")
     public String edit(@PathVariable("noticeId") Long noticeId, ModelMap modelMap) {
         modelMap.put("notice", noticeService.selectNoticeById(noticeId));
-        return "system/notice/edit";
+        return "system/notice/edit" ;
     }
 
     /**

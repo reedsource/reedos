@@ -22,12 +22,9 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 public class ScriptManager {
 
     private static final Logger logger = LoggerFactory.getLogger(ScriptManager.class);
-
-    private static ScriptEngine scriptEngine;
-
     private static final Set<String> functions = new HashSet<>();
-
     private static final ReadWriteLock lock = new ReentrantReadWriteLock();
+    private static ScriptEngine scriptEngine;
 
     public static void setScriptEngine(ScriptEngine engine) {
         scriptEngine = engine;
@@ -98,7 +95,7 @@ public class ScriptManager {
                 (parameters == null ? "" : parameters) +
                 "){" +
                 script +
-                "}";
+                "}" ;
         return scriptBuffer;
     }
 

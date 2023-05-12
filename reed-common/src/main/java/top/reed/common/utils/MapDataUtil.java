@@ -28,12 +28,12 @@ public class MapDataUtil {
             name = (String) entry.getKey();
             Object valueObj = entry.getValue();
             if (null == valueObj) {
-                value = "";
+                value = "" ;
             } else if (valueObj instanceof String[]) {
                 String[] values = (String[]) valueObj;
-                value = "";
+                value = "" ;
                 for (String s : values) {
-                    value += s + ",";
+                    value += s + "," ;
                 }
                 if (value.length() > 0) {
                     value = value.substring(0, value.length() - 1);

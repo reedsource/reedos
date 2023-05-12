@@ -59,7 +59,7 @@ public class CmsController extends BaseController {
             }
             Attachment attachment = new Attachment();
             if (RStringUtils.isEmpty(sort)) {
-                sort = "1";
+                sort = "1" ;
             }
             int sortNum = 1;
             try {

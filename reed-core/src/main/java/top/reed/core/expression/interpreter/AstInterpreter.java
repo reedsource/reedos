@@ -20,7 +20,6 @@ import java.util.List;
 public class AstInterpreter {
     /**
      * 解释
-     *
      */
     public static Object interpret(ExpressionTemplate template, ExpressionTemplateContext context) {
         try {
@@ -36,7 +35,7 @@ public class AstInterpreter {
     }
 
     public static Object interpretNodeList(List<Node> nodes, ExpressionTemplate template, ExpressionTemplateContext context) throws IOException {
-        String result = "";
+        String result = "" ;
         for (int i = 0, n = nodes.size(); i < n; i++) {
             Node node = nodes.get(i);
             Object value = node.evaluate(template, context);
@@ -46,7 +45,7 @@ public class AstInterpreter {
                 if (i == 0 && i + 1 == n) {
                     return null;
                 }
-                result += "null";
+                result += "null" ;
             } else if (value instanceof String || value instanceof Number || value instanceof Boolean) {
                 if (i == 0 && i + 1 == n) {
                     return value;

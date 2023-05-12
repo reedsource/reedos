@@ -73,7 +73,6 @@ public interface CommentMapper {
 
     /**
      * 评论点赞+1
-     *
      */
     int upVote(String id);
 }

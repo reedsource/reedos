@@ -13,7 +13,6 @@ import java.util.Properties;
 public class SimpleMailSender {
     /**
      * 发送html格式邮件
-     *
      */
     public boolean sendHtmlMail(MailSenderInfo mail) {
         boolean result = false;

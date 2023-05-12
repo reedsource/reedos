@@ -11,10 +11,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 public enum Seq {
     ;
     // 通用序列类型
-    public static final String COMM_SEQ_TYPE = "COMMON";
+    public static final String COMM_SEQ_TYPE = "COMMON" ;
 
     // 上传序列类型
-    public static final String UPLOAD_SEQ_TYPE = "UPLOAD";
+    public static final String UPLOAD_SEQ_TYPE = "UPLOAD" ;
 
     // 通用接口序列数
     private static final AtomicInteger commSeq = new AtomicInteger(1);
@@ -23,7 +23,7 @@ public enum Seq {
     private static final AtomicInteger uploadSeq = new AtomicInteger(1);
 
     // 机器标识
-    private static final String MACHINE_CODE = "A";
+    private static final String MACHINE_CODE = "A" ;
 
     /**
      * 获取通用序列号

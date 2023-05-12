@@ -34,7 +34,7 @@ public class SysMenuController extends BaseController {
     @RequiresPermissions("system:menu:view")
     @GetMapping()
     public String menu() {
-        return "system/menu/menu";
+        return "system/menu/menu" ;
     }
 
     @RequiresPermissions("system:menu:list")
@@ -78,7 +78,7 @@ public class SysMenuController extends BaseController {
             menu.setMenuName("主目录");
         }
         modelMap.put("menu", menu);
-        return "system/menu/add";
+        return "system/menu/add" ;
     }
 
     /**
@@ -104,7 +104,7 @@ public class SysMenuController extends BaseController {
     @GetMapping("/edit/{menuId}")
     public String edit(@PathVariable("menuId") Long menuId, ModelMap modelMap) {
         modelMap.put("menu", menuService.selectMenuById(menuId));
-        return "system/menu/edit";
+        return "system/menu/edit" ;
     }
 
     /**
@@ -128,7 +128,7 @@ public class SysMenuController extends BaseController {
      */
     @GetMapping("/icon")
     public String icon() {
-        return "system/menu/icon";
+        return "system/menu/icon" ;
     }
 
     /**
@@ -168,6 +168,6 @@ public class SysMenuController extends BaseController {
     @GetMapping("/selectMenuTree/{menuId}")
     public String selectMenuTree(@PathVariable("menuId") Long menuId, ModelMap modelMap) {
         modelMap.put("menu", menuService.selectMenuById(menuId));
-        return "system/menu/tree";
+        return "system/menu/tree" ;
     }
 }

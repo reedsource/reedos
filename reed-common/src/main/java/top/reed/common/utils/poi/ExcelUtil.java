@@ -49,12 +49,8 @@ import java.util.stream.Collectors;
  * @author reedsource
  */
 public class ExcelUtil<T> {
-    public static final String FORMULA_REGEX_STR = "=|-|\\+|@";
-    public static final String[] FORMULA_STR = {"=" , "-" , "+" , "@"};
-    /**
-     * 用于dictType属性数据存储，避免重复查缓存
-     */
-    public Map<String, String> sysDictMap = new HashMap<>();
+    public static final String FORMULA_REGEX_STR = "=|-|\\+|@" ;
+    public static final String[] FORMULA_STR = {"=", "-", "+", "@"};
     /**
      * Excel sheet最大行数，默认65536
      */
@@ -64,6 +60,10 @@ public class ExcelUtil<T> {
      * 数字格式
      */
     private static final DecimalFormat DOUBLE_FORMAT = new DecimalFormat("######0.00");
+    /**
+     * 用于dictType属性数据存储，避免重复查缓存
+     */
+    public Map<String, String> sysDictMap = new HashMap<>();
     /**
      * 实体对象
      */
@@ -355,7 +355,7 @@ public class ExcelUtil<T> {
                 Excel attr = (Excel) objects[1];
                 Cell headCell1 = subRow.createCell(excelNum);
                 headCell1.setCellValue(attr.name());
-                headCell1.setCellStyle(styles.get(StringUtils.format("header_{}_{}" , attr.headerColor(), attr.headerBackgroundColor())));
+                headCell1.setCellStyle(styles.get(StringUtils.format("header_{}_{}", attr.headerColor(), attr.headerBackgroundColor())));
                 excelNum++;
             }
             int headFirstRow = excelNum - 1;
@@ -503,7 +503,7 @@ public class ExcelUtil<T> {
                     } else if (ColumnType.IMAGE == attr.cellType() && StringUtils.isNotEmpty(pictures)) {
                         PictureData image = pictures.get(row.getRowNum() + "_" + entry.getKey());
                         if (image == null) {
-                            val = "";
+                            val = "" ;
                         } else {
                             byte[] data = image.getData();
                             val = FileUtils.writeImportBytes(data);
@@ -613,14 +613,13 @@ public class ExcelUtil<T> {
 
     /**
      * 对list数据源将其里面的数据导入到excel表单
-     *
      */
     public void exportExcel(HttpServletResponse response) {
         try {
             writeSheet();
             wb.write(response.getOutputStream());
         } catch (Exception e) {
-            log.error("导出Excel异常{}" , e.getMessage());
+            log.error("导出Excel异常{}", e.getMessage());
         } finally {
             IOUtils.closeQuietly(wb);
         }
@@ -640,7 +639,7 @@ public class ExcelUtil<T> {
             wb.write(out);
             return AjaxResult.success(filename);
         } catch (Exception e) {
-            log.error("导出Excel异常{}" , e.getMessage());
+            log.error("导出Excel异常{}", e.getMessage());
             throw new UtilException("导出Excel失败，请联系网站管理员！");
         } finally {
             IOUtils.closeQuietly(wb);
@@ -757,7 +756,7 @@ public class ExcelUtil<T> {
         titleFont.setFontHeightInPoints((short) 16);
         titleFont.setBold(true);
         style.setFont(titleFont);
-        styles.put("title" , style);
+        styles.put("title", style);
 
         style = wb.createCellStyle();
         style.setAlignment(HorizontalAlignment.CENTER);
@@ -774,7 +773,7 @@ public class ExcelUtil<T> {
         dataFont.setFontName("Arial");
         dataFont.setFontHeightInPoints((short) 10);
         style.setFont(dataFont);
-        styles.put("data" , style);
+        styles.put("data", style);
 
         style = wb.createCellStyle();
         style.setAlignment(HorizontalAlignment.CENTER);
@@ -783,7 +782,7 @@ public class ExcelUtil<T> {
         totalFont.setFontName("Arial");
         totalFont.setFontHeightInPoints((short) 10);
         style.setFont(totalFont);
-        styles.put("total" , style);
+        styles.put("total", style);
 
         styles.putAll(annotationHeaderStyles(wb, styles));
 
@@ -802,7 +801,7 @@ public class ExcelUtil<T> {
         Map<String, CellStyle> headerStyles = new HashMap<>();
         for (Object[] os : fields) {
             Excel excel = (Excel) os[1];
-            String key = StringUtils.format("header_{}_{}" , excel.headerColor(), excel.headerBackgroundColor());
+            String key = StringUtils.format("header_{}_{}", excel.headerColor(), excel.headerBackgroundColor());
             if (!headerStyles.containsKey(key)) {
                 CellStyle style = wb.createCellStyle();
                 style.cloneStyleFrom(styles.get("data"));
@@ -832,7 +831,7 @@ public class ExcelUtil<T> {
         Map<String, CellStyle> styles = new HashMap<>();
         for (Object[] os : fields) {
             Excel excel = (Excel) os[1];
-            String key = StringUtils.format("data_{}_{}_{}" , excel.align(), excel.color(), excel.backgroundColor());
+            String key = StringUtils.format("data_{}_{}_{}", excel.align(), excel.color(), excel.backgroundColor());
             if (!styles.containsKey(key)) {
                 CellStyle style = wb.createCellStyle();
                 style.setAlignment(excel.align());
@@ -867,10 +866,10 @@ public class ExcelUtil<T> {
         // 写入列信息
         cell.setCellValue(attr.name());
         setDataValidation(attr, row, column);
-        cell.setCellStyle(styles.get(StringUtils.format("header_{}_{}" , attr.headerColor(), attr.headerBackgroundColor())));
+        cell.setCellStyle(styles.get(StringUtils.format("header_{}_{}", attr.headerColor(), attr.headerBackgroundColor())));
         if (isSubList()) {
             // 填充默认样式，防止合并单元格样式失效
-            sheet.setDefaultColumnStyle(column, styles.get(StringUtils.format("data_{}_{}_{}" , attr.align(), attr.color(), attr.backgroundColor())));
+            sheet.setDefaultColumnStyle(column, styles.get(StringUtils.format("data_{}_{}_{}", attr.align(), attr.color(), attr.backgroundColor())));
             if (attr.needMerge()) {
                 sheet.addMergedRegion(new CellRangeAddress(rownum - 1, rownum, column, column));
             }
@@ -893,7 +892,7 @@ public class ExcelUtil<T> {
                 cellValue = RegExUtils.replaceFirst(cellValue, FORMULA_REGEX_STR, "\t$0");
             }
             //子列表为空会出现[]时转为""
-            if (value instanceof Collection && StringUtils.equals("[]" , cellValue)) {
+            if (value instanceof Collection && StringUtils.equals("[]", cellValue)) {
                 cellValue = StringUtils.EMPTY;
             }
             cell.setCellValue(StringUtils.isNull(cellValue) ? attr.defaultValue() : cellValue + attr.suffix());
@@ -962,7 +961,7 @@ public class ExcelUtil<T> {
                     CellRangeAddress cellAddress = new CellRangeAddress(subMergedFirstRowNum, subMergedLastRowNum, column, column);
                     sheet.addMergedRegion(cellAddress);
                 }
-                cell.setCellStyle(styles.get(StringUtils.format("data_{}_{}_{}" , attr.align(), attr.color(), attr.backgroundColor())));
+                cell.setCellStyle(styles.get(StringUtils.format("data_{}_{}_{}", attr.align(), attr.color(), attr.backgroundColor())));
 
                 // 用于读取对象中的属性
                 Object value = getTargetValue(vo, field, attr);
@@ -994,7 +993,7 @@ public class ExcelUtil<T> {
                 addStatisticsData(column, Convert.toStr(value), attr);
             }
         } catch (Exception e) {
-            log.error("导出Excel失败{}" , e);
+            log.error("导出Excel失败{}", e);
         }
         return cell;
     }
@@ -1018,7 +1017,7 @@ public class ExcelUtil<T> {
         DataValidation dataValidation = helper.createValidation(constraint, regions);
         if (StringUtils.isNotEmpty(promptContent)) {
             // 如果设置了提示信息则鼠标放上去提示
-            dataValidation.createPromptBox("" , promptContent);
+            dataValidation.createPromptBox("", promptContent);
             dataValidation.setShowPromptBox(true);
         }
         // 处理Excel兼容性问题
@@ -1061,7 +1060,7 @@ public class ExcelUtil<T> {
         DataValidation dataValidation = helper.createValidation(constraint, regions);
         if (StringUtils.isNotEmpty(promptContent)) {
             // 如果设置了提示信息则鼠标放上去提示
-            dataValidation.createPromptBox("" , promptContent);
+            dataValidation.createPromptBox("", promptContent);
             dataValidation.setShowPromptBox(true);
         }
         // 处理Excel兼容性问题
@@ -1086,7 +1085,7 @@ public class ExcelUtil<T> {
     public String dataFormatHandlerAdapter(Object value, Excel excel) {
         try {
             Object instance = excel.handler().newInstance();
-            Method formatMethod = excel.handler().getMethod("format" , Object.class, String[].class);
+            Method formatMethod = excel.handler().getMethod("format", Object.class, String[].class);
             value = formatMethod.invoke(instance, value, excel.args());
         } catch (Exception e) {
             log.error("不能格式化数据 " + excel.handler(), e.getMessage());
@@ -1135,7 +1134,7 @@ public class ExcelUtil<T> {
      * 编码文件名
      */
     public String encodingFilename(String filename) {
-        filename = UUID.randomUUID() + "_" + filename + ".xlsx";
+        filename = UUID.randomUUID() + "_" + filename + ".xlsx" ;
         return filename;
     }
 
@@ -1292,7 +1291,7 @@ public class ExcelUtil<T> {
         if (row == null) {
             return row;
         }
-        Object val = "";
+        Object val = "" ;
         try {
             Cell cell = row.getCell(column);
             if (StringUtils.isNotNull(cell)) {
@@ -1349,7 +1348,7 @@ public class ExcelUtil<T> {
      */
     public String parseDateToStr(String dateFormat, Object val) {
         if (val == null) {
-            return "";
+            return "" ;
         }
         String str;
         if (val instanceof Date) {
@@ -1407,7 +1406,7 @@ public class ExcelUtil<T> {
         try {
             method = pojoClass.getMethod(getMethodName.toString());
         } catch (Exception e) {
-            log.error("获取对象异常{}" , e.getMessage());
+            log.error("获取对象异常{}", e.getMessage());
         }
         return method;
     }

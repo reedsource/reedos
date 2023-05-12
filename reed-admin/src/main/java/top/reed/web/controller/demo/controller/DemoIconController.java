@@ -18,7 +18,7 @@ public class DemoIconController {
      */
     @GetMapping("/fontawesome")
     public String fontAwesome() {
-        return "demo/icon/fontawesome";
+        return "demo/icon/fontawesome" ;
     }
 
     /**
@@ -26,6 +26,6 @@ public class DemoIconController {
      */
     @GetMapping("/glyphicons")
     public String glyphicons() {
-        return "demo/icon/glyphicons";
+        return "demo/icon/glyphicons" ;
     }
 }

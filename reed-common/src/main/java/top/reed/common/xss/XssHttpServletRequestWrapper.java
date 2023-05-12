@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequestWrapper;
  */
 public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
     /**
+     *
      */
     public XssHttpServletRequestWrapper(HttpServletRequest request) {
         super(request);

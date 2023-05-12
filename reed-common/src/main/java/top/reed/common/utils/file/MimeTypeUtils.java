@@ -6,15 +6,15 @@ package top.reed.common.utils.file;
  * @author reedsource
  */
 public class MimeTypeUtils {
-    public static final String IMAGE_PNG = "image/png";
+    public static final String IMAGE_PNG = "image/png" ;
 
-    public static final String IMAGE_JPG = "image/jpg";
+    public static final String IMAGE_JPG = "image/jpg" ;
 
-    public static final String IMAGE_JPEG = "image/jpeg";
+    public static final String IMAGE_JPEG = "image/jpeg" ;
 
-    public static final String IMAGE_BMP = "image/bmp";
+    public static final String IMAGE_BMP = "image/bmp" ;
 
-    public static final String IMAGE_GIF = "image/gif";
+    public static final String IMAGE_GIF = "image/gif" ;
 
     public static final String[] IMAGE_EXTENSION = {"bmp", "gif", "jpg", "jpeg", "png"};
 
@@ -40,36 +40,36 @@ public class MimeTypeUtils {
     /**
      * 图片
      */
-    public static final String MATERIAL_TYPE_IMG = "1";
+    public static final String MATERIAL_TYPE_IMG = "1" ;
     /**
      * 视频
      */
-    public static final String MATERIAL_TYPE_VIDEO = "2";
+    public static final String MATERIAL_TYPE_VIDEO = "2" ;
     /**
      * 文本
      */
-    public static final String MATERIAL_TYPE_TEXT = "3";
+    public static final String MATERIAL_TYPE_TEXT = "3" ;
     /**
      * 音频
      */
-    public static final String MATERIAL_TYPE_AUDIO = "4";
+    public static final String MATERIAL_TYPE_AUDIO = "4" ;
     /**
      * 压缩
      */
-    public static final String MATERIAL_TYPE_ZIP = "5";
+    public static final String MATERIAL_TYPE_ZIP = "5" ;
     /**
      * 其它
      */
-    public static final String MATERIAL_TYPE_OTHER = "6";
+    public static final String MATERIAL_TYPE_OTHER = "6" ;
 
     public static String getExtension(String prefix) {
         return switch (prefix) {
-            case IMAGE_PNG -> "png";
-            case IMAGE_JPG -> "jpg";
-            case IMAGE_JPEG -> "jpeg";
-            case IMAGE_BMP -> "bmp";
-            case IMAGE_GIF -> "gif";
-            default -> "";
+            case IMAGE_PNG -> "png" ;
+            case IMAGE_JPG -> "jpg" ;
+            case IMAGE_JPEG -> "jpeg" ;
+            case IMAGE_BMP -> "bmp" ;
+            case IMAGE_GIF -> "gif" ;
+            default -> "" ;
         };
     }
 }

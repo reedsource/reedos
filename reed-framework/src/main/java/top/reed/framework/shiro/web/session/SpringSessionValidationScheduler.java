@@ -57,7 +57,6 @@ public class SpringSessionValidationScheduler implements SessionValidationSchedu
      *
      * <p>
      * Unless this method is called, the default value is {@link #DEFAULT_SESSION_VALIDATION_INTERVAL}.
-     *
      */
     public void setSessionValidationInterval(long sessionValidationInterval) {
         this.sessionValidationInterval = sessionValidationInterval;

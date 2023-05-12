@@ -35,15 +35,14 @@ import java.util.List;
 public class AutoJobController extends BaseController {
 
     @Autowired
-    private AutoJobService jobService;
-
-    @Autowired
     AutoFlowService autoFlowService;
+    @Autowired
+    private AutoJobService jobService;
 
     @RequiresPermissions("quartz:job:view")
     @GetMapping()
     public String job() {
-        return "quartz/job/job";
+        return "quartz/job/job" ;
     }
 
     @RequiresPermissions("quartz:job:list")
@@ -86,7 +85,7 @@ public class AutoJobController extends BaseController {
     public String detail(@PathVariable("jobId") Long jobId, ModelMap modelMap) {
         modelMap.put("name", "job");
         modelMap.put("job", jobService.selectJobById(jobId));
-        return "quartz/job/detail";
+        return "quartz/job/detail" ;
     }
 
     /**
@@ -119,7 +118,7 @@ public class AutoJobController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return "quartz/job/add";
+        return "quartz/job/add" ;
     }
 
     /**
@@ -130,7 +129,7 @@ public class AutoJobController extends BaseController {
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(@Validated AutoJob job) throws SchedulerException, TaskException {
-        String m = "新增";
+        String m = "新增" ;
         if ("0".equals(job.getJobType())) {
             //处理前端两个相同name导致的提交值多了,
             job.setInvokeTarget(job.getInvokeTarget().replaceAll(",", ""));
@@ -173,7 +172,7 @@ public class AutoJobController extends BaseController {
     @GetMapping("/edit/{jobId}")
     public String edit(@PathVariable("jobId") Long jobId, ModelMap modelMap) {
         modelMap.put("job", jobService.selectJobById(jobId));
-        return "quartz/job/edit";
+        return "quartz/job/edit" ;
     }
 
     /**
@@ -184,7 +183,7 @@ public class AutoJobController extends BaseController {
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@Validated AutoJob job) throws SchedulerException, TaskException {
-        String m = "修改";
+        String m = "修改" ;
         if ("0".equals(job.getJobType())) {
             //处理前端两个相同name导致的提交值多了,
             job.setInvokeTarget(job.getInvokeTarget().replaceAll(",", ""));
@@ -231,7 +230,7 @@ public class AutoJobController extends BaseController {
      */
     @GetMapping("/cron")
     public String cron() {
-        return "quartz/job/cron";
+        return "quartz/job/cron" ;
     }
 
     /**

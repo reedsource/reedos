@@ -17,7 +17,7 @@ public class AutomationFlowThreadPoolExecutor {
     /**
      * 线程名称前缀
      */
-    private static final String THREAD_POOL_NAME_PREFIX = "spider-flow-";
+    private static final String THREAD_POOL_NAME_PREFIX = "spider-flow-" ;
     /**
      * 线程number计数器
      */
@@ -74,18 +74,15 @@ public class AutomationFlowThreadPoolExecutor {
          * 执行中的数量
          */
         private final AtomicInteger executing = new AtomicInteger(0);
-
+        private final ThreadSubmitStrategy submitStrategy;
         /**
          * 是否运行中
          */
         private volatile boolean running = true;
-
         /**
          * 是否提交任务中
          */
         private volatile boolean submitting = false;
-
-        private final ThreadSubmitStrategy submitStrategy;
 
         public SubThreadPoolExecutor(int threads, ThreadSubmitStrategy submitStrategy) {
             super();

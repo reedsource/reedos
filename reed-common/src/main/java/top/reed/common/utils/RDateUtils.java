@@ -16,9 +16,9 @@ import java.util.Date;
 public class RDateUtils extends org.apache.commons.lang3.time.DateUtils {
 
 
-    public static final String YYYY_MM_DD = "yyyy-MM-dd";
-    public static final String YYYYMMDDHHMMSS = "yyyyMMddHHmmss";
-    public static final String YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
+    public static final String YYYY_MM_DD = "yyyy-MM-dd" ;
+    public static final String YYYYMMDDHHMMSS = "yyyyMMddHHmmss" ;
+    public static final String YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss" ;
     private static final String[] parsePatterns = {
             YYYY_MM_DD, YYYY_MM_DD_HH_MM_SS, "yyyy-MM-dd HH:mm", "yyyy-MM",
             "yyyy/MM/dd", "yyyy/MM/dd HH:mm:ss", "yyyy/MM/dd HH:mm", "yyyy/MM",
@@ -111,7 +111,7 @@ public class RDateUtils extends org.apache.commons.lang3.time.DateUtils {
         // 计算差多少分钟
         long min = diff % nd % nh / nm;
         // 输出结果
-        return day + "天" + hour + "小时" + min + "分钟";
+        return day + "天" + hour + "小时" + min + "分钟" ;
     }
 
     /**

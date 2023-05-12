@@ -1,8 +1,8 @@
 package top.reed.core.executor;
 
 import top.reed.core.context.AutomationContext;
-import top.reed.core.model.Shape;
 import top.reed.core.model.AutomationNode;
+import top.reed.core.model.Shape;
 
 import java.util.Map;
 
@@ -13,11 +13,11 @@ import java.util.Map;
  */
 public interface ShapeExecutor {
 
-    String LOOP_VARIABLE_NAME = "loopVariableName";
+    String LOOP_VARIABLE_NAME = "loopVariableName" ;
 
-    String LOOP_COUNT = "loopCount";
+    String LOOP_COUNT = "loopCount" ;
 
-    String THREAD_COUNT = "threadCount";
+    String THREAD_COUNT = "threadCount" ;
 
     default Shape shape() {
         return null;

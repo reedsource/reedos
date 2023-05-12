@@ -41,7 +41,7 @@ public class SysUserOnlineController extends BaseController {
     @RequiresPermissions("monitor:online:view")
     @GetMapping()
     public String online() {
-        return "monitor/online/online";
+        return "monitor/online/online" ;
     }
 
     @RequiresPermissions("monitor:online:list")

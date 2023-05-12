@@ -67,13 +67,11 @@ public interface TagsMapper {
 
     /**
      * 查询所有标签
-     *
      */
     List<Tags> selectTagsAll();
 
     /**
      * 查询前台页面fullTabs标签
-     *
      */
     List<Tags> selectBlogTabs();
 }

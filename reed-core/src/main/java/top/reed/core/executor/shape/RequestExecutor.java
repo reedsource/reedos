@@ -12,16 +12,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import top.reed.core.Grammerable;
-import top.reed.core.context.CookieContext;
 import top.reed.core.context.AutomationContext;
+import top.reed.core.context.CookieContext;
 import top.reed.core.executor.ShapeExecutor;
+import top.reed.core.executor.function.MD5FunctionExecutor;
+import top.reed.core.http.HttpRequest;
+import top.reed.core.http.HttpResponse;
 import top.reed.core.io.AutomationResponse;
 import top.reed.core.listener.AutomationListener;
 import top.reed.core.model.AutomationNode;
 import top.reed.core.model.Grammer;
-import top.reed.core.executor.function.MD5FunctionExecutor;
-import top.reed.core.http.HttpRequest;
-import top.reed.core.http.HttpResponse;
 import top.reed.core.utils.ExpressionUtils;
 
 import javax.annotation.PostConstruct;
@@ -37,59 +37,59 @@ import java.util.*;
 @Component
 public class RequestExecutor implements ShapeExecutor, Grammerable, AutomationListener {
 
-    public static final String SLEEP = "sleep";
+    public static final String SLEEP = "sleep" ;
 
-    public static final String URL = "url";
+    public static final String URL = "url" ;
 
-    public static final String PROXY = "proxy";
+    public static final String PROXY = "proxy" ;
 
-    public static final String REQUEST_METHOD = "method";
+    public static final String REQUEST_METHOD = "method" ;
 
-    public static final String PARAMETER_NAME = "parameter-name";
+    public static final String PARAMETER_NAME = "parameter-name" ;
 
-    public static final String PARAMETER_VALUE = "parameter-value";
+    public static final String PARAMETER_VALUE = "parameter-value" ;
 
-    public static final String COOKIE_NAME = "cookie-name";
+    public static final String COOKIE_NAME = "cookie-name" ;
 
-    public static final String COOKIE_VALUE = "cookie-value";
+    public static final String COOKIE_VALUE = "cookie-value" ;
 
-    public static final String PARAMETER_FORM_NAME = "parameter-form-name";
+    public static final String PARAMETER_FORM_NAME = "parameter-form-name" ;
 
-    public static final String PARAMETER_FORM_VALUE = "parameter-form-value";
+    public static final String PARAMETER_FORM_VALUE = "parameter-form-value" ;
 
-    public static final String PARAMETER_FORM_FILENAME = "parameter-form-filename";
+    public static final String PARAMETER_FORM_FILENAME = "parameter-form-filename" ;
 
-    public static final String PARAMETER_FORM_TYPE = "parameter-form-type";
+    public static final String PARAMETER_FORM_TYPE = "parameter-form-type" ;
 
-    public static final String BODY_TYPE = "body-type";
+    public static final String BODY_TYPE = "body-type" ;
 
-    public static final String BODY_CONTENT_TYPE = "body-content-type";
+    public static final String BODY_CONTENT_TYPE = "body-content-type" ;
 
-    public static final String REQUEST_BODY = "request-body";
+    public static final String REQUEST_BODY = "request-body" ;
 
-    public static final String HEADER_NAME = "header-name";
+    public static final String HEADER_NAME = "header-name" ;
 
-    public static final String HEADER_VALUE = "header-value";
+    public static final String HEADER_VALUE = "header-value" ;
 
-    public static final String TIMEOUT = "timeout";
+    public static final String TIMEOUT = "timeout" ;
 
-    public static final String RETRY_COUNT = "retryCount";
+    public static final String RETRY_COUNT = "retryCount" ;
 
-    public static final String RETRY_INTERVAL = "retryInterval";
+    public static final String RETRY_INTERVAL = "retryInterval" ;
 
-    public static final String RESPONSE_CHARSET = "response-charset";
+    public static final String RESPONSE_CHARSET = "response-charset" ;
 
-    public static final String FOLLOW_REDIRECT = "follow-redirect";
+    public static final String FOLLOW_REDIRECT = "follow-redirect" ;
 
-    public static final String TLS_VALIDATE = "tls-validate";
+    public static final String TLS_VALIDATE = "tls-validate" ;
 
-    public static final String LAST_EXECUTE_TIME = "__last_execute_time_";
+    public static final String LAST_EXECUTE_TIME = "__last_execute_time_" ;
 
-    public static final String COOKIE_AUTO_SET = "cookie-auto-set";
+    public static final String COOKIE_AUTO_SET = "cookie-auto-set" ;
 
-    public static final String REPEAT_ENABLE = "repeat-enable";
+    public static final String REPEAT_ENABLE = "repeat-enable" ;
 
-    public static final String BLOOM_FILTER_KEY = "_bloomfilter";
+    public static final String BLOOM_FILTER_KEY = "_bloomfilter" ;
     private static final Logger logger = LoggerFactory.getLogger(RequestExecutor.class);
     @Value("${spider.workspace}")
     private String workspcace;
@@ -100,7 +100,7 @@ public class RequestExecutor implements ShapeExecutor, Grammerable, AutomationLi
 
     @Override
     public String supportShape() {
-        return "request";
+        return "request" ;
     }
 
     @PostConstruct
@@ -441,7 +441,7 @@ public class RequestExecutor implements ShapeExecutor, Grammerable, AutomationLi
         BloomFilter<String> filter = context.get(BLOOM_FILTER_KEY);
         if (filter == null) {
             Funnel<CharSequence> funnel = Funnels.stringFunnel(StandardCharsets.UTF_8);
-            String fileName = context.getFlowId() + File.separator + "url.bf";
+            String fileName = context.getFlowId() + File.separator + "url.bf" ;
             File file = new File(workspcace, fileName);
             if (file.exists()) {
                 try (FileInputStream fis = new FileInputStream(file)) {

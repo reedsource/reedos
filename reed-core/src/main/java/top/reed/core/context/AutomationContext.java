@@ -23,6 +23,14 @@ public class AutomationContext extends HashMap<String, Object> {
     private static final long serialVersionUID = 8379177178417619790L;
     private final String id = UUID.randomUUID().toString().replace("-", "");
     /**
+     * Future队列
+     */
+    private final LinkedBlockingQueue<Future<?>> futureQueue = new LinkedBlockingQueue<>();
+    /**
+     * Cookie上下文
+     */
+    private final CookieContext cookieContext = new CookieContext();
+    /**
      * 流程ID
      */
     private String flowId;
@@ -30,26 +38,14 @@ public class AutomationContext extends HashMap<String, Object> {
      * 流程执行线程
      */
     private SubThreadPoolExecutor threadPool;
-
     /**
      * 根节点
      */
     private AutomationNode rootNode;
-
     /**
      * 自动化任务是否运行中
      */
     private volatile boolean running = true;
-
-    /**
-     * Future队列
-     */
-    private final LinkedBlockingQueue<Future<?>> futureQueue = new LinkedBlockingQueue<>();
-
-    /**
-     * Cookie上下文
-     */
-    private final CookieContext cookieContext = new CookieContext();
 
     public List<AutomationOutput> getOutputs() {
         return Collections.emptyList();

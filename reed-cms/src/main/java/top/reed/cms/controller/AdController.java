@@ -33,7 +33,7 @@ public class AdController extends BaseController {
     @RequiresPermissions("cms:ad:view")
     @GetMapping()
     public String ad() {
-        return "cms/ad/ad";
+        return "cms/ad/ad" ;
     }
 
     /**
@@ -65,7 +65,7 @@ public class AdController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return "cms/ad/add";
+        return "cms/ad/add" ;
     }
 
     /**
@@ -86,7 +86,7 @@ public class AdController extends BaseController {
     public String edit(@PathVariable("adId") Long adId, ModelMap modelMap) {
         Ad ad = adService.selectAdById(adId);
         modelMap.put("ad", ad);
-        return "cms/ad/edit";
+        return "cms/ad/edit" ;
     }
 
     /**
@@ -118,7 +118,7 @@ public class AdController extends BaseController {
     @GetMapping("/adMaterial/{adId}")
     public String adMaterial(@PathVariable("adId") String adId, ModelMap modelMap) {
         modelMap.put("adId", adId);
-        return "cms/ad/adMaterial";
+        return "cms/ad/adMaterial" ;
     }
 
     /**
@@ -137,7 +137,7 @@ public class AdController extends BaseController {
     @GetMapping("/addAdMaterial/{adId}")
     public String addAdMaterial(@PathVariable("adId") String adId, ModelMap modelMap) {
         modelMap.put("adId", adId);
-        return "cms/ad/addAdMaterial";
+        return "cms/ad/addAdMaterial" ;
     }
 
     /**
@@ -158,7 +158,7 @@ public class AdController extends BaseController {
         AdMaterial adMaterial = adService.selectAdMaterialById(id);
 
         modelMap.put("adMaterial", adMaterial);
-        return "cms/ad/editAdMaterial";
+        return "cms/ad/editAdMaterial" ;
     }
 
     /**
@@ -182,12 +182,11 @@ public class AdController extends BaseController {
 
     /**
      * 打开广告素材选择界面
-     *
      */
     @GetMapping("/selectAdMaterial/{adId}")
     public String selectAdMaterial(@PathVariable("adId") String adId, ModelMap modelMap) {
         modelMap.put("adId", adId);
-        return "cms/ad/selectAdMaterial";
+        return "cms/ad/selectAdMaterial" ;
     }
 
     /**

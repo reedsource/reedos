@@ -33,7 +33,7 @@ public class CategoryController extends BaseController {
     @RequiresPermissions("cms:category:view")
     @GetMapping()
     public String category() {
-        return  "cms/category/category";
+        return "cms/category/category" ;
     }
 
     /**
@@ -66,7 +66,7 @@ public class CategoryController extends BaseController {
         if (RStringUtils.isNotNull(categoryId)) {
             modelMap.put("category", categoryService.selectCategoryById(categoryId));
         }
-        return  "cms/category/add";
+        return "cms/category/add" ;
     }
 
     /**
@@ -87,7 +87,7 @@ public class CategoryController extends BaseController {
     public String edit(@PathVariable("categoryId") Long categoryId, ModelMap modelMap) {
         Category category = categoryService.selectCategoryById(categoryId);
         modelMap.put("category", category);
-        return  "cms/category/edit";
+        return "cms/category/edit" ;
     }
 
     /**
@@ -120,7 +120,7 @@ public class CategoryController extends BaseController {
         if (RStringUtils.isNotNull(categoryId)) {
             modelMap.put("category", categoryService.selectCategoryById(categoryId));
         }
-        return  "cms/category/tree";
+        return "cms/category/tree" ;
     }
 
     /**

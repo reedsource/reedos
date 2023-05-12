@@ -33,7 +33,7 @@ public class MaterialGroupController extends BaseController {
     @RequiresPermissions("cms:materialGroup:view")
     @GetMapping()
     public String materialGroup() {
-        return "cms/materialGroup/materialGroup";
+        return "cms/materialGroup/materialGroup" ;
     }
 
     /**
@@ -66,7 +66,7 @@ public class MaterialGroupController extends BaseController {
         if (RStringUtils.isNotNull(groupId)) {
             modelMap.put("materialGroup", materialGroupService.selectMaterialGroupById(groupId));
         }
-        return "cms/materialGroup/add";
+        return "cms/materialGroup/add" ;
     }
 
     /**
@@ -87,7 +87,7 @@ public class MaterialGroupController extends BaseController {
     public String edit(@PathVariable("groupId") Long groupId, ModelMap modelMap) {
         MaterialGroup materialGroup = materialGroupService.selectMaterialGroupById(groupId);
         modelMap.put("materialGroup", materialGroup);
-        return "cms/materialGroup/edit";
+        return "cms/materialGroup/edit" ;
     }
 
     /**
@@ -120,7 +120,7 @@ public class MaterialGroupController extends BaseController {
         if (RStringUtils.isNotNull(groupId)) {
             modelMap.put("materialGroup", materialGroupService.selectMaterialGroupById(groupId));
         }
-        return "cms/materialGroup/tree";
+        return "cms/materialGroup/tree" ;
     }
 
     /**

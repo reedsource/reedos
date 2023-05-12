@@ -464,7 +464,7 @@ public class SysUserServiceImpl implements ISysUserService {
                 }
             } catch (Exception e) {
                 failureNum++;
-                String msg = "<br/>" + failureNum + "、账号 " + user.getLoginName() + " 导入失败：";
+                String msg = "<br/>" + failureNum + "、账号 " + user.getLoginName() + " 导入失败：" ;
                 failureMsg.append(msg).append(e.getMessage());
                 log.error(msg, e);
             }

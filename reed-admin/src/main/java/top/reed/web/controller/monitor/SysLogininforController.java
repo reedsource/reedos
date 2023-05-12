@@ -36,7 +36,7 @@ public class SysLogininforController extends BaseController {
     @RequiresPermissions("monitor:logininfor:view")
     @GetMapping()
     public String logininfor() {
-        return "monitor/logininfor/logininfor";
+        return "monitor/logininfor/logininfor" ;
     }
 
     @RequiresPermissions("monitor:logininfor:list")

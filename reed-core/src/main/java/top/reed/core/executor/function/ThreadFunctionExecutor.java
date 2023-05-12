@@ -25,6 +25,6 @@ public class ThreadFunctionExecutor implements FunctionExecutor {
 
     @Override
     public String getFunctionPrefix() {
-        return "thread";
+        return "thread" ;
     }
 }

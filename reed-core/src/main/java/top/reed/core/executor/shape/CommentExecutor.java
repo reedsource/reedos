@@ -17,7 +17,7 @@ public class CommentExecutor implements ShapeExecutor {
 
     @Override
     public String supportShape() {
-        return "comment";
+        return "comment" ;
     }
 
 }

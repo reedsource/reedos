@@ -69,7 +69,6 @@ public interface ICategoryService {
 
     /**
      * 查询导航栏目
-     *
      */
     List<Category> selectNavCategories(Category category);
 }

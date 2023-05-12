@@ -9,97 +9,97 @@ public class Constants {
     /**
      * UTF-8 字符集
      */
-    public static final String UTF8 = "UTF-8";
+    public static final String UTF8 = "UTF-8" ;
 
     /**
      * GBK 字符集
      */
-    public static final String GBK = "GBK";
+    public static final String GBK = "GBK" ;
 
     /**
      * http请求
      */
-    public static final String HTTP = "http://";
+    public static final String HTTP = "http://" ;
 
     /**
      * https请求
      */
-    public static final String HTTPS = "https://";
+    public static final String HTTPS = "https://" ;
 
     /**
      * 通用成功标识
      */
-    public static final String SUCCESS = "0";
+    public static final String SUCCESS = "0" ;
 
     /**
      * 通用失败标识
      */
-    public static final String FAIL = "1";
+    public static final String FAIL = "1" ;
 
     /**
      * 登录成功
      */
-    public static final String LOGIN_SUCCESS = "Success";
+    public static final String LOGIN_SUCCESS = "Success" ;
 
     /**
      * 注销
      */
-    public static final String LOGOUT = "Logout";
+    public static final String LOGOUT = "Logout" ;
 
     /**
      * 注册
      */
-    public static final String REGISTER = "Register";
+    public static final String REGISTER = "Register" ;
 
     /**
      * 登录失败
      */
-    public static final String LOGIN_FAIL = "Error";
+    public static final String LOGIN_FAIL = "Error" ;
 
     /**
      * 系统用户授权缓存
      */
-    public static final String SYS_AUTH_CACHE = "sys-authCache";
+    public static final String SYS_AUTH_CACHE = "sys-authCache" ;
 
     /**
      * 参数管理 cache name
      */
-    public static final String SYS_CONFIG_CACHE = "sys-config";
+    public static final String SYS_CONFIG_CACHE = "sys-config" ;
 
     /**
      * 参数管理 cache key
      */
-    public static final String SYS_CONFIG_KEY = "sys_config:";
+    public static final String SYS_CONFIG_KEY = "sys_config:" ;
 
     /**
      * 字典管理 cache name
      */
-    public static final String SYS_DICT_CACHE = "sys-dict";
+    public static final String SYS_DICT_CACHE = "sys-dict" ;
 
     /**
      * 字典管理 cache key
      */
-    public static final String SYS_DICT_KEY = "sys_dict:";
+    public static final String SYS_DICT_KEY = "sys_dict:" ;
 
     /**
      * 文件资源映射路径 前缀
      */
-    public static final String RESOURCE_PREFIX = "/profile";
+    public static final String RESOURCE_PREFIX = "/profile" ;
 
     /**
      * RMI 远程方法调用
      */
-    public static final String LOOKUP_RMI = "rmi:";
+    public static final String LOOKUP_RMI = "rmi:" ;
 
     /**
      * LDAP 远程方法调用
      */
-    public static final String LOOKUP_LDAP = "ldap:";
+    public static final String LOOKUP_LDAP = "ldap:" ;
 
     /**
      * LDAPS 远程方法调用
      */
-    public static final String LOOKUP_LDAPS = "ldaps:";
+    public static final String LOOKUP_LDAPS = "ldaps:" ;
 
     /**
      * 定时任务白名单配置（仅允许访问的包名，如其他需要可以自行添加）

@@ -5,15 +5,6 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import top.reed.core.Grammerable;
-import top.reed.core.annotation.Comment;
-import top.reed.core.executor.FunctionExecutor;
-import top.reed.core.executor.FunctionExtension;
-import top.reed.core.executor.PluginConfig;
-import top.reed.core.model.Grammer;
-import top.reed.core.model.JsonBean;
-import top.reed.core.model.Plugin;
-import top.reed.core.model.Shape;
 import top.reed.automation.domain.AutoFlow;
 import top.reed.automation.service.AutoFlowService;
 import top.reed.common.annotation.Log;
@@ -24,6 +15,15 @@ import top.reed.common.enums.BusinessType;
 import top.reed.common.exception.ServiceException;
 import top.reed.common.utils.CacheUtils;
 import top.reed.common.utils.poi.ExcelUtil;
+import top.reed.core.Grammerable;
+import top.reed.core.annotation.Comment;
+import top.reed.core.executor.FunctionExecutor;
+import top.reed.core.executor.FunctionExtension;
+import top.reed.core.executor.PluginConfig;
+import top.reed.core.model.Grammer;
+import top.reed.core.model.JsonBean;
+import top.reed.core.model.Plugin;
+import top.reed.core.model.Shape;
 import top.reed.core.utils.ExecutorsUtils;
 
 import javax.annotation.PostConstruct;
@@ -44,11 +44,6 @@ import java.util.stream.Collectors;
 public class AutoFlowController extends BaseController {
 
     private final AutoFlowService autoFlowService;
-
-    public AutoFlowController(AutoFlowService autoFlowService) {
-        this.autoFlowService = autoFlowService;
-    }
-
     private final List<Grammer> grammers = new ArrayList<>();
     @Autowired
     private List<FunctionExecutor> functionExecutors;
@@ -58,11 +53,14 @@ public class AutoFlowController extends BaseController {
     private List<Grammerable> grammerables;
     @Autowired(required = false)
     private List<PluginConfig> pluginConfigs;
+    public AutoFlowController(AutoFlowService autoFlowService) {
+        this.autoFlowService = autoFlowService;
+    }
 
     @RequiresPermissions("automation:autoflow:view")
     @GetMapping()
     public String autoflow() {
-        return "automation/autoflow/autoflow";
+        return "automation/autoflow/autoflow" ;
     }
 
     /**
@@ -70,7 +68,7 @@ public class AutoFlowController extends BaseController {
      */
     @GetMapping("/editor")
     public String editor() {
-        return "automation/autoflow/editor";
+        return "automation/autoflow/editor" ;
     }
 
     /**
@@ -78,7 +76,7 @@ public class AutoFlowController extends BaseController {
      */
     @GetMapping("/root")
     public String flowEditorRoot() {
-        return "automation/autoflow/flowEditor/root";
+        return "automation/autoflow/flowEditor/root" ;
     }
 
     /**
@@ -86,7 +84,7 @@ public class AutoFlowController extends BaseController {
      */
     @GetMapping("/start")
     public String flowEditorStart() {
-        return "automation/autoflow/flowEditor/start";
+        return "automation/autoflow/flowEditor/start" ;
     }
 
     /**
@@ -94,7 +92,7 @@ public class AutoFlowController extends BaseController {
      */
     @GetMapping("/loop")
     public String flowEditorLoop() {
-        return "automation/autoflow/flowEditor/loop";
+        return "automation/autoflow/flowEditor/loop" ;
     }
 
     /**
@@ -102,7 +100,7 @@ public class AutoFlowController extends BaseController {
      */
     @GetMapping("/forkJoin")
     public String flowEditorForkJoin() {
-        return "automation/autoflow/flowEditor/forkJoin";
+        return "automation/autoflow/flowEditor/forkJoin" ;
     }
 
     /**
@@ -110,7 +108,7 @@ public class AutoFlowController extends BaseController {
      */
     @GetMapping("/comment")
     public String flowEditorComment() {
-        return "automation/autoflow/flowEditor/comment";
+        return "automation/autoflow/flowEditor/comment" ;
     }
 
     /**
@@ -118,7 +116,7 @@ public class AutoFlowController extends BaseController {
      */
     @GetMapping("/executeSql")
     public String flowEditorExecuteSql() {
-        return "automation/autoflow/flowEditor/executeSql";
+        return "automation/autoflow/flowEditor/executeSql" ;
     }
 
     /**
@@ -126,7 +124,7 @@ public class AutoFlowController extends BaseController {
      */
     @GetMapping("/function")
     public String flowEditorFunction() {
-        return "automation/autoflow/flowEditor/function";
+        return "automation/autoflow/flowEditor/function" ;
     }
 
     /**
@@ -134,7 +132,7 @@ public class AutoFlowController extends BaseController {
      */
     @GetMapping("/process")
     public String flowEditorProcess() {
-        return "automation/autoflow/flowEditor/process";
+        return "automation/autoflow/flowEditor/process" ;
     }
 
     /**
@@ -144,7 +142,7 @@ public class AutoFlowController extends BaseController {
      */
     @GetMapping("/request")
     public String flowEditorRequest() {
-        return "automation/autoflow/flowEditor/request";
+        return "automation/autoflow/flowEditor/request" ;
     }
 
     /**
@@ -154,7 +152,7 @@ public class AutoFlowController extends BaseController {
      */
     @GetMapping("/variable")
     public String flowEditorVariable() {
-        return "automation/autoflow/flowEditor/variable";
+        return "automation/autoflow/flowEditor/variable" ;
     }
 
     /**
@@ -164,7 +162,7 @@ public class AutoFlowController extends BaseController {
      */
     @GetMapping("/output")
     public String flowEditorOutput() {
-        return "automation/autoflow/flowEditor/output";
+        return "automation/autoflow/flowEditor/output" ;
     }
 
     /**

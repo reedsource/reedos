@@ -32,7 +32,7 @@ public class LoginPageController extends BaseController {
     @RequiresPermissions("cms:loginPage:view")
     @GetMapping()
     public String loginPage() {
-        return "cms/loginPage/loginPage";
+        return "cms/loginPage/loginPage" ;
     }
 
     /**
@@ -63,7 +63,7 @@ public class LoginPageController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return "cms/loginPage/add";
+        return "cms/loginPage/add" ;
     }
 
     /**
@@ -83,7 +83,7 @@ public class LoginPageController extends BaseController {
     public String edit(@PathVariable("id") Long id, ModelMap modelMap) {
         LoginPage loginPage = loginPageService.selectLoginPageById(id);
         modelMap.put("loginPage", loginPage);
-        return "cms/loginPage/edit";
+        return "cms/loginPage/edit" ;
     }
 
     /**

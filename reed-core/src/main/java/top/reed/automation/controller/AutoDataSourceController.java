@@ -37,7 +37,7 @@ public class AutoDataSourceController extends BaseController {
     @RequiresPermissions("automation:autodatasource:view")
     @GetMapping()
     public String autodatasource() {
-        return "automation/autodatasource/autodatasource";
+        return "automation/autodatasource/autodatasource" ;
     }
 
     /**
@@ -123,7 +123,7 @@ public class AutoDataSourceController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return "automation/autodatasource/add";
+        return "automation/autodatasource/add" ;
     }
 
     /**
@@ -150,7 +150,7 @@ public class AutoDataSourceController extends BaseController {
     public String edit(@PathVariable("id") String id, ModelMap modelMap) {
         AutoDataSource autoDataSource = autoDataSourceService.selectAutoDataSourceById(id);
         modelMap.put("autoDataSource", autoDataSource);
-        return "automation/autodatasource/edit";
+        return "automation/autodatasource/edit" ;
     }
 
     /**

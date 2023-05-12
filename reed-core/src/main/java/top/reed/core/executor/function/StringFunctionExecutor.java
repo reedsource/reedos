@@ -167,7 +167,7 @@ public class StringFunctionExecutor implements FunctionExecutor {
 
     @Override
     public String getFunctionPrefix() {
-        return "string";
+        return "string" ;
     }
 
 }

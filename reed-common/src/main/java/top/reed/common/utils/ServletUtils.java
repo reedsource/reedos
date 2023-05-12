@@ -22,7 +22,7 @@ import java.util.Map;
 public enum ServletUtils {
     ;
 
-    public static final String WINDOWS_NT = "Windows NT";
+    public static final String WINDOWS_NT = "Windows NT" ;
     private static final Logger log = LoggerFactory.getLogger(ServletUtils.class);
     /**
      * 定义移动端请求的所有可能类型

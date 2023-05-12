@@ -32,7 +32,7 @@ import java.util.List;
 @RequestMapping("/common")
 public class CommonController {
     private static final Logger log = LoggerFactory.getLogger(CommonController.class);
-    private static final String FILE_DELIMETER = ",";
+    private static final String FILE_DELIMETER = "," ;
     @Autowired
     private ServerConfig serverConfig;
 

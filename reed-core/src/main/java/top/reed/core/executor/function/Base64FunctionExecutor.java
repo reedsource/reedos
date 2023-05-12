@@ -83,6 +83,6 @@ public class Base64FunctionExecutor implements FunctionExecutor {
 
     @Override
     public String getFunctionPrefix() {
-        return "base64";
+        return "base64" ;
     }
 }

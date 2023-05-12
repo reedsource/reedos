@@ -100,7 +100,7 @@ public class GenTableColumn extends BaseEntity {
      * 字典类型
      * 赋值为"" 避免代码生成同步后字典值NULL
      */
-    private String dictType = "";
+    private String dictType = "" ;
 
     /**
      * 排序

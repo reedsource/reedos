@@ -82,7 +82,7 @@ public class Span {
 
     @Override
     public String toString() {
-        return "Span [text=" + getText() + ", start=" + start + ", end=" + end + "]";
+        return "Span [text=" + getText() + ", start=" + start + ", end=" + end + "]" ;
     }
 
     /**

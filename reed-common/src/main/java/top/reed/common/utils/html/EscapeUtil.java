@@ -8,7 +8,7 @@ import top.reed.common.utils.StringUtils;
  * @author reedsource
  */
 public class EscapeUtil {
-    public static final String RE_HTML_MARK = "(<[^<]*?>)|(<[\\s]*?/[^<]*?>)|(<[^<]*?/[\\s]*?>)";
+    public static final String RE_HTML_MARK = "(<[^<]*?>)|(<[\\s]*?/[^<]*?>)|(<[^<]*?/[\\s]*?>)" ;
 
     private static final char[][] TEXT = new char[64][];
 

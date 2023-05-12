@@ -32,7 +32,7 @@ public class SysDictTypeController extends BaseController {
     @RequiresPermissions("system:dict:view")
     @GetMapping()
     public String dictType() {
-        return "system/dict/type/type";
+        return "system/dict/type/type" ;
     }
 
     @PostMapping("/list")
@@ -60,7 +60,7 @@ public class SysDictTypeController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return "system/dict/type/add";
+        return "system/dict/type/add" ;
     }
 
     /**
@@ -85,7 +85,7 @@ public class SysDictTypeController extends BaseController {
     @GetMapping("/edit/{dictId}")
     public String edit(@PathVariable("dictId") Long dictId, ModelMap modelMap) {
         modelMap.put("dict", dictTypeService.selectDictTypeById(dictId));
-        return "system/dict/type/edit";
+        return "system/dict/type/edit" ;
     }
 
     /**
@@ -132,7 +132,7 @@ public class SysDictTypeController extends BaseController {
     public String detail(@PathVariable("dictId") Long dictId, ModelMap modelMap) {
         modelMap.put("dict", dictTypeService.selectDictTypeById(dictId));
         modelMap.put("dictList", dictTypeService.selectDictTypeAll());
-        return "system/dict/data/data";
+        return "system/dict/data/data" ;
     }
 
     /**
@@ -152,7 +152,7 @@ public class SysDictTypeController extends BaseController {
                                  ModelMap modelMap) {
         modelMap.put("columnId", columnId);
         modelMap.put("dict", dictTypeService.selectDictTypeByType(dictType));
-        return "system/dict/type/tree";
+        return "system/dict/type/tree" ;
     }
 
     /**

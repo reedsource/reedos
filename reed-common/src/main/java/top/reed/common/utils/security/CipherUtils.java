@@ -22,7 +22,7 @@ public class CipherUtils {
         try {
             kg = KeyGenerator.getInstance(algorithmName);
         } catch (NoSuchAlgorithmException e) {
-            String msg = "Unable to acquire " + algorithmName + " algorithm.  This is required to function.";
+            String msg = "Unable to acquire " + algorithmName + " algorithm.  This is required to function." ;
             throw new IllegalStateException(msg, e);
         }
         kg.init(keyBitSize);

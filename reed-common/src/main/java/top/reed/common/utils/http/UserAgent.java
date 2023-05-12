@@ -15,17 +15,6 @@ import org.slf4j.LoggerFactory;
  */
 public class UserAgent {
     private static final Logger log = LoggerFactory.getLogger(UserAgent.class);
-
-    /**
-     * 浏览器
-     */
-    public String browser = "";
-
-    /**
-     * 操作系统
-     */
-    public String operatingSystem = "";
-
     /**
      * 解析器
      */
@@ -39,6 +28,15 @@ public class UserAgent {
             log.error("获取用户代理异常", e);
         }
     }
+
+    /**
+     * 浏览器
+     */
+    public String browser = "" ;
+    /**
+     * 操作系统
+     */
+    public String operatingSystem = "" ;
 
     /**
      * Agent标头值解析解析处理

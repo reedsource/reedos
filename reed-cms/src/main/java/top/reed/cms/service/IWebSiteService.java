@@ -11,7 +11,6 @@ import java.util.Map;
 public interface IWebSiteService {
     /**
      * 获得站点相关数据
-     *
      */
     Map getSiteInfo();
 }

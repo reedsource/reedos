@@ -34,7 +34,7 @@ public class AutoFunctionController extends BaseController {
     @RequiresPermissions("automation:autofunction:view")
     @GetMapping()
     public String autofunction() {
-        return "automation/autofunction/autofunction";
+        return "automation/autofunction/autofunction" ;
     }
 
     /**
@@ -67,7 +67,7 @@ public class AutoFunctionController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return "automation/autofunction/add";
+        return "automation/autofunction/add" ;
     }
 
     /**
@@ -89,7 +89,7 @@ public class AutoFunctionController extends BaseController {
     public String edit(@PathVariable("id") Long id, ModelMap modelMap) {
         AutoFunction autoFunction = autoFunctionService.selectAutoFunctionById(id);
         modelMap.put("autoFunction", autoFunction);
-        return "automation/autofunction/edit";
+        return "automation/autofunction/edit" ;
     }
 
     /**

@@ -27,7 +27,7 @@ public class SysRegisterController extends BaseController {
 
     @GetMapping("/register")
     public String register() {
-        return "register";
+        return "register" ;
     }
 
     @PostMapping("/register")

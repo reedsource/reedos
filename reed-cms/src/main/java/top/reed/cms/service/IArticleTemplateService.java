@@ -63,7 +63,6 @@ public interface IArticleTemplateService {
 
     /**
      * 查询文字模板标签
-     *
      */
     List<Tags> selectArticleTemplateTags(String tagIds);
 

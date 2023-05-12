@@ -68,7 +68,7 @@ public class ListFunctionExecutor implements FunctionExecutor {
 
     @Override
     public String getFunctionPrefix() {
-        return "list";
+        return "list" ;
     }
 
 }

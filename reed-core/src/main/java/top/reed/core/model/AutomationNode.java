@@ -15,38 +15,37 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class AutomationNode {
     /**
-     * 节点的Json属性
-     */
-    private Map<String, Object> jsonProperty = new HashMap<>();
-    /**
      * 节点列表中的下一个节点
      */
     private final List<AutomationNode> nextNodes = new ArrayList<>();
-
     /**
      * 节点列表中的上一个节点
      */
     private final List<AutomationNode> prevNodes = new ArrayList<>();
-
-    /**
-     * 父级节点ID
-     */
-    private Set<String> parentNodes;
-
     /**
      * 节点流转条件
      */
     private final Map<String, String> condition = new HashMap<>();
-
     /**
      * 异常流转
      */
     private final Map<String, String> exception = new HashMap<>();
-
     /**
      * 传递变量
      */
     private final Map<String, String> transmitVariable = new HashMap<>();
+    /**
+     * 计数器,用来计算当前节点执行中的个数
+     */
+    private final AtomicInteger counter = new AtomicInteger();
+    /**
+     * 节点的Json属性
+     */
+    private Map<String, Object> jsonProperty = new HashMap<>();
+    /**
+     * 父级节点ID
+     */
+    private Set<String> parentNodes;
     /**
      * 节点名称
      */
@@ -55,11 +54,6 @@ public class AutomationNode {
      * 节点ID
      */
     private String nodeId;
-
-    /**
-     * 计数器,用来计算当前节点执行中的个数
-     */
-    private final AtomicInteger counter = new AtomicInteger();
 
     public String getNodeId() {
         return nodeId;
@@ -201,6 +195,6 @@ public class AutomationNode {
     @Override
     public String toString() {
         return "AutomationNode [jsonProperty=" + jsonProperty + ", nextNodes=" + nextNodes + ", condition=" + condition
-                + ", nodeName=" + nodeName + ", nodeId=" + nodeId + "]";
+                + ", nodeName=" + nodeName + ", nodeId=" + nodeId + "]" ;
     }
 }

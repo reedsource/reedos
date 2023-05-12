@@ -67,9 +67,9 @@ public class CategoryServiceImpl implements ICategoryService {
         String ancestors;
         if (p != null) {
             ancestors = p.getAncestors();
-            ancestors += category.getCategoryId() + ",";
+            ancestors += category.getCategoryId() + "," ;
         } else {
-            ancestors = category.getCategoryId() + ",";
+            ancestors = category.getCategoryId() + "," ;
         }
         category.setAncestors(ancestors);
         n = categoryMapper.updateCategory(category);

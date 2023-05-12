@@ -14,8 +14,8 @@ import java.nio.charset.StandardCharsets;
  * @author reedsource
  */
 public class FileUtils {
-    public static String FILENAME_PATTERN = "[a-zA-Z0-9_\\-|.\\u4e00-\\u9fa5]+";
     private static final Logger logger = LoggerFactory.getLogger(FileUtils.class);
+    public static String FILENAME_PATTERN = "[a-zA-Z0-9_\\-|.\\u4e00-\\u9fa5]+" ;
 
     /**
      * 输出指定文件的byte数组

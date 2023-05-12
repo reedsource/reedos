@@ -38,7 +38,7 @@ public class UrlFunctionExecutor implements FunctionExecutor {
                     String[] kv = item.split("=");
                     if (kv.length > 0) {
                         if (StringUtils.isNotBlank(kv[0])) {
-                            String value = "";
+                            String value = "" ;
                             if (StringUtils.isNotBlank(kv[1])) {
                                 int kv1Index = kv[1].indexOf("#");
                                 if (kv1Index != -1) {
@@ -90,6 +90,6 @@ public class UrlFunctionExecutor implements FunctionExecutor {
 
     @Override
     public String getFunctionPrefix() {
-        return "url";
+        return "url" ;
     }
 }

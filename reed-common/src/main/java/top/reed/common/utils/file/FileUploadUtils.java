@@ -192,7 +192,6 @@ public enum FileUploadUtils {
 
     /**
      * 是否图片
-     *
      */
     public static final boolean isImage(String suffix) {
         for (String str : MimeTypeUtils.IMAGE_EXTENSION) {

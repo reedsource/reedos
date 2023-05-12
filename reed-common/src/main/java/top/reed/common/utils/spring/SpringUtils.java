@@ -83,7 +83,6 @@ public final class SpringUtils implements BeanFactoryPostProcessor, ApplicationC
 
     /**
      * 获取aop代理对象
-     *
      */
     @SuppressWarnings("unchecked")
     public static <T> T getAopProxy(T invoker) {

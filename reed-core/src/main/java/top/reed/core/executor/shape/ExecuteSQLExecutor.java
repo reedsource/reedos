@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 import top.reed.core.Grammerable;
 import top.reed.core.context.AutomationContext;
 import top.reed.core.executor.ShapeExecutor;
-import top.reed.core.model.Grammer;
 import top.reed.core.model.AutomationNode;
+import top.reed.core.model.Grammer;
 import top.reed.core.utils.AutoDataSourceUtils;
 import top.reed.core.utils.ExpressionUtils;
 import top.reed.core.utils.ExtractUtils;
@@ -31,25 +31,25 @@ import java.util.*;
 @Component
 public class ExecuteSQLExecutor implements ShapeExecutor, Grammerable {
 
-    public static final String DATASOURCE_ID = "datasourceId";
+    public static final String DATASOURCE_ID = "datasourceId" ;
 
-    public static final String SQL = "sql";
+    public static final String SQL = "sql" ;
 
-    public static final String STATEMENT_TYPE = "statementType";
+    public static final String STATEMENT_TYPE = "statementType" ;
 
-    public static final String STATEMENT_SELECT = "select";
+    public static final String STATEMENT_SELECT = "select" ;
 
-    public static final String STATEMENT_SELECT_ONE = "selectOne";
+    public static final String STATEMENT_SELECT_ONE = "selectOne" ;
 
-    public static final String STATEMENT_SELECT_INT = "selectInt";
+    public static final String STATEMENT_SELECT_INT = "selectInt" ;
 
-    public static final String STATEMENT_INSERT = "insert";
+    public static final String STATEMENT_INSERT = "insert" ;
 
-    public static final String STATEMENT_UPDATE = "update";
+    public static final String STATEMENT_UPDATE = "update" ;
 
-    public static final String STATEMENT_DELETE = "delete";
-    public static final String SELECT_RESULT_STREAM = "isStream";
-    public static final String STATEMENT_INSERT_PK = "insertofPk";
+    public static final String STATEMENT_DELETE = "delete" ;
+    public static final String SELECT_RESULT_STREAM = "isStream" ;
+    public static final String STATEMENT_INSERT_PK = "insertofPk" ;
 
     private static final Logger logger = LoggerFactory.getLogger(ExecuteSQLExecutor.class);
 
@@ -207,7 +207,7 @@ public class ExecuteSQLExecutor implements ShapeExecutor, Grammerable {
 
     @Override
     public String supportShape() {
-        return "executeSql";
+        return "executeSql" ;
     }
 
     @Override

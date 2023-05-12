@@ -53,7 +53,7 @@ public class RandomFunctionExecutor implements FunctionExecutor {
 
     @Override
     public String getFunctionPrefix() {
-        return "random";
+        return "random" ;
     }
 
 }

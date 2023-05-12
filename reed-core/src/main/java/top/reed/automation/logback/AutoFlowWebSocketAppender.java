@@ -3,10 +3,10 @@ package top.reed.automation.logback;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.classic.spi.ThrowableProxy;
 import ch.qos.logback.core.UnsynchronizedAppenderBase;
+import top.reed.automation.websocket.model.WebSocketContext;
 import top.reed.core.context.AutomationContext;
 import top.reed.core.context.AutomationContextHolder;
 import top.reed.core.model.AutomationLog;
-import top.reed.automation.websocket.model.WebSocketContext;
 
 import java.util.ArrayList;
 import java.util.Arrays;

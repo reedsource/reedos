@@ -145,6 +145,6 @@ public class ExtractFunctionExecutor implements FunctionExecutor {
 
     @Override
     public String getFunctionPrefix() {
-        return "extract";
+        return "extract" ;
     }
 }

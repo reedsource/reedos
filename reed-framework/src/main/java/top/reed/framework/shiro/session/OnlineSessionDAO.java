@@ -22,7 +22,7 @@ public class OnlineSessionDAO extends EnterpriseCacheSessionDAO {
     /**
      * 上次同步数据库的时间戳
      */
-    private static final String LAST_SYNC_DB_TIMESTAMP = OnlineSessionDAO.class.getName() + "LAST_SYNC_DB_TIMESTAMP";
+    private static final String LAST_SYNC_DB_TIMESTAMP = OnlineSessionDAO.class.getName() + "LAST_SYNC_DB_TIMESTAMP" ;
     /**
      * 同步session到数据库的周期 单位为毫秒（默认1分钟）
      */

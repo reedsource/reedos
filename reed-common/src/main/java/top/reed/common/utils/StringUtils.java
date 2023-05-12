@@ -15,7 +15,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
     /**
      * 空字符串
      */
-    private static final String NULLSTR = "";
+    private static final String NULLSTR = "" ;
 
     /**
      * 下划线
@@ -408,7 +408,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
         // 快速检查
         if (name == null || name.isEmpty()) {
             // 没必要转换
-            return "";
+            return "" ;
         } else if (!name.contains("_")) {
             // 不含下划线，仅将首字母大写
             return name.substring(0, 1).toUpperCase() + name.substring(1);

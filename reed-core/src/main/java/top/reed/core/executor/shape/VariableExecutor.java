@@ -20,9 +20,9 @@ import java.util.Map;
 @Component
 public class VariableExecutor implements ShapeExecutor {
 
-    private static final String VARIABLE_NAME = "variable-name";
+    private static final String VARIABLE_NAME = "variable-name" ;
 
-    private static final String VARIABLE_VALUE = "variable-value";
+    private static final String VARIABLE_VALUE = "variable-value" ;
 
     private static final Logger logger = LoggerFactory.getLogger(VariableExecutor.class);
 
@@ -47,7 +47,7 @@ public class VariableExecutor implements ShapeExecutor {
 
     @Override
     public String supportShape() {
-        return "variable";
+        return "variable" ;
     }
 
     @Override

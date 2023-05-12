@@ -31,7 +31,7 @@ public class SiteMsgController extends BaseController {
     @RequiresPermissions("cms:siteMsg:view")
     @GetMapping()
     public String siteMsg() {
-        return  "cms/siteMsg/siteMsg";
+        return "cms/siteMsg/siteMsg" ;
     }
 
     /**
@@ -51,7 +51,7 @@ public class SiteMsgController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return  "cms/siteMsg/add";
+        return "cms/siteMsg/add" ;
     }
 
     /**
@@ -72,7 +72,7 @@ public class SiteMsgController extends BaseController {
     public String edit(@PathVariable("id") Long id, ModelMap modelMap) {
         SiteMsg siteMsg = siteMsgService.selectSiteMsgById(id);
         modelMap.put("siteMsg", siteMsg);
-        return  "cms/siteMsg/edit";
+        return "cms/siteMsg/edit" ;
     }
 
     /**

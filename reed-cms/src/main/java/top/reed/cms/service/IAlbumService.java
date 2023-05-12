@@ -64,31 +64,26 @@ public interface IAlbumService {
 
     /**
      * 专辑绑定的素材列表
-     *
      */
     List<AlbumMaterial> selectAlbumMaterialList(Material material);
 
     /**
      * 专辑未绑定的素材列表
-     *
      */
     List<Material> selectAlbumUnMaterialList(Material material);
 
     /**
      * 取消关联的素材
-     *
      */
     void deleteMaterialBatch(String ids);
 
     /**
      * 保存关联的素材
-     *
      */
     void saveMaterial(String albumId, String materialIds);
 
     /**
      * 获取一个专辑banner
-     *
      */
     Map getAlbum(String code);
 }

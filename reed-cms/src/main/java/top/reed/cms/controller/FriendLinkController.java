@@ -32,7 +32,7 @@ public class FriendLinkController extends BaseController {
     @RequiresPermissions("cms:friendLink:view")
     @GetMapping()
     public String friendLink() {
-        return "cms/friendLink/friendLink";
+        return "cms/friendLink/friendLink" ;
     }
 
     /**
@@ -64,7 +64,7 @@ public class FriendLinkController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return "cms/friendLink/add";
+        return "cms/friendLink/add" ;
     }
 
     /**
@@ -85,7 +85,7 @@ public class FriendLinkController extends BaseController {
     public String edit(@PathVariable("id") Long id, ModelMap modelMap) {
         FriendLink friendLink = friendLinkService.selectFriendLinkById(id);
         modelMap.put("friendLink", friendLink);
-        return "cms/friendLink/edit";
+        return "cms/friendLink/edit" ;
     }
 
     /**

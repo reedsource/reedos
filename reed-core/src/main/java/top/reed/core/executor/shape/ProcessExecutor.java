@@ -4,12 +4,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import top.reed.core.context.AutomationContext;
-import top.reed.core.executor.ShapeExecutor;
-import top.reed.core.model.AutomationNode;
 import top.reed.automation.domain.AutoFlow;
 import top.reed.automation.service.AutoFlowService;
 import top.reed.core.Spider;
+import top.reed.core.context.AutomationContext;
+import top.reed.core.executor.ShapeExecutor;
+import top.reed.core.model.AutomationNode;
 import top.reed.core.utils.AutoFlowUtils;
 
 import java.util.Map;
@@ -45,7 +45,7 @@ public class ProcessExecutor implements ShapeExecutor {
 
     @Override
     public String supportShape() {
-        return "process";
+        return "process" ;
     }
 
 }

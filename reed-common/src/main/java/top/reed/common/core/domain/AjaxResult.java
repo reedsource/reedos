@@ -15,15 +15,15 @@ public class AjaxResult extends HashMap<String, Object> {
     /**
      * 状态码
      */
-    public static final String CODE_TAG = "code";
+    public static final String CODE_TAG = "code" ;
     /**
      * 返回内容
      */
-    public static final String MSG_TAG = "msg";
+    public static final String MSG_TAG = "msg" ;
     /**
      * 数据对象
      */
-    public static final String DATA_TAG = "data";
+    public static final String DATA_TAG = "data" ;
     @Serial
     private static final long serialVersionUID = 1L;
 
@@ -121,7 +121,6 @@ public class AjaxResult extends HashMap<String, Object> {
 
     /**
      * 返回错误消息
-     *
      */
     public static AjaxResult error() {
         return AjaxResult.error("操作失败");

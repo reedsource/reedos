@@ -61,6 +61,7 @@ public interface IAdService {
     int deleteAdById(Long adId);
 
     /* ***************************************分割线****************************************************/
+
     /**
      * 查询广告位素材
      *
@@ -70,7 +71,6 @@ public interface IAdService {
 
     /**
      * 查询广告位素材列表
-     *
      */
     List<AdMaterial> selectAdMaterialList(AdMaterial adMaterial);
 
@@ -101,7 +101,6 @@ public interface IAdService {
 
     /**
      * 查询广告位未绑定的广告素材列表
-     *
      */
     List<AdMaterial> selectAdUnMaterialList(AdMaterial adMaterial);
 }
