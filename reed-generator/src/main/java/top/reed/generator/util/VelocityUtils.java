@@ -201,11 +201,7 @@ public class VelocityUtils {
      */
     public static String getProjectPath() {
         String packageName = GenConfig.getPackageName();
-        StringBuilder projectPath = new StringBuilder();
-        projectPath.append("main/java/");
-        projectPath.append(packageName.replace(".", "/"));
-        projectPath.append("/");
-        return projectPath.toString();
+        return "main/java/" + packageName.replace(".", "/") + "/" ;
     }
 
     /**

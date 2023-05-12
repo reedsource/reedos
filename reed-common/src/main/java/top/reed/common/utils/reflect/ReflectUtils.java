@@ -113,7 +113,7 @@ public class ReflectUtils {
         try {
             return (E) method.invoke(obj, args);
         } catch (Exception e) {
-            String msg = "method: " + method + ", obj: " + obj + ", args: " + args + "";
+            String msg = "method: " + method + ", obj: " + obj + ", args: " + args;
             throw convertReflectionExceptionToUnchecked(msg, e);
         }
     }
@@ -162,7 +162,7 @@ public class ReflectUtils {
             }
             return (E) method.invoke(obj, args);
         } catch (Exception e) {
-            String msg = "method: " + method + ", obj: " + obj + ", args: " + args + "";
+            String msg = "method: " + method + ", obj: " + obj + ", args: " + args;
             throw convertReflectionExceptionToUnchecked(msg, e);
         }
     }
@@ -183,7 +183,6 @@ public class ReflectUtils {
                 makeAccessible(field);
                 return field;
             } catch (NoSuchFieldException e) {
-                continue;
             }
         }
         return null;
@@ -208,7 +207,6 @@ public class ReflectUtils {
                 makeAccessible(method);
                 return method;
             } catch (NoSuchMethodException e) {
-                continue;
             }
         }
         return null;

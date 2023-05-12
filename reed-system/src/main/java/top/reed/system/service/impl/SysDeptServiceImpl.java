@@ -69,10 +69,9 @@ public class SysDeptServiceImpl implements ISysDeptService {
         Long excludeId = dept.getExcludeId();
         List<SysDept> depts = deptMapper.selectDeptList(dept);
         if (excludeId.intValue() > 0) {
-            depts.removeIf(d -> d.getDeptId().intValue() == excludeId || ArrayUtils.contains(StringUtils.split(d.getAncestors(), ","), excludeId + ""));
+            depts.removeIf(d -> d.getDeptId().intValue() == excludeId || ArrayUtils.contains(StringUtils.split(d.getAncestors(), ","), String.valueOf(excludeId)));
         }
-        List<Ztree> ztrees = initZtree(depts);
-        return ztrees;
+        return initZtree(depts);
     }
 
     /**

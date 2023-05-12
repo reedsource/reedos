@@ -137,7 +137,7 @@ public class Tokenizer {
             if (leftCount != rightCount && stream.match("}", true)) {
                 rightCount++;
                 tokens.add(new Token(TokenType.RightCurly, new Span(source, stream.getPosition() - 1, stream.getPosition())));
-                continue outer;
+                continue;
             }
             // 匹配结束标记
             if (stream.match("}", false)) break;

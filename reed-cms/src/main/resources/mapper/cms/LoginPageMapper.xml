@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.reed.cms.mapper.LoginPageMapper">
 
-    <resultMap type="LoginPage" id="LoginPageResult">
+    <resultMap type="top.reed.cms.domain.LoginPage" id="LoginPageResult">
         <result property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="code" column="code"/>
@@ -18,7 +18,7 @@
         from cms_login_page
     </sql>
 
-    <select id="selectLoginPageList" parameterType="LoginPage" resultMap="LoginPageResult">
+    <select id="selectLoginPageList" parameterType="top.reed.cms.domain.LoginPage" resultMap="LoginPageResult">
         <include refid="selectLoginPageVo"/>
         <where>
             <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
@@ -32,7 +32,7 @@
         where id = #{id}
     </select>
 
-    <insert id="insertLoginPage" parameterType="LoginPage" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertLoginPage" parameterType="top.reed.cms.domain.LoginPage" useGeneratedKeys="true" keyProperty="id">
         insert into cms_login_page
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="name != null  and name != ''">name,</if>
@@ -50,7 +50,7 @@
         </trim>
     </insert>
 
-    <update id="updateLoginPage" parameterType="LoginPage">
+    <update id="updateLoginPage" parameterType="top.reed.cms.domain.LoginPage">
         update cms_login_page
         <trim prefix="SET" suffixOverrides=",">
             <if test="name != null  and name != ''">name = #{name},</if>

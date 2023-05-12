@@ -371,7 +371,7 @@
             return true;
         if (val.length == 0)
             return true;
-        if (!/[^(^\s*)|(\s*$)]/.test(val))
+        if (!/[^(^\s*)|$]/.test(val))
             return true;
         return false;
     }

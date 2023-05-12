@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.reed.cms.mapper.FiletypeMapper">
 
-    <resultMap type="Filetype" id="FiletypeResult">
+    <resultMap type="top.reed.cms.domain.Filetype" id="FiletypeResult">
         <result property="id" column="id"/>
         <result property="suffix" column="suffix"/>
         <result property="name" column="name"/>
@@ -16,7 +16,7 @@
         from cms_filetype
     </sql>
 
-    <select id="selectFiletypeList" parameterType="Filetype" resultMap="FiletypeResult">
+    <select id="selectFiletypeList" parameterType="top.reed.cms.domain.Filetype" resultMap="FiletypeResult">
         <include refid="selectFiletypeVo"/>
         <where>
             <if test="suffix != null  and suffix != ''">and suffix = #{suffix}</if>
@@ -40,7 +40,7 @@
         <include refid="selectFiletypeVo"/>
         where suffix = #{suffix}
     </select>
-    <insert id="insertFiletype" parameterType="Filetype" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertFiletype" parameterType="top.reed.cms.domain.Filetype" useGeneratedKeys="true" keyProperty="id">
         insert into cms_filetype
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="suffix != null  and suffix != ''">suffix,</if>
@@ -54,7 +54,7 @@
         </trim>
     </insert>
 
-    <update id="updateFiletype" parameterType="Filetype">
+    <update id="updateFiletype" parameterType="top.reed.cms.domain.Filetype">
         update cms_filetype
         <trim prefix="SET" suffixOverrides=",">
             <if test="suffix != null  and suffix != ''">suffix = #{suffix},</if>

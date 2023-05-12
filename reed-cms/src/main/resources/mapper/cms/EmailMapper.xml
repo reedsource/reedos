@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.reed.cms.mapper.EmailMapper">
 
-    <resultMap type="Email" id="EmailResult">
+    <resultMap type="top.reed.cms.domain.Email" id="EmailResult">
         <result property="id" column="id"/>
         <result property="emailType" column="email_type"/>
         <result property="userId" column="user_id"/>
@@ -43,7 +43,7 @@
         from cms_email
     </sql>
 
-    <select id="selectEmailList" parameterType="Email" resultMap="EmailResult">
+    <select id="selectEmailList" parameterType="top.reed.cms.domain.Email" resultMap="EmailResult">
         <include refid="selectEmailVo"/>
         <where>
             <if test="emailType != null ">and email_type = #{emailType}</if>
@@ -67,7 +67,7 @@
         where id = #{id}
     </select>
 
-    <insert id="insertEmail" parameterType="Email" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertEmail" parameterType="top.reed.cms.domain.Email" useGeneratedKeys="true" keyProperty="id">
         insert into cms_email
         <trim prefix="(" suffix=")" suffixOverrides=",">
             id,
@@ -107,7 +107,7 @@
         </trim>
     </insert>
 
-    <update id="updateEmail" parameterType="Email">
+    <update id="updateEmail" parameterType="top.reed.cms.domain.Email">
         update cms_email
         <trim prefix="SET" suffixOverrides=",">
             <if test="emailType != null ">email_type = #{emailType},</if>

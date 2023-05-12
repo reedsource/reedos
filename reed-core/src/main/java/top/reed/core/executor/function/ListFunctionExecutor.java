@@ -39,7 +39,7 @@ public class ListFunctionExecutor implements FunctionExecutor {
         int size = list.size();
         int count = (size + len - 1) / len;
         for (int i = 0; i < count; i++) {
-            List<?> subList = list.subList(i * len, ((i + 1) * len > size ? size : len * (i + 1)));
+            List<?> subList = list.subList(i * len, (Math.min((i + 1) * len, size)));
             result.add(subList);
         }
         return result;

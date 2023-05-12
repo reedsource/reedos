@@ -113,7 +113,6 @@ public class CharacterStream {
             char c = source.charAt(index);
             if (c == ' ' || c == '\n' || c == '\r' || c == '\t') {
                 index++;
-                continue;
             } else {
                 break;
             }
