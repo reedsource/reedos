@@ -22,7 +22,7 @@ import top.reed.common.core.page.TableDataInfo;
 import top.reed.common.core.text.Convert;
 import top.reed.common.enums.BusinessType;
 import top.reed.common.exception.ServiceException;
-import top.reed.common.utils.RStringUtils;
+import top.reed.common.utils.StringUtils;
 import top.reed.common.utils.file.FileUploadUtils;
 import top.reed.common.utils.file.MimeTypeUtils;
 import top.reed.common.utils.poi.ExcelUtil;
@@ -149,7 +149,7 @@ public class ArticleController extends BaseController {
             List<Tags> fullTabs = tagsService.selectBlogTabs();
             model.addAttribute("fullTabs", fullTabs);
             String tagIds = article.getTags();
-            if (RStringUtils.isNotEmpty(tagIds)) {
+            if (StringUtils.isNotEmpty(tagIds)) {
                 String[] arr = Convert.toStrArray(tagIds);
                 List<Tags> tagsList = new ArrayList<>();
                 Tags tmp;

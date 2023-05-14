@@ -12,7 +12,7 @@ import top.reed.common.core.controller.BaseController;
 import top.reed.common.core.domain.AjaxResult;
 import top.reed.common.core.domain.Ztree;
 import top.reed.common.enums.BusinessType;
-import top.reed.common.utils.RStringUtils;
+import top.reed.common.utils.StringUtils;
 import top.reed.common.utils.poi.ExcelUtil;
 
 import java.util.List;
@@ -63,7 +63,7 @@ public class CategoryController extends BaseController {
      */
     @GetMapping(value = {"/add/{categoryId}", "/add/"})
     public String add(@PathVariable(value = "categoryId", required = false) Long categoryId, ModelMap modelMap) {
-        if (RStringUtils.isNotNull(categoryId)) {
+        if (StringUtils.isNotNull(categoryId)) {
             modelMap.put("category", categoryService.selectCategoryById(categoryId));
         }
         return "cms/category/add" ;
@@ -117,7 +117,7 @@ public class CategoryController extends BaseController {
      */
     @GetMapping(value = {"/selectCategoryTree/{categoryId}", "/selectCategoryTree/"})
     public String selectCategoryTree(@PathVariable(value = "categoryId", required = false) Long categoryId, ModelMap modelMap) {
-        if (RStringUtils.isNotNull(categoryId)) {
+        if (StringUtils.isNotNull(categoryId)) {
             modelMap.put("category", categoryService.selectCategoryById(categoryId));
         }
         return "cms/category/tree" ;

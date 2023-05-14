@@ -20,7 +20,7 @@ import top.reed.common.core.domain.AjaxResult;
 import top.reed.common.core.domain.entity.SysUser;
 import top.reed.common.core.text.Convert;
 import top.reed.common.enums.BusinessType;
-import top.reed.common.utils.RStringUtils;
+import top.reed.common.utils.StringUtils;
 import top.reed.common.utils.ShiroUtils;
 import top.reed.common.utils.file.FileUploadUtils;
 import top.reed.common.utils.file.MimeTypeUtils;
@@ -54,11 +54,11 @@ public class CmsController extends BaseController {
     @ResponseBody
     public AjaxResult uploadAttach(@RequestParam("zid") String zid, String sort, MultipartFile file) {
         try {
-            if (RStringUtils.isEmpty(zid)) {
+            if (StringUtils.isEmpty(zid)) {
                 return AjaxResult.error("参数[zid]不能为空!");
             }
             Attachment attachment = new Attachment();
-            if (RStringUtils.isEmpty(sort)) {
+            if (StringUtils.isEmpty(sort)) {
                 sort = "1" ;
             }
             int sortNum = 1;
@@ -122,7 +122,7 @@ public class CmsController extends BaseController {
             //非管理员用户调用该接口删除只能删除自己的附件
             String[] arr = Convert.toStrArray(ids);
             for (String id : arr) {
-                if (RStringUtils.isNotEmpty(id)) {
+                if (StringUtils.isNotEmpty(id)) {
                     Attachment attachment = attachmentService.selectAttachmentById(id);
                     if (attachment != null) {
                         if (!attachment.getUserId().equals(user.getUserId().toString())) {

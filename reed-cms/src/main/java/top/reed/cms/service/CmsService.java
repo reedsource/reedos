@@ -6,12 +6,11 @@ import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.google.common.collect.Lists;
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.reed.cms.domain.*;
 import top.reed.cms.util.CmsConstants;
-import top.reed.common.utils.RStringUtils;
+import top.reed.common.utils.StringUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -355,7 +354,7 @@ public class CmsService {
             Comment form = new Comment();
             form.setType(CmsConstants.COMMENT_TYPE_LIUYAN);
             form.setStatus(CmsConstants.STATUS_NORMAL);
-            if (RStringUtils.isNotNull(limit)) {
+            if (StringUtils.isNotNull(limit)) {
                 PageHelper.startPage(1, limit);
             }
             list = commentService.selectCommentList(form);

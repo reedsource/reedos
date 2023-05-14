@@ -1,7 +1,7 @@
 package top.reed.common.utils.uuid;
 
-import top.reed.common.utils.RDateUtils;
-import top.reed.common.utils.RStringUtils;
+import top.reed.common.utils.DateUtils;
+import top.reed.common.utils.StringUtils;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -55,7 +55,7 @@ public enum Seq {
      * @return 序列值
      */
     public static String getId(AtomicInteger atomicInt, int length) {
-        String result = RDateUtils.dateTimeNow();
+        String result = DateUtils.dateTimeNow();
         result += MACHINE_CODE;
         result += getSeq(atomicInt, length);
         return result;
@@ -76,6 +76,6 @@ public enum Seq {
             atomicInt.set(1);
         }
         // 转字符串，用0左补齐
-        return RStringUtils.padl(value, length);
+        return StringUtils.padl(value, length);
     }
 }

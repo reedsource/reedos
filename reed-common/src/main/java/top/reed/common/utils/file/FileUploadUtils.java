@@ -7,8 +7,8 @@ import top.reed.common.constant.Constants;
 import top.reed.common.exception.file.FileNameLengthLimitExceededException;
 import top.reed.common.exception.file.FileSizeLimitExceededException;
 import top.reed.common.exception.file.InvalidExtensionException;
-import top.reed.common.utils.RDateUtils;
-import top.reed.common.utils.RStringUtils;
+import top.reed.common.utils.DateUtils;
+import top.reed.common.utils.StringUtils;
 import top.reed.common.utils.security.Md5Utils;
 import top.reed.common.utils.uuid.Seq;
 
@@ -121,7 +121,7 @@ public enum FileUploadUtils {
      * 编码文件名
      */
     public static String extractFilename(MultipartFile file) {
-        return String.format("%s/%s_%s.%s", RDateUtils.datePath(),
+        return String.format("%s/%s_%s.%s", DateUtils.datePath(),
                 FilenameUtils.getBaseName(file.getOriginalFilename()), Seq.getId(Seq.UPLOAD_SEQ_TYPE), getExtension(file));
     }
 
@@ -136,7 +136,7 @@ public enum FileUploadUtils {
 
     public static String getPathFileName(String uploadDir, String fileName) {
         int dirLastIndex = ReedConfig.getProfile().length() + 1;
-        String currentDir = RStringUtils.substring(uploadDir, dirLastIndex);
+        String currentDir = StringUtils.substring(uploadDir, dirLastIndex);
         return Constants.RESOURCE_PREFIX + "/" + currentDir + "/" + fileName;
     }
 
@@ -290,7 +290,7 @@ public enum FileUploadUtils {
      */
     public static String getExtension(MultipartFile file) {
         String extension = FilenameUtils.getExtension(file.getOriginalFilename());
-        if (RStringUtils.isEmpty(extension)) {
+        if (StringUtils.isEmpty(extension)) {
             extension = MimeTypeUtils.getExtension(Objects.requireNonNull(file.getContentType()));
         }
         return extension;

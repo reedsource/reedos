@@ -14,7 +14,7 @@ import top.reed.common.core.controller.BaseController;
 import top.reed.common.core.domain.AjaxResult;
 import top.reed.common.core.page.TableDataInfo;
 import top.reed.common.enums.BusinessType;
-import top.reed.common.utils.RStringUtils;
+import top.reed.common.utils.StringUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -150,7 +150,7 @@ public class AlbumController extends BaseController {
     @PostMapping("/saveMaterial")
     @ResponseBody
     public AjaxResult saveMaterial(String albumId, String materialIds) {
-        if (RStringUtils.isEmpty(albumId) || RStringUtils.isEmpty(materialIds)) {
+        if (StringUtils.isEmpty(albumId) || StringUtils.isEmpty(materialIds)) {
             return AjaxResult.error("参数传递错误!");
         }
         albumService.saveMaterial(albumId, materialIds);
@@ -163,7 +163,7 @@ public class AlbumController extends BaseController {
     @PostMapping("/deleteMaterialBatch")
     @ResponseBody
     public AjaxResult deleteMaterialBatch(String ids) {
-        if (RStringUtils.isEmpty(ids)) {
+        if (StringUtils.isEmpty(ids)) {
             return AjaxResult.error("参数传递错误!");
         }
         albumService.deleteMaterialBatch(ids);
@@ -176,7 +176,7 @@ public class AlbumController extends BaseController {
     @PostMapping("/getAlbum")
     @ResponseBody
     public AjaxResult getAlbum(String code) {
-        if (RStringUtils.isEmpty(code)) {
+        if (StringUtils.isEmpty(code)) {
             return AjaxResult.error("参数code不能为空!");
         }
         Map data = albumService.getAlbum(code);

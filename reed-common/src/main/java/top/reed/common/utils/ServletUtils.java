@@ -103,12 +103,12 @@ public enum ServletUtils {
         }
 
         String uri = request.getRequestURI();
-        if (RStringUtils.inStringIgnoreCase(uri, ".json", ".xml")) {
+        if (StringUtils.inStringIgnoreCase(uri, ".json", ".xml")) {
             return true;
         }
 
         String ajax = request.getParameter("__ajax");
-        return RStringUtils.inStringIgnoreCase(ajax, "json", "xml");
+        return StringUtils.inStringIgnoreCase(ajax, "json", "xml");
     }
 
     /**

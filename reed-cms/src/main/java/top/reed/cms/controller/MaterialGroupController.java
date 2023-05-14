@@ -12,7 +12,7 @@ import top.reed.common.core.controller.BaseController;
 import top.reed.common.core.domain.AjaxResult;
 import top.reed.common.core.domain.Ztree;
 import top.reed.common.enums.BusinessType;
-import top.reed.common.utils.RStringUtils;
+import top.reed.common.utils.StringUtils;
 import top.reed.common.utils.poi.ExcelUtil;
 
 import java.util.List;
@@ -63,7 +63,7 @@ public class MaterialGroupController extends BaseController {
      */
     @GetMapping(value = {"/add/{groupId}", "/add/"})
     public String add(@PathVariable(value = "groupId", required = false) Long groupId, ModelMap modelMap) {
-        if (RStringUtils.isNotNull(groupId)) {
+        if (StringUtils.isNotNull(groupId)) {
             modelMap.put("materialGroup", materialGroupService.selectMaterialGroupById(groupId));
         }
         return "cms/materialGroup/add" ;
@@ -117,7 +117,7 @@ public class MaterialGroupController extends BaseController {
      */
     @GetMapping(value = {"/selectMaterialGroupTree/{groupId}", "/selectMaterialGroupTree/"})
     public String selectMaterialGroupTree(@PathVariable(value = "groupId", required = false) Long groupId, ModelMap modelMap) {
-        if (RStringUtils.isNotNull(groupId)) {
+        if (StringUtils.isNotNull(groupId)) {
             modelMap.put("materialGroup", materialGroupService.selectMaterialGroupById(groupId));
         }
         return "cms/materialGroup/tree" ;
