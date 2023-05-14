@@ -449,9 +449,9 @@ public class SysUserServiceImpl implements ISysUserService {
                     BeanValidators.validateWithException(validator, user);
                     //导入更新用户数据前校验数据权限
                     //校验用户是否允许操作
-                    checkUserAllowed(user);
+                    checkUserAllowed(u);
                     //校验用户是否有数据权限
-                    checkUserDataScope(user.getUserId());
+                    checkUserDataScope(u.getUserId());
                     //用户导入，更新时需获取用户id，用于更新数据
                     user.setUserId(u.getUserId());
                     user.setUpdateBy(operName);
