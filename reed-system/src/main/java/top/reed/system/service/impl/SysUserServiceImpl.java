@@ -442,7 +442,7 @@ public class SysUserServiceImpl implements ISysUserService {
                     BeanValidators.validateWithException(validator, user);
                     user.setPassword(Md5Utils.hash(user.getLoginName() + password));
                     user.setCreateBy(operName);
-                    this.insertUser(user);
+                    userMapper.insertUser(user);
                     successNum++;
                     successMsg.append("<br/>").append(successNum).append("、账号 ").append(user.getLoginName()).append(" 导入成功");
                 } else if (isUpdateSupport) {
@@ -455,7 +455,7 @@ public class SysUserServiceImpl implements ISysUserService {
                     //用户导入，更新时需获取用户id，用于更新数据
                     user.setUserId(u.getUserId());
                     user.setUpdateBy(operName);
-                    this.updateUser(user);
+                    userMapper.updateUser(user);
                     successNum++;
                     successMsg.append("<br/>").append(successNum).append("、账号 ").append(user.getLoginName()).append(" 更新成功");
                 } else {
