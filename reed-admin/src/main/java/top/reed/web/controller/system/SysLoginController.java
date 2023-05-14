@@ -32,7 +32,7 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class SysLoginController extends BaseController {
     /**
-     * 是否开启记住我功能
+     * 是否开启记住我功能 shiro中默认为false
      */
     @Value("${shiro.rememberMe.enabled: false}")
     private boolean rememberMe;

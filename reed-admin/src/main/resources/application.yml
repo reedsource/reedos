@@ -126,8 +126,12 @@ shiro:
     httpOnly: true
     # 设置Cookie的过期时间，天为单位
     maxAge: 30
-    # 设置密钥，务必保持唯一性（生成方式，直接拷贝到main运行即可）Base64.encodeToString(CipherUtils.generateNewKey(128, "AES").getEncoded()) （默认启动生成随机秘钥，随机秘钥会导致之前客户端RememberMe Cookie无效，如设置固定秘钥RememberMe Cookie则有效）
-    cipherKey:
+    # 设置密钥，务必保持唯一性（生成方式，直接拷贝到main运行即可）Base64.encodeToString(CipherUtils.generateNewKey(128, "AES").getEncoded())
+    #（默认启动生成随机秘钥，随机秘钥保存在浏览器，重启服务后与新的记住我登录密钥对比时会失败，会导致之前客户端RememberMe Cookie无效，同时后端报错
+    # 错误23051401 org.apache.shiro.crypto.CryptoException: Unable to execute 'doFinal' with cipher instance [Cipher.AES/GCM/NoPadding, mode: decryption, algorithm from: SunJCE
+    # 如设置固定秘钥RememberMe Cookie则有效）
+    # 长度限制为24
+    cipherKey: reedos2023cipherkeyTOP==
   session:
     # Session超时时间，-1代表永不过期（默认30分钟）
     expireTime: 30
@@ -140,7 +144,7 @@ shiro:
     # 踢出之前登录的/之后登录的用户，默认踢出之前登录的用户
     kickoutAfter: false
   rememberMe:
-    # 是否开启记住我
+    # 是否开启记住我 shiro中默认为false
     enabled: true
 
 # 防止XSS攻击

@@ -345,7 +345,7 @@ public class ShiroConfig {
     }
 
     /**
-     * cookie 属性设置
+     * rememberMe 记住我 cookie 属性设置
      */
     public SimpleCookie rememberMeCookie() {
         SimpleCookie cookie = new SimpleCookie("rememberMe");
@@ -358,8 +358,11 @@ public class ShiroConfig {
 
     /**
      * 记住我
+     * rememberMe
+     *
      */
     public CookieRememberMeManager rememberMeManager() {
+        //保存到Cookie中以供日后检索来记住主题的身份
         CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
         cookieRememberMeManager.setCookie(rememberMeCookie());
         if (StringUtils.isNotEmpty(cipherKey)) {
