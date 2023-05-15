@@ -165,8 +165,6 @@ public class ArticleController extends BaseController {
             Map dataMap = JSONObject.parseObject(JSON.toJSONString(article), Map.class);
             model.addAllAttributes(dataMap);
 
-        } else {
-
         }
         return "cms/article/article-duoguyu" ;
 

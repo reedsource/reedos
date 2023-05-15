@@ -19,7 +19,7 @@ public class Md5Utils {
         try {
             algorithm = MessageDigest.getInstance("MD5");
             algorithm.reset();
-            algorithm.update(s.getBytes("UTF-8"));
+            algorithm.update(s.getBytes(StandardCharsets.UTF_8));
             return algorithm.digest();
         } catch (Exception e) {
             log.error("MD5 Error...", e);

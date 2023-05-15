@@ -148,8 +148,6 @@ public class EmailServiceImpl implements IEmailService {
                 info.setToAddress(to);
                 info.setSubject(e.getSubject());
                 info.setContent(e.getContent());
-                //String[] attach={"D:\\1.jpg"};
-                //info.setAttachs(attach);
                 SimpleMailSender sender = new SimpleMailSender();
                 boolean b = sender.sendHtmlMail(info);
                 if (b) {

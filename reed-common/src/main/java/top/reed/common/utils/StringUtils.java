@@ -1,8 +1,8 @@
 package top.reed.common.utils;
 
+import org.springframework.util.AntPathMatcher;
 import top.reed.common.constant.Constants;
 import top.reed.common.core.text.StrFormatter;
-import org.springframework.util.AntPathMatcher;
 
 import java.util.*;
 
@@ -561,7 +561,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
      * 
      * @param pattern 匹配规则
      * @param url 需要匹配的url
-     * @return
+     * @return 匹配
      */
     public static boolean isMatch(String pattern, String url)
     {

@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.text.NumberFormat;
 import java.util.Set;
 
@@ -269,7 +270,7 @@ public class Convert {
      * 转换为Integer数组<br>
      *
      * @param split 分隔符
-     * @param split 被转换的值
+     * @param str 被转换的值
      * @return 结果
      */
     public static Integer[] toIntArray(String split, String str) {
@@ -319,7 +320,7 @@ public class Convert {
      * 转换为String数组<br>
      *
      * @param split 分隔符
-     * @param split 被转换的值
+     * @param str 被转换的值
      * @return 结果
      */
     public static String[] toStrArray(String split, String str) {
@@ -641,7 +642,7 @@ public class Convert {
      * @return 字符串
      */
     public static String utf8Str(Object obj) {
-        return str(obj, CharsetKit.CHARSET_UTF_8);
+        return str(obj, StandardCharsets.UTF_8);
     }
 
     /**

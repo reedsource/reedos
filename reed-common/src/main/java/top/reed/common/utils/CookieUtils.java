@@ -3,9 +3,9 @@ package top.reed.common.utils;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Cookie工具类
@@ -57,11 +57,7 @@ public class CookieUtils {
         Cookie cookie = new Cookie(name, null);
         cookie.setPath(path);
         cookie.setMaxAge(maxAge);
-        try {
-            cookie.setValue(URLEncoder.encode(value, "utf-8"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        cookie.setValue(URLEncoder.encode(value, StandardCharsets.UTF_8));
         response.addCookie(cookie);
     }
 
@@ -101,11 +97,7 @@ public class CookieUtils {
         if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals(name)) {
-                    try {
-                        value = URLDecoder.decode(cookie.getValue(), "utf-8");
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    }
+                    value = URLDecoder.decode(cookie.getValue(), StandardCharsets.UTF_8);
                     if (isRemove) {
                         cookie.setMaxAge(0);
                         response.addCookie(cookie);

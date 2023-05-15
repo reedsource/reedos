@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import top.reed.common.constant.Constants;
 import top.reed.common.constant.GenConstants;
-import top.reed.common.core.text.CharsetKit;
 import top.reed.common.core.text.Convert;
 import top.reed.common.exception.ServiceException;
 import top.reed.common.utils.StringUtils;
@@ -31,6 +30,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -268,7 +268,7 @@ public class GenTableServiceImpl implements IGenTableService {
                 tpl.merge(context, sw);
                 try {
                     String path = getGenPath(table, template);
-                    FileUtils.writeStringToFile(new File(path), sw.toString(), CharsetKit.UTF_8);
+                    FileUtils.writeStringToFile(new File(path), sw.toString(), StandardCharsets.UTF_8);
                 } catch (IOException e) {
                     throw new ServiceException("渲染模板失败，表名：" + table.getTableName());
                 }
