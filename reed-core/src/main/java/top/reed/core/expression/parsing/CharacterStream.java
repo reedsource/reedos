@@ -132,7 +132,7 @@ public class CharacterStream {
     }
 
     public boolean isSpanEmpty() {
-        return spanStart == this.index;
+        return spanStart != this.index;
     }
 
     /**

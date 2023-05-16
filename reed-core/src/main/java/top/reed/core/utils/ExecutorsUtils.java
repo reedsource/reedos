@@ -11,12 +11,12 @@ import top.reed.core.model.Shape;
 import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
- * Created on 2020-03-11
  *
- * @author Octopus
+ * @author reedsource
  */
 @Component
 public class ExecutorsUtils implements ApplicationContextAware {
@@ -36,7 +36,7 @@ public class ExecutorsUtils implements ApplicationContextAware {
     }
 
     public static List<Shape> shapes() {
-        return executors.stream().filter(e -> e.shape() != null).map(executor -> executor.shape()).collect(Collectors.toList());
+        return executors.stream().map(ShapeExecutor::shape).filter(Objects::nonNull).collect(Collectors.toList());
     }
 
     public static ShapeExecutor get(String shape) {

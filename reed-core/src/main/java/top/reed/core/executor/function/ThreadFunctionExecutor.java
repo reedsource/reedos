@@ -6,9 +6,8 @@ import top.reed.core.annotation.Example;
 import top.reed.core.executor.FunctionExecutor;
 
 /**
- * Created on 2019-12-06
  *
- * @author Octopus
+ * @author reedsource
  */
 @Component
 @Comment("thread常用方法")

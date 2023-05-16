@@ -12,7 +12,7 @@ public class JavaReflection extends Reflection {
     private final Map<Class<?>, Map<String, List<Method>>> extensionmethodCache = new ConcurrentHashMap<>();
 
     /**
-     * Returns the <code>apply()</code> method of a functional interface.
+     * 返回函数接口的apply（）方法
      **/
     private static Method findApply(Class<?> cls) {
         for (Method method : cls.getDeclaredMethods()) {
@@ -47,9 +47,6 @@ public class JavaReflection extends Reflection {
                             score++;
                         }
                     }
-                } else if (type == null && otherType.isPrimitive()) {
-                    match = false;
-                    break;
                 }
             }
             if (match) {
@@ -68,7 +65,7 @@ public class JavaReflection extends Reflection {
     }
 
     /**
-     * Returns the method best matching the given signature, including type coercion, or null.
+     * 返回与给定签名（包括类型强制或null）最匹配的方法
      **/
     private static Method findMethod(Class<?> cls, String name, Class<?>[] parameterTypes) {
         Method[] methods = cls.getDeclaredMethods();
@@ -83,9 +80,8 @@ public class JavaReflection extends Reflection {
     }
 
     /**
-     * Returns whether the from type can be assigned to the to type, assuming either type is a (boxed) primitive type. We can
-     * relax the type constraint a little, as we'll invoke a method via reflection. That means the from type will always be boxed,
-     * as the {@link Method#invoke(Object, Object...)} method takes objects.
+     * 返回from类型是否可以分配给to类型，假设其中一个类型是（带框的）基元类型。我们可以稍微放松类型约束，因为我们将通过反射调用一个方法。
+     * 这意味着from类型将始终被装箱，因为Method.ioke（Object，Object…）方法接受对象。
      **/
     private static boolean isPrimitiveAssignableFrom(Class<?> from, Class<?> to) {
         if ((from == Boolean.class || from == boolean.class) && (to == boolean.class || to == Boolean.class))
@@ -111,8 +107,7 @@ public class JavaReflection extends Reflection {
     }
 
     /**
-     * Returns whether the from type can be coerced to the to type. The coercion rules follow those of Java. See JLS 5.1.2
-     * <a href="https://docs.oracle.com/javase/specs/jls/se7/html/jls-5.html">...</a>
+     * 返回是否可以将from类型强制转换为to类型。强制规则遵循Java的规则。
      **/
     private static boolean isCoercible(Class<?> from, Class<?> to) {
         if (from == Integer.class || from == int.class) {
@@ -204,21 +199,19 @@ public class JavaReflection extends Reflection {
     @Override
     public void registerExtensionClass(Class<?> target, Class<?> clazz) {
         Method[] methods = clazz.getDeclaredMethods();
-        if (methods != null) {
-            Map<String, List<Method>> cachedMethodMap = extensionmethodCache.get(target);
-            if (cachedMethodMap == null) {
-                cachedMethodMap = new HashMap<>();
-                extensionmethodCache.put(target, cachedMethodMap);
-            }
-            for (Method method : methods) {
-                if (Modifier.isStatic(method.getModifiers()) && method.getParameterCount() > 0) {
-                    List<Method> cachedList = cachedMethodMap.get(method.getName());
-                    if (cachedList == null) {
-                        cachedList = new ArrayList<>();
-                        cachedMethodMap.put(method.getName(), cachedList);
-                    }
-                    cachedList.add(method);
+        Map<String, List<Method>> cachedMethodMap = extensionmethodCache.get(target);
+        if (cachedMethodMap == null) {
+            cachedMethodMap = new HashMap<>();
+            extensionmethodCache.put(target, cachedMethodMap);
+        }
+        for (Method method : methods) {
+            if (Modifier.isStatic(method.getModifiers()) && method.getParameterCount() > 0) {
+                List<Method> cachedList = cachedMethodMap.get(method.getName());
+                if (cachedList == null) {
+                    cachedList = new ArrayList<>();
+                    cachedMethodMap.put(method.getName(), cachedList);
                 }
+                cachedList.add(method);
             }
         }
     }
@@ -250,12 +243,10 @@ public class JavaReflection extends Reflection {
         }
         if (cls != Object.class) {
             Class<?>[] interfaces = cls.getInterfaces();
-            if (interfaces != null) {
-                for (Class<?> clazz : interfaces) {
-                    Object method = getExtensionMethod(clazz, name, arguments);
-                    if (method != null) {
-                        return method;
-                    }
+            for (Class<?> clazz : interfaces) {
+                Object method = getExtensionMethod(clazz, name, arguments);
+                if (method != null) {
+                    return method;
                 }
             }
             return getExtensionMethod(cls.getSuperclass(), name, arguments);
@@ -286,7 +277,7 @@ public class JavaReflection extends Reflection {
                     method = findApply(cls);
                 } else {
                     method = findMethod(cls, name, parameterTypes);
-                    if (method == null && parameterTypes != null) {
+                    if (method == null) {
                         method = findMethod(cls, name, new Class<?>[]{Object[].class});
                     }
                 }

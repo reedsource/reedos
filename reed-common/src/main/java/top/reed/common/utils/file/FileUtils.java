@@ -116,16 +116,16 @@ public class FileUtils {
     public static boolean checkAllowDownload(String resource) {
         // 禁止目录上跳级别
         if (StringUtils.contains(resource, "..")) {
-            return false;
+            return true;
         }
 
         // 检查允许下载的文件规则
         if (ArrayUtils.contains(MimeTypeUtils.DEFAULT_ALLOWED_EXTENSION, FileTypeUtils.getFileType(resource))) {
-            return true;
+            return false;
         }
 
         // 不在允许下载的文件规则
-        return false;
+        return true;
     }
 
     /**
@@ -161,7 +161,7 @@ public class FileUtils {
      * @param response     响应对象
      * @param realFileName 真实文件名
      */
-    public static void setAttachmentResponseHeader(HttpServletResponse response, String realFileName) throws UnsupportedEncodingException {
+    public static void setAttachmentResponseHeader(HttpServletResponse response, String realFileName) {
         String percentEncodedFileName = percentEncode(realFileName);
 
         String contentDispositionValue = "attachment; filename=" +

@@ -164,7 +164,7 @@ public class Tokenizer {
         RuntimeException re;
         while (stream.hasMore()) {
             if (stream.match("${", false)) {
-                if (!stream.isSpanEmpty()) tokens.add(new Token(TokenType.TextBlock, stream.endSpan()));
+                if (stream.isSpanEmpty()) tokens.add(new Token(TokenType.TextBlock, stream.endSpan()));
                 stream.startSpan();
                 boolean isContinue = false;
                 do {
@@ -192,7 +192,7 @@ public class Tokenizer {
                 stream.consume();
             }
         }
-        if (!stream.isSpanEmpty()) tokens.add(new Token(TokenType.TextBlock, stream.endSpan()));
+        if (stream.isSpanEmpty()) tokens.add(new Token(TokenType.TextBlock, stream.endSpan()));
         return tokens;
     }
 }

@@ -1,36 +1,34 @@
 package top.reed.core.expression.interpreter;
 
 /**
- * Used by {@link AstInterpreter} to access fields and methods of objects. This is a singleton class used by all
- * {@link AstInterpreter} instances. Replace the default implementation via {@link #setInstance(Reflection)}. The implementation
- * must be thread-safe.
+ * AstInterpreter用于访问对象的字段和方法。
+ * 这是一个由所有AstInterpreter实例使用的单例类。通过setInstance（反射）替换默认实现。实现必须是线程安全的
  */
 public abstract class Reflection {
     private static Reflection instance = new JavaReflection();
 
     /**
-     * Returns the Reflection instance used to fetch field and call methods
+     * 返回用于获取字段和调用方法的反射实
      **/
     public synchronized static Reflection getInstance() {
         return instance;
     }
 
     /**
-     * Sets the Reflection instance to be used by all Template interpreters
+     * 设置所有模板解释器要使用的反射实例
      **/
     public synchronized static void setInstance(Reflection reflection) {
         instance = reflection;
     }
 
     /**
-     * Returns an opaque handle to a field with the given name or null if the field could not be found
+     * 为具有给定名称的字段返回不透明句柄，如果找不到该字段，则返回null
      **/
     public abstract Object getField(Object obj, String name);
 
     /**
-     * Returns an opaque handle to the method with the given name best matching the signature implied by the given arguments, or
-     * null if the method could not be found. If obj is an instance of Class, the matching static method is returned. If the name
-     * is null and the object is a {@link FunctionalInterface}, the first declared method on the object is returned.
+     * 返回方法的不透明句柄，该方法的给定名称与给定参数所暗示的签名最匹配，如果找不到该方法，则返回null。
+     * 如果obj是Class的实例，则返回匹配的静态方法。如果名称为null，并且对象是FunctionalInterface，则返回对象上声明的第一个方法。
      **/
     public abstract Object getMethod(Object obj, String name, Object... arguments);
 
@@ -39,14 +37,12 @@ public abstract class Reflection {
     public abstract void registerExtensionClass(Class<?> target, Class<?> clazz);
 
     /**
-     * Returns the value of the field from the object. The field must have been previously retrieved via
-     * {@link #getField(Object, String)}.
+     * 返回对象中字段的值。该字段必须以前通过getField（Object，String）检索过
      **/
     public abstract Object getFieldValue(Object obj, Object field);
 
     /**
-     * Calls the method on the object with the given arguments. The method must have been previously retrieved via
-     * {@link #getMethod(Object, String, Object...)}.
+     * 使用给定的参数调用对象上的方法。该方法必须以前通过getMethod（Object、String、Object…）检索过
      **/
     public abstract Object callMethod(Object obj, Object method, Object... arguments);
 }

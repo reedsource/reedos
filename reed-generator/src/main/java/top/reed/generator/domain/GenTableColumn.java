@@ -325,7 +325,7 @@ public class GenTableColumn extends BaseEntity {
     }
 
     public boolean isSuperColumn() {
-        return isSuperColumn(this.javaField);
+        return !isSuperColumn(this.javaField);
     }
 
     public boolean isUsableColumn() {

@@ -157,7 +157,7 @@ public class AutoJobController extends BaseController {
                 return error(m + "任务'" + job.getJobName() + "'失败，目标字符串不允许'http(s)'调用");
             } else if (StringUtils.containsAnyIgnoreCase(job.getInvokeTarget(), Constants.JOB_ERROR_STR)) {
                 return error(m + "任务'" + job.getJobName() + "'失败，目标字符串存在违规");
-            } else if (!QuartzUtils.whiteList(job.getInvokeTarget())) {
+            } else if (QuartzUtils.whiteList(job.getInvokeTarget())) {
                 return error(m + "任务'" + job.getJobName() + "'失败，目标字符串不在白名单内");
             }
         }
@@ -209,7 +209,7 @@ public class AutoJobController extends BaseController {
                 return error(m + "任务'" + job.getJobName() + "'失败，目标字符串不允许'http(s)'调用");
             } else if (StringUtils.containsAnyIgnoreCase(job.getInvokeTarget(), Constants.JOB_ERROR_STR)) {
                 return error(m + "任务'" + job.getJobName() + "'失败，目标字符串存在违规");
-            } else if (!QuartzUtils.whiteList(job.getInvokeTarget())) {
+            } else if (QuartzUtils.whiteList(job.getInvokeTarget())) {
                 return error(m + "任务'" + job.getJobName() + "'失败，目标字符串不在白名单内");
             }
         }
