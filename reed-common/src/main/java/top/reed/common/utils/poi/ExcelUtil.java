@@ -695,7 +695,7 @@ public class ExcelUtil<T> {
             rowNo = isSubList() ? (i > 1 ? rowNo + 1 : rowNo + i) : i + 1 + rownum - startNo;
             row = sheet.createRow(rowNo);
             // 得到导出对象.
-            T vo = (T) list.get(i);
+            T vo = list.get(i);
             Collection<?> subList = null;
             //子列表有数据 数据导出
             if (isSubList()) {

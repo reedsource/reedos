@@ -271,7 +271,6 @@ public class RequestExecutor implements ShapeExecutor, Grammerable, AutomationLi
                     variables.put("resp", response);
                 }
             } catch (IOException e) {
-                successed = false;
                 exception = e;
             } finally {
                 if (streams != null) {
@@ -299,13 +298,17 @@ public class RequestExecutor implements ShapeExecutor, Grammerable, AutomationLi
                             try {
                                 File directory = file.getParentFile();
                                 if (!directory.exists()) {
-                                    directory.mkdirs();
+                                    if (!directory.mkdirs()) {
+                                        logger.error("请求{}出错,异常信息:{}", url, "目录创建失败");
+                                    }
                                 }
                                 FileUtils.write(file, url + "\r\n", "UTF-8", true);
                             } catch (IOException ignored) {
                             }
                         }
-                        logger.error("请求{}出错,异常信息:{}", url, exception);
+                        if (exception != null) {
+                            logger.error("请求{}出错,异常信息:{}", url, exception.toString());
+                        }
                     }
                 }
             }
@@ -349,7 +352,7 @@ public class RequestExecutor implements ShapeExecutor, Grammerable, AutomationLi
                         }
 
                     } catch (Exception e) {
-                        logger.error("设置请求参数：{}出错,异常信息:{}", parameterName, e);
+                        logger.error("设置请求参数：{}出错,异常信息:{}", parameterName, e.toString());
                     }
                 }
             }
@@ -373,7 +376,7 @@ public class RequestExecutor implements ShapeExecutor, Grammerable, AutomationLi
                             logger.info("设置请求Cookie：{}={}", cookieName, value);
                         }
                     } catch (Exception e) {
-                        logger.error("设置请求Cookie：{}出错,异常信息：{}", cookieName, e);
+                        logger.error("设置请求Cookie：{}出错,异常信息：{}", cookieName, e.toString());
                     }
                 }
             }
@@ -393,7 +396,7 @@ public class RequestExecutor implements ShapeExecutor, Grammerable, AutomationLi
                         context.pause(node.getNodeId(), "request-parameter", parameterName, value);
                         logger.info("设置请求参数：{}={}", parameterName, value);
                     } catch (Exception e) {
-                        logger.error("设置请求参数：{}出错,异常信息：{}", parameterName, e);
+                        logger.error("设置请求参数：{}出错,异常信息：{}", parameterName, e.toString());
                     }
                     request.data(parameterName, value);
                 }
@@ -413,7 +416,7 @@ public class RequestExecutor implements ShapeExecutor, Grammerable, AutomationLi
                         context.pause(node.getNodeId(), "request-header", headerName, value);
                         logger.info("设置请求Header：{}={}", headerName, value);
                     } catch (Exception e) {
-                        logger.error("设置请求Header：{}出错,异常信息：{}", headerName, e);
+                        logger.error("设置请求Header：{}出错,异常信息：{}", headerName, e.toString());
                     }
                     request.header(headerName, value);
                 }

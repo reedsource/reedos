@@ -9,6 +9,7 @@ import top.reed.common.core.text.Convert;
 import top.reed.common.utils.DateUtils;
 
 import java.lang.reflect.*;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -113,7 +114,7 @@ public class ReflectUtils {
         try {
             return (E) method.invoke(obj, args);
         } catch (Exception e) {
-            String msg = "method: " + method + ", obj: " + obj + ", args: " + args;
+            String msg = "method: " + method + ", obj: " + obj + ", args: " + Arrays.toString(args);
             throw convertReflectionExceptionToUnchecked(msg, e);
         }
     }
@@ -162,7 +163,7 @@ public class ReflectUtils {
             }
             return (E) method.invoke(obj, args);
         } catch (Exception e) {
-            String msg = "method: " + method + ", obj: " + obj + ", args: " + args;
+            String msg = "method: " + method + ", obj: " + obj + ", args: " + Arrays.toString(args);
             throw convertReflectionExceptionToUnchecked(msg, e);
         }
     }

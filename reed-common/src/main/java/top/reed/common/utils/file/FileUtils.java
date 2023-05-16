@@ -41,8 +41,6 @@ public class FileUtils {
             while ((length = fis.read(b)) > 0) {
                 os.write(b, 0, length);
             }
-        } catch (IOException e) {
-            throw e;
         } finally {
             IOUtils.close(os);
             IOUtils.close(fis);

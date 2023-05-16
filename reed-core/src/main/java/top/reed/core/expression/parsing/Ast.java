@@ -1083,12 +1083,11 @@ public abstract class Ast {
 
         /**
          * 必须在完成此节点的评估时调用，这样我们就不会泄露内存
+         * 清空
          **/
         public void clearCachedArguments() {
             Object[] args = getCachedArguments();
-            for (int i = 0; i < args.length; i++) {
-                args[i] = null;
-            }
+            Arrays.fill(args, null);
         }
 
         @Override
@@ -1216,9 +1215,7 @@ public abstract class Ast {
          **/
         public void clearCachedArguments() {
             Object[] args = getCachedArguments();
-            for (int i = 0; i < args.length; i++) {
-                args[i] = null;
-            }
+            Arrays.fill(args, null);
         }
 
         @Override

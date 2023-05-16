@@ -118,7 +118,7 @@ public class SysIndexController extends BaseController {
 
     // 系统介绍
     @GetMapping("/system/main")
-    public String main(ModelMap modelMap) {
+    public String systemMain(ModelMap modelMap) {
         modelMap.put("version", ReedConfig.getVersion());
         return "main" ;
     }
