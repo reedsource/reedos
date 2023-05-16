@@ -104,7 +104,7 @@ public class KickoutSessionFilter extends AccessControlFilter {
             }
 
             // 如果被踢出了，(前者或后者)直接退出，重定向到踢出后的地址
-            if (session.getAttribute("kickout") != null && (Boolean) session.getAttribute("kickout") == true) {
+            if (session.getAttribute("kickout") != null && (Boolean) session.getAttribute("kickout")) {
                 // 退出登录
                 subject.logout();
                 saveRequest(request);

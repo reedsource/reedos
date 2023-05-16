@@ -10,18 +10,14 @@ import java.util.concurrent.TimeUnit;
 /**
  * 异步任务管理器
  *
- * @author liuhulu
+ * @author reedsource
  */
 public class AsyncManager {
-    private static AsyncManager me = new AsyncManager();
-    /**
-     * 操作延迟10毫秒
-     */
-    private final int OPERATE_DELAY_TIME = 10;
+    private static final AsyncManager me = new AsyncManager();
     /**
      * 异步操作任务调度线程池
      */
-    private ScheduledExecutorService executor = SpringUtils.getBean("scheduledExecutorService");
+    private final ScheduledExecutorService executor = SpringUtils.getBean("scheduledExecutorService");
 
     /**
      * 单例模式
@@ -39,6 +35,10 @@ public class AsyncManager {
      * @param task 任务
      */
     public void execute(TimerTask task) {
+        /*
+          操作延迟10毫秒
+         */
+        int OPERATE_DELAY_TIME = 10;
         executor.schedule(task, OPERATE_DELAY_TIME, TimeUnit.MILLISECONDS);
     }
 

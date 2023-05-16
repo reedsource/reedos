@@ -128,8 +128,8 @@ public enum FileUploadUtils {
     public static File getAbsoluteFile(String uploadDir, String fileName) {
         File desc = new File(uploadDir + File.separator + fileName);
 
-        if (!desc.exists() && !desc.getParentFile().exists() && desc.getParentFile().mkdirs()) {
-            return desc;
+        if (!desc.exists() && !desc.getParentFile().exists()) {
+            desc.getParentFile().mkdirs();
         }
         return desc;
     }

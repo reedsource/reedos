@@ -131,7 +131,7 @@ public class ExcelUtil<T> {
     /**
      * 统计列表
      */
-    private Map<Integer, Double> statistics = new HashMap<>();
+    private final Map<Integer, Double> statistics = new HashMap<>();
 
     public ExcelUtil(Class<T> clazz) {
         this.clazz = clazz;
@@ -265,20 +265,17 @@ public class ExcelUtil<T> {
                     sheetIndexPicMap.put(picIndex, picData);
                 }
             }
-            return sheetIndexPicMap;
-        } else {
-            return sheetIndexPicMap;
         }
+        return sheetIndexPicMap;
     }
 
     /**
      * 获取Excel2007图片
      *
      * @param sheet    当前sheet对象
-     * @param workbook 工作簿对象
      * @return Map key:图片单元格索引（1_1）String，value:图片流PictureData
      */
-    public static Map<String, PictureData> getSheetPictures07(XSSFSheet sheet, XSSFWorkbook workbook) {
+    public static Map<String, PictureData> getSheetPictures07(XSSFSheet sheet) {
         Map<String, PictureData> sheetIndexPicMap = new HashMap<>();
         for (POIXMLDocumentPart dr : sheet.getRelations()) {
             if (dr instanceof XSSFDrawing) {
@@ -408,7 +405,7 @@ public class ExcelUtil<T> {
         boolean isXSSFWorkbook = !(wb instanceof HSSFWorkbook);
         Map<String, PictureData> pictures;
         if (isXSSFWorkbook) {
-            pictures = getSheetPictures07((XSSFSheet) sheet, (XSSFWorkbook) wb);
+            pictures = getSheetPictures07((XSSFSheet) sheet);
         } else {
             pictures = getSheetPictures03((HSSFSheet) sheet, (HSSFWorkbook) wb);
         }
@@ -865,7 +862,7 @@ public class ExcelUtil<T> {
         Cell cell = row.createCell(column);
         // 写入列信息
         cell.setCellValue(attr.name());
-        setDataValidation(attr, row, column);
+        setDataValidation(attr, column);
         cell.setCellStyle(styles.get(StringUtils.format("header_{}_{}", attr.headerColor(), attr.headerBackgroundColor())));
         if (isSubList()) {
             // 填充默认样式，防止合并单元格样式失效
@@ -927,7 +924,7 @@ public class ExcelUtil<T> {
     /**
      * 创建表格样式
      */
-    public void setDataValidation(Excel attr, Row row, int column) {
+    public void setDataValidation(Excel attr, int column) {
         if (attr.name().indexOf("注：") >= 0) {
             sheet.setColumnWidth(column, 6000);
         } else {
@@ -1289,7 +1286,7 @@ public class ExcelUtil<T> {
      */
     public Object getCellValue(Row row, int column) {
         if (row == null) {
-            return row;
+            return null;
         }
         Object val = "" ;
         try {

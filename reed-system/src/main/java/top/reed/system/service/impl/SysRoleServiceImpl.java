@@ -127,7 +127,7 @@ public class SysRoleServiceImpl implements ISysRoleService {
         roleMenuMapper.deleteRoleMenuByRoleId(roleId);
         // 删除角色与部门关联
         roleDeptMapper.deleteRoleDeptByRoleId(roleId);
-        return roleMapper.deleteRoleById(roleId) > 0 ? true : false;
+        return roleMapper.deleteRoleById(roleId) > 0;
     }
 
     /**

@@ -114,7 +114,7 @@ public class PermissionService {
      * @return 用户是否不具备某权限
      */
     public boolean isLacksPermitted(String permission) {
-        return isPermitted(permission) != true;
+        return !isPermitted(permission);
     }
 
     /**
@@ -143,7 +143,7 @@ public class PermissionService {
             }
 
             for (String permission : permissions.split(delimeter)) {
-                if (permission != null && subject.isPermitted(permission.trim()) == true) {
+                if (permission != null && subject.isPermitted(permission.trim())) {
                     return true;
                 }
             }
@@ -169,7 +169,7 @@ public class PermissionService {
      * @return 用户是否不具备某角色
      */
     public boolean isLacksRole(String role) {
-        return isRole(role) != true;
+        return !isRole(role);
     }
 
     /**
@@ -197,7 +197,7 @@ public class PermissionService {
             }
 
             for (String role : roles.split(delimeter)) {
-                if (subject.hasRole(role.trim()) == true) {
+                if (subject.hasRole(role.trim())) {
                     return true;
                 }
             }
@@ -219,7 +219,7 @@ public class PermissionService {
             try {
                 BeanInfo bi = Introspector.getBeanInfo(principal.getClass());
                 for (PropertyDescriptor pd : bi.getPropertyDescriptors()) {
-                    if (pd.getName().equals(property) == true) {
+                    if (pd.getName().equals(property)) {
                         return pd.getReadMethod().invoke(principal, (Object[]) null);
                     }
                 }
