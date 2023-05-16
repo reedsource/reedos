@@ -22,26 +22,26 @@ public class MapDataUtil {
         Iterator<?> entries = properties.entrySet().iterator();
         Map.Entry<?, ?> entry;
         String name;
-        String value;
+        StringBuilder value;
         while (entries.hasNext()) {
             entry = (Entry<?, ?>) entries.next();
             name = (String) entry.getKey();
             Object valueObj = entry.getValue();
             if (null == valueObj) {
-                value = "" ;
+                value = new StringBuilder();
             } else if (valueObj instanceof String[]) {
                 String[] values = (String[]) valueObj;
-                value = "" ;
+                value = new StringBuilder();
                 for (String s : values) {
-                    value += s + "," ;
+                    value.append(s).append(",");
                 }
                 if (value.length() > 0) {
-                    value = value.substring(0, value.length() - 1);
+                    value = new StringBuilder(value.substring(0, value.length() - 1));
                 }
             } else {
-                value = valueObj.toString();
+                value = new StringBuilder(valueObj.toString());
             }
-            returnMap.put(name, value);
+            returnMap.put(name, value.toString());
         }
         return returnMap;
     }

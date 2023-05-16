@@ -416,7 +416,7 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
     public int compareTo(UUID val) {
         // 有意设置排序，以便UUID
         // 可以简单地作为两个数字进行数字比较
-        return (this.mostSigBits < val.mostSigBits ? -1 : (this.mostSigBits > val.mostSigBits ? 1 : (this.leastSigBits < val.leastSigBits ? -1 : (this.leastSigBits > val.leastSigBits ? 1 : 0))));
+        return (this.mostSigBits < val.mostSigBits ? -1 : (this.mostSigBits > val.mostSigBits ? 1 : (Long.compare(this.leastSigBits, val.leastSigBits))));
     }
 
     /**

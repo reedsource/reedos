@@ -35,28 +35,28 @@ public class AstInterpreter {
     }
 
     public static Object interpretNodeList(List<Node> nodes, ExpressionTemplate template, ExpressionTemplateContext context) throws IOException {
-        String result = "" ;
+        StringBuilder result = new StringBuilder();
         for (int i = 0, n = nodes.size(); i < n; i++) {
             Node node = nodes.get(i);
             Object value = node.evaluate(template, context);
             if (node instanceof Text) {
-                result += node.getSpan().getText();
+                result.append(node.getSpan().getText());
             } else if (value == null) {
                 if (i == 0 && i + 1 == n) {
                     return null;
                 }
-                result += "null" ;
+                result.append("null");
             } else if (value instanceof String || value instanceof Number || value instanceof Boolean) {
                 if (i == 0 && i + 1 == n) {
                     return value;
                 }
-                result += value;
+                result.append(value);
             } else if (i + 1 < n) {
                 ExpressionError.error("表达式执行错误", node.getSpan());
             } else {
                 return value;
             }
         }
-        return result;
+        return result.toString();
     }
 }

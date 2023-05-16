@@ -179,19 +179,19 @@ public class LogAspect {
      * 参数拼装
      */
     private String argsArrayToString(Object[] paramsArray, String[] excludeParamNames) {
-        String params = "" ;
+        StringBuilder params = new StringBuilder();
         if (paramsArray != null && paramsArray.length > 0) {
             for (Object o : paramsArray) {
                 if (StringUtils.isNotNull(o) && !isFilterObject(o)) {
                     try {
                         Object jsonObj = JSONObject.toJSONString(o, excludePropertyPreFilter(excludeParamNames));
-                        params += jsonObj + " " ;
+                        params.append(jsonObj).append(" ");
                     } catch (Exception ignored) {
                     }
                 }
             }
         }
-        return params.trim();
+        return params.toString().trim();
     }
 
     /**

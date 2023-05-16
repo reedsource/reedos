@@ -133,7 +133,7 @@ public class ArticleTemplateServiceImpl implements IArticleTemplateService {
             String tagsStr = a.getTags();
             if (StringUtils.isNotEmpty(tagsStr)) {
                 String[] tagsArr = Convert.toStrArray(tagsStr);
-                String tags_name = "" ;
+                StringBuilder tags_name = new StringBuilder();
                 List<Tags> tags = Lists.newArrayList();
                 for (String id : tagsArr) {
                     if (StringUtils.isNotEmpty(id)) {
@@ -145,14 +145,14 @@ public class ArticleTemplateServiceImpl implements IArticleTemplateService {
                         }
                         tags.add(tag);
                         if (tag != null) {
-                            tags_name += tag.getTagName() + "," ;
+                            tags_name.append(tag.getTagName()).append(",");
                         }
                     }
                 }
-                if (tags_name.endsWith(",")) {
-                    tags_name = StringUtils.substring(tags_name, 0, tags_name.length() - 1);
+                if (tags_name.toString().endsWith(",")) {
+                    tags_name = new StringBuilder(StringUtils.substring(tags_name.toString(), 0, tags_name.length() - 1));
                 }
-                a.setTagNames(tags_name);
+                a.setTagNames(tags_name.toString());
                 //a.setTagList(tags);
             }
         });

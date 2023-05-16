@@ -31,7 +31,7 @@ import java.util.Map;
 public class DemoOperateController extends BaseController {
     private final static Map<Integer, UserOperateModel> users = new LinkedHashMap<>();
 
-    {
+    static {
         users.put(1, new UserOperateModel(1, "1000001", "测试1", "0", "18101351078", "reedsource@189.cn", 150.0, "0"));
         users.put(2, new UserOperateModel(2, "1000002", "测试2", "1", "18101351078", "reedsource@189.cn", 180.0, "1"));
         users.put(3, new UserOperateModel(3, "1000003", "测试3", "0", "18101351078", "reedsource@189.cn", 110.0, "1"));

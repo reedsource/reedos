@@ -26,7 +26,7 @@ import java.util.List;
 public class DemoFormController {
     private final static List<UserFormModel> users = new ArrayList<>();
 
-    {
+    static {
         users.add(new UserFormModel(1, "1000001", "测试1", "18101351078"));
         users.add(new UserFormModel(2, "1000002", "测试2", "18101351078"));
         users.add(new UserFormModel(3, "1000003", "测试3", "18101351078"));

@@ -40,10 +40,12 @@ public class ExpressionError {
 
         int errorStart = location.getStart() - line.getStart();
         int errorEnd = errorStart + location.getText().length() - 1;
+        StringBuilder messageBuilder = new StringBuilder(message);
         for (int i = 0, n = line.getText().length(); i < n; i++) {
             boolean useTab = line.getText().charAt(i) == '\t';
-            message += i >= errorStart && i <= errorEnd ? "^" : useTab ? "\t" : " " ;
+            messageBuilder.append(i >= errorStart && i <= errorEnd ? "^" : useTab ? "\t" : " ");
         }
+        message = messageBuilder.toString();
 
         if (cause == null)
             throw new TemplateException(message, location);
