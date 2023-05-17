@@ -670,7 +670,7 @@ public class ExcelUtil<T> {
                 }
             }
             if (Type.EXPORT.equals(type)) {
-                fillExcelData(index, row);
+                fillExcelData(index);
                 addStatisticsRow();
             }
         }
@@ -680,17 +680,16 @@ public class ExcelUtil<T> {
      * 填充excel数据
      *
      * @param index 序号
-     * @param row   单元格行
      */
     @SuppressWarnings("unchecked")
-    public void fillExcelData(int index, Row row) {
+    public void fillExcelData(int index) {
         int startNo = index * sheetSize;
         int endNo = Math.min(startNo + sheetSize, list.size());
         int rowNo = (1 + rownum) - startNo;
         for (int i = startNo; i < endNo; i++) {
             //修复sheet超出最大行数异常问题
             rowNo = isSubList() ? (i > 1 ? rowNo + 1 : rowNo + i) : i + 1 + rownum - startNo;
-            row = sheet.createRow(rowNo);
+            Row row = sheet.createRow(rowNo);
             // 得到导出对象.
             T vo = list.get(i);
             Collection<?> subList = null;

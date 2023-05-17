@@ -355,7 +355,11 @@ public class CmsService {
             form.setType(CmsConstants.COMMENT_TYPE_LIUYAN);
             form.setStatus(CmsConstants.STATUS_NORMAL);
             if (StringUtils.isNotNull(limit)) {
-                PageHelper.startPage(1, limit);
+                try {
+                    PageHelper.startPage(1, limit);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
             list = commentService.selectCommentList(form);
             siteInfoCache.put(KEY_NEW_COMMENT_LIST, list);

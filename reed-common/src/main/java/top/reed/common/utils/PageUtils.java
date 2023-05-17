@@ -20,7 +20,11 @@ public class PageUtils extends PageHelper {
         Integer pageSize = pageDomain.getPageSize();
         String orderBy = SqlUtil.escapeOrderBySql(pageDomain.getOrderBy());
         Boolean reasonable = pageDomain.getReasonable();
-        PageHelper.startPage(pageNum, pageSize, orderBy).setReasonable(reasonable);
+        try {
+            PageHelper.startPage(pageNum, pageSize, orderBy).setReasonable(reasonable);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
