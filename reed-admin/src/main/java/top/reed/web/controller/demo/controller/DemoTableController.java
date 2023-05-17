@@ -1,6 +1,7 @@
 package top.reed.web.controller.demo.controller;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -487,7 +488,7 @@ public class DemoTableController extends BaseController {
         return areaList;
     }
 }
-
+@Data
 class UserTableColumn {
     /**
      * 表头
@@ -507,23 +508,9 @@ class UserTableColumn {
         this.field = field;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getField() {
-        return field;
-    }
-
-    public void setField(String field) {
-        this.field = field;
-    }
 }
 
+@Data
 class UserTableModel {
     /**
      * 用户ID
@@ -593,79 +580,9 @@ class UserTableModel {
         this.createTime = DateUtils.getNowDate();
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public String getUserCode() {
-        return userCode;
-    }
-
-    public void setUserCode(String userCode) {
-        this.userCode = userCode;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getUserSex() {
-        return userSex;
-    }
-
-    public void setUserSex(String userSex) {
-        this.userSex = userSex;
-    }
-
-    public String getUserPhone() {
-        return userPhone;
-    }
-
-    public void setUserPhone(String userPhone) {
-        this.userPhone = userPhone;
-    }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
-    public double getUserBalance() {
-        return userBalance;
-    }
-
-    public void setUserBalance(double userBalance) {
-        this.userBalance = userBalance;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
 }
 
+@Data
 class AreaModel {
     /**
      * 编号
@@ -713,62 +630,6 @@ class AreaModel {
         this.areaCode = areaCode;
         this.simplePy = simplePy;
         this.pinYin = pinYin;
-        this.isTreeLeaf = isTreeLeaf;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
-    }
-
-    public String getAreaName() {
-        return areaName;
-    }
-
-    public void setAreaName(String areaName) {
-        this.areaName = areaName;
-    }
-
-    public String getAreaCode() {
-        return areaCode;
-    }
-
-    public void setAreaCode(String areaCode) {
-        this.areaCode = areaCode;
-    }
-
-    public String getSimplePy() {
-        return simplePy;
-    }
-
-    public void setSimplePy(String simplePy) {
-        this.simplePy = simplePy;
-    }
-
-    public String getPinYin() {
-        return pinYin;
-    }
-
-    public void setPinYin(String pinYin) {
-        this.pinYin = pinYin;
-    }
-
-    public Integer getIsTreeLeaf() {
-        return isTreeLeaf;
-    }
-
-    public void setIsTreeLeaf(Integer isTreeLeaf) {
         this.isTreeLeaf = isTreeLeaf;
     }
 }

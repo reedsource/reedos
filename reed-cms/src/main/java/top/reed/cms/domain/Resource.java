@@ -1,9 +1,7 @@
 package top.reed.cms.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import top.reed.common.annotation.Excel;
 import top.reed.common.core.domain.BaseEntity;
 
@@ -15,8 +13,8 @@ import java.io.Serial;
  * @author reedsource
  * date 2019-11-23
  */
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class Resource extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -147,33 +145,4 @@ public class Resource extends BaseEntity {
     private Integer status;
     private String extraName;//扩展字段
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("id", getId())
-                .append("title", getTitle())
-                .append("type", getType())
-                .append("description", getDescription())
-                .append("detail", getDetail())
-                .append("size", getSize())
-                .append("savePath", getSavePath())
-                .append("coverImage", getCoverImage())
-                .append("auditState", getAuditState())
-                .append("score", getScore())
-                .append("downloadType", getDownloadType())
-                .append("favouriteCount", getFavouriteCount())
-                .append("downloadCount", getDownloadCount())
-                .append("upVote", getUpVote())
-                .append("free", getFree())
-                .append("payType", getPayType())
-                .append("cost", getCost())
-                .append("tagIds", getTagIds())
-                .append("userId", getUserId())
-                .append("userName", getUserName())
-                .append("createTime", getCreateTime())
-                .append("updateTime", getUpdateTime())
-                .append("status", getStatus())
-                .append("remark", getRemark())
-                .toString();
-    }
 }

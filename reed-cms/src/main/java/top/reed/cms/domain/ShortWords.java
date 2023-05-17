@@ -1,9 +1,7 @@
 package top.reed.cms.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import top.reed.common.annotation.Excel;
 import top.reed.common.core.domain.BaseEntity;
 
@@ -15,8 +13,8 @@ import java.io.Serial;
  * @author reedsource
  * date 2019-11-22
  */
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class ShortWords extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -61,17 +59,4 @@ public class ShortWords extends BaseEntity {
      */
     @Excel(name = "审核状态")
     private Integer auditState;
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("id", getId())
-                .append("shortWords", getShortWords())
-                .append("tagids", getTagids())
-                .append("userId", getUserId())
-                .append("wordsCount", getWordsCount())
-                .append("weight", getWeight())
-                .append("auditState", getAuditState())
-                .toString();
-    }
 }

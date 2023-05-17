@@ -1,9 +1,7 @@
 package top.reed.cms.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import top.reed.common.annotation.Excel;
 import top.reed.common.core.domain.TreeEntity;
 
@@ -16,8 +14,8 @@ import java.util.List;
  * @author reedsource
  * date 2019-10-28
  */
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class Category extends TreeEntity {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -60,21 +58,4 @@ public class Category extends TreeEntity {
     private Category parent;//扩展字段
     private List<Category> nodes;//扩展字段
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("categoryId", getCategoryId())
-                .append("categoryName", getCategoryName())
-                .append("parentId", getParentId())
-                .append("ancestors", getAncestors())
-                .append("sort", getSort())
-                .append("description", getDescription())
-                .append("createTime", getCreateTime())
-                .append("updateTime", getUpdateTime())
-                .append("createBy", getCreateBy())
-                .append("updateBy", getUpdateBy())
-                .append("status", getStatus())
-                .append("delFlag", getDelFlag())
-                .toString();
-    }
 }

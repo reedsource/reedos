@@ -1,9 +1,7 @@
 package top.reed.cms.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import top.reed.common.annotation.Excel;
 import top.reed.common.core.domain.BaseEntity;
 
@@ -15,8 +13,8 @@ import java.io.Serial;
  * @author reedsource
  * date 2019-10-29
  */
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class Tags extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -67,16 +65,4 @@ public class Tags extends BaseEntity {
      */
     private boolean selected = false;
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("tagId", getTagId())
-                .append("tagType", getTagType())
-                .append("userId", getUserId())
-                .append("tagName", getTagName())
-                .append("sort", getSort())
-                .append("status", getStatus())
-                .append("url", getUrl())
-                .toString();
-    }
 }

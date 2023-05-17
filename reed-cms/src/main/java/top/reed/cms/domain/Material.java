@@ -1,9 +1,7 @@
 package top.reed.cms.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import top.reed.common.annotation.Excel;
 import top.reed.common.core.domain.BaseEntity;
 
@@ -16,8 +14,8 @@ import java.util.Date;
  * @author reedsource
  * date 2019-11-05
  */
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class Material extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -99,25 +97,4 @@ public class Material extends BaseEntity {
     @Excel(name = "上传日期", width = 30, dateFormat = "yyyy-MM-dd")
     private Date uploadTime;
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("materialId", getMaterialId())
-                .append("groupId", getGroupId())
-                .append("materialName", getMaterialName())
-                .append("materialType", getMaterialType())
-                .append("description", getDescription())
-                .append("materialSize", getMaterialSize())
-                .append("savePath", getSavePath())
-                .append("thumbnail", getThumbnail())
-                .append("auditState", getAuditState())
-                .append("auditReason", getAuditReason())
-                .append("useState", getUseState())
-                .append("width", getWidth())
-                .append("height", getHeight())
-                .append("uploaderId", getUploaderId())
-                .append("uploadTime", getUploadTime())
-                .append("remark", getRemark())
-                .toString();
-    }
 }

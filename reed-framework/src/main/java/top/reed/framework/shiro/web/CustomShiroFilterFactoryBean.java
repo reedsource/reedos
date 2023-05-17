@@ -60,7 +60,7 @@ public class CustomShiroFilterFactoryBean extends ShiroFilterFactoryBean {
     }
 
     private static final class MySpringShiroFilter extends AbstractShiroFilter {
-        protected MySpringShiroFilter(WebSecurityManager webSecurityManager, FilterChainResolver resolver) {
+        private MySpringShiroFilter(WebSecurityManager webSecurityManager, FilterChainResolver resolver) {
             if (webSecurityManager == null) {
                 throw new IllegalArgumentException("WebSecurityManager property cannot be null.");
             } else {

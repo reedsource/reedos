@@ -1,9 +1,7 @@
 package top.reed.cms.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import top.reed.common.annotation.Excel;
 import top.reed.common.core.domain.TreeEntity;
 
@@ -15,8 +13,8 @@ import java.io.Serial;
  * @author reedsource
  * date 2019-11-07
  */
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class MaterialGroup extends TreeEntity {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -55,18 +53,4 @@ public class MaterialGroup extends TreeEntity {
      */
     private String userId;
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("groupId", getGroupId())
-                .append("parentId", getParentId())
-                .append("deptId", getDeptId())
-                .append("groupName", getGroupName())
-                .append("description", getDescription())
-                .append("sort", getSort())
-                .append("userId", getUserId())
-                .append("createBy", getCreateBy())
-                .append("createTime", getCreateTime())
-                .toString();
-    }
 }

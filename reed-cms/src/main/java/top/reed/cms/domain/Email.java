@@ -1,9 +1,7 @@
 package top.reed.cms.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import top.reed.common.annotation.Excel;
 import top.reed.common.core.domain.BaseEntity;
 
@@ -16,8 +14,8 @@ import java.util.Date;
  * @author reedsource
  * date 2019-11-04
  */
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class Email extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -104,26 +102,4 @@ public class Email extends BaseEntity {
      */
     @Excel(name = "附件")
     private String attachfiles;
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("id", getId())
-                .append("emailType", getEmailType())
-                .append("userId", getUserId())
-                .append("createBy", getCreateBy())
-                .append("createTime", getCreateTime())
-                .append("fromEmail", getFromEmail())
-                .append("fromEmailPwd", getFromEmailPwd())
-                .append("toEmail", getToEmail())
-                .append("subject", getSubject())
-                .append("content", getContent())
-                .append("sendFlag", getSendFlag())
-                .append("sendTime", getSendTime())
-                .append("sendType", getSendType())
-                .append("planTime", getPlanTime())
-                .append("copyTo", getCopyTo())
-                .append("attachfiles", getAttachfiles())
-                .toString();
-    }
 }

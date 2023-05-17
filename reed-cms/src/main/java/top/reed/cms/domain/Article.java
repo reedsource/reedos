@@ -1,9 +1,7 @@
 package top.reed.cms.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import top.reed.common.annotation.Excel;
 import top.reed.common.core.domain.BaseEntity;
 
@@ -16,8 +14,8 @@ import java.util.List;
  * @author reedsource
  * date 2019-10-28
  */
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class Article extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -231,47 +229,4 @@ public class Article extends BaseEntity {
     private String tag;//扩展字段，存放一个标签id
 
     private String extraName;//扩展字段
-
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("id", getId())
-                .append("yhid", getYhid())
-                .append("articleRegion", getArticleRegion())
-                .append("author", getAuthor())
-                .append("publishTime", getPublishTime())
-                .append("title", getTitle())
-                .append("keywords", getKeywords())
-                .append("description", getDescription())
-                .append("coverImage", getCoverImage())
-                .append("articleModel", getArticleModel())
-                .append("copyFlag", getCopyFlag())
-                .append("categoryId", getCategoryId())
-                .append("personalCategory", getPersonalCategory())
-                .append("link", getLink())
-                .append("staticUrl", getStaticUrl())
-                .append("tags", getTags())
-                .append("hit", getHit())
-                .append("replyNum", getReplyNum())
-                .append("upVote", getUpVote())
-                .append("downVote", getDownVote())
-                .append("hotFlag", getHotFlag())
-                .append("newFlag", getNewFlag())
-                .append("commentFlag", getCommentFlag())
-                .append("topFlag", getTopFlag())
-                .append("favourite", getFavourite())
-                .append("missionId", getMissionId())
-                .append("templateName", getTemplateName())
-                .append("createTime", getCreateTime())
-                .append("updateTime", getUpdateTime())
-                .append("available", getAvailable())
-                .append("deleted", getDeleted())
-                .append("extra1", getExtra1())
-                .append("extra2", getExtra2())
-                .append("extra3", getExtra3())
-                .append("content", getContent())
-                .append("content_markdown_source", getContent_markdown_source())
-                .toString();
-    }
 }

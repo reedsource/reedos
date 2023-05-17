@@ -1,9 +1,7 @@
 package top.reed.cms.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import top.reed.common.annotation.Excel;
 import top.reed.common.core.domain.BaseEntity;
 
@@ -15,8 +13,8 @@ import java.io.Serial;
  * @author reedsource
  * date 2019-11-19
  */
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class Comment extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -128,30 +126,4 @@ public class Comment extends BaseEntity {
     private Comment parent;//扩展字段
 
     private Article article;//扩展字段
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("id", getId())
-                .append("pid", getPid())
-                .append("tid", getTid())
-                .append("numPei", getNumPei())
-                .append("numPenzi", getNumPenzi())
-                .append("numDou", getNumDou())
-                .append("numGeili", getNumGeili())
-                .append("type", getType())
-                .append("userId", getUserId())
-                .append("userName", getUserName())
-                .append("avatar", getAvatar())
-                .append("content", getContent())
-                .append("upVote", getUpVote())
-                .append("downVote", getDownVote())
-                .append("qq", getQq())
-                .append("email", getEmail())
-                .append("ip", getIp())
-                .append("address", getAddress())
-                .append("createTime", getCreateTime())
-                .append("status", getStatus())
-                .toString();
-    }
 }

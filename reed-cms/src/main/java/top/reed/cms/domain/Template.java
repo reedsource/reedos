@@ -1,9 +1,7 @@
 package top.reed.cms.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import top.reed.common.annotation.Excel;
 import top.reed.common.core.domain.BaseEntity;
 
@@ -15,8 +13,8 @@ import java.io.Serial;
  * @author reedsource
  * date 2019-11-17
  */
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class Template extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -50,14 +48,4 @@ public class Template extends BaseEntity {
     @Excel(name = "模板内容")
     private String templateContent;
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("templateId", getTemplateId())
-                .append("templateCode", getTemplateCode())
-                .append("templateType", getTemplateType())
-                .append("templateName", getTemplateName())
-                .append("templateContent", getTemplateContent())
-                .toString();
-    }
 }

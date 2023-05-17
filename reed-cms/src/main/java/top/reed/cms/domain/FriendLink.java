@@ -1,7 +1,7 @@
 package top.reed.cms.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import top.reed.common.annotation.Excel;
 import top.reed.common.core.domain.BaseEntity;
 
@@ -13,8 +13,8 @@ import java.io.Serial;
  * @author reedsource
  * date 2019-11-16
  */
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class FriendLink extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -49,15 +49,4 @@ public class FriendLink extends BaseEntity {
     @Excel(name = "状态")
     private Integer auditState;
 
-    @Override
-    public String toString() {
-        return "FriendLink{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", link='" + link + '\'' +
-                ", description='" + description + '\'' +
-                ", logo='" + logo + '\'' +
-                ", auditState=" + auditState +
-                '}';
-    }
 }

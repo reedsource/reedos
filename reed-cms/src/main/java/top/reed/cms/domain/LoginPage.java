@@ -1,9 +1,7 @@
 package top.reed.cms.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import top.reed.common.annotation.Excel;
 import top.reed.common.core.domain.BaseEntity;
 
@@ -15,8 +13,8 @@ import java.io.Serial;
  * @author reedsource
  * date 2019-12-24
  */
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class LoginPage extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -44,15 +42,4 @@ public class LoginPage extends BaseEntity {
     @Excel(name = "封面图片")
     private String coverImg;
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("id", getId())
-                .append("name", getName())
-                .append("code", getCode())
-                .append("coverImg", getCoverImg())
-                .append("createTime", getCreateTime())
-                .append("createBy", getCreateBy())
-                .toString();
-    }
 }

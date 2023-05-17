@@ -1,9 +1,7 @@
 package top.reed.cms.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import top.reed.common.annotation.Excel;
 import top.reed.common.core.domain.BaseEntity;
 
@@ -16,8 +14,8 @@ import java.util.Date;
  * @author reedsource
  * date 2019-12-31
  */
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class ArticleTemplate extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -104,26 +102,4 @@ public class ArticleTemplate extends BaseEntity {
      */
     private String auditReason;
 
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("id", getId())
-                .append("name", getName())
-                .append("tags", getTags())
-                .append("userId", getUserId())
-                .append("userName", getUserName())
-                .append("content", getContent())
-                .append("shareType", getShareType())
-                .append("weight", getWeight())
-                .append("hotFalg", getHotFalg())
-                .append("newFlag", getNewFlag())
-                .append("createTime", getCreateTime())
-                .append("audit", getAudit())
-                .append("auditTime", getAuditTime())
-                .append("auditBy", getAuditBy())
-                .append("auditName", getAuditName())
-                .append("auditReason", getAuditReason())
-                .toString();
-    }
 }

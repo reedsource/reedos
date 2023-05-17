@@ -1,7 +1,7 @@
 package top.reed.system.domain;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import top.reed.common.core.domain.BaseEntity;
 import top.reed.common.xss.Xss;
 
@@ -14,6 +14,8 @@ import java.io.Serial;
  *
  * @author reedsource
  */
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class SysNotice extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -58,47 +60,4 @@ public class SysNotice extends BaseEntity {
         return noticeTitle;
     }
 
-    public void setNoticeTitle(String noticeTitle) {
-        this.noticeTitle = noticeTitle;
-    }
-
-    public String getNoticeType() {
-        return noticeType;
-    }
-
-    public void setNoticeType(String noticeType) {
-        this.noticeType = noticeType;
-    }
-
-    public String getNoticeContent() {
-        return noticeContent;
-    }
-
-    public void setNoticeContent(String noticeContent) {
-        this.noticeContent = noticeContent;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("noticeId", getNoticeId())
-                .append("noticeTitle", getNoticeTitle())
-                .append("noticeType", getNoticeType())
-                .append("noticeContent", getNoticeContent())
-                .append("status", getStatus())
-                .append("createBy", getCreateBy())
-                .append("createTime", getCreateTime())
-                .append("updateBy", getUpdateBy())
-                .append("updateTime", getUpdateTime())
-                .append("remark", getRemark())
-                .toString();
-    }
 }

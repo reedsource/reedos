@@ -1,9 +1,7 @@
 package top.reed.cms.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import top.reed.common.annotation.Excel;
 import top.reed.common.core.domain.BaseEntity;
 
@@ -16,8 +14,8 @@ import java.util.List;
  * @author reedsource
  * date 2019-11-26
  */
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class LinkType extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -63,15 +61,4 @@ public class LinkType extends BaseEntity {
 
     private List<Link> children;//扩展字段
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("id", getId())
-                .append("linkType", getLinkType())
-                .append("linkTypeName", getLinkTypeName())
-                .append("coverImage", getCoverImage())
-                .append("sort", getSort())
-                .append("status", getStatus())
-                .toString();
-    }
 }

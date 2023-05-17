@@ -1,9 +1,7 @@
 package top.reed.cms.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import top.reed.common.annotation.Excel;
 import top.reed.common.core.domain.BaseEntity;
 
@@ -15,8 +13,8 @@ import java.io.Serial;
  * @author reedsource
  * date 2019-11-26
  */
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class Link extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -96,22 +94,4 @@ public class Link extends BaseEntity {
     @Excel(name = "状态")
     private Integer status;
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("linkId", getLinkId())
-                .append("linkType", getLinkType())
-                .append("linkName", getLinkName())
-                .append("keywords", getKeywords())
-                .append("link", getLink())
-                .append("description", getDescription())
-                .append("logo", getLogo())
-                .append("auditState", getAuditState())
-                .append("detail", getDetail())
-                .append("sort", getSort())
-                .append("upVote", getUpVote())
-                .append("commentFlag", getCommentFlag())
-                .append("status", getStatus())
-                .toString();
-    }
 }

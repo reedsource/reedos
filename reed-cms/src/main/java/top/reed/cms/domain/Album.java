@@ -1,9 +1,7 @@
 package top.reed.cms.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import top.reed.common.annotation.Excel;
 import top.reed.common.core.domain.BaseEntity;
 
@@ -16,8 +14,10 @@ import java.util.List;
  * @author reedsource
  * date 2019-11-08
  */
-@Getter
-@Setter
+
+
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class Album extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -61,19 +61,4 @@ public class Album extends BaseEntity {
     @Excel(name = "高度")
     private Integer height;
 
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("albumId", getAlbumId())
-                .append("albumName", getAlbumName())
-                .append("userId", getUserId())
-                .append("deptId", getDeptId())
-                .append("albumType", getAlbumType())
-                .append("description", getDescription())
-                .append("createBy", getCreateBy())
-                .append("createTime", getCreateTime())
-                .append("auditState", getAuditState())
-                .toString();
-    }
 }

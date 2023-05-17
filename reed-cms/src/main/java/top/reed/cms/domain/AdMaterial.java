@@ -28,6 +28,4 @@ public class AdMaterial extends Material {
     /*状态*/
     private int status;
     private int useHisId;
-
-
 }

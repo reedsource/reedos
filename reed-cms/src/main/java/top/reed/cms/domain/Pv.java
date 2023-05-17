@@ -1,9 +1,7 @@
 package top.reed.cms.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import top.reed.common.annotation.Excel;
 import top.reed.common.core.domain.BaseEntity;
 
@@ -15,8 +13,8 @@ import java.io.Serial;
  * @author reedsource
  * date 2019-11-29
  */
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class Pv extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -91,22 +89,4 @@ public class Pv extends BaseEntity {
     @Excel(name = "地址")
     private String location;
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("id", getId())
-                .append("uid", getUid())
-                .append("module", getModule())
-                .append("browser", getBrowser())
-                .append("referer", getReferer())
-                .append("os", getOs())
-                .append("pageId", getPageId())
-                .append("url", getUrl())
-                .append("deviceType", getDeviceType())
-                .append("timeZone", getTimeZone())
-                .append("ip", getIp())
-                .append("location", getLocation())
-                .append("createTime", getCreateTime())
-                .toString();
-    }
 }

@@ -1,9 +1,7 @@
 package top.reed.cms.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import top.reed.common.annotation.Excel;
 import top.reed.common.core.domain.BaseEntity;
 
@@ -15,8 +13,8 @@ import java.io.Serial;
  * @author reedsource
  * date 2019-11-01
  */
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class Attachment extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -76,20 +74,4 @@ public class Attachment extends BaseEntity {
 
     private String suffix;
 
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("attachId", getAttachId())
-                .append("zid", getZid())
-                .append("userId", getUserId())
-                .append("fileType", getFileType())
-                .append("fileName", getFileName())
-                .append("filePath", getFilePath())
-                .append("size", getSize())
-                .append("createBy", getCreateBy())
-                .append("createTime", getCreateTime())
-                .append("sort", getSort())
-                .toString();
-    }
 }

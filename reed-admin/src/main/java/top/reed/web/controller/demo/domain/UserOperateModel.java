@@ -1,5 +1,7 @@
 package top.reed.web.controller.demo.domain;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import top.reed.common.annotation.Excel;
 import top.reed.common.annotation.Excel.Type;
 import top.reed.common.core.domain.BaseEntity;
@@ -8,6 +10,8 @@ import top.reed.common.utils.DateUtils;
 import java.io.Serial;
 import java.util.Date;
 
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class UserOperateModel extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -55,77 +59,4 @@ public class UserOperateModel extends BaseEntity {
         this.createTime = DateUtils.getNowDate();
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public String getUserCode() {
-        return userCode;
-    }
-
-    public void setUserCode(String userCode) {
-        this.userCode = userCode;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getUserSex() {
-        return userSex;
-    }
-
-    public void setUserSex(String userSex) {
-        this.userSex = userSex;
-    }
-
-    public String getUserPhone() {
-        return userPhone;
-    }
-
-    public void setUserPhone(String userPhone) {
-        this.userPhone = userPhone;
-    }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
-    public double getUserBalance() {
-        return userBalance;
-    }
-
-    public void setUserBalance(double userBalance) {
-        this.userBalance = userBalance;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    @Override
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    @Override
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
 }

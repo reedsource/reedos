@@ -1,13 +1,13 @@
 package top.reed.cms.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 素材使用记录实体类
  */
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class MaterialUse extends Material {
     /*主键ID*/
     private String id;
@@ -22,13 +22,4 @@ public class MaterialUse extends Material {
 
     private String ids;//扩展字段
 
-    @Override
-    public String toString() {
-        return "MaterialUse{" +
-                "id='" + id + '\'' +
-                ", useTable='" + useTable + '\'' +
-                ", useId='" + useId + '\'' +
-                ", userId='" + userId + '\'' +
-                '}';
-    }
 }
