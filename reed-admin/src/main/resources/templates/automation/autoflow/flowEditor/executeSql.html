@@ -22,7 +22,7 @@
                                 <select name="datasourceId">
                                     {{# layui.each(d.datasources,function(index,datasource){ }}
                                     <option value="{{=datasource.id}}"
-                                            selected="{{datasource.id == d.data.object.datasourceId ? 'selected': ''}}">
+                                            selected="selected">
                                         {{datasource.name}}
                                     </option>
                                     {{# }) }}

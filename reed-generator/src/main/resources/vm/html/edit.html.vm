@@ -46,7 +46,7 @@
                     <div class="input-group">
 #set($BusinessName=$businessName.substring(0,1).toUpperCase() + ${businessName.substring(1)})
                         <input id="treeId" name="${treeParentCode}" type="hidden" th:field="*{${treeParentCode}}" />
-                        <input class="form-control" type="text" onclick="select${BusinessName}Tree()" id="treeName" readonly="true" th:field="*{parentName}"#if($column.required) required#end>
+                        <input class="form-control" type="text" onclick="select${BusinessName}Tree()" id="treeName" readonly="readonly" th:field="*{parentName}"#if($column.required) required#end>
                         <span class="input-group-addon"><i class="fa fa-search"></i></span>
                     </div>
                 </div>

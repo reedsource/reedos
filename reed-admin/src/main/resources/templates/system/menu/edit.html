@@ -12,7 +12,7 @@
             <label class="col-sm-3 control-label">上级菜单：</label>
             <div class="col-sm-8">
                 <div class="input-group">
-                    <input class="form-control" id="treeName" onclick="selectMenuTree()" readonly="true"
+                    <input class="form-control" id="treeName" onclick="selectMenuTree()" readonly="readonly"
                            th:value="${menu.parentName == null ? '无' : menu.parentName}"
                            type="text">
                     <span class="input-group-addon"><i class="fa fa-search"></i></span>

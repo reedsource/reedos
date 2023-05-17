@@ -65,7 +65,7 @@
                         <div class="input-group">
                             <input id="treeId" name="categoryId" th:value="${article.category?.categoryId}"
                                    type="hidden"/>
-                            <input class="form-control" id="treeName" onclick="selectCategoryTree()" readonly="true"
+                            <input class="form-control" id="treeName" onclick="selectCategoryTree()" readonly="readonly"
                                    th:value="${article.category?.categoryName}" type="text">
                             <span class="input-group-addon"><i class="fa fa-search"></i></span>
                         </div>
@@ -133,7 +133,7 @@
                     <div class="col-sm-8">
                         <div class="input-group">
                             <input class="form-control valid" id="materialPath" name="coverImage"
-                                   onclick="selectImage()" readonly="true" th:field="*{coverImage}" type="text">
+                                   onclick="selectImage()" readonly="readonly" th:field="*{coverImage}" type="text">
                             <span class="input-group-addon"><i class="fa fa-search"></i></span>
                         </div>
                     </div>
@@ -198,7 +198,7 @@
                 </div>
             </div>
         </div>
-        <textarea hidden="text" id="divdata">[[*{content}]]</textarea>
+        <textarea hidden="hidden" id="divdata">[[*{content}]]</textarea>
 
         <div class="row">
             <div class="col-sm-offset-5 col-sm-10">
