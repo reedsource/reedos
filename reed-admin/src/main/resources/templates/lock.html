@@ -6,8 +6,8 @@
     <!--360浏览器优先以webkit内核解析-->
     <title>锁定屏幕</title>
     <link rel="shortcut icon" th:href="@{favicon.ico}"/>
-    <link href="../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
-    <link href="../static/css/font-awesome.min.css" rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
     <style>.lockscreen {
         background: #d2d6de;
         height: auto;
@@ -95,7 +95,7 @@
     <div class="lockscreen-item">
         <div class="lockscreen-image">
             <img alt="User Image"
-                 class="img-circle" th:onerror="this.src='img/profile.png'"
+                 class="img-circle" th:onerror="this.src='/img/profile.png'"
                  th:src="(${#strings.isEmpty(user.avatar)}) ? @{/img/profile.png} : @{${user.avatar}}">
         </div>
         <form action="#" class="lockscreen-credentials" method="post" onsubmit="return false;">

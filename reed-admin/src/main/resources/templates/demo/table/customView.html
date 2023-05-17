@@ -18,7 +18,7 @@
 <template id="profileTemplate">
     <div class="col-sm-4">
         <div class="contact-box">
-            <a href="profile.html">
+            <a th:href="@{/system/user/profile/profile.html}">
                 <div class="col-sm-4">
                     <div class="text-center">
                         <img alt="image" class="img-circle m-t-xs img-responsive" src="%IMAGE%">
@@ -108,7 +108,7 @@
         var view = ''
         $.each(data, function (i, row) {
             view += template.replace('%userCode%', row.userCode)
-                .replace('%IMAGE%', "http://demo.ruoyi.vip/img/profile.png")
+                .replace('%IMAGE%', "/img/profile.png")
                 .replace('%userName%', row.userName)
                 .replace('%userEmail%', row.userEmail)
                 .replace('%userPhone%', row.userPhone)

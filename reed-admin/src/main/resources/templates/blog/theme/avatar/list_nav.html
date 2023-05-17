@@ -48,15 +48,14 @@
 
 </div>
 
-
-<!-- article -->
+<!-- 文章 -->
 <div class="baseGroup w1200 layoutAuto" id="channelGroup">
 
     <div class="mt20">
         <div class="newArticleGrid link web list">
 
             <div class="itemLi" th:each="item:${linkList}">
-                <a class="content" href="{$v[url]}" target="_blank">
+                <a class="content" th:href="${item.link}" target="_blank">
                     <div class="img"
                          th:attr="style='background:url('+@{${item.logo}}+')  no-repeat; background-size:cover;'"></div>
                     <h2 th:text="${item.linkName}"></h2>

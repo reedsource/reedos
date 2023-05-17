@@ -15,7 +15,7 @@
     <link rel="stylesheet" th:href="@{/css/style.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/skins.css?v=20200902}"/>
     <link rel="stylesheet" th:href="@{/ruoyi/css/ry-ui.css?v=0.0.1}"/>
-    <style type="text/css">.fixed-sidebar .nav:not(.navbar-toolbar) > li.active {
+    <style>.fixed-sidebar .nav:not(.navbar-toolbar) > li.active {
         border-left: 0px !important;
     }</style>
 </head>
@@ -39,7 +39,7 @@
                     <div class="hide" th:text="个人中心"></div>
                     <div class="pull-left image">
                         <img alt="User Image"
-                             class="img-circle" th:onerror="this.src='img/profile.png'"
+                             class="img-circle" th:onerror="this.src='/img/profile.png'"
                              th:src="(${#strings.isEmpty(user.avatar)}) ? @{/img/profile.png} : @{${user.avatar}}">
                     </div>
                 </a>
@@ -288,7 +288,7 @@
                     <li class="dropdown user-menu">
                         <a class="dropdown-toggle" data-hover="dropdown" href="javascript:void(0)">
                             <img class="user-image"
-                                 th:onerror="this.src='img/profile.png'"
+                                 th:onerror="this.src='/img/profile.png'"
                                  th:src="(${#strings.isEmpty(user.avatar)}) ? @{/img/profile.png} : @{${user.avatar}}">
                             <span class="hidden-xs">[[${#strings.defaultString(user.userName, '-')}]]</span>
                         </a>
@@ -337,7 +337,7 @@
         <a class="ax_close_max" href="#" id="ax_close_max" title="关闭全屏"> <i class="fa fa-times-circle-o"></i> </a>
 
         <div class="row mainContent" id="content-main" th:classappend="${mainClass}">
-            <iframe class="RuoYi_iframe" frameborder="0" height="100%" name="iframe0" seamless
+            <iframe class="RuoYi_iframe" style="border: 0" height="100%" name="iframe0" seamless
                     th:data-id="@{/system/main}" th:src="@{/system/main}" width="100%"></iframe>
         </div>
 
