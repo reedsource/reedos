@@ -16,13 +16,13 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 /**
- * WebSocket通讯编辑服务
+ * WebSocket通讯自动化任务入口服务
  *
  * @author reedsource
  */
 @ServerEndpoint("/ws")
 @Component
-public class WebSocketEditorServer {
+public class WebSocketAutomationMainServer {
 
 
     @Autowired
@@ -49,6 +49,7 @@ public class WebSocketEditorServer {
         JSONObject event = JSON.parseObject(message);
         String eventType = event.getString("eventType");
         boolean isDebug = "debug".equalsIgnoreCase(eventType);
+        //启动
         if ("test".equalsIgnoreCase(eventType) || isDebug) {
             context = new WebSocketContext(session);
             context.setDebug(isDebug);
@@ -63,6 +64,7 @@ public class WebSocketEditorServer {
                 }
                 context.setRunning(false);
             }).start();
+            //停止
         } else if ("stop".equals(eventType) && context != null) {
             context.setRunning(false);
             context.stop();

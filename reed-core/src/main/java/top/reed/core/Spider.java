@@ -104,6 +104,7 @@ public class Spider {
      * 执行根节点
      */
     private void executeRoot(AutomationNode root, AutomationContext context, Map<String, Object> variables) {
+        logger.debug("执行根节点");
         //获取当前流程执行线程数
         int nThreads = NumberUtils.toInt(root.getStringJsonValue(ShapeExecutor.THREAD_COUNT), defaultThreads);
         String strategy = root.getStringJsonValue("submit-strategy");
@@ -293,7 +294,8 @@ public class Spider {
             }
             LinkedBlockingQueue<Future<?>> futureQueue = context.getFutureQueue();
             for (SpiderTask task : tasks) {
-                if (executor.isThread()) {    //判断节点是否是异步运行
+                //判断节点是否是异步运行
+                if (executor.isThread()) {    
                     //提交任务至线程池中,并将Future添加到队列末尾
                     futureQueue.add(context.getThreadPool().submitAsync(task.runnable, task, node));
                 } else {

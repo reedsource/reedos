@@ -688,8 +688,6 @@ function bindToolbarClickAction(editor) {
         $(".editor-container").show();
         $(".xml-container").hide();
         $(this).removeClass('btn-graphical-xml').addClass('btn-edit-xml');
-//		editor.setXML($(".xml-container textarea").val());
-//		editor.onSelectedCell();
     }).on('click', '.btn-stop:not(.disabled)', function () {
         socket.send(JSON.stringify({
             eventType: 'stop'
@@ -701,8 +699,10 @@ function bindToolbarClickAction(editor) {
             eventType: 'resume'
         }));
     }).on('click', '.btn-test', function () {
+        //自动化执行
         runSpider(false);
     }).on('click', '.btn-debug', function () {
+        //自动化debug执行
         runSpider(true);
     }).on('click', ".btn-return", function () {
         //关闭当前tab并跳转到列表
@@ -778,7 +778,7 @@ function bindToolbarClickAction(editor) {
 }
 
 /**
- * 运行流程
+ * 自动化执行 入口 运行流程
  * @param debug
  */
 function runSpider(debug) {
@@ -899,7 +899,8 @@ function runSpider(debug) {
                     .on("keyup", "input", function () {
                         LogViewer.filter(this.value);
                     });
-                socket = createWebSocket({
+                //创建自动化WebSocket
+                socket = createAutomationWebSocket({
                     //连接websocket时调用
                     onopen: function () {
                         socket.send(JSON.stringify({

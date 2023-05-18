@@ -1,9 +1,9 @@
 /**
- * 创建Web套接字
+ * 创建自动化WebSocket
  * @param options
  * @returns {WebSocket}
  */
-function createWebSocket(options) {
+function createAutomationWebSocket(options) {
     options = options || {};
     //连接WebSocket对象
     const socket = new WebSocket(options.url || (location.origin.replace("http", 'ws') + '/ws'));

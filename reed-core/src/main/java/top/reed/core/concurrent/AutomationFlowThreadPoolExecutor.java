@@ -141,7 +141,7 @@ public class AutomationFlowThreadPoolExecutor {
         /**
          * 异步提交任务
          */
-        public <T> Future<T> submitAsync(Runnable runnable, T value, AutomationNode node) {
+        public <T> AutomationFutureTask<T> submitAsync(Runnable runnable, T value, AutomationNode node) {
             AutomationFutureTask<T> future = new AutomationFutureTask<>(() -> {
                 try {
                     //执行任务
