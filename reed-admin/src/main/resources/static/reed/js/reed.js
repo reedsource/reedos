@@ -5,9 +5,6 @@
 *   全局websocket
 *   //toastr 通知提示框架
 * */
-//全局变量
-//自动重连计数
-var sm = 0;
 
 //服务
 const baseMotheds = function () {
@@ -82,16 +79,7 @@ $(function () {
                 this._this.onclose = function () {
                     $.websocket._initialized = false;
                     if (op.reconnect) {
-                        if (sm < 5) {
-                            $.toastr.warning("连接异常,与服务器连接已经断开,开始尝试重新连接,下一次尝试重连 " + (sm + 1) * 5 + " 秒后");
-                            // 自动重连
-                            setTimeout(function () {
-                                sm++;
-                                $.websocket.open(op);
-                            }, (sm + 1) * 10000);
-                        } else {
-                            $.toastr.error("重新连接失败,请联系管理员");
-                        }
+                        $.toastr.warning("连接异常,与服务器通信连接已经断开,情点击左上角ReedOS重新进入首页更新连接");
                     }
                 }
             }, open: function (options) {

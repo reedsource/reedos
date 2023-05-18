@@ -16,6 +16,12 @@ import top.reed.common.enums.BusinessType;
 import top.reed.framework.websocket.server.WebSocketServer;
 import top.reed.framework.websocket.util.WebSocketUsers;
 
+/**
+ * WebSocket服务说明
+ * 2023年05月14日 添加固定的cipherKey密钥 之后
+ * 用户登录产生的cookie密钥是固定的,当遇到服务器重启之类的情况时
+ * 重新点击左上角图标进入首页,会自动断线重连
+ */
 @Controller
 @RequestMapping("/automation")
 public class WebSocketController {
