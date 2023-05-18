@@ -16,10 +16,10 @@
 	CodeMirror.defineMode("spiderflow", function(config) {
 				"use strict";
 
-				// our default settings; check to see if they're overridden
+				// 我们的默认设置；检查它们是否被覆盖
 				var settings = {
 					leftDelimiter : '<', rightDelimiter : '>', tagSyntax : 1
-				// 1 angle_bracket,2 square_bracket
+				// 1个角度_球拍，2个方形_支架
 				};
 				if (config.hasOwnProperty("tagSyntax") ) {
 					if (config.tagSyntax === 2 ) {
@@ -58,10 +58,10 @@
 					}
 				};
 
-				// our various parsers
+				// 我们的各种解析器
 				var parsers = {
 
-					// the main tokenizer
+					// 主要的令牌化器
 					tokenizer : function(stream, state) {
 						if (stream.match(settings.leftDelimiter, true) ) {
 							if (stream.match("#--", true) ) {
@@ -103,7 +103,7 @@
 						return null;
 					},
 
-					// parsing freemarker content
+					// 分析自由标记内容
 					freemarkerTemplate : function(stream, state) {
 						if (stream.match(settings.rightDelimiter, true) ) {
 							state.depth--;

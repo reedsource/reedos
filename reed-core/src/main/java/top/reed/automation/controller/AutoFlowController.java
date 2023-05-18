@@ -67,9 +67,9 @@ public class AutoFlowController extends BaseController {
     /**
      * @return 自动化任务流程编辑页面
      */
-    @GetMapping("/editor")
+    @GetMapping("/autoflowEditor")
     public String editor() {
-        return "automation/autoflow/editor" ;
+        return "automation/autoflow/autoflowEditor" ;
     }
 
     /**
@@ -226,7 +226,7 @@ public class AutoFlowController extends BaseController {
         //由autoflow.js关闭选项卡使用
         String url = request.getRequestURI();
         //转发数据id到editor编辑页面
-        return redirect("/automation/autoflow/editor?id=" + id + "&dataId=" + url);
+        return redirect("/automation/autoflow/autoflowEditor?id=" + id + "&dataId=" + url);
     }
 
     /**
