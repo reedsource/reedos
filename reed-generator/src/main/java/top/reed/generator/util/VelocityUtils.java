@@ -138,7 +138,7 @@ public class VelocityUtils {
             templates.add("vm/html/list.html.vm");
             templates.add("vm/java/sub-domain.java.vm");
         }
-        templates.add("vm/html/add.html.txt");
+        templates.add("vm/html/add.html.vm");
         templates.add("vm/html/edit.html.vm");
         templates.add("vm/sql/sql.vm");
         return templates;
