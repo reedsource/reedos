@@ -201,7 +201,7 @@ public class AutoFlowController extends BaseController {
         //由autoflow.js关闭选项卡使用
         String url = request.getRequestURI();
         //转发数据id到editor编辑页面
-        return redirect("/automation/autoflow/editor?dataId=" + url);
+        return redirect("/automation/autoflow/autoflowEditor?dataId=" + url);
     }
 
     /**
