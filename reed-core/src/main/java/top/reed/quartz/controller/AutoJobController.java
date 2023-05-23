@@ -7,8 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import top.reed.automation.domain.AutoFlow;
-import top.reed.automation.service.AutoFlowService;
 import top.reed.common.annotation.Log;
 import top.reed.common.constant.Constants;
 import top.reed.common.core.controller.BaseController;
@@ -34,8 +32,7 @@ import java.util.List;
 @RequestMapping("/quartz/job")
 public class AutoJobController extends BaseController {
 
-    @Autowired
-    AutoFlowService autoFlowService;
+
     @Autowired
     private AutoJobService jobService;
 
@@ -55,7 +52,7 @@ public class AutoJobController extends BaseController {
         for (AutoJob autoJob : list) {
             // 将自动化任务类型展示为自动化任务名称
             if (autoJob.getJobType().equals("0")) {
-                autoJob.setInvokeTarget(autoFlowService.selectAutoFlowById(Long.valueOf(autoJob.getInvokeTarget())).getName());
+
             }
         }
         return getDataTable(list);
@@ -142,10 +139,6 @@ public class AutoJobController extends BaseController {
                 return error(m + "任务'" + job.getJobName() + "'失败，自动化任务id异常");
             }
 
-            AutoFlow autoFlow = autoFlowService.selectAutoFlowById(autoId);
-            if (autoFlow == null) {
-                return error(m + "任务'" + job.getJobName() + "'失败，自动化任务不存在");
-            }
         } else {
             if (!CronUtils.isValid(job.getCronExpression())) {
                 return error(m + "任务'" + job.getJobName() + "'失败，Cron表达式不正确");
@@ -194,10 +187,7 @@ public class AutoJobController extends BaseController {
             } catch (NumberFormatException e) {
                 return error(m + "任务'" + job.getJobName() + "'失败，自动化任务id异常");
             }
-            AutoFlow autoFlow = autoFlowService.selectAutoFlowById(autoId);
-            if (autoFlow == null) {
-                return error(m + "任务'" + job.getJobName() + "'失败，自动化任务不存在");
-            }
+
         } else {
             if (!CronUtils.isValid(job.getCronExpression())) {
                 return error(m + "任务'" + job.getJobName() + "'失败，Cron表达式不正确");

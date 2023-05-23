@@ -1,13 +1,10 @@
 package top.reed.quartz.util;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import top.reed.automation.service.AutoFlowService;
 import top.reed.common.utils.StringUtils;
 import top.reed.common.utils.spring.SpringUtils;
 import top.reed.quartz.domain.AutoJob;
 
-import javax.annotation.PostConstruct;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.LinkedList;
@@ -20,14 +17,7 @@ import java.util.List;
  */
 @Component
 public class QuartzJobInvokeUtil {
-    @Autowired
-    private static AutoFlowService autoFlowService_to;
-    /**
-     * 以下3方法 在springboot静态方法中调用service方法
-     * 注意需要在类上用@Component组件注册
-     */
-    @Autowired
-    private AutoFlowService autoFlowService;
+
 
     /**
      * 执行方法路由
@@ -37,7 +27,7 @@ public class QuartzJobInvokeUtil {
     public static void invokeMethod(AutoJob autoJob) throws Exception {
         //自动化任务
         if ("0".equals(autoJob.getJobType())) {
-            autoFlowService_to.run(Long.valueOf(autoJob.getInvokeTarget()));
+
         } else {
             //调用目标字符串
             String invokeTarget = autoJob.getInvokeTarget();
@@ -186,8 +176,4 @@ public class QuartzJobInvokeUtil {
         return classs;
     }
 
-    @PostConstruct
-    public void init() {
-        autoFlowService_to = autoFlowService;
-    }
 }
