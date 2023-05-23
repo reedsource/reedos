@@ -71,28 +71,10 @@
         </encoder>
     </appender>
 
-    <!-- 输出日志文件 -->
-    <appender name="File" class="top.reed.automation.logback.AutoFlowFileAppender">
-        <file>${log.path}/reed-automation.log</file>
-        <append>true</append>
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{50} - %msg%n</pattern>
-        </encoder>
-    </appender>
-
-    <!-- WebSocket输出日志 主要用于自动化任务调试界面控制台日志打印 -->
-    <appender name="WebSocket" class="top.reed.automation.logback.AutoFlowWebSocketAppender"/>
-
     <!-- 系统模块日志级别控制  -->
     <logger name="top.reed" level="info"/>
     <!-- Spring日志级别控制  -->
     <logger name="org.springframework" level="warn"/>
-
-    <root level="debug">
-        <appender-ref ref="File"/>
-        <appender-ref ref="WebSocket"/>
-    </root>
 
     <root level="info">
         <appender-ref ref="console"/>
