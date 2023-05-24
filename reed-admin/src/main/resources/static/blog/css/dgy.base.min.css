@@ -200,37 +200,37 @@ body.bgf{ background:#fff;}
 .iconStatus.orange { background: #fd7d1d; }
 
 
-.iconChannelSite{ display:inline-block; width:50px; height:50px; background:url('../images/logo/logo_water.png') no-repeat center; background-size:50px; -moz-border-radius:50%; border-radius:50%; overflow:hidden;}
-.iconChannelSite.one{ background:url('../images/logo/logo_one.png') no-repeat center; background-size:50px;}
-.iconChannelSite.dxgh{ background:url('../images/logo/logo_dxgh.png') no-repeat center; background-size:50px;}
-.iconChannelSite.zhihu{ background:url('../images/logo/logo_zhihu.png') no-repeat center; background-size:50px;}
-.iconChannelSite.guoke{ background:url('../images/logo/logo_guoke.png') no-repeat center; background-size:50px;}
-.iconChannelSite.kr36{ background:url('../images/logo/logo_36k.png') no-repeat center; background-size:50px;}
-.iconChannelSite.xinshixiang{ background:url('../images/logo/logo_xinshixiang.png') no-repeat center; background-size:50px;}
-.iconChannelSite.pinwan{ background:url('../images/logo/logo_pinwan.png') no-repeat center; background-size:50px;}
-.iconChannelSite.haoqixin{ background:url('../images/logo/logo_haoqixin.png') no-repeat center; background-size:50px;}
-.iconChannelSite.chaping{ background:url('../images/logo/logo_chaping.png') no-repeat center; background-size:50px;}
-.iconChannelSite.huxiu{ background:url('../images/logo/logo_hx.png') no-repeat center; background-size:50px;}
-.iconChannelSite.renjian{ background:url('../images/logo/logo_renjian.png') no-repeat center; background-size:50px;}
-.iconChannelSite.zhenshigushi{ background:url('../images/logo/logo_zhenshigushi.png') no-repeat center; background-size:50px;}
-.iconChannelSite.douban{ background:url('../images/logo/logo_db.png') no-repeat center; background-size:50px;}
-.iconChannelSite.jiemian{ background:url('../images/logo/logo_jiemian.png') no-repeat center; background-size:50px;}
-.iconChannelSite.NGA{ background:url('../images/logo/logo_nga.png') no-repeat center; background-size:50px;}
-.iconChannelSite.wangyi{ background:url('../images/logo/logo_163.png') no-repeat center; background-size:50px;}
-.iconChannelSite.dgtle{ background:url('../images/logo/logo_dgtle.png') no-repeat center; background-size:50px;}
-.iconChannelSite.toutiao{ background:url('../images/logo/logo_toutiao.png') no-repeat center; background-size:50px;}
-.iconChannelSite.sina{ background:url('../images/logo/logo_sina.png') no-repeat center; background-size:50px;}
-.iconChannelSite.geekpark{ background:url('../images/logo/geekpark.png') no-repeat center; background-size:50px;}
-.iconChannelSite.jianshu{ background:url('../images/logo/logo_js.png') no-repeat center; background-size:50px;}
-.iconChannelSite.sspai{ background:url('../images/logo/icon_sspai.png') no-repeat center; background-size:50px;}
-.iconChannelSite.zcool{ background:url('../images/logo/icon_zcool.png') no-repeat center; background-size:50px;}
-.iconChannelSite.yan15{ background:url('../images/logo/icon_15yan.png') no-repeat center; background-size:50px;}
-.iconChannelSite.pt{ background:url('../images/logo/pt__logo.png') no-repeat center; background-size:50px;}
+.iconChannelSite{ display:inline-block; width:50px; height:50px; background:url('imagesr.png') no-repeat center; background-size:50px; -moz-border-radius:50%; border-radius:50%; overflow:hidden;}
+.iconChannelSite.one{ background:url('imagespng') no-repeat center; background-size:50px;}
+.iconChannelSite.dxgh{ background:url('images.png') no-repeat center; background-size:50px;}
+.iconChannelSite.zhihu{ background:url('imagesu.png') no-repeat center; background-size:50px;}
+.iconChannelSite.guoke{ background:url('imagese.png') no-repeat center; background-size:50px;}
+.iconChannelSite.kr36{ background:url('imagespng') no-repeat center; background-size:50px;}
+.iconChannelSite.xinshixiang{ background:url('imageshixiang.png') no-repeat center; background-size:50px;}
+.iconChannelSite.pinwan{ background:url('imagesan.png') no-repeat center; background-size:50px;}
+.iconChannelSite.haoqixin{ background:url('../../images/logo/logo_haoqixin.png') no-repeat center; background-size:50px;}
+.iconChannelSite.chaping{ background:url('imagesing.png') no-repeat center; background-size:50px;}
+.iconChannelSite.huxiu{ background:url('imagesng') no-repeat center; background-size:50px;}
+.iconChannelSite.renjian{ background:url('imagesian.png') no-repeat center; background-size:50px;}
+.iconChannelSite.zhenshigushi{ background:url('imagesshigushi.png') no-repeat center; background-size:50px;}
+.iconChannelSite.douban{ background:url('imagesng') no-repeat center; background-size:50px;}
+.iconChannelSite.jiemian{ background:url('imagesian.png') no-repeat center; background-size:50px;}
+.iconChannelSite.NGA{ background:url('imagespng') no-repeat center; background-size:50px;}
+.iconChannelSite.wangyi{ background:url('../../images/logo/logo_163.png') no-repeat center; background-size:50px;}
+.iconChannelSite.dgtle{ background:url('imagese.png') no-repeat center; background-size:50px;}
+.iconChannelSite.toutiao{ background:url('imagesiao.png') no-repeat center; background-size:50px;}
+.iconChannelSite.sina{ background:url('images.png') no-repeat center; background-size:50px;}
+.iconChannelSite.geekpark{ background:url('imagespng') no-repeat center; background-size:50px;}
+.iconChannelSite.jianshu{ background:url('imagesng') no-repeat center; background-size:50px;}
+.iconChannelSite.sspai{ background:url('imagesi.png') no-repeat center; background-size:50px;}
+.iconChannelSite.zcool{ background:url('imagesl.png') no-repeat center; background-size:50px;}
+.iconChannelSite.yan15{ background:url('imagesn.png') no-repeat center; background-size:50px;}
+.iconChannelSite.pt{ background:url('images/logo/pt__logo.png') no-repeat center; background-size:50px;}
 
 
 /* jumpHref */
-.jumpHrefGrid{ position: fixed; left: 0; top:0; width: 100%; height: 100%; z-index: 1200; overflow: hidden; text-align: center; background: #f6f6f6 url(../images/bgTree.png) repeat-x left bottom;}
-.jumpHrefGrid .hrefGroup{ width: 360px; height: 360px; padding-top: 120px; background: url('../images/logo_gold109.png') no-repeat center top; position: absolute; top:50%; left: 50%; margin-top: -180px; margin-left: -180px; text-align: center; color: #333; overflow: hidden;}
+.jumpHrefGrid{ position: fixed; left: 0; top:0; width: 100%; height: 100%; z-index: 1200; overflow: hidden; text-align: center; background: #f6f6f6 url(images/bgTree.png) repeat-x left bottom;}
+.jumpHrefGrid .hrefGroup{ width: 360px; height: 360px; padding-top: 120px; background: url('images/logo_gold109.png') no-repeat center top; position: absolute; top:50%; left: 50%; margin-top: -180px; margin-left: -180px; text-align: center; color: #333; overflow: hidden;}
 .jumpHrefGrid .hrefGroup h4{ font-size: 18px; line-height: 30px; margin-top: 10px; margin-bottom: 10px;}
 .jumpHrefGrid .hrefGroup p{ font-size: 14px; line-height: 20px; margin-bottom: 10px;}
 .jumpHrefGrid .hrefGroup p span{ color: #04ac71; margin: 0 5px;}
@@ -265,8 +265,8 @@ commonSwiperPagination
 */
 #SOHUCS #SOHU_MAIN .module-cmt-box .post-wrap-w .post-wrap-main{ background:none !important;}
 #SOHUCS #SOHU_MAIN .module-cmt-footer .section-service-w{ display:none !important;}
-#SOHUCS #SOHU_MAIN .module-cmt-box .post-wrap-w .wrap-action-w .action-issue-w .issue-btn-w a button.btn-fw {background-image: url(../images/post-btn-dgy.png) !important;}
-#SOHUCS #SOHU_MAIN .module-cmt-box .post-wrap-w .wrap-action-w .action-issue-w .issue-btn-w a:hover button.btn-fw {background-image: url(../images/post-btn-dgy2.png) !important;}
+#SOHUCS #SOHU_MAIN .module-cmt-box .post-wrap-w .wrap-action-w .action-issue-w .issue-btn-w a button.btn-fw {background-image: url(images/post-btn-dgy.png) !important;}
+#SOHUCS #SOHU_MAIN .module-cmt-box .post-wrap-w .wrap-action-w .action-issue-w .issue-btn-w a:hover button.btn-fw {background-image: url(images/post-btn-dgy2.png) !important;}
 
 
 
@@ -567,7 +567,7 @@ commonSwiperPagination
 .cy-my-page .cy-my-comment-list .empty-hold-place .pet-pic {
     width: 345px;
     height: 293px;
-    background: url(../images/notice-empty.png);
+    background: url(notice-empty.png);
     background-repeat: no-repeat;
 }
 .comment-empty-txt {

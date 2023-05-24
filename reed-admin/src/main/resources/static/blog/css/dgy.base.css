@@ -200,8 +200,8 @@ textarea { resize: none; }
 #pageGroup{margin:10px auto; font-size:14px; text-align:center;}
 #pageGroup a{ display:inline-block; color:#999; width:30px; height:30px; font-weight:700; line-height:30px; text-align:center; margin:0 4px;}
 #pageGroup .prepage,#pageGroup .nextpage{ text-indent:-99999em; opacity:.5;}
-#pageGroup .prepage{ background: url('../images/page-icon-l2.png') no-repeat center; background-size: 18px;}
-#pageGroup .nextpage{ background: url('../images/page-icon-r2.png') no-repeat center; background-size: 18px;}
+#pageGroup .prepage{ background: url('images-l2.png') no-repeat center; background-size: 18px;}
+#pageGroup .nextpage{ background: url('images-r2.png') no-repeat center; background-size: 18px;}
 #pageGroup .prepage.nopage,#pageGroup .nextpage.nopage{ opacity:.2;}
 #pageGroup .nopage{}
 #pageGroup a:hover, #pageGroup .curpage{ color:#409eff;}
@@ -572,8 +572,8 @@ textarea { resize: none; }
 }
 
 /*星星评价*/
-.star-bar-show{background:url(../images/iconpic-star-S-default.png) repeat-x 0 0}
-.star-bar-show .star{background:url(../images/iconpic-star-S.png) repeat-x 0 0}
+.star-bar-show{background:url(iconpic-star-S-default.png) repeat-x 0 0}
+.star-bar-show .star{background:url(iconpic-star-S.png) repeat-x 0 0}
 .star-1{width:20%}
 .star-2{ width:40%}
 .star-3{width:60%}

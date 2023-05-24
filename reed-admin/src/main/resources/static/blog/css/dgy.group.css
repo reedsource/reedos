@@ -33,8 +33,8 @@
 .launchTopGird .swiper-pagination-bullet-active { opacity:1; background:#fff; width:20px; }
 .launchTopGird .swiper-button-next, .launchTopGird .swiper-button-prev, .articleModeGrid .swiper-button-next, .articleModeGrid .swiper-button-prev { cursor:pointer; width:30px; height:30px; margin-top:-15px; opacity:0; transition:all .2s ease;}
 .articleModeGrid .swiper-button-next, .articleModeGrid .swiper-button-prev {opacity:1; z-index:20; pointer-events:auto !important;}
-.launchTopGird .swiper-button-next, .articleModeGrid .swiper-button-next { background:url('../images/icon_arr_right.png') no-repeat; background-size:30px;}
-.launchTopGird .swiper-button-prev, .articleModeGrid .swiper-button-prev { background:url('../images/icon_arr_left.png') no-repeat; background-size:30px;}
+.launchTopGird .swiper-button-next, .articleModeGrid .swiper-button-next { background:url('imagesright.png') no-repeat; background-size:30px;}
+.launchTopGird .swiper-button-prev, .articleModeGrid .swiper-button-prev { background:url('imagesleft.png') no-repeat; background-size:30px;}
 .launchTopGird .swiper-container:hover .swiper-button-next, .launchTopGird .swiper-container:hover .swiper-button-prev, .articleModeGrid .swiper-container:hover .swiper-button-next, .articleModeGrid .swiper-container:hover .swiper-button-prev { opacity:.6; transition:all .2s ease;}
 
 .launchTopGird.web{ background:none; padding:0; border-bottom:0;}
@@ -222,8 +222,8 @@
 .fullTabs.user .menuBox .item a.current:after{content:""; display:block; position:absolute; left:0; bottom:-16px; width:100%; height:4px; background:#409eff;}
  
 /* switchMode */
-.switchMode{ display:inline-block; cursor:pointer; width:20px; height:20px; position:relative; overflow:hidden; background:url('../images/icon_articleMode.png') no-repeat center; background-size:20px; -webkit-transition: all 0.2s ease; -moz-transition: all 0.2s ease; transition: all 0.2s ease;}
-.switchMode.on{ background:url('../images/icon_imgMode.png') no-repeat center; background-size:20px; }
+.switchMode{ display:inline-block; cursor:pointer; width:20px; height:20px; position:relative; overflow:hidden; background:url('images/icon_articleMode.png') no-repeat center; background-size:20px; -webkit-transition: all 0.2s ease; -moz-transition: all 0.2s ease; transition: all 0.2s ease;}
+.switchMode.on{ background:url('images/icon_imgMode.png') no-repeat center; background-size:20px; }
 
 .planetGroup{ position:relative; width:1000px; height:100%; padding:0 20px; margin:0 auto; color:#eaeaea;}
 .planetGroup .title{ margin-top: 25px; font-size: 18px; line-height: 28px;}
@@ -330,7 +330,7 @@
 .description{ padding-left:20px; position:relative; color:#666; margin-bottom:60px;}
 .description .detail{ padding:20px 25px; background:#f7f8f9; border-radius:4px;}
 .description p{ text-indent:2em; text-align:justify;}
-.description .flag{ position:absolute; top:-20px; left:10px; z-index:5; width:60px; height:60px; background:url('../images/icon-flag2.png') no-repeat; background-size:45px;}
+.description .flag{ position:absolute; top:-20px; left:10px; z-index:5; width:60px; height:60px; background:url('images2.png') no-repeat; background-size:45px;}
 
 .articleBaseInfo{ text-align:right; margin:50px 10px; overflow:hidden; position:relative; padding-top:30px;}
 .articleBaseInfo::after{ content:""; position:absolute; top:0; right:0; width:25px; height:4px; background:#409eff;}
@@ -405,7 +405,7 @@
 
 .myInfoGrid{ padding:30px; position:relative; border:1px solid #eee; border-radius:4px; overflow:hidden; line-height:24px; font-size:12px; color:#999;}
 .myInfoGrid.user{ width:230px; margin:0 auto; }
-.myInfoGrid .avatar{display:block; width:60px; height:60px; border-radius:50%; margin:30px auto; background:url('../images/avatar_markbro.jpg') no-repeat center; background-size:60px; overflow:hidden;}
+.myInfoGrid .avatar{display:block; width:60px; height:60px; border-radius:50%; margin:30px auto; background:url('imagesrkbro.jpg') no-repeat center; background-size:60px; overflow:hidden;}
 .myInfoGrid .userName{ font-size:14px; color:#333; text-align:center; line-height:24px; margin-bottom:10px;}
 .myInfoGrid .detail{ font-size:13px; color:#999; line-height:20px; padding-top:25px; margin-top:25px; border-top:1px solid #eee; margin-bottom:20px;}
 .myInfoGrid .detail.down{ border-top:0;}
