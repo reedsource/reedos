@@ -256,7 +256,7 @@ var jsonTree = (function() {
             if (e.shiftKey) {
                 document.getSelection().removeAllRanges();
                 alert(self.getJSONPath());
-                return;
+
             }
         }, false);
     }

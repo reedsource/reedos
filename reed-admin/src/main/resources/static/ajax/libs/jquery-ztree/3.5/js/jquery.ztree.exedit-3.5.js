@@ -81,7 +81,7 @@
 		r.curHoverNode = null;
 		r.dragFlag = 0;
 		r.dragNodeShowBefore = [];
-		r.dragMaskList = new Array();
+		r.dragMaskList = [];
 		r.showHoverDom = true;
 	},
 	//default cache of exedit
@@ -990,7 +990,7 @@
 				}
 			}
 			if (moveType == consts.move.TYPE_INNER) {
-				if (!targetNode[childKey]) targetNode[childKey] = new Array();
+				if (!targetNode[childKey]) targetNode[childKey] = [];
 				if (targetNode[childKey].length > 0) {
 					newNeighbor = targetNode[childKey][targetNode[childKey].length - 1];
 					newNeighbor.isLastNode = false;

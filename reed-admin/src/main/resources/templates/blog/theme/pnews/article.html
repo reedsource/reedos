@@ -7,21 +7,21 @@
     <meta name="description" th:content="${article.description}">
     <title th:text="${article.title}"></title>
 
-    <script th:src="@{/blog/pnews/js/jquery-2.1.4.min.js}"></script>
-    <link rel="stylesheet" th:href="@{/blog/pnews/css/dgy.base.min.css}"/>
-    <link rel="stylesheet" th:href="@{/blog/pnews/css/dgy.head.min.css}"/>
-    <link rel="stylesheet" th:href="@{/blog/pnews/css/dgy.web.3.0.css}"/>
+    <script th:src="@{/js/jquery/jquery-2.1.4.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/blog/avatar/css/dgy.base.min.css}"/>
+    <link rel="stylesheet" th:href="@{/blog/avatar/css/dgy.head.min.css}"/>
+    <link rel="stylesheet" th:href="@{/blog/avatar/css/dgy.web.3.0.css}"/>
     <link rel="stylesheet" th:href="@{/blog/pnews/plugin/iconfont/iconfont.css}"/>
     <link rel="stylesheet" th:href="@{/blog/pnews/plugin/font-icon/icon.css}"/>
-    <link rel="stylesheet" th:href="@{/blog/pnews/plugin/bootstrap/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/js/bootstrap/bootstrap3.3.7/bootstrap3.3.7.min.css}"/>
     <link rel="stylesheet" th:href="@{/blog/pnews/plugin/markdown/simplemde.min.css}">
     <link rel="stylesheet" th:href="@{/blog/pnews/plugin/markdown/github-markdown.min.css}">
     <link rel="stylesheet" th:href="@{/blog/pnews/plugin/markdown/highlight.min.css}">
-    <script th:src="@{/blog/pnews/plugin/bootstrap/bootstrap.min.js}"></script>
+    <script th:src="@{/js/bootstrap/bootstrap3.3.7/bootstrap3.3.7.min.js}"></script>
     <script th:src="@{/blog/pnews/plugin/markdown/highlight.min.js}"></script>
     <script th:src="@{/blog/pnews/plugin/markdown/simplemde.min.js}"></script>
-    <script th:src="@{/blog/pnews/plugin/layer/layer.js}"></script>
-    <script th:src="@{/blog/pnews/js/baseMotheds.js}"></script>
+    <script th:src="@{/js/layer/layer2.3.js}"></script>
+    <script th:src="@{/blog/avatar/js/baseMotheds.js}"></script>
 
 
     <style th:inline="css">
@@ -248,7 +248,7 @@
                         })
                     </script>
                     <script th:if="${article.commentFlag==1 || article.commentFlag=='1'}"
-                            th:src="@{/blog/pnews/js/comment.js}"></script>
+                            th:src="@{/blog/avatar/js/comment.js}"></script>
 
                     <div class="clearfix"></div>
                 </div>

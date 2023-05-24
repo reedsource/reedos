@@ -11,7 +11,17 @@ $(function () {
     }else{
         $("#user-info").show();
     }
-
+    var simplemde = new SimpleMDE({
+        element: document.getElementById("comment-textarea"),
+        toolbar: [],
+        autoDownloadFontAwesome: false,
+        placeholder: "你的评论可以一针见血",
+        renderingConfig: {
+            codeSyntaxHighlighting: true
+        },
+        tabSize: 4,
+        status:false
+    });
     $("#qq").blur(function(){
         var qq=$("#qq").val();
         var nickname=$("#nickname").val();
@@ -85,7 +95,7 @@ $(function () {
                 var commentOne="";
                 if(data.total==0){
                     commentOne+='<div class="no-comment">暂无评论，快来占领宝座</div>';
-                    $("#commentList").append(commentOne);
+                    $("#comment-ul").append(commentOne);
                 }else{
                     $.each(data.rows,function (index,value) {
                         commentOne +=
@@ -126,7 +136,7 @@ $(function () {
                     if(data.hasNextPage){
                         commentOne+='<div id="comment-more" data-page="'+data.nextPage+'" class="comment-more">加载更多</div>'
                     }
-                    $("#commentList").append(commentOne);
+                    $("#comment-ul").append(commentOne);
                     /*加载更多*/
                     $("#comment-more").click(function () {
                         init($(this).attr("data-page"));
@@ -154,23 +164,38 @@ $(function () {
                                 '   <input name="tid" type="hidden" value="'+tid+'"  />'+
                                 '   <input name="type" type="hidden" value="'+comment_type+'"  />'+
                                 '   <input id="replyId" name="pid" type="hidden" value="'+replyId+'"  />'+
-                                '   <div class="guestBookGroup" style="padding:0;display: '+(pblogNickName==""?"block":"none")+'">'+
-                                '       <div class="inputLabel" style="width: 30%;float:left;margin-right: 35px;">'+
-                                '           <input id="reply-nickname" value="'+pblogNickName+'"  type="text" class="inputBlock" name="userName" placeholder="昵称(必填)" />'+
+                                '   <div class="form-group" style="display: '+(pblogNickName==""?"block":"none")+'">'+
+                                '       <div class="col-sm-4">'+
+                                '           <input id="reply-nickname" value="'+pblogNickName+'"  type="text" class="form-control" name="userName" placeholder="昵称(必填)" />'+
                                 '       </div>'+
-                                '       <div class="inputLabel" style="width: 30%;float:left;margin-right: 35px;">'+
-                                '           <input id="reply-qq" value="'+zblogQQ+'" type="text" class="inputBlock" name="qq" placeholder="QQ（可显示头像和昵称）" />'+
+                                '       <div class="col-sm-4">'+
+                                '           <input id="reply-qq" value="'+zblogQQ+'" type="text" class="form-control" name="qq" placeholder="QQ（可显示头像和昵称）" />'+
                                 '       </div>'+
-                                '       <div class="inputLabel" style="width: 30%;float:left;">'+
-                                '           <input id="reply-email" value="'+zblogEmail+'" type="text" class="inputBlock"  name="email" placeholder="邮箱">'+
+                                '       <div class="col-sm-4">'+
+                                '           <input id="reply-email" value="'+zblogEmail+'" type="text" class="form-control" name="email" placeholder="邮箱" />'+
                                 '       </div>'+
                                 '   </div>'+
-                                ' <textarea id="reply-comment-textarea" class="commentTextarea"  name="content"></textarea>'+
-                                '   <div class="btnBox">'+
-                                '       <input type="button" id="submitReplyCommentBtn" class="submitBtn"  value="发表评论">'+
+                                '   <div class="form-group">'+
+                                '       <div class="col-xs-12">'+
+                                '           <textarea name="content" id="reply-comment-textarea"></textarea>'+
+                                '       </div>'+
+                                '   </div>'+
+                                '   <div>'+
+                                '   <button id="submitReplyCommentBtn" type="button" class="btn btn-primary">发表评论</button>'+
                                 '   </div>'+
                                 '</form>'
                             $(this).parent().after(replyForm);
+                            var replySimplemde = new SimpleMDE({
+                                element: document.getElementById("reply-comment-textarea"),
+                                toolbar: [],
+                                autoDownloadFontAwesome: false,
+                                placeholder: "说点什么好呢",
+                                renderingConfig: {
+                                    codeSyntaxHighlighting: true
+                                },
+                                tabSize: 4,
+                                status:false
+                            });
 
                             $("#reply-qq").blur(function(){
                                 var qq=$("#reply-qq").val();
@@ -192,10 +217,12 @@ $(function () {
                             if($("#reply-nickname").val()==""){
                                 layer.msg("请输入昵称")
                                 return;
-                            }else if($("#reply-comment-textarea").val()==""){
+                            }else if(replySimplemde.value()==""){
                                 layer.msg("说点什么吧")
                                 return;
                             }
+                            $("#reply-comment-textarea").val(replySimplemde.markdown(replySimplemde.value()));
+
                             $.ajax({
                                 url: ctx+"blog/comments/save",
                                 type: "post",
@@ -258,10 +285,12 @@ $(function () {
         if($("#nickname").val()==""){
             layer.msg("请输入昵称")
             return;
-        }else if($("#comment-textarea").val()==""){
+        }else if(simplemde.value()==""){
             layer.msg("说点什么吧")
             return;
         }
+        $("#comment-textarea").val(simplemde.markdown(simplemde.value()));
+
         $.ajax({
             url: ctx+"blog/comments/save",
             type: "post",
@@ -305,3 +334,4 @@ $(function () {
 
     })
 })
+

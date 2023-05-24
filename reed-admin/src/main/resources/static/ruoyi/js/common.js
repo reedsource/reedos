@@ -451,12 +451,12 @@ var sub = {
     			dataColumns.push(table.options.columns[columnIndex]);
     		}
     	}
-		var params = new Array();
+		var params = [];
 		var data = $("#" + table.options.id).bootstrapTable('getData');
     	var count = data.length;
     	for (var dataIndex = 0; dataIndex < count; dataIndex++) {
             var columns = $('#' + table.options.id + ' tr[data-index="' + dataIndex + '"] td:visible');
-    	    var obj = new Object();
+    	    var obj = {};
     	    for (var i = 0; i < columns.length; i++) {
     	        var inputValue = $(columns[i]).find('input');
     	        var selectValue = $(columns[i]).find('select');
