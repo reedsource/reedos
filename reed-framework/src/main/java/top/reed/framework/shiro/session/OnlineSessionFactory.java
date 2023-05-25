@@ -21,8 +21,7 @@ public class OnlineSessionFactory implements SessionFactory {
     @Override
     public Session createSession(SessionContext initData) {
         OnlineSession session = new OnlineSession();
-        if (initData instanceof WebSessionContext) {
-            WebSessionContext sessionContext = (WebSessionContext) initData;
+        if (initData instanceof WebSessionContext sessionContext) {
             HttpServletRequest request = (HttpServletRequest) sessionContext.getServletRequest();
             if (request != null) {
                 //获取用户User-Agent并解析为userAgent对象

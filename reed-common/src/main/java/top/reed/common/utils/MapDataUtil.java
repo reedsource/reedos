@@ -29,8 +29,7 @@ public class MapDataUtil {
             Object valueObj = entry.getValue();
             if (null == valueObj) {
                 value = new StringBuilder();
-            } else if (valueObj instanceof String[]) {
-                String[] values = (String[]) valueObj;
+            } else if (valueObj instanceof String[] values) {
                 value = new StringBuilder();
                 for (String s : values) {
                     value.append(s).append(",");

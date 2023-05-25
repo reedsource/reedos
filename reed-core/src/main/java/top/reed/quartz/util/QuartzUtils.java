@@ -94,19 +94,14 @@ public class QuartzUtils {
     public static CronScheduleBuilder handleCronScheduleMisfirePolicy(AutoJob job, CronScheduleBuilder cb)
             throws TaskException {
         //0=默认,1=立即触发执行,2=触发一次执行,3=不触发立即执行
-        switch (job.getMisfirePolicy()) {
-            case ScheduleConstants.MISFIRE_DEFAULT:
-                return cb;
-            case ScheduleConstants.MISFIRE_IGNORE_MISFIRES:
-                return cb.withMisfireHandlingInstructionIgnoreMisfires();
-            case ScheduleConstants.MISFIRE_FIRE_AND_PROCEED:
-                return cb.withMisfireHandlingInstructionFireAndProceed();
-            case ScheduleConstants.MISFIRE_DO_NOTHING:
-                return cb.withMisfireHandlingInstructionDoNothing();
-            default:
-                throw new TaskException("定时任务执行策略 '" + job.getMisfirePolicy()
-                        + "' 不能在cron计划任务中使用", Code.CONFIG_ERROR);
-        }
+        return switch (job.getMisfirePolicy()) {
+            case ScheduleConstants.MISFIRE_DEFAULT -> cb;
+            case ScheduleConstants.MISFIRE_IGNORE_MISFIRES -> cb.withMisfireHandlingInstructionIgnoreMisfires();
+            case ScheduleConstants.MISFIRE_FIRE_AND_PROCEED -> cb.withMisfireHandlingInstructionFireAndProceed();
+            case ScheduleConstants.MISFIRE_DO_NOTHING -> cb.withMisfireHandlingInstructionDoNothing();
+            default -> throw new TaskException("定时任务执行策略 '" + job.getMisfirePolicy()
+                    + "' 不能在cron计划任务中使用", Code.CONFIG_ERROR);
+        };
     }
 
     /**

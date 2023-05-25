@@ -39,11 +39,7 @@ public class YamlUtil {
                     String left = input.substring(0, index);
                     String right = input.substring(index + 1);
                     return getProperty((Map<?, ?>) map.get(left), right);
-                } else if (map.containsKey(input)) {
-                    return map.get(input);
-                } else {
-                    return null;
-                }
+                } else return map.getOrDefault(input, null);
             }
         }
         return null;

@@ -265,9 +265,7 @@ public class CmsService {
             }
         }
         List<String> res = Lists.newArrayList();
-        list.forEach(s -> {
-            res.add(s.getShortWords());
-        });
+        list.forEach(s -> res.add(s.getShortWords()));
         return res;
     }
 
@@ -330,13 +328,9 @@ public class CmsService {
         }
         //8个文章+2个资源
         List<Article> articleList = this.indexList(limit);
-        articleList.forEach(a -> {
-            a.setExtraName("article");
-        });
+        articleList.forEach(a -> a.setExtraName("article"));
         List<Resource> resourceList = this.recommendedResourceList(limit1);
-        resourceList.forEach(r -> {
-            r.setExtraName("resource");
-        });
+        resourceList.forEach(r -> r.setExtraName("resource"));
         List<Object> res = Lists.newArrayList();
         res.addAll(articleList);
         res.addAll(resourceList);

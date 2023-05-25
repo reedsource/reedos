@@ -182,7 +182,7 @@ public class JSONObject extends LinkedHashMap<String, Object> {
 
         final StringTokenizer st = new StringTokenizer(s, "[]");
         while (st.hasMoreTokens()) {
-            final int index = Integer.valueOf(st.nextToken());
+            final int index = Integer.parseInt(st.nextToken());
             if (index < 0) {
                 throw new RuntimeException(String.format("Illegal index %1$d in \"%2$s\"", index, s));
             }
@@ -318,12 +318,7 @@ public class JSONObject extends LinkedHashMap<String, Object> {
         } else {
             final Matcher matcher = arrayNamePattern.matcher(name);
             if (matcher.find()) {
-                return endArray(matcher.group(1), matcher.group(2), new EndArrayCallback<>() {
-                    @Override
-                    public Object callback(JSONArray arr, int index) {
-                        return elementAt(arr, index);
-                    }
-                });
+                return endArray(matcher.group(1), matcher.group(2), JSONObject::elementAt);
             } else {
                 return get(name);
             }
@@ -344,12 +339,9 @@ public class JSONObject extends LinkedHashMap<String, Object> {
         } else {
             final Matcher matcher = arrayNamePattern.matcher(name);
             if (matcher.find()) {
-                endArray(matcher.group(1), matcher.group(2), new EndArrayCallback<Void>() {
-                    @Override
-                    public Void callback(JSONArray arr, int index) {
-                        elementAt(arr, index, value);
-                        return null;
-                    }
+                endArray(matcher.group(1), matcher.group(2), (EndArrayCallback<Void>) (arr, index) -> {
+                    elementAt(arr, index, value);
+                    return null;
                 });
             } else {
                 set(name, value);
@@ -367,12 +359,7 @@ public class JSONObject extends LinkedHashMap<String, Object> {
     public JSONObject obj(final String name) {
         final Matcher matcher = arrayNamePattern.matcher(name);
         if (matcher.find()) {
-            return endArray(matcher.group(1), matcher.group(2), new EndArrayCallback<>() {
-                @Override
-                public JSONObject callback(JSONArray arr, int index) {
-                    return objAt(arr, index);
-                }
-            });
+            return endArray(matcher.group(1), matcher.group(2), JSONObject::objAt);
         } else {
             JSONObject obj = getObj(name);
             if (obj == null) {

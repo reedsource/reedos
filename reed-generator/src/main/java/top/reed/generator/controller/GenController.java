@@ -183,8 +183,7 @@ public class GenController extends BaseController {
             List<SQLStatement> sqlStatements = SQLUtils.parseStatements(sql, DbType.mysql);
             List<String> tableNames = new ArrayList<>();
             for (SQLStatement sqlStatement : sqlStatements) {
-                if (sqlStatement instanceof MySqlCreateTableStatement) {
-                    MySqlCreateTableStatement createTableStatement = (MySqlCreateTableStatement) sqlStatement;
+                if (sqlStatement instanceof MySqlCreateTableStatement createTableStatement) {
                     if (genTableService.createTable(createTableStatement.toString())) {
                         String tableName = createTableStatement.getTableName().replaceAll("`", "");
                         tableNames.add(tableName);
