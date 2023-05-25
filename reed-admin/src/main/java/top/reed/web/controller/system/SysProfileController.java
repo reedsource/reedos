@@ -46,7 +46,7 @@ public class SysProfileController extends BaseController {
         modelMap.put("user", user);
         modelMap.put("roleGroup", userService.selectUserRoleGroup(user.getUserId()));
         modelMap.put("postGroup", userService.selectUserPostGroup(user.getUserId()));
-        return "system/user/profile/profile" ;
+        return "system/user/profile/profile";
     }
 
     @GetMapping("/checkPassword")
@@ -60,7 +60,7 @@ public class SysProfileController extends BaseController {
     public String resetPwd(ModelMap modelMap) {
         SysUser user = getSysUser();
         modelMap.put("user", userService.selectUserById(user.getUserId()));
-        return "system/user/profile/resetPwd" ;
+        return "system/user/profile/resetPwd";
     }
 
     @Log(title = "重置密码", businessType = BusinessType.UPDATE)
@@ -91,7 +91,7 @@ public class SysProfileController extends BaseController {
     public String edit(ModelMap modelMap) {
         SysUser user = getSysUser();
         modelMap.put("user", userService.selectUserById(user.getUserId()));
-        return "system/user/edit" ;
+        return "system/user/edit";
     }
 
     /**
@@ -101,7 +101,7 @@ public class SysProfileController extends BaseController {
     public String avatar(ModelMap modelMap) {
         SysUser user = getSysUser();
         modelMap.put("user", userService.selectUserById(user.getUserId()));
-        return "system/user/profile/avatar" ;
+        return "system/user/profile/avatar";
     }
 
     /**

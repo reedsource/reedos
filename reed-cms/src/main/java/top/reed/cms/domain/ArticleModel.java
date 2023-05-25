@@ -25,14 +25,14 @@ public enum ArticleModel {
      */
     public static String getDescByVal(String val) {
         if (StringUtils.isEmpty(val)) {
-            return "其它" ;
+            return "其它";
         }
         for (ArticleModel articleModel : ArticleModel.values()) {
             if (val.equals(articleModel.getVal())) {
                 return articleModel.getDesc();
             }
         }
-        return "" ;
+        return "";
     }
 
     public String getDesc() {

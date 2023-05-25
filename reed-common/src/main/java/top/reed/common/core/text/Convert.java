@@ -270,7 +270,7 @@ public class Convert {
      * 转换为Integer数组<br>
      *
      * @param split 分隔符
-     * @param str 被转换的值
+     * @param str   被转换的值
      * @return 结果
      */
     public static Integer[] toIntArray(String split, String str) {
@@ -320,7 +320,7 @@ public class Convert {
      * 转换为String数组<br>
      *
      * @param split 分隔符
-     * @param str 被转换的值
+     * @param str   被转换的值
      * @return 结果
      */
     public static String[] toStrArray(String split, String str) {
@@ -816,7 +816,7 @@ public class Convert {
         String[] digit = {"零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"};
         String[][] unit = {{"元", "万", "亿"}, {"", "拾", "佰", "仟"}};
 
-        String head = n < 0 ? "负" : "" ;
+        String head = n < 0 ? "负" : "";
         n = Math.abs(n);
 
         StringBuilder s = new StringBuilder();

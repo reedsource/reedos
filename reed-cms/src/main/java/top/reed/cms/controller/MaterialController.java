@@ -35,7 +35,7 @@ public class MaterialController extends BaseController {
     @RequiresPermissions("cms:material:view")
     @GetMapping()
     public String material() {
-        return "cms/material/material" ;
+        return "cms/material/material";
     }
 
     /**
@@ -71,7 +71,7 @@ public class MaterialController extends BaseController {
         material.setGroupId("1");
         material.setGroupName("默认分组");
         modelMap.put("material", material);
-        return "cms/material/add" ;
+        return "cms/material/add";
     }
 
     /**
@@ -92,7 +92,7 @@ public class MaterialController extends BaseController {
     public String edit(@PathVariable("materialId") String materialId, ModelMap modelMap) {
         Material material = materialService.selectMaterialById(materialId);
         modelMap.put("material", material);
-        return "cms/material/edit" ;
+        return "cms/material/edit";
     }
 
     /**
@@ -141,7 +141,7 @@ public class MaterialController extends BaseController {
     @GetMapping("/toUseList/{materialId}")
     public String toUseList(@PathVariable("materialId") String materialId, ModelMap modelMap) {
         modelMap.put("materialId", materialId);
-        return "cms/material/materialUse" ;
+        return "cms/material/materialUse";
     }
 
     /**
@@ -181,7 +181,7 @@ public class MaterialController extends BaseController {
         modelMap.put("materialId", StringUtils.isNotEmpty(materialId) ? materialId : "");
         modelMap.put("materialName", StringUtils.isNotEmpty(materialName) ? materialName : "");
         modelMap.put("materialPath", StringUtils.isNotEmpty(materialPath) ? materialPath : "");
-        return "cms/material/selectMaterialWithGroup" ;
+        return "cms/material/selectMaterialWithGroup";
     }
 
 }

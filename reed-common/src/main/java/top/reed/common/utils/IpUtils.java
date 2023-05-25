@@ -10,12 +10,12 @@ import java.net.UnknownHostException;
  * @author reedsource
  */
 public class IpUtils {
-    public final static String REGX_0_255 = "(25[0-5]|2[0-4]\\d|1\\d{2}|[1-9]\\d|\\d)" ;
+    public final static String REGX_0_255 = "(25[0-5]|2[0-4]\\d|1\\d{2}|[1-9]\\d|\\d)";
     // 匹配 ip
-    public final static String REGX_IP = "((" + REGX_0_255 + "\\.){3}" + REGX_0_255 + ")" ;
+    public final static String REGX_IP = "((" + REGX_0_255 + "\\.){3}" + REGX_0_255 + ")";
     // 匹配网段
-    public final static String REGX_IP_SEG = "(" + REGX_IP + "-" + REGX_IP + ")" ;
-    public final static String REGX_IP_WILDCARD = "(((\\*\\.){3}\\*)|(" + REGX_0_255 + "(\\.\\*){3})|(" + REGX_0_255 + "\\." + REGX_0_255 + ")(\\.\\*){2}" + "|((" + REGX_0_255 + "\\.){3}\\*))" ;
+    public final static String REGX_IP_SEG = "(" + REGX_IP + "-" + REGX_IP + ")";
+    public final static String REGX_IP_WILDCARD = "(((\\*\\.){3}\\*)|(" + REGX_0_255 + "(\\.\\*){3})|(" + REGX_0_255 + "\\." + REGX_0_255 + ")(\\.\\*){2}" + "|((" + REGX_0_255 + "\\.){3}\\*))";
 
     /**
      * 获取客户端IP
@@ -25,7 +25,7 @@ public class IpUtils {
      */
     public static String getIpAddr(HttpServletRequest request) {
         if (request == null) {
-            return "unknown" ;
+            return "unknown";
         }
         String ip = request.getHeader("x-forwarded-for");
         if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
@@ -181,7 +181,7 @@ public class IpUtils {
             return InetAddress.getLocalHost().getHostAddress();
         } catch (UnknownHostException ignored) {
         }
-        return "127.0.0.1" ;
+        return "127.0.0.1";
     }
 
     /**
@@ -194,7 +194,7 @@ public class IpUtils {
             return InetAddress.getLocalHost().getHostName();
         } catch (UnknownHostException ignored) {
         }
-        return "未知" ;
+        return "未知";
     }
 
     /**

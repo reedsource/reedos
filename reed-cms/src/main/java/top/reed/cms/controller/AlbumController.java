@@ -35,7 +35,7 @@ public class AlbumController extends BaseController {
     @RequiresPermissions("cms:album:view")
     @GetMapping()
     public String album() {
-        return "cms/album/album" ;
+        return "cms/album/album";
     }
 
     /**
@@ -55,7 +55,7 @@ public class AlbumController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return "cms/album/add" ;
+        return "cms/album/add";
     }
 
     /**
@@ -76,7 +76,7 @@ public class AlbumController extends BaseController {
     public String edit(@PathVariable("albumId") String albumId, ModelMap modelMap) {
         Album album = albumService.selectAlbumById(albumId);
         modelMap.put("album", album);
-        return "cms/album/edit" ;
+        return "cms/album/edit";
     }
 
     /**
@@ -109,7 +109,7 @@ public class AlbumController extends BaseController {
     @GetMapping("/toAddMaterial/{albumId}")
     public String toAddMaterial(@PathVariable("albumId") String albumId, ModelMap modelMap) {
         modelMap.put("albumId", albumId);
-        return "cms/album/addMaterial" ;
+        return "cms/album/addMaterial";
     }
 
     /**
@@ -129,7 +129,7 @@ public class AlbumController extends BaseController {
     @GetMapping("/selectMaterial/{albumId}")
     public String selectMaterial(@PathVariable("albumId") String albumId, ModelMap modelMap) {
         modelMap.put("albumId", albumId);
-        return "cms/album/selectMaterial" ;
+        return "cms/album/selectMaterial";
     }
 
 

@@ -54,7 +54,7 @@ public class ArticleController extends BaseController {
     @RequiresPermissions("cms:article:view")
     @GetMapping()
     public String article() {
-        return "cms/article/article" ;
+        return "cms/article/article";
     }
 
     /**
@@ -88,7 +88,7 @@ public class ArticleController extends BaseController {
     public String add(ModelMap modelMap) {
         List<Tags> tags = tagsService.selectTagsAll();
         modelMap.put("tags", tags);
-        return "cms/article/add" ;
+        return "cms/article/add";
     }
 
     /**
@@ -112,7 +112,7 @@ public class ArticleController extends BaseController {
         String tagIds = article.getTags();
         List<Tags> tags = tagsService.selectSelectedTagsAll(tagIds);
         modelMap.put("tags", tags);
-        return "cms/article/edit" ;
+        return "cms/article/edit";
     }
 
     /**
@@ -166,7 +166,7 @@ public class ArticleController extends BaseController {
             model.addAllAttributes(dataMap);
 
         }
-        return "cms/article/article-duoguyu" ;
+        return "cms/article/article-duoguyu";
 
     }
 

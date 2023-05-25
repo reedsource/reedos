@@ -32,7 +32,7 @@ public class AttachmentController extends BaseController {
     @RequiresPermissions("cms:attachment:view")
     @GetMapping()
     public String attachment() {
-        return "cms/attachment/attachment" ;
+        return "cms/attachment/attachment";
     }
 
     /**
@@ -64,7 +64,7 @@ public class AttachmentController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return "cms/attachment/add" ;
+        return "cms/attachment/add";
     }
 
     /**
@@ -85,7 +85,7 @@ public class AttachmentController extends BaseController {
     public String edit(@PathVariable("attachId") String attachId, ModelMap modelMap) {
         Attachment attachment = attachmentService.selectAttachmentById(attachId);
         modelMap.put("attachment", attachment);
-        return "cms/attachment/edit" ;
+        return "cms/attachment/edit";
     }
 
     /**

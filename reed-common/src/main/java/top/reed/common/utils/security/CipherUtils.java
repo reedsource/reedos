@@ -22,7 +22,7 @@ public class CipherUtils {
         try {
             kg = KeyGenerator.getInstance(algorithmName);
         } catch (NoSuchAlgorithmException e) {
-            String msg = "无法获取 " + algorithmName + " 算法。这是正常工作所必需的。" ;
+            String msg = "无法获取 " + algorithmName + " 算法。这是正常工作所必需的。";
             throw new IllegalStateException(msg, e);
         }
         kg.init(keyBitSize);

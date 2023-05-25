@@ -30,12 +30,12 @@ public class CustomShiroFilterFactoryBean extends ShiroFilterFactoryBean {
 
         SecurityManager securityManager = getSecurityManager();
         if (securityManager == null) {
-            String msg = "SecurityManager property must be set." ;
+            String msg = "SecurityManager property must be set.";
             throw new BeanInitializationException(msg);
         }
 
         if (!(securityManager instanceof WebSecurityManager)) {
-            String msg = "The security manager does not implement the WebSecurityManager interface." ;
+            String msg = "The security manager does not implement the WebSecurityManager interface.";
             throw new BeanInitializationException(msg);
         }
 

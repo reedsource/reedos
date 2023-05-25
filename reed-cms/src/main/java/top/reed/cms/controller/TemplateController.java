@@ -32,7 +32,7 @@ public class TemplateController extends BaseController {
     @RequiresPermissions("cms:template:view")
     @GetMapping()
     public String template() {
-        return "cms/template/template" ;
+        return "cms/template/template";
     }
 
     /**
@@ -64,7 +64,7 @@ public class TemplateController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return "cms/template/add" ;
+        return "cms/template/add";
     }
 
     /**
@@ -85,7 +85,7 @@ public class TemplateController extends BaseController {
     public String edit(@PathVariable("templateId") Long templateId, ModelMap modelMap) {
         Template template = templateService.selectTemplateById(templateId);
         modelMap.put("template", template);
-        return "cms/template/edit" ;
+        return "cms/template/edit";
     }
 
     /**

@@ -25,32 +25,32 @@ public @interface Excel {
     /**
      * 导出到Excel中的名字.
      */
-    String name() default "" ;
+    String name() default "";
 
     /**
      * 日期格式, 如: yyyy-MM-dd
      */
-    String dateFormat() default "" ;
+    String dateFormat() default "";
 
     /**
      * 如果是字典类型，请设置字典的type值 (如: sys_user_sex)
      */
-    String dictType() default "" ;
+    String dictType() default "";
 
     /**
      * 读取内容转表达式 (如: 0=男,1=女,2=未知)
      */
-    String readConverterExp() default "" ;
+    String readConverterExp() default "";
 
     /**
      * 分隔符，读取字符串组内容
      */
-    String separator() default "," ;
+    String separator() default ",";
 
     /**
      * 获取缓存的对应值 (如: auto_job_name)
      */
-    String getCache() default "" ;
+    String getCache() default "";
 
     /**
      * BigDecimal 精度 默认:-1(默认不开启BigDecimal格式化)
@@ -78,17 +78,17 @@ public @interface Excel {
     /**
      * 文字后缀,如% 90 变成90%
      */
-    String suffix() default "" ;
+    String suffix() default "";
 
     /**
      * 当值为空时,字段的默认值
      */
-    String defaultValue() default "" ;
+    String defaultValue() default "";
 
     /**
      * 提示信息
      */
-    String prompt() default "" ;
+    String prompt() default "";
 
     /**
      * 设置只能选择不能输入的列内容.
@@ -108,7 +108,7 @@ public @interface Excel {
     /**
      * 另一个类中的属性名称,支持多级获取,以小数点隔开
      */
-    String targetAttr() default "" ;
+    String targetAttr() default "";
 
     /**
      * 是否自动统计数据,在最后追加一行统计数据总和

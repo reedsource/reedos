@@ -92,9 +92,9 @@ public class LogUtils {
 
     public static String getBlock(Object msg) {
         if (msg == null) {
-            msg = "" ;
+            msg = "";
         }
-        return "[" + msg + "]" ;
+        return "[" + msg + "]";
     }
 
     protected static String getParams(HttpServletRequest request) throws Exception {

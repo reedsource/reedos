@@ -58,7 +58,7 @@ public class SysUserController extends BaseController {
     @RequiresPermissions("system:user:view")
     @GetMapping()
     public String user() {
-        return "system/user/user" ;
+        return "system/user/user";
     }
 
     @RequiresPermissions("system:user:list")
@@ -106,7 +106,7 @@ public class SysUserController extends BaseController {
     public String add(ModelMap modelMap) {
         modelMap.put("roles", roleService.selectRoleAll().stream().filter(r -> !r.isSuper()).collect(Collectors.toList()));
         modelMap.put("posts", postService.selectPostAll());
-        return "system/user/add" ;
+        return "system/user/add";
     }
 
     /**
@@ -144,7 +144,7 @@ public class SysUserController extends BaseController {
         //如果是超级管理员 全部角色, 否 剔除超级管理员的其它角色
         modelMap.put("roles", SysUser.isSuper(userId) ? roles : roles.stream().filter(r -> !r.isSuper()).collect(Collectors.toList()));
         modelMap.put("posts", postService.selectPostsByUserId(userId));
-        return "system/user/edit" ;
+        return "system/user/edit";
     }
 
     /**
@@ -175,7 +175,7 @@ public class SysUserController extends BaseController {
     @GetMapping("/resetPwd/{userId}")
     public String resetPwd(@PathVariable("userId") Long userId, ModelMap modelMap) {
         modelMap.put("user", userService.selectUserById(userId));
-        return "system/user/resetPwd" ;
+        return "system/user/resetPwd";
     }
 
     @RequiresPermissions("system:user:resetPwd")
@@ -206,7 +206,7 @@ public class SysUserController extends BaseController {
         List<SysRole> roles = roleService.selectRolesByUserId(userId);
         modelMap.put("user", user);
         modelMap.put("roles", SysUser.isSuper(userId) ? roles : roles.stream().filter(r -> !r.isSuper()).collect(Collectors.toList()));
-        return "system/user/authRole" ;
+        return "system/user/authRole";
     }
 
     /**
@@ -293,6 +293,6 @@ public class SysUserController extends BaseController {
     @GetMapping("/selectDeptTree/{deptId}")
     public String selectDeptTree(@PathVariable("deptId") Long deptId, ModelMap modelMap) {
         modelMap.put("dept", deptService.selectDeptById(deptId));
-        return "system/user/deptTree" ;
+        return "system/user/deptTree";
     }
 }

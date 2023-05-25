@@ -32,11 +32,11 @@ public class UserAgent {
     /**
      * 浏览器
      */
-    public String browser = "" ;
+    public String browser = "";
     /**
      * 操作系统
      */
-    public String operatingSystem = "" ;
+    public String operatingSystem = "";
 
     /**
      * Agent标头值解析解析处理

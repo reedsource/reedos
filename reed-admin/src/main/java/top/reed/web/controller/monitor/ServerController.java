@@ -24,6 +24,6 @@ public class ServerController extends BaseController {
         Server server = new Server();
         server.copyTo();
         modelMap.put("server", server);
-        return "monitor/server/server" ;
+        return "monitor/server/server";
     }
 }

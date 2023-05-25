@@ -18,11 +18,11 @@ import java.util.Map;
  */
 @Component
 public class SameUrlDataInterceptor extends RepeatSubmitInterceptor {
-    public final String REPEAT_PARAMS = "repeatParams" ;
+    public final String REPEAT_PARAMS = "repeatParams";
 
-    public final String REPEAT_TIME = "repeatTime" ;
+    public final String REPEAT_TIME = "repeatTime";
 
-    public final String SESSION_REPEAT_KEY = "repeatData" ;
+    public final String SESSION_REPEAT_KEY = "repeatData";
 
     @SuppressWarnings("unchecked")
     @Override

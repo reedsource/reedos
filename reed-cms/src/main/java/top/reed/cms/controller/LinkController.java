@@ -32,7 +32,7 @@ public class LinkController extends BaseController {
     @RequiresPermissions("cms:link:view")
     @GetMapping()
     public String link() {
-        return "cms/link/link" ;
+        return "cms/link/link";
     }
 
     /**
@@ -64,7 +64,7 @@ public class LinkController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return "cms/link/add" ;
+        return "cms/link/add";
     }
 
     /**
@@ -85,7 +85,7 @@ public class LinkController extends BaseController {
     public String edit(@PathVariable("linkId") Long linkId, ModelMap modelMap) {
         Link link = linkService.selectLinkById(linkId);
         modelMap.put("link", link);
-        return "cms/link/edit" ;
+        return "cms/link/edit";
     }
 
     /**

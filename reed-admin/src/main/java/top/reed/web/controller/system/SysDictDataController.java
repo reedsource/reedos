@@ -32,7 +32,7 @@ public class SysDictDataController extends BaseController {
     @RequiresPermissions("system:dict:view")
     @GetMapping()
     public String dictData() {
-        return "system/dict/data/data" ;
+        return "system/dict/data/data";
     }
 
     @PostMapping("/list")
@@ -60,7 +60,7 @@ public class SysDictDataController extends BaseController {
     @GetMapping("/add/{dictType}")
     public String add(@PathVariable("dictType") String dictType, ModelMap modelMap) {
         modelMap.put("dictType", dictType);
-        return "system/dict/data/add" ;
+        return "system/dict/data/add";
     }
 
     /**
@@ -82,7 +82,7 @@ public class SysDictDataController extends BaseController {
     @GetMapping("/edit/{dictCode}")
     public String edit(@PathVariable("dictCode") Long dictCode, ModelMap modelMap) {
         modelMap.put("dict", dictDataService.selectDictDataById(dictCode));
-        return "system/dict/data/edit" ;
+        return "system/dict/data/edit";
     }
 
     /**

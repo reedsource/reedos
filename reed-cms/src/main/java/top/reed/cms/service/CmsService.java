@@ -19,20 +19,20 @@ import java.util.Map;
 @Service("cms")
 public class CmsService {
 
-    private static final String KEY_SITE_INFO = "siteInfo" ;
-    private static final String KEY_FRIEND_LINKS = "friendLinks" ;//友链
-    private static final String KEY_TAGS = "tags" ;
-    private static final String KEY_CATEGORY = "category" ;
-    private static final String KEY_INDEX_LIST = "indexList" ;
-    private static final String KEY_RECENT_LIST = "recentList" ;
-    private static final String KEY_RECOMMENDED_LIST = "recommendedList" ;
-    private static final String KEY_HOT_LIST = "hotList" ;
-    private static final String KEY_TOP_LIST = "topList" ;
-    private static final String KEY_FOCUS_LIST = "focusList" ;
-    private static final String KEY_NEW_COMMENT_LIST = "newCommentList" ;
-    private static final String KEY_RECOMMENDED_LIST_RES = "recommendedList_res" ;//推荐资源
-    private static final String KEY_FULL_TABS = "fullTabs" ;
-    private static final String KEY_SHORT_WORDS = "shortWords" ;
+    private static final String KEY_SITE_INFO = "siteInfo";
+    private static final String KEY_FRIEND_LINKS = "friendLinks";//友链
+    private static final String KEY_TAGS = "tags";
+    private static final String KEY_CATEGORY = "category";
+    private static final String KEY_INDEX_LIST = "indexList";
+    private static final String KEY_RECENT_LIST = "recentList";
+    private static final String KEY_RECOMMENDED_LIST = "recommendedList";
+    private static final String KEY_HOT_LIST = "hotList";
+    private static final String KEY_TOP_LIST = "topList";
+    private static final String KEY_FOCUS_LIST = "focusList";
+    private static final String KEY_NEW_COMMENT_LIST = "newCommentList";
+    private static final String KEY_RECOMMENDED_LIST_RES = "recommendedList_res";//推荐资源
+    private static final String KEY_FULL_TABS = "fullTabs";
+    private static final String KEY_SHORT_WORDS = "shortWords";
     private final Cache<String, Object> siteInfoCache = CacheUtil.newTimedCache(1000 * 60 * 10);//10分钟有效时间，过期后重新数据库取值
     @Autowired
     private IFriendLinkService friendLinkService;
@@ -275,7 +275,7 @@ public class CmsService {
      */
     public Object selectIndexBannerImgs(String code) {
         if (StringUtils.isEmpty(code)) {
-            code = "blog_index" ;
+            code = "blog_index";
         }
         Map data = (Map) siteInfoCache.get(code, false);
         if (data == null) {

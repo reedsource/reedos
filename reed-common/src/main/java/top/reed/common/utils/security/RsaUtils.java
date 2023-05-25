@@ -22,7 +22,7 @@ public class RsaUtils {
             + "kM0HqoTt2UZwA5E2MzS4EI2gjfQhz5X28uqxAiEA3wNFxfrCZlSZHb0gn2zDpWow"
             + "cSxQAgiCstxGUoOqlW8CIQDDOerGKH5OmCJ4Z21v+F25WaHYPxCFMvwxpcw99Ecv"
             + "DQIgIdhDTIqD2jfYjPTY8Jj3EDGPbH2HHuffvflECt3Ek60CIQCFRlCkHpi7hthh"
-            + "YhovyloRYsM+IS9h/0BzlEAuO0ktMQIgSPT3aFAgJYwKpqRYKlLDVcflZFCKY7u3" + "UP8iWi1Qw0Y=" ;
+            + "YhovyloRYsM+IS9h/0BzlEAuO0ktMQIgSPT3aFAgJYwKpqRYKlLDVcflZFCKY7u3" + "UP8iWi1Qw0Y=";
 
     /**
      * 私钥解密
@@ -119,8 +119,8 @@ public class RsaUtils {
     }
 
     /**
-         * RSA密钥对对象
-         */
-        public record RsaKeyPair(String publicKey, String privateKey) {
+     * RSA密钥对对象
+     */
+    public record RsaKeyPair(String publicKey, String privateKey) {
     }
 }

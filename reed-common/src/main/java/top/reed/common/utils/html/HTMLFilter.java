@@ -136,14 +136,14 @@ public final class HTMLFilter {
     @SuppressWarnings("unchecked")
     public HTMLFilter(final Map<String, Object> conf) {
 
-        assert conf.containsKey("vAllowed") : "configuration requires vAllowed" ;
-        assert conf.containsKey("vSelfClosingTags") : "configuration requires vSelfClosingTags" ;
-        assert conf.containsKey("vNeedClosingTags") : "configuration requires vNeedClosingTags" ;
-        assert conf.containsKey("vDisallowed") : "configuration requires vDisallowed" ;
-        assert conf.containsKey("vAllowedProtocols") : "configuration requires vAllowedProtocols" ;
-        assert conf.containsKey("vProtocolAtts") : "configuration requires vProtocolAtts" ;
-        assert conf.containsKey("vRemoveBlanks") : "configuration requires vRemoveBlanks" ;
-        assert conf.containsKey("vAllowedEntities") : "configuration requires vAllowedEntities" ;
+        assert conf.containsKey("vAllowed") : "configuration requires vAllowed";
+        assert conf.containsKey("vSelfClosingTags") : "configuration requires vSelfClosingTags";
+        assert conf.containsKey("vNeedClosingTags") : "configuration requires vNeedClosingTags";
+        assert conf.containsKey("vDisallowed") : "configuration requires vDisallowed";
+        assert conf.containsKey("vAllowedProtocols") : "configuration requires vAllowedProtocols";
+        assert conf.containsKey("vProtocolAtts") : "configuration requires vProtocolAtts";
+        assert conf.containsKey("vRemoveBlanks") : "configuration requires vRemoveBlanks";
+        assert conf.containsKey("vAllowedEntities") : "configuration requires vAllowedEntities";
 
         vAllowed = Collections.unmodifiableMap((HashMap<String, List<String>>) conf.get("vAllowed"));
         vSelfClosingTags = (String[]) conf.get("vSelfClosingTags");
@@ -313,7 +313,7 @@ public final class HTMLFilter {
                 if (!inArray(name, vSelfClosingTags)) {
                     if (vTagCounts.containsKey(name)) {
                         vTagCounts.put(name, vTagCounts.get(name) - 1);
-                        return "</" + name + ">" ;
+                        return "</" + name + ">";
                     }
                 }
             }
@@ -357,11 +357,11 @@ public final class HTMLFilter {
                 }
 
                 if (inArray(name, vSelfClosingTags)) {
-                    ending = " /" ;
+                    ending = " /";
                 }
 
                 if (inArray(name, vNeedClosingTags)) {
-                    ending = "" ;
+                    ending = "";
                 }
 
                 if (ending == null || ending.length() < 1) {
@@ -371,21 +371,21 @@ public final class HTMLFilter {
                         vTagCounts.put(name, 1);
                     }
                 } else {
-                    ending = " /" ;
+                    ending = " /";
                 }
-                return "<" + name + params + ending + ">" ;
+                return "<" + name + params + ending + ">";
             } else {
-                return "" ;
+                return "";
             }
         }
 
         // comments
         m = P_COMMENT.matcher(s);
         if (!stripComment && m.find()) {
-            return "<" + m.group() + ">" ;
+            return "<" + m.group() + ">";
         }
 
-        return "" ;
+        return "";
     }
 
     private String processParamProtocol(String s) {

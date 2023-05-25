@@ -33,7 +33,7 @@ public class EmailController extends BaseController {
     @RequiresPermissions("cms:email:view")
     @GetMapping()
     public String email() {
-        return "cms/email/email" ;
+        return "cms/email/email";
     }
 
     /**
@@ -65,7 +65,7 @@ public class EmailController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return "cms/email/add" ;
+        return "cms/email/add";
     }
 
     /**
@@ -90,7 +90,7 @@ public class EmailController extends BaseController {
     public String edit(@PathVariable("id") String id, ModelMap modelMap) {
         Email email = emailService.selectEmailById(id);
         modelMap.put("email", email);
-        return "cms/email/edit" ;
+        return "cms/email/edit";
     }
 
     /**

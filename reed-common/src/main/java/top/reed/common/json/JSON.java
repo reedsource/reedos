@@ -14,7 +14,7 @@ import java.io.OutputStream;
  * @author reedsource
  */
 public class JSON {
-    public static final String DEFAULT_FAIL = "\"Parse failed\"" ;
+    public static final String DEFAULT_FAIL = "\"Parse failed\"";
     private static final ObjectMapper objectMapper = new ObjectMapper();
     private static final ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
 

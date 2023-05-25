@@ -8,7 +8,7 @@ import top.reed.common.utils.StringUtils;
  * @author reedsource
  */
 public class EscapeUtil {
-    public static final String RE_HTML_MARK = "(<[^<]*?>)|(<[\\s]*?/[^<]*?>)|(<[^<]*?/[\\s]*?>)" ;
+    public static final String RE_HTML_MARK = "(<[^<]*?>)|(<[\\s]*?/[^<]*?>)|(<[^<]*?/[\\s]*?>)";
 
     /**
      * 转义文本中的HTML字符为安全的字符

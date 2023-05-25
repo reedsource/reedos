@@ -127,7 +127,7 @@ public class DemoTableController extends BaseController {
      */
     @GetMapping("/search")
     public String search() {
-        return "demo/table/search" ;
+        return "demo/table/search";
     }
 
     /**
@@ -135,7 +135,7 @@ public class DemoTableController extends BaseController {
      */
     @GetMapping("/footer")
     public String footer() {
-        return "demo/table/footer" ;
+        return "demo/table/footer";
     }
 
     /**
@@ -143,7 +143,7 @@ public class DemoTableController extends BaseController {
      */
     @GetMapping("/groupHeader")
     public String groupHeader() {
-        return "demo/table/groupHeader" ;
+        return "demo/table/groupHeader";
     }
 
     /**
@@ -151,7 +151,7 @@ public class DemoTableController extends BaseController {
      */
     @GetMapping("/export")
     public String export() {
-        return "demo/table/export" ;
+        return "demo/table/export";
     }
 
     /**
@@ -159,7 +159,7 @@ public class DemoTableController extends BaseController {
      */
     @GetMapping("/exportSelected")
     public String exportSelected() {
-        return "demo/table/exportSelected" ;
+        return "demo/table/exportSelected";
     }
 
     /**
@@ -191,7 +191,7 @@ public class DemoTableController extends BaseController {
      */
     @GetMapping("/remember")
     public String remember() {
-        return "demo/table/remember" ;
+        return "demo/table/remember";
     }
 
     /**
@@ -199,7 +199,7 @@ public class DemoTableController extends BaseController {
      */
     @GetMapping("/pageGo")
     public String pageGo() {
-        return "demo/table/pageGo" ;
+        return "demo/table/pageGo";
     }
 
     /**
@@ -207,7 +207,7 @@ public class DemoTableController extends BaseController {
      */
     @GetMapping("/params")
     public String params() {
-        return "demo/table/params" ;
+        return "demo/table/params";
     }
 
     /**
@@ -215,7 +215,7 @@ public class DemoTableController extends BaseController {
      */
     @GetMapping("/multi")
     public String multi() {
-        return "demo/table/multi" ;
+        return "demo/table/multi";
     }
 
     /**
@@ -223,7 +223,7 @@ public class DemoTableController extends BaseController {
      */
     @GetMapping("/button")
     public String button() {
-        return "demo/table/button" ;
+        return "demo/table/button";
     }
 
     /**
@@ -232,7 +232,7 @@ public class DemoTableController extends BaseController {
     @GetMapping("/data")
     public String data(ModelMap modelMap) {
         modelMap.put("users", users);
-        return "demo/table/data" ;
+        return "demo/table/data";
     }
 
     /**
@@ -240,7 +240,7 @@ public class DemoTableController extends BaseController {
      */
     @GetMapping("/fixedColumns")
     public String fixedColumns() {
-        return "demo/table/fixedColumns" ;
+        return "demo/table/fixedColumns";
     }
 
     /**
@@ -248,7 +248,7 @@ public class DemoTableController extends BaseController {
      */
     @GetMapping("/event")
     public String event() {
-        return "demo/table/event" ;
+        return "demo/table/event";
     }
 
     /**
@@ -256,7 +256,7 @@ public class DemoTableController extends BaseController {
      */
     @GetMapping("/detail")
     public String detail() {
-        return "demo/table/detail" ;
+        return "demo/table/detail";
     }
 
     /**
@@ -264,7 +264,7 @@ public class DemoTableController extends BaseController {
      */
     @GetMapping("/child")
     public String child() {
-        return "demo/table/child" ;
+        return "demo/table/child";
     }
 
     /**
@@ -272,7 +272,7 @@ public class DemoTableController extends BaseController {
      */
     @GetMapping("/image")
     public String image() {
-        return "demo/table/image" ;
+        return "demo/table/image";
     }
 
     /**
@@ -280,7 +280,7 @@ public class DemoTableController extends BaseController {
      */
     @GetMapping("/curd")
     public String curd() {
-        return "demo/table/curd" ;
+        return "demo/table/curd";
     }
 
     /**
@@ -288,7 +288,7 @@ public class DemoTableController extends BaseController {
      */
     @GetMapping("/reorderRows")
     public String reorderRows() {
-        return "demo/table/reorderRows" ;
+        return "demo/table/reorderRows";
     }
 
     /**
@@ -296,7 +296,7 @@ public class DemoTableController extends BaseController {
      */
     @GetMapping("/reorderColumns")
     public String reorderColumns() {
-        return "demo/table/reorderColumns" ;
+        return "demo/table/reorderColumns";
     }
 
     /**
@@ -304,7 +304,7 @@ public class DemoTableController extends BaseController {
      */
     @GetMapping("/resizable")
     public String resizable() {
-        return "demo/table/resizable" ;
+        return "demo/table/resizable";
     }
 
     /**
@@ -312,7 +312,7 @@ public class DemoTableController extends BaseController {
      */
     @GetMapping("/editable")
     public String editable() {
-        return "demo/table/editable" ;
+        return "demo/table/editable";
     }
 
     /**
@@ -320,7 +320,7 @@ public class DemoTableController extends BaseController {
      */
     @GetMapping("/subdata")
     public String subdata() {
-        return "demo/table/subdata" ;
+        return "demo/table/subdata";
     }
 
     /**
@@ -328,7 +328,7 @@ public class DemoTableController extends BaseController {
      */
     @GetMapping("/refresh")
     public String refresh() {
-        return "demo/table/refresh" ;
+        return "demo/table/refresh";
     }
 
     /**
@@ -336,7 +336,7 @@ public class DemoTableController extends BaseController {
      */
     @GetMapping("/print")
     public String print() {
-        return "demo/table/print" ;
+        return "demo/table/print";
     }
 
     /**
@@ -344,7 +344,7 @@ public class DemoTableController extends BaseController {
      */
     @GetMapping("/headerStyle")
     public String headerStyle() {
-        return "demo/table/headerStyle" ;
+        return "demo/table/headerStyle";
     }
 
     /**
@@ -352,7 +352,7 @@ public class DemoTableController extends BaseController {
      */
     @GetMapping("/dynamicColumns")
     public String dynamicColumns() {
-        return "demo/table/dynamicColumns" ;
+        return "demo/table/dynamicColumns";
     }
 
     /**
@@ -360,7 +360,7 @@ public class DemoTableController extends BaseController {
      */
     @GetMapping("/customView")
     public String customView() {
-        return "demo/table/customView" ;
+        return "demo/table/customView";
     }
 
     /**
@@ -368,7 +368,7 @@ public class DemoTableController extends BaseController {
      */
     @GetMapping("/asynTree")
     public String asynTree() {
-        return "demo/table/asynTree" ;
+        return "demo/table/asynTree";
     }
 
     /**
@@ -376,7 +376,7 @@ public class DemoTableController extends BaseController {
      */
     @GetMapping("/other")
     public String other() {
-        return "demo/table/other" ;
+        return "demo/table/other";
     }
 
     /**
@@ -488,6 +488,7 @@ public class DemoTableController extends BaseController {
         return areaList;
     }
 }
+
 @Data
 class UserTableColumn {
     /**

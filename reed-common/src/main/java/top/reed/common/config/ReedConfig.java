@@ -93,55 +93,55 @@ public class ReedConfig {
      * 获取导入上传路径
      */
     public static String getImportPath() {
-        return getProfile() + "/import" ;
+        return getProfile() + "/import";
     }
 
     /**
      * 获取头像上传路径
      */
     public static String getAvatarPath() {
-        return getProfile() + "/avatar" ;
+        return getProfile() + "/avatar";
     }
 
     /**
      * 获取下载路径
      */
     public static String getDownloadPath() {
-        return getProfile() + "/download/" ;
+        return getProfile() + "/download/";
     }
 
     /**
      * 获取上传路径
      */
     public static String getUploadPath() {
-        return getProfile() + "/upload" ;
+        return getProfile() + "/upload";
     }
 
     /**
      * 获取素材上传路径
      */
     public static String getMaterialPath() {
-        return getProfile() + "/material" ;
+        return getProfile() + "/material";
     }
 
     /**
      * 获取附件上传路径
      */
     public static String getAttachPath() {
-        return getProfile() + "/attach" ;
+        return getProfile() + "/attach";
     }
 
     /**
      * 获取资源上传路径
      */
     public static String getResourcePath() {
-        return getProfile() + "/resource" ;
+        return getProfile() + "/resource";
     }
 
     /**
      * 获取数据库备份路径
      */
     public static String getDbBackupPath() {
-        return getProfile() + "/dbbackup" ;
+        return getProfile() + "/dbbackup";
     }
 }

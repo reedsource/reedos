@@ -37,7 +37,7 @@ public class ResourceController extends BaseController {
     @RequiresPermissions("cms:resource:view")
     @GetMapping()
     public String resource() {
-        return "cms/resource/resource" ;
+        return "cms/resource/resource";
     }
 
     /**
@@ -69,7 +69,7 @@ public class ResourceController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return "cms/resource/add" ;
+        return "cms/resource/add";
     }
 
     /**
@@ -90,7 +90,7 @@ public class ResourceController extends BaseController {
     public String edit(@PathVariable("id") String id, ModelMap modelMap) {
         Resource resource = resourceService.selectResourceById(id);
         modelMap.put("resource", resource);
-        return "cms/resource/edit" ;
+        return "cms/resource/edit";
     }
 
     /**

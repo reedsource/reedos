@@ -32,7 +32,7 @@ public class SysConfigController extends BaseController {
     @RequiresPermissions("system:config:view")
     @GetMapping()
     public String config() {
-        return "system/config/config" ;
+        return "system/config/config";
     }
 
     /**
@@ -62,7 +62,7 @@ public class SysConfigController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return "system/config/add" ;
+        return "system/config/add";
     }
 
     /**
@@ -87,7 +87,7 @@ public class SysConfigController extends BaseController {
     @GetMapping("/edit/{configId}")
     public String edit(@PathVariable("configId") Long configId, ModelMap modelMap) {
         modelMap.put("config", configService.selectConfigById(configId));
-        return "system/config/edit" ;
+        return "system/config/edit";
     }
 
     /**

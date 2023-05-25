@@ -52,7 +52,7 @@ public class GenController extends BaseController {
     @RequiresPermissions("tool:gen:view")
     @GetMapping()
     public String gen() {
-        return "tool/gen/gen" ;
+        return "tool/gen/gen";
     }
 
     /**
@@ -99,7 +99,7 @@ public class GenController extends BaseController {
     @RequiresPermissions("tool:gen:list")
     @GetMapping("/importTable")
     public String importTable() {
-        return "tool/gen/importTable" ;
+        return "tool/gen/importTable";
     }
 
     /**
@@ -107,7 +107,7 @@ public class GenController extends BaseController {
      */
     @GetMapping("/createTable")
     public String createTable() {
-        return "tool/gen/createTable" ;
+        return "tool/gen/createTable";
     }
 
     /**
@@ -148,7 +148,7 @@ public class GenController extends BaseController {
         }
         modelMap.put("table", table);
         modelMap.put("data", JSON.toJSON(cxSelect));
-        return "tool/gen/edit" ;
+        return "tool/gen/edit";
     }
 
     /**

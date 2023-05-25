@@ -35,7 +35,7 @@ public class WebSocketController {
     @GetMapping("/notice")
     public String notice(Model model) {
         model.addAttribute("online", websocketServer.getOnlineUserCount());
-        return "/websocket/notification" ;
+        return "/websocket/notification";
     }
 
     /**

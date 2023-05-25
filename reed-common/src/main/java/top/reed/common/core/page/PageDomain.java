@@ -26,7 +26,7 @@ public class PageDomain {
     /**
      * 排序的方向desc或者asc
      */
-    private String isAsc = "asc" ;
+    private String isAsc = "asc";
 
     /**
      * 分页参数合理化
@@ -35,7 +35,7 @@ public class PageDomain {
 
     public String getOrderBy() {
         if (StringUtils.isEmpty(orderByColumn)) {
-            return "" ;
+            return "";
         }
         return StringUtils.toUnderScoreCase(orderByColumn) + " " + isAsc;
     }

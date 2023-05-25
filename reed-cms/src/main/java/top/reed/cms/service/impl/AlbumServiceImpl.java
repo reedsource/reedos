@@ -167,7 +167,7 @@ public class AlbumServiceImpl implements IAlbumService {
 
         SysUser user = ShiroUtils.getSysUser();
 
-        if ( addArr.length > 0) {
+        if (addArr.length > 0) {
             List<AlbumMaterial> list = Lists.newArrayList();
             AlbumMaterial albumMaterial;
             Integer i = 0;

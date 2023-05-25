@@ -28,7 +28,7 @@ public class ImageUtils {
         try {
             return IOUtils.toByteArray(Objects.requireNonNull(is));
         } catch (Exception e) {
-            log.error("图片加载异常 {}",e.toString());
+            log.error("图片加载异常 {}", e.toString());
             return null;
         } finally {
             IOUtils.closeQuietly(is);
@@ -41,7 +41,7 @@ public class ImageUtils {
             result = Arrays.copyOf(Objects.requireNonNull(result), result.length);
             return new ByteArrayInputStream(result);
         } catch (Exception e) {
-            log.error("获取图片异常 {}",e.toString());
+            log.error("获取图片异常 {}", e.toString());
         }
         return null;
     }
@@ -71,7 +71,7 @@ public class ImageUtils {
             }
             return IOUtils.toByteArray(in);
         } catch (Exception e) {
-            log.error("获取文件路径异常 {}",e.toString());
+            log.error("获取文件路径异常 {}", e.toString());
             return null;
         } finally {
             IOUtils.closeQuietly(in);

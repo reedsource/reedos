@@ -32,7 +32,7 @@ public class LinkTypeController extends BaseController {
     @RequiresPermissions("cms:linkType:view")
     @GetMapping()
     public String linkType() {
-        return "cms/linkType/linkType" ;
+        return "cms/linkType/linkType";
     }
 
     /**
@@ -64,7 +64,7 @@ public class LinkTypeController extends BaseController {
      */
     @GetMapping("/add")
     public String add() {
-        return "cms/linkType/add" ;
+        return "cms/linkType/add";
     }
 
     /**
@@ -85,7 +85,7 @@ public class LinkTypeController extends BaseController {
     public String edit(@PathVariable("id") Long id, ModelMap modelMap) {
         LinkType linkType = linkTypeService.selectLinkTypeById(id);
         modelMap.put("linkType", linkType);
-        return "cms/linkType/edit" ;
+        return "cms/linkType/edit";
     }
 
     /**

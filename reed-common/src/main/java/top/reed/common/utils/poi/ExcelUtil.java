@@ -49,7 +49,7 @@ import java.util.stream.Collectors;
  * @author reedsource
  */
 public class ExcelUtil<T> {
-    public static final String FORMULA_REGEX_STR = "=|-|\\+|@" ;
+    public static final String FORMULA_REGEX_STR = "=|-|\\+|@";
     public static final String[] FORMULA_STR = {"=", "-", "+", "@"};
     /**
      * Excel sheet最大行数，默认65536
@@ -60,6 +60,10 @@ public class ExcelUtil<T> {
      * 数字格式
      */
     private static final DecimalFormat DOUBLE_FORMAT = new DecimalFormat("######0.00");
+    /**
+     * 统计列表
+     */
+    private final Map<Integer, Double> statistics = new HashMap<>();
     /**
      * 用于dictType属性数据存储，避免重复查缓存
      */
@@ -128,10 +132,6 @@ public class ExcelUtil<T> {
      * 对象的子列表属性
      */
     private List<Field> subFields;
-    /**
-     * 统计列表
-     */
-    private final Map<Integer, Double> statistics = new HashMap<>();
 
     public ExcelUtil(Class<T> clazz) {
         this.clazz = clazz;
@@ -271,7 +271,7 @@ public class ExcelUtil<T> {
     /**
      * 获取Excel2007图片
      *
-     * @param sheet    当前sheet对象
+     * @param sheet 当前sheet对象
      * @return Map key:图片单元格索引（1_1）String，value:图片流PictureData
      */
     public static Map<String, PictureData> getSheetPictures07(XSSFSheet sheet) {
@@ -497,7 +497,7 @@ public class ExcelUtil<T> {
                     } else if (ColumnType.IMAGE == attr.cellType() && StringUtils.isNotEmpty(pictures)) {
                         PictureData image = pictures.get(row.getRowNum() + "_" + entry.getKey());
                         if (image == null) {
-                            val = "" ;
+                            val = "";
                         } else {
                             byte[] data = image.getData();
                             val = FileUtils.writeImportBytes(data);
@@ -1081,7 +1081,7 @@ public class ExcelUtil<T> {
             Method formatMethod = excel.handler().getMethod("format", Object.class, String[].class);
             value = formatMethod.invoke(instance, value, excel.args());
         } catch (Exception e) {
-            log.error("不能格式化数据 {} {}" , excel.handler() , e.getMessage());
+            log.error("不能格式化数据 {} {}", excel.handler(), e.getMessage());
         }
         return Convert.toStr(value);
     }
@@ -1127,7 +1127,7 @@ public class ExcelUtil<T> {
      * 编码文件名
      */
     public String encodingFilename(String filename) {
-        filename = UUID.randomUUID() + "_" + filename + ".xlsx" ;
+        filename = UUID.randomUUID() + "_" + filename + ".xlsx";
         return filename;
     }
 
@@ -1284,7 +1284,7 @@ public class ExcelUtil<T> {
         if (row == null) {
             return null;
         }
-        Object val = "" ;
+        Object val = "";
         try {
             Cell cell = row.getCell(column);
             if (StringUtils.isNotNull(cell)) {
@@ -1341,7 +1341,7 @@ public class ExcelUtil<T> {
      */
     public String parseDateToStr(String dateFormat, Object val) {
         if (val == null) {
-            return "" ;
+            return "";
         }
         String str;
         if (val instanceof Date) {

@@ -48,7 +48,7 @@ public class ArticleTemplateController extends BaseController {
         } else {
             modelMap.put("editorOK", true);
         }
-        return "cms/articleTemplate/articleTemplate" ;
+        return "cms/articleTemplate/articleTemplate";
     }
 
     /**
@@ -70,7 +70,7 @@ public class ArticleTemplateController extends BaseController {
     public String add(ModelMap modelMap) {
         List<Tags> tags = articleTemplateService.selectArticleTemplateTags("");
         modelMap.put("tags", tags);
-        return "cms/articleTemplate/add" ;
+        return "cms/articleTemplate/add";
     }
 
     /**
@@ -93,7 +93,7 @@ public class ArticleTemplateController extends BaseController {
         modelMap.put("articleTemplate", articleTemplate);
         List<Tags> tags = articleTemplateService.selectArticleTemplateTags(articleTemplate.getTags());
         modelMap.put("tags", tags);
-        return "cms/articleTemplate/edit" ;
+        return "cms/articleTemplate/edit";
     }
 
     /**
@@ -121,7 +121,7 @@ public class ArticleTemplateController extends BaseController {
     /*#############################华丽的分割线#####################################*/
     @GetMapping("/listNew")
     public String articleTemplateList() {
-        return "cms/articleTemplate/articleTemplateList" ;
+        return "cms/articleTemplate/articleTemplateList";
     }
 
 }

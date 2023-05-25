@@ -95,7 +95,7 @@ public class ArticleServiceImpl implements IArticleService {
         String tags = article.getTags();
         if (StringUtils.isNotEmpty(tags)) {
             if (!tags.endsWith(",")) {
-                tags += "," ;
+                tags += ",";
                 article.setTags(tags);
             }
         }
@@ -127,7 +127,7 @@ public class ArticleServiceImpl implements IArticleService {
         String tags = article.getTags();
         if (StringUtils.isNotEmpty(tags)) {
             if (!tags.endsWith(",")) {
-                tags += "," ;
+                tags += ",";
                 article.setTags(tags);
             }
         }

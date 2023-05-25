@@ -29,7 +29,7 @@ public class CacheController extends BaseController {
     @GetMapping()
     public String cache(ModelMap modelMap) {
         modelMap.put("cacheNames", cacheService.getCacheNames());
-        return "monitor/cache/cache" ;
+        return "monitor/cache/cache";
     }
 
     @RequiresPermissions("monitor:cache:view")

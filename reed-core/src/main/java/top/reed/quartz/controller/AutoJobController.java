@@ -158,7 +158,7 @@ public class AutoJobController extends BaseController {
 
     /**
      * @param job 定时任务任务
-     * @param m 任务类型
+     * @param m   任务类型
      * @return 校验结构
      */
     private AjaxResult getAjaxResult(AutoJob job, String m) {

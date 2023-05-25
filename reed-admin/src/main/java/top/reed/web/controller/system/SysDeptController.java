@@ -33,7 +33,7 @@ public class SysDeptController extends BaseController {
     @RequiresPermissions("system:dept:view")
     @GetMapping()
     public String dept() {
-        return "system/dept/dept" ;
+        return "system/dept/dept";
     }
 
     @RequiresPermissions("system:dept:list")
@@ -52,7 +52,7 @@ public class SysDeptController extends BaseController {
             parentId = getSysUser().getDeptId();
         }
         modelMap.put("dept", deptService.selectDeptById(parentId));
-        return "system/dept/add" ;
+        return "system/dept/add";
     }
 
     /**
@@ -82,7 +82,7 @@ public class SysDeptController extends BaseController {
             dept.setParentName("无");
         }
         modelMap.put("dept", dept);
-        return "system/dept/edit" ;
+        return "system/dept/edit";
     }
 
     /**
@@ -144,7 +144,7 @@ public class SysDeptController extends BaseController {
                                  @PathVariable(value = "excludeId", required = false) Long excludeId, ModelMap modelMap) {
         modelMap.put("dept", deptService.selectDeptById(deptId));
         modelMap.put("excludeId", excludeId);
-        return "system/dept/tree" ;
+        return "system/dept/tree";
     }
 
     /**

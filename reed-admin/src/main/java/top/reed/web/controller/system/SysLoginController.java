@@ -74,11 +74,11 @@ public class SysLoginController extends BaseController {
         String loginPageCode = iSysConfigService.selectConfigByKey(CmsConstants.KEY_LOGIN_PAGE);
 
         if ("默认".equals(loginPageCode)) {
-            return "login" ;
+            return "login";
         } else {
             //配置了login.page参数
             //页面在cms模块loginPage文件夹下
-            return "loginPage/" + loginPageCode + "/login" ;
+            return "loginPage/" + loginPageCode + "/login";
         }
     }
 
@@ -99,7 +99,7 @@ public class SysLoginController extends BaseController {
             subject.login(token);
             return success();
         } catch (Exception e) {
-            String msg = "用户或密码错误" ;
+            String msg = "用户或密码错误";
             if (StringUtils.isNotEmpty(e.getMessage())) {
                 msg = e.getMessage();
             }
@@ -109,6 +109,6 @@ public class SysLoginController extends BaseController {
 
     @GetMapping("/unauth")
     public String unauth() {
-        return "error/unauth" ;
+        return "error/unauth";
     }
 }
