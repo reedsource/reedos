@@ -170,13 +170,13 @@ public class AlbumServiceImpl implements IAlbumService {
         if (addArr.length > 0) {
             List<AlbumMaterial> list = Lists.newArrayList();
             AlbumMaterial albumMaterial;
-            Integer i = 0;
+            int i = 0;
             for (String s : addArr) {
                 i++;
                 albumMaterial = new AlbumMaterial();
                 albumMaterial.setAlbumId(albumId);
                 albumMaterial.setMaterialId(s);
-                albumMaterial.setSort(i.toString());
+                albumMaterial.setSort(Integer.toString(i));
                 list.add(albumMaterial);
             }
             albumMapper.insertAlbumMaterialBatch(list);

@@ -111,7 +111,7 @@ public class WebSocketUsers {
         if (session != null) {
             try {
                 // 为了防止消息中存在特殊字符（比如换行符）等造成前台解析错误，此处编码一次。前台对应的需要解码
-                session.getBasicRemote().sendText(generateMsg("default", URLEncoder.encode(message, StandardCharsets.UTF_8.displayName())));
+                session.getBasicRemote().sendText(generateMsg(URLEncoder.encode(message, StandardCharsets.UTF_8.displayName())));
             } catch (IOException e) {
                 LOGGER.error("\n[发送消息异常]", e);
             }
@@ -123,10 +123,9 @@ public class WebSocketUsers {
     /**
      * 根据消息类型，生成发送到客户端的最终消息内容
      *
-     * @param type    消息类型
      * @param content 消息正文
      */
-    private static String generateMsg(String type, String content) {
-        return String.format("{\"type\": \"%s\", \"msg\":\"%s\"}", type, content);
+    private static String generateMsg(String content) {
+        return String.format("{\"type\": \"%s\", \"msg\":\"%s\"}", "default", content);
     }
 }

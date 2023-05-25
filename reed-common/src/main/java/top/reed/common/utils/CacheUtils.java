@@ -19,8 +19,8 @@ public class CacheUtils {
      * 系统通用默认Cache缓存
      */
     private static final String SYS_CACHE = "sys-cache";
-    private static Logger logger = LoggerFactory.getLogger(CacheUtils.class);
-    private static CacheManager cacheManager = SpringUtils.getBean(CacheManager.class);
+    private static final Logger logger = LoggerFactory.getLogger(CacheUtils.class);
+    private static final CacheManager cacheManager = SpringUtils.getBean(CacheManager.class);
 
     /**
      * 获取SYS_CACHE缓存

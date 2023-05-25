@@ -190,7 +190,7 @@ public class GenController extends BaseController {
                     }
                 }
             }
-            List<GenTable> tableList = genTableService.selectDbTableListByNames(tableNames.toArray(new String[tableNames.size()]));
+            List<GenTable> tableList = genTableService.selectDbTableListByNames(tableNames.toArray(new String[0]));
             String operName = Convert.toStr(PermissionUtils.getPrincipalProperty("loginName"));
             genTableService.importGenTable(tableList, operName);
             return AjaxResult.success();

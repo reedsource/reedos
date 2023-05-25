@@ -96,9 +96,7 @@ public class JSONObject extends LinkedHashMap<String, Object> {
 
     private static JSONArray toArr(final Collection<Object> list) {
         final JSONArray arr = new JSONArray(list.size());
-        for (final Object element : list) {
-            arr.add(element);
-        }
+        arr.addAll(list);
         return arr;
     }
 
@@ -192,7 +190,7 @@ public class JSONObject extends LinkedHashMap<String, Object> {
 
         indexes = new int[list.size()];
         int i = 0;
-        for (Integer tmp : list.toArray(new Integer[list.size()])) {
+        for (Integer tmp : list.toArray(new Integer[0])) {
             indexes[i++] = tmp;
         }
 

@@ -25,14 +25,10 @@ public class QuartzJobInvokeUtil {
      * @param autoJob 系统任务
      */
     public static void invokeMethod(AutoJob autoJob) throws Exception {
-        //自动化任务
-        if ("0".equals(autoJob.getJobType())) {
+        //调用目标字符串
+        String invokeTarget = autoJob.getInvokeTarget();
+        isMethod(invokeTarget);
 
-        } else {
-            //调用目标字符串
-            String invokeTarget = autoJob.getInvokeTarget();
-            isMethod(invokeTarget);
-        }
     }
 
     /**

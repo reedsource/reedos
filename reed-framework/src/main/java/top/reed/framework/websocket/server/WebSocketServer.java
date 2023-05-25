@@ -27,7 +27,7 @@ public class WebSocketServer {
     /**
      * 默认最多允许同时在线人数100
      */
-    public static int socketMaxOnlineCount = 100;
+    public static final int socketMaxOnlineCount = 100;
 
     /**
      * 信号量维护 达到限流作用

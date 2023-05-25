@@ -100,10 +100,6 @@ public class DruidConfig {
                 response.getWriter().write(text);
             }
 
-            @Override
-            public void destroy() {
-                Filter.super.destroy();
-            }
         };
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setFilter(filter);

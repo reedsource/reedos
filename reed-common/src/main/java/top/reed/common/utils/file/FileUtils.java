@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 /**
  * 文件处理工具类
@@ -20,7 +21,7 @@ import java.nio.charset.StandardCharsets;
  * @author reedsource
  */
 public class FileUtils {
-    public static String FILENAME_PATTERN = "[a-zA-Z0-9_\\-|.\\u4e00-\\u9fa5]+";
+    public static final String FILENAME_PATTERN = "[a-zA-Z0-9_\\-|.\\u4e00-\\u9fa5]+";
 
     /**
      * 输出指定文件的byte数组
@@ -73,7 +74,7 @@ public class FileUtils {
             String extension = getFileExtendName(data);
             pathName = DateUtils.datePath() + "/" + IdUtils.fastUUID() + "." + extension;
             File file = FileUploadUtils.getAbsoluteFile(uploadDir, pathName);
-            fos = new FileOutputStream(file);
+            fos = new FileOutputStream(Objects.requireNonNull(file));
             fos.write(data);
         } finally {
             IOUtils.close(fos);
@@ -91,8 +92,7 @@ public class FileUtils {
         File file = new File(filePath);
         // 路径为文件且不为空则进行删除
         if (file.isFile() && file.exists()) {
-            file.delete();
-            flag = true;
+            return file.delete();
         }
         return flag;
     }

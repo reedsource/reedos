@@ -19,6 +19,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Objects;
 
 public class DownloadImageUtil {
     static Logger logger = LoggerFactory.getLogger(DownloadImageUtil.class);
@@ -71,7 +72,7 @@ public class DownloadImageUtil {
             HttpResponse response = httpclient.execute(httpget);
             HttpEntity entity = response.getEntity();
             try (InputStream in = entity.getContent()) {
-                FileOutputStream fout = new FileOutputStream(file);
+                FileOutputStream fout = new FileOutputStream(Objects.requireNonNull(file));
                 int l;
                 byte[] tmp = new byte[1024];
                 while ((l = in.read(tmp)) != -1) {

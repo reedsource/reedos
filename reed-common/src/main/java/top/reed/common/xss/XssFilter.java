@@ -19,7 +19,7 @@ public class XssFilter implements Filter {
     /**
      * 排除链接
      */
-    public List<String> excludes = new ArrayList<>();
+    public final List<String> excludes = new ArrayList<>();
 
     @Override
     public void init(FilterConfig filterConfig) {
@@ -53,9 +53,4 @@ public class XssFilter implements Filter {
         return StringUtils.matches(url, excludes);
     }
 
-    @Override
-    public void destroy() {
-
-        Filter.super.destroy();
-    }
 }

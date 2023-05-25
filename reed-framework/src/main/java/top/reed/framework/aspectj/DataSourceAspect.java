@@ -25,7 +25,7 @@ import java.util.Objects;
 @Order(1)
 @Component
 public class DataSourceAspect {
-    protected Logger logger = LoggerFactory.getLogger(getClass());
+    protected final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Pointcut("@annotation(top.reed.common.annotation.DataSource)"
             + "|| @within(top.reed.common.annotation.DataSource)")

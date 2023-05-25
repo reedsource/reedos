@@ -64,7 +64,7 @@ public class PVQueueService implements InitializingBean {
         });
     }
 
-    public void pushPvQueue(HttpServletRequest request, Pv pv) {
+    public boolean pushPvQueue(HttpServletRequest request, Pv pv) {
 
         pv.setIp(IpUtils.getIpAddr(request));
         if (StringUtils.isEmpty(pv.getReferer())) {
@@ -83,7 +83,8 @@ public class PVQueueService implements InitializingBean {
         //offer(anObject):表示如果可能的话,将anObject加到BlockingQueue里,即如果BlockingQueue可以容纳,则返回true,否则返回false.（本方法不阻塞当前执行方法的线程）
         //offer(E o, long timeout, TimeUnit unit),可以设定等待的时间，如果在指定的时间内，还不能往队列中加入BlockingQueue，则返回失败。
         //put(anObject):把anObject加到BlockingQueue里,如果BlockQueue没有空间,则调用此方法的线程被阻断直到BlockingQueue里面有空间再继续.
-        blockingQueue.offer(pv);//添加一个元素并返回true 如果队列已满，则返回false
+        //添加一个元素并返回true 如果队列已满，则返回false
+        return blockingQueue.offer(pv);
     }
 
     @PreDestroy

@@ -168,8 +168,11 @@ public class CmsController extends BaseController {
     @PostMapping("/page/view")
     @ResponseBody
     public AjaxResult pv(Pv pv, HttpServletRequest request) {
-        pvQueueService.pushPvQueue(request, pv);
-        return success();
+        if (pvQueueService.pushPvQueue(request, pv)) {
+            return success();
+        }else {
+            return error();
+        }
     }
 
     @PostMapping("/cms/clearSiteInfoCache")

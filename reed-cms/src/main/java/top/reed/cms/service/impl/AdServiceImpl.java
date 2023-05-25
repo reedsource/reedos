@@ -146,7 +146,7 @@ public class AdServiceImpl implements IAdService {
         for (AdMaterial material : list) {
             idList.add(String.valueOf(material.getUseHisId()));
         }
-        String[] useIds = idList.toArray(new String[idList.size()]);
+        String[] useIds = idList.toArray(new String[0]);
         materialMapper.deleteMaterialUseBatch(useIds);
         for (AdMaterial material : list) {
             int n = materialMapper.selectCountMaterialUse(material.getMaterialId());

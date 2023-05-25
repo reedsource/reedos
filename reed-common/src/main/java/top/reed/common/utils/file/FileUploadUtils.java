@@ -112,7 +112,7 @@ public enum FileUploadUtils {
 
         String fileName = extractFilename(file);
 
-        String absPath = getAbsoluteFile(baseDir, fileName).getAbsolutePath();
+        String absPath = Objects.requireNonNull(getAbsoluteFile(baseDir, fileName)).getAbsolutePath();
         file.transferTo(Paths.get(absPath));
         return getPathFileName(baseDir, fileName);
     }
@@ -129,7 +129,9 @@ public enum FileUploadUtils {
         File desc = new File(uploadDir + File.separator + fileName);
 
         if (!desc.exists() && !desc.getParentFile().exists()) {
-            desc.getParentFile().mkdirs();
+            if (!desc.getParentFile().mkdirs()) {
+                return null;
+            }
         }
         return desc;
     }
@@ -303,9 +305,8 @@ public enum FileUploadUtils {
      */
     public static boolean deleteFile(String fileName) {
         File target = getAbsoluteFile(ReedConfig.getProfile(), fileName.replace(Constants.RESOURCE_PREFIX, ""));
-        if (target.exists() && target.isFile()) {
-            target.delete();
-            return true;
+        if (target != null && target.exists() && target.isFile()) {
+            return target.delete();
         }
         return false;
     }
