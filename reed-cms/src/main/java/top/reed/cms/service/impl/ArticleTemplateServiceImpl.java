@@ -134,16 +134,13 @@ public class ArticleTemplateServiceImpl implements IArticleTemplateService {
             if (StringUtils.isNotEmpty(tagsStr)) {
                 String[] tagsArr = Convert.toStrArray(tagsStr);
                 StringBuilder tags_name = new StringBuilder();
-                List<Tags> tags = Lists.newArrayList();
                 for (String id : tagsArr) {
                     if (StringUtils.isNotEmpty(id)) {
-
                         Tags tag = tagCache.get(id);
                         if (tag == null) {
                             tag = tagsMapper.selectTagsById(Long.valueOf(id));
                             tagCache.put(id, tag);
                         }
-                        tags.add(tag);
                         if (tag != null) {
                             tags_name.append(tag.getTagName()).append(",");
                         }

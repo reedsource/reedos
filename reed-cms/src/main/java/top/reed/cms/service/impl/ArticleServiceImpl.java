@@ -111,9 +111,7 @@ public class ArticleServiceImpl implements IArticleService {
             article.setCommentFlag("0");
         }
 
-        int n = articleMapper.insertArticle(article);
-        n = articleMapper.insertArticleContent(article);
-        return n;
+        return articleMapper.insertArticleContent(article);
     }
 
     /**
@@ -142,9 +140,7 @@ public class ArticleServiceImpl implements IArticleService {
         if ("off".equals(article.getCommentFlag())) {
             article.setCommentFlag("0");
         }
-        int n = articleMapper.updateArticle(article);
-        n = articleMapper.updateArticleContent(article);
-        return n;
+        return articleMapper.updateArticleContent(article);
     }
 
     /**

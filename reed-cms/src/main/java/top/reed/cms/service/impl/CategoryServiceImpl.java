@@ -60,7 +60,6 @@ public class CategoryServiceImpl implements ICategoryService {
         category.setCreateTime(DateUtils.getNowDate());
         SysUser user = ShiroUtils.getSysUser();
         category.setCreateBy(user.getUserId().toString());
-        int n = categoryMapper.insertCategory(category);
         //更新parentids
         Long pid = category.getParentId();
         Category p = categoryMapper.selectCategoryById(pid);
@@ -72,8 +71,7 @@ public class CategoryServiceImpl implements ICategoryService {
             ancestors = category.getCategoryId() + "," ;
         }
         category.setAncestors(ancestors);
-        n = categoryMapper.updateCategory(category);
-        return n;
+        return categoryMapper.updateCategory(category);
     }
 
     /**

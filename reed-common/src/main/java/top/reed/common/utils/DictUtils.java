@@ -5,6 +5,7 @@ import top.reed.common.constant.Constants;
 import top.reed.common.core.domain.entity.SysDictData;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 字典工具类
@@ -108,7 +109,7 @@ public class DictUtils {
         List<SysDictData> datas = getDictCache(dictType);
 
         if (StringUtils.containsAny(dictLabel, separator) && StringUtils.isNotEmpty(datas)) {
-            for (SysDictData dict : datas) {
+            for (SysDictData dict : Objects.requireNonNull(datas)) {
                 for (String label : dictLabel.split(separator)) {
                     if (label.equals(dict.getDictLabel())) {
                         propertyString.append(dict.getDictValue()).append(separator);
@@ -117,7 +118,7 @@ public class DictUtils {
                 }
             }
         } else {
-            for (SysDictData dict : datas) {
+            for (SysDictData dict : Objects.requireNonNull(datas)) {
                 if (dictLabel.equals(dict.getDictLabel())) {
                     return dict.getDictValue();
                 }

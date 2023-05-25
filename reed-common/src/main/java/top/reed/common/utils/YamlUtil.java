@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * 配置处理工具类
@@ -22,7 +23,7 @@ public class YamlUtil {
 
     public static void dumpYaml(String fileName, Map<?, ?> map) throws IOException {
         if (StringUtils.isNotEmpty(fileName)) {
-            FileWriter fileWriter = new FileWriter(YamlUtil.class.getResource(fileName).getFile());
+            FileWriter fileWriter = new FileWriter(Objects.requireNonNull(YamlUtil.class.getResource(fileName)).getFile());
             DumperOptions options = new DumperOptions();
             options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
             Yaml yaml = new Yaml(options);

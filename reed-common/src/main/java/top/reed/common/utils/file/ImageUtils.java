@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * 图片处理工具类
@@ -25,7 +26,7 @@ public class ImageUtils {
     public static byte[] getImage(String imagePath) {
         InputStream is = getFile(imagePath);
         try {
-            return IOUtils.toByteArray(is);
+            return IOUtils.toByteArray(Objects.requireNonNull(is));
         } catch (Exception e) {
             log.error("图片加载异常 {}",e.toString());
             return null;
@@ -37,7 +38,7 @@ public class ImageUtils {
     public static InputStream getFile(String imagePath) {
         try {
             byte[] result = readFile(imagePath);
-            result = Arrays.copyOf(result, result.length);
+            result = Arrays.copyOf(Objects.requireNonNull(result), result.length);
             return new ByteArrayInputStream(result);
         } catch (Exception e) {
             log.error("获取图片异常 {}",e.toString());
