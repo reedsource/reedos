@@ -1,8 +1,8 @@
 <script th:src="@{/ruoyi/js/ry-ui.js?v=4.1.0}"></script>
 <header class="commonHeadGrid">
     <div class="headGrid layoutWidth w1200">
-        <a th:href="@{/blog}"><span style='color:#32CD32;font-size:28px'
-                                    th:text="${@config.getKey('blog.index.title')}"></span>
+        <a th:href="@{/js/go/blog}"><span style='color:#32CD32;font-size:28px'
+                                          th:text="${@config.getKey('blog.index.title')}"></span>
         </a>
 
         <div class="menuBtnWrapLayout openBtn" id="touchMenuOpen"><i class="iconfont icon-liebiao"></i></div>
@@ -29,7 +29,7 @@
             <div class="menuBtnWrapLayout closeBtn" id="touchMenuClose"><i class="iconfont icon-cuowu"></i></div>
             <nav class="menuGroup">
                 <span class="item"><a th:class="${categoryId=='index' ? 'current' : ''} "
-                                      th:href="@{/blog}">首页</a></span>
+                                      th:href="@{/js/go/blog}">首页</a></span>
 
                 <span class="item">
                     <a th:class="${categoryId=='category'? 'current':''}" th:href="@{/blog/category}">文章分类</a>

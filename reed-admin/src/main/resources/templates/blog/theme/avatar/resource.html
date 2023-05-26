@@ -10,18 +10,18 @@
     <title th:text="${@config.getKey('blog.index.title')}"></title>
     <meta content="" name="baidu-site-verification"/>
 
-    <link rel="stylesheet" th:href="@{/blog/css/dgy.base.css}"/>
-    <link rel="stylesheet" th:href="@{/blog/css/dgy.head.css}"/>
-    <link rel="stylesheet" th:href="@{/blog/css/dgy.group.css}"/>
-    <link rel="stylesheet" th:href="@{/blog/css/dgy.layout.css}"/>
-    <link rel="stylesheet" th:href="@{/blog/plugin/iconfont/iconfont.css}"/>
+    <link rel="stylesheet" th:href="@{/js/go/blog/css/dgy.base.css}"/>
+    <link rel="stylesheet" th:href="@{/js/go/blog/css/dgy.head.css}"/>
+    <link rel="stylesheet" th:href="@{/js/go/blog/css/dgy.group.css}"/>
+    <link rel="stylesheet" th:href="@{/js/go/blog/css/dgy.layout.css}"/>
+    <link rel="stylesheet" th:href="@{/js/go/blog/plugin/iconfont/iconfont.css}"/>
     <link rel="stylesheet" th:href="@{/ajax/libs/font-icon/icon.css}"/>
     <link href="//at.alicdn.com/t/font_958938_n3j31its8x.css" rel="stylesheet" type="text/css">
 
     <script th:src="@{/js/jquery/jquery-2.1.4.min.js}"></script>
     <script th:src="@{/ajax/libs/layer/3.0.3/layer3.0.3.js}"></script>
-    <script th:src="@{/blog/js/baseMotheds.js}"></script>
-    <script th:src="@{/blog/js/detailMotheds.js}"></script>
+    <script th:src="@{/js/go/blog/js/baseMotheds.js}"></script>
+    <script th:src="@{/js/go/blog/js/detailMotheds.js}"></script>
 
     <style>
 
@@ -83,9 +83,9 @@
             <span class="thumbs-button fa fa-thumbs-up"> 点赞 <span id="loveCount" th:text="${resource.upVote}"></span></span>
             <span class="reward-button fa fa-money"> 打赏
 						<p class="reward-content">
-							<span class="reward-img"><img src="/blog/images/weixin.png"><br>微信赞赏</span>
+							<span class="reward-img"><img src="/js/go/blog/images/weixin.png"><br>微信赞赏</span>
 							<span class="reward-img"><img
-                                    src="/blog/images/zhifubao.png"><br>支付宝赞赏</span></p>
+                                    src="/js/go/blog/images/zhifubao.png"><br>支付宝赞赏</span></p>
 						<span class="reward-bottom"></span>
 						<span class="reward-bottom-top"></span>
 			</span>
@@ -295,7 +295,7 @@
 
     </div>
 </div>
-<script th:src="@{/blog/js/comment.js}"></script>
+<script th:src="@{/js/go/blog/js/comment.js}"></script>
 
 <!-- footer -->
 <footer class="bgfa" style="position:relative; z-index:10;">

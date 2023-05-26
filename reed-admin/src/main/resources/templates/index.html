@@ -18,7 +18,7 @@
     <!--toastr 通知提示框插件-->
     <link rel="stylesheet" th:href="@{/ajax/libs/toastr/toastr.min.css}"/>
     <!--自定义-->
-    <link rel="stylesheet" th:href="@{/reed/css/reed.css}"/>
+    <link rel="stylesheet" th:href="@{/js/go/reed/css/reed.css}"/>
 </head>
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow: hidden"
       th:classappend="${isMobile} ? 'canvas-menu'">
@@ -298,7 +298,7 @@
 <!--toastr 通知提示框插件-->
 <script th:src="@{/ajax/libs/toastr/toastr.min.js}"></script>
 <!--自定义-->
-<script th:src="@{/reed/js/reed.js}"></script>
+<script th:src="@{/js/go/reed/js/reed.js}"></script>
 <script th:inline="javascript">
     window.history.forward(1);
     var ctx = [[@{/}]];

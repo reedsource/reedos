@@ -8,18 +8,18 @@
     <title th:text="${@config.getKey('blog.index.title')}"></title>
     <meta content="dAEtGwEyN9" name="baidu-site-verification"/>
 
-    <link rel="stylesheet" th:href="@{/blog/css/dgy.base.min.css}"/>
-    <link rel="stylesheet" th:href="@{/blog/css/dgy.head.min.css}"/>
-    <link rel="stylesheet" th:href="@{/blog/css/dgy.web.3.0.css}"/>
-    <link rel="stylesheet" th:href="@{/blog/pnews/plugin/iconfont/iconfont.css}"/>
-    <link rel="stylesheet" th:href="@{/blog/pnews/plugin/swiper4/swiper-4.1.0.min.css}"/>
+    <link rel="stylesheet" th:href="@{/js/go/blog/css/dgy.base.min.css}"/>
+    <link rel="stylesheet" th:href="@{/js/go/blog/css/dgy.head.min.css}"/>
+    <link rel="stylesheet" th:href="@{/js/go/blog/css/dgy.web.3.0.css}"/>
+    <link rel="stylesheet" th:href="@{/js/go/blog/pnews/plugin/iconfont/iconfont.css}"/>
+    <link rel="stylesheet" th:href="@{/js/go/blog/pnews/plugin/swiper4/swiper-4.1.0.min.css}"/>
 
     <script th:src="@{/js/jquery/jquery-2.1.4.min.js}"></script>
     <script th:src="@{/ajax/libs/layer/layer2.3.js}"></script>
     <script th:src="@{/js/jquery/jquery.lazyload1.9.7.min.js}"></script>
-    <script th:src="@{/blog/js/baseMotheds.js}"></script>
+    <script th:src="@{/js/go/blog/js/baseMotheds.js}"></script>
     <script th:src="@{/ruoyi/js/ry-ui.js?v=4.1.0}"></script>
-    <script th:src="@{/blog/pnews/plugin/swiper4/swiper-4.1.0.min.js}"></script>
+    <script th:src="@{/js/go/blog/pnews/plugin/swiper4/swiper-4.1.0.min.js}"></script>
 </head>
 <body>
 <div class="headGroup white fixed" id="headGroup">
@@ -28,14 +28,14 @@
         <div class="menuWrap">
             <ul>
                 <li>
-                    <a th:href="@{/blog}">
+                    <a th:href="@{/js/go/blog}">
                         <span style='color:#32CD32;font-size:28px'
                               th:text="${@config.getKey('blog.index.title')}"></span>
                     </a>
                 </li>
 
                 <li>
-                    <a th:class="${categoryId=='index' ? 'current' : ''} " th:href="@{/blog}">
+                    <a th:class="${categoryId=='index' ? 'current' : ''} " th:href="@{/js/go/blog}">
                         <span>首页</span>
                     </a>
                 </li>

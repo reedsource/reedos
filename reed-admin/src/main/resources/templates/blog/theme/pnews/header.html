@@ -4,12 +4,12 @@
         <div class="menuWrap">
             <ul>
                 <li>
-                    <a th:href="@{/blog}">
+                    <a th:href="@{/js/go/blog}">
                         <span style='color:#32CD32;font-size:28px'
                               th:text="${@config.getKey('blog.index.title')}"></span>
                     </a>
                 </li>
-                <li><a th:class="${categoryId=='index' ? 'current' : ''}" th:href="@{/blog}"><span>首页</span></a>
+                <li><a th:class="${categoryId=='index' ? 'current' : ''}" th:href="@{/js/go/blog}"><span>首页</span></a>
                 </li>
 
                 <li th:each="category:${@cms.selectNavCategories()}">

@@ -11,5 +11,5 @@ create table reedos.cms_login_page
 );
 
 INSERT INTO reedos.cms_login_page (id, name, code, cover_img, create_time, create_by)
-VALUES (1, '默认', 'default', '/images/loginPage/default.jpg', sysdate(), 'ry'),
-       (2, 'process', 'process', '/images/loginPage/process.jpg', sysdate(), 'ry');
+VALUES (1, '默认', 'default', '/img/loginPage/default.jpg', sysdate(), 'ry'),
+       (2, 'process', 'process', '/img/loginPage/process.jpg', sysdate(), 'ry');

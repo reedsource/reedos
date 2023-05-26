@@ -102,7 +102,7 @@ $(function () {
                             '<li>'+
                             '	<div class="comment-body" id="comment-'+value.id+'">'+
                             '		<div class="comment-user-img">'+
-                            '			<img src="'+(value.avatar||"/blog/img/user-default.png")+'" onerror="this.src=\'/blog/img/user-default.png\'" />'+
+                            '			<img src="'+(value.avatar||"/js/go/blog/css/user-default.png")+'" onerror="this.src=\'/js/go//blog/css/user-default.png\'" />'+
                             '		</div>'+
                             '		<div class="comment-info">'+
                             '			<div class="comment-top">'+

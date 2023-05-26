@@ -11,8 +11,8 @@ create table reedos.blog_theme
 );
 
 INSERT INTO reedos.blog_theme (id, name, code, cover_img, create_time, create_by)
-VALUES (1, 'Avatar响应式博客模版主题', 'avatar', '/images/cover/1561132050443308.jpg', sysdate(), 'ry');
+VALUES (1, 'Avatar响应式博客模版主题', 'avatar', '/img/cover/1561132050443308.jpg', sysdate(), 'ry');
 INSERT INTO reedos.blog_theme (id, name, code, cover_img, create_time, create_by)
-VALUES (2, '葡萄资讯模板主题，葡萄内容管理系统模板主题', 'pnews', '/images/cover/201903051436106979.jpg', sysdate(), 'ry');
+VALUES (2, '葡萄资讯模板主题，葡萄内容管理系统模板主题', 'pnews', '/img/cover/201903051436106979.jpg', sysdate(), 'ry');
 INSERT INTO reedos.blog_theme (id, name, code, cover_img, create_time, create_by)
-VALUES (3, '“pblog”个性博客模版主题，PT-CMS模版主题，免费下载', 'pblog', '/images/cover/pblog.jpg', sysdate(), 'ry');
+VALUES (3, '“pblog”个性博客模版主题，PT-CMS模版主题，免费下载', 'pblog', '/img/cover/pblog.jpg', sysdate(), 'ry');

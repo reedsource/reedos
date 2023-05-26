@@ -70,7 +70,7 @@ VALUES (7, '7', '48', '1', 'markbro', '
 
 <fieldset  style="font-family:sans-serif;border:0px none;">
     <section style="border:1px solid #dbdbdb;margin:5px 5px 5px 5px;background-color:#ffffff;padding:5px;">
-        <img border="0" src="/public/static/images/editor/img01.jpg" vspace="0" style="max-width:100%;"/> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        <img border="0" src="/public/static/img/editor/img01.jpg" vspace="0" style="max-width:100%;"/> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         <h2  data-brushtype="text" style="margin:10px 0px;font-size:20px;padding:3px 10px 2px;">
             图片标题
         </h2>
@@ -139,7 +139,7 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
 VALUES (12, '12', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <section style="box-sizing:border-box;padding:0px;margin:0px;">
         <section style="display:inline-block;line-height:20px;vertical-align:top;text-align:center;color:inherit;box-sizing:border-box;padding:0px;margin-top:0.5em;">
-            <img src="/public/static/images/editor/img06.jpg" style="box-sizing:border-box;color:inherit;margin:0px;padding:0px;vertical-align:top;width:40px;"/>
+            <img src="/public/static/img/editor/img06.jpg" style="box-sizing:border-box;color:inherit;margin:0px;padding:0px;vertical-align:top;width:40px;"/>
             <p  data-brushtype="text" placeholder="微信+编辑器" style="box-sizing:border-box;color:inherit;font-size:12px;line-height:30px;padding:0px;margin-top:0px;margin-bottom:0px;">
                 微信+编辑器
             </p>
@@ -179,7 +179,7 @@ VALUES (14, '14', '48', '1', 'markbro', '<fieldset  style="font-family: sans-ser
                 <br/>
             </p>
             <p style="text-align:center;">
-                <img src="/public/static/images/editor/weixin.png" style="max-width:100%;"/>
+                <img src="/public/static/img/editor/weixin.png" style="max-width:100%;"/>
             </p>
         </section>
     </section>
@@ -187,7 +187,7 @@ VALUES (14, '14', '48', '1', 'markbro', '<fieldset  style="font-family: sans-ser
 INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
 VALUES (15, '15', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <section style="margin:0.3em 0px;font-size:14px;font-weight:bold;text-align:center;text-decoration:inherit;box-sizing:border-box;padding-bottom:1.5em;">
-        <img src="/public/static/images/editor/img02.jpg" style="border-radius:50%;color:inherit;vertical-align:middle;width:112px;height:112px !important;margin-right:10px;"/> 
+        <img src="/public/static/img/editor/img02.jpg" style="border-radius:50%;color:inherit;vertical-align:middle;width:112px;height:112px !important;margin-right:10px;"/>
         <section style="border-left-width:1px;border-left-style:solid;border-color:#d3ac9c;text-align:left;display:inline-block;height:6em;vertical-align:top;color:#d3ac9c;padding-left:1em;margin-top:1em;">
             <h2  data-brushtype="text" style="width:90px;overflow:hidden;height:42px;border-color:#d3ac9c;color:inherit;margin-top:-0.15em;margin-bottom:0.5em;">
                 计划
@@ -202,7 +202,7 @@ VALUES (15, '15', '48', '1', 'markbro', '<fieldset  style="font-family:sans-seri
 </fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
 INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
 VALUES (16, '16', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
-    <blockquote  style="orphans:2;widows:2;font-size:14px;line-height:22.39px;margin:10px 0px;padding:15px 20px 15px 45px;outline:0px;border:0px currentcolor;color:#3e3e3e;vertical-align:baseline;background-image:url(/public/static/images/editor/left_quote.jpg);background-color:#f1f1f1;background-position:1% 5px;background-repeat:no-repeat;">
+    <blockquote  style="orphans:2;widows:2;font-size:14px;line-height:22.39px;margin:10px 0px;padding:15px 20px 15px 45px;outline:0px;border:0px currentcolor;color:#3e3e3e;vertical-align:baseline;background-image:url(/public/static/img/editor/left_quote.jpg);background-color:#f1f1f1;background-position:1% 5px;background-repeat:no-repeat;">
         这里插入分号引用样式的内容。
     </blockquote>
 </fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
@@ -210,7 +210,7 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
 VALUES (17, '17', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <fieldset style="border:none;margin:0.8em 0px 0.3em;box-sizing:border-box;padding:0px;">
         <section style="line-height:0;box-sizing:border-box;">
-            <img src="/public/static/images/editor/img03.jpg" style="border:0px;box-sizing:border-box;display:inline-block;max-width:100%;height:auto !important;"/> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <img src="/public/static/img/editor/img03.jpg" style="border:0px;box-sizing:border-box;display:inline-block;max-width:100%;height:auto !important;"/> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         </section>
         <section data-width="30%" style="width:136.1875px;display:inline-block;float:left;text-align:right;margin:15px 0px 0px;padding:0px;box-sizing:border-box;">
             <section style="float:right;text-align:center;box-sizing:border-box;margin-top:-15px;">
@@ -243,10 +243,10 @@ INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, con
 VALUES (18, '18', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <fieldset style="margin:0.5em 0px;padding:0px;max-width:100%;box-sizing:border-box;color:#3e3e3e;line-height:25px;border:0px #eedeb0;word-wrap:break-word !important;">
         <section style="margin:0px;padding:0px;width:100%;box-sizing:border-box;display:inline-block;text-align:center;word-wrap:break-word !important;">
-            <img src="/public/static/images/editor/bg03.png" style="box-sizing:border-box;color:inherit;height:65px;margin:0px auto;padding:0px;width:60px;visibility:visible !important;word-wrap:break-word !important;"/>
+            <img src="/public/static/img/editor/bg03.png" style="box-sizing:border-box;color:inherit;height:65px;margin:0px auto;padding:0px;width:60px;visibility:visible !important;word-wrap:break-word !important;"/>
         </section>
-        <section style="margin:-2.3em 0px 0px;padding:2em 0px 0px;max-width:100%;box-sizing:border-box;min-height:15em;font-size:1em;font-weight:inherit;text-decoration:inherit;color:#83681c;border-color:#eedeb0;word-wrap:break-word !important;background-image:url(/public/static/images/editor/bg05.png);background-color:#eedeb0;background-repeat:repeat;">
-            <section style="margin:0.3em auto;padding:0.5em;max-width:100%;box-sizing:border-box;width:7em;height:3.5em;line-height:2em;overflow:hidden;-webkit-transform:rotate(-5deg);font-size:32px;font-weight:inherit;text-align:center;text-decoration:inherit;color:inherit;word-wrap:break-word !important;background-image:url(/public/static/images/editor/bg04.png);background-size:contain;background-repeat:no-repeat;">
+        <section style="margin:-2.3em 0px 0px;padding:2em 0px 0px;max-width:100%;box-sizing:border-box;min-height:15em;font-size:1em;font-weight:inherit;text-decoration:inherit;color:#83681c;border-color:#eedeb0;word-wrap:break-word !important;background-image:url(/public/static/img/editor/bg05.png);background-color:#eedeb0;background-repeat:repeat;">
+            <section style="margin:0.3em auto;padding:0.5em;max-width:100%;box-sizing:border-box;width:7em;height:3.5em;line-height:2em;overflow:hidden;-webkit-transform:rotate(-5deg);font-size:32px;font-weight:inherit;text-align:center;text-decoration:inherit;color:inherit;word-wrap:break-word !important;background-image:url(/public/static/img/editor/bg04.png);background-size:contain;background-repeat:no-repeat;">
                 <section style="margin:0px;padding:0px;max-width:100%;box-sizing:border-box;word-wrap:break-word !important;">
                     <span  data-brushtype="text" style="box-sizing:border-box;color:inherit;margin:0px;max-width:100%;padding:0px;word-wrap:break-word !important;">公告</span>
                 </section>
@@ -276,7 +276,7 @@ VALUES (19, '19', '48', '1', 'markbro', '<fieldset  style="font-family:sans-seri
 INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
 VALUES (20, '20', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <section style="max-width:100%;margin:0px;border-radius:2em;height:2.5em;line-height:2.5em;color:#ffffff;font-size:13.33px;word-wrap:break-word !important;box-sizing:border-box !important;background-color:#bddd22;">
-        <img src="/public/static/images/editor/bg02.jpg" style="border:0px #bddd22;float:left;margin:5px 10px;vertical-align:top;box-sizing:border-box !important;height:auto !important;visibility:visible !important;width:auto !important;word-wrap:break-word !important;"/>
+        <img src="/public/static/img/editor/bg02.jpg" style="border:0px #bddd22;float:left;margin:5px 10px;vertical-align:top;box-sizing:border-box !important;height:auto !important;visibility:visible !important;width:auto !important;word-wrap:break-word !important;"/>
         <p  data-brushtype="text" style="max-width:100%;color:inherit;display:inline-block;font-size:16px;">
             关注一下又不会怀孕！
         </p>
@@ -375,7 +375,7 @@ VALUES (29, '29', '48', '1', 'markbro', '<fieldset  style="font-family:sans-seri
 INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
 VALUES (30, '30', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <section style="margin:3px;box-shadow:0px 1px 3px;background-color:#ffffff;">
-        <img src="/public/static/images/editor/img04.jpg" style="max-width:100%;"/> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        <img src="/public/static/img/editor/img04.jpg" style="max-width:100%;"/> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         <section  data-type="main">
             <p style="line-height:1.35em;overflow:hidden;padding:0px 16px;word-wrap:break-word;margin-top:10px;">
                 <span style="line-height:1.35em;">微信+原创，图文样式排版。</span>
@@ -385,7 +385,7 @@ VALUES (30, '30', '48', '1', 'markbro', '<fieldset  style="font-family:sans-seri
             </p>
         </section>
         <section style="border-top-width:1px;border-top-style:solid;border-top-color:#f2f2f2;color:#999999;padding:16px;background:none 0px 0px repeat scroll #fafafa;">
-            <img src="/public/static/images/editor/img05.jpg" style="float:left;height:34px;width:34px;margin-right:10px;"/>
+            <img src="/public/static/img/editor/img05.jpg" style="float:left;height:34px;width:34px;margin-right:10px;"/>
             <section  data-style="clear:none;line-height:17px;padding:0 0;font-size:12px;">
                 <p style="clear:none;font-size:12px;line-height:17px;padding:0px;margin-top:0px;margin-bottom:0px;">
                     <strong>简单易用的才是最好的</strong>
@@ -422,7 +422,7 @@ VALUES (33, '33', '48', '1', 'markbro', '<fieldset  style="font-family:sans-seri
 </fieldset>', 'public', 1, 0, 0, sysdate(), 0, null, null, null, null);
 INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
 VALUES (34, '34', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
-    <blockquote class="135bg" style="max-width:100%;padding:5px 15px;border:none #ff8124;word-wrap:break-word !important;box-sizing:border-box !important;background-image:url(/public/static/images/editor/img07.gif);background-size:cover;">
+    <blockquote class="135bg" style="max-width:100%;padding:5px 15px;border:none #ff8124;word-wrap:break-word !important;box-sizing:border-box !important;background-image:url(/public/static/img/editor/img07.gif);background-size:cover;">
         <section  style="color:#ffffff;">
             <p style="text-align:center;color:inherit;">
                 <br/>
@@ -535,7 +535,7 @@ VALUES (41, '41', '48', '1', 'markbro', '<fieldset  style="font-family:sans-seri
 INSERT INTO reedos.cms_article_template (id, name, tags, user_id, user_name, content, share_type, weight, hot_falg, new_flag, create_time, audit, audit_time, audit_by, audit_name, audit_reason)
 VALUES (42, '42', '48', '1', 'markbro', '<fieldset  style="font-family:sans-serif;border:0px none;">
     <fieldset style="margin:0.5em 0px;padding:0px;max-width:100%;box-sizing:border-box;color:#3e3e3e;font-family:inherit;font-size:medium;line-height:25px;border:none #fefdfe;word-wrap:break-word !important;">
-        <section style="margin:0px;padding:3.8em 0px;max-width:100%;box-sizing:border-box;width:12.5em;height:12.5em;float:right;text-align:center;word-wrap:break-word !important;background-image:url(/public/static/images/editor/bg06.png);background-size:cover;">
+        <section style="margin:0px;padding:3.8em 0px;max-width:100%;box-sizing:border-box;width:12.5em;height:12.5em;float:right;text-align:center;word-wrap:break-word !important;background-image:url(/public/static/img/editor/bg06.png);background-size:cover;">
             <section data-width="140px" style="margin:0px 0px 0px 16px;padding:0px;max-width:100%;box-sizing:border-box;width:140px;overflow:hidden;-webkit-transform:rotate(-13deg);font-size:22px;font-family:inherit;font-weight:inherit;text-decoration:inherit;color:#666666;word-wrap:break-word !important;">
                 <section  data-brushtype="text" style="margin:0px;padding:0px;max-width:100%;box-sizing:border-box;color:inherit;word-wrap:break-word !important;">
                     Tips
@@ -557,7 +557,7 @@ VALUES (43, '43', '48', '1', 'markbro', '<fieldset  style="font-family:sans-seri
         <section style="width:227px;display:inline-block;float:left;padding-right:10px;">
             <section style="padding:20px 25px;border:1px solid #e7e7e7;text-align:center;">
                 <p>
-                    <img src="/public/static/images/editor/pt_blog_logo.png" style="height:50px;margin-bottom:15px;"/>
+                    <img src="/public/static/img/editor/pt_blog_logo.png" style="height:50px;margin-bottom:15px;"/>
                 </p>
                 <h3  data-brushtype="text" style="font-size:16px;margin:0px 0px 10px;">
                     微信+编辑器
@@ -575,7 +575,7 @@ VALUES (43, '43', '48', '1', 'markbro', '<fieldset  style="font-family:sans-seri
         <section style="width:227px;display:inline-block;text-align:center;padding-left:10px;">
             <section style="padding:20px 25px;border:1px solid #e7e7e7;">
                 <p>
-                    <img src="/public/static/images/editor/pt_blog_logo.png" style="height:50px;margin-bottom:15px;"/>
+                    <img src="/public/static/img/editor/pt_blog_logo.png" style="height:50px;margin-bottom:15px;"/>
                 </p>
                 <h3  data-brushtype="text" style="font-size:16px;margin:0px 0px 10px;">
                     秒刷

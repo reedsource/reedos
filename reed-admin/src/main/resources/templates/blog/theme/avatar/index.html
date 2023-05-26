@@ -10,19 +10,19 @@
     <title th:text="${@config.getKey('blog.index.title')}"></title>
     <meta content="" name="baidu-site-verification"/>
 
-    <link rel="stylesheet" th:href="@{/blog/css/dgy.base.css}"/>
-    <link rel="stylesheet" th:href="@{/blog/css/dgy.head.css}"/>
-    <link rel="stylesheet" th:href="@{/blog/css/dgy.group.css}"/>
-    <link rel="stylesheet" th:href="@{/blog/css/dgy.layout.css}"/>
-    <link rel="stylesheet" th:href="@{/blog/plugin/iconfont/iconfont.css}"/>
-    <link rel="stylesheet" th:href="@{/blog/plugin/swiper4/swiper-4.1.0.min.css}"/>
+    <link rel="stylesheet" th:href="@{/js/go/blog/css/dgy.base.css}"/>
+    <link rel="stylesheet" th:href="@{/js/go/blog/css/dgy.head.css}"/>
+    <link rel="stylesheet" th:href="@{/js/go/blog/css/dgy.group.css}"/>
+    <link rel="stylesheet" th:href="@{/js/go/blog/css/dgy.layout.css}"/>
+    <link rel="stylesheet" th:href="@{/js/go/blog/plugin/iconfont/iconfont.css}"/>
+    <link rel="stylesheet" th:href="@{/js/go/blog/plugin/swiper4/swiper-4.1.0.min.css}"/>
     <link href="//at.alicdn.com/t/font_958938_n3j31its8x.css" rel="stylesheet" type="text/css">
     <script th:src="@{/js/jquery/jquery-2.1.4.min.js}"></script>
     <script th:src="@{/ajax/libs/layer/3.0.3/layer3.0.3.js}"></script>
     <script th:src="@{/js/jquery/jquery.lazyload1.9.7.min.js}"></script>
     <script th:inline="javascript"> var ctx = [[@{/}]]; </script>
-    <script th:src="@{/blog/js/baseMotheds.js}"></script>
-    <script th:src="@{/blog/plugin/swiper4/swiper-4.1.0.min.js}"></script>
+    <script th:src="@{/js/go/blog/js/baseMotheds.js}"></script>
+    <script th:src="@{/js/go/blog/plugin/swiper4/swiper-4.1.0.min.js}"></script>
 </head>
 <body class="">
 <!-- header -->
@@ -209,7 +209,7 @@
                         </div>
                     </li>
                     <li>
-                        <a class="moreBtn" target="_blank" th:href="@{/blog/siteMsg}">我要留言</a>
+                        <a class="moreBtn" target="_blank" th:href="@{/js/go/blog/siteMsg}">我要留言</a>
                     </li>
                     <li class="tips" th:if="${#lists.isEmpty(@cms.newComments(4))}">暂无留言</li>
                 </ul>

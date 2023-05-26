@@ -1,7 +1,7 @@
 <div class="commonFooter new">
     <aside>
         <ul>
-            <li><a th:href="@{/blog}">首页</a></li>
+            <li><a th:href="@{/js/go/blog}">首页</a></li>
             <li th:each="category:${@cms.selectNavCategories()}">
                 <a th:class="${category.categoryId +'' ==categoryId ? 'current':''}"
                    th:href="@{${'/blog/category/' + category.categoryId+'?pageSize=6'}}">
