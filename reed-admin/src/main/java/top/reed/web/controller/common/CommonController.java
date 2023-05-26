@@ -55,7 +55,7 @@ public class CommonController {
             FileUtils.setAttachmentResponseHeader(response, realFileName);
             FileUtils.writeBytes(filePath, response.getOutputStream());
             if (delete) {
-                FileUtils.deleteFile(filePath);
+                 boolean k = FileUtils.deleteFile(filePath);
             }
         } catch (Exception e) {
             log.error("下载文件失败", e);

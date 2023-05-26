@@ -37,6 +37,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -678,7 +679,6 @@ public class ExcelUtil<T> {
      *
      * @param index 序号
      */
-    @SuppressWarnings("unchecked")
     public void fillExcelData(int index) {
         int startNo = index * sheetSize;
         int endNo = Math.min(startNo + sheetSize, list.size());
@@ -853,7 +853,7 @@ public class ExcelUtil<T> {
     /**
      * 创建单元格
      */
-    public Cell createHeadCell(Excel attr, Row row, int column) {
+    public void createHeadCell(Excel attr, Row row, int column) {
         // 创建列
         Cell cell = row.createCell(column);
         // 写入列信息
@@ -867,7 +867,6 @@ public class ExcelUtil<T> {
                 sheet.addMergedRegion(new CellRangeAddress(rownum - 1, rownum, column, column));
             }
         }
-        return cell;
     }
 
     /**
@@ -921,7 +920,7 @@ public class ExcelUtil<T> {
      * 创建表格样式
      */
     public void setDataValidation(Excel attr, int column) {
-        if (attr.name().indexOf("注：") >= 0) {
+        if (attr.name().contains("注：")) {
             sheet.setColumnWidth(column, 6000);
         } else {
             // 设置列宽
@@ -941,8 +940,8 @@ public class ExcelUtil<T> {
     /**
      * 添加单元格
      */
-    public Cell addCell(Excel attr, Row row, T vo, Field field, int column) {
-        Cell cell = null;
+    public void addCell(Excel attr, Row row, T vo, Field field, int column) {
+        Cell cell;
         try {
             // 设置行高
             row.setHeight(maxHeight);
@@ -976,7 +975,14 @@ public class ExcelUtil<T> {
                     }
                     cell.setCellValue(sysDictMap.get(dictType + value));
                 } else if (value instanceof BigDecimal && -1 != attr.scale()) {
-                    cell.setCellValue((((BigDecimal) value).setScale(attr.scale(), attr.roundingMode())).doubleValue());
+                    /*
+                     * BigDecimal 舍入规则 默认:BigDecimal.ROUND_HALF_EVEN
+                     * 舍入模式，向“最近邻”舍入，除非两个相邻要素都相距，在这种情况下，舍入方向为偶数邻域。
+                     * 行为类似于丢弃分数左侧的数字是否为奇数;行为 ROUND_HALF_UP 类似于 ROUND_HALF_DOWN 偶数。
+                     * 请注意，这是一种舍入模式，在对一系列计算重复应用时，该模式将累积误差降至最低
+                     */
+                    cell.setCellValue((((BigDecimal) value).setScale(attr.scale(), RoundingMode.HALF_EVEN)).doubleValue());
+
                 } else if (!attr.handler().equals(ExcelHandlerAdapter.class)) {
                     cell.setCellValue(dataFormatHandlerAdapter(value, attr));
                 } else {
@@ -988,7 +994,6 @@ public class ExcelUtil<T> {
         } catch (Exception e) {
             log.error("导出Excel失败{}", e.toString());
         }
-        return cell;
     }
 
     /**

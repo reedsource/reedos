@@ -58,14 +58,6 @@ public @interface Excel {
     int scale() default -1;
 
     /**
-     * BigDecimal 舍入规则 默认:BigDecimal.ROUND_HALF_EVEN
-     * 舍入模式，向“最近邻”舍入，除非两个相邻要素都相距，在这种情况下，舍入方向为偶数邻域。
-     * 行为类似于丢弃分数左侧的数字是否为奇数;行为 ROUND_HALF_UP 类似于 ROUND_HALF_DOWN 偶数。
-     * 请注意，这是一种舍入模式，在对一系列计算重复应用时，该模式将累积误差降至最低
-     */
-    int roundingMode() default 6;
-
-    /**
      * 导出时在excel中每个列的高度 单位为字符
      */
     double height() default 14;

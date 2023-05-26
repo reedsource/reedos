@@ -55,7 +55,6 @@ public class PVQueueService implements InitializingBean {
                     }
 
                 } catch (InterruptedException e) {
-                    //    e.printStackTrace();
                     if (logger.isErrorEnabled()) {
                         logger.error("访问量消费队列错误", e);
                     }
