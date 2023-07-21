@@ -3,7 +3,7 @@ create table reedos.gen_table_column
 (
     column_id      bigint auto_increment comment '编号'
         primary key,
-    table_id       varchar(64)               null comment '归属表编号',
+    table_id       bigint(64)                null comment '归属表编号',
     column_name    varchar(200)              null comment '列名称',
     column_comment varchar(500)              null comment '列描述',
     column_type    varchar(100)              null comment '列类型',
