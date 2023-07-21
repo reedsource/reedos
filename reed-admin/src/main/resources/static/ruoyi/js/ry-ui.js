@@ -694,9 +694,7 @@ var table = {
                 var tableId = $.common.isEmpty(tableId) ? table.options.id : tableId;
                 if (table.options.type == table_type.bootstrapTable) {
                     var params = $("#" + tableId).bootstrapTable('getOptions');
-                    if ($.common.isNotEmpty(pageNumber)) {
-                        params.pageNumber = pageNumber;
-                    }
+                    params.pageNumber = 1;
                     if ($.common.isNotEmpty(pageSize)) {
                         params.pageSize = pageSize;
                     }
@@ -1119,10 +1117,9 @@ var table = {
                 });
             },
             // 添加信息
-            // 20220929 添加宽度和高度设置
-            add: function (id, width, height) {
+            add: function (id) {
                 table.set();
-                $.modal.open("添加" + table.options.modalName, $.operate.addUrl(id), width, height);
+                $.modal.open("添加" + table.options.modalName, $.operate.addUrl(id));
             },
             // 添加信息，以tab页展现
             addTab: function (id) {
@@ -1140,8 +1137,7 @@ var table = {
                 return url;
             },
             // 修改信息
-            // 20220929 添加宽度和高度设置
-            edit: function(id, width, height) {
+            edit: function (id) {
                 table.set();
                 if ($.common.isEmpty(id) && table.options.type == table_type.bootstrapTreeTable) {
                     var row = $("#" + table.options.id).bootstrapTreeTable('getSelections')[0];
@@ -1150,9 +1146,9 @@ var table = {
                         return;
                     }
                     var url = table.options.updateUrl.replace("{id}", row[table.options.uniqueId]);
-                    $.modal.open("修改" + table.options.modalName, url, width, height);
+                    $.modal.open("修改" + table.options.modalName, url);
                 } else {
-                    $.modal.open("修改" + table.options.modalName, $.operate.editUrl(id), width, height);
+                    $.modal.open("修改" + table.options.modalName, $.operate.editUrl(id));
                 }
             },
             // 修改信息，以tab页展现
