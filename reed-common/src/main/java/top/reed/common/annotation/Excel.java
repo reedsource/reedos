@@ -58,12 +58,12 @@ public @interface Excel {
     int scale() default -1;
 
     /**
-     * 导出时在excel中每个列的高度 单位为字符
+     * 导出时在excel中每个列的高度
      */
     double height() default 14;
 
     /**
-     * 导出时在excel中每个列的宽 单位为字符
+     * 导出时在excel中每个列的宽
      */
     double width() default 16;
 
