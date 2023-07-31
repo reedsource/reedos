@@ -655,7 +655,7 @@
     // 选择菜单处理函数
     function selectMenuTree() {
         var parentMenuId = $("#parentMenuId").val();
-        var menuId = parentMenuId > 0 ? parentMenuId : 1;
+        var menuId = parentMenuId > 0 ? parentMenuId : 1000000;
         var url = ctx + "system/menu/selectMenuTree/" + menuId;
         var options = {
             title: '菜单选择',
